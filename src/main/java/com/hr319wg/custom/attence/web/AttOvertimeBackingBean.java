@@ -712,12 +712,17 @@ public class AttOvertimeBackingBean extends BaseBackingBean {
 			}
 			attBusiService.saveOrUpdateBO(overtimeBo);
 			this.id=overtimeBo.getId();
-			this.attBusiService.applyOvertime(super.getUserInfo().getUserId(),this.id);
+			String result = this.attBusiService.applyOvertime(super.getUserInfo().getUserId(),this.id);
+			if(result==null){
+				this.toOvertime="1";
+				return "successleave";
+			}else{
+				super.showMessageDetail(result);
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		this.toOvertime="1";
-		return "successleave";
+		return null;
 	}
 	public String getPersonName() {
 		return personName;

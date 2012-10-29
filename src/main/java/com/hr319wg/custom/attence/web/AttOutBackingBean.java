@@ -690,12 +690,17 @@ public class AttOutBackingBean extends BaseBackingBean {
 			}
 			attBusiService.saveOrUpdateBO(outBo);
 			this.id=outBo.getId();
-			this.attBusiService.applyOut(super.getUserInfo().getUserId(),this.id);
+			String result = this.attBusiService.applyOut(super.getUserInfo().getUserId(),this.id);
+			if(result==null){
+				this.toOut="1";
+				return "successleave";
+			}else{
+				super.showMessageDetail(result);
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		this.toOut="1";
-		return "successleave";
+		return null;
 	}
 	public String getPersonName() {
 		return personName;

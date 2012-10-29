@@ -198,8 +198,8 @@ public interface IAttBusiService {
 			throws SysException;
 	public abstract Map<String,Object> getUndoneDays(String personId) throws SysException;
 	public abstract void applyLeave(String userId, String leaveId) throws SysException;
-	public abstract void applyOvertime(String userId, String id);
-	public abstract void applyRest(String userId, String id);
-	public abstract void applyOut(String userId, String id);;
+	public abstract String applyOvertime(String userId, String id) throws SysException;
+	public abstract String applyRest(String userId, String id) throws SysException;
+	public abstract String applyOut(String userId, String id) throws SysException;
 
 }

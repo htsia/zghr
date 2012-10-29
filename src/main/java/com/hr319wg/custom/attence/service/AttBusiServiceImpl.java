@@ -3102,125 +3102,116 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	
 	/**
 	 * 加班流程启动
+	 * @throws SysException 
 	 */
 	@Override
-	public void applyOvertime(String userId,String id){
-		try{
-			String keyId="";//流程key
-			String postLevel=this.selPersonTool.getPostLevel(userId);//岗位级别
-			if(postLevel!=null&&!postLevel.equals("")){
-				keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
-				if(keyId!=null&&!keyId.equals("")){
-					
-					//为流程配置参数并启动流程
-					int leaderType = selPersonTool.getLeaderType(userId);
-					AttOvertimeBO bo=(AttOvertimeBO)this.findBOById(AttOvertimeBO.class, id);
-					Map map=new HashMap();
-					map.put("proposerId", userId);
-					map.put("currPersonId", userId);
-					map.put("leaderType", leaderType);
-					map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
-					String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
-					
-					//设置加班申请状态,关联的流程实例ID
-					bo.setStatus(AttConstants.STATUS_AUDIT);
-					bo.setProcessId(instanceId);
-					this.saveOrUpdateBO(bo);
-				}else{
-					//super.showMessageDetail("您的岗位等级未设置流程！");
+	public String applyOvertime(String userId,String id) throws SysException{
+		String postLevel=this.selPersonTool.getPostLevel(userId);//岗位级别
+		if(postLevel!=null&&!postLevel.equals("")){
+			String keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
+			if(keyId!=null&&!keyId.equals("")){
+				//为流程配置参数并启动流程
+				int leaderType;
+				try{
+					leaderType = selPersonTool.getLeaderType(userId);					
+				}catch (SysException e) {
+					return e.getMessage();
 				}
+				AttOvertimeBO bo=(AttOvertimeBO)this.findBOById(AttOvertimeBO.class, id);
+				Map map=new HashMap();
+				map.put("proposerId", userId);
+				map.put("currPersonId", userId);
+				map.put("leaderType", leaderType);
+				map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
+				String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
+				
+				//设置加班申请状态,关联的流程实例ID
+				bo.setStatus(AttConstants.STATUS_AUDIT);
+				bo.setProcessId(instanceId);
+				this.saveOrUpdateBO(bo);
 			}else{
-				//super.showMessageDetail("您没有岗位等级，无法进入请假流程！");
+				return "您的岗位等级未设置流程";
 			}
-		}catch(NumberFormatException e){
-			e.printStackTrace();
-			//super.showMessageDetail("请假天数必须为>0的数字");
-		}catch(Exception e){
-			e.printStackTrace();
-			//super.showMessageDetail("操作失败！"+e.getMessage());
+		}else{
+			return "您没有岗位等级，无法进入请假流程";
 		}
+		return null;
 	}
 	
 	/**
 	 * 调休流程启动
+	 * @throws SysException 
 	 */
 	@Override
-	public void applyRest(String userId,String id){
-		try{
-			String keyId="";//流程key
-			String postLevel=this.selPersonTool.getPostLevel(userId);//岗位级别
-			if(postLevel!=null&&!postLevel.equals("")){
-				keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
-				if(keyId!=null&&!keyId.equals("")){
-					
-					//为流程配置参数并启动流程
-					int leaderType = selPersonTool.getLeaderType(userId);
-					AttRestBO bo=(AttRestBO)this.findBOById(AttRestBO.class, id);
-					Map map=new HashMap();
-					map.put("proposerId", userId);
-					map.put("currPersonId", userId);
-					map.put("leaderType", leaderType);
-					map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
-					String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
-					
-					//设置请假单状态,关联的流程实例ID
-					bo.setStatus(AttConstants.STATUS_AUDIT);
-					bo.setProcessId(instanceId);
-					this.saveOrUpdateBO(bo);
-				}else{
-					//super.showMessageDetail("您的岗位等级未设置流程！");
+	public String applyRest(String userId,String id) throws SysException{
+		String postLevel=this.selPersonTool.getPostLevel(userId);//岗位级别
+		if(postLevel!=null&&!postLevel.equals("")){
+			String keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
+			if(keyId!=null&&!keyId.equals("")){
+				//为流程配置参数并启动流程
+				int leaderType;
+				try{
+					leaderType = selPersonTool.getLeaderType(userId);					
+				}catch (SysException e) {
+					return e.getMessage();
 				}
+				AttRestBO bo=(AttRestBO)this.findBOById(AttRestBO.class, id);
+				Map map=new HashMap();
+				map.put("proposerId", userId);
+				map.put("currPersonId", userId);
+				map.put("leaderType", leaderType);
+				map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
+				String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
+				
+				//设置请假单状态,关联的流程实例ID
+				bo.setStatus(AttConstants.STATUS_AUDIT);
+				bo.setProcessId(instanceId);
+				this.saveOrUpdateBO(bo);
 			}else{
-				//super.showMessageDetail("您没有岗位等级，无法进入请假流程！");
+				return "您的岗位等级未设置流程";
 			}
-		}catch(NumberFormatException e){
-			e.printStackTrace();
-			//super.showMessageDetail("请假天数必须为>0的数字");
-		}catch(Exception e){
-			e.printStackTrace();
-			//super.showMessageDetail("操作失败！"+e.getMessage());
+		}else{
+			return "您没有岗位等级，无法进入请假流程";
 		}
+		return null;
 	}
 	
 	/**
 	 * 公出流程启动
+	 * @throws SysException 
 	 */
 	@Override
-	public void applyOut(String userId,String id){
-		try{
-			String keyId="";//流程key
-			String postLevel=this.selPersonTool.getPostLevel(userId);//岗位级别
-			if(postLevel!=null&&!postLevel.equals("")){
-				keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
-				if(keyId!=null&&!keyId.equals("")){
-					
-					//为流程配置参数并启动流程
-					int leaderType = selPersonTool.getLeaderType(userId);
-					AttOutBO bo=(AttOutBO)this.findBOById(AttOutBO.class, id);
-					Map map=new HashMap();
-					map.put("proposerId", userId);
-					map.put("currPersonId", userId);
-					map.put("leaderType", leaderType);
-					map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
-					String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
-					
-					//设置请假单状态,关联的流程实例ID
-					bo.setStatus(AttConstants.STATUS_AUDIT);
-					bo.setProcessId(instanceId);
-					this.saveOrUpdateBO(bo);
-				}else{
-					//super.showMessageDetail("您的岗位等级未设置流程！");
+	public String applyOut(String userId,String id) throws SysException{
+		String postLevel=this.selPersonTool.getPostLevel(userId);//岗位级别
+		if(postLevel!=null&&!postLevel.equals("")){
+			String keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
+			if(keyId!=null&&!keyId.equals("")){
+				//为流程配置参数并启动流程
+				int leaderType;
+				try{
+					leaderType = selPersonTool.getLeaderType(userId);					
+				}catch (SysException e) {
+					return e.getMessage();
 				}
+				AttOutBO bo=(AttOutBO)this.findBOById(AttOutBO.class, id);
+				Map map=new HashMap();
+				map.put("proposerId", userId);
+				map.put("currPersonId", userId);
+				map.put("leaderType", leaderType);
+				map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
+				String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
+				
+				//设置请假单状态,关联的流程实例ID
+				bo.setStatus(AttConstants.STATUS_AUDIT);
+				bo.setProcessId(instanceId);
+				this.saveOrUpdateBO(bo);
 			}else{
-				//super.showMessageDetail("您没有岗位等级，无法进入请假流程！");
+				return "您的岗位等级未设置流程";
 			}
-		}catch(NumberFormatException e){
-			e.printStackTrace();
-			//super.showMessageDetail("请假天数必须为>0的数字");
-		}catch(Exception e){
-			e.printStackTrace();
-			//super.showMessageDetail("操作失败！"+e.getMessage());
+		}else{
+			return "您没有岗位等级，无法进入请假流程";
 		}
+		return null;
 	}
 
 	//删除请假单

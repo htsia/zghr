@@ -683,12 +683,17 @@ public class AttRestBackingBean extends BaseBackingBean {
 			}
 			attBusiService.saveOrUpdateBO(restBo);
 			this.id=restBo.getId();
-			this.attBusiService.applyRest(super.getUserInfo().getUserId(),this.id);
+			String result = this.attBusiService.applyRest(super.getUserInfo().getUserId(),this.id);
+			if(result==null){
+				this.toRest="1";//到中间页面后，跳转到
+				return "successleave";				
+			}else{
+				super.showMessageDetail(result);
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		this.toRest="1";//到中间页面后，跳转到
-		return "successleave";
+		return null;
 	}
 	public String getPersonName() {
 		return personName;

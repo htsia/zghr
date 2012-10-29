@@ -750,12 +750,13 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 			attBusiService.saveAttLeaveBO(leaveBo);
 			this.leaveId=leaveBo.getId();
 			this.attBusiService.applyLeave(super.getUserInfo().getUserId(),this.leaveId);
+			this.leaveBo=null;
+			this.toLeave="1";
+			return "successleave";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.leaveBo=null;
-		this.toLeave="1";
-		return "successleave";
+		return null;
 	}
 
 	public String getPersonName() {
