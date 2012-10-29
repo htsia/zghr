@@ -68,5 +68,6 @@
 				});
 			}
 		}
+		
 		document.all("username").focus();
     </script>
