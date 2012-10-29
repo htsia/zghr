@@ -412,18 +412,7 @@ public class AttRestBackingBean extends BaseBackingBean {
 	}
 	public void delete(){
 		try{
-			List logList=this.attBusiService.getAttLogBOById(id);
-			if(logList!=null&&logList.size()>0){
-				for(int i=0;i<logList.size();i++){
-					AttLogBO log=(AttLogBO)logList.get(i);
-					attBusiService.deleteAttLogBO(log.getLogId());
-				}
-			}
-			AttRestBO bo=(AttRestBO)this.attBusiService.findBOById(AttRestBO.class,id);
-			if(bo.getProcessId()!=null){
-				activitiToolService.deleteProcessInstance(bo.getProcessId());				
-			}
-			attBusiService.deleteBO(AttRestBO.class, id);
+			this.attBusiService.deleteRest(id);
 			super.showMessageDetail("²Ù×÷³É¹¦£¡");
 		}catch(Exception e){
 			e.printStackTrace();

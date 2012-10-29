@@ -405,18 +405,7 @@ public class AttOvertimeBackingBean extends BaseBackingBean {
 	}
 	public void delete(){
 		try{
-			List logList=this.attBusiService.getAttLogBOById(id);
-			if(logList!=null&&logList.size()>0){
-				for(int i=0;i<logList.size();i++){
-					AttLogBO log=(AttLogBO)logList.get(i);
-					attBusiService.deleteAttLogBO(log.getLogId());
-				}
-			}
-			AttOvertimeBO bo=(AttOvertimeBO)this.attBusiService.findBOById(AttOvertimeBO.class,id);
-			if(bo.getProcessId()!=null){
-				activitiToolService.deleteProcessInstance(bo.getProcessId());				
-			}
-			attBusiService.deleteBO(AttOvertimeBO.class, id);
+			this.attBusiService.deleteOvertime(id);
 			super.showMessageDetail("²Ù×÷³É¹¦£¡");
 		}catch(Exception e){
 			e.printStackTrace();

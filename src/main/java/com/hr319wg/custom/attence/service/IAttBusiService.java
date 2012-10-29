@@ -54,7 +54,10 @@ public interface IAttBusiService {
 	public abstract String updateAllKQUsersData(Dispatch myCom, String ip)
 			throws SysException;
 
-	public abstract void deleteAttLogBO(String id) throws SysException;
+	public abstract void deleteLeave(String id) throws SysException;
+	public abstract void deleteOut(String id) throws SysException;
+	public abstract void deleteOvertime(String id) throws SysException;
+	public abstract void deleteRest(String id) throws SysException;
 
 	public abstract void saveAttLeaveLogBO(AttLogBO bo) throws SysException;
 

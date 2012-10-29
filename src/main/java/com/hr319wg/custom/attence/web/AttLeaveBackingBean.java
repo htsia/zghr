@@ -467,23 +467,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 
 	public void deleteLeave() {
 		try {
-			List logList = this.attBusiService.getAttLogBOById(leaveId);
-			if (logList != null && logList.size() > 0) {
-				for (int i = 0; i < logList.size(); i++) {
-					AttLogBO log = (AttLogBO) logList.get(i);
-					attBusiService.deleteAttLogBO(log.getLogId());
-				}
-			}
-			AttLeaveBO bo = this.attBusiService.findAttLeaveBOById(leaveId);
-			if (bo.getProcessId() != null) {
-				activitiToolService.deleteProcessInstance(bo.getProcessId());
-			}
-			if (bo.getStatus().equals("2")) {
-				// 如果是批准的假条，清除累加的请假天数 如果需要，要恢复带薪假的天数
-				this.attBusiService.rollBackLeave(bo);
-			}
-			
-			attBusiService.deleteAttLeaveBO(leaveId);
+			this.attBusiService.deleteLeave(leaveId);
 			super.showMessageDetail("操作成功！");
 		} catch (Exception e) {
 			e.printStackTrace();

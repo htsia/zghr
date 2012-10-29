@@ -413,11 +413,6 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		this.attBusiDAO.saveOrUpdateBo(bo);
 	}
 
-	@Override
-	public void deleteAttLogBO(String id) throws SysException {
-		this.attBusiDAO.deleteBo(AttLogBO.class, id);
-	}
-
 	/**
 	 * 考勤机管理
 	 */
@@ -3226,5 +3221,81 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			e.printStackTrace();
 			//super.showMessageDetail("操作失败！"+e.getMessage());
 		}
+	}
+
+	//删除请假单
+	@Override
+	public void deleteLeave(String id) throws SysException {
+		try {
+			List logList = this.attBusiDAO.getAttLogBOById(id);
+			if (logList != null && logList.size() > 0) {
+				for (int i = 0; i < logList.size(); i++) {
+					AttLogBO log = (AttLogBO) logList.get(i);
+					this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
+				}
+			}
+			AttLeaveBO bo = this.findAttLeaveBOById(id);
+			if (bo.getProcessId() != null) {
+				activitiToolService.deleteProcessInstance(bo.getProcessId());
+			}
+			if (bo.getStatus().equals("2")) {
+				// 如果是批准的假条，清除累加的请假天数 如果需要，要恢复带薪假的天数
+				this.rollBackLeave(bo);
+			}
+			this.attBusiDAO.deleteBo(AttLeaveBO.class, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	//删除公出
+	@Override
+	public void deleteOut(String id) throws SysException {
+		List logList = this.attBusiDAO.getAttLogBOById(id);
+		if(logList!=null&&logList.size()>0){
+			for(int i=0;i<logList.size();i++){
+				AttLogBO log=(AttLogBO)logList.get(i);
+				this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
+			}
+		}
+		AttOutBO bo=(AttOutBO)this.attBusiDAO.findBoById(AttOutBO.class,id);
+		if(bo.getProcessId()!=null){
+			activitiToolService.deleteProcessInstance(bo.getProcessId());				
+		}
+		this.attBusiDAO.deleteBo(AttOutBO.class, id);
+	}
+
+	//删除请假
+	@Override
+	public void deleteOvertime(String id) throws SysException {
+		List logList = this.attBusiDAO.getAttLogBOById(id);
+		if(logList!=null&&logList.size()>0){
+			for(int i=0;i<logList.size();i++){
+				AttLogBO log=(AttLogBO)logList.get(i);
+				this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
+			}
+		}
+		AttOvertimeBO bo=(AttOvertimeBO)this.attBusiDAO.findBoById(AttOvertimeBO.class,id);
+		if(bo.getProcessId()!=null){
+			activitiToolService.deleteProcessInstance(bo.getProcessId());				
+		}
+		this.attBusiDAO.deleteBo(AttOvertimeBO.class, id);
+	}
+
+	//删除调休
+	@Override
+	public void deleteRest(String id) throws SysException {
+		List logList = this.attBusiDAO.getAttLogBOById(id);
+		if(logList!=null&&logList.size()>0){
+			for(int i=0;i<logList.size();i++){
+				AttLogBO log=(AttLogBO)logList.get(i);
+				this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
+			}
+		}
+		AttRestBO bo=(AttRestBO)this.attBusiDAO.findBoById(AttRestBO.class,id);
+		if(bo.getProcessId()!=null){
+			activitiToolService.deleteProcessInstance(bo.getProcessId());				
+		}
+		this.attBusiDAO.deleteBo(AttRestBO.class, id);
 	}
 }

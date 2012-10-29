@@ -85,7 +85,7 @@
 	  <div style='width:100%;height:100%;overflow:auto' id=datatable>
 	</c:verbatim>
     <h:dataTable value="#{attLeaveApplyBB.list}" var="list" align="center" id="dateList"
-                 headerClass="td_top" columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center100,td_middle_center,td_middle_center"
+                 headerClass="td_top" columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center80,td_middle_center80,td_middle_center,td_middle_center80,td_middle_center100,td_middle_center,td_middle_center"
                  styleClass="table03" width="98%" >
         <h:column>
             <c:facet name="header"><h:outputText value="Ô±¹¤±àºÅ"/></c:facet>
