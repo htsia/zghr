@@ -16,7 +16,7 @@
   <%
      String pid=request.getParameter("PersonID");
   %>
-  <iframe name="main" width="98%" frameborder="0" src="<%=Constants.LEAD_SHOW_PERSONURL%>?flag=2&fk=<%=pid%>&typeId=2001010000,2001010100&setId=A001&ShowReport=false">
+  <iframe name="main" height="100%"  width="98%" frameborder="0" src="<%=Constants.LEAD_SHOW_PERSONURL%>?flag=2&fk=<%=pid%>&typeId=2001010000,2001010100&setId=A001&ShowReport=false">
   </iframe>
   </body>
 </html>

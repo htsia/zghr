@@ -71,7 +71,7 @@
 			<x:dataTable value="#{attCalcMgrBB.list}" headerClass="td_top"
 				rowIndexVar="index" var="list" styleClass="table03" border="1"
 				width="98%"
-				columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center">
+				columnClasses="td_middle_center,td_middle_center,td_middle_center60,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center60">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="ÐòºÅ" />
@@ -183,18 +183,6 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="Ì½Ç×¼Ù" />
-					</f:facet>
-					<h:outputText value="#{list.leaveHome}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="¹¤ÉË¼Ù" />
-					</f:facet>
-					<h:outputText value="#{list.leaveIndustrialInjury}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
 						<h:outputText value="É¥¼Ù" />
 					</f:facet>
 					<h:outputText value="#{list.leaveArrangingFuneral}"></h:outputText>
@@ -210,6 +198,12 @@
 						<h:outputText value="¼Ó°à" />
 					</f:facet>
 					<h:outputText value="#{list.workAddValue}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="ÔÂ·Ý" />
+					</f:facet>
+					<h:outputText value="#{list.attenceDate}"></h:outputText>
 				</h:column>
 			</x:dataTable>
 		</h:panelGrid>

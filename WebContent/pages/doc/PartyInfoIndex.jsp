@@ -30,7 +30,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td valign="top">
-                        <iframe name="tree" frameborder="0" framespacing="0" scrolling="yes" width="100%"
+                        <iframe name="tree" height="100%"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
                                 src="/pages/ccp/PartyTree.jsp?rightFlag=1&paType=1"></iframe>
                     </td>
                 </tr>
@@ -42,7 +42,7 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <td>
-                            <iframe name="main" frameborder="0" framespacing="0" scrolling="yes" width="100%"
+                            <iframe name="main" height="100%"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
                                    src="/doc/PartyBasicInfo.jsf"></iframe>
                         </td>
                     </tr>

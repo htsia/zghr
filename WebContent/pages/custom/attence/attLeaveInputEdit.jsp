@@ -49,6 +49,8 @@ function getApplyDays(){
 	}
 	function checkDays() {
 		//保存请假条出发的事件
+		var sss= document.all("form1:leavedayy").innerHTML;
+		alert(sss);
 		var userIds= document.all("form1:userIds").value;
 		var type = document.all("form1:leaveType").value;
 		var applydays = document.all("form1:applydays").value;
@@ -61,7 +63,6 @@ function getApplyDays(){
 		var realEndTime=endDate+" "+endHour;
 		var allDays=dateDiff(realBeginTime,realEndTime);
 		
-		//alert(day1);
 		if(userIds==null || userIds==""){
   			alert("请选择人员");
   			return false;
@@ -109,6 +110,7 @@ function getApplyDays(){
 		} else if (type == 3) {
 			//剩余的带薪假天数
 			var day = document.all("form1:leaveday3").value;
+			alert("保存检验"+day);
 			//除去本次请假天数以后的天数
 			var left = day - applydays;
 			if (left < 0) {
@@ -239,25 +241,29 @@ function getApplyDays(){
 						"dialogWidth:800px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
 		if(ids!=null && ids.length>0){
 			document.all('form1:selectedUserIds').value=ids;
-			//getData();
+			getData();
 			return true;
 		}else{
 			return false;
 		}
 	}
-	 function getData(){
-  	   alert(21);
-  	   var personId=doucment.all("selectedUserIds").value;
+	 function getData(){  	   
+  	   var personId=document.all("form1:selectedUserIds").value;
   	   $.ajax({
-			   type: "POST",			   
+			   type: "POST",
+			   async:false,
 			   url: "/pages/ajax/attLeaveData.jsp",
 			   data: "personId="+personId,
 			   success: function(msg){
 				   if(msg==-1){
 					   alert("获取数据出错");
 				   }else{
-					   alert(msg);
-				   }
+					   var alldata=msg.split(',');
+					   //分别给相应的字段赋值
+					   document.all("form1:leavedayy").innerHTML=alldata[0];
+					   alert(alldata[0]);
+					   
+			   }
 			   }
 			});
      }
@@ -372,18 +378,18 @@ function getApplyDays(){
 		<h:panelGrid columns="4" width="100%"
 			columnClasses="td_form01,td_form02,td_form01,td_form02"
 			align="center" styleClass="table03">
-			<h:outputText value="病假" />
-			<h:outputText value="#{attLeaveApplyBB.days.a236202}"/>
+			<h:outputText  value="病假" />
+			<h:outputText id="leavedayy" value="3"></h:outputText>
 			<h:outputText value="婚假" />
-			<h:outputText value="#{attLeaveApplyBB.days.a236203}"/>
+			<h:outputText id="leaveday333"  value="#{attLeaveApplyBB.days.a236203}"/>
 			<h:outputText value="丧假" />
-			<h:outputText value="#{attLeaveApplyBB.days.a236204}"/>
+			<h:outputText id="leaveday444"  value="#{attLeaveApplyBB.days.a236204}"/>
 			<h:outputText value="产假" />
-			<h:outputText value="#{attLeaveApplyBB.days.a236205}"/>
+			<h:outputText id="leaveday555"  value="#{attLeaveApplyBB.days.a236205}"/>
 			<h:outputText value="难产产假" />
-			<h:outputText value="#{attLeaveApplyBB.days.a236206}"/>
+			<h:outputText id="leaveday666"  value="#{attLeaveApplyBB.days.a236206}"/>
 			<h:outputText value="带薪事假" />
-			<h:outputText value="#{attLeaveApplyBB.days.a236207}"/>
+			<h:outputText  id="leaveday777" value="#{attLeaveApplyBB.days.a236207}"/>
 		</h:panelGrid>
 	</h:panelGrid>
 </h:form>

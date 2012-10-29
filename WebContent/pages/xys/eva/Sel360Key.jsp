@@ -3,7 +3,6 @@
 <%
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
     String keyType=request.getParameter("keyType");
-    System.out.println("keyType="+keyType);
 %>
 <html>
 <head>

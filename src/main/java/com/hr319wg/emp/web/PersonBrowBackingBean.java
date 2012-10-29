@@ -105,7 +105,7 @@ public class PersonBrowBackingBean extends BaseBackingBean
       }
       OrgBO orgbo = SysCacheTool.findOrgById(this.superId);
 
-      String where = " and (p.deptTreeId like '" + orgbo.getTreeId() + "%' or p.groupID='" + this.superId + "')";
+      String where = " and (p.deptTreeId like '" + orgbo.getTreeId() + "%')";
       if ((this.filter != null) && (!"".equals(this.filter))) {
         where = where + " and " + this.filter;
       }
@@ -116,13 +116,7 @@ public class PersonBrowBackingBean extends BaseBackingBean
       if ((scale != null) && (!"".equals(scale))) {
         where = where + " and " + scale;
       }
-      List list = null;
-
-      if ((!"true".equals(this.queryMode)) && ("0".equals(Constants.EMP_PERSON_BROWUNIT)) && ("089110".equals(orgbo.getorgType()))) {
-        list = new ArrayList();
-      }
-      else {
-        list = this.personucc.queryAllPersonInPage(where, this.pagevo);
+      List list = this.personucc.queryAllPersonInPage(where, this.pagevo);
         String basepath = BaseBackingBean.getServletContext().getRealPath("/");
         for (int i = 0; i < list.size(); i++) {
           PersonBO pb = (PersonBO)list.get(i);
@@ -131,8 +125,9 @@ public class PersonBrowBackingBean extends BaseBackingBean
             this.aucc.getFileContentToFile(basepath, zpValue);
           }
         }
+      if(list==null){
+    	  list = new ArrayList();
       }
-
       super.getHttpSession().setAttribute("PersonList", list);
     }
     catch (Exception e)

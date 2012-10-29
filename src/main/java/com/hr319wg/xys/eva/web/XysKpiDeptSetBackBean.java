@@ -227,11 +227,9 @@ public class XysKpiDeptSetBackBean extends BaseBackingBean {
 			String fileName = excelFile.getName();
 			String type = fileName.substring(fileName.indexOf(".") + 1);
 			if (type.equals("xls")) {
-				System.out.println("==============开始导入！===================");
 				Workbook wb = Workbook.getWorkbook(excelFile.getInputStream());
 				Sheet sheet = wb.getSheet(0);
 				int rows = sheet.getRows();
-				System.out.println("行数：" + rows);
 				List superNameList = new ArrayList();
 				List itemVoList = new ArrayList();
 				KPIItemVO itemVo = null;
@@ -274,7 +272,6 @@ public class XysKpiDeptSetBackBean extends BaseBackingBean {
 					int itemVoListSize = itemVoList.size();
 					for (int i = 0; i < superNameSize; i++) {
 						String superNameVar = (String) superNameList.get(i);
-						System.out.println(superNameVar);
 						String ids[] = superNameVar.split("-");
 						KPIImportVO vo = new KPIImportVO();
 						PersonBO pbo = SysCacheTool.findPersonById(ids[0]);
@@ -341,7 +338,6 @@ public class XysKpiDeptSetBackBean extends BaseBackingBean {
 					}
 				}
 				wb.close();
-				System.out.println("==============导入成功！===================");
 			} else {
 				super.showMessageDetail("只允许上传Excel（.xls）文档！");
 				return "";

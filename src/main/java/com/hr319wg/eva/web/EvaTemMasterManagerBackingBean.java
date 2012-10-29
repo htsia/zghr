@@ -83,7 +83,6 @@ public class EvaTemMasterManagerBackingBean extends BaseBackingBean {
 	public String addPerson(){
         try{
         	String id=super.getRequestParameter("form1:personStr");
-            System.out.println(needCount);
             if (id!=null){
                 String []ids=id.split(",");
                 if(ids[0].equals("")||ids[0]==null){

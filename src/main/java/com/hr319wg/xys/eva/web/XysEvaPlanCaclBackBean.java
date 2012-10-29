@@ -954,17 +954,14 @@ public class XysEvaPlanCaclBackBean extends BaseBackingBean {
 			String fileName = excelFile.getName();
 			String type = fileName.substring(fileName.indexOf(".") + 1);
 			if (type.equals("xls")) {
-				System.out.println("==============开始导入！===================");
 				Workbook wb =Workbook.getWorkbook(excelFile.getInputStream());
                 Sheet sheet = wb.getSheet(0);
                 
                 Map map=new HashMap();
 				int rows = sheet.getRows();
-				System.out.println("行数：" + rows);
 				for (int i = 1; i < rows; i++) {//从第二行开始读取
 					Cell[] cell = sheet.getRow(i);
 					String personCode=CommonFuns.filterNull(cell[3].getContents());
-					System.out.println("personCode="+personCode);
 					if(personCode!=null&&!personCode.equals("")){
 						String personId=SysCacheTool.findPersonByCode(personCode).getPersonId();
 						XysEvaObjBO obj=this.xysEvaObjUcc.findEqualsXysEvaObjBO(planId, personId);
@@ -989,7 +986,6 @@ public class XysEvaPlanCaclBackBean extends BaseBackingBean {
 						xysEvaObjUcc.saveXysEvaObjBO(obj);
 					}
 				}
-				System.out.println("==============导入成功！===================");
 			}else{
 				super.showMessageDetail("只允许上传Excel（.xls）文档！");
 				return "";

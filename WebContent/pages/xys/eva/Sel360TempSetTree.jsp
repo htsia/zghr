@@ -8,7 +8,6 @@
     response.setContentType("text/xml;charset=GBK");
 
     String tempId = request.getParameter("tempId");                           // …œº∂
-    System.out.println("tempId2="+tempId);
     out.println("<?xml version=\"1.0\" encoding=\"GBK\" ?>");
     out.println("<tree>");
     String icon = "";

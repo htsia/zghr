@@ -179,7 +179,6 @@ public class WageSplitQueryBackingBean extends BaseBackingBean {
 	        if(!"".equals(order)){
 	        	sql+="order by "+order;
 	        }
-System.out.println(sql);
 			turnPageQuery(table, sql, 1, 0);
 		} catch (Exception e) {
 			e.printStackTrace();

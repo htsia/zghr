@@ -92,7 +92,7 @@
               <table width="100%" class="table02">
                   <tr>
                       <td height=200 class="td05">
-                          <iframe name="tree" style="height:100%;width:100%" src="/pages/OA/ShowOperateTree.jsp"></iframe>
+                          <iframe name="tree" height="100%"  style="height:100%;width:100%" src="/pages/OA/ShowOperateTree.jsp"></iframe>
                       </td>
                   </tr>
                 <%
@@ -145,7 +145,7 @@
           </td>
 
           <td >
-              <iframe name="main" style="width:100%"></iframe>
+              <iframe name="main" height="100%"  style="width:100%"></iframe>
           </td>
         </tr>
     </table>

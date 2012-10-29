@@ -42,8 +42,8 @@ public class AttOutWorkDAO extends BaseDAO{
              }
              if(orgId!=null&&!orgId.equals("")){
                   OrgBO org= SysCacheTool.findOrgById(orgId);
-                  hql+="  and vo.deptTreeId like '%"+org.getTreeId()+"%'";
-                  countHql+="  and vo.deptTreeId like '%"+org.getTreeId()+"%'";
+                  hql+="  and vo.deptTreeId like '"+org.getTreeId()+"%'";
+                  countHql+="  and vo.deptTreeId like '"+org.getTreeId()+"%'";
              }
 
              if(postName!=null&&!postName.equals("")){
@@ -85,8 +85,8 @@ public class AttOutWorkDAO extends BaseDAO{
 
         if(orgId!=null&&!orgId.equals("")){
              OrgBO org= SysCacheTool.findOrgById(orgId);
-             hql+=" and bo.personID in (select vo.personId from PersonBO vo where vo.deptTreeId like '%"+org.getTreeId()+"%')";
-             countHql+=" and bo.personID in (select vo.personId from PersonBO vo where vo.deptTreeId like '%"+org.getTreeId()+"%')";
+             hql+=" and bo.personID in (select vo.personId from PersonBO vo where vo.deptTreeId like '"+org.getTreeId()+"%')";
+             countHql+=" and bo.personID in (select vo.personId from PersonBO vo where vo.deptTreeId like '"+org.getTreeId()+"%')";
         }
 
         if(beginTime!=null&&!beginTime.equals("")){

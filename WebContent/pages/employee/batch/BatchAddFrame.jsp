@@ -29,7 +29,7 @@
 
     <tr>
         <td width="180" align="center" valign="top" id=showTree>
-                <iframe name="tree" frameborder="0"  width="100%" height="535"
+                <iframe name="tree" height="100%"  frameborder="0"  width="100%" height="535"
                                 scrolling="auto" src="/pages/common/InfoItemTree.jsp?setType=A&onlyMulti=true"></iframe>
         </td>
 

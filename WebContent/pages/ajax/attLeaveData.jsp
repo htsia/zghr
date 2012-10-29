@@ -11,9 +11,10 @@
 <%
 try{
 String personId=request.getParameter("personId");
+    String userId=personId.split(",")[0];
     IAttBusiService attBusiService = (IAttBusiService) SysContext.getBean("attBusiServiceImpl");
-    List leaveDaysList=attBusiService.getDays(personId);//获取剩余的带薪假天数
-    Map undoneDays=attBusiService.getUndoneDays(personId);//获取待审批的各种类型请假天数
+    List leaveDaysList=attBusiService.getDays(userId);//获取剩余的带薪假天数
+    Map undoneDays=attBusiService.getUndoneDays(userId);//获取待审批的各种类型请假天数
     Map leaveDays=(Map)leaveDaysList.get(0);//获取剩余的带薪假天数
     String result="";
     //制定返回字符串的规则:为一系列字符串，依次为
@@ -29,10 +30,7 @@ String personId=request.getParameter("personId");
     result+=undoneDays.get("a5")+",";
     result+=undoneDays.get("a6")+",";
     result+=undoneDays.get("a7")+",";
-    
-    out.println(result);
-    
-    
+    out.println(result);   
     
 }catch(Exception e){
  		out.print(-1);

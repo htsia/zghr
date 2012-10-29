@@ -243,8 +243,8 @@ public class AttAnnualMgrDAO extends BaseDAO{
              }
              if(orgId!=null&&!orgId.equals("")){
                   OrgBO org= SysCacheTool.findOrgById(orgId);
-                  hql+="  and vo.deptTreeId like '%"+org.getTreeId()+"%'";
-                  countHql+="  and vo.deptTreeId like '%"+org.getTreeId()+"%'";
+                  hql+="  and vo.deptTreeId like '"+org.getTreeId()+"%'";
+                  countHql+="  and vo.deptTreeId like '"+org.getTreeId()+"%'";
              }
              hql+=")";
              countHql+=")";

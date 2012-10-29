@@ -40,7 +40,7 @@ public class EvaObjectsService {
 		OrgBO org=SysCacheTool.findOrgById(orgId);
 		String sql="";
 		if(org!=null){
-			sql="select distinct(template_ID) from v_evaobjects where PLAN_ID='"+planId+"' and A001738 like '%"+org.getTreeId()+"%'";
+			sql="select distinct(template_ID) from v_evaobjects where PLAN_ID='"+planId+"' and A001738 like '"+org.getTreeId()+"%'";
 		}else{
 			sql="select distinct(template_ID) from v_evaobjects where PLAN_ID='"+planId+"' and "+orgId+"";
 		}

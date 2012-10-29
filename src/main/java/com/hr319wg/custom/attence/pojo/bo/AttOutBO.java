@@ -21,7 +21,14 @@ public class AttOutBO implements Comparable<AttOutBO>{
 	private String personCode;
 	private String deptName;
 	private String secDeptName;
+	private boolean isAppro;//  «∑Ò”–…Û≈˙
 	
+	public boolean isAppro() {
+		return isAppro;
+	}
+	public void setAppro(boolean isAppro) {
+		this.isAppro = isAppro;
+	}
 	public String getSecDeptName() {
 		return secDeptName;
 	}

@@ -31,7 +31,7 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table03">
         <tr>
             <td class="table01" id="showTree" width="159">
-                            <iframe name="tree" frameborder="0"  scrolling="yes" width="100%"
+                            <iframe name="tree" height="100%"  frameborder="0"  scrolling="yes" width="100%"
                                      src="/pages/ccp/PartyTree.jsp?paType=1"></iframe>
             </td>
 
@@ -40,7 +40,7 @@
             </td>
 
             <td align="center" valign="top">
-                            <iframe name="main" frameborder="0"  scrolling="yes" width="100%"
+                            <iframe name="main" height="100%"  frameborder="0"  scrolling="yes" width="100%"
                                      src="/ccp/member/InfoQuery.jsf"></iframe>
             </td>
         </tr>

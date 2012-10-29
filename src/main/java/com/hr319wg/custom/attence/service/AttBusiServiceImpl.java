@@ -1293,7 +1293,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			this.saveAttLeaveBO(leave);
 
 			bo.setAuditTime(CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss"));
-			bo.setLeaveId(leave.getLeaveId());
+			bo.setLeaveId(leave.getId());
 			bo.setPersonId(currentUserId);
 			bo.setAuditResult(result);
 			bo.setAuditxplan(reason);
@@ -1448,33 +1448,34 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			List dayList = new ArrayList();
 			if ("0".equals(bo.getFrequencyType())
 					|| "2".equals(bo.getFrequencyType())) {// 周期班次
-
+                String zhouqiBeginDate=bo.getApplyBeginDate();
+                String zhouqiEndDate=bo.getApplyEndDate();
 				// 处理跨年周期班次 比如从十月一号到第二年的四月三十号
 				if (bo.getApplyBeginDate().compareTo(bo.getApplyEndDate()) > 0) {
 					// 如果在头一年的末尾
 					String temp = beginDate.substring(5);
 					if (bo.getApplyBeginDate().compareTo(temp) <= 0) {
-						bo.setApplyEndDate("12-31");
+						zhouqiEndDate="12-31";
 					}
 					// 如果在第二年的开头
 					temp = endDate.substring(5);
 					if (bo.getApplyEndDate().compareTo(temp) >= 0) {
-						bo.setApplyBeginDate("01-01");
+						zhouqiBeginDate="01-01";
 					}
 				}
 				// 以下获得本次计算的天数，规格如下:全勤班次取所有天数(比如后勤冬令时) classtype=2
 				// 周期性班次 非全勤型 取当月理论打卡日(比如大校的冬令时考勤 取所有的星期三)
 				if ("0".equals(bo.getFrequencyType())) {
 					dayList = DateUtil.getDayByWeek(bo.getFrequencyTxt(),
-							beginDate, endDate, bo.getApplyBeginDate(),
-							bo.getApplyEndDate());
+							beginDate, endDate, zhouqiBeginDate,
+							zhouqiEndDate);
 
 				} else if ("2".equals(bo.getFrequencyType())) {
 					// 全勤班
 					// 排除掉不符合要求的全勤班次
-					if (bo.getApplyBeginDate()
+					if (zhouqiBeginDate
 							.compareTo(beginDate.substring(5)) <= 0
-							&& bo.getApplyEndDate().compareTo(
+							&& zhouqiEndDate.compareTo(
 									endDate.substring(5)) >= 0) {
 						dayList = DateUtil.getAllBetweenDates(beginDate,
 								endDate);
@@ -1817,7 +1818,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				}
 
 			}
-			sql = "update att_sign_detail a set ignore = '0' where a.classtype='1' and a.day "
+			sql = "update att_sign_detail a set ignore = '0' where a.classtype='1' or a.classtype='2' and a.day "
 					+ inSql;
 			this.activeapi.executeSql(sql);
 		}
@@ -2817,10 +2818,10 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public List getAndShowAllAttMonthBO(PageVO pageVO, String orgID,
 			String nameStr, String personType, String beginYearMonth,
-			String endYearMonth) throws SysException {
+			String endYearMonth, String inself, String operUserID) throws SysException {
 		// TODO Auto-generated method stub
 		return this.attBusiDAO.getAndShowAllAttMonthBO(pageVO, orgID, nameStr,
-				personType, beginYearMonth, endYearMonth);
+				personType, beginYearMonth, endYearMonth, inself, operUserID);
 	}
 
 	@Override

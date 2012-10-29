@@ -63,7 +63,7 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="0" >
     <tr>
         <td width="240" align="center" valign="top" class="explorer" id="showTree">
-               <iframe name="tree" frameborder="0"  width="100%" scrolling="auto"
+               <iframe name="tree" height="100%"  frameborder="0"  width="100%" scrolling="auto"
                         src="/qry/QueryClass.jsf?operFlag=<%=operFlag%>&classID=<%=CommonFuns.filterNull(request.getParameter("classID"))%>&qsType=<%=CommonFuns.filterNull(request.getParameter("qsType"))%>&setType=<%=CommonFuns.filterNull(request.getParameter("setType"))%>&unitType=<%=CommonFuns.filterNull(request.getParameter("unitType"))%>"></iframe>
         </td>
 

@@ -86,7 +86,7 @@
 					</tr>
 
 					<tr>
-						<td valign="top"><iframe name="tree" frameborder="1"
+						<td valign="top"><iframe name="tree" height="100%"  frameborder="1"
 							scrolling="auto" width="100%"
 							src="/pages/org/showTemplateList.jsp"></iframe></td>
 					</tr>
@@ -96,7 +96,7 @@
 				<td width="10" class="ctrlbar" valign="middle"><img id=ctrlBnt
 					src="/images/button_1.gif" onclick="ctrlbar()"></td>
 
-				<td align="center" valign="top"><iframe name="main"
+				<td align="center" valign="top"><iframe name="main" height="100%" 
 					frameborder="0" scrolling="auto" width="100%"
 					src="/org/showTemplateOrgTree.jsf"></iframe></td>
 			</tr>

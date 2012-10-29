@@ -9,7 +9,7 @@
 <x:saveState value="#{attPutoffMgrBB}" />
 <h:inputHidden value="#{attPutoffMgrBB.resetInit}"/>
 <h:form id="form1">
-<h:panelGrid columns="2" align="center">
+<h:panelGrid columns="3"  align="center">
 	<h:outputText value="关联查询方案"/>
 			<h:selectOneMenu id="qry" style="width:150px" value="#{attPutoffMgrBB.qryID}">
                 <c:selectItems value="#{attPutoffMgrBB.qryList}"/>
@@ -17,5 +17,9 @@
             </h:panelGrid>
 		<h:panelGrid align="right">
 			<h:commandButton value="确定"  action="#{attPutoffMgrBB.resetData}" styleClass="button01" />
+		</h:panelGrid>
+		<h:panelGrid align="right">
+			<h:outputText value="提示信息:每学期开始，操作一次，将相关人员的带薪病假，婚假，丧假，产假，难产产假，带薪事假置为5,3,3,98,15,3
+			(其中产假和难产产假女员工才有) "/>
 		</h:panelGrid>
 </h:form>

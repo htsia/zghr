@@ -51,7 +51,6 @@ public class XysKpiKeyService {
 
     public String findPostIdByPostNameByDeptName(String deptName,String postName)throws SysException{
         String hql="select postId from C001 where C001005 ='"+postName+"' and C001010 in(select orgUid from B001 where B001005 like '%"+deptName+"%')";
-        System.out.println("hql="+hql);
         return activePageAPI.queryForString(hql);
     }
 

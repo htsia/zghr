@@ -51,7 +51,7 @@
     <table  width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
             <td class="td_title"><img src="/images/tips.gif">
-              <%=LanguageSupport.getResource("RYGL-0300","员工管理")%> ->
+              人员信息管理 ->
               <%=LanguageSupport.getResource("RYGL-0311","信息维护")%>   
               &nbsp;&nbsp;&nbsp;&nbsp;  
               <%=LanguageSupport.getResource("RYGL-1000","浏览方式：")%>   
@@ -75,7 +75,7 @@
     <table width="100%" border="0"  height="100%" cellpadding="0" cellspacing="0">
         <tr>
             <td id="showTree" width="210" height="100%" valign="top">
-                  <iframe name="tree" frameborder="0"  height="100%" scrolling="auto" width="100%"
+                  <iframe name="tree" height="100%"  frameborder="0"  height="100%" scrolling="auto" width="100%"
                                     src="/pages/common/ShowOrgTree.jsp"></iframe>
             </td>
 
@@ -84,7 +84,7 @@
             </td>
 
             <td align="center" valign="top" height="100%">
-                 <iframe name="main" frameborder="0"  height="100%" scrolling="no" width="100%"
+                 <iframe name="main" height="100%"  frameborder="0"  height="100%" scrolling="no" width="100%"
                      src="/employee/info/PersonInfoQuery.jsf?superId=<%=user.getOrgId()%>"></iframe>
             </td>
         </tr>

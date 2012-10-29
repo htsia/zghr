@@ -194,7 +194,7 @@ public class EhrMailServicesBackingBean {
              call.setSOAPActionURI(soapaction + "addPortalMailInfoByUserID");
                         
              String result = (String) call.invoke(new Object[]{MailTitle,MailContent,MailSenderID,MailAccepterID,CheckStr});//调用方法并传递参数   
-             System.out.println(this.returnResult(result)); //10发送成功
+             this.returnResult(result); //10发送成功
          }catch(Exception ex){
         	 ex.printStackTrace();
          } 
@@ -307,7 +307,6 @@ public class EhrMailServicesBackingBean {
 		
 	//员工 离职处理通过,掉用此方法,发送邮件
 	public void userLeaveOffice(String arg0){
-		System.out.println(arg0);
 		String querySql = "select a.a001735, a.a001001,a.a001241," +
 				" (select b001.b001005 from b001 where b001.orguid = (select a001.a001705 from a001 where a001.id = '"+arg0+"')) as ybm "+
 				" from a016 b left join  a001 a on a.id = b.id where a.id = '"+arg0+"'";
@@ -315,8 +314,6 @@ public class EhrMailServicesBackingBean {
 		list = getJdbcTemplate().queryForList(querySql);
 		for (int i = 0; i < list.size(); i++) {
 			try {
-				System.out.println(list.get(i).get("a001735")+"-"+list.get(i).get("a001001")+"-"+
-						list.get(i).get("a001241")+"-"+list.get(i).get("ybm")+"-"+CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss").toString());
 				userLeaveOfficeSendMail(list.get(i).get("a001735").toString(), list.get(i).get("a001001").toString(), 
 						list.get(i).get("a001241").toString(), list.get(i).get("ybm").toString(), CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss").toString());
 			} catch (Exception e) {

@@ -72,7 +72,7 @@
                     <tr><td height="8px"></td></tr>
 
                     <tr> <td valign="top">
-                            <iframe name="tree" frameborder="1" framespacing="0" scrolling="yes" width="100%"
+                            <iframe name="tree" height="100%"  frameborder="1" framespacing="0" scrolling="yes" width="100%"
                                     src="/pages/attence/ShowGroupMgrType.jsp"></iframe>
 
                     </td></tr>
@@ -86,7 +86,7 @@
             <td align="center" valign="top">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr><td>
-                            <iframe name="main" frameborder="0" framespacing="0" scrolling="yes" width="100%"
+                            <iframe name="main" height="100%"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
                                     src="/attence/groupMgrList.jsf"></iframe>
                     </td></tr>
                 </table>

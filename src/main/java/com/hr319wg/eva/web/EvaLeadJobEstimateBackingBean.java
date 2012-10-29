@@ -161,7 +161,6 @@ public class EvaLeadJobEstimateBackingBean extends BaseBackingBean {
 		planID = event.getNewValue().toString();
 		postID = SysCacheTool.findPersonById(super.getUserInfo().getUserId())
 				.getPostId();// 当前登陆人岗位ID
-		System.out.println(postID);
 		try {
 			resultList = jobestimateucc.getManagePersons(planID, postID);
 		} catch (SysException e) {

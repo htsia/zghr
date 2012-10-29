@@ -46,17 +46,14 @@ public class EvaPlanEditBackingBean extends BaseBackingBean {
 		// 得到上传文件
 		String path = getRealPath("/") + "file" + File.separator
 				+ "eva";
-		System.out.println(path);
 		String fileName = null;
 		try {
 			fileName = FileUtil.createFile(excelFile, path);
-			System.out.println(fileName);
 			String type=fileName.substring(fileName.indexOf(".")+1);
 			if(type.equals("doc")){
 				uploadeFileName=fileName;
 				// 保存到数据库
 				String filePath = path + File.separator + fileName;
-				System.out.println(filePath);
 				byte[] fileContent = FileUtil.ReadInFile(filePath);
 				String attID = ucc_attachment.createAttachment(fileContent, null,
 						null, 0, "eva", "doc");

@@ -73,7 +73,6 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	private String personSex="male";//Ä¬ÈÏÄÐÐÔ
 	private String userId;
 	
-	
 	public String getUserId() {
 		return userId;
 	}
@@ -134,7 +133,6 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 		if (super.getRequestParameter("leaveId") != null) {
 			this.leaveId = super.getRequestParameter("leaveId");
 		}
-		// System.out.println(this.leaveId);
 		return leaveBackInit;
 	}
 
@@ -704,6 +702,10 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 							p.getDeptId()));
 					bo.setPersonType(CodeUtil.interpertCode(p.getPersonType()));
 					bo.setPersonCode(p.getPersonCode());
+					int count = CommonUtil.getAttLogCount(bo.getId());
+					if(count>0){
+						bo.setAppro(true);
+					}
 					list.set(i, bo);
 				}
 			}
@@ -762,7 +764,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 				leaveBo.setStatus(AttConstants.STATUS_APPLY);
 			}
 			attBusiService.saveAttLeaveBO(leaveBo);
-			this.leaveId=leaveBo.getLeaveId();
+			this.leaveId=leaveBo.getId();
 			this.attBusiService.applyLeave(super.getUserInfo().getUserId(),this.leaveId);
 		} catch (Exception e) {
 			e.printStackTrace();

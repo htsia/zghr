@@ -109,6 +109,19 @@
 					</f:facet>
 					<h:outputText value="#{list.illLeaveDeduction}"></h:outputText>
 				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="迟到扣款" />
+					</f:facet>
+					<h:outputText value="#{list.laterDeduction}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="旷工扣款" />
+					</f:facet>
+					<h:outputText value="#{list.awayDeduction}"></h:outputText>
+				</h:column>
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="产假扣款" />
@@ -120,19 +133,7 @@
 						<h:outputText value="难产产假扣款" />
 					</f:facet>
 					<h:outputText value="#{list.nanchanjiaLeaveDeduction}"></h:outputText>
-				</h:column>				
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="旷工扣款" />
-					</f:facet>
-					<h:outputText value="#{list.awayDeduction}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="实到次数" />
-					</f:facet>
-					<h:outputText value="#{list.realityTime}"></h:outputText>
-				</h:column>
+				</h:column>					
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="迟到" />
@@ -178,33 +179,9 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="探亲假" />
-					</f:facet>
-					<h:outputText value="#{list.leaveHome}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="工伤假" />
-					</f:facet>
-					<h:outputText value="#{list.leaveIndustrialInjury}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
 						<h:outputText value="丧假" />
 					</f:facet>
 					<h:outputText value="#{list.leaveArrangingFuneral}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="公出" />
-					</f:facet>
-					<h:outputText value="#{list.outWorkValue}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="加班" />
-					</f:facet>
-					<h:outputText value="#{list.workAddValue}"></h:outputText>
 				</h:column>
 			</x:dataTable>
 		</h:panelGrid>

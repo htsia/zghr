@@ -145,7 +145,6 @@ public class TempMasterLoginBackingBean extends BaseBackingBean {
 				if(super.getHttpSession().getAttribute("evaTempMasterBO")!=null){
 					EvaTempMasterBO masterbo=(EvaTempMasterBO)super.getHttpSession().getAttribute("evaTempMasterBO");
 					String personid=masterbo.getMasterName();
-					System.out.println(personid+"ºÍ"+objectId);
 					List masterList=objectUCC.getMasterIdByOIdandPid(objectId, personid);
 					if(masterList!=null && masterList.size()>0){
 						EvaMasterBO BO=(EvaMasterBO)masterList.get(0);

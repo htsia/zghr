@@ -4,7 +4,6 @@
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 
     String tempId = request.getParameter("tempId");
-    System.out.println("tempId1="+tempId);
 %>
 <html>
 <head><title></title>

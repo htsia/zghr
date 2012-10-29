@@ -42,7 +42,7 @@ public class ValidateLoginEHRBackingBean {
 			header.setMySoapHeader(mySoapHeader);
 
 			try {
-				System.out.print(stub.validate(validate, header).getValidateResult());
+				stub.validate(validate, header).getValidateResult();
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

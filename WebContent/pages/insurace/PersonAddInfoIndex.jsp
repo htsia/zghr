@@ -27,7 +27,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td id="showTree" width="210">
-                   <iframe name="tree" frameborder="0"  scrolling="auto" width="100%"    src="/pages/insurace/OrgTree.jsp"></iframe>
+                   <iframe name="tree" height="100%"  frameborder="0"  scrolling="auto" width="100%"    src="/pages/insurace/OrgTree.jsp"></iframe>
              </td>
 
             <td width="10" class="ctrlbar" valign="middle">
@@ -35,7 +35,7 @@
             </td>
 
             <td align="center" valign="top">
-                   <iframe name="main" frameborder="0"  scrolling="no" width="100%"   src="/insurace/PersonAddInfoQuery.jsf?QryID=143&backFlag=3&flag=1&superId=<%=user.getOrgId()%>" ></iframe>
+                   <iframe name="main" height="100%"  frameborder="0"  scrolling="no" width="100%"   src="/insurace/PersonAddInfoQuery.jsf?QryID=143&backFlag=3&flag=1&superId=<%=user.getOrgId()%>" ></iframe>
             </td>
         </tr>
     </table>

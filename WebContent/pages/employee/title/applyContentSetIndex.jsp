@@ -75,7 +75,7 @@
                     <tr><td height="8px"></td></tr>
 
                     <tr> <td valign="top">
-                            <iframe name="tree" frameborder="1"  scrolling="auto" width="100%"
+                            <iframe name="tree" height="100%"  frameborder="1"  scrolling="auto" width="100%"
                                     src="/pages/employee/title/applyContentDir.jsp"></iframe>
                     </td></tr>
                 </table>
@@ -86,7 +86,7 @@
             </td>
 
             <td align="center" valign="top">
-                            <iframe name="main" frameborder="0"  scrolling="auto" width="100%"
+                            <iframe name="main" height="100%"  frameborder="0"  scrolling="auto" width="100%"
                                     src="/employee/title/applyContentItem.jsf"></iframe>
             </td>
         </tr>

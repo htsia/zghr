@@ -240,4 +240,19 @@ public class CommonUtil {
 		return commonDAO.getAllModulesInSelf();
 	}
 
+	//是否有审批
+	public static int getAttLogCount(String ID) throws SysException{
+		String sql = "select count(*) from att_log where leave_id='"+ID+"'";
+		ActivePageAPI activeapi = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
+		return activeapi.queryForInt(sql);
+	}
+	/**
+	 * 获取已审批人员hql语句
+	 * @param userID
+	 * @return
+	 * @throws SysException 
+	 */
+	public static String getHQLAllAttLog(String attBO, String operUserID) throws SysException{
+		return "select bo.personId from "+attBO+" bo,AttLogBO l where bo.Id=l.leaveId and l.personId= '"+operUserID+"'";
+	}
 }

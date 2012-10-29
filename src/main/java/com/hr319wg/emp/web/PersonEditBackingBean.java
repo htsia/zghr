@@ -189,11 +189,6 @@ public class PersonEditBackingBean extends BaseBackingBean {
 							.getParameter("fk"), user);
 			showMessageDetail("保存成功!");
 		} catch (Exception e) {
-			if (isEmpty) {
-				System.out.println("时间:"
-						+ CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss")
-						+ "数据被清空:");
-			}
 			e.printStackTrace();
 			getHttpSession().removeAttribute("images");
 			getHttpSession().removeAttribute(tableId);

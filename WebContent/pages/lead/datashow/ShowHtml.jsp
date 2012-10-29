@@ -37,7 +37,7 @@
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td align="center" valign="top" class="explorer" id="showTree" width="210">
-                        <iframe name="tree" frameborder="0"  scrolling="yes" width="100%"
+                        <iframe name="tree" height="100%"  frameborder="0"  scrolling="yes" width="100%"
                                             src="/pages/common/ShowOnlyOrgTree.jsp"></iframe>
                     </td>
 
@@ -46,7 +46,7 @@
                     </td>
 
                     <td align="center" valign="top" class="explorer">
-                        <iframe name="main" frameborder="0"  scrolling="auto" width="100%"    src=""></iframe>
+                        <iframe name="main" height="100%"  frameborder="0"  scrolling="auto" width="100%"    src=""></iframe>
                     </td>
                 </tr>
             </table>

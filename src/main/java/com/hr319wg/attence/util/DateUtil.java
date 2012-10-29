@@ -125,6 +125,9 @@ public class DateUtil {
 	 */
 	public static List getDayByDayTxt(String dayTxt, String beginDate,
 			String endDate) throws ParseException {
+		if(dayTxt==null||"".equals(dayTxt)){
+			return new ArrayList();
+		}
 		String[] freTxt = dayTxt.split(",");
 		List list = new ArrayList();
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");

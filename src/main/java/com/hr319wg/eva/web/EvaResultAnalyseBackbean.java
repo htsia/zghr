@@ -318,7 +318,6 @@ public class EvaResultAnalyseBackbean extends BaseBackingBean {
 				super.getHttpSession().setAttribute("planID", planID);
 			}
 			superId=userApi.getScaleConditionByType(super.getUserInfo(), "A001738", "", "", "A", false, false);
-			System.out.println("superId="+superId);
 			templateList = new ArrayList();
 			SelectItem si0 = new SelectItem();
 			si0.setLabel("«Î—°‘Ò");

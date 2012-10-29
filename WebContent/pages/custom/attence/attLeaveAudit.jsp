@@ -84,8 +84,8 @@
        
         <h:column>
             <c:facet name="header"><h:outputText value="操作"/></c:facet>
-            <h:commandButton value="审批" onclick="return audit('#{list.leaveId}','#{list.taskId}');" styleClass="button01"/>
-            <h:commandButton value="查看流程" onclick="showFlow('#{list.leaveId}')" styleClass="button01"/>
+            <h:commandButton value="审批" onclick="return audit('#{list.id}','#{list.taskId}');" styleClass="button01"/>
+            <h:commandButton value="查看流程" onclick="showFlow('#{list.id}')" styleClass="button01"/>
         </h:column>
     </h:dataTable>
     <c:verbatim>

@@ -7,14 +7,6 @@
 %>
 
     <script type="text/javascript" contenteditable="inherit">
-       function setData(v){
-			if(v==0){
-				PopUpCalendarDialog('form1:beginDate');
-			}else{
-				PopUpCalendarDialog('form1:endDate');
-			}
-			return false;
-	   }
        function forSel() {
 	    	PopUpMutilCodeDlgNoLayerForSubmit('form1:personType', 'form1:personTypeValue', "0135",'');
 	    	var type = document.all("form1:personType").value;
@@ -41,9 +33,6 @@
     <h:panelGrid width="98%" columns="1">
 	    <h:panelGrid align="right" columns="1">
 	       <h:panelGroup>
-	       	<h:outputText value="申请"></h:outputText>
-                 <h:selectBooleanCheckbox value="#{attRestApplyBB.selApply}" onclick="submit();" valueChangeListener="#{attRestApplyBB.qryApply}"></h:selectBooleanCheckbox>
-                 <h:outputText value="  "></h:outputText>
                  <h:outputText value="报批"></h:outputText>
                  <h:selectBooleanCheckbox value="#{attRestApplyBB.selAuditing}" onclick="submit();" valueChangeListener="#{attRestApplyBB.qryAuditing}"></h:selectBooleanCheckbox>
                  <h:outputText value="  "></h:outputText>
@@ -54,20 +43,14 @@
                  <h:selectBooleanCheckbox value="#{attRestApplyBB.selRefuse}" onclick="submit();" valueChangeListener="#{attRestApplyBB.qryRefuse}"></h:selectBooleanCheckbox>
                  <h:outputText value="  "></h:outputText>
                  <h:outputText value="开始日期从"></h:outputText>
-                 <h:inputText id="beginDate" value="#{attRestApplyBB.beginDate}" styleClass="input" size="10"/>
-                 <f:verbatim>
-                 	<img onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:beginDate'})" src="../../../images/search.gif" class="button_select" align="absmiddle">
-                 </f:verbatim>
+                 <h:inputText id="beginDate" value="#{attRestApplyBB.beginDate}" styleClass="input Wdate" size="15" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:beginDate'})"/>
                  <h:outputText value="至"></h:outputText>
-                 <h:inputText id="endDate" value="#{attRestApplyBB.endDate}" styleClass="input" size="10"/>
-                 <f:verbatim>
-                 	<img onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:endDate'})" src="../../../images/search.gif" class="button_select" align="absmiddle">
-                 </f:verbatim>
+                 <h:inputText id="endDate" value="#{attRestApplyBB.endDate}" styleClass="input Wdate" size="15" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:endDate'})"/>
                  <h:outputText value="  "/>
                  <h:outputText value="姓名或编号"/>
-                 <h:inputText value="#{attRestApplyBB.nameStr}" styleClass="input" size="10"/> 
+                 <h:inputText value="#{attRestApplyBB.nameStr}" styleClass="input" size="10" onkeypress ="enterKeyDown('form1:queryPerson')"/> 
                  <h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{attRestApplyBB.doQuery}"/>
-                 <h:commandButton styleClass="button01" value="查询" action="#{attRestApplyBB.doQuery}"/> 
+                 <h:commandButton id="queryPerson" styleClass="button01" value="查询" action="#{attRestApplyBB.doQuery}"/> 
 	      </h:panelGroup>
 	    </h:panelGrid>
 	    <h:panelGrid align="right" columns="1">
@@ -93,7 +76,7 @@
 	  <div style='width:100%;height:100%;overflow:auto' id=datatable>
 	</c:verbatim>
     <h:dataTable value="#{attRestApplyBB.list}" var="list" align="center" id="dateList"
-                 headerClass="td_top" columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center"
+                 headerClass="td_top" columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center100,td_middle_center,td_middle_center"
                  styleClass="table03" width="98%" >
         <h:column>
             <c:facet name="header"><h:outputText value="员工编号"/></c:facet>
@@ -133,11 +116,12 @@
             <h:outputText value="#{list.statusDes}"/>
         </h:column>
         <h:column>
-        <h:commandButton value="删除"  action="#{attRestApplyBB.delete}" onclick="return confirm('确定要删除吗？');" styleClass="button01" 
-             	rendered="#{attRestApplyBB.ismanager=='1'||(list.personId==attRestApplyBB.userId&&list.statusDes=='退回')}">
+            <c:facet name="header"><h:outputText value="操作"/></c:facet>
+        	<h:commandButton value="删除"  action="#{attRestApplyBB.delete}" onclick="return confirm('确定要删除吗？');" styleClass="button01" 
+             	rendered="#{attRestApplyBB.ismanager=='1'||(list.personId==attRestApplyBB.userId&&list.statusDes=='退回') || !list.appro}">
              	<x:updateActionListener property="#{attRestApplyBB.id}" value="#{list.id}"/>
-             </h:commandButton>
-                    <h:commandButton value="查看流程" onclick="showFlow('#{list.id}')" styleClass="button01" rendered="#{list.status!='0'}"></h:commandButton>
+            </h:commandButton>
+            <h:commandButton value="查看流程" onclick="showFlow('#{list.id}')" styleClass="button01" rendered="#{list.createType=='0'}"></h:commandButton>
          </h:column>
         </h:dataTable>
     <c:verbatim>

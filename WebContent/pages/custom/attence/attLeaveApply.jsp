@@ -306,14 +306,10 @@
 			</h:selectOneMenu>
 			<h:outputText value="开始时间" />
 			<h:panelGroup>
-				<h:inputText styleClass="input" id="beginTime"
+				<h:inputText styleClass="input Wdate" id="beginTime"
 					value="#{attLeaveApplyBB.leaveBo.beginTime}" readonly="true"
-					alt="开始日期|0|d|50||" />
+					alt="开始日期|0|d|50||" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:beginTime',onpicked:getApplyDays})"/>
 				<c:verbatim>
-					<img
-						onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:beginTime',onpicked:getApplyDays})"
-						src="../../images/search.gif" class="button_select" width="16"
-						height="22" align="absmiddle">
 					<select id="beginHour" onchange="getApplyDays();">
 						<option value="00:00">早上</option>
 						<option value="12:00">中午</option>
@@ -323,14 +319,10 @@
 
 			<h:outputText value="结束时间" />
 			<h:panelGroup>
-				<h:inputText styleClass="input" id="endTime"
+				<h:inputText styleClass="input Wdate" id="endTime"
 					value="#{attLeaveApplyBB.leaveBo.endTime}" readonly="true"
-					alt="结束日期|0|d|50||" />
+					alt="结束日期|0|d|50||" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:endTime',onpicked:getApplyDays})"/>
 				<c:verbatim>
-					<img
-						onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:endTime',onpicked:getApplyDays})"
-						src="../../images/search.gif" class="button_select" width="16"
-						height="22" align="absmiddle">
 					<select id="endHour" onchange="getApplyDays();">
 						<option value="23:59">晚上</option>
 						<option value="12:00">中午</option>

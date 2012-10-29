@@ -987,7 +987,6 @@ public IWageSetPersonUCC getWagesetpersonucc()
             }
             notice(CodeUtil.interpertCode(CodeUtil.TYPE_PERSON, bo.getPersonId()));
             backingBean.userChangeOrgTitle(bo.getPersonId());
-            System.out.println("Ô±¹¤×ª¸Ú");
           }
       }
     }

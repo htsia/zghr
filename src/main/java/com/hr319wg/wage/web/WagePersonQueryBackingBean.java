@@ -107,7 +107,7 @@ public class WagePersonQueryBackingBean extends BaseBackingBean {
 			String sql = "select " + select + " from " + from + " where 1=1 ";
 			if (this.orgID != null) {
 				OrgBO org = SysCacheTool.findOrgById(this.orgID);
-				sql += " and a001738 like '%"+org.getTreeId()+"%' ";
+				sql += " and a001738 like '"+org.getTreeId()+"%' ";
 			}
 			String searchStr1 = "%";
 			if (this.searchStr != null) {

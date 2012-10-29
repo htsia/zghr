@@ -57,7 +57,7 @@
                 </tr>
                     <tr>
                         <td width="260" valign="top">
-                            <iframe name="tree" frameborder="0" framespacing="0" scrolling="yes" width="100%"
+                            <iframe name="tree" height="100%"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
                                     src="/pages/common/ShowOrgTree.jsp?rootId=<%=rootid%>"></iframe>
                         </td>
                     </tr>
@@ -69,7 +69,7 @@
             </td>
 
             <td align="center" valign="top">
-                   <iframe name="main" frameborder="0"  scrolling="auto" width="100%"  src="/eva/EvaObjectsList.jsf"></iframe>
+                   <iframe name="main" height="100%"  frameborder="0"  scrolling="auto" width="100%"  src="/eva/EvaObjectsList.jsf"></iframe>
             </td>
         </tr>
     </table>

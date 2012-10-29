@@ -47,7 +47,7 @@
                    </tr>
                    <tr>
                         <td width="260" valign="top" >
-                            <iframe name="tree" frameborder="0"  height="450" scrolling="yes" width="100%"
+                            <iframe name="tree" height="100%"  frameborder="0"  height="450" scrolling="yes" width="100%"
                                     src="/pages/common/ShowOrgTree.jsp"></iframe>
                         </td>
                     </tr>
@@ -59,7 +59,7 @@
             <td align="center" valign="top" width="5">¡¡</td>
 
             <td align="center" valign="top">
-                  <iframe name="main" frameborder="0" height="450" scrolling="auto" width="100%"
+                  <iframe name="main" height="100%"  frameborder="0" height="450" scrolling="auto" width="100%"
                                 src="/user/UserPmsManager.jsf?orgId="></iframe>
             </td>
         </tr>

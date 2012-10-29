@@ -407,7 +407,6 @@ public class EvaGradeResultAnalyseBackingBean extends BaseBackingBean {
 			super.getHttpSession().setAttribute("gradeID", gradeID);
 		}
 		superId=userApi.getScaleConditionByType(super.getUserInfo(), "A001738", "", "", "A", false, false);
-		System.out.println("superId="+superId);
 		return initTemplatSelf;
 	}
 

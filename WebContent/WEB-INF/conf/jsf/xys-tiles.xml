@@ -454,30 +454,5 @@
     <definition name="/xys/workflow/processEdit.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/xys/workflow/processEdit.jsp"/>
     </definition>
-    <!-- 考勤管理-->
-    <definition name="/xys/attence/leave_apply.tiles" extends="layout.busitemplate">
-        <put name="body" value="/pages/xys/attence/leave_apply.jsp"/>
-    </definition>
-    <definition name="/xys/attence/leave_edit.tiles" extends="layout.busitemplateSelf">
-        <put name="body" value="/pages/xys/attence/leave_edit.jsp"/>
-    </definition>
-    <definition name="/xys/attence/leave_log.tiles" extends="layout.busitemplateSelf">
-        <put name="body" value="/pages/xys/attence/leave_log.jsp"/>
-    </definition>
-    <definition name="/xys/attence/leave_audit_header.tiles" extends="layout.busitemplate">
-        <put name="body" value="/pages/xys/attence/leave_audit_header.jsp"/>
-    </definition>
-    <definition name="/xys/attence/leave_audit_header_edit.tiles" extends="layout.busitemplateSelf">
-        <put name="body" value="/pages/xys/attence/leave_audit_header_edit.jsp"/>
-    </definition>
-    <definition name="/xys/attence/leave_audit_dean_edit.tiles" extends="layout.busitemplateSelf">
-        <put name="body" value="/pages/xys/attence/leave_audit_dean_edit.jsp"/>
-    </definition>
-    <definition name="/xys/attence/leave_audit_master_edit.tiles" extends="layout.busitemplateSelf">
-        <put name="body" value="/pages/xys/attence/leave_audit_master_edit.jsp"/>
-    </definition>
-    <definition name="/xys/attence/leave_audit_hr_edit.tiles" extends="layout.busitemplateSelf">
-        <put name="body" value="/pages/xys/attence/leave_audit_hr_edit.jsp"/>
-    </definition>
-   
+    
 </tiles-definitions>

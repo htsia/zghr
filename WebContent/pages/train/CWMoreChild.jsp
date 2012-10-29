@@ -13,14 +13,6 @@
         window.showModalDialog("/system/NewsItemDetail.jsf?" + arg, null, "dialogWidth:600px; dialogHeight:420px;center:center;resizable:yes;status:no;scroll:yes;");
         return false;
     }
-    function doShowCource(action,title,url){
-        if (action=="2"){
-            window.open(url, "_blank", "top="+screen.height*0.1+",height="+screen.height*0.8+", left="+screen.width*0.125+",width="+screen.width*0.75+",toolbar=no,scrollbars=true,menubar=no");
-        }
-        else{
-            showRealPlay(title,url);
-        }
-    }
     
 </script>
 
@@ -40,7 +32,7 @@
           </h:panelGrid>
 
 			<x:dataTable value="#{train_courcebb.moreCourceList}"  id="dateList"
-				headerClass="td_top" rowIndexVar="index" var="briefList" 	styleClass="table03" border="1" width="98%" columnClasses="td_middle_center,td_middle,td_middle_center,td_middle_center">
+				headerClass="td_top" rowIndexVar="index" var="briefList" styleClass="table03" border="1" width="98%" columnClasses="td_middle_center,td_middle,td_middle_center,td_middle_center,td_middle_center">
 
 				<h:column>
 					<f:facet name="header">
@@ -84,7 +76,7 @@
                     <f:facet name="header">
                         <h:outputText value="操作" />
                     </f:facet>
-                    <h:commandButton value="查看" styleClass="button01" onclick="doShowCource('#{briefList.action}','#{briefList.title}','#{briefList.fileName}')"></h:commandButton>
+                    <h:commandButton value="查看" styleClass="button01" onclick="doShowCource('1','#{briefList.title}','#{briefList.fileName}')"></h:commandButton>
 				</h:column>
 			</x:dataTable>
 			<f:verbatim>

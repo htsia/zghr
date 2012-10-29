@@ -20,7 +20,14 @@ public class AttRestBO implements Comparable<AttRestBO>{
 	private String personType;
 	private String personCode;
 	private String deptName;
+	private boolean isAppro;//  «∑Ò”–…Û≈˙
 	
+	public boolean isAppro() {
+		return isAppro;
+	}
+	public void setAppro(boolean isAppro) {
+		this.isAppro = isAppro;
+	}
 	public String getPersonCode() {
 		return personCode;
 	}

@@ -222,8 +222,8 @@ public class EvaObjectsDAO extends BaseDAO {
 		String hsql = "select bo from EvaObjectsBO bo  where bo.planID='"+ planId + "'";
 		String countHql="select count(bo) from EvaObjectsBO bo  where bo.planID='"+ planId + "'";
 		if(orgId!=null&&!orgId.equals("")){
-			hsql+=" and bo.personID in(select vo.personId from PersonBO vo where vo.deptTreeId like '%"+org.getTreeId()+"%')";
-			countHql+=" and bo.personID in(select vo.personId from PersonBO vo where vo.deptTreeId like '%"+org.getTreeId()+"%')";
+			hsql+=" and bo.personID in(select vo.personId from PersonBO vo where vo.deptTreeId like '"+org.getTreeId()+"%')";
+			countHql+=" and bo.personID in(select vo.personId from PersonBO vo where vo.deptTreeId like '"+org.getTreeId()+"%')";
 		}
 		hsql+="  order by cast(bo.sumScore as float) desc,cast(bo.score as float) desc";
 		if(pagevo!=null){
@@ -428,7 +428,7 @@ public class EvaObjectsDAO extends BaseDAO {
 		String hql="select bo from EvaObjectsBO bo where bo.planID='"+planId+"' and bo.objectID in(select vo.objectID from EvaMasterBO vo where vo.personID='"+personId+"' and vo.masterType='"+masterType+"' and vo.gradeId='"+gradeItem+"')";
 		if(deptId!=null&&!deptId.equals("")){
 			OrgBO org=SysCacheTool.findOrgById(deptId);
-			hql+=" and bo.personID in(select po.personId from PersonBO po where po.deptTreeId like '%"+org.getTreeId()+"%') ";
+			hql+=" and bo.personID in(select po.personId from PersonBO po where po.deptTreeId like '"+org.getTreeId()+"%') ";
 		}
 		return this.hibernatetemplate.find(hql);
 	}
@@ -535,12 +535,12 @@ public class EvaObjectsDAO extends BaseDAO {
 		OrgBO org=SysCacheTool.findOrgById(orgId);
 		if(org!=null){
 			if(index.equals("0")){
-				String hql="select bo from EvaGradersBO bo where bo.objectId in(select vo.objectID from EvaObjectsVO vo where vo.planID='"+planId+"' and vo.templateID='"+templateID+"' and vo.depttree like '%"+org.getTreeId()+"%') order by cast(bo.s as float) desc";
-				String countHql="select count(bo) from EvaGradersBO bo where bo.objectId in(select vo.objectID from EvaObjectsVO vo where vo.planID='"+planId+"' and vo.templateID='"+templateID+"' and vo.depttree like '%"+org.getTreeId()+"%')";
+				String hql="select bo from EvaGradersBO bo where bo.objectId in(select vo.objectID from EvaObjectsVO vo where vo.planID='"+planId+"' and vo.templateID='"+templateID+"' and vo.depttree like '"+org.getTreeId()+"%') order by cast(bo.s as float) desc";
+				String countHql="select count(bo) from EvaGradersBO bo where bo.objectId in(select vo.objectID from EvaObjectsVO vo where vo.planID='"+planId+"' and vo.templateID='"+templateID+"' and vo.depttree like '"+org.getTreeId()+"%')";
 				return this.pageQuery(pagevo, countHql, hql);
 			}else{
-				String hql="select bo from EvaGradersBO bo where bo.objectId in(select vo.objectID from EvaObjectsVO vo where vo.planID='"+planId+"' and vo.templateID='"+templateID+"' and vo.depttree like '%"+org.getTreeId()+"%') order by cast(bo.s"+index+" as float) desc";
-				String countHql="select count(bo) from EvaGradersBO bo where bo.objectId in(select vo.objectID from EvaObjectsVO vo where vo.planID='"+planId+"' and vo.templateID='"+templateID+"' and vo.depttree like '%"+org.getTreeId()+"%')";
+				String hql="select bo from EvaGradersBO bo where bo.objectId in(select vo.objectID from EvaObjectsVO vo where vo.planID='"+planId+"' and vo.templateID='"+templateID+"' and vo.depttree like '"+org.getTreeId()+"%') order by cast(bo.s"+index+" as float) desc";
+				String countHql="select count(bo) from EvaGradersBO bo where bo.objectId in(select vo.objectID from EvaObjectsVO vo where vo.planID='"+planId+"' and vo.templateID='"+templateID+"' and vo.depttree like '"+org.getTreeId()+"%')";
 				return this.pageQuery(pagevo, countHql, hql);
 			}
 		}else{

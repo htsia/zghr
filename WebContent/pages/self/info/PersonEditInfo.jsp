@@ -65,7 +65,7 @@
 <table width="100%" height="100%"  border="0" cellpadding="0" cellspacing="0" class="table03">
     <tr>
         <td width="180" align="center" valign="top" id=showTree>
-            <iframe name="tree" frameborder="0"  width="100%"  scrolling="auto" src="/pages/self/info/InfoSetTree.jsp"></iframe>
+            <iframe name="tree" height="100%"  frameborder="0"  width="100%"  scrolling="auto" src="/pages/self/info/InfoSetTree.jsp"></iframe>
         </td>
         <td width="10" class="ctrlbar" valign="middle">
             <img id=ctrlBnt src="/images/button_1.gif" onclick="ctrlbar()">

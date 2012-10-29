@@ -118,7 +118,7 @@ if(setbo!=null&&setbo.getAuditStatus()!=null&&setbo.getAuditStatus().equals("1")
 %>
 <table width=95% align=center border=0 cellpadding=0 cellspacing=0 class="table03">
 <tr><td colspan=2 height=100%>
-          <iframe name="main" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0"  width="100%" 
+          <iframe name="main" height="100%"  frameborder="0" scrolling="auto" marginheight="0" marginwidth="0"  width="100%" 
                src="/pages/employee/title/deptAuditShow.jsp?scoreId=<%=scoreId%>" height="300px"></iframe>
      </td></tr>
 </table>

@@ -228,7 +228,7 @@
 	
     <!-- 考勤管理 -->
     <class name="com.hr319wg.custom.attence.pojo.bo.AttLeaveBO" table="att_leave">
-        <id name="leaveId" type="string" unsaved-value="null">
+        <id name="Id" type="string" unsaved-value="null">
             <column name="leave_id" sql-type="varchar(32)"/>
             <generator class="uuid.hex"/>
         </id>

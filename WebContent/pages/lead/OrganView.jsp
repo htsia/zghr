@@ -99,7 +99,7 @@
 <table border="0" width="100%"  cellpadding="0" cellspacing="0">
     <tr>
         <td >
-            <iframe name="main" frameborder="0"  scrolling="auto" width="100%" src='/doc/OrgBasicInfo2.jsf?fk=<%=orgId%>'></iframe>
+            <iframe name="main" height="100%"  frameborder="0"  scrolling="auto" width="100%" src='/doc/OrgBasicInfo2.jsf?fk=<%=orgId%>'></iframe>
         </td>
     </tr>
 </table>

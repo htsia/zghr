@@ -88,13 +88,13 @@
                               <tr>
                                   <td>
                                     <a onclick="doShowDownload();" target="_blank" >
-                                        <img src="<%=LanguageSupport.getImg("/images/maininterface/tools/","download.jpg")%>">
+                                        <img style="cursor: pointer;" alt="提供常用软件下载" src="<%=LanguageSupport.getImg("/images/maininterface/tools/","download.jpg")%>">
                                     </a>
                                   </td>
 
                                   <td>
                                       <a onclick="doOpenShortMessage();" target="_blank" >
-                                         <img src="<%=LanguageSupport.getImg("/images/maininterface/tools/","shortmessage.jpg")%>"> 
+                                         <img style="cursor: pointer;" alt="在线消息发送和查询" src="<%=LanguageSupport.getImg("/images/maininterface/tools/","shortmessage.jpg")%>"> 
                                       </a>
                                   </td>
                                </tr>
@@ -102,13 +102,13 @@
                               <tr>
                                   <td>
                                     <a onclick="doOpenForum();" target="_blank" >
-                                        <img src="<%=LanguageSupport.getImg("/images/maininterface/tools/","forum.jpg")%>">
+                                        <img style="cursor: pointer;" alt="人力资源管理论坛中心" src="<%=LanguageSupport.getImg("/images/maininterface/tools/","forum.jpg")%>">
                                     </a>
                                   </td>
 
                                   <td>
                                       <a onclick="doOpenAdvice();" target="_blank" >
-                                         <img src="<%=LanguageSupport.getImg("/images/maininterface/tools/","advice.jpg")%>">
+                                         <img style="cursor: pointer;" alt="对人力资源管理提出意见和建议" src="<%=LanguageSupport.getImg("/images/maininterface/tools/","advice.jpg")%>">
                                       </a>
                                   </td>
                                </tr>
@@ -284,7 +284,6 @@
                       <table width="99%" border="0" cellspacing="0" cellpadding="0" class="table_main" height="140">
                           <td  valign="top" colspan="2">
             </f:verbatim>
-                            <h:inputHidden id="itemID" value="#{sys_inProcessBB.itemID}"></h:inputHidden>
                             <h:commandButton id="processMore" style="display:none" value="处理待办事宜"  action="#{sys_inProcessBB.doaciton_standard}"/>
 
                               <x:dataTable  headerClass="td_top" styleClass="table03"  width="100%"

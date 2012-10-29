@@ -41,13 +41,13 @@
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td id="showTree" width="210">
-                  <iframe name="tree" frameborder="0"	scrolling="auto" width="100%"	src="/pages/common/ShowOrgTree.jsp"></iframe>
+                  <iframe name="tree" height="100%"  frameborder="0"	scrolling="auto" width="100%"	src="/pages/common/ShowOrgTree.jsp"></iframe>
 			</td>
 
            <td width="10" class="ctrlbar" id="ctrlbar" valign="middle"></td>
 
             <td align="center" valign="top" class="explorer">
-               <iframe name="main" frameborder="0" scrolling="auto" width="100%"	src="/doc/OrgIndex.jsf"></iframe>
+               <iframe name="main" height="100%"  frameborder="0" scrolling="auto" width="100%"	src="/doc/OrgIndex.jsf"></iframe>
 			</td>
 		</tr>
 	</table>

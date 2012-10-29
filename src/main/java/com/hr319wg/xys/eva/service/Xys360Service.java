@@ -100,7 +100,6 @@ public class Xys360Service {
     	String names = Constants.IN_SERVICE_TYPE;
     	String ids[]=names.split(",");
         String sql = "select ID from A001 where A001715='" + postId + "' and "+CommonFuns.splitInSql(ids, "A001054");
-        System.out.println("sql="+sql);
         CellVO[] cv = new CellVO[1];
         cv[0] = new CellVO();
         cv[0].setItemId("ID");

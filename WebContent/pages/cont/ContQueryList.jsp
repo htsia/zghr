@@ -24,7 +24,7 @@
     <table  width="100%" border="0"  cellpadding="0" cellspacing="0">
         <tr>
             <td id="showTree" width="230">
-                        <iframe name="tree" frameborder="0"  scrolling="auto" width="100%"
+                        <iframe name="tree" height="100%"  frameborder="0"  scrolling="auto" width="100%"
                                 src="/pages/common/ShowOrgTree.jsp"></iframe>
             </td>
 
@@ -33,7 +33,7 @@
             </td>
 
             <td align="center" valign="top">
-                    <iframe name="main" frameborder="0"  scrolling="no"
+                    <iframe name="main" height="100%"  frameborder="0"  scrolling="no"
                             width="100%" src="/cont/ContQueryListChild.jsf"></iframe>
             </td>
         </tr>

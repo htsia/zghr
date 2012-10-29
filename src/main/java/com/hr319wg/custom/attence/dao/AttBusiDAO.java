@@ -34,7 +34,7 @@ public class AttBusiDAO extends BaseDAO{
 		String hql = " from AttPutoff2BO bo,UserBO u where u.userID=bo.id ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		
 		if(personType!=null && !"".equals(personType)){			
@@ -54,7 +54,7 @@ public class AttBusiDAO extends BaseDAO{
 		String hql = " from AttClassUserBO bo,UserBO u where u.userID=bo.userID and bo.classID='"+classID+"'";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		
 		if(personType!=null && !"".equals(personType)){			
@@ -105,7 +105,7 @@ public class AttBusiDAO extends BaseDAO{
 		String hql = " from AttMonthBO bo,UserBO u where u.userID=bo.personId and bo.attenceDate='"+yearMonth+"' and "+CommonFuns.splitInSql(userIDs, "bo.personId");
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		
 		if(personType!=null && !"".equals(personType)){			
@@ -120,7 +120,7 @@ public class AttBusiDAO extends BaseDAO{
 		return this.pageQuery(pageVO, countHql, boHql);
 	}
 	//显示一段时间内的月汇总记录(分月分条显示)
-	public List getAndShowAllAttMonthBO(PageVO pageVO, String orgID, String nameStr, String personType, String beginYearMonth,String endYearMonth) throws SysException{
+	public List getAndShowAllAttMonthBO(PageVO pageVO, String orgID, String nameStr, String personType, String beginYearMonth, String endYearMonth, String inself, String operUserID) throws SysException{
 		
 		if(beginYearMonth==null||"".equals(beginYearMonth)){
 			beginYearMonth="1900-01";
@@ -132,7 +132,7 @@ public class AttBusiDAO extends BaseDAO{
 				"to_date(bo.attenceDate,'yyyy-MM')<=to_date('"+endYearMonth+"','yyyy-MM') ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		
 		if(personType!=null && !"".equals(personType)){			
@@ -141,6 +141,9 @@ public class AttBusiDAO extends BaseDAO{
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
 			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+		}
+		if("1".equals(inself)){
+			hql += " and u.deptSort like '"+CommonUtil.getSecDeptTreeId(operUserID)+"%'";
 		}
 		String boHql = "select bo "+hql +" order by u.userID";
 		String countHql = "select count(*) "+hql;
@@ -161,7 +164,7 @@ public class AttBusiDAO extends BaseDAO{
 		String hql = " from AttMonthBO bo,UserBO u where u.userID=bo.personId and bo.attenceDate='"+yearMonth+"' and (bo.status = 0 or bo.isDimission='1')";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		
 		if(personType!=null && !"".equals(personType)){			
@@ -179,7 +182,7 @@ public class AttBusiDAO extends BaseDAO{
 		String hql = " from AttMonthBO bo,UserBO u where u.userID=bo.personId and bo.attenceDate='"+yearMonth+"' and bo.status is null ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if(personType!=null && !"".equals(personType)){			
 			String[]types = personType.split(",");
@@ -200,7 +203,7 @@ public class AttBusiDAO extends BaseDAO{
 		String hql = " from AttFingerBO bo,UserBO u where u.userID=bo.ID ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		
 		if(personType!=null && !"".equals(personType)){			
@@ -266,7 +269,7 @@ public class AttBusiDAO extends BaseDAO{
 		String hql = " from AttenceLogBO log,UserBO u where u.userID=log.personId ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		
 		if(personType!=null && !"".equals(personType)){			
@@ -300,7 +303,7 @@ public class AttBusiDAO extends BaseDAO{
 		}
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		
 		if(personType!=null && !"".equals(personType)){			
@@ -317,15 +320,22 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and bo.beginTime<'"+DateUtil.getNextDate(endDate)+"'";
 		}
 		if(createType!=null && !"".equals(createType)){
-			hql += " and bo.createType='1'";
+			hql += " and bo.createType='"+createType+"'";
 		}
-		
-		if("1".equals(inself) && isManager==null){
+		if("1".equals(inself)){//在自助平台
+			int role = CommonUtil.getRoleCount("5a9ded4739e906c70139f6e9dc170242", operUserID);
 			String postIDs = CommonUtil.getAllSubPostIDs(operUserID);
-			if(postIDs==null || "".equals(postIDs)){
-				hql += " and bo.personId='"+operUserID+"'";
-			}else{
-				hql += " and ("+CommonFuns.splitInSql(postIDs.split(","), "u.postId")+" or bo.personId='"+operUserID+"')";				
+			
+			if(isManager==null && role==0){//不是管理员且不是秘书
+				if(postIDs==null || "".equals(postIDs)){//没有下级岗位
+					hql += " and (bo.personId='"+operUserID+"' or bo.personId in ("+CommonUtil.getHQLAllAttLog("AttLeaveBO", operUserID)+"))";
+				}else{
+					hql += " and ("+CommonFuns.splitInSql(postIDs.split(","), "u.postId")+" or bo.personId='"+operUserID+"' or bo.personId in ("+CommonUtil.getHQLAllAttLog("AttLeaveBO", operUserID)+"))";				
+				}
+			}else if(role==1 && postIDs!=null && !"".equals(postIDs)){//是秘书且有下级岗位
+				hql += " and ("+CommonFuns.splitInSql(postIDs.split(","), "u.postId")+" or u.deptSort like '"+CommonUtil.getSecDeptTreeId(operUserID)+"%' or bo.personId in ("+CommonUtil.getHQLAllAttLog("AttLeaveBO", operUserID)+"))";							
+			}else if(role==1){//是秘书
+				hql += " and u.deptSort like '"+CommonUtil.getSecDeptTreeId(operUserID)+"%'";										
 			}
 		}
 		String countHql="select count(bo) "+hql;
@@ -347,7 +357,7 @@ public class AttBusiDAO extends BaseDAO{
 		}
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		
 		if(personType!=null && !"".equals(personType)){			
@@ -364,14 +374,22 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and bo.beginTime<'"+DateUtil.getNextDate(endDate)+"'";
 		}
 		if(createType!=null && !"".equals(createType)){
-			hql += " and bo.createType='1'";
+			hql += " and bo.createType='"+createType+"'";
 		}
-		if("1".equals(inself) && isManager==null){
+		if("1".equals(inself)){//在自助平台
+			int role = CommonUtil.getRoleCount("5a9ded4739e906c70139f6e9dc170242", operUserID);
 			String postIDs = CommonUtil.getAllSubPostIDs(operUserID);
-			if(postIDs==null || "".equals(postIDs)){
-				hql += " and bo.personId='"+operUserID+"'";
-			}else{
-				hql += " and ("+CommonFuns.splitInSql(postIDs.split(","), "u.postId")+" or bo.personId='"+operUserID+"')";				
+			
+			if(isManager==null && role==0){//不是管理员且不是秘书
+				if(postIDs==null || "".equals(postIDs)){//没有下级岗位
+					hql += " and (bo.personId='"+operUserID+"' or bo.personId in ("+CommonUtil.getHQLAllAttLog("AttOutBO", operUserID)+"))";
+				}else{
+					hql += " and ("+CommonFuns.splitInSql(postIDs.split(","), "u.postId")+" or bo.personId='"+operUserID+"' or bo.personId in ("+CommonUtil.getHQLAllAttLog("AttLeaveBO", operUserID)+"))";				
+				}
+			}else if(role==1 && postIDs!=null && !"".equals(postIDs)){//是秘书且有下级岗位
+				hql += " and ("+CommonFuns.splitInSql(postIDs.split(","), "u.postId")+" or u.deptSort like '"+CommonUtil.getSecDeptTreeId(operUserID)+"%' or bo.personId in ("+CommonUtil.getHQLAllAttLog("AttLeaveBO", operUserID)+"))";							
+			}else if(role==1){//是秘书
+				hql += " and u.deptSort like '"+CommonUtil.getSecDeptTreeId(operUserID)+"%'";										
 			}
 		}
 		String countHql="select count(bo) "+hql;
@@ -393,7 +411,7 @@ public class AttBusiDAO extends BaseDAO{
 		}
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		
 		if(personType!=null && !"".equals(personType)){			
@@ -410,14 +428,22 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and bo.beginTime<'"+DateUtil.getNextDate(endDate)+"'";
 		}
 		if(createType!=null && !"".equals(createType)){
-			hql += " and bo.createType='1'";
+			hql += " and bo.createType='"+createType+"'";
 		}
-		if("1".equals(inself) && isManager==null){
+		if("1".equals(inself)){//在自助平台
+			int role = CommonUtil.getRoleCount("5a9ded4739e906c70139f6e9dc170242", operUserID);
 			String postIDs = CommonUtil.getAllSubPostIDs(operUserID);
-			if(postIDs==null || "".equals(postIDs)){
-				hql += " and bo.personId='"+operUserID+"'";
-			}else{
-				hql += " and ("+CommonFuns.splitInSql(postIDs.split(","), "u.postId")+" or bo.personId='"+operUserID+"')";				
+			
+			if(isManager==null && role==0){//不是管理员且不是秘书
+				if(postIDs==null || "".equals(postIDs)){//没有下级岗位
+					hql += " and (bo.personId='"+operUserID+"' or bo.personId in ("+CommonUtil.getHQLAllAttLog("AttOvertimeBO", operUserID)+"))";
+				}else{
+					hql += " and ("+CommonFuns.splitInSql(postIDs.split(","), "u.postId")+" or bo.personId='"+operUserID+"' or bo.personId in ("+CommonUtil.getHQLAllAttLog("AttLeaveBO", operUserID)+"))";				
+				}
+			}else if(role==1 && postIDs!=null && !"".equals(postIDs)){//是秘书且有下级岗位
+				hql += " and ("+CommonFuns.splitInSql(postIDs.split(","), "u.postId")+" or u.deptSort like '"+CommonUtil.getSecDeptTreeId(operUserID)+"%' or bo.personId in ("+CommonUtil.getHQLAllAttLog("AttLeaveBO", operUserID)+"))";							
+			}else if(role==1){//是秘书
+				hql += " and u.deptSort like '"+CommonUtil.getSecDeptTreeId(operUserID)+"%'";										
 			}
 		}
 		String countHql="select count(bo) "+hql;
@@ -440,7 +466,7 @@ public class AttBusiDAO extends BaseDAO{
 		}
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		
 		if(personType!=null && !"".equals(personType)){			
@@ -457,14 +483,22 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and bo.beginTime<'"+DateUtil.getNextDate(endDate)+"'";
 		}
 		if(createType!=null && !"".equals(createType)){
-			hql += " and bo.createType='1'";
+			hql += " and bo.createType='"+createType+"'";
 		}
-		if("1".equals(inself) && isManager==null){
+		if("1".equals(inself)){//在自助平台
+			int role = CommonUtil.getRoleCount("5a9ded4739e906c70139f6e9dc170242", operUserID);
 			String postIDs = CommonUtil.getAllSubPostIDs(operUserID);
-			if(postIDs==null || "".equals(postIDs)){
-				hql += " and bo.personId='"+operUserID+"'";
-			}else{
-				hql += " and ("+CommonFuns.splitInSql(postIDs.split(","), "u.postId")+" or bo.personId='"+operUserID+"')";				
+			
+			if(isManager==null && role==0){//不是管理员且不是秘书
+				if(postIDs==null || "".equals(postIDs)){//没有下级岗位
+					hql += " and (bo.personId='"+operUserID+"' or bo.personId in ("+CommonUtil.getHQLAllAttLog("AttRestBO", operUserID)+"))";
+				}else{
+					hql += " and ("+CommonFuns.splitInSql(postIDs.split(","), "u.postId")+" or bo.personId='"+operUserID+"' or bo.personId in ("+CommonUtil.getHQLAllAttLog("AttLeaveBO", operUserID)+"))";				
+				}
+			}else if(role==1 && postIDs!=null && !"".equals(postIDs)){//是秘书且有下级岗位
+				hql += " and ("+CommonFuns.splitInSql(postIDs.split(","), "u.postId")+" or u.deptSort like '"+CommonUtil.getSecDeptTreeId(operUserID)+"%' or bo.personId in ("+CommonUtil.getHQLAllAttLog("AttLeaveBO", operUserID)+"))";							
+			}else if(role==1){//是秘书
+				hql += " and u.deptSort like '"+CommonUtil.getSecDeptTreeId(operUserID)+"%'";										
 			}
 		}
 		String countHql="select count(bo) "+hql;

@@ -255,11 +255,9 @@ public class XysKpiPersonSetBackBean extends BaseBackingBean {
 			String fileName = excelFile.getName();
 			String type = fileName.substring(fileName.indexOf(".") + 1);
 			if (type.equals("xls")) {
-				System.out.println("==============开始导入！===================");
 				Workbook wb = Workbook.getWorkbook(excelFile.getInputStream());
 				Sheet sheet = wb.getSheet(0);
 				int rows = sheet.getRows();
-				System.out.println("行数：" + rows);
 				List superNameList = new ArrayList();
 				List itemVoList = new ArrayList();
 				KPIItemVO itemVo = null;
@@ -267,7 +265,6 @@ public class XysKpiPersonSetBackBean extends BaseBackingBean {
 					Cell[] cell = sheet.getRow(i);
 					PersonBO pbo = SysCacheTool.findPersonByCode(CommonFuns
 							.filterNull(cell[0].getContents().trim()));
-					System.out.println("员工编号=" + cell[0].getContents().trim());
 					if (pbo != null) {
 						String pId = pbo.getPersonId();
 						if (pId != null) {
@@ -315,8 +312,6 @@ public class XysKpiPersonSetBackBean extends BaseBackingBean {
 						KPIImportVO vo = new KPIImportVO();
 						PersonBO pbo = SysCacheTool.findPersonById(ids[0]);
 						vo.setPersonId(pbo.getPersonId());
-						System.out.println("姓名：" + pbo.getName() + "="
-								+ superNameVar);
 						vo.setSuperName(ids[1]);
 						List vlist = new ArrayList();
 						if (itemVoList != null && itemVoListSize > 0) {
@@ -376,7 +371,6 @@ public class XysKpiPersonSetBackBean extends BaseBackingBean {
 					}
 				}
 				wb.close();
-				System.out.println("==============导入成功！===================");
 			} else {
 				super.showMessageDetail("只允许上传Excel（.xls）文档！");
 				return "";

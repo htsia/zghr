@@ -274,7 +274,6 @@ public class Xys360TempBackBean extends BaseBackingBean {
                  editType="update";
              }
              setType=xys360TempUCC.findXys360TempSetBOById(setId).getSetType();
-             System.out.println("setType============="+setType);
         }catch(Exception e){
              e.printStackTrace();
         }
@@ -390,7 +389,6 @@ public class Xys360TempBackBean extends BaseBackingBean {
         if (super.getRequestParameter("tempId") != null) {
             tempId = super.getRequestParameter("tempId");
             super.getHttpSession().setAttribute("tempId",tempId);
-            System.out.println("tempId0="+tempId);
         }
         return initSet;
     }

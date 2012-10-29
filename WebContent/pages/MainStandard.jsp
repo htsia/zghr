@@ -355,7 +355,7 @@
               <tr>
                 <%if (!"HOMEPAGE".equals(moduleId)){%>
                       <td id="showTree" align="left" width="200" valign="top">
-                            <iframe name="tree" frameborder="no" border="0" marginwidth="0" marginheight="0" style="height:100%;width:100%;border:10px" src="/pages/ShowOperateTree.jsp"></iframe>
+                            <iframe name="tree" height="100%"  frameborder="no" border="0" marginwidth="0" marginheight="0" style="height:100%;width:100%;border:10px" src="/pages/ShowOperateTree.jsp"></iframe>
                       </td>
                       <td width="10" class="ctrlbar" valign="middle">
                           <img id=ctrlBnt src="/images/button_1.gif" onclick="ctrlbar();">
@@ -365,7 +365,7 @@
                 %>
 
                 <td align="right" valign="top">
-                    <iframe name="main" frameborder="0"  height=400 scrolling="no" width="100%" src="<%
+                    <iframe name="main" height="100%"  frameborder="0"  height=400 scrolling="no" width="100%" src="<%
                 if ("HOMEPAGE".equals(moduleId)){
                      out.print("/MainInterface/FirstPage.jsf");
                 }

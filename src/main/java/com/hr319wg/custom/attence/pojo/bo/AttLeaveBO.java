@@ -4,7 +4,7 @@ import com.hr319wg.custom.attence.util.AttConstants;
 
 public class AttLeaveBO implements Comparable<AttLeaveBO>{
 	
-	private String leaveId;
+	private String Id;
 	private String personId;
 	private String leaveType;
 	private String beginTime;
@@ -25,9 +25,20 @@ public class AttLeaveBO implements Comparable<AttLeaveBO>{
 	private String isBack;//1 已销假 其他 未销假
 	private String leaveBackDate;//销假日期B
 	private String totalDays;//请假单跨越的日子数
+	private boolean isAppro;// 是否有审批
 	
-    
-	
+	public String getId() {
+		return Id;
+	}
+	public void setId(String id) {
+		Id = id;
+	}
+	public boolean isAppro() {
+		return isAppro;
+	}
+	public void setAppro(boolean isAppro) {
+		this.isAppro = isAppro;
+	}
 	public String getTotalDays() {
 		return totalDays;
 	}
@@ -103,12 +114,6 @@ public class AttLeaveBO implements Comparable<AttLeaveBO>{
 	}
 	public void setStatusDes(String statusDes) {
 		this.statusDes = statusDes;
-	}
-	public String getLeaveId() {
-		return leaveId;
-	}
-	public void setLeaveId(String leaveId) {
-		this.leaveId = leaveId;
 	}
 	public String getPersonId() {
 		return personId;

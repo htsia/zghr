@@ -71,7 +71,7 @@
                     <tr><td height="8px"></td></tr>
 
                     <tr> <td valign="top">
-                            <iframe name="tree" frameborder="1" framespacing="0" scrolling="yes" width="100%"
+                            <iframe name="tree" height="100%"  frameborder="1" framespacing="0" scrolling="yes" width="100%"
                                     src="/pages/eLearn/ShowCourceDir.jsp"></iframe>
                     </td></tr>
                 </table>
@@ -82,7 +82,7 @@
             </td>
 
             <td align="center" valign="top">
-                            <iframe name="main" frameborder="0" framespacing="0" scrolling="yes" width="100%"
+                            <iframe name="main" height="100%"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
                                     src="/eLearn/CourceWareManListChild.jsf"></iframe>
             </td>
         </tr>

@@ -262,7 +262,6 @@ public class RelSetMgrBackBean extends BaseBackingBean {
 
 	public void initRel() {
 		try {
-			System.out.println("========初始化开始============");
 			PostBO bo = SysCacheTool.findPost(postId);
 			List list = relSetUCC.getAllEvaRelBOByPostId(bo.getPostId());
 			if (list == null || list.size() <= 0) {
@@ -358,7 +357,6 @@ public class RelSetMgrBackBean extends BaseBackingBean {
 				}
 			}
 
-			System.out.println("========初始化完毕============");
 		} catch (Exception e) {
 			super.showMessageDetail("初始化出错！");
 			e.printStackTrace();
@@ -548,7 +546,6 @@ public class RelSetMgrBackBean extends BaseBackingBean {
 
 	public String saveAdd() {
 		try {
-			System.out.println(postIds);
 			if (postIds != null && !postIds.equals("")) {
 				String[] ids = postIds.split(",");
 				for (int i = 0; i < ids.length; i++) {

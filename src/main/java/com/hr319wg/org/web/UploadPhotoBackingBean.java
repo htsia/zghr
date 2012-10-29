@@ -160,6 +160,9 @@ public String getUrl()
       e.printStackTrace();
       this.msg.setMainMsg(e, getClass());
     }
+    SysCache.personCodeMap.clear();
+    SysCache.personMap.clear();
+    
     return null;
   }
   public String uploadToFile() {

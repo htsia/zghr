@@ -92,7 +92,7 @@ with (window) onload = onresize = function(){
 					</tr>
 
 					<tr>
-						<td valign="bottom"><iframe name="tree" frameborder="1"
+						<td valign="bottom"><iframe name="tree" height="100%"  frameborder="1"
 							framespacing="0" scrolling="auto" height=100% width="100%"
 							src="/pages/report/ShowRptGroupDirCodeList.jsp?parentGroupId=<%=(String)session.getAttribute("parentGroupId")%>"></iframe></td>
 				   <td    width="10" class="ctrlbar" valign="middle" ><img id=ctrlBnt
@@ -106,7 +106,7 @@ with (window) onload = onresize = function(){
 				
 					 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 					<tr>
-						<td valign="bottom"><iframe name="main" frameborder="0" framespacing="0"
+						<td valign="bottom"><iframe name="main" height="100%"  frameborder="0" framespacing="0"
 							scrolling="no"  height=600 width="100%"
 							src="/report/ShowRptGroupItem.jsf"></iframe></td>
 					</tr>

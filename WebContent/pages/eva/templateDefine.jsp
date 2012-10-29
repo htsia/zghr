@@ -82,7 +82,7 @@
                     <tr><td height="8px"></td></tr>
 
                     <tr> <td valign="top">
-                            <iframe name="tree" frameborder="1"  scrolling="yes" width="100%"></iframe>
+                            <iframe name="tree" height="100%"  frameborder="1"  scrolling="yes" width="100%"></iframe>
                             <script type="text/javascript">
                                 document.all('tree').src="/pages/eva/ShowTemplateDefine.jsp?templateID="+document.all('form1:templateID').value;
                             </script>
@@ -95,7 +95,7 @@
             </td>
 
             <td align="center" valign="top">
-                <iframe name="main" frameborder="0"  scrolling="yes" width="100%"  ></iframe>
+                <iframe name="main" height="100%"  frameborder="0"  scrolling="yes" width="100%"  ></iframe>
                 <script type="text/javascript">
                     document.all('main').src="/eva/templateDefineChild.jsf?templateID="+document.all('form1:templateID').value;
                 </script>

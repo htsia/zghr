@@ -641,6 +641,10 @@ public class AttOutBackingBean extends BaseBackingBean {
 					bo.setDeptName(CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId()));
 					bo.setPersonType(CodeUtil.interpertCode(p.getPersonType()));
 					bo.setPersonCode(p.getPersonCode());
+					int count = CommonUtil.getAttLogCount(bo.getId());
+					if(count>0){
+						bo.setAppro(true);
+					}
 					list.set(i, bo);
 				}
 			}

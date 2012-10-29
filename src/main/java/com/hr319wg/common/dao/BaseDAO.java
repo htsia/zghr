@@ -86,7 +86,6 @@ public class BaseDAO {
             public Object doInHibernate(Session session)
                     throws HibernateException {
                 String deleteHQL = "delete "+boname+" where "+attributename+"="+attributevalue;
-                System.out.println(deleteHQL);
                 Query query = session.createQuery(deleteHQL);
                 int r = query.executeUpdate();
 
@@ -175,7 +174,6 @@ public class BaseDAO {
     public List findByAny(String boname,String attributename,Object attributevalue,String order){
         if(order == null) order = "";
         String hql = "select bo from "+boname+"  bo where bo."+attributename+"="+attributevalue+order;
-        System.out.println(hql);
         return hibernatetemplate.find(hql);
     }
 
@@ -188,7 +186,6 @@ public class BaseDAO {
     public List findByAnyString(String boname,String attributename,String attributevalue,String order){
         if(order == null) order = "";
         String hql = "from "+boname+" as bo where bo."+attributename+"='"+attributevalue+"'"+order;
-        System.out.println(hql);
         return hibernatetemplate.find(hql);
     }
 
@@ -211,7 +208,6 @@ public class BaseDAO {
                 }
             }
             hql = hql+order;
-            System.out.println("hql:"+hql);
 
             return hibernatetemplate.find(hql);
         }else{
@@ -255,7 +251,6 @@ public class BaseDAO {
      */
     public List findAll(String boname){
         String hql = "from "+boname;
-        System.out.println(hql);
         List list = hibernatetemplate.find(hql);
         return list;
     }
@@ -342,7 +337,6 @@ public class BaseDAO {
      *  String queryName£¬²éÑ¯Ãû×Ö
      */
     public List findByNamedQuery(String queryName){
-        System.out.println("in dao");
         return hibernatetemplate.findByNamedQuery(queryName);
     }
 

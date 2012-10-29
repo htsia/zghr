@@ -2,8 +2,6 @@ package com.hr319wg.emp.web;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -14,10 +12,12 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hr319wg.common.Constants;
+import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.mailServices.web.EhrMailServicesBackingBean;
+import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.emp.pojo.bo.EmpChangeTypeConfigBO;
 import com.hr319wg.emp.pojo.bo.EmpReduceBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
@@ -694,7 +694,6 @@ public class PersonListBackingBean extends BaseBackingBean
         this.wfservice.processTrans(trans);
         
     	backingBean.userLeaveOffice(personids[i]);
-    	System.out.println("员工离职");
       }
 
       if (this.autoMessage) {
@@ -1288,6 +1287,13 @@ public class PersonListBackingBean extends BaseBackingBean
   }
 
   public String getPersonList() {
+    if(this.personType==null || "".equals(this.personType)){
+		try {
+			this.personType=CommonUtil.getAllPersonTypes(super.getUserInfo());
+		} catch (SysException e) {
+			e.printStackTrace();
+		}
+	}
     String pageFlag = getServletRequest().getParameter("pageFlag");
     if ("1".equals(pageFlag)) {
       try {
@@ -1434,37 +1440,6 @@ public class PersonListBackingBean extends BaseBackingBean
       else {
         this.personType = Constants.IN_SERVICE_TYPE;
         this.personTypeValue = Constants.IN_SERVICE_DES;
-      }
-      try
-      {
-        Hashtable ht = this.userApi.getPMSQueryCode(super.getUserInfo(), "0135");
-        String[] array = this.personType.split(",");
-        this.personType = "";
-        for (int i = 0; i < array.length; i++) {
-          if (ht.get(array[i]) != null) {
-            if ("".equals(this.personType)) {
-              this.personType = array[i];
-            }
-            else
-              this.personType = (this.personType + "," + array[i]);
-          }
-        }
-        if ("".equals(this.personType)) {
-          Iterator it = ht.keySet().iterator();
-          while (it.hasNext()) {
-            CodeItemBO cb = (CodeItemBO)ht.get(it.next());
-            if ("".equals(this.personType)) {
-              this.personType = cb.getItemId();
-            }
-            else {
-              this.personType = (this.personType + "," + cb.getItemId());
-            }
-          }
-        }
-        this.personTypeValue = CodeUtil.interpertCode(this.personType);
-      }
-      catch (Exception e)
-      {
       }
     }
 
@@ -1688,7 +1663,6 @@ public class PersonListBackingBean extends BaseBackingBean
             }
           }
           backingBean.userAdd(ids[i]);
-          System.out.println("添加员工");
         }
         SysCache.setPerson(ids[i], 2);
         PersonBO pb = SysCacheTool.findPersonById(ids[i]);

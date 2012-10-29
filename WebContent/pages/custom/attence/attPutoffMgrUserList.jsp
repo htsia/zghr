@@ -67,7 +67,7 @@
 	       	   <h:commandButton value="统计年出勤率" 
 							onclick="return yearAttenceDay()"
 							styleClass="button01"></h:commandButton>
-	       	   <h:commandButton value="重置人员数据"
+	       	   <h:commandButton value="重置带薪假天数"
 							onclick="return modify1()"
 							styleClass="button01"></h:commandButton>
 	       	   <h:outputText value="  "/>

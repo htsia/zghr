@@ -24,7 +24,6 @@
     
 </head>
 <body BGCOLOR=<%=Constants.BGCOLOR%>>
-    <iframe name="checknewmsg"  src="/pages/system/shortmessage/checknew.jsp" width="0" height="0" ></iframe>
     <tiles:insert attribute="body" flush="true"/>
 </body>
 </c:view>

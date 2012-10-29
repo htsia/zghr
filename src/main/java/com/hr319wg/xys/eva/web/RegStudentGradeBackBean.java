@@ -385,11 +385,9 @@ public class RegStudentGradeBackBean extends BaseBackingBean {
 			String fileName = excelFile.getName();
 			String type = fileName.substring(fileName.indexOf(".") + 1);
 			if (type.equals("xls")) {
-				System.out.println("==============开始导入！===================");
 				Workbook wb = Workbook.getWorkbook(excelFile.getInputStream());
 				Sheet sheet = wb.getSheet(0);
 				int rows = sheet.getRows();
-				System.out.println("行数：" + rows);
 				List superNameList = new ArrayList();
 				List itemVoList = new ArrayList();
 				KPIItemVO itemVo = null;
@@ -415,7 +413,6 @@ public class RegStudentGradeBackBean extends BaseBackingBean {
 					}
 				}
 				wb.close();
-				System.out.println("==============导入成功！===================");
 			} else {
 				super.showMessageDetail("只允许上传Excel（.xls）文档！");
 				return "";

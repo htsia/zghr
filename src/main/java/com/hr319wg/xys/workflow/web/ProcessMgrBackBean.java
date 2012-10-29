@@ -75,7 +75,6 @@ public class ProcessMgrBackBean extends BaseBackingBean {
 		
 		try {
 			String fileName = zipFile.getName();
-			System.out.println(fileName);
 			String type=fileName.substring(fileName.indexOf(".")+1);
 			if(type.equals("zip")){
 				activitiToolService.deployProcessDefinition(zipFile.getInputStream());

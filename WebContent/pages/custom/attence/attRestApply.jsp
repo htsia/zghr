@@ -65,22 +65,12 @@
 			<h:outputText value=""/>           
 			<h:outputText value=""/>           
             <h:outputText value="开始时间"/>
-            <h:panelGroup>
-                <h:inputText styleClass="input" id="beginTime" value="#{attRestApplyBB.restBo.beginTime}"
-                             readonly="true" alt="开始日期|0|d|50||"/>
-                <c:verbatim>
-				    <img onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',el:'form1:beginTime'})" src="../../images/search.gif" class="button_select" width="16" height="22" align="absmiddle">
-                </c:verbatim>
-            </h:panelGroup>
+            <h:inputText styleClass="input Wdate" id="beginTime" value="#{attRestApplyBB.restBo.beginTime}"
+                             readonly="true" alt="开始日期|0|d|50||" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',el:'form1:beginTime'})"/>
 
             <h:outputText value="结束时间"/>
-            <h:panelGroup>
-                <h:inputText styleClass="input" id="endTime" value="#{attRestApplyBB.restBo.endTime}"
-                             readonly="true" alt="结束日期|0|d|50||"/>
-                <c:verbatim>
-                <img onclick="WdatePicker({startDate:'%y-%M-%d 23:59:59',dateFmt:'yyyy-MM-dd HH:mm',el:'form1:endTime'})" src="../../images/search.gif" class="button_select" width="16" height="22" align="absmiddle">
-                </c:verbatim>
-            </h:panelGroup>
+            <h:inputText styleClass="input Wdate" id="endTime" value="#{attRestApplyBB.restBo.endTime}"
+                             readonly="true" alt="结束日期|0|d|50||" onclick="WdatePicker({startDate:'%y-%M-%d 23:59:59',dateFmt:'yyyy-MM-dd HH:mm',el:'form1:endTime'})"/>
             <h:outputText value="调休时间/天"/>
             <h:inputText id="applydays"  value="#{attRestApplyBB.restBo.applyDays}" styleClass="input"/>
             </h:panelGrid>

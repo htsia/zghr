@@ -170,7 +170,6 @@ public class ActivitiToolsService {
 	 */
 	public String startProcessInstance(String definitionKey,String bussiKey,Map map)throws SysException{
 		ProcessInstance processInstance=this.runtimeService.startProcessInstanceByKey(definitionKey, bussiKey,map);
-		System.out.println("=================考勤流程正确开启===============");
 		return processInstance.getId();
 	}
 	

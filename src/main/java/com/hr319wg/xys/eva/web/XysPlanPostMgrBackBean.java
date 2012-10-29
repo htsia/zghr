@@ -51,7 +51,6 @@ public class XysPlanPostMgrBackBean extends BaseBackingBean{
   //加载考核关系
     public String loadEvaRel2(){
         try{
-			System.out.println("===========开始加载================");
 			if(superId!=null&&superId.equals("")){
 				List postList=xysEvaPlanUCC.getEvaPostBOByPlanId(null, superId, planId, "1");
 				if(postList!=null&&postList.size()>0){
@@ -84,7 +83,6 @@ public class XysPlanPostMgrBackBean extends BaseBackingBean{
 					}
 				}
 			}
-			System.out.println("===========加载结束================");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -510,7 +508,6 @@ public class XysPlanPostMgrBackBean extends BaseBackingBean{
   //加载考核关系
     public String loadEvaRel(){
         try{
-			System.out.println("===========开始加载================");
 			PostBO post = SysCacheTool.findPost(postId);
 			List relList = relSetUCC.getAllEvaRelBOByPostId(post.getPostId());
 			if (relList != null && relList.size() > 0) {
@@ -537,7 +534,6 @@ public class XysPlanPostMgrBackBean extends BaseBackingBean{
 				}
 			}
 
-			System.out.println("===========加载结束================");
         }catch (Exception e){
             e.printStackTrace();
         }

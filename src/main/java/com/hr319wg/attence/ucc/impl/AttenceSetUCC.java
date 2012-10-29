@@ -2210,13 +2210,10 @@ public class AttenceSetUCC implements IAttenceSetUCC {
 	public void deleteAttClassUserBO(AttClassUserBO user) throws SysException {
 		attSetService.deleteAttClassUserBO(user);
 	}
+	
 	public void saveAttClassUserBO(AttClassUserBO user) throws SysException {
 		attSetService.saveAttClassUserBO(user);
 	}
-    
-    public String calcAttData(String orgId, String beginTime, String endTime, String year, String month) throws SysException, ParseException{
-    	return this.attDataCaclService.calcAttData(orgId,  beginTime, endTime, year, month);
-    }
 
 	public String readSign(String orgID) throws SysException {
 		return null;

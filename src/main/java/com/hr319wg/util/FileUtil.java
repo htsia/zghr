@@ -1648,7 +1648,7 @@ public class FileUtil {
           }
         }
         catch (Exception ex) {
-          System.out.println(ex.getMessage());
+        	ex.printStackTrace();
         }
       }
 
@@ -1692,7 +1692,7 @@ public class FileUtil {
             zipFile.close();
         }
         catch (Exception ex) {
-           System.out.println(ex.getMessage());
+        	ex.printStackTrace();
         }
         return fileList;
   }
@@ -1758,9 +1758,6 @@ public class FileUtil {
 
         Transformer transformer = getTransformer(styleSheet);
 
-        if (transformer == null) {
-            System.out.println("Error creating transformer for " + styleSheet);
-        }
         try {
             transformer.transform(xmlDomSource, domResult);
         }

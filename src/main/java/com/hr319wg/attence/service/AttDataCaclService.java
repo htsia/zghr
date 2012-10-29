@@ -24,18 +24,7 @@ public class AttDataCaclService {
     private AttOverTimeDAO attOverTimeDao;
     private AttFurloughRecDAO attFurloughRecDAO;
     private AttAnnualMgrDAO attAnnualMgrDao;
-    
-    /**
-     * @param orgId
-     * @param beginDate
-     * @param endDate
-     * @throws SysException 
-     * @throws ParseException 
-     */					
-    public String calcAttData(String orgId, String beginDate, String endDate, String year, String month) throws SysException, ParseException{
-    	return null;
-    }
-    
+ 
     
 	public List getSelfSignInfo(String userID, String date) throws SysException{
 		return this.attDurationDAO.getAllAttenceCurrLogBOByUserIDDate(userID, date);

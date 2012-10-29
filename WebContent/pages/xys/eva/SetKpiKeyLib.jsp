@@ -74,10 +74,9 @@
                     <tr><td height="8px"></td></tr>
                      <%
                         String postId=(String)session.getAttribute("postId");
-                        System.out.println("postId="+postId);
                     %>
                     <tr> <td valign="top">
-                            <iframe name="tree" frameborder="1" framespacing="0" scrolling="yes" width="100%"
+                            <iframe name="tree" height="100%"  frameborder="1" framespacing="0" scrolling="yes" width="100%"
                                     src="/pages/xys/eva/SetKpiLibTree.jsp?postId=<%=postId%>"></iframe>
                     </td></tr>
                 </table>
@@ -88,7 +87,7 @@
             </td>
 
             <td align="center" valign="top">
-                            <iframe name="main" frameborder="0" framespacing="0" scrolling="yes" width="100%"
+                            <iframe name="main" height="100%"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
                                     src="/xys/eva/SetKpiKey.jsf?libId=NO_VALUE"></iframe>
             </td>
         </tr>

@@ -71,8 +71,13 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 			this.personType=null;
 			this.orgID=null;
 			this.isView=null;
+			this.inself=null;
 		}
 		
+		String inself1 = super.getRequestParameter("inself");
+		if("1".equals(inself1)){
+			this.inself="1";
+		}
 		String isView1 = super.getRequestParameter("isView");
 		if("1".equals(isView1)){
 			this.isView="1";
@@ -628,7 +633,7 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 		}
 		try {
 			
-			list = this.attBusiService.getAndShowAllAttMonthBO(mypage, this.orgID, nameStr, personType, this.beginYearMonth,this.endYearMonth);
+			list = this.attBusiService.getAndShowAllAttMonthBO(mypage, this.orgID, nameStr, personType, this.beginYearMonth, this.endYearMonth, this.inself, super.getUserInfo().getUserId());
 			if(list==null){
 				list = new ArrayList();
 			}
@@ -914,7 +919,6 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println(this.subID+" "+this.isDimission);
 		return "success";
 	}
 }

@@ -8,7 +8,6 @@ public class AttLogBO {
 	private String auditTime;
 	private String auditxplan;
 	
-	
 	public String getAuditxplan() {
 		return auditxplan;
 	}

@@ -4,15 +4,14 @@
     <bean id="custom_uumanager" class="com.hr319wg.custom.impl.UUCustomManager"/>
     <bean id="busiProcess" class="com.hr319wg.emp.web.IBusiProcessImpl"/>
     
+<!--     每天晚11点定时计算年龄校龄 -->
     <bean name="myjob" class="org.springframework.scheduling.quartz.JobDetailBean">
 	    <property name="jobClass">
 	         <value>com.hr319wg.attence.util.CommonDataUtil</value>
 	    </property>
 	    <property name="jobDataAsMap">
 	         <map>
-	             <entry key="attenceSetDAO" value-ref="attenceSet_DAO"/>
 	             <entry key="activePageAPI" value-ref="sys_activePageApi"/>
-	             <entry key="attDataCaclService" value-ref="attDataCaclService"/>
 	         </map>
 	    </property>
 	</bean>

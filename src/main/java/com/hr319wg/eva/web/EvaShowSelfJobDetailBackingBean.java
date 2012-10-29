@@ -232,7 +232,6 @@ public class EvaShowSelfJobDetailBackingBean extends BaseBackingBean {
 
 	public void setDoDelete(String doDelete) {
 		this.doDelete = doDelete;
-		System.out.println(doDelete + "OOO");
 	}
 
 	public String getDoChange() {
@@ -260,7 +259,6 @@ public class EvaShowSelfJobDetailBackingBean extends BaseBackingBean {
 			} catch (SysException e) {
 				e.printStackTrace();
 			}
-			System.out.println(itemID + "BBB" + num);
 		} else {// Ôö¼Ó
 			if (super.getRequestParameter("itemId") != null) {
 				itemID = super.getRequestParameter("itemId");

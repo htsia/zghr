@@ -1,3 +1,5 @@
+<%@page import="java.io.File"%>
+<%@page import="com.hr319wg.common.ucc.impl.AttachmentUCC"%>
 <%@page import="com.hr319wg.sys.configuration.LanguageSupport"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.common.Constants" %>
@@ -17,6 +19,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
+<%@ include file="/pages/include/taglib.jsp" %>
 <%
     response.setHeader("Pragma","No-cache");
     response.setHeader("Cache-Control","no-cache");
@@ -30,6 +33,19 @@
 	ActivePageAPI pageapi = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
 	String sql="select t.file_name from TRAIN_COURCEWAREITEM t where to_date(t.start_date,'yyyy-MM-dd')< sysdate and sysdate <to_date(t.end_date,'yyyy-MM-dd')+1 and t.file_name is not null and rownum=1 order by t.item_id desc";
 	String videofile=pageapi.queryForString(sql);
+	String basepath = application.getRealPath("/");
+	String img = "/images/common/nophoto.JPG";
+	AttachmentUCC aucc = (AttachmentUCC) SysContext.getBean("common_attachmentUCC");
+    if (p.getImageId() != null) {
+        img = "/file/tmp/" + p.getImageId() + ".JPG";
+        if (!aucc.checkAttachFileExist(basepath, p.getImageId())) {
+            aucc.getFileContentToFile(basepath, p.getImageId());
+        }
+    }
+    File f = new File(basepath+img);
+    if(!f.exists()){
+    	img = "/images/common/nophoto.JPG";
+    }
 %>
     <c:verbatim>
     <script type="text/javascript" language="JavaScript1.2" src="<%=request.getContextPath()%>/js/menu.js"></script>
@@ -104,25 +120,22 @@
     </script>
    <body style="overflow-x:hidden;overflow-y:scroll"> 
     </c:verbatim>
-
-<h:form id="form1">
-    <x:saveState value="#{self_selfbulletinbb}"></x:saveState>
     <x:saveState value="#{self_selfnewsbb}"></x:saveState>
-    <x:saveState value="#{emp_AddressBB}"></x:saveState>
-    <x:saveState value="#{self_surveyBB}"></x:saveState>
-    <h:inputHidden id="pageInit" value="#{self_selfbulletinbb.pageInit}"/>
+    <x:saveState value="#{train_courcebb}"></x:saveState>
+<h:form id="form1">
     <h:inputHidden id="pageInit2" value="#{self_selfnewsbb.pageInit}"/>
-    <h:inputHidden value="#{sys_videoNewsBB.initShow}"></h:inputHidden>
+    <h:inputHidden value="#{sys_videoNewsBB.initShow}"/>
 
     <h:inputHidden id="operID" value="#{sys_inProcessBB.operID}"></h:inputHidden>
     <h:commandButton value="关联操作" id="doLinkOper" action="#{sys_inProcessBB.doLinkOper}" style="display:none"></h:commandButton>
     <h:commandButton value="关联待办事宜" id="processMore" action="#{sys_inProcessBB.doMoreSelf2}" style="display:none"></h:commandButton>
 
     <c:verbatim>
-    <table width="100%" align="center" cellpadding="0" cellspacing="10">
-
-       <tr>
-          <td width="20%" valign=top rowspan=3>
+		<table width="100%" align="center" cellpadding="0" cellspacing="10">
+			<tr>
+				<td width="20%" valign=top>
+<!-- 				left _begin-->
+<!--           常用功能 -->
              <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>'>
 					<tr>
 					  <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>常用功能</b></font></td>
@@ -130,7 +143,7 @@
 					  <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
 					 </tr>
 			     </table>
-				 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table02" height="350" valign="bottom">
+				 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table02" height="280" valign="bottom">
                         <%
                             for (int i = 0; i < tools.size(); i++) {
                                 SysToolsBO sb =(SysToolsBO)tools.get(i);
@@ -173,128 +186,135 @@
                             }
                         %>
                        </table>
-
-				<%
-               // 0959 调查问卷管理
-               OperateBO oo=SysCacheTool.findOperate("0959");
-               if (oo!=null && "1".equals(oo.getisUse())){
-             %>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>' style="margin-top:10px;">
+                       <!--           员工风采 -->
+               <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>' style="margin-top:10px;">
                 <tr>
-                  <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>问卷调查</b></font></td>
+                  <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>员工风采</b></font></td>
                   <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"></td>
                   <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
                 </tr>
               </table>
-
-				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table02" valign="center">
-				  <tr>
-					 <td height="400" valign="top" align="center">
-						<iframe id="dcwj" src="/self/ShowSurvey.jsf" frameborder="0"  width="225" scrolling="no" height="280"></iframe>
-					 </td>
-				  </tr>
-				</table>
-            <%
-                }
-                else{
-            %>
-            <table bgcolor='aliceblue' border=0 width=225 align="center" cellpadding="0" cellspacing="0" >
-                <tr>
-                  <td height="25"  align="left"><img src="/images/maininterface/menu/mobile.gif"  align="absmiddle"> <strong>通讯录</strong></td>
-                  <td align="right"><a target="_blank" href="/self/AddressList.jsf">更多</a></td>
-                </tr>
+			  
+			<table width="260" border="0" cellpadding="0" cellspacing="0" class="table02">
+			  <tr>
+                  <td height="260" align="left" valign="top">
+			   <div id="box" style="margin-top:30px;">
+					<ul>
+						<%
+							IStarsUCC rc=(IStarsUCC)SysContext.getBean("self_starsUCC");
+							List<StarsBO> list=rc.getALLShow(user.getOrgId());
+							for(StarsBO sb : list){
+								PersonBO pb = SysCacheTool.findPersonById(sb.getPersID());
+								%>
+								<li style="height:180px;">
+								<table width="100%" height="180" width="100%" cellspacing="0" cellpadding="0">
+									<tr valign="top">
+										<td width="110" height="180" align="center"><img width="100" src="/images/maininterface/stars/<%=sb.getPhotoFile()%>"/></td>
+										<td style="line-height:22px;" width="200">
+											<b>编号:</b><%=pb.getPersonCode()%><br/>
+											<b>姓名:</b><%=pb.getName()%><br/>
+											<b>部门:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, pb.getDeptId())%><br/>
+											<b>岗位:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_POST, pb.getPostId())%><br/>
+										</td>
+									</tr>
+									<tr>
+										<td colspan=2>
+											<%=CommonFuns.filterNull(sb.getStory())%>
+										</td>
+									</tr>
+								</table>	
+								</li>
+								<%	
+							}							  
+						  %>							
+					</ul>
+				</div> 
+                     
+                  </td>
+               </tr>
+             </table>
+<!-- 				left _end-->
+				</td>
+				<td width="58%" valign=top>
+<!-- 				middle _begin-->
+<!--             人事资讯 -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>'>
               <tr>
-                 <td height="285" valign="top" align="center"  colspan=2>
-                    <iframe id="Address" src="/self/ShowAddress.jsf" frameBorder="0"  width="225" scrolling="no" height="285"></iframe>
-                 </td>
+                <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b><%OperateBO oo1 = SysCacheTool.findOperate("0952");if (oo1!=null) out.println(oo1.getOperateName()); else out.println("新闻");%></b></font></td>
+                <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"><div align="right"><a target="_blank" href="/system/NewsBriefMore.jsf">更多</a></div></td>
+                <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
               </tr>
             </table>
-            <%
-                }
-            %>
-               
-          </td>
-			<td width="61%" valign=top>
-<!--             待办 -->
-            	<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>'>
-                <tr>
-                  <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>待办事宜</b></font></td>
-                  <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"><div align="right"><a target="_blank" href="/system/SelfInProcessMore.jsf">更多</a></div></td>
-                  <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
-                </tr>
-              </table>
 
-		        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table02" height="168" valign="bottom">
-		          <tr>
-		            <td bgcolor="<%=Constants.FRAMECOLOR%>" valign=top>
-		            </c:verbatim>
-		                      <x:dataTable  headerClass="td_top" styleClass="table03"  width="100%"
-		                                   columnClasses="td_middle_left,td_middle_left" id="linkList"  align="center" border="0"  value="#{sys_inProcessBB.selflinkList}"    var="list">
-		                      <h:column>
-		                          <c:facet name="header"><h:outputText style="width:140px; color:#333333; " value="发起时间"/></c:facet>
-		                          <h:outputText value="#{list.sendDate}" style="width:140px;" />
-		                      </h:column>
-		
-		                      <h:column>
-		                          <c:facet name="header"><h:outputText  value="发起人" style="width:140px; color:#333333; " /></c:facet>
-		                          <h:outputText value="#{list.sendPersonName}"/>
-		                      </h:column>
-		
-		                          <h:column>
-		                              <c:facet name="header"><h:outputText  value="要求操作" style="color:#333333; " /></c:facet>
-		                              <h:outputText value="#{list.operateName}"/>
-		                          </h:column>
-		
-		                      <h:column>
-		                          <c:facet name="header"><h:outputText  value="说明"style="width:140px; color:#333333; " /></c:facet>
-		                          <h:outputText value="#{list.content}"/>
-		                      </h:column>
-		
-		                      <h:column>
-		                          <c:facet name="header"><h:outputText  style="width:80px; color:#333333; "  value="操作" /></c:facet>
-		                          <h:commandButton value="查看" styleClass="button01" type="button" onclick="showWorkFlowLog('#{list.processID}');" rendered="#{list.processID!=null && list.processID!=''}"></h:commandButton>
-		                          <h:commandButton value="处理" id="process" action="#{sys_inProcessBB.doSelf2}" styleClass="button01">
-		                             <x:updateActionListener property="#{sys_inProcessBB.itemID}" value="#{list.itemID}"/>
-		                          </h:commandButton>
-		                      </h:column>
-		                  </x:dataTable>
-		            <c:verbatim>
-		            </td>
-		          </tr>
-		        </table>
-           </td>
-		    <td valign="top">
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>'>
-                <tr>
-                  <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>用户信息</b></font></td>
-                  <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"><div align="right"></div></td>
-                  <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
-                </tr>
-              </table>
-				 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table02" valign="center">
-				  <tr>
-					 <td height="165" valign="top" align="left">
-		              	  <table>
-		              	  	<tr valign="top">
-								<td style="line-height:22px;">
-									<b>编号：</b><%=p.getPersonCode()%><br/>
-									<b>姓名：</b><%=p.getName()%><br/>
-									<b>所在部门:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId())%><br/>
-									<b>岗位名称:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_POST, p.getPostId())%><br/>
-								</td>
-							</tr>
-		              	  </table>
-					 </td>
-				  </tr>
-				</table>        
-          </td>   
-       </tr>
+            <table class="table02" cellspacing=0 cellpadding=0 width="100%" border="0">
+            <tr>
+               <%
+                 List photoList = (List) session.getAttribute("PHOTONEWS");
+                 if (photoList==null) photoList=new ArrayList();
+                 boolean hasFlash=true;
+                 if(photoList.size()==1){
+                 	NewsContentBO bo = (NewsContentBO) photoList.get(0);
+                 	if("-1".equals(bo.getNewId())){
+                 		hasFlash=false;
+                 	}
+                 }
+                 if(hasFlash){
+                 	%>
+                 	<td valign="middle" align="right" width="250">
+            			<script language="javascript">
+                 	<%
+                  out.println("var focus_width="+Constants.NEW_PHOTO_WIDTH+";");
+                  out.println("var focus_height="+Constants.NEW_PHOTO_HEIGHT+";");
+                  out.println("var text_height=5;");
+                  out.println("var swf_height = focus_height+text_height;");
+                  String pics = "";
+                  String links = "";
+                  String texts = "";
+                  for (int i = 0; i < photoList.size(); i++) {
+                      NewsContentBO bo = (NewsContentBO) photoList.get(i);
+                      if ("".equals(pics)){
+                         pics=bo.getNewsFile();
+                         links="/self/QueryOneNews.jsf?subOneId="+bo.getNewId();
+                         texts="";
+                      }
+                      else{
+                         pics+="|"+bo.getNewsFile();
+                         links+="|"+"/self/QueryOneNews.jsf?subOneId="+bo.getNewId();
+                         texts+="|";
+                      }
+                  }
+                  out.println("var pics='" + pics + "';");
+                  out.println("var links='" + links + "';");
+                  out.println("var texts='" + texts + "';");
 
-       <tr>
-          <td valign="top">
-            <table border=0 cellspacing=0 cellpadding=0 width="100%">
-                <tr>                   
-                    <td  valign="top" bgcolor='<%=Constants.FRAMECOLOR%>'>
+                  out.println("document.write('<object classid=\"clsid:d27cdb6e-ae6d-11cf-96b8-444553540000\" codebase=\"http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0\" 	 width=\"'+ (focus_width+30) +'\" height=\"'+ swf_height +'\">' );");
+                  out.println("document.write('<param name=\"allowScriptAccess\" value=\"sameDomain\"><param name=\"movie\" value=\"/file/news/focus.swf\"><param name=\"quality\" value=\"high\"><param name=\"bgcolor\" value=\"#FFFFFF\">');");
+				  out.println("document.write('<param name=\"menu\" value=\"false\"><param name=wmode value=\"opaque\">');");
+                  out.println("document.write('<param name=\"FlashVars\" value=\"pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+(focus_width+30)+'&borderheight='+focus_height+'&textheight='+text_height+'\">');");
+                  out.println("document.write('</object>');</script></td>");
+                 }
+             %>
+                   
+                   <td height=275 valign="top" style="padding:10px 0 0 20px;">
+</c:verbatim>
+                    <x:dataTable id="newsList" width="100%" align="center" border="0"  value="#{self_selfnewsbb.newsList}"    var="newsList">
+                        <h:column>
+                            <h:graphicImage value="/images/self/gridcode.gif" />
+                            <h:graphicImage alt="新闻" value="/images/common/new.gif" rendered="#{newsList.newNews}"/>
+                            <h:commandLink title="#{newsList.display}" onclick="doShowNews('#{newsList.newId}')">
+                               <h:outputText value=" #{newsList.newTopic}"  />
+                            </h:commandLink>
+                            <h:outputText value="(#{newsList.startDate})"  />
+                        </h:column>
+                    </x:dataTable>
+<c:verbatim>
+                    </td>
+            </tr>
+           </table>
+<!--           学习园地 -->
+            <table cellspacing=0 cellpadding=0 width="100%" style="margin-top:10px;">
+                <tr valign="top">                   
+                    <td valign="top" bgcolor='<%=Constants.FRAMECOLOR%>'>
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                               <tr>
                                 <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>学习园地</b></font></td>
@@ -304,13 +324,13 @@
                             </table>
 
                         <table border=0 id="learnTable" height=263 width="100%" cellspacing=0  cellpadding=0 class="table02">
-                        <tr><td colspan=2 valign="top" style="padding:10px 0 0 10px;">
+                        <tr><td>
 						<table cellspacing=0  cellpadding=0>
 							<tr valign="top">
 								<%
 									if(videofile!=null && !"".equals(videofile)){
 									%>
-									<td style="padding:0 80px 0 20px;">
+									<td width="400" align="right">
 										<object type="application/x-shockwave-flash" data="vcastr3.swf" width="350" height="240">
 											<param name="movie" value="/file/videoNews/vcastr3.swf"/>
 											<param name="allowFullScreen" value="true" />
@@ -325,7 +345,7 @@
 									<%									
 									}
 								%>								
-								<td>
+								<td style="padding:10px 0 0 20px;" align="left">
         </c:verbatim>
                         <x:dataTable id="courceList" width="100%" align="center" border="0"  value="#{train_courcebb.courceList}"    var="courceList">
                             <h:column>
@@ -350,139 +370,48 @@
 
                 </tr>
             </table>
-          </td>
-          <td valign="top" width="20%">
-               <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>'>
+
+<!-- 				middle _end-->
+				</td>
+				<td valign="top">
+<!-- 				right _begin-->
+<!-- 		    用户信息 -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>'>
                 <tr>
-                  <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>员工风采</b></font></td>
-                  <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"></td>
+                  <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>用户信息</b></font></td>
+                  <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"><div align="right"></div></td>
                   <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
                 </tr>
               </table>
-			  
-				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table02" valign="center">
+				 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table02" valign="center">
 				  <tr>
-                   <td height="220" align="center">
-				   <div id="box" style="margin-top:30px;">
-						<ul>
-							<%
-								IStarsUCC rc=(IStarsUCC)SysContext.getBean("self_starsUCC");
-								List<StarsBO> list=rc.getALLShow(user.getOrgId());
-								for(StarsBO sb : list){
-									PersonBO pb = SysCacheTool.findPersonById(sb.getPersID());
-									%>
-									<li style="height:230px;">
-									<table width="100%" height="260" border="0" cellspacing="5" cellpadding="0">
-										<tr valign="top">
-											<td width="110" height="150" align="center"><img width="100" src="/images/maininterface/stars/<%=sb.getPhotoFile()%>"/></td>
-											<td style="line-height:22px;">
-												<b>编号：</b><%=pb.getPersonCode()%><br/>
-												<b>姓名：</b><%=pb.getName()%><br/>
-												<b>所在单位:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, pb.getOrgId())%><br/>
-												<b>所在部门:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, pb.getDeptId())%><br/>
-												<b>岗位名称:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_POST, pb.getPostId())%><br/>
-											</td>
-										</tr>
-										<tr>
-											<td colspan=2>
-												<%=CommonFuns.filterNull(sb.getStory())%>
-											</td>
-										</tr>
-									</table>	
-									</li>
-									<%	
-								}							  
-							  %>							
-						</ul>
-					</div> 
-                      
-                   </td>
-                </tr>
-              </table>
-          </td>         
-       </tr>
-
-       <tr>
-		<td width="60%" valign="top">
-<!--               新闻 -->
-			<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>'>
-              <tr>
-                <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b><%OperateBO oo1 = SysCacheTool.findOperate("0952");if (oo1!=null) out.println(oo1.getOperateName()); else out.println("新闻");%></b></font></td>
-                <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"><div align="right"><a target="_blank" href="/system/NewsBriefMore.jsf">更多</a></div></td>
-                <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
-              </tr>
-            </table>
-
-            <table class="table02" cellspacing=0 cellpadding=0 width="100%" border="0">
-            <tr>
-                   <td height=278 valign="middle" align="center">
-                   <script language="javascript">
-                        <%
-                        out.println("var focus_width="+Constants.NEW_PHOTO_WIDTH+";");
-                        out.println("var focus_height="+Constants.NEW_PHOTO_HEIGHT+";");
-                        out.println("var text_height=5;");
-                        out.println("var swf_height = focus_height+text_height;");
-                        List photoList = (List) session.getAttribute("PHOTONEWS");
-                        if (photoList==null) photoList=new ArrayList();
-                        String pics = "";
-                        String links = "";
-                        String texts = "";
-                        for (int i = 0; i < photoList.size(); i++) {
-                            NewsContentBO bo = (NewsContentBO) photoList.get(i);
-                            if ("".equals(pics)){
-                               pics=bo.getNewsFile();
-                               links="/self/QueryOneNews.jsf?subOneId="+bo.getNewId();
-                               texts="";
-                            }
-                            else{
-                               pics+="|"+bo.getNewsFile();
-                               links+="|"+"/self/QueryOneNews.jsf?subOneId="+bo.getNewId();
-                               texts+="|";
-                            }
-                        }
-                        out.println("var pics='" + pics + "';");
-                        out.println("var links='" + links + "';");
-                        out.println("var texts='" + texts + "';");
-
-                        out.println("document.write('<object classid=\"clsid:d27cdb6e-ae6d-11cf-96b8-444553540000\" codebase=\"http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0\" 	 width=\"'+ (focus_width+30) +'\" height=\"'+ swf_height +'\">' );");
-                        out.println("document.write('<param name=\"allowScriptAccess\" value=\"sameDomain\"><param name=\"movie\" value=\"/file/news/focus.swf\"><param name=\"quality\" value=\"high\"><param name=\"bgcolor\" value=\"#FFFFFF\">');");
-                        out.println("document.write('<param name=\"menu\" value=\"false\"><param name=wmode value=\"opaque\">');");
-                        out.println("document.write('<param name=\"FlashVars\" value=\"pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+(focus_width+30)+'&borderheight='+focus_height+'&textheight='+text_height+'\">');");
-                        out.println("document.write('</object>');");
-
-                    %>
-                    </script>
-                   </td>
-                   <td height=275 valign="top"  style="padding-top:10px;">
-</c:verbatim>
-                    <x:dataTable id="newsList" width="100%" align="center" border="0"  value="#{self_selfnewsbb.newsList}"    var="newsList">
-                        <h:column>
-                            <h:graphicImage value="/images/self/gridcode.gif" />
-                            <h:graphicImage alt="新新闻" value="/images/common/new.gif" rendered="#{newsList.newNews}"/>
-                            <h:commandLink  title="#{newsList.display}" onclick="doShowNews('#{newsList.newId}')">
-                               <h:outputText value=" #{newsList.newTopic}"  />
-                            </h:commandLink>
-                            <h:outputText value="(#{newsList.startDate})"  />
-                        </h:column>
-                    </x:dataTable>
-<c:verbatim>
-                    </td>
-            </tr>
-
-           </table>
-			
-        </td>
-
-          <td width="20%" valign="top">
-             <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>'>
+					 <td height="165" align="center">
+		              	  <table >
+		              	  	<tr valign="top">
+		              	  		<td>
+		              	  			<img alt="<%=p.getName()%>" src="<%=img%>" width="110" />
+		              	  		</td>
+								<td style="line-height:22px;padding:10px 0 0 10px;">
+									<b>编号:</b><%=p.getPersonCode()%><br/>
+									<b>姓名:</b><%=p.getName()%><br/>
+									<b>部门:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId())%><br/>
+									<b>岗位:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_POST, p.getPostId())%><br/>
+								</td>
+							</tr>
+		              	  </table>
+					 </td>
+				  </tr>
+				</table>        
+				<!--           日程管理 -->
+             <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>' style="margin-top:10px;">
                 <tr>
-                  <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>日常管理</b></font></td>
+                  <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>日程管理</b></font></td>
                   <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"></td>
                   <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
                 </tr>
               </table>
 
-        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table02" height="278" valign="center">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table02" height="160" valign="center">
           <tr><td valign="center" align="center">
                           <script type="text/javascript">
                           var now = new Date();
@@ -580,19 +509,39 @@
 
                       </td></tr>
                   </table>
-          </td>
-          
-       </tr>
+                  
 
-    </table>
+<!--              问卷调查 -->
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>' style="margin-top:10px;">
+                <tr>
+                  <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>问卷调查</b></font></td>
+                  <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"></td>
+                  <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
+                </tr>
+              </table>
 
-    <table width="99%" align="center">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table02" valign="center">
+				  <tr>
+					 <td valign="top" align="center">
+						<iframe id="dcwj" src="/self/ShowSurvey.jsf" frameborder="0"  width="225" scrolling="no" height="180"></iframe>
+					 </td>
+				  </tr>
+				</table>
+
+
+                  
+<!-- 				right _end-->
+				</td>
+			</tr>
+		</table>
+<!-- 友情链接 -->
+		<table width="99%" align="center">
        <tr>
           <td>
 
             <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
              <tr>
-               <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>友好链接</b></font></td>
+               <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>友情链接</b></font></td>
                <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"></td>
                <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
              </tr>
@@ -623,8 +572,7 @@
         </td>
     </tr>
     </table>
-    </bodyy
+    </body>
   </c:verbatim>
 
-</h:form>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+</h:form>    

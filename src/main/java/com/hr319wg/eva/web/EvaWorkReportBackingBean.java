@@ -124,7 +124,6 @@ public class EvaWorkReportBackingBean extends BaseBackingBean {
 			String type=fullName.substring(fullName.indexOf(".")+1);
 			if(type.equals("doc")){
 				fileName = FileUtil.createFile(excelFile, path);
-				System.out.println(fileName);
 				// 保存到数据库
 				String filePath = path + File.separator + fileName;
 				byte[] fileContent = FileUtil.ReadInFile(filePath);

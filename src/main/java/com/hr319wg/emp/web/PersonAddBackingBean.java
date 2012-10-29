@@ -10,6 +10,7 @@ import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.BaseBackingBean;
+import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.emp.pojo.bo.EmpProbationBO;
 import com.hr319wg.emp.pojo.bo.PersonAddAuditBO;
@@ -23,6 +24,7 @@ import com.hr319wg.org.pojo.bo.OrgEnterBO;
 import com.hr319wg.org.pojo.bo.OrgProbationBO;
 import com.hr319wg.org.ucc.IOrgProbationUcc;
 import com.hr319wg.org.util.OrgTool;
+import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.api.WageAPI;
 import com.hr319wg.sys.cache.SysCache;
 import com.hr319wg.sys.cache.SysCacheTool;
@@ -564,10 +566,11 @@ public String getClassId()
 				}
 			}
 
-			showMessageDetail("增加人员成功!");
 			CommonUtil.addWageChange(personId, this.personvo.getStatus());
 			importData(personId);
-			
+			ActivePageAPI api = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
+			api.executeSql("insert into sys_role_user_r (role_person_id ,role_id,person_id) values ((select nvl(max(cast(r.role_id as int)),0)+1 from sys_role_user_r r where len(r.role_person_id)<4),'08','"+personId+"')");
+			showMessageDetail("增加人员成功!");
 			return "edit";
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -730,8 +730,6 @@ public interface IAttenceSetUCC {
 
     public void saveAttClassUserBO(AttClassUserBO user) throws SysException;
     
-    public String calcAttData(String orgId, String beginTime, String endTime, String year, String month) throws SysException,ParseException;
-    
     public String readSign(String orgID) throws SysException;
     
     public List getSelfSignInfo(String userID, String date) throws SysException;

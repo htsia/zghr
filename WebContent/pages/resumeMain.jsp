@@ -76,7 +76,7 @@
         </tr>
 
         <tr><td colspan=2>
-            <iframe name="main" frameborder="0"  scrolling="auto" width="100%"
+            <iframe name="main" height="100%"  frameborder="0"  scrolling="auto" width="100%"
                     src="<%=url%>"></iframe>
         </td></tr>
     </table>

@@ -124,7 +124,7 @@
         <td width="5"></td>
 
         <td align="center" valign="top">
-             <iframe name="main" frameborder="0"  scrolling="auto" width="100%" src="/eLearn/LearnInfo.jsf"></iframe>
+             <iframe name="main" height="100%"  frameborder="0"  scrolling="auto" width="100%" src="/eLearn/LearnInfo.jsf"></iframe>
         </td>
 
         </tr>

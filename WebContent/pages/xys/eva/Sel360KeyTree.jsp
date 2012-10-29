@@ -13,7 +13,6 @@
 
     String superId = request.getParameter("superId");                           // …œº∂
     String keyType=request.getParameter("keyType");
-    System.out.println(superId+"===================="+keyType);
     out.println("<?xml version=\"1.0\" encoding=\"GBK\" ?>");
     out.println("<tree>");
     String icon = "";

@@ -19,7 +19,7 @@ public class WageDataDAO extends BaseDAO{
 		String hql = " from ClassWageBO bo,UserBO u where bo.userID=u.userID and bo.year='"+CommonFuns.getSysDate("yyyy")+"' ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if(personType!=null && !"".equals(personType)){
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
@@ -48,7 +48,7 @@ public class WageDataDAO extends BaseDAO{
 		String hql = " from UserBO u where u.personType in ('0135700570','0135700571','0135700572') ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if(personType!=null && !"".equals(personType)){
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
@@ -76,7 +76,7 @@ public class WageDataDAO extends BaseDAO{
 		String hql = " from UserBO u where u.personType in ('0135700572','0135700573','0135700574') ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if(personType!=null && !"".equals(personType)){
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
@@ -180,7 +180,7 @@ public class WageDataDAO extends BaseDAO{
 		String hql = " from "+set+" bo,UserBO u where bo.ID=u.userID and bo.status in ('1','2')";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if(personType!=null && !"".equals(personType)){
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
@@ -240,7 +240,7 @@ public class WageDataDAO extends BaseDAO{
 		String hql = " from WageDataSetUserBO bo,UserBO u,User p where bo.userID=u.userID and p.userId=u.userID and p.status=1 and bo.setID='"+item.getID()+"'";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if(personType!=null && !"".equals(personType)){
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
@@ -262,7 +262,7 @@ public class WageDataDAO extends BaseDAO{
 						
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if(personType!=null && !"".equals(personType)){			
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
@@ -303,7 +303,7 @@ public class WageDataDAO extends BaseDAO{
 		String hql = " from "+setBO+" bo,UserBO u,User p where bo.id=u.userID and p.userId=u.userID and p.status=1";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if("1".equals(isVerify) || verifyFlag){
 			hql+=" and bo.modifyDate='"+yearMonth+"' ";
@@ -348,7 +348,7 @@ public class WageDataDAO extends BaseDAO{
 		String hql = " from WageOthersDataSetUserBO bo,UserBO u where bo.userID=u.userID and bo.setID='"+setID+"'";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if(personType!=null && !"".equals(personType)){			
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
@@ -370,7 +370,7 @@ public class WageDataDAO extends BaseDAO{
 						" and bo.ID not in (select v.datasetUserID from WageDataSetVerifyBO v where v.yearMonth='"+yearMonth+"')";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if(personType!=null && !"".equals(personType)){			
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");

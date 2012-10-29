@@ -186,7 +186,7 @@ public interface IAttBusiService {
 	public void updateOvertimePay(String id,String hours) throws SysException, ParseException;
 	//显示一段时间内的考勤
 	public abstract List getAndShowAllAttMonthBO(PageVO pageVO, String orgID,
-			String nameStr, String personType, String beginYearMonth,String endYearMonth) throws SysException;
+			String nameStr, String personType, String beginYearMonth,String endYearMonth, String inself, String operUserID) throws SysException;
 	public abstract List<AttOvertimeBO> queryOvertimeAuditTask(String userId) throws SysException;
 	public abstract List<AttOutBO> queryOutAuditTask(String userId) throws SysException;
 	public abstract List<AttRestBO> queryRestAuditTask(String userId) throws SysException;

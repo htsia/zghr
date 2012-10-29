@@ -83,7 +83,7 @@ with (window) onload = onresize = function(){
 					</tr>
 
 					<tr>
-						<td valign="top"><iframe name="tree" frameborder="1"
+						<td valign="top"><iframe name="tree" height="100%"  frameborder="1"
 							framespacing="0" scrolling="auto" height=600 width="100%"
 							src="/pages/report/ShowRptGroupDefineCodeList.jsp"></iframe></td>
 					</tr>
@@ -96,7 +96,7 @@ with (window) onload = onresize = function(){
 				<td align="center" valign="top">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
 					<tr>
-						<td><iframe name="main" frameborder="0" framespacing="0"
+						<td><iframe name="main" height="100%"  frameborder="0" framespacing="0"
 							scrolling="auto" height=600 width="100%"
 							src="/report/ShowRptGroupDir.jsf"></iframe></td>
 					

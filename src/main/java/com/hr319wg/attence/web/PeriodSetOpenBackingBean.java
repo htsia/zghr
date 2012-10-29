@@ -481,21 +481,6 @@ public class PeriodSetOpenBackingBean extends BaseBackingBean {
 			}
 		}
 		
-		/**
-		 *计算考勤结果 
-		 * @throws SysException 
-		 * @throws ParseException 
-		 */
-		public void calc() throws SysException, ParseException{
-			String result = this.attenceSetUCC.calcAttData(superId, this.attDurationBO.getDuraBegin(), this.attDurationBO.getDuraEnd(), this.attDurationBO.getDuraYear(), this.attDurationBO.getDuraMonth());
-			if(result!=null){
-				super.showMessageDetail(result);
-			}else{
-				super.showMessageDetail("计算完成");
-			}
-		}
-		
-		
 		public String getSelfSignInfo() {
 			String signinfo = "";
 			try {

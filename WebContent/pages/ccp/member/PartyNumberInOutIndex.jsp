@@ -37,7 +37,7 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="0" >
     <tr>
         <td width="160" align="center" valign="top" class="explorer" id="showTree">
-                <iframe name="tree" frameborder="0"  width="100%" scrolling="auto"
+                <iframe name="tree" height="100%"  frameborder="0"  width="100%" scrolling="auto"
                         src="/ccp/member/PartyQueryTypeView.jsf"></iframe>
         </td>
 
@@ -46,7 +46,7 @@
         </td>
 
         <td align="center" valign="top" class="explorer">
-                <iframe name="main" frameborder="0"  width="100%" scrolling="auto" height="600"  ></iframe>
+                <iframe name="main" height="100%"  frameborder="0"  width="100%" scrolling="auto" height="600"  ></iframe>
         </td>
     </tr>
 </table>

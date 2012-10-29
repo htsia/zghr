@@ -108,7 +108,7 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <tr>
     <td align="center">
-        <iframe name="main" frameborder="0"  scrolling="auto" width="100%"  src="
+        <iframe name="main" height="100%"  frameborder="0"  scrolling="auto" width="100%"  src="
         <%
                 OperateBO obo;
                 String funid="2121";

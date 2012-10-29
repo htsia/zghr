@@ -28,7 +28,7 @@
 
     <tr>
         <td id="showTree" width="210">
-              <iframe name="tree" frameborder="0"  scrolling="auto" width="100%"
+              <iframe name="tree" height="100%"  frameborder="0"  scrolling="auto" width="100%"
                                 src="/pages/common/ShowOrgTree.jsp?rootId=<%User user=(User)session.getAttribute(Constants.USER_INFO); out.println(user.getOrgId());%>"></iframe>
         </td>
 
@@ -37,7 +37,7 @@
         </td>
 
         <td align="center" valign="top">
-             <iframe name="main" frameborder="0"  scrolling="no" width="100%"
+             <iframe name="main" height="100%"  frameborder="0"  scrolling="no" width="100%"
                           src="/cont/contSheetChild.jsf"></iframe>
         </td>
     </tr>

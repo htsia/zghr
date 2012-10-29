@@ -21,7 +21,7 @@ public class EvaWageDao extends BaseDAO{
 		String hql = " from EvaWageBO bo,UserBO u where bo.userID=u.userID and bo.status='00901' ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if(personType!=null && !"".equals(personType)){
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
@@ -40,7 +40,7 @@ public class EvaWageDao extends BaseDAO{
 		String hql = " from UserBO u where u.userID not in (select bo.userID from EvaWageBO bo where bo.status='00901') ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '%"+org.getTreeId()+"%') ";
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if(personType!=null && !"".equals(personType)){
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
