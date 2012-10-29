@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="chk_verifyDAO" class="com.hr319wg.chk.dao.VerifyDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+        <property name="jdbctemplate" ref="jdbcTemplate"/>
+    </bean>
+    <bean id="chk_verifyResDAO" class="com.hr319wg.chk.dao.VerifyResDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="chk_verifyService" class="com.hr319wg.chk.service.VerifyService">
+        <property name="verifydao" ref="chk_verifyDAO"/>
+        <property name="verifyresdao" ref="chk_verifyResDAO"/>
+        <property name="jdbctemplate" ref="jdbcTemplate"/>
+    </bean>
+    <bean id="chk_verifyUCC" class="com.hr319wg.chk.ucc.impl.VerifyUCC">
+        <property name="verifyservice" ref="chk_verifyService"></property>
+    </bean>
+</beans>

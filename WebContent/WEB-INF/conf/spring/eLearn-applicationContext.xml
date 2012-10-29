@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="eLearn_materialservice" class="com.hr319wg.scorm.materialService">
+        <property name="materialdao">
+            <ref bean="eLearn_materialdao"/>
+        </property>
+    </bean>                            
+
+    <bean id="eLearn_materialdao" class="com.hr319wg.eLearn.dao.MaterialDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_bulletinservice" class="com.hr319wg.scorm.bulletinService">
+        <property name="bulletindao">
+            <ref bean="eLearn_bulletindao"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_bulletindao" class="com.hr319wg.eLearn.dao.elearnBulletinDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_testservice" class="com.hr319wg.scorm.testService">
+        <property name="testdao">
+            <ref bean="eLearn_testdao"/>
+        </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+         <property name="questdao">
+            <ref bean="eLearn_libdao"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_testdao" class="com.hr319wg.eLearn.dao.testSetDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_paperservice" class="com.hr319wg.scorm.paperLibService">
+        <property name="libdao">
+            <ref bean="eLearn_paperlibdao"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_paperlibdao" class="com.hr319wg.eLearn.dao.paperLibDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_libservice" class="com.hr319wg.scorm.questLibService">
+        <property name="libdao">
+            <ref bean="eLearn_libdao"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_libdao" class="com.hr319wg.eLearn.dao.questionLibDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_processdao" class="com.hr319wg.eLearn.dao.elearnProcessDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_digMani" class="com.hr319wg.scorm.DigesterManifest">
+        <property name="datamanager">
+            <ref bean="eLearn_datamanager"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_datamanager" class="com.hr319wg.scorm.DataManager">
+        <property name="coursedao">
+            <ref bean="eLearn_coursedao"/>
+        </property>
+        <property name="processdao">
+            <ref bean="eLearn_processdao"/>
+        </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_operdao" class="com.hr319wg.eLearn.dao.studentOperateDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_coursedao" class="com.hr319wg.eLearn.dao.elearnCourseDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="eLearn_learnservice" class="com.hr319wg.train.service.eLearnService">
+        <property name="stuoperdao">
+           <ref bean="eLearn_operdao"/>
+       </property>
+        <property name="activeapi">
+           <ref bean="sys_activePageApi"/>
+       </property>
+        <property name="courcedao">
+           <ref bean="eLearn_coursedao"/>
+       </property>
+
+    </bean>
+
+    <bean id="eLearn_learnucc" class="com.hr319wg.train.ucc.impl.eLearnUCCImpl">
+       <property name="learnService">
+          <ref bean="eLearn_learnservice"/>
+      </property>
+    </bean>
+
+
+</beans>
+

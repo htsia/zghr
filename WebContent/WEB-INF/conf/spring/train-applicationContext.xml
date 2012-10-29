@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+     <!-- 培训班管理与审批 -->
+    <bean id="trainclassdao" class="com.hr319wg.train.dao.TrainClassDAO">
+    	<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+    </bean>
+     <bean id="trainstudentdao" class="com.hr319wg.train.dao.TrainStudentDAO">
+    	<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+    </bean>
+
+    <bean id="trainclassservice" class="com.hr319wg.train.service.TrainClassService">
+    	<property name="trainclassdao" ref="trainclassdao"></property>
+    	<property name="trainstudentdao" ref="trainstudentdao"></property>
+    </bean>
+    <bean id="trainclassucc" class="com.hr319wg.train.ucc.impl.TrainClassUCC">
+    	<property name="trainclassservice" ref="trainclassservice"></property>
+    </bean>
+     <!-- 培训计划 -->
+    <bean id="trainPlanManagerdao" class="com.hr319wg.train.dao.TrainPlanManagerDAO">
+    	<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+    </bean>
+    <bean id="trainPlanManagerService" class="com.hr319wg.train.service.TrainPlanManagerService">
+    	<property name="trainPlanManagerdao" ref="trainPlanManagerdao"></property>
+    </bean>
+    <bean id="trainManagerUCC" class="com.hr319wg.train.ucc.impl.TrainPlanManagerUCC">
+    	<property name="trainPlanManagerService" ref="trainPlanManagerService"></property>
+    </bean>
+
+    <!--     课件   -->
+    <bean id="train_courceDAO" class="com.hr319wg.train.dao.CourceWareDAO">
+      <property name="hibernatetemplate">
+          <ref bean="hibernateTemplate"/>
+      </property>
+    </bean>
+    <bean id="train_courceservice" class="com.hr319wg.train.service.CourceWareService">
+      <property name="courcedao">
+          <ref bean="train_courceDAO"/>
+      </property>
+    </bean>
+    <bean id="train_courceucc" class="com.hr319wg.train.ucc.impl.CourceWareUCCImpl">
+      <property name="courcewareservice">
+          <ref bean="train_courceservice"/>
+      </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+
+    </bean>
+
+    <!--     培训资源   -->
+    <bean id="train_OrgDAO" class="com.hr319wg.train.dao.TrainOrgDAO">
+     <property name="hibernatetemplate">
+         <ref bean="hibernateTemplate"/>
+     </property>
+    </bean>
+    <bean id="train_teacherDAO" class="com.hr319wg.train.dao.TrainTeacherDAO">
+    <property name="hibernatetemplate">
+         <ref bean="hibernateTemplate"/>
+     </property>
+    </bean>
+    
+    <bean id="train_resourceservice" class="com.hr319wg.train.service.TrainSourceService">
+     <property name="trainorgdao">
+         <ref bean="train_OrgDAO"/>
+     </property>
+     <property name="trainteacherdao">
+     	<ref bean="train_teacherDAO"/>
+     </property>
+     <property name="trainbookdao">
+     	<ref bean="train_BookDAO"/>
+     </property>
+      <property name="trainplacedao">
+     	<ref bean="train_PlaceDAO"/>
+     </property>
+     <property name="trainequipmentdao">
+     <ref bean="train_equipmentDAO"/>
+     </property>
+     <property name="traininnerteacherdao">
+			<ref bean="train_innerteacherdao" />
+	 </property>
+	 <property name="attachmentservice" ref="common_attachmentService"></property>
+	 <property name="activepageservice">
+            <ref bean="sys_activePageService"/>
+        </property>
+	</bean>
+    <bean id="train_resourceucc" class="com.hr319wg.train.ucc.impl.TrainSourceUCCImpl">
+     <property name="trainsourceservice">
+         <ref bean="train_resourceservice"/>
+     </property>
+    </bean>
+ <!-- 培训教材 -->
+	<bean id="train_BookDAO" class="com.hr319wg.train.dao.TrainBookDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+<!-- 培训场地 -->
+	<bean id="train_PlaceDAO" class="com.hr319wg.train.dao.TrainPlaceDAO">
+     <property name="hibernatetemplate">
+         <ref bean="hibernateTemplate"/>
+     </property>
+    </bean>
+<!--培训器材DAO -->
+    <bean id="train_equipmentDAO" class="com.hr319wg.train.dao.TrainEquipmentDAO">
+    <property name="hibernatetemplate">
+    <ref bean="hibernateTemplate"/>
+    </property>
+    </bean>
+ <!--内部讲师DAO -->   
+ <bean id="train_innerteacherdao" class="com.hr319wg.train.dao.TrainInnerteacherDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+<!-- 浏览培训需求dao -->
+    <bean id="train_DemandDAO" class="com.hr319wg.train.dao.TrainDemandDAO">
+     <property name="hibernatetemplate">
+         <ref bean="hibernateTemplate"/>
+     </property>
+    </bean>  
+<!-- 录入部门培训需求 -->
+	<bean id="train_DepartDemandDAO" class="com.hr319wg.train.dao.TrainDepartDemandDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+ <!-- 个人培训需求dao -->
+    <bean id="train_PersonDemandDAO" class="com.hr319wg.train.dao.TrainPersonDemandDAO">
+    <property name="hibernatetemplate">
+    <ref bean="hibernateTemplate"/>
+    </property>
+    </bean>
+ <!-- 自助录入部门培训需求 -->
+	<bean id="train_SelfDepartDemandDAO" class="com.hr319wg.train.dao.TrainSelfDepartDemandDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+ <!-- 需求征集_service -->	
+	<bean id="traindemandservice" class="com.hr319wg.train.service.TrainDemandService">
+		<property name="traindemanddao">
+     		<ref bean="train_DemandDAO"/>
+     	</property>
+     	<property name="trainDepartDemandDAO">
+     		<ref bean="train_DepartDemandDAO"/>
+     	</property>
+     	<property name="trainpersondemanddao">
+     		<ref bean="train_PersonDemandDAO"/>
+     	</property>
+     	<property name="trainSelfDepartDemandDAO">
+     		<ref bean="train_SelfDepartDemandDAO"/>
+     	</property>
+	</bean>
+ <!-- 需求征集_ucc -->
+	 <bean id="train_demanducc" class="com.hr319wg.train.ucc.impl.TrainDemandUCC">
+     <property name="traindemandservice">
+         <ref bean="traindemandservice"/>
+     </property>
+    </bean>
+    <bean id="trainSystemdao" class="com.hr319wg.train.dao.TrainSystemDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	<bean id="trainSystemService" class="com.hr319wg.train.service.TrainSystemService">
+      <property name="trainSystemdao">
+          <ref bean="trainSystemdao"/>
+      </property>
+      <property name="activePageAPI" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="train_systemucc" class="com.hr319wg.train.ucc.impl.TrainSystemUCC">
+     <property name="trainSystemService">
+         <ref bean="trainSystemService"/>
+     </property>
+    </bean>
+</beans>
+	

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <!--
+         注意：
+         weblogic和tomcate调整org.springframework.jndi.JndiObjectFactoryBean的写法
+         sqlserver oracle MySQL调整hibernate.dialect 和 lobHandler的写法
+    -->
+
+   <!-- weblogic tongweb写法 -->
+    <!--
+   <bean id="oracledataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>hrdcpool</value>
+        </property>
+    </bean>
+     -->
+
+    <!-- tomcate写法 -->
+    <bean id="oracledataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>java:comp/env/hrdcpool</value>
+        </property>
+    </bean>
+
+    <!--
+    <bean id="oracledataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@127.0.0.1:1521:mydb</value>
+        </property>
+        <property name="username">
+            <value>hrdc</value>
+        </property>
+        <property name="password">
+             <value>hrdc</value> 
+        </property>
+    </bean>
+    -->
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource">
+            <ref bean="oracledataSource"/>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <!-- OracleDialect SQLServerDialect OracleDialect-->
+                <prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="use_sql_comments">false</prop>
+                <prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>
+            </props>
+        </property>
+        <property name="mappingDirectoryLocations">
+            <list>
+                <value>WEB-INF/conf/hibernate</value>
+            </list>
+        </property>
+        <property name="lobHandler">
+            <!--- oracle 使用oracleLobHandler 其他 defaultLobHandler -->
+            <ref bean="defaultLobHandler"/>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="namingTransactionAttribute"
+          class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+        <property name="properties">
+            <props>
+                <prop key="create*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="update*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="delete*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="batch*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="init*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="cancel*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="stop*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="start*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="export*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="import*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="move*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="add*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="make*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="confirm*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="pay*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="forwd*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="end*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="disable*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="close*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="raffle*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="save*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource">
+            <ref bean="oracledataSource"/>
+        </property>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>MenuExceptionResource</value>
+                <value>UserExceptionResource</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="SysContext" class="com.hr319wg.common.web.SysContext"/>
+    <bean id="sequenceGenerator" class="com.hr319wg.util.SequenceGenerator"/>
+    <bean id="syscache" class="com.hr319wg.sys.cache.SysCache"/>
+
+
+    <bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor"/>
+    <bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler" lazy-init="true">
+        <property name="nativeJdbcExtractor">
+            <ref bean="nativeJdbcExtractor"/>
+        </property>
+    </bean>
+    <bean id="defaultLobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true">
+    </bean>
+
+    <!--attachment-->
+    <bean id="common_attachmentDAO" class="com.hr319wg.common.dao.AttachmentDAO">
+           <property name="hibernatetemplate">
+		        <ref bean="hibernateTemplate"/>
+		   </property>
+           <property name="jdbctemplate">
+		        <ref bean="jdbcTemplate"/>
+		   </property>
+    </bean>
+
+    <bean id="common_attachmentService" class="com.hr319wg.common.service.AttachmentService">
+        <property name="attachmentdao">
+            <ref bean="common_attachmentDAO"/>
+        </property>
+        <property name="storageFlag">
+            <value>1</value>
+        </property>
+        <property name="activeapi">
+        <ref bean="sys_activePageApi"/>
+        </property>
+     </bean>
+
+    <bean id="common_attachmentUCC" class="com.hr319wg.common.ucc.impl.AttachmentUCC">
+            <property name="attachmentservice">
+                <ref bean="common_attachmentService"/>
+            </property>
+     </bean>
+     <bean id="common_iattachmentUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.common.ucc.IAttachmentUCC</value>
+                </list>
+            </property>
+            <property name="target" ref="common_attachmentUCC"/>
+            <property name="transactionManager" ref="transactionManager"/>
+            <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+     </bean>
+     <!--importAttachment-->
+     <bean id="common_importAttachmentUCC" class="com.hr319wg.common.ucc.impl.ImportAttachmentUCC">
+            <property name="attachmentservice">
+                <ref bean="common_attachmentService"/>
+            </property>
+     </bean>
+     <bean id="common_iImportAttachmentUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.common.ucc.IImportAttachmentUCC</value>
+                </list>
+            </property>
+            <property name="target" ref="common_importAttachmentUCC"/>
+            <property name="transactionManager" ref="transactionManager"/>
+            <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+</beans>

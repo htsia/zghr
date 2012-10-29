@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.emp.pojo.bo.EmpIntrFeeDetailBO" table="EMP_INTRO_PAYOFF_LIST">
+         <id name="itemID" type="string" unsaved-value="null">
+             <column name="ITEM_ID" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="payoffID"	       column="PAYOFF_ID" />
+         <property name="personID"	   column="PERSON_ID"/>
+         <property name="sum"	   column="PAY_SUM"/>
+     </class>
+    
+    <class name="com.hr319wg.emp.pojo.bo.EmpIntrPayoffBO" table="EMP_INTRO_PAYOFF">
+         <id name="itemID" type="string" unsaved-value="null">
+             <column name="ITEM_ID" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="operID"	       column="PAYOFF_OPER" />
+         <property name="operDate"	   column="PAYOFF_DATE"/>
+         <property name="count"	   column="PAYOFF_COUNT"/>
+         <property name="sum"	   column="PAYOFF_SUM"/>
+        <property name="status"	   column="PAYOFF_STATUS"/>
+     </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.EmpIntrFeeBO" table="EMP_INTRO_FEE">
+         <id name="personID" type="string" unsaved-value="null">
+             <column name="PERSON_ID" sql-type="varchar(32)"/>
+             <generator class="assigned"/>
+         </id>
+         <property name="feeSum"	       column="FEE_SUM" />
+         <property name="balance"	   column="BALANCE"/>
+        <property name="startDate"	       column="START_DATE"/>
+        <property name="firstDate"	       column="FIRST_DATE"/>
+        <property name="firstFee"	       column="FIRST_FEE"/>
+        <property name="secondDate"	       column="SECOND_DATE"/>
+        <property name="secondFee"	       column="SECOND_FEE"/>
+        <property name="thirdDate"	       column="THIRD_DATE"/>
+        <property name="thirdFee"	       column="THIRD_FEE"/>
+     </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.EmpReduceBO" table="emp_person_reduce">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="persID"	       column="personId" />
+        <property name="a016010"	       column="A016010" />
+        <property name="a016020"	       column="A016020"/>
+        <property name="a001054"	       column="A001054"/>
+        <property name="a001725"	       column="A001725" />
+        <property name="a016060"	       column="A016060" />
+        <property name="applyID"	       column="applyID" />
+        <property name="applyDate"	   column="applyDate" />
+        <property name="auditID"	       column="auditID" />
+        <property name="auditDate"	    column="auditDate" />
+        <property name="auditResult"	column="auditResult" />
+        <property name="auditOption"	column="auditOption" type="com.hr319wg.sys.service.GBKString"/>
+
+       <property name="auditID2"	       column="auditID2" />
+       <property name="auditDate2"	    column="auditDate2" />
+       <property name="auditResult2"	column="auditResult2" />
+       <property name="auditOption2"	column="auditOption2" type="com.hr319wg.sys.service.GBKString" />
+
+       <property name="auditID3"	       column="auditID3" />
+       <property name="auditDate3"	    column="auditDate3" />
+       <property name="auditResult3"	column="auditResult3" />
+       <property name="auditOption3"	column="auditOption3" type="com.hr319wg.sys.service.GBKString"/>
+
+       <property name="auditID4"	       column="auditID4" />
+       <property name="auditDate4"	    column="auditDate4" />
+       <property name="auditResult4"	column="auditResult4" />
+       <property name="auditOption4"	column="auditOption4" type="com.hr319wg.sys.service.GBKString"/>
+
+       <property name="auditID5"	       column="auditID5" />
+       <property name="auditDate5"	    column="auditDate5" />
+       <property name="auditResult5"	column="auditResult5" />
+       <property name="auditOption5"	column="auditOption5" type="com.hr319wg.sys.service.GBKString"/>
+
+       <property name="auditID6"	       column="auditID6" />
+       <property name="auditDate6"	    column="auditDate6" />
+       <property name="auditResult6"	column="auditResult6" />
+       <property name="auditOption6"	column="auditOption6" type="com.hr319wg.sys.service.GBKString"/>
+
+        <property name="auditID7"	       column="auditID7" />
+        <property name="auditDate7"	    column="auditDate7" />
+        <property name="auditResult7"	column="auditResult7" />
+        <property name="auditOption7"	column="auditOption7" type="com.hr319wg.sys.service.GBKString"/>
+
+        <property name="status"	column="status" />
+
+    </class>
+
+
+    <class name="com.hr319wg.emp.pojo.bo.PersonAddAuditBO" table="EMP_ADD_AUDIT">
+         <id name="itemID" type="string" unsaved-value="null">
+             <column name="ITEM_ID" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personID"	       column="PERSON_ID" />
+         <property name="applyDate"	       column="APPLY_DATE"/>
+         <property name="applyOper"	       column="APPLY_PERSON"/>
+         <property name="audit1"	       column="AUDIT1"/>
+         <property name="audit1Result"	       column="AUDIT1_RESULT"/>
+         <property name="audit1Date"	       column="AUDIT1_DATE"/>
+         <property name="audit1Memo"	       column="AUDIT1_MEMO" type="com.hr319wg.sys.service.GBKString"/>
+
+        <property name="audit2"	       column="AUDIT2"/>
+        <property name="audit2Result"	       column="AUDIT2_RESULT"/>
+        <property name="audit2Date"	       column="AUDIT2_DATE"/>
+        <property name="audit2Memo"	       column="AUDIT2_MEMO" type="com.hr319wg.sys.service.GBKString"/>
+
+        <property name="audit3"	       column="AUDIT3"/>
+        <property name="audit3Result"	       column="AUDIT3_RESULT"/>
+        <property name="audit3Date"	       column="AUDIT3_DATE"/>
+        <property name="audit3Memo"	       column="AUDIT3_MEMO" type="com.hr319wg.sys.service.GBKString"/>
+
+        <property name="audit4"	       column="AUDIT4"/>
+        <property name="audit4Result"	       column="AUDIT4_RESULT"/>
+        <property name="audit4Date"	       column="AUDIT4_DATE"/>
+        <property name="audit4Memo"	       column="AUDIT4_MEMO" type="com.hr319wg.sys.service.GBKString"/>
+
+        <property name="audit5"	       column="AUDIT5"/>
+        <property name="audit5Result"	       column="AUDIT5_RESULT"/>
+        <property name="audit5Date"	       column="AUDIT5_DATE"/>
+        <property name="audit5Memo"	       column="AUDIT5_MEMO" type="com.hr319wg.sys.service.GBKString"/>
+
+        <property name="audit6"	       column="AUDIT6"/>
+        <property name="audit6Result"	       column="AUDIT6_RESULT"/>
+        <property name="audit6Date"	       column="AUDIT6_DATE"/>
+        <property name="audit6Memo"	       column="AUDIT6_MEMO" type="com.hr319wg.sys.service.GBKString"/>
+     </class>
+    
+    
+    <class name="com.hr319wg.emp.pojo.bo.EmpAboradTaskItemBO" table="emp_task_item">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="masterId"	       column="master_id" />
+         <property name="personId"	       column="person_id"/>
+     </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.ChangeInfoBO" table="emp_chginfo">
+        <id name="chgId" type="string" unsaved-value="null">
+            <column name="CHG_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId"	   column="PERSON_ID" />
+        <property name="fromOrgId"     column="FROM_BRANCH_ORG" />
+        <property name="fromDepId"	   column="FROM_BRANCH_DEP" />
+        <property name="fromPostId"	   column="FROM_BRANCH_JOB"/>
+        <property name="toOrgId"	   column="TO_BRANCH_ORG" />
+        <property name="toDepId"	   column="TO_BRANCH_DEP"/>
+        <property name="toPostId"	   column="TO_BRANCH_JOB" />
+        <property name="applyDate"	   column="APPLAY_DATE" />
+        <property name="applyStatus"	   column="APPLAY_STATUS" />
+        <property name="chgType"	   column="CHG_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="chgReason"	   column="CHG_REASON" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="fromOpinion"	   column="FROM_BRANCH_APPROVE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="toOpinion"	   column="TO_BRANCH_APPROVE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="managerOpinion"	   column="MANAGER_BRANCH_APPROVE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="fromReason"	   column="FROM_NOT_REASON" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="toReason"	   column="TO_NOT_REASON" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="managerReason"	   column="MANAGER_NOT_REASON" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="fromDate"	   column="FROM_APPROVE_DATE" />
+        <property name="toDate"	   column="TO_APPROVE_DATE" />
+        <property name="managerDate"	   column="MANAGER_APPROVE_DATE" />
+        <property name="receiveDate"	   column="RECEIVE_DATE" />
+        <property name="letterNo"	   column="LETTER_NO" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="letterType"	   column="LETTER_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="cont_old_end"	   column="CONT_OLD_END" />
+        <property name="cont_new_begin"	   column="CONT_NEW_BEGIN" />
+        <property name="managerOperID"	   column="MANAGER_OPERID"/>
+        <property name="requestDate"	   column="REQUEST_DATE"/>
+        <property name="fromletterno"	   column="FROM_LETTERNO"/>
+        <property name="fromletterdate"	   column="FROM_LETTERDATE"/>
+        <property name="fromLetterType"	   column="FROM_LETTERTYPE"/>
+        <property name="fromOperator"	   column="FROM_OPERATOR"/>
+        <property name="wageTransed"	   column="WAGE_TRANS"/>
+    </class>
+    
+    <class name="com.hr319wg.emp.pojo.bo.EmpAboradTaskBO" table="emp_abrod_task">
+         <id name="taskId" type="string" unsaved-value="null">
+             <column name="task_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="planId"	       column="plan_id" />
+         <property name="project"	       column="project" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="task"	       column="task" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="county"	       column="country"/>
+         <property name="beginDate"	       column="begin_date"/>
+         <property name="endDate"	       column="end_date"/>
+         <property name="costomer"	       column="costomer" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="budget"	       column="budget"/>
+         <property name="aim"	       column="aim" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="status"	       column="status"/>
+     </class>
+	<class name="com.hr319wg.emp.pojo.bo.EmpAboradItemBO" table="emp_abrod_item">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="planId"	       column="plan_id" />
+         <property name="personId"	       column="person_id"/>
+     </class>
+	<class name="com.hr319wg.emp.pojo.bo.EmpAboardPlanBO" table="emp_abrod_plan">
+         <id name="planId" type="string" unsaved-value="null">
+             <column name="plan_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="deptId"	       column="dept_id" />
+         <property name="planType"	       column="plan_type"/>
+         <property name="planDate"	       column="plan_date"/>
+         <property name="project"	       column="project" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="task"	       column="task" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="country"	       column="country"/>
+         <property name="beginDate"	       column="begin_date"/>
+         <property name="endDate"	       column="end_date"/>
+         <property name="costomer"	       column="costomer" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="budget"	       column="budget" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="maker"	       column="maker"/>
+         <property name="makDate"	       column="make_date"/>
+         <property name="isExecute"	       column="isExecute"/>
+     </class>
+    <class name="com.hr319wg.emp.pojo.bo.EmpTeamInfoBo" table="emp_team_info">
+         <id name="teamId" type="string" unsaved-value="null">
+             <column name="team_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="teamName"	       column="team_name" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="createTime"	       column="create_time"/>
+         <property name="teamType"	       column="team_type"/>
+         <property name="createOrg"	       column="create_org"/>
+        <property name="teamBudget"	   column="TEAM_BUDGET"/>
+        <property name="teamLevel"	       column="TEAM_LEVEL"/>
+        <property name="teamStep"	       column="TEAM_STEP"/>
+     </class>
+
+     <class name="com.hr319wg.emp.pojo.bo.EmpTeamPersonBo" table="emp_team_person">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="teamId"	       column="team_id" />
+         <property name="personId"	       column="person_id"/>
+        <property name="linkID"	       column="linkA705"/>
+     </class>
+    
+     <class name="com.hr319wg.emp.pojo.bo.EmpProbationBO" table="emp_probation">
+         <id name="personId" type="string" unsaved-value="null">
+             <column name="person_Id" sql-type="varchar(32)"/>
+             <generator class="assigned"/>
+         </id>
+         <property name="planPassDate"	       column="plan_passdate" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="status"	       column="status" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditResult" column="audit_result"/>
+        <property name="auditDate" column="audit_date"/>
+        <property name="auditOption" column="audit_option" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="auditOper" column="audit_oper"/>
+        <property name="auditResult2" column="audit_result2"/>
+        <property name="auditDate2" column="audit_date2"/>
+        <property name="auditOption2" column="audit_option2" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="auditOper2" column="audit_oper2"/>
+
+        <property name="auditResult3" column="audit_result3"/>
+        <property name="auditDate3" column="audit_date3"/>
+        <property name="auditOption3" column="audit_option3" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="auditOper3" column="audit_oper3"/>
+
+         <property name="auditResult4" column="audit_result4"/>
+         <property name="auditDate4" column="audit_date4"/>
+         <property name="auditOption4" column="audit_option4" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper4" column="audit_oper4"/>
+
+         <property name="auditResult5" column="audit_result5"/>
+         <property name="auditDate5" column="audit_date5"/>
+         <property name="auditOption5" column="audit_option5" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper5" column="audit_oper5"/>
+
+         <property name="auditResult6" column="audit_result6"/>
+         <property name="auditDate6" column="audit_date6"/>
+         <property name="auditOption6" column="audit_option6" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper6" column="audit_oper6"/>
+
+     </class>
+     <class name="com.hr319wg.emp.pojo.bo.EmpProbationWageBO" table="emp_probation_wage">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="person_id" />
+         <property name="fieldId"	       column="fieid_id"/>
+         <property name="oldValue" column="old_value"/>
+        <property name="newValue" column="new_value"/>
+        <property name="updateStatus" column="update_status"/>
+        <property name="updateDate" column="update_date"/>
+     </class>
+     <class name="com.hr319wg.emp.pojo.bo.OrgPostChangeBO" table="org_postChange">
+        <id name="orgUid" type="string" unsaved-value="null">
+            <column name="orgUid" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="wageItem"	   column="wage_item"/>
+    </class>
+    <class name="com.hr319wg.emp.pojo.bo.EmpPostChangeBO" table="emp_postChange">
+         <id name="postChangeId" type="string" unsaved-value="null">
+             <column name="postChange_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="person_Id" />
+         <property name="applyDate"	       column="apply_date"/>
+         <property name="oldDept"	       column="old_dept"/>
+         <property name="oldPost"	       column="old_post"/>
+         <property name="oldJob"	       column="old_job"/>
+         <property name="newDept"	       column="new_dept"/>
+         <property name="newPost"	       column="new_post"/>
+         <property name="newJob"	       column="new_job"/>
+         <property name="status"	       column="status"/>
+        <property name="passPost"	       column="pass_post"/>
+        <property name="passPostLevel"	   column="PASS_POST_LEVEL"/>
+        
+        <property name="changeType"	       column="changeType"/>
+        <property name="changeReason"	       column="changeReason"/>
+        <property name="changeBase"	       column="changeBase"/>
+        <property name="changeLetterNO"	       column="changeLetterNO"/>
+         <property name="auditResult"      column="audit_result"/>
+         <property name="auditDate"        column="audit_date"/>
+         <property name="auditOption"      column="audit_option" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper"        column="audit_oper"/>
+
+         <property name="auditResult1"     column="audit_result1"/>
+         <property name="auditDate1"       column="audit_date1"/>
+         <property name="auditOption1"     column="audit_option1" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper1"       column="audit_oper1"/>
+
+         <property name="auditResult2"     column="audit_result2"/>
+         <property name="auditDate2"       column="audit_date2"/>
+         <property name="auditOption2"     column="audit_option2" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper2"       column="audit_oper2"/>
+
+        <property name="auditResult3"     column="audit_result3"/>
+        <property name="auditDate3"       column="audit_date3"/>
+        <property name="auditOption3"     column="audit_option3" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="auditOper3"       column="audit_oper3"/>
+
+        <property name="auditResult4"     column="audit_result4"/>
+        <property name="auditDate4"       column="audit_date4"/>
+        <property name="auditOption4"     column="audit_option4" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="auditOper4"       column="audit_oper4"/>
+
+        <property name="auditResult5"     column="audit_result5"/>
+        <property name="auditDate5"       column="audit_date5"/>
+        <property name="auditOption5"     column="audit_option5" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="auditOper5"       column="audit_oper5"/>
+
+        <property name="auditResult6"     column="audit_result6"/>
+        <property name="auditDate6"       column="audit_date6"/>
+        <property name="auditOption6"     column="audit_option6" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="auditOper6"       column="audit_oper6"/>
+
+         <property name="hrValidDate"       column="hr_valid_date"/>
+         <property name="wageValidDate"       column="wage_valid_date"/>
+
+         <property name="linkBeginMgr"       column="linkBeginMgr"/>
+     </class>
+
+         
+    <class name="com.hr319wg.emp.pojo.bo.OrgAppordisChangeBO" table="org_appordis_change">
+        <id name="orgId" type="string" unsaved-value="null">
+            <column name="orgUid" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="wageItem"	   column="wage_item"/>
+    </class>
+    <class name="com.hr319wg.emp.pojo.bo.EmpAppointOrDismissBO" table="emp_appoint_or_dismiss">
+         <id name="changeId" type="string" unsaved-value="null">
+             <column name="change_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="person_Id" />
+         <property name="applyDate"	       column="apply_date"/>
+         <property name="oldJob"	       column="old_job"/>
+         <property name="newJob"	       column="new_job"/>
+         <property name="status"	       column="status"/>
+         <property name="auditResult"      column="audit_result"/>
+         <property name="auditDate"        column="audit_date"/>
+         <property name="auditOption"      column="audit_option" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper"        column="audit_oper"/>
+         <property name="auditResult1"     column="audit_result1"/>
+         <property name="auditDate1"       column="audit_date1"/>
+         <property name="auditOption1"     column="audit_option1" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper1"       column="audit_oper1"/>
+         <property name="auditResult2"     column="audit_result2"/>
+         <property name="auditDate2"       column="audit_date2"/>
+         <property name="auditOption2"     column="audit_option2" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper2"       column="audit_oper2"/>
+         <property name="hrValidDate"       column="hr_valid_date"/>
+         <property name="wageValidDate"       column="wage_valid_date"/>
+         <property name="firstApp"       column="first_app"/>
+         <property name="appMod"       column="app_mode"/>
+     </class>
+     <class name="com.hr319wg.emp.pojo.bo.EmpBeginnerBO" table="emp_beginner">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="person_Id" />
+         <property name="curPost"	       column="cur_post"/>
+         <property name="passPost"	       column="pass_post"/>
+         <property name="curPostLevel"	   column="CUR_POST_LEVEL"/>
+         <property name="passPostLevel"	   column="PASS_POST_LEVEL"/>
+         
+         <property name="planPassDate"	       column="plan_passdate"/>
+         <property name="status"	       column="status"/>
+         <property name="auditResult"      column="audit_result"/>
+         <property name="auditDate"        column="audit_date"/>
+         <property name="auditOption"      column="audit_option" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper"        column="audit_oper"/>
+         <property name="auditResult1"     column="audit_result1"/>
+         <property name="auditDate1"       column="audit_date1"/>
+         <property name="auditOption1"     column="audit_option1" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper1"       column="audit_oper1"/>
+         <property name="auditResult2"     column="audit_result2"/>
+         <property name="auditDate2"       column="audit_date2"/>
+         <property name="auditOption2"     column="audit_option2" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper2"       column="audit_oper2"/>
+     </class>
+     <class name="com.hr319wg.emp.pojo.bo.OrgBeginnerBO" table="org_beginner">
+        <id name="orgUid" type="string" unsaved-value="null">
+            <column name="orgUid" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="probation"	   column="probation"/>
+        <property name="wageItem"	   column="wage_item"/>
+    </class>
+     <class name="com.hr319wg.emp.pojo.bo.EmpBeginnerWageBO" table="EMP_BEGINNER_WAGE">
+         <id name="wageItemId" type="string" unsaved-value="null">
+             <column name="WAGE_ITEM_ID" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="itemId"	       column="ITEM_ID" />
+         <property name="fieldId"	       column="field_id"/>
+         <property name="oldValue" column="old_value"/>
+        <property name="newValue" column="new_value"/>
+        <property name="updateStatus" column="update_status"/>
+        <property name="updateDate" column="update_date"/>
+     </class>
+      <class name="com.hr319wg.emp.pojo.bo.EmpPerTypeChangeBO" table="emp_per_type_change">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="person_Id" />
+         <property name="curType"	       column="cur_type"/>
+         <property name="passType"	       column="pass_type"/>
+         <property name="curPost"	       column="cur_post"/>
+         <property name="passPost"	       column="pass_post"/>
+         <property name="curPostType"	       column="cur_post_type"/>
+         <property name="passPostType"	       column="pass_post_type"/>
+         <property name="planPassDate"	       column="plan_passdate"/>
+         <property name="status"	       column="status"/>
+         <property name="auditResult"      column="audit_result"/>
+         <property name="auditDate"        column="audit_date"/>
+         <property name="auditOption"      column="audit_option" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper"        column="audit_oper"/>
+         <property name="auditResult1"     column="audit_result1"/>
+         <property name="auditDate1"       column="audit_date1"/>
+         <property name="auditOption1"     column="audit_option1" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper1"       column="audit_oper1"/>
+         <property name="auditResult2"     column="audit_result2"/>
+         <property name="auditDate2"       column="audit_date2"/>
+         <property name="auditOption2"     column="audit_option2" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper2"       column="audit_oper2"/>
+     </class>
+     <class name="com.hr319wg.emp.pojo.bo.OrgTypeChangeBO" table="org_type_change">
+        <id name="orgUid" type="string" unsaved-value="null">
+            <column name="orgUid" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="wageItem"	   column="wage_item"/>
+    </class>
+     <class name="com.hr319wg.emp.pojo.bo.EmpPerTypeChangeWageBO" table="emp_per_typeChange_wage">
+         <id name="wageItemId" type="string" unsaved-value="null">
+             <column name="WAGE_ITEM_ID" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="itemId"	       column="ITEM_ID" />
+         <property name="fieldId"	       column="field_id"/>
+         <property name="oldValue" column="old_value"/>
+        <property name="newValue" column="new_value"/>
+        <property name="updateStatus" column="update_status"/>
+        <property name="updateDate" column="update_date"/>
+     </class>
+      <class name="com.hr319wg.emp.pojo.bo.EmpPraciseBO" table="emp_pracise">
+         <id name="personId" type="string" unsaved-value="null">
+             <column name="person_Id" sql-type="varchar(32)"/>
+             <generator class="assigned"/>
+         </id>
+         <property name="planPassDate"	       column="plan_passdate"/>
+         <property name="curType"	       column="cur_type"/>
+         <property name="passType"	       column="pass_type"/>
+         <property name="status"	       column="status"/>
+         <property name="auditResult"      column="audit_result"/>
+         <property name="auditDate"        column="audit_date"/>
+         <property name="auditOption"      column="audit_option" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper"        column="audit_oper"/>
+         <property name="auditResult1"     column="audit_result1"/>
+         <property name="auditDate1"       column="audit_date1"/>
+         <property name="auditOption1"     column="audit_option1" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper1"       column="audit_oper1"/>
+         <property name="auditResult2"     column="audit_result2"/>
+         <property name="auditDate2"       column="audit_date2"/>
+         <property name="auditOption2"     column="audit_option2" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="auditOper2"       column="audit_oper2"/>
+     </class>
+     <class name="com.hr319wg.emp.pojo.bo.OrgPraciseBO" table="org_pracise">
+        <id name="orgUid" type="string" unsaved-value="null">
+            <column name="orgUid" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="probation"	   column="probation"/>
+        <property name="wageItem"	   column="wage_item"/>
+    </class>
+     <class name="com.hr319wg.emp.pojo.bo.EmpPraciseWageBO" table="emp_pracise_wage">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="person_id" />
+         <property name="fieldId"	       column="field_id"/>
+         <property name="oldValue" column="old_value"/>
+        <property name="newValue" column="new_value"/>
+        <property name="updateStatus" column="update_status"/>
+        <property name="updateDate" column="update_date"/>
+     </class>
+     <class name="com.hr319wg.emp.pojo.bo.EmpReservePersonBO" table="A067">
+        <id name="subId" type="string" unsaved-value="null">
+            <column name="subid" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="ids"	   column="ID"/>
+        <property name="A067000"	   column="A067000"/>
+        <property name="A067701"	   column="A067701"/>
+        <property name="A067705"	   column="A067705"/>
+        <property name="A067708"	   column="A067708"/>
+        <property name="A067710"	   column="A067710" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="A067714"	   column="A067714"/>
+        <property name="A067715"	   column="A067715"/>
+        <property name="A067800"	   column="A067800"/>
+    </class>
+    <class name="com.hr319wg.emp.pojo.bo.EmpReseverDutyPersonBO" table="A068">
+        <id name="subId" type="string" unsaved-value="null">
+            <column name="subid" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="ids"	   column="id"/>
+        <property name="A068000"	   column="A068000"/>
+        <property name="A068700"	   column="A068700"/>
+        <property name="A068701"	   column="A068701"/>
+        <property name="A068702"	   column="A068702" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.emp.pojo.bo.EmpEduChangeBO" table="emp_edu_chage">
+         <id name="eduChageId" type="string" unsaved-value="null">
+             <column name="eduChange_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="person_id" />
+         <property name="status"	       column="status"/>
+         <property name="oldEdu" column="old_edu"/>
+        <property name="newEdu" column="new_edu"/>
+         <property name="eduDate" column="edu_date"/>
+        <property name="eduUni" column="edu_uni" type="com.hr319wg.sys.service.GBKString"/>
+     </class>
+     <class name="com.hr319wg.emp.pojo.bo.EmpEduChageWageBO" table="emp_edu_chage_wage">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="eduChangeId"	       column="eduChange_id" />
+         <property name="fieldId"	       column="field_id"/>
+         <property name="oldValue" column="old_value"/>
+         <property name="newValue" column="new_value"/>
+         <property name="updateStatus" column="update_status"/>
+         <property name="updateDate" column="update_date"/>
+     </class>
+     <class name="com.hr319wg.emp.pojo.bo.EmpTitleChangeBO" table="emp_title_change">
+         <id name="titleChangeId" type="string" unsaved-value="null">
+             <column name="titleChange_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="person_id" />
+         <property name="oldLevel"	       column="old_level"/>
+         <property name="applyLevel" column="apply_level"/>
+         <property name="oldMajor" column="old_major"/>
+         <property name="applyMajor" column="apply_major"/>
+         <property name="oldTitle" column="old_title"/>
+         <property name="applyTitle" column="apply_title"/>
+         <property name="status" column="status"/>
+     </class>
+     <class name="com.hr319wg.emp.pojo.bo.EmpTitleChangeWageBO" table="emp_title_change_wage">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="titleChangeId"	       column="titleChange_id" />
+         <property name="fieldId"	       column="field_id"/>
+         <property name="oldValue" column="old_value"/>
+         <property name="newValue" column="new_value"/>
+         <property name="updateStatus" column="update_status"/>
+         <property name="updateDate" column="update_date"/>
+     </class>
+     <class name="com.hr319wg.emp.pojo.bo.OrgTitleChangeBO" table="org_title_change">
+        <id name="orgUid" type="string" unsaved-value="null">
+            <column name="orguid" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="wageItem"	   column="wage_item"/>
+    </class>
+    <class name="com.hr319wg.emp.pojo.bo.OrgTitleWageBO" table="org_title_wage">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="orgUid"	       column="orguid" />
+         <property name="wageItem"	       column="wage_item"/>
+         <property name="wageType" column="wage_type"/>
+         <property name="wageOrder" column="wage_order"/>
+     </class>
+     <class name="com.hr319wg.emp.pojo.bo.OrgEduChangeBO" table="org_edu_change">
+        <id name="orgUid" type="string" unsaved-value="null">
+            <column name="orguid" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="wageItem"	   column="wage_item"/>
+    </class>
+    <class name="com.hr319wg.emp.pojo.bo.OrgEduWageBO" table="org_edu_wage">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="orgUid"	       column="orguid" />
+         <property name="wageItem"	       column="wage_item"/>
+         <property name="wageType" column="wage_type"/>
+         <property name="wageOrder" column="wage_order"/>
+     </class>
+</hibernate-mapping>

@@ -1,0 +1,173 @@
+<!DOCTYPE tiles-definitions
+    [
+        <!ELEMENT component-definitions (definition+)>
+        <!ELEMENT tiles-definitions (definition+)>
+        <!ELEMENT definition (put*, putList*)>
+        <!ATTLIST definition
+            name CDATA #REQUIRED
+            pages CDATA #IMPLIED
+            path CDATA #IMPLIED
+            extends CDATA #IMPLIED
+            role CDATA #IMPLIED
+            template CDATA #IMPLIED
+            controllerClass CDATA #IMPLIED
+            controllerUrl CDATA #IMPLIED>
+        <!ELEMENT put (#PCDATA)>
+        <!ATTLIST put
+            name CDATA #REQUIRED
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+        <!ATTLIST putList
+            name CDATA #REQUIRED>
+        <!ELEMENT putListElements (add | item | bean)>
+        <!ELEMENT add (#PCDATA)>
+        <!ATTLIST add
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT bean (#PCDATA)>
+        <!ATTLIST bean
+            classtype CDATA #REQUIRED>
+        <!ELEMENT item (#PCDATA)>
+        <!ATTLIST item
+            value CDATA #REQUIRED
+            link CDATA #REQUIRED
+            classtype CDATA #IMPLIED
+            icon CDATA #IMPLIED
+            tooltip CDATA #IMPLIED>
+    ]>
+
+<tiles-definitions>
+    
+    <definition name="/employee/title/titlePostMgr.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/title/titlePostMgr.jsp" />
+    </definition>
+    <definition name="/employee/title/titlePostInfoQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/title/titlePostInfoQuery.jsp" />
+    </definition>
+    <definition name="/employee/title/DeptAudit.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/title/DeptAudit.jsp" />
+    </definition>
+    <definition name="/employee/title/applyItemList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/applyItemList.jsp" />
+    </definition>
+    <definition name="/employee/title/masterScore.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/masterScore.jsp" />
+    </definition>
+    <definition name="/employee/title/masterScore2.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/masterScore2.jsp" />
+    </definition>
+    <definition name="/employee/title/ShowPersonTitle.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/ShowPersonTitle.jsp" />
+    </definition>
+    <definition name="/employee/title/applyItemResult.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/applyItemResult.jsp" />
+    </definition>
+    <definition name="/employee/title/titleApplyItemList2.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/titleApplyItemList2.jsp" />
+    </definition>
+    
+     <definition name="/employee/title/groupEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/groupEdit.jsp" />
+    </definition>
+     <definition name="/employee/title/AuditGroupMgr.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/AuditGroupMgr.jsp" />
+    </definition>
+    <definition name="/employee/title/titleAnalsy.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/title/titleAnalsy.jsp" />
+    </definition>
+    <definition name="/employee/title/titleApplyMgr.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/title/titleApplyMgr.jsp" />
+    </definition>
+    <definition name="/employee/title/titleApplyEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/titleApplyEdit.jsp" />
+    </definition>
+    <definition name="/employee/title/pesonExcEidt.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/pesonExcEidt.jsp" />
+    </definition>
+    <definition name="/employee/title/pesonRefuseEidt.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/pesonRefuseEidt.jsp" />
+    </definition>
+    <definition name="/employee/title/personApply.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/title/personApply.jsp" />
+    </definition>
+    <definition name="/employee/title/personAudit.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/title/personAudit.jsp" />
+    </definition>
+    <definition name="/employee/title/auditGroupPersonList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/auditGroupPersonList.jsp" />
+    </definition>
+    <definition name="/employee/title/selAuditGroup.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/selAuditGroup.jsp" />
+    </definition>
+    <definition name="/employee/title/AuditMasterList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/AuditMasterList.jsp" />
+    </definition>
+    <definition name="/employee/title/selfAudit.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/title/selfAudit.jsp" />
+    </definition>
+    <definition name="/employee/title/selfAudit_inputScore.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/selfAudit_inputScore.jsp" />
+    </definition>
+    <definition name="/employee/title/deptAudit_inputScore.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/deptAudit_inputScore.jsp" />
+    </definition>
+    <definition name="/employee/title/pesonTitleDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/pesonTitleDetail.jsp" />
+    </definition>
+    <definition name="/employee/title/titleAnalsyIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/title/titleAnalsyIndex.jsp" />
+    </definition>
+    <definition name="/employee/title/applyContentMgr.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/applyContentMgr.jsp" />
+    </definition>
+    <definition name="/employee/title/applyContentEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/applyContentEdit.jsp" />
+    </definition>
+    <definition name="/employee/title/applyContentSetIndex.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/applyContentSetIndex.jsp" />
+    </definition>
+    <definition name="/employee/title/applyContentDirEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/applyContentDirEdit.jsp" />
+    </definition>
+    <definition name="/employee/title/applyContentItem.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/applyContentItem.jsp" />
+    </definition>
+    <definition name="/employee/title/applyContentItemEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/applyContentItemEdit.jsp" />
+    </definition>
+    <definition name="/employee/title/personApplyEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/personApplyEdit.jsp" />
+    </definition>
+    <definition name="/employee/title/personApplyDir.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/personApplyDir.jsp" />
+    </definition>
+    <definition name="/employee/title/personApplyDirIndex.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/personApplyDirIndex.jsp" />
+    </definition>
+    <definition name="/employee/title/personApplyScoreItem.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/personApplyScoreItem.jsp" />
+    </definition>
+    <definition name="/employee/title/titleApplyItemList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/titleApplyItemList.jsp" />
+    </definition>
+    <definition name="/employee/title/setMajorClassEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/setMajorClassEdit.jsp" />
+    </definition>
+     <definition name="/employee/title/votePersonList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/votePersonList.jsp" />
+    </definition>
+    <definition name="/employee/title/selfVote.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/title/selfVote.jsp" />
+    </definition>
+    <definition name="/employee/title/applyItemVoteResult.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/applyItemVoteResult.jsp" />
+    </definition>
+    <definition name="/employee/title/showTitleApplyItemList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/title/showTitleApplyItemList.jsp" />
+    </definition>
+</tiles-definitions>

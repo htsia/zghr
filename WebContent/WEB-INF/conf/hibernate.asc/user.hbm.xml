@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.user.pojo.bo.RolePostBO" table="SYS_ROLE_POST">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="ROLE_POST_ID" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="roleId"	   column="ROLE_ID" />
+         <property name="postId"	   column="POST_ID"/>
+     </class>
+    
+    <class name="com.hr319wg.common.pojo.vo.User" table="SYS_USER_INFO">
+        <id name="userId" type="string" unsaved-value="null">
+            <column name="PERSON_ID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="loginName" column="LOGIN_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="status" column="IS_USE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="lastLoginTime" column="LAST_LOGIN_TIME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="loginTimes" column="LOGIN_TIMES" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="belongRoleId" column="BELONG_ROLE_ID" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="nickName" column="NICK_NAME" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="infoLevel" column="INFO_LEVEL" ></property>
+        <property name="todayTimes" column="TODAY_TIMES" ></property>
+        <property name="password" column="LOGIN_PWD" />
+        <property name="lastOperTime" column="last_oper_time"/>
+        <property name="modipassFlag" column="MODIPASS_FLAG"/>
+        <property name="loginType" column="login_Type"/>
+        <property name="cardNo" column="CARD_ID"/>
+        <property name="loginLang" column="LOGIN_LANG"/>
+    </class>
+
+    <class name="com.hr319wg.user.pojo.vo.UserInfoVO" table="V_USERINFO">
+        <id name="personId" type="string" unsaved-value="null">
+            <column name="ID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="loginName" column="LOGIN_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="name" column="A001001" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="shortName" column="A001002" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="sex" column="A001007" />
+        <property name="birth" column="A001011" />
+        <property name="orgId" column="A001701" />
+        <property name="deptId" column="A001705" />
+        <property name="postId" column="A001715" />
+        <property name="deptTreeId" column="A001738" />
+        <property name="status" column="IS_USE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personCode" column="A001735" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="belongRoleId" column="BELONG_ROLE_ID" />
+        <property name="sysCredit" column="A001750" />
+        <property name="deptOrder" column="A001743" />
+        <property name="personOrder" column="A001745" />
+        <property name="personType" column="A001054" />
+        <property name="postType" column="A001712" />
+        <property name="postLevel" column="A705708" />
+        <property name="infoLevel" column="INFO_LEVEL" ></property>
+        <property name="modipassFlag" column="MODIPASS_FLAG"/>
+        <property name="loginType" column="login_Type"/>
+    </class>
+
+    <class name="com.hr319wg.user.pojo.bo.SelfLevelBO" table="sys_self_levle">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="itemName"	       column="item_Name" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="itemDes"	   column="item_description" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="sendToOther"	   column="SEND_TO_OTHERORG" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="useGroup"	   column="USE_GROUP" type="com.hr319wg.sys.service.GBKString"/> 
+    </class>
+
+    <class name="com.hr319wg.user.pojo.bo.UserSelfOperBO" table="SYS_USER_SELFOPER">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="PersonID"	       column="USER_ID"/>
+		<property name="OperateID"	   column="OPER_ID"/>
+    </class>
+
+    <class name="com.hr319wg.user.pojo.bo.RoleSelfOperBO" table="SYS_ROLE_SELFOPER">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="roleID"	       column="role_ID"/>
+		<property name="OperateID"	   column="OPER_ID"/>
+    </class>
+
+    <class name="com.hr319wg.user.pojo.bo.RoleSelfPowerBO" table="SYS_ROLE_SELFPOWER">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ROLE_OPERA_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="roleID"	       column="role_ID"/>
+		<property name="OperateID"	   column="OPERATE_ID"/>
+    </class>
+    
+    <class name="com.hr319wg.user.pojo.bo.AgentBO" table="sys_agent">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="itemID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="personID"	       column="personID" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="agentID"	   column="agentFor" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="createDate"	   column="createdate" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.user.pojo.vo.UserPmsInfoVO" table="V_USERPMSINFO">
+        <id name="personId" type="string" unsaved-value="null">
+            <column name="ID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="loginName" column="LOGIN_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="name" column="A001001" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="sex" column="A001007" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="birth" column="A001011" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="orgId" column="A001701" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="deptId" column="A001705" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="postId" column="A001715" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="deptTreeId" column="A001738" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personCode" column="A001735" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="status" column="IS_USE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="sysOper" column="IS_SYSOPER" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="deptLeader" column="IS_DEPTLEADER" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="unitLeader" column="IS_UNITLEADER" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="cho" column="IS_CHO" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="businessUser" column="IS_BUSINESSUSER" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="belongRoleId" column="BELONG_ROLE_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="sysCredit" column="A001750" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="deptOrder" column="A001743" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personOrder" column="A001745" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personType" column="A001054" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="postType" column="A001712" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="processunitid" column="Process_Unitid" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+
+    <class name="com.hr319wg.user.pojo.bo.SelfOperateBO" table="sys_self_function">
+        <id name="operateId" type="string" unsaved-value="null">
+            <column name="OPERATE_ID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="operateName" column="OPERATE_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="url" column="MENU_URL" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="treeId" column="TREEID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="operateType" column="OPERATE_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="superId" column="SUPERID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="moduleID" column="MODULEID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="isUse" column="is_use" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="haveReport" column="have_report" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="haveQuery" column="have_query" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="webIcon" column="WEB_ICON"/>
+    </class>
+    <class name="com.hr319wg.user.pojo.bo.DeskTopOperateBO" table="SYS_MANAGER_DESKTOP">
+        <id name="operateId" type="string" unsaved-value="null">
+            <column name="OPERATE_ID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="operateName" column="OPERATE_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="url" column="MENU_URL" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="treeId" column="TREEID" />
+        <property name="operateType" column="OPERATE_TYPE" />
+        <property name="superId" column="SUPERID" />
+        <property name="moduleID" column="MODULEID" />
+        <property name="isUse" column="is_use" />
+        <property name="haveReport" column="have_report" />
+        <property name="haveQuery" column="have_query"/>
+        <property name="webIcon" column="WEB_ICON"/>
+    </class>
+
+    <class name="com.hr319wg.user.pojo.bo.ModuleBO" table="sys_module">
+        <id name="moduleID" type="string" unsaved-value="null">
+            <column name="moduleID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="moduleName" column="module_Name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="moduleNameCN" column="module_Name_cn" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="moduleNameTW" column="module_Name_tw" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="moduleNameEN" column="module_Name_en"/>
+    </class>
+
+    <class name="com.hr319wg.user.pojo.bo.OperateBO" table="SYS_OPERATE">
+        <id name="operateId" type="string" unsaved-value="null">
+            <column name="OPERATE_ID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="operateName" column="OPERATE_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="operateNameCN" column="OPERATE_NAME_CN" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="operateNameTW" column="OPERATE_NAME_TW" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="operateNameEN" column="OPERATE_NAME_EN"/>
+        <property name="url" column="MENU_URL" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="treeId" column="TREEID"/>
+        <property name="operateType" column="OPERATE_TYPE" />
+        <property name="superId" column="SUPERID" />
+        <property name="moduleID" column="MODULEID" />
+        <property name="sysFlag" column="SYS_FLAG" />
+        <property name="isUse" column="is_use" />
+        <property name="haveReport" column="have_report" />
+        <property name="haveQuery" column="have_query" />
+        <property name="webIcon" column="WEB_ICON" />
+        <property name="inSelf" column="IN_SELF"/>
+    </class>
+
+    <class name="com.hr319wg.user.pojo.bo.UserQryBO" table="SYS_QRY_OPERATE_R">
+        <id name="ContentID" type="string" unsaved-value="null">
+            <column name="CONTENTID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="PERSON_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="operateID" column="operate_id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="qryID" column="Qry_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="showQue" column="SHOW_QUE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="isCurrent" column="IS_CURRENT" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.user.pojo.vo.UserQryVO" table="v_userqryinfo">
+        <id name="ContentID" type="string" unsaved-value="null">
+            <column name="CONTENTID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="PERSON_ID" />
+        <property name="operateID" column="operate_id" />
+        <property name="operateName" column="operate_name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="qryID" column="Qry_ID"/>
+        <property name="qryName" column="Qry_Name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="isCurrent" column="IS_CURRENT" />
+        <property name="showQue" column="SHOW_QUE" />
+    </class>
+
+     <class name="com.hr319wg.user.pojo.vo.UserRptVO" table="v_userrptinfo">
+       <id name="ContentID" type="string" unsaved-value="null">
+            <column name="CONTENTID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="PID" />
+        <property name="operateID" column="OID" />
+        <property name="rptCode" column="RPTID" />
+         <property name="rptName" column="RPTNAME" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="showQue" column="SHOW_QUE" />
+         <property name="rptDir" column="RptDir" />
+         <property name="rptDirName" column="RPT_DIR_NAME"  type="com.hr319wg.sys.service.GBKString"/>
+         <property name="achivesType" column="achives_type" />
+         <property name="rpttype" column="rpttype"  />
+         <property name="datatype" column="datatype"  />
+    </class>
+
+        <class name="com.hr319wg.user.pojo.bo.UserRptBO" table="SYS_RPT_OPERATE_R">
+        <id name="contEntid" type="string" unsaved-value="null">
+            <column name="CONTENTID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="operateID" column="OPERATE_ID"/>
+        <property name="rptCode" column="RPTCODE"/>
+        <property name="showQue" column="SHOW_QUE"/>
+    </class>
+    
+    <class name="com.hr319wg.user.pojo.bo.SelfInfoPowerBO" table="SYS_SELF_INFOPOWER">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="dataId" column="DATA_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="dataType" column="DATA_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="pmsType" column="pms_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="orgID" column="org_ID" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.user.pojo.bo.RoleDataBO" table="SYS_ROLE_DATA">
+        <id name="roleDataId" type="string" unsaved-value="null">
+            <column name="ROLE_DATA_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="dataId" column="DATA_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="dataType" column="DATA_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="pmsType" column="pms_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="roleId" column="ROLE_ID" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.user.pojo.bo.RoleInfoBO" table="SYS_ROLEINFO">
+        <id name="roleId" type="string" unsaved-value="null">
+            <column name="ROLE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="businessUser" column="IS_BUSINESSUSER" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="creator" column="ROLE_CREATOR" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="deptLeader" column="IS_DEPTLEADER" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="description" column="DESCRIPTION" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="roleName" column="ROLE_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="sysOper" column="IS_SYSOPER" />
+        <property name="unitLeader" column="IS_UNITLEADER" />
+        <property name="createTime" column="CREATE_TIME" />
+        <property name="cho" column="IS_CHO" />
+        <property name="processunitid" column="Process_Unitid" />
+        <property name="forbidden"   column="forbidden" />
+        <property name="template"   column="template" />
+    </class>
+
+    <class name="com.hr319wg.user.pojo.bo.RoleOperateBO" table="SYS_ROLE_OPERATE">
+        <id name="roleOperateId" type="string" unsaved-value="null">
+            <column name="ROLE_OPERA_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="roleId" column="ROLE_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="operateId" column="OPERATE_ID" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.user.pojo.bo.RoleOrgScaleBO" table="SYS_ROLE_SCALE">
+        <id name="orgScaleId" type="string" unsaved-value="null">
+            <column name="ORG_SCALE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="codeId" column="CODE_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="condId" column="COND_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="pmsType" column="pms_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="roleId" column="ROLE_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="scaleFlag" column="SCALE_FLAG" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.user.pojo.bo.RolePartyScaleBO" table="SYS_ROLE_PARTY_SCALE">
+        <id name="partyScaleId" type="string" unsaved-value="null">
+            <column name="PARTY_SCALE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="partyId" column="PARTY_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="pmsType" column="pms_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="roleId" column="ROLE_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="scaleFlag" column="SCALE_FLAG" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.user.pojo.bo.UserRoleBO" table="SYS_ROLE_USER_R">
+        <id name="rolePersonId" type="string" unsaved-value="null">
+            <column name="ROLE_PERSON_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="PERSON_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="roleId" column="ROLE_ID" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.user.pojo.bo.LoginLogBO" table="sys_log_login">
+        <id name="sessionId" type="string" unsaved-value="null">
+            <column name="login_sessionid" sql-type="varchar(200)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="loginTime" column="login_datetime" type="timestamp" />
+        <property name="logoutTime" column="logout_datetime" type="timestamp" />
+        <property name="personId" column="login_personid" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="userName" column="login_username" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personName" column="login_realname" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="hostName" column="login_hostname" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="ip" column="login_ip" type="com.hr319wg.sys.service.GBKString"/>
+
+    </class>
+    <class name="com.hr319wg.user.pojo.bo.ZoneCodeBO" table="SYS_ZONE_CODE">
+        <id name="zoneCode" type="string" unsaved-value="null">
+            <column name="ZONE_CODE" sql-type="varchar(10)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="zoneName" column="ZONE_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="regionalismCode" column="REGIONALISM_CODE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="orgId" column="ORG_UID" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+</hibernate-mapping>

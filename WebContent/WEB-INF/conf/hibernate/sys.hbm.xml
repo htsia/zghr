@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.sys.pojo.bo.DataInterfaceItemBO" table="SYS_DATA_INTERFACE_ITEM">
+    <id name="fieldid" type="string" unsaved-value="null">
+        <column name="FILEDID" sql-type="varchar(32)"/>
+        <generator class="uuid.hex"/>
+    </id>
+        <property name="fieldname" column="FILEDNAME"/>
+        <property name="fieldtype" column="FILEDTYPE"/>
+        <property name="tableid" column="TABLEID"/>
+        <property name="accessSystem" column="ACCESS_SYSTEM"/>
+    </class>
+    
+    <class name="com.hr319wg.sys.pojo.bo.DataInterfaceBO" table="SYS_DATA_INTERFACE">
+    <id name="tableid" type="string" unsaved-value="null">
+        <column name="TABLEID" sql-type="varchar(32)"/>
+        <generator class="uuid.hex"/>
+    </id>
+        <property name="tablename" column="TABLENAME"/>
+        <property name="tablebtype" column="TABLE_BTYPE"/>
+        <property name="tablerstype" column="TABLE_RSTYPE"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.SysSeldomBO" table="SYS_SELDOM_FONT">
+    <id name="fontDes" type="string" unsaved-value="null">
+        <column name="fontDes" sql-type="varchar(32)"/>
+        <generator class="assigned"/>
+    </id>
+    <property name="fontSpell" column="fontSpell"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.FingerPrintBO" table="SYS_FINGER_PRINT">
+    <id name="personID" type="string" unsaved-value="null">
+        <column name="PERSON_ID" sql-type="varchar(32)"/>
+        <generator class="assigned"/>
+    </id>
+    <property name="finger" column="FINGER"/>
+    <property name="taker" column="TAKE_OPER"/>
+    <property name="takeDate" column="TAKE_DATE"/>
+    </class>
+    
+
+    <class name="com.hr319wg.sys.pojo.bo.OrgCodeRelationBO" table="SYS_CODE_ORG_R">
+         <id name="itemID" type="string" unsaved-value="null">
+             <column name="ITEM_ID" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="orgID"	   column="ORG_ID" />
+         <property name="codeID"	   column="CODE_ID"/>
+         <property name="rootID"	   column="ROOT_ID"/>
+     </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.NavigateBO" table="SYS_NAVIGATE">
+         <id name="naviID" type="string" unsaved-value="null">
+             <column name="NAVI_ID" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="moduleID"	   column="MODULE_ID" />
+         <property name="operateID"	   column="OPERATE_ID"/>
+         <property name="coords"	   column="COORDS"/>
+     </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.LicenseInfo" table="sys_licinfo">
+         <id name="licId" type="string" unsaved-value="null">
+             <column name="licid" sql-type="varchar(32)"/>
+             <generator class="assigned"/>
+         </id>
+         <property name="licInfo"	   column="licInfo" />
+         <property name="licType"	   type="int" column="licType"/>
+         <property name="strIssuer"	   column="issuer"/>
+        <property name="strOwner"	   column="customerid"/>
+     </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.TokenInfo" table="sys_tokeninfo">
+         <id name="token" type="string" unsaved-value="null">
+             <column name="token" sql-type="varchar(32)"/>
+             <generator class="assigned"/>
+         </id>
+        <property name="pubkey"	   column="pubkey" />
+        <property name="authnum"	    column="authnum"/>
+        <property name="syncwnd"	type="int"   column="syncwnd"/>
+        <property name="algid"	type="int"    column="algid"/>
+        <property name="signSuite"	    column="signsuite"/>
+        <property name="cvsSuite"	    column="cvssuite"/>
+        <property name="crSuite"	    column="crsuite"/>
+        <property name="enable"	type="int"    column="enabled"/>
+        <property name="locked"	type="int"    column="locked"/>
+        <property name="lost"	type="int"    column="lost"/>
+        <property name="logout"	type="int"    column="logout"/>
+        <property name="otplen"	type="int"    column="otplen"/>
+        <property name="validdate"	    column="validdate"/>
+        <property name="loginErrCnt"	type="int"    column="loginerrcnt"/>
+        <property name="loginLockTime"	type="int"    column="loginlocktime"/>
+        <property name="type"	type="int"    column="tokentype"/>
+        <property name="intervalTime"	type="int"    column="intervaltime"/>
+        <property name="beginTime"	type="int"    column="begintime"/>
+        <property name="ocraAuthnum"	   column="ocraauthnum"/>
+        <property name="driftCount" type="int" 	   column="driftcount"/>
+        <property name="physicaltype" type="int" 	   column="physicaltype"/>
+     </class>
+
+   <class name="com.hr319wg.sys.pojo.bo.RegInfoBO" table="SYS_REG_INFO">
+        <id name="cardID" type="string" unsaved-value="null">
+            <column name="CARD_ID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="name"	   column="PERSON_NAME" />
+        <property name="passwd"	   column="LOGIN_PWD"/>
+        <property name="status"	   column="STATUS"/>
+       <property name="deptid"	   column="DEPT_ID"/>
+       <property name="enterTime"	   column="ENTER_TIME"/>
+       <property name="personType"	   column="PERSON_TYPE"/>
+       <property name="addType"	   column="ADD_TYPE"/>
+       <property name="auditOper"	   column="AUDIT_OPER"/>
+       <property name="auditDate"	   column="AUDIT_DATE"/>
+       <property name="auditMemo"	   column="AUDIT_MEMO"/>
+       <property name="infolevel"	   column="INFO_LEVEL"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.PortalLogBO" table="SYS_PORTAL_LOG">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="funID"	   column="fun_id" />
+        <property name="userID"	   column="user_id"/>
+        <property name="linkUserID"	   column="link_user"/>
+        <property name="enterTime"	   column="enter_Time"/>
+        <property name="flag"	   column="flag"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.UserPortalBO" table="SYS_USER_PORTAL_R">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="funID"	   column="fun_id" />
+        <property name="userID"	   column="user_id"/>
+        <property name="linkUserID"	   column="link_user"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.PortalFunctionBO" table="SYS_PORTAL_FUNCTION">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="itemName"	   column="item_name" />
+        <property name="url"	   column="menu_url"/>
+        <property name="icon"	   column="menu_icon"/>
+        <property name="seq"	   column="seq"/>
+        <property name="onclick"	   column="onclick"/>
+        <property name="isUse"	   column="is_use"/>
+        <property name="uimode"	   column="uimode"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.VideoNewsBO" table="SYS_VIDEONEWS">
+         <id name="itemID" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(20)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="fileName"     column="FILE_NAME"/>
+         <property name="iconfileName"	   column="ICON_FILE_NAME"/>
+         <property name="title"	   column="TITLE"/>
+         <property name="createDate"	   column="CREATEDATE"/>
+        <property name="orgID"	   column="ORG_SCOPE"/>
+        <property name="createorg"	   column="CREATE_ORG"/>
+        <property name="isCurrent"	   column="isCurrent"/>
+        <property name="seq"	   column="seq"/>
+     </class>
+
+   <class name="com.hr319wg.sys.pojo.bo.SysImportSetBO" table="sys_set_importset">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setid"     column="set_id"/>
+        <property name="itemName"	   column="item_name"/>
+        <property name="userid"	   column="userid"/>
+        <property name="setcontent"	   column="set_content"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.SetshowItemsBO" table="sys_set_showitems">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setId"     column="set_id"/>
+        <property name="operateID"	   column="operate_id"/>
+        <property name="userID"	   column="user_id"/>
+        <property name="showItems"	   column="showitems"/>
+    </class>
+
+        <class name="com.hr319wg.sys.pojo.bo.SetCaclBO" table="sys_set_caclrule">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setId"     column="set_id"/>
+        <property name="userID"	   column="user_id"/>
+        <property name="result"	   column="result"/>
+        <property name="caclrule"	   column="caclrule"/>
+    </class>
+    
+    <class name="com.hr319wg.sys.pojo.bo.CodeRelation" table="SYS_CODE_RELATION">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="desField"     column="des_field"/>
+        <property name="sourceField"	   column="source_field"/>
+        <property name="desCode"	   column="des_code"/>
+        <property name="oper"	   column="oper"/>
+        <property name="sourceCode"	   column="source_code "/>
+        <property name="stop"	   column="relation_stop"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.SysInProcessBO" table="SYS_INPROCESS">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="operateID"     column="OPERATE_ID"/>
+        <property name="sendPerson"	   column="SEND_PERSON"/>
+        <property name="sendDate"	   column="SEND_DATE"/>
+        <property name="have_process"	   column="HAVE_PROCESS"/>
+        <property name="orguid"	   column="ORGUID"/>
+        <property name="content"	   column="CONTENT"/>
+        <property name="nodeLogID"	   column="WF_NODE_LOG"/>
+        <property name="processID"	   column="processID"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.GroupItemBO" table="SYS_SMGROUP_ITEM">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="groupID"     column="GROUP_ID"/>
+        <property name="personID"	   column="PERSONID"/>
+        <property name="showSEQ"	   column="show_SEQ"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.GroupBO" table="SYS_SMGROUP">
+        <id name="groupID" type="string" unsaved-value="null">
+            <column name="group_ID" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="groupName"     column="group_Name"/>
+        <property name="createor"     column="CREATE_ID"/>
+        <property name="isPublic"     column="IS_PUBLIC"/>
+    </class>
+
+
+
+
+    <class name="com.hr319wg.common.pojo.bo.AttachmentBO" table="sys_attach_manage">
+        <id name="attachmentId" type="string" unsaved-value="null">
+            <column name="attachment_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="contentType" column="content_type"/>
+        <property name="fileName" column="file_name"/>
+        <property name="attachmentSize" column="attachment_size"/>
+        <property name="typeClass" column="type_Class"/>
+        <property name="storageFlag" column="storage_Flag"/>
+        <property name="filePath" column="file_path"/>
+        <property name="folderOrTableName" column="folder_Or_Table_Name"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.SysLogOperBO" table="SYS_LOG_OPER">
+        <id name="operId" type="string" unsaved-value="null">
+            <column name="OPER_ID" sql-type="varchar(50)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="dateTime" column="OPER_DATETIME"/>
+        <property name="operatorId" column="OPERATOR_ID"/>
+        <property name="operatorName" column="OPERATOR_NAME"/>
+        <property name="operType" column="OPER_TYPE"/>
+        <property name="operPersonId" column="OPER_PERSON_ID"/>
+        <property name="operatorUserDept" column="OPER_USER_DEPT"/>
+        <property name="operRecordId" column="OPER_RECORD_ID"/>
+        <property name="operInfosetId" column="OPER_INFOSET_ID"/>
+        <property name="operInfosetName" column="OPER_INFOSET_NAME"/>
+        <property name="logDetail" column="LOG_DETAIL"/>
+        <property name="operUserTreeId" column="OPER_USER_TREE_ID"/>
+        <property name="operPersonName" column="OPER_PERSON_NAME"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.CodeSetBO" table = "SYS_CODE_SET">
+        <id name = "setId" type="string" unsaved-value="null">
+            <column name="SET_ID" sql-type="varchar(4)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="setName" column="SET_NAME"/>
+        <property name="setDesc" column="SET_GBCODE"/>
+        <property name="setLayer" column="SET_LAYER"/>
+        <property name="setStatus" column="SET_STATUS"/>
+        <property name="layerLength" column="LAYER_LENGTH"/>
+        <property name="scaleCode" column="SCALE_CODE" />
+    </class>
+    
+    <class name="com.hr319wg.sys.pojo.bo.FriendLinkBO" table = "sys_friendlink">
+        <id name = "linkID" type="string" unsaved-value="null">
+            <column name="LINK_ID" sql-type="varchar(40)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="linkName" column="LINK_NAME"/>
+        <property name="linkURL" column="LINK_URL"/>
+        <property name="linkFile" column="LINK_IMAGE_FILE"/>
+        <property name="showseq" column="SHOW_SEQ"/>
+        <property name="orguid" column="ORGUID"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.CodeItemBO" table="SYS_CODE_ITEM">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="CODE_ITEM_ID" sql-type="varchar(30)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="itemName" column="CODE_ITEM_NAME"/>
+        <property name="setId" column="CODE_SET_ID"/>
+        <property name="userItemId" column="USER_ITEM_ID"/>
+        <property name="itemSuper" column="SUPER_ID"/>
+        <property name="itemSpell" column="CODE_ITEM_SPELL"/>
+        <property name="itemAbbr"  column="CODE_ITEM_ABBR"/>
+        <property name="treeId"  column="CODE_TREE_ID"/>
+        <property name="itemStatus" column="CODE_ITEM_STATUS" />
+        <property name="lowValue" column="LOW_VALUE"/>
+        <property name="highValue" column="High_VALUE"/>
+        <property name="tagValue" column="tagValue"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.InfoSetBO" table = "SYS_INFO_SET">
+        <id name = "setId" type="string" unsaved-value="null">
+            <column name="SET_ID" sql-type="varchar(4)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="setName" column="SET_NAME"/>
+        <property name="setDesc" column="SET_DESC"/>
+        <property name="set_bType" column="SET_BTYPE"/>
+        <property name="set_sType" column="SET_STYPE"/>
+        <property name="setStatus" column="SET_STATUS"/>
+        <property name="setCreator" column="SET_CREATOR"/>
+        <property name="setPk" column="SET_PK"/>
+        <property name="setFk" column="SET_FK"/>
+        <property name="setSequence" column="SET_SEQ"/>
+        <property name="setProperty" column="SET_PROPERTY"/>
+        <property name="set_Issue" column="SET_ISSUE"/>
+        <property name="set_rsType" column="SET_RSTYPE"/>
+        <property name="setOrder" column="SET_ORDER"/>
+        <property name="addFunction" column="ADD_FUNCTION"/>
+        <property name="delFunction" column="DEL_FUNCTION" />
+        <property name="updateFunction" column="UPDATE_FUNCTION" />
+        <property name="canImport" column="SET_CANIMPORT" />
+        <property name="itemSelf" column="IS_SELF_SHOW" />
+        <property name="isresume" column="set_isresume" />
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.InfoItemRefBO" table="SYS_INFO_ITEM_REF" >
+        <id name = "itemId" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(4)"/>
+            <generator class="assigned"/>
+        </id>
+
+        <property name="refId" column="REF_ITEM"/>
+        <property name="condType" column="CON_TYPE"/>
+        <property name="condSQL" column="CON_SQL"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.InfoItemBO" table="SYS_INFO_ITEM" >
+		<composite-id>
+		        <key-property name="itemId" type="string" column="ITEM_ID"/>
+		        <key-property name="setId" type="string" column="SET_ID"/>
+		</composite-id>
+        <property name="itemName" column="ITEM_NAME"/>
+        <property name="itemDesc" column="ITEM_DESC"/>
+        <property name="itemDataType" column="ITEM_TYPE"/>
+        <property name="itemDataLength" column="ITEM_LENGTH"/>
+        <property name="itemMax" column="ITEM_MAX"/>
+        <property name="itemMin" column="ITEM_MIN"/>
+		<property name="itemNotNull" column="ITEM_NOTNULL"/>
+		<property name="itemSequence" column="ITEM_SEQ"/>
+		<property name="itemStatus" column="ITEM_STATUS"/>
+		<property name="itemProperty" column="ITEM_PROPERTY"/>
+		<property name="itemDefaultValue" column="ITEM_DEFAULTVALUE"/>
+		<property name="itemCodeSet" column="CODE_SET_ID"/>
+		<property name="itemFormula" column="ITEM_FORMULA"/>
+        <property name="itemPrecision" column="ITEM_PRECISION"/>
+        <property name="itemIssue" column="ITEM_ISSUE"/>
+        <property name="itemSelf" column="IS_SELF_SHOW"/>
+        <property name="itemIsSelect" column="SELECT_TYPE"/>
+        <property name="canInport" column="item_caninport"/>
+        <property name="itemTrigger" column="ITEM_TRIGGER" />
+        <property name="modiInWage" column="ITEM_INWAGE" />
+        <property name="itemMust" column="ITEM_MUST" />
+        <property name="itemIsunique" column="is_unique" />
+        <property name="codeByOrg" column="code_By_Org" />
+        <property name="jy1006bh" column="jy1006bh"/>
+        <property name="jy1006name" column="jy1006name"/>
+        <property name="gb14946" column="gb14946"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.ParameterBO" table="sys_parameter">
+        <id name="key" type="string" unsaved-value="null">
+            <column name="para_key" sql-type="varchar(100)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="value" column="para_value" />
+        <property name="valueCN" column="para_value_cn" />
+        <property name="valueTW" column="para_value_tw" />
+        <property name="valueEN" column="para_value_en" />
+        <property name="group" column="para_group"/>
+    </class>
+    
+
+     <!--        公告管理      -->
+    <class name="com.hr319wg.sys.pojo.bo.BulletinParamBO"
+        table="SYS_BULLETIN_PARAM"
+        dynamic-update="true"
+        dynamic-insert="true"
+        select-before-update="true">
+        <id name="blltnId" type="string" column="BLLTN_ID" >
+            <generator class="uuid.hex" />
+        </id>
+        <property name="authorId" type="string" column="AUTHOR_ID" />
+        <property name="submitDate" type="string" column="SUBMIT_DATE"/>
+        <property name="blltnTopic" type="string" column="BLLTN_TOPIC"/>
+        <property name="startDate" type="string" column="START_DATE"/>
+        <property name="newEndDate" type="string" column="NEW_ENDDATE"/>
+        <property name="endDate" type="string" column="END_DATE"/>
+        <property name="organScope" type="string" column="ORGAN_SCOPE_ID"/>
+        <property name="readerType" type="string" column="READER_TYPE"/>
+        <property name="creatorRoleId" type="string" column="CREATOR_ROLE_ID"/>
+        <property name="infoLevel" type="string" column="SHOW_LEVELS"/>
+        <property name="linkOperate" type="string" column="LINK_OPERATE"/>
+        <property name="publicFlag" type="string" column="PUBLIC_FLAG"/>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.BulletinContentBO"
+        table="SYS_BULLETIN_CONTENT"
+        dynamic-update="true"
+        dynamic-insert="true"
+        select-before-update="true">
+        <id name="blltnId" type="string" column="BLLTN_ID" >
+            <generator class="assigned" />
+        </id>
+        <property name="blltnContent" type="string" column="BLLTN_CONTENT" />
+        <property name="attFile1" type="string" column="BULLETIN_AttFile1" />
+        <property name="attFile2" type="string" column="BULLETIN_AttFile2" />
+        <property name="attFile3" type="string" column="BULLETIN_AttFile3" />
+        <property name="attFile4" type="string" column="BULLETIN_AttFile4" />
+        <property name="attFile5" type="string" column="BULLETIN_AttFile5" />
+        <property name="attTitle1" type="string" column="BULLETIN_ATTTITLE1" />
+        <property name="attTitle2" type="string" column="BULLETIN_ATTTITLE2" />
+        <property name="attTitle3" type="string" column="BULLETIN_ATTTITLE3" />
+        <property name="attTitle4" type="string" column="BULLETIN_ATTTITLE4" />
+        <property name="attTitle5" type="string" column="BULLETIN_ATTTITLE5" />
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.BulletinScopeBO"
+        table="SYS_BULLETIN_SCOPE"
+        dynamic-update="true"
+        dynamic-insert="true"
+        select-before-update="true">
+        <id name="serialId" type="string" column="SERIAL_ID" >
+            <generator class="uuid.hex" />
+        </id>
+        <property name="blltnId" type="string" column="BLLTN_ID" />
+        <property name="orgId" type="string" column="ORG_ID" />
+    </class>
+
+    <!--        新闻管理      -->
+   <class name="com.hr319wg.sys.pojo.bo.NewsParamBO"
+       table="SYS_NEWS_PARA"
+       dynamic-update="true"
+       dynamic-insert="true"
+       select-before-update="true">
+       <id name="newId" type="string" column="NEWS_ID" >
+           <generator class="uuid.hex" />
+       </id>
+       <property name="authorId" type="string" column="AUTHOR_ID" />
+       <property name="submitDate" type="string" column="SUBMIT_DATE"/>
+       <property name="newTopic" type="string" column="NEWS_TOPIC"/>
+       <property name="startDate" type="string" column="START_DATE"/>
+       <property name="endDate" type="string" column="END_DATE"/>
+       <property name="newEndDate" type="string" column="NEW_ENDDATE"/>
+       <property name="readerType" type="string" column="READER_TYPE"/>
+       <property name="creatorRoleId" type="string" column="CREATOR_ROLE_ID"/>
+       <property name="infoLevel" type="string" column="SHOW_LEVELS"/>
+       <property name="newsSource" type="string" column="news_source"/>
+       <property name="publicFlag" type="string" column="PUBLIC_FLAG"/>
+       <property name="express" column="IS_EXPRESS"/>
+   </class>
+
+   <class name="com.hr319wg.sys.pojo.bo.NewsContentBO"
+       table="SYS_NEWS_CONTENT"
+       dynamic-update="true"
+       dynamic-insert="true"
+       select-before-update="true">
+       <id name="newId" type="string" column="news_ID" >
+           <generator class="assigned" />
+       </id>
+       <property name="newContent" column="NEWS_CONTENT" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+       <property name="newsFile" type="string" column="news_icon_file" />
+       <property name="attFile1" type="string" column="NEWS_AttFile1" />
+       <property name="attFile2" type="string" column="NEWS_AttFile2" />
+       <property name="attFile3" type="string" column="NEWS_AttFile3" />
+       <property name="attFile4" type="string" column="NEWS_AttFile4" />
+       <property name="attFile5" type="string" column="NEWS_AttFile5" />
+       <property name="attTitle1" type="string" column="NEWS_ATTTitle1" />
+       <property name="attTitle2" type="string" column="NEWS_ATTTitle2" />
+       <property name="attTitle3" type="string" column="NEWS_ATTTitle3" />
+       <property name="attTitle4" type="string" column="NEWS_ATTTitle4" />
+       <property name="attTitle5" type="string" column="NEWS_ATTTitle5" />
+   </class>
+
+   <class name="com.hr319wg.sys.pojo.bo.NewsScopeBO"
+       table="SYS_NEWS_SCOPE"
+       dynamic-update="true"
+       dynamic-insert="true"
+       select-before-update="true">
+       <id name="serialId" type="string" column="SERIAL_ID" >
+           <generator class="uuid.hex" />
+       </id>
+       <property name="newId" type="string" column="NEWS_ID" />
+       <property name="orgId" type="string" column="ORG_ID" />
+   </class>
+
+
+    <class name="com.hr319wg.sys.pojo.bo.RemListBO" table="Sys_REM_SET"
+        dynamic-update="true" dynamic-insert="true"
+        select-before-update="true">
+        <id name="remId" type="string" column="REM_ID">
+            <generator class="uuid.hex" />
+        </id>
+        <property name="remName" type="string"             column="REM_NAME" />
+            <property name="remCondDesc" type="string"             column="REM_COND_DESC" />
+            <property name="remCondition" type="string"             column="REM_CONDITION" />
+            <property name="remRsltField" type="string"             column="REM_RSLT_FIELD" />
+            <property name="remFieldDatatype" type="string"             column="REM_FIELD_DATATYPE" />
+            <property name="remMsg" type="string"              column="REM_MSG" />
+            <property name="validFlag" type="string"             column="VALID_FLAG" />
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.RemResultBO" table="sys_REM_RESULT"
+        dynamic-update="true" dynamic-insert="true"
+        select-before-update="true">
+        <id name="resultId" type="string" column="RESULT_ID">
+            <generator class="uuid.hex" />
+        </id>
+
+        <property name="remId" type="string"    column="REM_ID" />
+        <property name="orguid" type="string" column="ORGUID" />
+        <property name="remRslt" type="string"   column="REM_RSLT" />
+        <property name="showSeq" type="string"   column="SHOW_SEQ" />
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.RemScopeBO" table="SYS_REM_SCOPE"
+        dynamic-update="true" dynamic-insert="true"
+        select-before-update="true">
+        <id name="serialNo" type="string" column="SERIAL_ID">
+            <generator class="uuid.hex" />
+        </id>
+
+        <property name="remId" type="string"
+            column="REM_ID" />
+            <property name="remToType" type="string"
+            column="REM_TO_TYPE" />
+            <property name="remToID" type="string"
+            column="REM_TO_ID" />
+            <property name="remToName" type="string"
+            column="REM_TO_NAME" />
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.inputTemplateBO" table="WAGE_INPUT_TEMPLATE">
+        <id name="tempid" type="string" unsaved-value="null">
+            <column name="temp_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="tempname"	       column="temp_name"/>
+		<property name="fields"	   column="fields"/>
+        <property name="wagesetid"	   column="wage_set"/>
+        <property name="personType"	   column="PERSON_TYPES"/>
+    </class>
+
+</hibernate-mapping>

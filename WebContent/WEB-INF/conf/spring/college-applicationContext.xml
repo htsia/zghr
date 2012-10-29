@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="cle_collegeucc" class="com.hr319wg.college.ucc.impl.CollegeUCC">
+        <property name="collegeservice" ref="cle_collegeservice"/>
+    </bean>
+    <bean id="cle_collegeservice" class="com.hr319wg.college.service.CollegeService">
+        <property name="collegedao" ref="cle_collegedao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="orgucc" ref="org_orgUCCImpl"/>
+    </bean>
+    <bean id="cle_collegedao" class="com.hr319wg.college.dao.CollegeDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+	
+</beans>

@@ -1,0 +1,261 @@
+
+<!DOCTYPE tiles-definitions
+    [
+        <!ELEMENT component-definitions (definition+)>
+        <!ELEMENT tiles-definitions (definition+)>
+        <!ELEMENT definition (put*, putList*)>
+        <!ATTLIST definition
+            name CDATA #REQUIRED
+            pages CDATA #IMPLIED
+            path CDATA #IMPLIED
+            extends CDATA #IMPLIED
+            role CDATA #IMPLIED
+            template CDATA #IMPLIED
+            controllerClass CDATA #IMPLIED
+            controllerUrl CDATA #IMPLIED>
+        <!ELEMENT put (#PCDATA)>
+        <!ATTLIST put
+            name CDATA #REQUIRED
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+        <!ATTLIST putList
+            name CDATA #REQUIRED>
+        <!ELEMENT putListElements (add | item | bean)>
+        <!ELEMENT add (#PCDATA)>
+        <!ATTLIST add
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT bean (#PCDATA)>
+        <!ATTLIST bean
+            classtype CDATA #REQUIRED>
+        <!ELEMENT item (#PCDATA)>
+        <!ATTLIST item
+            value CDATA #REQUIRED
+            link CDATA #REQUIRED
+            classtype CDATA #IMPLIED
+            icon CDATA #IMPLIED
+            tooltip CDATA #IMPLIED>
+    ]>
+
+<tiles-definitions>
+
+
+	<!-- ********************* 客户管理************************ -->
+
+
+	<definition name="/crm/customer/CustomerDetailMainFrame.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/CustomerDetailMainFrame.jsp" />
+	</definition>
+
+	<definition name="/crm/customer/CustomerDetailInfo.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/CustomerDetailInfo.jsp" />
+	</definition>
+
+	<definition name="/crm/customer/ContactDetailInfo.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/ContactDetailInfo.jsp" />
+	</definition>
+
+	<definition name="/crm/customer/ActionDetailInfo.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/ActionDetailInfo.jsp" />
+	</definition>
+
+
+	<definition name="/crm/customer/CustomerList.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/CustomerList.jsp" />
+	</definition>
+
+	<definition name="/crm/customer/CustomerEdit.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/CustomerEdit.jsp" />
+	</definition>
+
+	<definition name="/crm/customer/AddAction.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/AddAction.jsp" />
+	</definition>
+
+	<definition name="/crm/customer/ShowContactDetailInfo.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/ShowContactDetailInfo.jsp" />
+	</definition>
+
+
+	<definition name="/crm/customer/ContactManager.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/ContactManager.jsp" />
+	</definition>
+
+	<definition name="/crm/customer/ContaInfoEdit.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/ContaInfoEdit.jsp" />
+	</definition>
+	<!-- 共享规则设置-->
+
+	<definition name="/crm/customer/PersonShare.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/PersonShare.jsp" />
+	</definition>
+
+	<definition name="/crm/customer/SelectPersonItem.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/SelectPersonItem.jsp" />
+	</definition>
+
+	<definition name="/crm/customer/ShareEdit.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/ShareEdit.jsp" />
+	</definition>
+	
+	<!-- 客户视图管理配置 -->
+
+	<definition name="/crm/customer/CreateCustomerView.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/CreateCustomerView.jsp" />
+	</definition>
+	<definition name="/crm/customer/CustomerViewList.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/CustomerViewList.jsp" />
+	</definition>
+	<definition name="/crm/customer/CustomerViewManager.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/CustomerViewManager.jsp" />
+	</definition>
+	
+
+
+	<!-- 竞争对手管理配置及 -->
+	<definition name="/crm/customer/CompetitionPersonMger.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/CompetitionPersonMger.jsp" />
+	</definition>
+
+	<definition name="/crm/customer/SelectCompetitionPerson.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/SelectCompetitionPerson.jsp" />
+	</definition>
+
+
+	<definition name="/crm/customer/CompetitionActionList.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/CompetitionActionList.jsp" />
+	</definition>
+
+
+	<definition name="/crm/customer/CompetionActionEdit.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/customer/CompetionActionEdit.jsp" />
+	</definition>
+
+	<definition name="/crm/competition/CompetitionIndex.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/competition/CompetitionIndex.jsp" />
+	</definition>
+	
+	<definition name="/crm/competition/EditCompetition.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/competition/EditCompetition.jsp" />
+	</definition>
+	<definition name="/crm/competition/CompetitionDetail.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/competition/CompetitionDetail.jsp" />
+	</definition>
+
+
+	<definition name="/crm/competition/CompetitionPersonMger.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/competition/CompetitionPersonMger.jsp" />
+	</definition>
+
+	<definition name="/crm/competition/EditCompePerson.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/competition/EditCompePerson.jsp" />
+	</definition>
+
+
+	<definition name="/crm/competition/CompetitionPersonDetail.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/competition/CompetitionPersonDetail.jsp" />
+	</definition>
+
+	<definition name="/crm/competition/CompetitionDetailMainFrame.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/competition/CompetitionDetailMainFrame.jsp" />
+	</definition>
+
+	
+
+	<!-- ********************* 活动管理配置 ************************ -->
+
+  
+	<definition name="/crm/action/ActionList.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/action/ActionList.jsp" />
+	</definition>
+
+     <definition name="/crm/action/ActionDetailMainFrame.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/crm/action/ActionDetailMainFrame.jsp"/>
+    </definition>
+    
+
+	<definition name="/crm/action/actionFrame.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/action/actionFrame.jsp" />
+	</definition>
+
+	<definition name="/crm/action/EditAction.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/action/EditAction.jsp" />
+	</definition>
+
+
+	<definition name="/crm/action/SelectCustomerPerson.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/action/SelectCustomerPerson.jsp" />
+	</definition>
+
+	<definition name="/crm/action/SelectPersonItem.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/action/SelectPersonItem.jsp" />
+	</definition>
+ 
+	<definition name="/crm/action/addContactToAction.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/action/addContactToAction.jsp" />
+	</definition>
+	 
+	<definition name="/crm/action/ActionDetailInfo.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/action/ActionDetailInfo.jsp" />
+	</definition>
+
+ <definition name="/crm/action/ActionJoinerInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/crm/action/ActionJoinerInfo.jsp"/>
+    </definition>
+
+	<!-- ********************* CRM系统管理(团队管理) ************************ -->
+
+
+	<definition name="/crm/system/saleGroupMgr.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/system/SaleGroupMgr.jsp" />
+	</definition>
+	<definition name="/crm/system/EditGroup.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/system/EditGroup.jsp" />
+	</definition>
+	<definition name="/crm/system/MemberManager.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/crm/system/MemberManager.jsp" />
+	</definition>
+
+
+	<!-- ********************* CRM系统管理(供应商管理) ************************ -->
+	
+	<definition name="/crm/supply/SupplyList.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/crm/supply/SupplyList.jsp" />
+	</definition>
+
+
+</tiles-definitions>
+
+
+

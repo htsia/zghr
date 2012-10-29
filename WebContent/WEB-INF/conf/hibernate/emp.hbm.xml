@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.hr319wg.emp.pojo.bo.EmpBlackSheetBO" table="EMP_BLACK_SHEET">
+         <id name="persID" type="string" unsaved-value="null">
+             <column name="personid" sql-type="varchar(32)"/>
+             <generator class="assigned"/>
+         </id>
+         <property name="operID"	       column="operate_id" />
+         <property name="operDate"	       column="operate_date"/>
+        <property name="reson"	       column="joinReason"/>
+     </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.EmpBlackDeleteBO" table="EMP_BLACK_DELETE">
+         <id name="itemID" type="string" unsaved-value="null">
+             <column name="item_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="persID"	       column="personid" />
+         <property name="operID"	       column="operate_id" />
+         <property name="operDate"	       column="operate_date"/>
+         <property name="reson"	       column="joinReason"/>
+         <property name="deleteOper"	       column="deleteOper"/>
+         <property name="deleteDate"	       column="deleteDate"/>
+     </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.EmpChangeTypeConfigBO" table="EMP_TYPECHANGE_CONFIG">
+         <id name="itemID" type="string" unsaved-value="null">
+             <column name="ITEM_ID" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="mode"	       column="MODEID" />
+         <property name="changingType"	       column="CHANGING_TYPE"/>
+        <property name="changedType"	       column="CHANGED_TYPE"/>
+        <property name="changedStatus"	       column="CHANGED_STATUS"/>
+     </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.D2AnaItemBO" table="EMP_2D_ANA_ITEM">
+         <id name="itemID" type="string" unsaved-value="null">
+             <column name="ITEM_ID" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="anaID"	       column="ANA_ID" />
+         <property name="itemName"	       column="ITEM_NAME"/>
+        <property name="lowValue"	       column="LOW_VALUE"/>
+        <property name="highValue"	       column="HIGH_VALUE"/>
+        <property name="op"	       column="OP"/>
+        <property name="codevalues"	       column="CODE_VALUES"/>
+        <property name="seq"	       column="seq"/>
+     </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.D2AnaBO" table="EMP_2D_ANA">
+         <id name="anaID" type="string" unsaved-value="null">
+             <column name="ANA_ID " sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="andName"	       column="ANA_NAME" />
+         <property name="andField"	       column="FIELD_ID"/>
+     </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.EmpTypeChangeBO" table="EMP_TYPE_CHANGE">
+         <id name="chgID" type="string" unsaved-value="null">
+             <column name="CHG_ID " sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personID"	       column="PERSON_ID" />
+         <property name="oldType"	       column="OLD_TYPE"/>
+         <property name="newType"	       column="NEW_TYPE"/>
+         <property name="newStauts"	       column="NEW_STATUS"/>
+         <property name="operateID"	       column="OPERATE_ID" />
+         <property name="applyDate"	       column="APPLY_DATE" />
+         <property name="auditOperID"	   column="AUDIT_OPERATE" />
+         <property name="auditResult"	   column="AUDIT_RESULT" />
+         <property name="auditDate"	       column=" AUDIT_DATE" />
+     </class>
+
+    
+    <class name="com.hr319wg.emp.pojo.bo.EmpSurveyBO" table="EMP_SURVEY">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+      	<property name="itemName"	       column="ITEM_NAME"/>
+        <property name="itemSQL"	       column="ITEM_SQL"/>
+        <property name="itemFields"	       column="ITEM_FIELDS"/>
+        <property name="itemFieldNames"	       column="ITEM_FIELDNAMES"/>
+        <property name="fixCols"	       column="FIX_COLS"/>
+        <property name="fatherColNames"	       column="ITEM_FATHER_FNS" />
+        <property name="fatherColSpans"	       column="ITEM_FATHER_COLSPAN"/>
+    </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.EmpSurveyByCodeBO" table="EMP_SURVEY_BYCODE">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+      	<property name="itemName"	       column="ITEM_NAME"/>
+        <property name="orgSQL"	       column="orgSQL"/>
+        <property name="groupField"	       column="ITEM_GROUPFIELD"/>
+        <property name="groupValues"	       column="GROUPFIELD_VALUES"/>
+        <property name="fixFields"	       column="FIX_COLS"/>
+        <property name="filter"	       column="filter"/>
+    </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.EmpSurveyConditionBO" table="EMP_SURVEY_condition">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+      	<property name="surveyID"	       column="survey_ID" />
+        <property name="filterField"	       column="ITEM_FILTERFIELD" />
+        <property name="filterName"	       column="ITEM_FILTERNAME" />
+        <property name="filterSQL"	       column="ITEM_FILTERSQL" />
+        <property name="itemSort"	       column="item_sort" />
+    </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.EmpEngageBO" table="emp_engage">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="persID"	       column="personid"/>
+        <property name="operID"	       column="operate_id"/>
+        <property name="engageDate"	       column="engage_date"/>
+        <property name="engageDept"	       column="engage_dept"/>
+        <property name="addMode"	       column="add_mode"/>
+    </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.EmpInfoModiBO" table="EMP_INFO_MODI">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="persID"	       column="person_id"/>
+        <property name="setID"	   column="set_ID"/>
+        <property name="fieldID"	   column="field_ID"/>
+        <property name="oldValue"	   column="old_Value"/>
+        <property name="newValue"	   column="new_Value"/>
+        <property name="status"	   column="status"/>
+        <property name="modidate"	   column="Modi_DATE"/>
+        <property name="operID"	   column="operID"/>
+    </class>
+
+
+    <class name="com.hr319wg.emp.pojo.bo.WorkImportBO" table="emp_work_import">
+        <id name="personid" type="string" unsaved-value="null">
+            <column name="PERSON_ID" sql-type="varchar(20)"/>
+             <generator class="uuid.hex"/>
+        </id>
+        <property name="name"	   column="NAME"/>
+        <property name="sex"	   column="SEX"/>
+        <property name="pid"	   column="PID"/>
+        <property name="birthday"	   column="BIRTHDAY"/>
+        <property name="addDate"	   column="ADD_DATE"/>
+        <property name="oldOrg"	   column="OLD_ORGNAME"/>
+        <property name="stauts"	   column="Status"/>
+        <property name="orgID"	   column="orgID"/>
+        <property name="deptID"	   column="deptID"/>
+        <property name="applyLetterID"	   column="applyLetterID"/>
+        <property name="workonDate"	   column="WORKON_DATE"/>
+   </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.CadresImportBO" table="EMP_CADRES_IMPORT">
+        <id name="personid" type="string" unsaved-value="null">
+            <column name="PERSON_ID" sql-type="varchar(20)"/>
+             <generator class="uuid.hex"/>
+        </id>
+        <property name="name"	   column="NAME"/>
+        <property name="sex"	   column="SEX"/>
+        <property name="birthday"	   column="BIRTHDAY"/>
+        <property name="addDate"	   column="ADD_DATE"/>
+        <property name="oldOrg"	   column="OLD_ORGNAME"/>
+        <property name="stauts"	   column="Status"/>
+        <property name="orgID"	   column="orgID"/>
+        <property name="deptID"	   column="deptID"/>
+        <property name="applyLetterID"	   column="applyLetterID"/>
+        <property name="workonDate"	   column="WORKON_DATE"/>
+   </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.PersonBO" table="EMP_INFO">
+        <id name="personId" type="string" unsaved-value="null">
+            <column name="ID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="name"	   column="A001001"/>
+        <property name="shortName"	   column="A001002"/>
+        <property name="allOrder"	   column="A001003"/>
+        <property name="orgId"     column="A001701"/>
+		<property name="deptId"	   column="A001705"/>
+		<property name="postId"    column="A001715"/>
+        <property name="imageId" column="A001780"/>
+        <property name="personCode"    column="A001735"/>
+        <property name="personOldCode"    column="A001999"/>
+        <property name="sex"    column="A001007"/>
+		<property name="birth"    column="A001011"/>
+		<property name="orgTreeId"    column="A001728"/>
+		<property name="deptTreeId"    column="A001738"/>
+		<property name="partyTreeId"    column="A001740"/>
+        <property name="partyId"    column="A001708"/>
+        <property name="rpr"    column="A090701"/>
+        <property name="rprZip"    column="A090703"/>
+        <property name="rprType"    column="A090700"/>
+        <property name="rprAdd"    column="A090702"/>
+        <property name="partyFigure"    column="A001009"/>
+        <property name="gongZiGX"    column="A795701"/>
+        <property name="faXinGX"    column="A795705"/>
+        <property name="yangLaoBX"    column="A795708"/>
+        <property name="yiLiaoBX"    column="A795710"/>
+        <property name="shiYeBX"    column="A795715"/>
+        <property name="gongShangBX"    column="A795718"/>
+        <property name="shengYuBX"    column="A795720"/>
+        <property name="gongJiJin"    column="A795725"/>
+        <property name="zhuFangBT"    column="A795730"/>
+        <property name="qiYeNJ"    column="A795735"/>
+        <property name="sysCadreCode" column="A001750"/>
+        <property name="personCancel" column="A001730"/>
+        <property name="partyCancel" column="A001753"/>        
+        <property name="sort" column="A001745"/>
+        <property name="deptSort" column="A001743"/>
+        <property name="employOrder" column="A001746"/>
+        <property name="homeTown"    column="A001014"/>
+        <property name="homeTownDes"    column="A001015"/>
+        <property name="partyTime"    column="A001718"/>
+        <property name="homePlace"    column="A001017"/>
+        <property name="homePlaceDes"    column="A001018"/>
+        <property name="marriage"    column="A001027"/>
+        <property name="workTime"    column="A001041"/>
+        <property name="unitTime"    column="A001044"/>
+        <property name="sysTime"    column="A001781"/>
+        <property name="idCard"    column="A001077"/>
+        <property name="attCard"    column="A001736"/>
+        <property name="state"    column="A001725"/>
+        <property name="postType"    column="A001712"/>
+        <property name="personType"    column="A001054"/>
+        <property name="degree"    column="A001031" />
+        <property name="folk"    column="A001021"/>
+        <property name="familyAdd"    column="A080721"/>
+        <property name="familyZip"    column="A080735"/>
+        <property name="officeTel"	   column="A080705"/>
+        <property name="postRank"    column="A705718"/>
+        <property name="headshipName"    column="A705705"/>
+        <property name="postLevel"    column="A001716"/>
+        <property name="introCode"    column="A001760"/>
+        <property name ="sysSaveAbilityCode" column="A001765"/>
+        <property name="contCode"	   column="A708703"/>
+        <property name="auditoperid"	   column="auditoperid"/>
+        <property name="auditresult"	   column="auditresult"/>
+        <property name="stature"	   column="A001722"/>
+        <property name="avoirdupois"	   column="A001723"/>
+        <property name="health"	   column="A001024"/>
+        <property name="groupID"	   column="A001706"/>
+        <property name="otherIDType"	   column="A001710"/>
+        <property name="otherID"	   column="A001711"/>
+        <property name="source"	   column="A001800"/>
+        <property name="mobile"	   column="A080710"/>
+    </class>
+
+    <class name="com.hr319wg.emp.pojo.vo.AddressVO" table="EMP_INFO">
+        <id name="personId" type="string" unsaved-value="null">
+            <column name="ID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="name"	   column="A001001"/>
+        <property name="orgId"     column="A001701"/>
+        <property name="deptId"	   column="A001705"/>
+        <property name="personCode"	   column="A001735"/>
+        <property name="homeAddress"	   column="A080721"/>
+        <property name="officeTel"	   column="A080705"/>
+        <property name="mobile"	   column="A080710"/>
+        <property name="fax"	   column="A080715"/>
+        <property name="email"	   column="A080725"/>
+        <property name="zip"	   column="A080735"/>
+        <property name="homeTel"	   column="A080720"/>
+        <property name="sort"	   column="A001746"/>
+        <property name="allOrder"	   column="A001003"/>
+        <property name="shortName"	   column="A001002"/>
+    </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.WorkLetterBO" table="EMP_WORK_LETTER">
+        <id name="letterID" type="string" unsaved-value="null">
+            <column name="Letter_ID" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="printDate"     column="PRINT_DATE"/>
+        <property name="inOrg"	   column="IN_ORG"/>
+        <property name="outOrg"	   column="OUT_ORG"/>
+        <property name="personid"	   column="PERSON_ID"/>
+        <property name="personCount"	   column="PERSON_COUNT"/>
+        <property name="letterNO"   column="LETTER_NO"/>
+    </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.CadresLetterBO" table="EMP_CADRES_LETTER">
+        <id name="letterID" type="string" unsaved-value="null">
+            <column name="Letter_ID" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="printDate"     column="PRINT_DATE"/>
+        <property name="inOrg"	   column="IN_ORG"/>
+        <property name="outOrg"	   column="OUT_ORG"/>
+        <property name="personid"	   column="PERSON_ID"/>
+        <property name="personCount"	   column="PERSON_COUNT"/>
+        <property name="letterNO"   column="LETTER_NO"/>
+    </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.AddressBookItemBO" table="EMP_ADDRESS_ITEM">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="bookID"     column="BOOK_ID"/>
+        <property name="personID"	   column="PERSONID"/>
+        <property name="showSEQ"	   column="show_SEQ"/>
+    </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.AddressBookBO" table="EMP_ADDRESS_BOOK">
+        <id name="bookID" type="string" unsaved-value="null">
+            <column name="BOOK_ID" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="bookName"     column="BOOK_NAME"/>
+    </class>
+    
+   
+    <class name="com.hr319wg.emp.pojo.bo.FamilyInfoBO" table="A079">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID"	   column="ID"/>
+        <property name="name"     column="A079005"/>
+        <property name="sex"     column="A079030"/>
+        <property name="birthDay"     column="A079015"/>
+        <property name="relation"     column="A079010"/>
+        <property name="work"     column="A079020"/>
+        <property name="address"     column="A079040"/>
+        <property name="education"     column="A079035"/>
+    </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.ChangeFamilyInfoBO" table="EMP_CHG_FAMILY">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="chgId"	   column="CHG_ID"/>
+        <property name="a079key"     column="A079KEY"/>
+    </class>
+
+    <class name="com.hr319wg.emp.pojo.bo.ConPostBO" table="EMP_CONPOST">
+        <id name="conPostID" type="string" unsaved-value="null">
+            <column name="CONPOST_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID"	   column="CONPOST_PERSONID"/>
+        <property name="mainOrguid"     column="MAIN_ORGUID"/>
+        <property name="conOrguid1"	   column="CON_ORGUID1"/>
+        <property name="conOrguid2"	   column="CON_ORGUID2"/>
+    </class>
+
+</hibernate-mapping>

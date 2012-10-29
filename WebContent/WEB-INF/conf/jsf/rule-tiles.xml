@@ -1,0 +1,100 @@
+
+<!DOCTYPE tiles-definitions
+    [
+        <!ELEMENT component-definitions (definition+)>
+        <!ELEMENT tiles-definitions (definition+)>
+        <!ELEMENT definition (put*, putList*)>
+        <!ATTLIST definition
+            name CDATA #REQUIRED
+            pages CDATA #IMPLIED
+            path CDATA #IMPLIED
+            extends CDATA #IMPLIED
+            role CDATA #IMPLIED
+            template CDATA #IMPLIED
+            controllerClass CDATA #IMPLIED
+            controllerUrl CDATA #IMPLIED>
+        <!ELEMENT put (#PCDATA)>
+        <!ATTLIST put
+            name CDATA #REQUIRED
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+        <!ATTLIST putList
+            name CDATA #REQUIRED>
+        <!ELEMENT putListElements (add | item | bean)>
+        <!ELEMENT add (#PCDATA)>
+        <!ATTLIST add
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT bean (#PCDATA)>
+        <!ATTLIST bean
+            classtype CDATA #REQUIRED>
+        <!ELEMENT item (#PCDATA)>
+        <!ATTLIST item
+            value CDATA #REQUIRED
+            link CDATA #REQUIRED
+            classtype CDATA #IMPLIED
+            icon CDATA #IMPLIED
+            tooltip CDATA #IMPLIED>
+    ]>
+
+<tiles-definitions>
+	<definition name="/rule/ShowRule.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/rule/ShowRule.jsp"/>
+	</definition>
+    <definition name="/rule/LawIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/rule/LawIndex.jsp"/>
+    </definition>
+    <definition name="/rule/RuleIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/rule/RuleIndex.jsp"/>
+    </definition>
+    <definition name="/rule/RulesList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/rule/RulesList.jsp"/>
+    </definition>
+    <definition name="/rule/RulesManagerList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/rule/RulesManagerList.jsp"/>
+    </definition>
+    <definition name="/rule/RulesManagerListChild.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/rule/RulesManagerListChild.jsp"/>
+    </definition>
+
+    <definition name="/rule/RulesListChild.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/rule/RulesListChild.jsp"/>
+    </definition>
+
+    <definition name="/rule/ShowLaw.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/rule/ShowLaw.jsp"/>
+    </definition>
+
+    <definition name="/rule/LawList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/rule/LawList.jsp"/>
+    </definition>
+    <definition name="/rule/LawManagerList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/rule/LawManagerList.jsp"/>
+    </definition>
+    <definition name="/rule/LawManagerListChild.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/rule/LawManagerListChild.jsp"/>
+    </definition>
+    <definition name="/rule/LawFileEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/rule/LawFileEdit.jsp"/>
+    </definition>
+    <definition name="/rule/RuleFileEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/rule/RuleFileEdit.jsp"/>
+    </definition>
+
+    <definition name="/rule/LawDictEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/rule/LawDictEdit.jsp"/>
+    </definition>
+    <definition name="/rule/RuleDictEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/rule/RuleDictEdit.jsp"/>
+    </definition>
+
+    <definition name="/rule/LawListChild.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/rule/LawListChild.jsp"/>
+    </definition>
+
+</tiles-definitions>

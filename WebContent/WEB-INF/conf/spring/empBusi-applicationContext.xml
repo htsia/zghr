@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="emp_introfeeucc" class="com.hr319wg.emp.ucc.impl.EmpIntroFeeUCC">
+        <property name="empintrservice" ref="emp_introfeeservice"/>
+    </bean>
+    <bean id="emp_introfeeservice" class="com.hr319wg.emp.service.EmpIntroFeeService">
+         <property name="empintrfeedao" ref="emp_intrFeeDAO"/>
+    </bean>
+    <bean id="emp_intrFeeDAO" class="com.hr319wg.emp.dao.EmpIntrFeeDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"></property>
+    </bean>
+
+    <bean id="emp_retireucc" class="com.hr319wg.emp.ucc.impl.EmpRetireUCC">
+        <property name="retireservice" ref="emp_retireservice"/>
+    </bean>
+    <bean id="emp_retireservice" class="com.hr319wg.emp.service.EmpRetireService">
+         <property name="reducedao" ref="emp_retireDAO"/>
+         <property name="activeapi" ref="sys_activePageApi"/>
+         <property name="personservice" ref="emp_personService"/>
+    </bean>
+    <bean id="emp_retireDAO" class="com.hr319wg.emp.dao.EmpReduceDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"></property>
+    </bean>
+
+
+    <bean id="emp_addAuditucc" class="com.hr319wg.emp.ucc.impl.EmpAuditAddUCC">
+        <property name="auditaddservice" ref="emp_addAuditservice"/>
+    </bean>
+    <bean id="emp_addAuditservice" class="com.hr319wg.emp.service.EmpAuditAddService">
+        <property name="addauditdao" ref="emp_addAuditDAO"/>
+        <property name="api" ref="sys_activePageApi"/>
+        <property name="personservice" ref="emp_personService"/>
+    </bean>
+    <bean id="emp_addAuditDAO" class="com.hr319wg.emp.dao.PersonAddAuditDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"></property>
+    </bean>
+
+    <bean id="emp_changeucc" class="com.hr319wg.emp.ucc.impl.EmpChangeUCC">
+        <property name="personservice" ref="emp_changeservice"/>
+        <property name="wageapi" ref="wage_api"></property>
+        <property name="wagesetucc" ref="wage_SetUccImpl"></property>
+        <property name="queryapi" ref="qry_queryApi"></property>
+        <property name="activepageservice" ref="sys_activePageService"></property>
+    </bean>
+    <bean id="emp_changeservice" class="com.hr319wg.emp.service.EmpChangeService">
+        <property name="changeinfodao" ref="emp_changeInfoDAO"/>
+        <property name="familydao" ref="emp_familyDAO"></property>
+        <property name="api" ref="sys_activePageApi"></property>
+    </bean>
+    <bean id="emp_changeInfoDAO" class="com.hr319wg.emp.dao.ChangeInfoDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"></property>
+    </bean>
+    <bean id="emp_familyDAO" class="com.hr319wg.emp.dao.FamilyDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    
+    <bean id="teamdao" class="com.hr319wg.emp.dao.teamManagerDao">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="teamservice" class="com.hr319wg.emp.service.teamManagerService">
+        <property name="teamdao" ref="teamdao"/>
+    </bean>
+    <bean id="teamucc" class="com.hr319wg.emp.ucc.impl.teamManagerImpl">
+        <property name="teamservice" ref="teamservice"/>
+    </bean>
+    <bean id="empaboraddao" class="com.hr319wg.emp.dao.EmpAboradManagerDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="empaboradService" class="com.hr319wg.emp.service.EmpAboradManagerService">
+        <property name="empaboraddao" ref="empaboraddao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="empaboraducc" class="com.hr319wg.emp.ucc.impl.EmpAboradManagerUCC">
+        <property name="empaboradService" ref="empaboradService"/>
+    </bean>
+    <bean id="empprobationdao" class="com.hr319wg.emp.dao.EmpProbationDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="empprobationservice" class="com.hr319wg.emp.service.EmpProbationService">
+        <property name="empprobationdao" ref="empprobationdao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="empprobationucc" class="com.hr319wg.emp.ucc.impl.EmpProbationUcc">
+        <property name="empprobationservice" ref="empprobationservice"/>
+    </bean>
+    <bean id="emppostchangeDao" class="com.hr319wg.emp.dao.EmpPostChangeDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emppostchangeservice" class="com.hr319wg.emp.service.EmpPostChangeService">
+        <property name="emppostchangeDao" ref="emppostchangeDao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="personservice" ref="emp_personService"/>
+    </bean>
+    <bean id="emppostchangeucc" class="com.hr319wg.emp.ucc.impl.EmpPostChangeUCC">
+        <property name="emppostchangeservice" ref="emppostchangeservice"/>
+    </bean>
+    <bean id="empappordissmissdao" class="com.hr319wg.emp.dao.EmpApporDismissDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="empappordismissservice" class="com.hr319wg.emp.service.EmpApporDismissService">
+        <property name="empappordissmissdao" ref="empappordissmissdao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="empappordisucc" class="com.hr319wg.emp.ucc.impl.EmpAppordisUcc">
+        <property name="empappordismissservice" ref="empappordismissservice"/>
+    </bean>
+    <bean id="empbeginnerdao" class="com.hr319wg.emp.dao.EmpBeginnerDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="empbeginnerservice" class="com.hr319wg.emp.service.EmpBeginnerService">
+        <property name="empbeginnerdao" ref="empbeginnerdao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="empbeginnerucc" class="com.hr319wg.emp.ucc.impl.EmpBeginnerUCC">
+        <property name="empbeginnerservice" ref="empbeginnerservice"/>
+    </bean>
+    <bean id="empPerTypeChangeDao" class="com.hr319wg.emp.dao.EmpPerTypeChangeDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emppertypechageservice" class="com.hr319wg.emp.service.EmpPerTypeChangeSevice">
+        <property name="empPerTypeChangeDao" ref="empPerTypeChangeDao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="empperchangeucc" class="com.hr319wg.emp.ucc.impl.EmpPerTypeChangeUcc">
+        <property name="emppertypechageservice" ref="emppertypechageservice"/>
+    </bean>
+    <bean id="emppracisedao" class="com.hr319wg.emp.dao.EmpPraciseDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emppraciseservice" class="com.hr319wg.emp.service.EmpPraciseService">
+        <property name="emppracisedao" ref="emppracisedao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="emppraciseucc" class="com.hr319wg.emp.ucc.impl.EmpPraciseUCC">
+        <property name="emppraciseservice" ref="emppraciseservice"/>
+    </bean>
+    <bean id="empResverPersonDao" class="com.hr319wg.emp.dao.EmpResverPersonMgrDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="empReservePersonService" class="com.hr319wg.emp.service.EmpReservePersonService">
+        <property name="empResverPersonDao" ref="empResverPersonDao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="empReservePersonUcc" class="com.hr319wg.emp.ucc.impl.EmpResverPersonUcc">
+        <property name="empReservePersonService" ref="empReservePersonService"/>
+    </bean>
+    <bean id="empTitleChangeDao" class="com.hr319wg.emp.dao.EmpTitleChangeDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="empTitleChangeService" class="com.hr319wg.emp.service.EmpTitleChangeService">
+        <property name="empTitleChangeDao" ref="empTitleChangeDao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="empTitleChangeUcc" class="com.hr319wg.emp.ucc.impl.EmpTitleChangeUcc">
+        <property name="empTitleChangeService" ref="empTitleChangeService"/>
+    </bean>
+    <bean id="empEduChangeDao" class="com.hr319wg.emp.dao.EmpEduChangeDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="empEduChangeService" class="com.hr319wg.emp.service.EmpEduChangeService">
+        <property name="empEduChangeDao" ref="empEduChangeDao"/>
+         <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="empEduChangeUcc" class="com.hr319wg.emp.ucc.impl.EmpEduChangeUcc">
+        <property name="empEduChangeService" ref="empEduChangeService"/>
+    </bean>
+</beans>

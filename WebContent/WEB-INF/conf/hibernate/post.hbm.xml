@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.post.pojo.bo.PostBO" table="POST_INFO">
+        <id name="postId" type="string" unsaved-value="null">
+            <column name="POSTID" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="name"	   column="C001005"/>
+		<property name="orgId"     column="C001010"/>		
+		<property name="orgTreeId"     column="C001701"/>		
+		<property name="superId"     column="C001015"/>
+		<property name="postClass"     column="C001001"/>
+		<property name="postLevel"     column="C001020"/>
+		<property name="updateDate"     column="C001030"/>
+		<property name="postOrder"     column="C001035"/>
+		<property name="postTemp"     column="C001730"/>		
+		<property name="postCode"     column="C001003"/>		
+		<property name="workOut"     column="C001735"/>
+        <property name="postSort"     column="C001002"/>
+        <property name="description"     column="C001700"/>
+        <property name="postType"     column="C001025"/>
+        <property name="memo"     column="C001739"/>
+    </class>
+</hibernate-mapping>

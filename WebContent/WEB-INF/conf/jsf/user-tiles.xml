@@ -1,0 +1,238 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+    <definition name="/Login.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/Login.jsp"/>
+    </definition>
+    <definition name="/LoginByCardI.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/LoginByCardI.jsp"/>
+    </definition>
+
+    <definition name="/RegLogin.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/system/RegLogin.jsp"/>
+    </definition>
+
+    <definition name="/Logininterface.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/Logininterface.jsp"/>
+    </definition>
+    <definition name="/Logininterface2.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/Logininterface2.jsp"/>
+    </definition>
+
+    <definition name="/MainInterface/Main.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/Main.jsp"/>
+    </definition>
+
+    <definition name="/MainInterface/OAMain.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/OAMain.jsp"/>
+    </definition>
+
+    <definition name="/MainInterface/Main2.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/Main2.jsp"/>
+    </definition>
+
+    <definition name="/MainInterface/MainStandard.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/MainStandard.jsp"/>
+    </definition>
+
+    <definition name="/MainInterface/FirstPage.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/FirstPage.jsp"/>
+    </definition>
+
+    <definition name="/user/NewRoleName.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/user/NewRoleName.jsp" />
+    </definition>
+
+    <definition name="/user/CopyRole.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/user/CopyRole.jsp" />
+    </definition>
+
+    <definition name="/user/UserPortalList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/user/UserPortalList.jsp" />
+    </definition>
+
+    <definition name="/user/RolePostList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/user/RolePostList.jsp" />
+    </definition>
+
+    <definition name="/user/UserPortalEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/user/UserPortalEdit.jsp" />
+    </definition>
+
+    <definition name="/user/SingleSelRoleList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/user/SingleSelRoleList.jsp" />
+    </definition>
+
+    <definition name="/user/SelPortalList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/user/SelPortalList.jsp" />
+    </definition>
+
+    <definition name="/user/SingleSelSelf.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/user/SingleSelSelf.jsp" />
+    </definition>
+    
+    <definition name="/user/CreditSelfPower.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/user/CreditSelfPower.jsp" />
+    </definition>
+
+    <definition name="/user/CreditSelfBusiPower.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/user/CreditSelfBusiPower.jsp" />
+    </definition>
+
+    <definition name="/user/UserManager.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/UserManager.jsp"/>
+    </definition>
+    <definition name="/user/RoleTree.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/RoleTree.jsp"/>
+    </definition>
+
+    <definition name="/user/agentList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/user/agentList.jsp"/>
+    </definition>
+    <definition name="/user/RoleList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/user/RoleList.jsp"/>
+    </definition>
+    <definition name="/user/RoleUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/RoleUserList.jsp"/>
+    </definition>
+    <definition name="/user/EditRole.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/EditRole.jsp"/>
+    </definition>
+    <definition name="/user/CreditOperate.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/CreditOperate.jsp"/>
+    </definition>
+    <definition name="/user/BatchOperate.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/BatchOperate.jsp"/>
+    </definition>
+
+    <definition name="/user/OperateRoleList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/OperateRoleList.jsp"/>
+    </definition>
+
+    <definition name="/user/CreditDataInfo.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/CreditDataInfo.jsp"/>
+    </definition>
+    <definition name="/user/CreditManage.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/CreditManage.jsp"/>
+    </definition>
+    <definition name="/user/CreditDataIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/user/CreditDataIndex.jsp"/>
+    </definition>
+    <definition name="/user/CreditOrgScale.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/CreditOrgScale.jsp"/>
+    </definition>
+    <definition name="/user/CreditPartyScale.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/CreditPartyScale.jsp"/>
+    </definition>
+    <definition name="/user/UserPmsManager.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/UserPmsManager.jsp"/>
+    </definition>
+
+    <definition name="/user/UserInfoIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/user/UserInfoIndex.jsp"/>
+    </definition>
+
+    <definition name="/user/UserPmsIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/user/UserPmsIndex.jsp"/>
+    </definition>
+
+    <definition name="/user/UserInfoEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/user/UserInfoEdit.jsp"/>
+    </definition>
+    <definition name="/user/UserLoginNameEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/user/UserLoginNameEdit.jsp"/>
+    </definition>
+
+    <definition name="/user/UserInfoCardI.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/user/UserInfoCardI.jsp"/>
+    </definition>
+
+    <definition name="/user/UserOTPCard.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/user/UserOTPCard.jsp"/>
+    </definition>
+    
+    <definition name="/user/UserInfoSelfLevEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/user/UserInfoSelfLevEdit.jsp"/>
+    </definition>
+
+    <definition name="/user/UserPassEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/user/UserPassEdit.jsp"/>
+    </definition>
+
+    <definition name="/user/CreditCode.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/CreditCode.jsp"/>
+    </definition>
+
+    <definition name="/user/CreditPostCode.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/user/CreditPostCode.jsp"/>
+    </definition>
+    
+    <definition name="/ModifyPassword.tiles" extends="layout.busitemplateSelf">
+         <put name="body" value="/pages/ModifyPassword.jsp"/>
+     </definition>
+    <definition name="/ModifyLanguage.tiles" extends="layout.busitemplateSelf">
+         <put name="body" value="/pages/ModifyLanguage.jsp"/>
+     </definition>
+    <definition name="/LoginModiPass.tiles" extends="layout.busitemplateSelf">
+         <put name="body" value="/pages/LoginModiPass.jsp"/>
+     </definition>
+    <definition name="/hrleader/main.tiles" extends="layout.busitemplate">
+         <put name="body" value="/pages/hrleader/main.jsp"/>
+     </definition>
+    <definition name="/hrleader/RptMain.tiles" extends="layout.busitemplate">
+         <put name="body" value="/pages/hrleader/RptMain.jsp"/>
+     </definition>
+     <definition name="/hrleader/tyxx.tiles" extends="layout.busitemplate">
+         <put name="body" value="/pages/hrleader/tyxx.jsp"/>
+     </definition>
+     <definition name="/hrleader/rygl.tiles" extends="layout.busitemplate">
+         <put name="body" value="/pages/hrleader/rygl.jsp"/>
+     </definition>
+     <definition name="/hrleader/jggl.tiles" extends="layout.busitemplate">
+         <put name="body" value="/pages/hrleader/jggl.jsp"/>
+     </definition>
+     <definition name="/hrleader/wage.tiles" extends="layout.busitemplate">
+         <put name="body" value="/pages/hrleader/wage.jsp"/>
+     </definition>
+</tiles-definitions>

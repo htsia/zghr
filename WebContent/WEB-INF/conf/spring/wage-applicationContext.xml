@@ -1,0 +1,1094 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="wage_applyDAO" class="com.hr319wg.wage.dao.WageApplyDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_sumUCC" class="com.hr319wg.wage.ucc.impl.WageSumControlUCC">
+       <property name="wagesumservice" ref="wage_sumservice"/>
+   </bean>
+    <bean id="wage_sumservice" class="com.hr319wg.wage.service.WageSumControlService">
+        <property name="wagecontroldao" ref="wage_sumDAO"/>
+    </bean>
+    <bean id="wage_sumDAO" class="com.hr319wg.wage.dao.WageSumControlDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+
+    <bean id="wage_sheetUCC" class="com.hr319wg.wage.ucc.impl.WageSheetUCC">
+       <property name="wagesheetservice" ref="wage_sheetservice"/>
+        <property name="api" ref="sys_activePageApi"/>
+        <property name="infosetucc" ref="sys_infoSetUccImpl"/>
+   </bean>
+    <bean id="wage_sheetservice" class="com.hr319wg.wage.service.WageSheetService">
+        <property name="wagesheetdao" ref="wage_sheetDAO"/>
+    </bean>
+    <bean id="wage_sheetDAO" class="com.hr319wg.wage.dao.WageSheetDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+
+    <bean id="wage_auditInputDAO" class="com.hr319wg.wage.dao.WageAuditInputDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_inputservice" class="com.hr319wg.wage.service.WageInputService">
+        <property name="inputdao" ref="wage_auditInputDAO"/>
+    </bean>
+    <bean id="wage_inputUCC" class="com.hr319wg.wage.ucc.impl.WageInputUCC">
+       <property name="inputService" ref="wage_inputservice"/>
+   </bean>
+
+    <bean id="wage_postLinkDAO" class="com.hr319wg.wage.dao.WagePostLinkDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_dataLogDAO" class="com.hr319wg.wage.dao.WageDataLogDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_computeHisDAO" class="com.hr319wg.wage.dao.WageComputeHisDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_errorReportDAO" class="com.hr319wg.wage.dao.WageErrorReportDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_dataCheckAO" class="com.hr319wg.wage.dao.DataCheckDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_setDeptChangeDAO" class="com.hr319wg.wage.dao.WageSetDeptChangeDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_setPersonChangeDAO" class="com.hr319wg.wage.dao.WageSetPersonChangeDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_audititemDAO" class="com.hr319wg.wage.dao.WageAduitDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_checkUCC" class="com.hr319wg.wage.ucc.impl.WageCheckUCC">
+       <property name="wagecheckservice" ref="wage_checkservice"/>
+   </bean>
+
+    <bean id="wage_checkservice" class="com.hr319wg.wage.service.WageCheckService">
+        <property name="datachekdao" ref="wage_dataCheckAO"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="constservice" ref="wage_ConstService"/>
+    </bean>
+
+    <bean id="wage_aduitservice" class="com.hr319wg.wage.service.WageAduitService">
+        <property name="wageaduitdao" ref="wage_audititemDAO"/>
+        <property name="activepageapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="wage_aduitUCC" class="com.hr319wg.wage.ucc.impl.WageAduitUCC">
+       <property name="wageaduitservice" ref="wage_aduitservice"/>
+   </bean>
+    
+    <!--      wageDept             -->
+    <bean id="wage_deptDAO" class="com.hr319wg.wage.dao.WageDeptDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_deptpowerDAO" class="com.hr319wg.wage.dao.WageDeptPowerDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_inputpowerDAO" class="com.hr319wg.wage.dao.WageInputitemPowerDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_deptservice" class="com.hr319wg.wage.service.WageDeptService">
+        <property name="wagedeptdao" ref="wage_deptDAO"/>
+        <property name="wagedeptpowerdao" ref="wage_deptpowerDAO"/>
+        <property name="wageapi" ref="wage_api"/>
+        <property name="wageinputpowerdao" ref="wage_inputpowerDAO"/>
+        <property name="insItempowerdao" ref="ins_itempowerDAO"/>
+        <property name="attItempowerdao" ref="att_itempowerDAO"/>
+        <property name="insdeptdao" ref="ins_DeptPowerDAO"/>
+    </bean>
+
+    <bean id="wage_deptUCC" class="com.hr319wg.wage.ucc.impl.WageDeptUCC">
+       <property name="wagedeptservice" ref="wage_deptservice"/>
+   </bean>
+
+    <bean id="wage_itemPowerUCC" class="com.hr319wg.wage.ucc.impl.WageItemPowerUCC">
+       <property name="wagedeptservice" ref="wage_deptservice"/>
+       <property name="queryapi" ref="qry_queryApi"/>
+   </bean>
+
+     <!--      manyDept             -->
+    <bean id="wage_manyDAO" class="com.hr319wg.wage.dao.WageManyDeptDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_manyservice" class="com.hr319wg.wage.service.WageManyDeptService">
+        <property name="wagemanydeptdao" ref="wage_manyDAO"/>
+    </bean>
+
+    <bean id="wage_manyUcc" class="com.hr319wg.wage.ucc.impl.WageManyDeptUCC">
+       <property name="wageconstservice" ref="wage_manyservice"/>
+       <property name="activeapi" ref="sys_activePageApi"/>
+   </bean>
+
+    <!--      bankset             -->
+    <bean id="wage_bankLogDAO" class="com.hr319wg.wage.dao.WageBankLogDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_bankDAO" class="com.hr319wg.wage.dao.WageBankSetDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_bankItemDAO" class="com.hr319wg.wage.dao.WageBankItemDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_banksetservice" class="com.hr319wg.wage.service.WageBankSetService">
+        <property name="wagebankdao">
+            <ref bean="wage_bankDAO"/>
+        </property>
+        <property name="wagebankitemdao" ref="wage_bankItemDAO"/>
+        <property name="wagesetdao" ref="wage_SetDAO"/>
+        <property name="wagebanklog" ref="wage_bankLogDAO"/>
+    </bean>
+     <bean id="wage_bankUccImpl" class="com.hr319wg.wage.ucc.impl.WageBankSetUCC">
+        <property name="wagebankservice" ref="wage_banksetservice"/>
+    </bean>
+
+    <!--      wageunit             -->
+    <bean id="wage_UnitDAO" class="com.hr319wg.wage.dao.WageUnitDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_UnitService" class="com.hr319wg.wage.service.WageUnitService">
+        <property name="wageunitdao">
+            <ref bean="wage_UnitDAO"/>
+        </property>
+        <property name="api" ref="sys_activePageApi"/>
+        <property name="queryapi" ref="qry_queryApi"/>
+        <property name="grossservice" ref="wage_grossService"/>
+    </bean>
+
+    <bean id="wage_UnitUccImpl" class="com.hr319wg.wage.ucc.impl.WageUnitUCC">
+        <property name="wageunitservice" ref="wage_UnitService"/>
+        <property name="wageformulaservice" ref="wage_FormulaService"/>
+        <property name="wagestandardservice" ref="wage_StandardService"/>
+        <property name="wagesetservice" ref="wage_SetService"/>
+    </bean>
+
+    <bean id="wage_UnitUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageUnitUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_UnitUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+
+    <bean id="wage_StdItemDAO" class="com.hr319wg.wage.dao.WageStdItemDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_StdValueDAO" class="com.hr319wg.wage.dao.WageStdValueDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_StandardDAO" class="com.hr319wg.wage.dao.WageStandardDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_StandardService" class="com.hr319wg.wage.service.WageStandardService">
+        <property name="wagestandarddao">
+            <ref bean="wage_StandardDAO"/>
+        </property>
+        <property name="wagestditemdao">
+            <ref bean="wage_StdItemDAO"/>
+        </property>
+        <property name="wagestdvaluedao">
+            <ref bean="wage_StdValueDAO"/>
+        </property>
+    </bean>
+
+    <bean id="wage_StandardUccImpl" class="com.hr319wg.wage.ucc.impl.WageStandardUCC">
+        <property name="wagestandardservice" ref="wage_StandardService"/>
+    </bean>
+
+    <bean id="wage_StandardUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageStandardUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_StandardUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <!--********************************************************************************-->
+    <!-- wage fb standard item -->
+    <!--********************************************************************************-->
+
+    <bean id="wage_FBStdItemDAO" class="com.hr319wg.wage.dao.WageFBStdItemDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <!--wage fb standard value-->
+    <bean id="wage_FBStdValueDAO" class="com.hr319wg.wage.dao.WageFBStdValueDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <!--wage fb standard-->
+    <bean id="wage_FBStandardDAO" class="com.hr319wg.wage.dao.WageFBStandardDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_FBStandardService" class="com.hr319wg.wage.service.WageFBStandardService">
+        <property name="wagefbstandarddao">
+            <ref bean="wage_FBStandardDAO"/>
+        </property>
+        <property name="wagefbstditemdao">
+            <ref bean="wage_FBStdItemDAO"/>
+        </property>
+        <property name="wagefbstdvaluedao">
+            <ref bean="wage_FBStdValueDAO"/>
+        </property>
+        <property name="api" ref="sys_activePageApi"/>
+    </bean>
+
+    <bean id="wage_FBStandardUccImpl" class="com.hr319wg.wage.ucc.impl.WageFBStandardUCC">
+        <property name="wagefbstandardservice" ref="wage_FBStandardService"/>
+    </bean>
+
+    <bean id="wage_FBStandardUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageFBStandardUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_FBStandardUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <!--********************************************************************************-->
+    <!-- wage formula -->
+    <!--********************************************************************************-->
+
+    <bean id="wage_FormulaDAO" class="com.hr319wg.wage.dao.WageFormulaDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_FormulaService" class="com.hr319wg.wage.service.WageFormulaService">
+        <property name="wageformuladao">
+            <ref bean="wage_FormulaDAO"/>
+        </property>
+    </bean>
+
+    <bean id="wage_FormulaUccImpl" class="com.hr319wg.wage.ucc.impl.WageFormulaUCC">
+        <property name="wageformulaservice" ref="wage_FormulaService"/>
+        <property name="wageapi" ref="wage_api"/>
+    </bean>
+
+    <bean id="wage_FormulaUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageFormulaUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_FormulaUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <bean id="wage_SetDAO" class="com.hr319wg.wage.dao.WageSetDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+        <property name="jdbcTemplate">
+         <ref bean="jdbcTemplate"/>
+     </property>
+    </bean>
+
+
+    <bean id="wage_childFeeCalcDAO" class="com.hr319wg.wage.dao.ChildFeeCalcDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+        <property name="jdbcTemplate">
+         <ref bean="jdbcTemplate"/>
+     </property>
+    </bean>
+
+    <bean id="wage_ageCalcDAO" class="com.hr319wg.wage.dao.WageAgeCalcDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+        <property name="jdbcTemplate">
+         <ref bean="jdbcTemplate"/>
+     </property>
+    </bean>
+
+    <bean id="wage_SetInitDAO" class="com.hr319wg.wage.dao.WageSetInitDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_CessDAO" class="com.hr319wg.wage.dao.WageCessDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_CessItemDAO" class="com.hr319wg.wage.dao.WageCessItemDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_ConstDAO" class="com.hr319wg.wage.dao.WageConstDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_ImportSetDAO" class="com.hr319wg.wage.dao.WageImportSetDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_ImportSetService" class="com.hr319wg.wage.service.WageImportSetService">
+        <property name="wageimportsetdao" ref="wage_ImportSetDAO"/>
+    </bean>
+
+    <bean id="wage_SetService" class="com.hr319wg.wage.service.WageSetService">
+        <property name="wagesetdao" ref="wage_SetDAO"/>
+        <property name="wagesetinitdao" ref="wage_SetInitDAO"/>
+        <property name="wagesetitemdao" ref="wage_SetItemDAO"/>
+        <property name="api" ref="sys_activePageApi"/>
+        <property name="wagesetpchange" ref="wage_setPersonChangeDAO"/>
+        <property name="postlinkdao" ref="wage_postLinkDAO"/>
+
+    </bean>
+    
+    <bean id="wage_CessService" class="com.hr319wg.wage.service.WageCessService">
+        <property name="wagecessdao" ref="wage_CessDAO"/>
+        <property name="wagecessitemdao" ref="wage_CessItemDAO"/>
+        <property name="wageapi" ref="wage_api"/>        
+    </bean>
+
+    <bean id="wage_ConstService" class="com.hr319wg.wage.service.WageConstService">
+        <property name="wageconstdao" ref="wage_ConstDAO"/>
+        <property name="wagesetdao" ref="wage_SetDAO"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+
+    <bean id="wage_SetUccImpl" class="com.hr319wg.wage.ucc.impl.WageSetUCC">
+        <property name="wagesetservice" ref="wage_SetService"/>
+    </bean>
+    <bean id="wage_CessUccImpl" class="com.hr319wg.wage.ucc.impl.WageCessUCC">
+        <property name="wagecessservice" ref="wage_CessService"/>
+    </bean>
+    <bean id="wage_ConstUccImpl" class="com.hr319wg.wage.ucc.impl.WageConstUCC">
+        <property name="wageconstservice" ref="wage_ConstService"/>
+    </bean>
+
+    <bean id="wage_InputSetUccImpl" class="com.hr319wg.wage.ucc.impl.WageImportSetUCC">
+        <property name="wageimportsetservice" ref="wage_ImportSetService"/>
+    </bean>
+
+    <bean id="wage_SetUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageSetUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_SetUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <!--wage set item-->
+    <bean id="wage_SetItemDAO" class="com.hr319wg.wage.dao.WageSetItemDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+        <property name="jdbcTemplate">
+         <ref bean="jdbcTemplate"/>
+     </property>
+    </bean>
+
+    <bean id="wage_SetItemService" class="com.hr319wg.wage.service.WageSetItemService">
+        <property name="wagesetitemdao">
+            <ref bean="wage_SetItemDAO"/>
+        </property>
+        <property name="wfdao">
+            <ref bean="wage_FormulaDAO"/>
+        </property>
+         <property name="wsdao">
+            <ref bean="wage_StandardDAO"/>
+        </property>
+    </bean>
+    <bean id="wage_SetItemUccImpl" class="com.hr319wg.wage.ucc.impl.WageSetItemUCC">
+        <property name="wagesetitemservice" ref="wage_SetItemService"/>
+        <property name="wagesetservice" ref="wage_SetService"/>
+        <property name="wagecomputeservice" ref="wage_ComputeService"/>
+        <property name="wagesetpersonservice" ref="wage_SetPersonService"/>
+    </bean>
+
+    <bean id="wage_SetItemUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageSetItemUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_SetItemUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <bean id="wage_OrgSumItemDAO" class="com.hr319wg.wage.dao.WageOrgSumItemDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_OrgSumItemService" class="com.hr319wg.wage.service.WageOrgSumItemService">
+        <property name="wageitemsetdao">
+            <ref bean="wage_OrgSumItemDAO"/>
+        </property>
+        <property name="activepageapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+        <property name="insgroupdao">
+            <ref bean="ins_GroupPowerDAO"/>
+        </property>
+
+    </bean>
+
+    <bean id="wage_OrgSumItemUCC" class="com.hr319wg.wage.ucc.impl.OrgSumItemUCC">
+        <property name="wageorgservice">
+            <ref bean="wage_OrgSumItemService"/>
+        </property>
+
+        <property name="activepageapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+
+    </bean>
+
+    <bean id="wage_ComputeService" class="com.hr319wg.wage.service.WageComputeService">
+        <property name="wageapi">
+            <ref bean="wage_api"/>
+        </property>
+        <property name="api">
+            <ref bean="sys_activePageApi"/>
+        </property>
+        <property name="wagedatedao">
+            <ref bean="wage_DateDAO"/>
+        </property>
+        <property name="wagesetitemdao">
+            <ref bean="wage_SetItemDAO"/>
+        </property>
+        <property name="wagestditemdao">
+            <ref bean="wage_StdItemDAO"/>
+        </property>
+        <property name="wageformuladao">
+            <ref bean="wage_FormulaDAO"/>
+        </property>
+        <property name="wageitemsetdao">
+            <ref bean="wage_wageItemSetDAO"/>
+        </property>
+        <property name="wageorgitemsetdao">
+            <ref bean="wage_OrgSumItemDAO"/>
+        </property>
+        <property name="wagesetdao">
+            <ref bean="wage_SetDAO"/>
+        </property>
+        <property name="wagesetinitdao">
+            <ref bean="wage_SetInitDAO"/>
+        </property>
+        <property name="wagedeptsumdao">
+            <ref bean="wage_deptSumDAO"/>
+        </property>
+        <property name="wagestandarddao">
+            <ref bean="wage_StandardDAO"/>
+        </property>
+
+        <property name="wageagedao" ref="wage_ageCalcDAO"/>
+        <property name="childcalcdao" ref="wage_childFeeCalcDAO"/>
+        <property name="wagehisdao" ref="wage_computeHisDAO"/>
+        <property name="wagesetdeptchange" ref="wage_setDeptChangeDAO"/>
+        <property name="wageerrdao" ref="wage_errorReportDAO"/>
+        <property name="auditinputdao" ref="wage_auditInputDAO"/>
+        <property name="setservice" ref="wage_SetService"/>
+        <property name="unitservice" ref="wage_UnitService"/>
+        <property name="wageapplydao" ref="wage_applyDAO"/>
+    </bean>
+
+
+    <bean id="wage_deptWageTools" class="com.hr319wg.wage.util.DeptWageTools">
+        <property name="activepageapi" ref="wage_api"/>
+        <property name="wagepowerucc" ref="wage_itemPowerUCC"/>
+    </bean>
+
+    <bean id="wage_ComputeUccImpl" class="com.hr319wg.wage.ucc.impl.WageComputeUCC">
+        <property name="wagecomputeservice" ref="wage_ComputeService"/>
+        <property name="wagesetpersonservice" ref="wage_SetPersonService"/>
+        <property name="wagesetservice" ref="wage_SetService"/>
+        <property name="wagedateservice" ref="wage_DateService"/>
+        <property name="manyheadputoutservice" ref="wage_manyHeadPutoutService"/>
+        <property name="persondao" ref="emp_personDAO"/>
+        <property name="activepageapi" ref="sys_activePageApi"/>
+        <property name="wagebankucc" ref="wage_bankUccImpl"/>
+    </bean>
+
+    <bean id="wage_ComputeUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageComputeUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_ComputeUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <bean id="wage_SetPersonService" class="com.hr319wg.wage.service.WageSetPersonService">
+        <property name="wageapi" ref="wage_api"/>
+        <property name="api" ref="sys_activePageApi"/>
+        <property name="queryapi" ref ="qry_queryApi"/>
+        <property name="wagedatedao" ref="wage_DateDAO"/>
+        <property name="wagesetdao" ref ="wage_SetDAO"/>
+        <property name="wagedatalogdao" ref="wage_dataLogDAO"/>
+        <property name="wagesetpchange" ref="wage_setPersonChangeDAO"/>
+        <property name="wagenotedao" ref="wage_NoteDAO"/>
+        <property name="wagesetdeptchange" ref="wage_setDeptChangeDAO"/>
+        <property name="wagecomputeservice" ref="wage_ComputeService"/>
+        <property name="wagesetitemservice" ref="wage_SetItemService"/>
+    </bean>
+
+    <bean id="wage_SetPersonUccImpl" class="com.hr319wg.wage.ucc.impl.WageSetPersonUCC">
+        <property name="wagesetpersonservice" ref="wage_SetPersonService"/>
+        <property name="wagecomputeservice" ref="wage_ComputeService"/>
+        <property name="wagesetitemservice" ref="wage_SetItemService"/>
+    </bean>
+
+    <bean id="wage_SetPersonUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageSetPersonUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_SetPersonUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    
+    <bean id="wage_PersonQueryService" class="com.hr319wg.wage.service.WagePersonQueryService">
+        <property name="wageapi">
+            <ref bean="wage_api"/>
+        </property>
+        <property name="activepageapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+        <property name="queryapi">
+            <ref bean="qry_queryApi"/>
+        </property>
+        <property name="userqry">
+            <ref bean="user_userQryService"/>
+        </property>
+        <property name="userapi">
+            <ref bean="user_pmsAPI"/>
+        </property>
+
+    </bean>
+
+    <bean id="wage_PersonQueryUccImpl" class="com.hr319wg.wage.ucc.impl.WagePersonQueryUCC">
+        <property name="wagepersonqueryservice" ref="wage_PersonQueryService"/>
+    </bean>
+
+    <bean id="wage_PersonQueryUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWagePersonQueryUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_PersonQueryUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <!--wage dept query-->
+    <bean id="wage_DeptQueryService" class="com.hr319wg.wage.service.WageDeptQueryService">
+        <property name="activepageapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+        <property name="queryapi">
+            <ref bean="qry_queryApi"/>
+        </property>
+    </bean>
+    <bean id="wage_DeptQueryUccImpl" class="com.hr319wg.wage.ucc.impl.WageDeptQueryUCC">
+        <property name="wagedeptqueryservice" ref="wage_DeptQueryService"/>
+    </bean>
+
+    <bean id="wage_DeptQueryUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageDeptQueryUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_DeptQueryUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <bean id="wage_NoteDAO" class="com.hr319wg.wage.dao.WageNoteDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_NoteService" class="com.hr319wg.wage.service.WageNoteService">
+        <property name="wagenotedao">
+            <ref bean="wage_NoteDAO"/>
+        </property>
+    </bean>
+
+    <bean id="wage_NoteUccImpl" class="com.hr319wg.wage.ucc.impl.WageNoteUCC">
+        <property name="wagenoteservice" ref="wage_NoteService"/>
+    </bean>
+
+    <bean id="wage_NoteUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageNoteUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_NoteUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <!--********************************************************************************-->
+    <!-- wage payoff date-->
+    <!--********************************************************************************-->
+    <bean id="wage_DateDAO" class="com.hr319wg.wage.dao.WageDateDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_DateService" class="com.hr319wg.wage.service.WageDateService">
+        <property name="wagedatedao">
+            <ref bean="wage_DateDAO"/>
+        </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+
+    <bean id="wage_DateUccImpl" class="com.hr319wg.wage.ucc.impl.WageDateUCC">
+        <property name="wagedateservice" ref="wage_DateService"/>
+        <property name="wagesetservice" ref="wage_SetService"/>
+        <property name="wagecomputeservice" ref="wage_ComputeService"/>
+        <property name="wageapi" ref="wage_api"/>
+    </bean>
+
+    <bean id="wage_DateUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageDateUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_DateUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <!--********************************************************************************-->
+    <!-- wage bonus plan -->
+    <!--********************************************************************************-->
+
+    <bean id="wage_bonusPlanDAO" class="com.hr319wg.wage.dao.BonusPlanDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_bonusDeptDAO" class="com.hr319wg.wage.dao.BonusDeptDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_bonusPersDAO" class="com.hr319wg.wage.dao.BonusPersDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+        <property name="jdbctemplate">
+            <ref bean="jdbcTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_bonusSpecialPersDAO" class="com.hr319wg.wage.dao.BonusSpecialPersDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_bonusPlanService" class="com.hr319wg.wage.service.BonusPlanService">
+        <property name="bonusplandao">
+            <ref bean="wage_bonusPlanDAO"/>
+        </property>
+        <property name="bonusdeptdao">
+            <ref bean="wage_bonusDeptDAO"/>
+        </property>
+        <property name="bonuspersdao">
+            <ref bean="wage_bonusPersDAO"/>
+        </property>
+        <property name="bonusspecialpersdao">
+            <ref bean="wage_bonusSpecialPersDAO"/>
+        </property>
+        <property name="api">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+    <bean id="wage_bonusPlanUccImpl" class="com.hr319wg.wage.ucc.impl.BonusPlanUCC">
+        <property name="wagesetitemservice" ref="wage_SetItemService"/>
+        <property name="wagesetservice" ref="wage_SetService"/>
+        <property name="wagedateservice" ref="wage_DateService"/>
+        <property name="bonusplanservice" ref="wage_bonusPlanService"/>
+    </bean>
+
+    <bean id="wage_bonusPlanUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IBonusPlanUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_bonusPlanUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <!--********************************************************************************-->
+    <!-- wage bonus allot -->
+    <!--********************************************************************************-->
+
+    <bean id="wage_allotBonusService" class="com.hr319wg.wage.service.AllotBonusService">
+        <property name="bonusplandao">
+            <ref bean="wage_bonusPlanDAO"/>
+        </property>
+        <property name="bonusdeptdao">
+            <ref bean="wage_bonusDeptDAO"/>
+        </property>
+        <property name="bonuspersdao">
+            <ref bean="wage_bonusPersDAO"/>
+        </property>
+        <property name="api">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+    <bean id="wage_allotBonusUccImpl" class="com.hr319wg.wage.ucc.impl.AllotBonusUCC">
+        <property name="allotbonusservice" ref="wage_allotBonusService"/>
+    </bean>
+
+    <bean id="wage_allotBonusUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IAllotBonusUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_allotBonusUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <!--********************************************************************************-->
+    <!-- wage salary relation -->
+    <!--********************************************************************************-->
+
+    <bean id="wage_salaryRelationDAO" class="com.hr319wg.wage.dao.SalaryRelationDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_salaryRelationService" class="com.hr319wg.wage.service.SalaryRelationService">
+        <property name="salaryrelationdao">
+            <ref bean="wage_salaryRelationDAO"/>
+        </property>
+        <property name="api">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+
+    <bean id="wage_salaryRelationUccImpl" class="com.hr319wg.wage.ucc.impl.SalaryRelationUCC">
+        <property name="salaryrelationservice" ref="wage_salaryRelationService"/>
+    </bean>
+
+    <bean id="wage_salaryRelationUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.ISalaryRelationUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_salaryRelationUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <!--********************************************************************************-->
+    <!-- wage manyhead putout -->
+    <!--********************************************************************************-->
+
+    <bean id="wage_manyHeadPutoutDAO" class="com.hr319wg.wage.dao.ManyHeadPutoutDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_manyHeadPutoutService" class="com.hr319wg.wage.service.ManyHeadPutoutService">
+        <property name="manyheadputoutdao">
+            <ref bean="wage_manyHeadPutoutDAO"/>
+        </property>
+    </bean>
+
+    <bean id="wage_manyHeadPutoutUccImpl" class="com.hr319wg.wage.ucc.impl.ManyHeadPutoutUCC">
+        <property name="manyheadputoutservice" ref="wage_manyHeadPutoutService"/>
+    </bean>
+
+    <bean id="wage_manyHeadPutoutUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IManyHeadPutoutUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_manyHeadPutoutUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <!--********************************************************************************-->
+    <!-- wage clear -->
+    <!--********************************************************************************-->
+
+    <bean id="wage_salaryClearService" class="com.hr319wg.wage.service.SalaryClearService">
+        <property name="activepageapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+        <property name="queryapi">
+            <ref bean="qry_queryApi"/>
+        </property>
+    </bean>
+
+    <bean id="wage_salaryClearUccImpl" class="com.hr319wg.wage.ucc.impl.SalaryClearUCC">
+        <property name="salaryclearservice" ref="wage_salaryClearService"/>
+    </bean>
+
+    <bean id="wage_salaryClearUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.ISalaryClearUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_salaryClearUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <bean id="wage_grossDAO" class="com.hr319wg.wage.dao.GrossDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_grossService" class="com.hr319wg.wage.service.GrossService">
+        <property name="grossdao">
+            <ref bean="wage_grossDAO"/>
+        </property>
+        <property name="wageitemsetdao">
+            <ref bean="wage_wageItemSetDAO"/>
+        </property>
+        <property name="api">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+    <bean id="wage_grossUccImpl" class="com.hr319wg.wage.ucc.impl.GrossUCC">
+        <property name="grossservice" ref="wage_grossService"/>
+        <property name="wageapi" ref="wage_api"/>
+    </bean>
+
+    <bean id="wage_grossUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IGrossUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_grossUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <bean id="wage_wageItemSetDAO" class="com.hr319wg.wage.dao.WageItemSetDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_deptSumDAO" class="com.hr319wg.wage.dao.WageDeptSumItemDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="wage_wageItemSetService" class="com.hr319wg.wage.service.WageItemSetService">
+        <property name="wageitemsetdao">
+            <ref bean="wage_wageItemSetDAO"/>
+        </property>
+        <property name="wagedeptsumdao">
+            <ref bean="wage_deptSumDAO"/>
+        </property>
+    </bean>
+
+    <bean id="wage_wageItemSetUccImpl" class="com.hr319wg.wage.ucc.impl.WageItemSetUCC">
+        <property name="wageitemsetservice" ref="wage_wageItemSetService"/>
+        <property name="wagesetitemservice" ref="wage_SetItemService"/>
+    </bean>
+
+    <bean id="wage_wageItemSetUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageItemSetUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_wageItemSetUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+
+
+
+    <bean id="wage_fbComputeDAO" class="com.hr319wg.wage.dao.WageFBComputeDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+        <property name="jdbctemplate">
+            <ref bean="jdbcTemplate"/>
+        </property>
+    </bean>
+    <bean id="wage_fbComputeService" class="com.hr319wg.wage.service.WageFBComputeService">
+        <property name="wagefbcomputedao">
+            <ref bean="wage_fbComputeDAO"/>
+        </property>
+        <property name="api">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+    <bean id="wage_fbComputeUccImpl" class="com.hr319wg.wage.ucc.impl.WageFBComputeUCC">
+        <property name="wagefbcomputeservice" ref="wage_fbComputeService"/>
+    </bean>
+
+    <bean id="wage_FBComputeUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.IWageFBComputeUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="wage_fbComputeUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <!--********************************************************************************-->
+    <!-- wage gross task -->
+    <!--********************************************************************************-->
+    <bean id="wage_collectGrossTaskUccImpl" class="com.hr319wg.wage.ucc.impl.CollectGrossTaskUCC">
+    </bean>
+    <bean id="wage_collectGrossTaskUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.wage.ucc.ICollectGrossTaskUCC</value>
+            </list>
+        </property>
+        <property name="target">
+            <ref bean="wage_collectGrossTaskUccImpl"/>
+        </property>
+        <property name="transactionManager">
+            <ref bean="transactionManager"/>
+        </property>
+        <property name="transactionAttributeSource">
+            <ref bean="namingTransactionAttribute"/>
+        </property>
+    </bean>
+
+    <bean id="grossTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="grossJobDetail"/>
+        </property>
+        <property name="cronExpression">
+            <!--
+              Field Name   Allowed Values   Allowed Special Characters
+              Seconds    0-59    , - * /
+              Minutes    0-59    , - * /
+              Hours    0-23    , - * /
+              Day-of-month    1-31    , - * ? / L W C
+              Month    1-12 or JAN-DEC    , - * /
+              Day-of-Week    1-7 or SUN-SAT    , - * ? / L C #
+              Year (Optional)    empty, 1970-2099    , - * /
+            -->
+            <value>0 0 0 * * ?</value>
+        </property>
+    </bean>
+    <bean name="grossJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+          <value>com.hr319wg.wage.service.CollectGrossTaskService</value>
+        </property>
+    </bean>
+
+
+</beans>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+
+    <managed-bean>
+        <managed-bean-name>RptFlowEditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.rpt.web.FlowRptEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+    </managed-bean>
+
+    <!--   表套部分   -->
+    <managed-bean>
+        <managed-bean-name>RptSetBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.rpt.web.RptSetListBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>rptucc</property-name>
+            <value>#{rpt_infoucc}</value>
+        </managed-property>
+    </managed-bean>
+           
+           <!-- 汇总关系定义 -->
+           <!--   group  -->
+    <managed-bean>
+        <managed-bean-name>GroupDefineBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.rpt.web.GroupDefineBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>rptucc</property-name>
+            <value>#{rpt_infoucc}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <!--   groupDir  -->
+     <managed-bean>
+        <managed-bean-name>GroupDirBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.rpt.web.GroupDirBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>rptucc</property-name>
+            <value>#{rpt_infoucc}</value>
+        </managed-property>
+    </managed-bean>
+                  
+           
+           
+           
+           
+           
+           
+           
+           
+           <!-- **************************************************** -->
+    <managed-bean>
+        <managed-bean-name>Rpt_defineBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.rpt.web.RptDefineBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>rptucc</property-name>
+            <value>#{rpt_infoucc}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>Rpt_InfoIndexBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.rpt.web.RptInfoIndexBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>rptucc</property-name>
+            <value>#{rpt_infoucc}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>usermanucc</property-name>
+            <value>#{user_userManageUccImpl}</value>
+        </managed-property>
+
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>Rpt_GroupIndexBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.rpt.web.GroupRptBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>rptucc</property-name>
+            <value>#{rpt_infoucc}</value>
+        </managed-property>
+
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/report/DateList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>beginStatic</from-outcome>
+            <to-view-id>/report/RptInfoIndex.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>beginHisView</from-outcome>
+            <to-view-id>/report/ArchiveReportShow.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/report/GroupDateList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>beginStatic</from-outcome>
+            <to-view-id>/report/GroupBrower.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>beginHisView</from-outcome>
+            <to-view-id>/report/GroupBrowerView.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/report/RptInfoIndex.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>dateList</from-outcome>
+            <to-view-id>/report/DateList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/report/ArchiveReportShow.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>dateList</from-outcome>
+            <to-view-id>/report/DateList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+ 
+    <navigation-rule>
+        <from-view-id>/report/ArchiveReport.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <managed-bean>
+        <managed-bean-name>Rpt_PowerMgrBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.rpt.web.ReportPowerMgrBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>rptucc</property-name>
+            <value>#{rpt_infoucc}</value>
+        </managed-property>
+                <managed-property>
+            <property-name>useruserManageUccImpl</property-name>
+            <value>#{user_userManageUccImpl}</value>
+        </managed-property>
+    </managed-bean> 
+
+
+    <managed-bean>
+        <managed-bean-name>Rpt_SetPowerMgrBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.rpt.web.RptSetPowerMgrBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>rptucc</property-name>
+            <value>#{rpt_infoucc}</value>
+        </managed-property>
+                <managed-property>
+            <property-name>useruserManageUccImpl</property-name>
+            <value>#{user_userManageUccImpl}</value>
+        </managed-property>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/report/ReportPowerMgrAddChildSort.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+        <managed-bean>
+        <managed-bean-name>Rpt_DefineListBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.rpt.web.ReportDefineListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>rptucc</property-name>
+            <value>#{rpt_infoucc}</value>
+        </managed-property>
+    </managed-bean>  
+    
+       <navigation-rule>
+        <from-view-id>/report/ReportDefineEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+        <navigation-rule>
+        <from-view-id>/report/ShowRptSetDefine</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+     <navigation-rule>
+        <from-view-id>/report/RptSetEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+     <navigation-rule>
+        <from-view-id>/report/RptGroupEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+     <navigation-rule>
+        <from-view-id>/report/ShowRptGroupDir.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+     <navigation-rule>
+        <from-view-id>/report/RptGroupItemEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+      <navigation-rule>
+        <from-view-id>/report/RptGroupDirEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+</faces-config>

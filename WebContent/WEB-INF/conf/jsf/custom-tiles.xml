@@ -1,0 +1,413 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+
+	<definition name="/common/SelRyPost.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/common/SelRyPost.jsp"/>
+    </definition>
+    <!-- 评选相关 -->
+    <definition name="/system/survey/SurveyResult.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/survey/SurveyResult.jsp"/>
+    </definition>
+	<definition name="/system/survey/SurveyDetailIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/survey/SurveyDetailIndex.jsp"/>
+    </definition>
+	<definition name="/system/survey/SurveyDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/survey/SurveyDetail.jsp"/>
+    </definition>
+    
+    <!-- 薪酬相关 -->
+    <definition name="/custom/selPerson.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/selPerson.jsp"/>
+    </definition>
+    <definition name="/custom/personQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/personQuery.jsp"/>
+    </definition>
+    <definition name="/custom/selPerson2.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/selPerson2.jsp"/>
+    </definition>
+    <definition name="/custom/personQuery2.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/personQuery2.jsp"/>
+    </definition>
+    
+     <definition name="/custom/wage/wageDataOther.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/wageDataOther.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataOtherEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataOtherEdit.jsp"/>
+    </definition>
+        <definition name="/custom/wage/wageDataOtherUser.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataOtherUser.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataOtherUserEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataOtherUserEdit.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataDetail.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataDetailList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataDetailList.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataOtherUserModify.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataOtherUserModify.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataLitle.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/wageDataLitle.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataLitleUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/wageDataLitleUserList.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataLitleUserEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataLitleUserEdit.jsp"/>
+    </definition>
+        
+    <definition name="/custom/wage/wageDataSigle.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/wageDataSigle.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataSigleUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/wageDataSigleUserList.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataSigleDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataSigleDetail.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataSigleUserDetailList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataSigleUserDetailList.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataSigleUserModify.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataSigleUserModify.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageEmpIndex.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/wageEmpIndex.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageEmpList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/wageEmpList.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageEmpUserEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageEmpUserEdit.jsp"/>
+    </definition>
+    <definition name="/custom/eva/evaWageIndex.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/eva/evaWageIndex.jsp"/>
+    </definition>
+    <definition name="/custom/eva/evaWageList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/eva/evaWageList.jsp"/>
+    </definition>
+    <definition name="/custom/eva/addEvaWageUserIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/eva/addEvaWageUserIndex.jsp"/>
+    </definition>
+    <definition name="/custom/eva/addEvaWageUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/eva/addEvaWageUserList.jsp"/>
+    </definition>
+    <definition name="/custom/eva/setEvaWageXishu.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/eva/setEvaWageXishu.jsp"/>
+    </definition>
+    <definition name="/custom/eva/setEvaWageKoushui.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/eva/setEvaWageKoushui.jsp"/>
+    </definition>
+    <definition name="/custom/eva/evaWageEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/eva/evaWageEdit.jsp"/>
+    </definition>
+    <definition name="/custom/wage/classWageIndex.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/classWageIndex.jsp"/>
+    </definition>
+    <definition name="/custom/wage/classWageList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/classWageList.jsp"/>
+    </definition>
+    <definition name="/custom/wage/classWageUserEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/classWageUserEdit.jsp"/>
+    </definition>
+    
+    <!-- 考勤相关 -->
+    <definition name="/custom/attence/attLogMgr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attLogMgr.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attLogMgrList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attLogMgrList.jsp"/>
+    </definition>
+    <definition name="/custom/att/attLogQuery.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attLogQuery.jsp"/>
+    </definition>
+    <definition name="/custom/att/attLogQueryList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attLogQueryList.jsp"/>
+    </definition>
+    <definition name="/custom/att/attEleCheckin.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attEleCheckin.jsp"/>
+    </definition>
+    <definition name="/custom/att/attEleCheckinList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attEleCheckinList.jsp"/>
+    </definition>
+    <definition name="/custom/att/attEleCheckinEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attEleCheckinEdit.jsp"/>
+    </definition>
+    
+    
+    <definition name="/custom/attence/attLeaveLog.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attLeaveLog.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attLeaveApply.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attLeaveApply.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attLeaveEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attLeaveEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attLeaveAudit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attLeaveAudit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attLeaveAuditEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attLeaveAuditEdit.jsp"/>
+    </definition>
+    
+    <definition name="/custom/attence/attOutApply.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attOutApply.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOutEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attOutEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOutAudit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attOutAudit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOutAuditEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attOutAuditEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOutLog.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attOutLog.jsp"/>
+    </definition>
+        
+    <definition name="/custom/attence/attOvertimeApply.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attOvertimeApply.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOvertimeEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attOvertimeEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOvertimeAudit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attOvertimeAudit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOvertimeAuditEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attOvertimeAuditEdit.jsp"/>
+    </definition>
+     <definition name="/custom/attence/attOvertimeLog.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attOvertimeLog.jsp"/>
+    </definition> 
+    <definition name="/custom/attence/attRestApply.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attRestApply.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attRestEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attRestEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attRestAudit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attRestAudit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attRestAuditEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attRestAuditEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attRestLog.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attRestLog.jsp"/>
+    </definition>
+
+    <definition name="/custom/attence/attLeaveQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attLeaveQuery.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOutQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attOutQuery.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOvertimeQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attOvertimeQuery.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attRestQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attRestQuery.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attLeaveQueryUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attLeaveQueryUserList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOutQueryUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attOutQueryUserList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOvertimeQueryUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attOvertimeQueryUserList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attRestQueryUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attRestQueryUserList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attPutoffMgr.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attPutoffMgr.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attPutoffMgrUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attPutoffMgrUserList.jsp"/>
+    </definition>
+    
+    <definition name="/custom/attence/attLeaveInput.tiles" extends="layout.busitemplate">
+    	<put name="body" value="/pages/custom/attence/attLeaveInput.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attLeaveInputUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attLeaveInputUserList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attLeaveInputEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attLeaveInputEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOutInput.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attOutInput.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOutInputUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attOutInputUserList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOutInputEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attOutInputEdit.jsp"/>
+    </definition>
+        <definition name="/custom/attence/attOvertimeInput.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attOvertimeInput.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOvertimeInputUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attOvertimeInputUserList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attOvertimeInputEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attOvertimeInputEdit.jsp"/>
+    </definition>
+        <definition name="/custom/attence/attRestInput.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attRestInput.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attRestInputUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attRestInputUserList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attRestInputEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attRestInputEdit.jsp"/>
+    </definition>
+
+    <definition name="/custom/attence/attMachineMgr.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attMachineMgr.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attMachineList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attMachineList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attMachineEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attMachineEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attMachinePersonMgr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attMachinePersonMgr.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attMachinePersonList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attMachinePersonList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attCalcMgr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attCalcMgr.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attCalcList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attCalcList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attCalcRestulVerify.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attCalcResultVerify.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attCalcResultVerifyList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attCalcResultVerifyList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attCalcResultVerifyEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attCalcResultVerifyEdit.jsp"/>
+    </definition>
+
+    <definition name="/custom/attence/attCalcResultEditIndex.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attCalcResultEditIndex.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attCalcResultEditQueryList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attCalcResultEditQueryList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attCalcResultEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attCalcResultEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attClassUser.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attClassUser.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attClassUserList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attClassUserList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/showFingerInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/showFingerInfo.jsp"/>
+    </definition>
+    <definition name="/custom/attence/setAttPwd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/setAttPwd.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataOthers.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/wageDataOthers.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataOthersEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataOthersEdit.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataOthersUser.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataOthersUser.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataOthersUserEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataOthersUserEdit.jsp"/>
+    </definition>
+    <definition name="/custom/wage/wageDataOthersUserModify.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/wageDataOthersUserModify.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attPutoffMgrResultEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attPutoffMgrResultEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attPutoffMgrResetEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attPutoffMgrResetEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attPutoffMgrResetEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attPutoffMgrResetEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attPutoffMgrYearAttenceEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attPutoffMgrYearAttenceEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attLeaveBack.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attLeaveBack.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attCalcDimissionEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attCalcDimissionEdit.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attAllQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attAllQuery.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attAllQueryUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attAllQueryUserList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attAssist.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attAssist.jsp"/>
+    </definition>
+    <definition name="/custom/attence/successLeave.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/successLeave.jsp"/>
+    </definition>
+    
+</tiles-definitions>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<!-- 共享管理表映射 
+-->
+
+	<class name="com.crm319wg.customer.pojo.bo.CustomerShareBO" table="CRM_CUSTOMER_SHARE">
+		<id name="shareId" type="string" unsaved-value="null">
+			<column name="SHARE_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="cuId" column="CU_ID" />
+		<property name="itemId" column="ITEM_ID" />
+		<property name="power" column="POWERS" />
+	</class>
+
+	<!-- 客户表映射 -->
+	<class name="com.crm319wg.customer.pojo.bo.CustomerBO" table="CRM_CUSTOMER">
+		<id name="cu_id" type="string" unsaved-value="null">
+			<column name="CU_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="cu_name" column="CU_NAME" />
+		<property name="cu_nation" column="NATION" />
+		<property name="cu_city" column="CITY" />
+		<property name="cu_addr" column="CU_ADDR" />
+		<property name="zip" column="ZIP" />
+		<property name="description" column="DESCRIPTIONS" />
+		<property name="web_url" column="WEB_URL" />
+		<property name="createor" column="CREATOR" />
+		<property name="create_date" column="CREATE_DATE" />
+		<property name="share_mode" column="SHARE_MODE" />
+		<property name="cu_type" column="CU_TYPE" />
+		<property name="vocation" column="CU_VOCATION" />
+		<property name="modifDate" column="MODIFY_DATE" />
+	</class>
+
+	<!-- 客户视图类-->
+
+	<class name="com.crm319wg.customer.pojo.bo.CustomerViewBO" table="crm_view">
+		<id name="viewId" type="string" unsaved-value="null">
+			<column name="VIEW_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="viewName" column="VIEW_NAME" />
+		<property name="viewDes" column="VIEW_DES" />
+		<property name="viewType" column="VIEW_TYPE" />
+		<property name="personId" column="PERSON_ID" />
+	</class>
+
+	<class name="com.crm319wg.customer.pojo.bo.CustomerViewItemBO" table="crm_view_item">
+		<id name="itemId" type="string" unsaved-value="null">
+			<column name="ITEM_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="viewId" column="VIEW_ID" />
+		<property name="fildId" column="FIELD_ID" />
+		<property name="opertion" column="OP" />
+		<property name="inputValue" column="INPUT_VALUE" />
+	</class>
+
+
+
+	<!-- 联系人表映射 -->
+	<class name="com.crm319wg.customer.pojo.bo.ContactBO" table="CRM_CONTACT">
+		<id name="person_id" type="string" unsaved-value="null">
+			<column name="PERSON_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="person_name" column="PERSON_NAME" />
+		<property name="cu_id" column="CU_ID" />
+		<property name="sex" column="SEX" />
+		<property name="mobile" column="MOBILE" />
+		<property name="office_tel" column="OFFICE_TEL" />
+		<property name="home_tel" column="HOME_TEL" />
+		<property name="qq" column="QQ" />
+		<property name="email" column="EMAIL" />
+		<property name="msn" column="MSN" />
+		<property name="fax" column="FAX" />
+		<property name="duty" column="DUTY" />
+		<property name="primaryPerson" column="PRIMARY_PERSON" />
+		<property name="remark" column="REMARK" />
+	</class>
+
+	<!-- ACTION(活动)表映射	 -->
+	<class name="com.crm319wg.action.pojo.bo.ActionBO" table="CRM_ACTION">
+		<id name="act_id" type="string" unsaved-value="null">
+			<column name="ACT_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="act_name" column="ACT_NAME" />
+		<property name="act_method" column="ACT_METHOD" />
+		<property name="create_or" column="CREATE_OR" />
+		<property name="act_addr" column="ACT_ADDR" />
+		<property name="customer" column="CUSTOMER" />
+		<property name="conection" column="CONTACTOR" />
+		<property name="result" column="RESULT" />
+		<property name="level" column="LEVEAL" />
+		<property name="status" column="STATUS" />
+		<property name="begin_date" column="BEGIN_DATE" />
+		<property name="begin_time" column="BEGIN_TIME" />
+		<property name="end_date" column="END_DATE" />
+		<property name="end_time" column="END_TIME" />
+		<property name="alert_day" column="ALERT_DAY" />
+	</class>
+
+
+	<!-- 活动参与者表映射		-->
+	<class name="com.crm319wg.action.pojo.bo.ActionPersonBO" table="CRM_ACTION_PERSON">
+		<id name="item_id" type="string" unsaved-value="null">
+			<column name="ITEM_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="act_id" column="ACT_ID" />
+		<property name="person_id" column="PERSON_ID" />
+	</class>
+
+	<!-- 团队表映射 -->
+	<class name="com.crm319wg.crmsm.pojo.bo.SaleGroupBO" table="CRM_SALE_GROUP">
+		<id name="groupId" type="string" unsaved-value="null">
+			<column name="GP_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="groupName" column="GP_NAME" />
+	</class>
+
+	<!-- 团队人员表 -->
+	<class name="com.crm319wg.crmsm.pojo.bo.SaleGroupItemBO" table="CRM_SALE_GROUP_ITEM">
+		<id name="itemId" type="string" unsaved-value="null">
+			<column name="ITEM_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="groupId" column="GP_ID" />
+		<property name="personId" column="PERSON_ID" />
+	</class>
+
+
+	<!--  客户竞争人员管理 -->
+	<class name="com.crm319wg.competition.pojo.bo.CustomerCompetitionBO" table="crm_customer_com">
+		<id name="item" type="string" unsaved-value="null">
+			<column name="ITEM_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="cuId" column="CU_ID" />
+		<property name="compeId" column="COMPE_ID" />
+	</class>
+	
+		<!-- 竞争对手 -->
+	<class name="com.crm319wg.competition.pojo.bo.CompetitionBO" table="CRM_COMPETTTOR">
+		<id name="compeId" type="string" unsaved-value="null">
+			<column name="COMPE_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="compeName" column="COMPE_NAME" />
+		<property name="nation" column="NATION" />
+		<property name="city" column="CITY" />
+		<property name="compeAddr" column="COMPE_ADDR" />
+		<property name="zip" column="ZIP" />
+		<property name="description" column="DESCRIPTIONS" />
+		<property name="webUrl" column="WEB_URL" />
+	</class>
+	<class name="com.crm319wg.competition.pojo.bo.CompetitionPersonBO" table="CRM_COMPETTTOR_PERSON">
+		<id name="personId" type="string" unsaved-value="null">
+			<column name="PERSON_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="compeId" column="COMPE_ID" />
+		<property name="personName" column="PERSON_NAME" />
+		<property name="sex" column="SEX" />
+		<property name="mobile" column="MOBILE" />
+		<property name="officeTel" column="OFFICE_TEL" />
+		<property name="homeTel" column="HOME_TEL" />
+		<property name="qq" column="QQ" />
+		<property name="email" column="eMail" />
+		<property name="msn" column="MSN" />
+		<property name="fax" column="FAX" />
+		<property name="duty" column="DUTY" />
+	</class>
+	
+	 
+	<class name="com.crm319wg.competition.pojo.bo.CompetionActionBO" table="CRM_CUSTOMER_COM_ACT">
+		<id name="actId" type="string" unsaved-value="null">
+			<column name="ACT_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="itemId" column="ITEM_ID" />
+		<property name="actDate" column="ACT_DATE" />
+		<property name="actContent" column="ACT_CONTENT" />
+	</class>
+</hibernate-mapping>

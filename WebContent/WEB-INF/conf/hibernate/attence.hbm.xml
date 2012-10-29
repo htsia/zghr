@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttItemPowerBO" table="ATT_ITEM_POWER">
+        <id name="powerID" type="string" unsaved-value="null">
+            <column name="POWER_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setID" column="SET_ID"/>
+        <property name="personID" column="User_ID"/>
+        <property name="itemID" column="ITEM_ID"/>
+    </class>
+    <!--liuyunlong-->
+    <class name="com.hr319wg.attence.pojo.bo.attMachineBO" table="ATT_MACHINE">
+        <id name="machineID" type="string" unsaved-value="null">
+            <column name="MACHINE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="orgID" column="ORG_ID"/>
+        <property name="machineName" column="MACHINE_NAME"/>
+        <property name="machineType" column="MACHINE_TYPE"/>
+        <property name="machinePlace" column="MACHINE_PLACE"/>
+        <property name="machineIP" column="MACHINE_IP"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttFeastBO" table="ATT_FEAST">
+        <id name="feastID" type="string" unsaved-value="null">
+            <column name="Feast_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="feastName" column="Feast_Name"/>
+        <property name="description" column="Description"/>
+        <property name="orgID" column="ORG_ID"/>
+        <property name="year" column="year"/>
+        <property name="regTime" column="reg_time"/>
+        <property name="beginDate" column="beginDate"/>
+        <property name="endDate" column="endDate"/>
+        <property name="postLeiXing" column="postleixing"/>
+        <property name="yearType" column="yeartype"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttRestOfWeekBO" table="att_restofweek">
+        <id name="orgId" type="string" unsaved-value="null">
+            <column name="ORG_ID" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="mon" column="MON"/>
+        <property name="tues" column="TUES"/>
+        <property name="wed" column="WED"/>
+        <property name="thur" column="THUR"/>
+        <property name="fri" column="FRI"/>
+        <property name="sat" column="SAT"/>
+        <property name="sun" column="SUN"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttDurationBO" table="ATT_DURATION">
+        <id name="duraID" type="string" unsaved-value="null">
+            <column name="DURA_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="orgID" column="ORG_ID"/>
+        <property name="duraYear" column="DURA_YEAR"/>
+        <property name="duraMonth" column="DURA_MONTH"/>
+        <property name="duraBegin" column="DURA_BEGIN"/>
+        <property name="duraEnd" column="DURA_END"/>
+        <property name="createOper" column="CREATE_OPER"/>
+        <property name="createDate" column="CREATE_DATE"/>
+        <property name="createUserID" column="CREATE_USERID"/>
+        <property name="QryID" column="QRYID"/>
+        <property name="QryName" column="QRYNAME"/>
+        <property name="status" column="STATUS"/>
+
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttCardBO" table="ATT_CARDLOG">
+        <id name="logID" type="string" unsaved-value="null">
+            <column name="LOG_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="operID" column="OPER_ID"/>
+        <property name="openTime" column="OPER_TIME"/>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="operType" column="OPER_TYPE"/>
+        <property name="oldValue" column="OLD_VALUE"/>
+        <property name="newValue" column="NEW_VALUE"/>
+    </class>
+
+    
+
+    <class name="com.hr319wg.attence.pojo.bo.AttClassGroupBO" table="ATT_CLASSGROUP">
+        <id name="groupNo" type="string" unsaved-value="null">
+            <column name="GroupNo" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="groupName" column="GroupName"/>
+        <property name="groupType" column="GroupType"/>
+        <property name="linkClass" column="Link_CLASS"/>
+        <property name="orgID" column="ORG_ID"/>
+        <property name="groupPeriod" column="Group_PERIOD"/>
+        <property name="beginDate" column="BEGIN_DATE"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.vo.AttClassGroupVO" table="A001">
+        <id name="id" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(200)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="card" column="A001736"/>
+        <property name="groupNo" column="a001737"/>
+        <property name="orgId" column="A001701"/>
+        <property name="name" column="A001001"/>
+        <property name="simpleName" column="A001002"/>
+        <property name="userID" column="id"/>
+        <property name="personSeq" column="A001735"/>
+        <property name="oldPersonSeq" column="A001999"/>
+        <property name="deptId" column="A001705"/>
+        <property name="postId" column="A001715"/>
+        <property name="deptGroupId" column="A001706"/>
+        <property name="personType" column="A001054"/>
+        <property name="orgTreeId" column="A001728"/>
+        <property name="deptTreeId" column="A001738"/>
+        <property name="ssDeptID" column="A001703"/>
+        <property name="sDeptID" column="A001704"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.ATTRearrangeBO" table="ATT_Rearrange">
+        <id name="rearrangeNo" type="string" unsaved-value="null">
+            <column name="RearrangeNo" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="groupNo" column="GroupNo"/>
+        <property name="daySeq" column="DAY_SEQ"/>
+        <property name="linkClass" column="LINK_CLASS"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.ATTRearrangeDateBO"
+           table="ATT_Rearange_date">
+        <id name="itemNo" type="string" unsaved-value="null">
+            <column name="ITEM_NO" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="groupNo" column="GroupNo"/>
+        <property name="beginDate" column="BEGIN_DATE"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttFileImportBO" table="ATT_FILE_IMPORT">
+        <id name="importID" type="string" unsaved-value="null">
+            <column name="IMPORT_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="importName" column="IMPORT_NAME"/>
+        <property name="createOrg" column="CREATE_ORG"/>
+        <property name="orgID" column="ORG_ID"/>
+        <property name="fileFormat" column="FILE_FORMAT"/>
+        <property name="txtMode" column="TXT_MODE"/>
+        <property name="spiltChar" column="SPILT_CHAR"/>
+        <property name="dataRowPos" column="DATA_ROW_POS"/>
+        <property name="timeFormat" column="TIME_FORMAT"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttFileImportItemBO"
+           table="ATT_FILE_IMPORT_ITEM">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="importID" column="IMPORT_ID"/>
+        <property name="itemType" column="ITEM_TYPE"/>
+        <property name="colNum" column="COL_NUM"/>
+        <property name="postStart" column="POST_START"/>
+        <property name="postEnd" column="POST_END"/>
+        <property name="outFlag" column="OUT_FLAG"/>
+        <property name="enterFlag" column="ENTER_FLAG"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttenceLogBO" table="A808">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(100)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="personId" column="ID"/>
+        <property name="record" column="A808000"/>
+        <property name="cardDate" column="A808700"/>
+        <property name="cardTime" column="A808701"/>
+        <property name="machineName" column="A808702"/>
+        <property name="cardNO" column="A808703"/>
+        <property name="registerCard" column="A808704"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttenceDayLogBO" table="A809">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(100)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="personId" column="ID"/>
+        <property name="record" column="A809000"/>
+        <property name="attenceDate" column="A809700"/>
+        <property name="shouldTime" column="A809701"/>
+        <property name="realityTime" column="A809702"/>
+        <property name="attenceRate" column="A809703"/>
+        <property name="lateTime" column="A809704"/>
+        <property name="earlyTime" column="A809705"/>
+        <property name="awayTime" column="A809706"/>
+        <property name="leaveReasons" column="A809707"/>
+        <property name="leaveSick" column="A809708"/>
+        <property name="leaveMaternity" column="A809709"/>
+        <property name="leaveWedding" column="A809710"/>
+        <property name="leaveHome" column="A809711"/>
+        <property name="leaveYear" column="A809712"/>
+        <property name="leaveIndustrialInjury" column="A809713"/>
+        <property name="leaveArrangingFuneral" column="A809714"/>
+        <property name="evcctionValue" column="A809715"/>
+        <property name="outWorkValue" column="A809716"/>
+        <property name="publicHolidayValue" column="A809717"/>
+        <property name="timeOffValue" column="A809718"/>
+        <property name="workAddValue" column="A809719"/>
+        <property name="weekAddValue" column="A809720"/>
+        <property name="feastAddValue" column="A809721"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttenceDayMonthBO"
+           table="A810">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(100)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="personId" column="ID"/>
+        <property name="record" column="A810000"/>
+        <property name="attenceDate" column="A810700"/>
+        <property name="shouldTime" column="A810701"/>
+        <property name="realityTime" column="A810702"/>
+        <property name="attenceRate" column="A810703"/>
+        <property name="lateTime" column="A810704"/>
+        <property name="earlyTime" column="A810705"/>
+        <property name="awayTime" column="A810706"/>
+        <property name="leaveReasons" column="A810707"/>
+        <property name="leaveSick" column="A810708"/>
+        <property name="leaveMaternity" column="A810709"/>
+        <property name="leaveWedding" column="A810710"/>
+        <property name="leaveHome" column="A810711"/>
+        <property name="leaveYear" column="A810712"/>
+        <property name="leaveIndustrialInjury" column="A810713"/>
+        <property name="leaveArrangingFuneral" column="A810714"/>
+        <property name="evcctionValue" column="A810715"/>
+        <property name="outWorkValue" column="A810716"/>
+        <property name="publicHolidayValue" column="A810717"/>
+        <property name="timeOffValue" column="A810718"/>
+        <property name="workAddValue" column="A810719"/>
+        <property name="weekAddValue" column="A810720"/>
+        <property name="feastAddValue" column="A810721"/>
+        <property name="beginShouldTime" column="A810791"/>
+        <property name="endShouldTime" column="A810792"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttYearCollectBO" table="A811">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(100)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="personId" column="ID"/>
+        <property name="record" column="A811000"/>
+        <property name="attenceDate" column="A811700"/>
+        <property name="shouldTime" column="A811701"/>
+        <property name="realityTime" column="A811702"/>
+        <property name="attenceRate" column="A811703"/>
+        <property name="lateTime" column="A811704"/>
+        <property name="earlyTime" column="A811705"/>
+        <property name="awayTime" column="A811706"/>
+        <property name="leaveReasons" column="A811707"/>
+        <property name="leaveSick" column="A811708"/>
+        <property name="leaveMaternity" column="A811709"/>
+        <property name="leaveWedding" column="A811710"/>
+        <property name="leaveHome" column="A811711"/>
+        <property name="leaveYear" column="A811712"/>
+        <property name="leaveIndustrialInjury" column="A811713"/>
+        <property name="leaveArrangingFuneral" column="A811714"/>
+        <property name="evcctionValue" column="A811715"/>
+        <property name="outWorkValue" column="A811716"/>
+        <property name="publicHolidayValue" column="A811717"/>
+        <property name="timeOffValue" column="A811718"/>
+        <property name="workAddValue" column="A811719"/>
+        <property name="weekAddValue" column="A811720"/>
+        <property name="feastAddValue" column="A811721"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttCaclInfoBO" table="ATT_CACL_INFO">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="duraId" column="DURA_ID"/>
+        <property name="attDate" column="ATT_DATE"/>
+        <property name="caclPerson" column="CACL_PERSON"/>
+        <property name="caclTime" column="CACL_TIME"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttFurloughRecBO" table="ATT_FurloughRec">
+        <id name="furloughNO" type="string" unsaved-value="null">
+            <column name="FurloughNo" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="applyDate" column="APPLY_DATE"/>
+        <property name="beginTime" column="BEGIN_TIME"/>
+        <property name="endTime" column="END_TIME"/>
+        <property name="flID" column="FL_ID"/>
+        <property name="reason" column="REASON"/>
+
+        <property name="deptAuditResult" column="DEPT_AUDIT_RESULT"/>
+        <property name="deptAuditOper" column="DEPT_AUDIT_OPER"/>
+        <property name="deptAuditDate" column="DEPT_AUDIT_DATE"/>
+        <property name="deptAuditCause" column="DEPT_AUDIT_CAUSE"/>
+
+        <property name="leaderAuditResult" column="LEADER_AUDIT_RESULT"/>
+        <property name="leaderAuditOper" column="LEADER_AUDIT_OPER"/>
+        <property name="leaderAuditDate" column="LEADER_AUDIT_DATE"/>
+        <property name="leaderAuditCause" column="LEADER_AUDIT_CAUSE"/>
+
+        <property name="hrAuditResult" column="HR_AUDIT_RESULT"/>
+        <property name="hrAuditOper" column="HR_AUDIT_OPER"/>
+        <property name="hrAuditDate" column="HR_AUDIT_DATE"/>
+        <property name="hrAuditCause" column="HR_AUDIT_CAUSE"/>
+
+        <!-- 新增 -->
+        <property name="zjAuditResult" column="ZJ_AUDIT_RESULT"/>
+        <property name="zjAuditOper" column="ZJ_AUDIT_OPER"/>
+        <property name="zjAuditDate" column="ZJ_AUDIT_DATE"/>
+        <property name="zjAuditCause" column="ZJ_AUDIT_CAUSE"/>
+
+        <property name="zjlAuditResult" column="ZJL_AUDIT_RESULT"/>
+        <property name="zjlAuditOper" column="ZJL_AUDIT_OPER"/>
+        <property name="zjlAuditDate" column="ZJL_AUDIT_DATE"/>
+        <property name="zjlAuditCause" column="ZJL_AUDIT_CAUSE"/>
+
+        <!-- *************** -->
+
+        <property name="lastDate" column="LAST_DATE"/>
+        <property name="statusValue" column="STATUS_VALUE"/>
+        <property name="superFurloughNo" column="SUPER_FURLOUGHNO"/>
+        <property name="superFlId" column="SUPER_FL_ID"/>
+        <property name="flIdProcess" column="FL_ID_PROCESS"/>
+        <property name="flIdStatus" column="FL_ID_STATUS"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttFurloughRecCollectBO"
+           table="ATT_FurloughRec_Collect">
+        <id name="furloughCollectNO" type="string" unsaved-value="null">
+            <column name="FurloughCollectNo" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="furloughNO" column="FurloughNo"/>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="caclDate" column="CACL_DATE"/>
+        <property name="beginTime" column="BEGIN_TIME"/>
+        <property name="endTime" column="END_TIME"/>
+        <property name="flID" column="FL_ID"/>
+        <property name="statusValue" column="STATUS_VALUE"/>
+        <property name="superFlId" column="SUPER_FL_ID"/>
+        <property name="flIdProcess" column="FL_ID_PROCESS"/>
+        <property name="flIdStatus" column="FL_ID_STATUS"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttfurloughBO" table="ATT_furlough">
+        <id name="flID" type="string" unsaved-value="null">
+            <column name="FL_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="flName" column="FL_NAME"/>
+        <property name="flSecondDayfield" column="FL_SECOND_DAYFIELD"/>
+        <property name="flDayfield" column="FL_DAYFIELD"/>
+        <property name="flMonthfield" column="FL_MONTHFIELD"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttEvcctionRecBO" table="ATT_EvcctionRec">
+        <id name="evcctionNO" type="string" unsaved-value="null">
+            <column name="EvcctionNo" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="applyDate" column="APPLY_DATE"/>
+        <property name="beginTime" column="BEGIN_TIME"/>
+        <property name="endTime" column="END_TIME"/>
+        <property name="reason" column="REASON"/>
+        <property name="dest" column="DEST"/>
+        <property name="deptAuditResult" column="DEPT_AUDIT_RESULT"/>
+        <property name="deptAuditOper" column="DEPT_AUDIT_OPER"/>
+        <property name="deptAuditDate" column="DEPT_AUDIT_DATE"/>
+        <property name="leaderAuditResult" column="LEADER_AUDIT_RESULT"/>
+        <property name="leaderAuditOper" column="LEADER_AUDIT_OPER"/>
+        <property name="leaderAuditDate" column="LEADER_AUDIT_DATE"/>
+        <property name="leaderAuditCause" column="LEADER_AUDIT_CAUSE"/>
+        <property name="deptAuditCause" column="DEPT_AUDIT_CAUSE"/>
+        <property name="hrAuditResult" column="HR_AUDIT_RESULT"/>
+        <property name="hrAuditOper" column="HR_AUDIT_OPER"/>
+        <property name="hrAuditDate" column="HR_AUDIT_DATE"/>
+        <property name="hrAuditCause" column="HR_AUDIT_CAUSE"/>
+        <property name="hileaderAuditResult" column="HILEADER_AUDIT_RESULT"/>
+        <property name="hileaderAuditOper" column="HILEADER_AUDIT_OPER"/>
+        <property name="hileaderAuditDate" column="HILEADER_AUDIT_DATE"/>
+        <property name="hileaderAuditCause" column="HILEADER_AUDIT_CAUSE"/>
+        <property name="manAuditResult" column="MAN_AUDIT_RESULT"/>
+        <property name="manAuditOper" column="MAN_AUDIT_OPER"/>
+        <property name="manAuditDate" column="MAN_AUDIT_DATE"/>
+        <property name="manAuditCause" column="MAN_AUDIT_CAUSE"/>
+        <property name="lastDate" column="LAST_DATE"/>
+        <property name="statusValue" column="STATUS_VALUE"/>
+        <property name="superFurloughNo" column="SUPER_FURLOUGHNO"/>
+        <property name="superFlId" column="SUPER_FL_ID"/>
+        <property name="personGroupID" column="PERSON_GROUP_ID"/>
+        <property name="evcctionType" column="EvcctionType"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttEvcctionRecCollectBO"
+           table="ATT_EvcctionRec_Collect">
+        <id name="evcctionCollectNo" type="string" unsaved-value="null">
+            <column name="EvcctionCollectNo" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="evcctionNo" column="EvcctionNo"/>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="caclDate" column="CACL_DATE"/>
+        <property name="beginTime" column="BEGIN_TIME"/>
+        <property name="endTime" column="END_TIME"/>
+        <property name="flID" column="FL_ID"/>
+        <property name="statusValue" column="STATUS_VALUE"/>
+        <property name="superFlId" column="SUPER_FL_ID"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttWorkCalendarBO"
+           table="ATT_WORK_CALENDAR">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="date" column="WORK_DATE"/>
+        <property name="seq" column="SEQ"/>
+        <property name="activity" column="ACTIVITY"/>
+        <property name="personID" column="PERSON_ID"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttChangeWorkBO" table="ATT_ChangeWork">
+        <id name="changeID" type="string" unsaved-value="null">
+            <column name="Change_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="applyDate" column="WORK_DATE"/>
+        <property name="oldClass" column="OLD_CLASS"/>
+        <property name="newClass" column="NEW_CLASS"/>
+        <property name="deptAuditResult" column="DEPT_AUDIT_RESULT"/>
+        <property name="deptAuditOper" column="DEPT_AUDIT_OPER"/>
+        <property name="deptAuditDate" column="DEPT_AUDIT_DATE"/>
+        <property name="deptAuditCause" column="DEPT_AUDIT_CAUSE"/>
+        <property name="hrAuditResult" column="HR_AUDIT_RESULT"/>
+        <property name="hrAuditOper" column="HR_AUDIT_OPER"/>
+        <property name="hrAuditDate" column="HR_AUDIT_DATE"/>
+        <property name="hrAuditCause" column="HR_AUDIT_CAUSE"/>
+        <property name="statusValue" column="STATUS_VALUE"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttAnnualRuleBO" table="ATT_ANNUAL_RULE">
+        <id name="ruleID" type="string" unsaved-value="null">
+            <column name="RULE_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="ruleName" column="RULE_NAME"/>
+        <property name="orgID" column="ORG_ID"/>
+        <property name="createOrg" column="CREATE_ORG"/>
+        <property name="createDate" column="CREATE_DATE"/>
+        <property name="description" column="DESCRIPTION"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttAnnualRuleItemBO"
+           table="ATT_ANNUAL_RULE_ITEM">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="ruleID" column="RULE_ID"/>
+        <property name="lowValue" column="LOW_VALUE"/>
+        <property name="highValue" column="HIGH_VALUE"/>
+        <property name="annDay" column="ANN_DAY"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttAnnualRecordBO"
+           table="ATT_ANNUAL_RECORD">
+        <id name="recID" type="string" unsaved-value="null">
+            <column name="REC_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="recodeYear" column="RECODE_YEAR"/>
+        <property name="ruleID" column="RULE_ID"/>
+        <property name="yearBegin" column="YEAR_BEGIN"/>
+        <property name="yearEnd" column="YEAR_END"/>
+        <property name="orgID" column="ORG_ID"/>
+        <property name="statusValue" column="STATUS"/>
+        <property name="lastCaclDate" column="LAST_CACL_DATE"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttAnnualItemBO" table="ATT_ANNUAL_ITEM">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="recID" column="REC_ID"/>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="annDay" column="ANN_DAY"/>
+        <property name="useDay" column="USE_DAY"/>
+        <property name="avaDay" column="AVA_DAY"/>
+        <property name="lengthService" column="LENGTH_SERVICE"/>
+        <property name="enterDate" column="ENTER_DATE"/>
+        <property name="workDate" column="WOEK_DATE"/>
+        <property name="calcAnnDay" column="CALC_ANN_DAY"/>
+        <property name="criticalDate" column="CRITICAL_DATE"/>
+        <property name="criticalAnnDay" column="CRITICAL_ANN_DAY"/>
+        <property name="calcDate" column="CALC_DATE"/>
+        <property name="criticalAvaDay" column="CRITICAL_AVA_DAY"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttAnnualDetailBO"
+           table="ATT_ANNUAL_DETAIL">
+        <id name="detailID" type="string" unsaved-value="null">
+            <column name="DETAIL_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="itemID" column="ITEM_ID"/>
+        <property name="holidayBegin" column="HOLIDAY_BEGIN"/>
+        <property name="holidayEnd" column="HOLIDAY_END"/>
+        <property name="daySpan" column="DAY_SPAN"/>
+        <property name="furloughNo" column="FurloughNo"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttImportLogBO" table="ATT_IMPORT_LOG">
+        <id name="logID" type="string" unsaved-value="null">
+            <column name="LOG_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="machineID" column="MACHINE_ID"/>
+        <property name="createDate" column="CREATE_DATE"/>
+        <property name="minValue" column="MIN_VALUE"/>
+        <property name="maxValue" column="MAX_VALUE"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttCaclRuleBO" table="ATT_CACL_RULE">
+        <id name="caclRuleID" type="string" unsaved-value="null">
+            <column name="CACL_RULE_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="orgID" column="ORG_ID"/>
+        <property name="caclLater" column="CACL_LATER"/>
+        <property name="caclEarly" column="CACL_EARLY"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttenceCurrLogBO"
+           table="A807">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(100)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="personId" column="ID"/>
+        <property name="record" column="A807000"/>
+        <property name="secondDay" column="A807001"/>
+        <property name="attenceDate" column="A807700"/>
+        <property name="shouldTime" column="A807701"/>
+        <property name="realityTime" column="A807702"/>
+        <property name="attenceRate" column="A807703"/>
+        <property name="lateTime" column="A807704"/>
+        <property name="earlyTime" column="A807705"/>
+        <property name="awayTime" column="A807706"/>
+        <property name="leaveReasons" column="A807707"/>
+        <property name="leaveSick" column="A807708"/>
+        <property name="leaveMaternity" column="A807709"/>
+        <property name="leaveWedding" column="A807710"/>
+        <property name="leaveHome" column="A807711"/>
+        <property name="leaveYear" column="A807712"/>
+        <property name="leaveIndustrialInjury" column="A807713"/>
+        <property name="leaveArrangingFuneral" column="A807714"/>
+        <property name="evcctionValue" column="A807715"/>
+        <property name="outWorkValue" column="A807716"/>
+        <property name="publicHolidayValue" column="A807717"/>
+        <property name="timeOffValue" column="A807718"/>
+        <property name="workAddValue" column="A807719"/>
+        <property name="weekAddValue" column="A807720"/>
+        <property name="feastAddValue" column="A807721"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttItemSetDetailBO"
+           table="ATT_ITEM_SET_DETAIL">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="itemCode" column="ITEM_CODE"/>
+        <property name="createOrg" column="CREATE_ORG"/>
+        <property name="flagChar" column="FLAG_CHAR"/>
+        <property name="unit" column="UNIT"/>
+        <property name="dayField" column="DAY_FIELD"/>
+        <property name="monthField" column="MONTH_FIELD"/>
+        <property name="yearField" column="YEAR_FIELD"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttOverTimeRecBO" table="ATT_OVERTIME_REC">
+        <id name="overTimeNO" type="string" unsaved-value="null">
+            <column name="OVER_TIME_NO" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="applyDate" column="APPLY_DATE"/>
+        <property name="beginTime" column="BEGIN_TIME"/>
+        <property name="endTime" column="END_TIME"/>
+        <property name="reason" column="REASON"/>
+        <property name="deptAuditResult" column="DEPT_AUDIT_RESULT"/>
+        <property name="deptAuditOper" column="DEPT_AUDIT_OPER"/>
+        <property name="deptAuditDate" column="DEPT_AUDIT_DATE"/>
+        <property name="deptAuditCause" column="DEPT_AUDIT_CAUSE"/>
+        <property name="leaderAuditResult" column="LEADER_AUDIT_RESULT"/>
+        <property name="leaderAuditOper" column="LEADER_AUDIT_OPER"/>
+        <property name="leaderAuditDate" column="LEADER_AUDIT_DATE"/>
+        <property name="leaderAuditCause" column="LEADER_AUDIT_CAUSE"/>
+        <property name="hrAuditResult" column="HR_AUDIT_RESULT"/>
+        <property name="hrAuditOper" column="HR_AUDIT_OPER"/>
+        <property name="hrAuditDate" column="HR_AUDIT_DATE"/>
+        <property name="hrAuditCause" column="HR_AUDIT_CAUSE"/>
+        <property name="hileaderAuditResult" column="HILEADER_AUDIT_RESULT"/>
+        <property name="hileaderAuditOper" column="HILEADER_AUDIT_OPER"/>
+        <property name="hileaderAuditDate" column="HILEADER_AUDIT_DATE"/>
+        <property name="hileaderAuditCause" column="HILEADER_AUDIT_CAUSE"/>
+        <property name="manAuditResult" column="MAN_AUDIT_RESULT"/>
+        <property name="manAuditOper" column="MAN_AUDIT_OPER"/>
+        <property name="manAuditDate" column="MAN_AUDIT_DATE"/>
+        <property name="manAuditCause" column="MAN_AUDIT_CAUSE"/>
+        <property name="lastDate" column="LAST_DATE"/>
+        <property name="statusValue" column="STATUS_VALUE"/>
+        <property name="typeStatus" column="TYPE_STATUS"/>
+        <property name="superFurloughNo" column="SUPER_FURLOUGHNO"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttOverTimeLogBO" table="ATT_OVERTIME_LOG">
+        <id name="overTimeLogNO" type="string" unsaved-value="null">
+            <column name="OVER_TIME_LOG_NO" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="applyDate" column="APPLY_DATE"/>
+        <property name="beginTime" column="BEGIN_TIME"/>
+        <property name="endTime" column="END_TIME"/>
+        <property name="lastDate" column="LAST_DATE"/>
+        <property name="process" column="PROCESS"/>
+        <property name="typeStatus" column="TYPE_STATUS"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttExecludeRuleBO"
+           table="ATT_EXECLUDE_RULE">
+        <id name="ruleId" type="string" unsaved-value="null">
+            <column name="RULE_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="ruleName" column="RULE_NAME"/>
+        <property name="orgId" column="ORG_ID"/>
+        <property name="createOrg" column="CREATE_ORG"/>
+        <property name="createDate" column="CREATE_DATE"/>
+        <property name="description" column="DESCRIPTION"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttExecludeRuleItemBO"
+           table="ATT_EXECLUDE_RULE_ITEM">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="ruleId" column="RULE_ID"/>
+        <property name="contentDes" column="CONTENT_DES"/>
+        <property name="contentSql" column="CONTENT_SQL"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttAnnualExcludeBO"
+           table="ATT_ANNUAL_EXCLUDE">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="recId" column="REC_ID"/>
+        <property name="personId" column="PERSON_ID"/>
+        <property name="mode" column="MODE_VALUE"/>
+        <property name="cause" column="CAUSE"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttAnnualDetailAuditBO"
+           table="ATT_ANNUAL_DETAIL_AUDIT">
+        <id name="detailId" type="string" unsaved-value="null">
+            <column name="DETAIL_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="itemId" column="ITEM_ID"/>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="holidayBegin" column="HOLIDAY_BEGIN"/>
+        <property name="holidayEnd" column="HOLIDAY_END"/>
+        <property name="daySpan" column="DAY_SPAN"/>
+        <property name="deptAuditResult" column="DEPT_AUDIT_RESULT"/>
+        <property name="deptAuditOper" column="DEPT_AUDIT_OPER"/>
+        <property name="deptAuditDate" column="DEPT_AUDIT_DATE"/>
+        <property name="leaderAuditResult" column="LEADER_AUDIT_RESULT"/>
+        <property name="leaderAuditOper" column="LEADER_AUDIT_OPER"/>
+        <property name="leaderAuditDate" column="LEADER_AUDIT_DATE"/>
+        <property name="leaderAuditCause" column="LEADER_AUDIT_CAUSE"/>
+        <property name="deptAuditCause" column="DEPT_AUDIT_CAUSE"/>
+        <property name="hrAuditResult" column="HR_AUDIT_RESULT"/>
+        <property name="hrAuditOper" column="HR_AUDIT_OPER"/>
+        <property name="hrAuditDate" column="HR_AUDIT_DATE"/>
+        <property name="hrAuditCause" column="HR_AUDIT_CAUSE"/>
+        <property name="hileaderAuditResult" column="HILEADER_AUDIT_RESULT"/>
+        <property name="hileaderAuditOper" column="HILEADER_AUDIT_OPER"/>
+        <property name="hileaderAuditDate" column="HILEADER_AUDIT_DATE"/>
+        <property name="hileaderAuditCause" column="HILEADER_AUDIT_CAUSE"/>
+        <property name="manAuditResult" column="MAN_AUDIT_RESULT"/>
+        <property name="manAuditOper" column="MAN_AUDIT_OPER"/>
+        <property name="manAuditDate" column="MAN_AUDIT_DATE"/>
+        <property name="manAuditCause" column="MAN_AUDIT_CAUSE"/>
+        <property name="statusValue" column="STATUS_VALUE"/>
+        <property name="furloughno" column="FurloughNo"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttenceStandBO" table="B737">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orguid" column="ORGUID"/>
+        <property name="record" column="B737000"/>
+        <property name="attenceDate" column="B737700"/>
+        <property name="standWork" column="B737701"/>
+        <property name="personNumber" column="B737702"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttenceWaterBO" table="B738">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orguid" column="ORGUID"/>
+        <property name="record" column="B738000"/>
+        <property name="attenceDate" column="B738700"/>
+        <property name="forecastWater" column="B738701"/>
+        <property name="realityWater" column="B738702"/>
+        <property name="monthVolume" column="B738703"/>
+        <property name="monthProduce" column="B738704"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttenceWeekWaterBO" table="B739">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orguid" column="ORGUID"/>
+        <property name="record" column="B739000"/>
+        <property name="attenceDate" column="B739700"/>
+        <property name="attenceWeekDate" column="B739701"/>
+        <property name="forecastWater" column="B739702"/>
+        <property name="realityWater" column="B739703"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttPersonArrangeBO"
+           table="ATT_PERSON_ARRANGE">
+        <id name="arrangeId" type="string" unsaved-value="null">
+            <column name="ARRANGE_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="orgId" column="ORG_ID"/>
+        <property name="duraYear" column="DURA_YEAR"/>
+        <property name="duraMonth" column="DURA_MONTH"/>
+        <property name="duraBegin" column="DURA_BEGIN"/>
+        <property name="duraEnd" column="DURA_END"/>
+        <property name="createOper" column="CREATE_OPER"/>
+        <property name="createDate" column="CREATE_DATE"/>
+        <property name="status" column="STATUS"/>
+        <property name="groupId" column="GROUP_ID"/>
+        <property name="linkClass" column="LINK_CLASS"/>
+        <property name="restDay" column="REST_DAY"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttPersonArrangeItemBO"
+           table="ATT_PERSON_ARRANGE_ITEM">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="arrangeId" column="ARRANGE_ID"/>
+        <property name="personId" column="PERSON_ID"/>
+        <property name="createDay" column="CREATE_DAY"/>
+        <property name="linkClass" column="LINK_CLASS"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttExistRestBO" table="A812">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(100)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="personId" column="ID"/>
+        <property name="record" column="A812000"/>
+        <property name="attenceDay" column="A812700"/>
+        <property name="beginMonthValue" column="A812701"/>
+        <property name="monthAdd" column="A812702"/>
+        <property name="monthRemove" column="A812703"/>
+        <property name="endMonthValue" column="A812704"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttOutWorkBO" table="ATT_OUTWORK">
+        <id name="outWorkNo" type="string" unsaved-value="null">
+            <column name="OutWorkNo" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="applyDate" column="APPLY_DATE"/>
+        <property name="beginTime" column="BEGIN_TIME"/>
+        <property name="endTime" column="END_TIME"/>
+        <property name="reason" column="REASON"/>
+        <property name="dest" column="DEST"/>
+        <property name="deptAuditResult" column="DEPT_AUDIT_RESULT"/>
+        <property name="deptAuditOper" column="DEPT_AUDIT_OPER"/>
+        <property name="deptAuditDate" column="DEPT_AUDIT_DATE"/>
+        <property name="leaderAuditResult" column="LEADER_AUDIT_RESULT"/>
+        <property name="leaderAuditOper" column="LEADER_AUDIT_OPER"/>
+        <property name="leaderAuditDate" column="LEADER_AUDIT_DATE"/>
+        <property name="leaderAuditCause" column="LEADER_AUDIT_CAUSE"/>
+        <property name="deptAuditCause" column="DEPT_AUDIT_CAUSE"/>
+        <property name="hrAuditResult" column="HR_AUDIT_RESULT"/>
+        <property name="hrAuditOper" column="HR_AUDIT_OPER"/>
+        <property name="hrAuditDate" column="HR_AUDIT_DATE"/>
+        <property name="hrAuditCause" column="HR_AUDIT_CAUSE"/>
+        <property name="hileaderAuditResult" column="HILEADER_AUDIT_RESULT"/>
+        <property name="hileaderAuditOper" column="HILEADER_AUDIT_OPER"/>
+        <property name="hileaderAuditDate" column="HILEADER_AUDIT_DATE"/>
+        <property name="hileaderAuditCause" column="HILEADER_AUDIT_CAUSE"/>
+        <property name="manAuditResult" column="MAN_AUDIT_RESULT"/>
+        <property name="manAuditOper" column="MAN_AUDIT_OPER"/>
+        <property name="manAuditDate" column="MAN_AUDIT_DATE"/>
+        <property name="manAuditCause" column="MAN_AUDIT_CAUSE"/>
+        <property name="lastDate" column="LAST_DATE"/>
+        <property name="statusValue" column="STATUS_VALUE"/>
+        <property name="superFurloughNo" column="SUPER_FURLOUGHNO"/>
+        <property name="superFlId" column="SUPER_FL_ID"/>
+        <property name="personGroupID" column="PERSON_GROUP_ID"/>
+        <property name="outWorkType" column="OutWorkType"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttOutWorkCollectBO"
+           table="ATT_OUTWORK_Collect">
+        <id name="outWorkCollectNo" type="string" unsaved-value="null">
+            <column name="OutWorkCollectNo" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="outWorkNo" column="OutWorkNo"/>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="caclDate" column="CACL_DATE"/>
+        <property name="beginTime" column="BEGIN_TIME"/>
+        <property name="endTime" column="END_TIME"/>
+        <property name="flID" column="FL_ID"/>
+        <property name="statusValue" column="STATUS_VALUE"/>
+        <property name="superFlId" column="SUPER_FL_ID"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttTimeOffRecBO" table="ATT_TIME_OFF_REC">
+        <id name="timeOffRecNO" type="string" unsaved-value="null">
+            <column name="TIME_OFF_REC_NO" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="overTimeNO" column="OVER_TIME_NO"/>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="applyDate" column="APPLY_DATE"/>
+        <property name="beginTime" column="BEGIN_TIME"/>
+        <property name="endTime" column="END_TIME"/>
+        <property name="lastDate" column="LAST_DATE"/>
+        <property name="statusValue" column="STATUS_VALUE"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttWorkDateBO" table="ATT_WORK_DATE">
+        <id name="id" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="feastId" column="Feast_ID"/>
+        <property name="workDate" column="WORK_DATE"/>
+        <property name="orgId" column="ORG_ID"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttMimicReportRecBO" table="ATT_MimicReportRec">
+        <id name="mimicReportNO" type="string" unsaved-value="null">
+            <column name="MimicReportNO" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="mrYear" column="MR_YEAR"/>
+        <property name="mrMonth" column="MR_MONTH"/>
+        <property name="applyDate" column="APPLY_DATE"/>
+        <property name="dest" column="DEST"/>
+        <property name="lastDate" column="LAST_DATE"/>
+        <property name="deptAuditResult" column="DEPT_AUDIT_RESULT"/>
+        <property name="deptAuditOper" column="DEPT_AUDIT_OPER"/>
+        <property name="deptAuditDate" column="DEPT_AUDIT_DATE"/>
+        <property name="deptAuditCause" column="DEPT_AUDIT_CAUSE"/>
+        <property name="leaderAuditResult" column="LEADER_AUDIT_RESULT"/>
+        <property name="leaderAuditOper" column="LEADER_AUDIT_OPER"/>
+        <property name="leaderAuditDate" column="LEADER_AUDIT_DATE"/>
+        <property name="leaderAuditCause" column="LEADER_AUDIT_CAUSE"/>
+        <property name="hrAuditResult" column="HR_AUDIT_RESULT"/>
+        <property name="hrAuditOper" column="HR_AUDIT_OPER"/>
+        <property name="hrAuditDate" column="HR_AUDIT_DATE"/>
+        <property name="hrAuditCause" column="HR_AUDIT_CAUSE"/>
+        <property name="hrDeptAuditResult" column="HR_DEPT_AUDIT_RESULT"/>
+        <property name="hrDeptAuditOper" column="HR_DEPT_AUDIT_OPER"/>
+        <property name="hrDeptAuditDate" column="HR_DEPT_AUDIT_DATE"/>
+        <property name="hrDeptAuditCause" column="HR_DEPT_AUDIT_CAUSE"/>
+        <property name="hrLeaderAuditResult" column="HR_LEADER_AUDIT_RESULT"/>
+        <property name="hrLeaderAuditOper" column="HR_LEADER_AUDIT_OPER"/>
+        <property name="hrLeaderAuditDate" column="HR_LEADER_AUDIT_DATE"/>
+        <property name="hrLeaderAuditCause" column="HR_LEADER_AUDIT_CAUSE"/>
+        <property name="manAuditResult" column="MAN_AUDIT_RESULT"/>
+        <property name="manAuditOper" column="MAN_AUDIT_OPER"/>
+        <property name="manAuditDate" column="MAN_AUDIT_DATE"/>
+        <property name="manAuditCause" column="MAN_AUDIT_CAUSE"/>
+        <property name="statusValue" column="STATUS_VALUE"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttManagerArrangeBO"
+           table="ATT_MANAGER_ARRANGE">
+        <id name="amaId" type="string" unsaved-value="null">
+            <column name="AMA_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="orgId" column="ORG_ID"/>
+        <property name="duraYearMonth" column="DURA_YEAR_MONTH"/>
+        <property name="createOper" column="CREATE_OPER"/>
+        <property name="createDate" column="CREATE_DATE"/>
+        <property name="status" column="STATUS"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttManagerArgumentBO"
+           table="ATT_MANAGER_ARGUMENT">
+        <id name="amaId" type="string" unsaved-value="null">
+            <column name="AMA_ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="orgId" column="ORG_ID"/>
+        <property name="formula" column="FORMULA"/>
+        <property name="restDay" column="REST_DAY"/>
+        <property name="linkClass" column="LINK_CLASS"/>
+        <property name="lunchRate" column="LUNCH_RATE"/>
+        <property name="superRate" column="SUPER_RATE"/>
+        <property name="waiter" column="WAITER"/>
+        <property name="squadPerson" column="SQUAD_PERSON"/>
+        <property name="produceRate" column="PRODUCE_RATE"/>
+        <property name="produceRoad" column="PRODUCE_ROAD"/>
+        <property name="cleanNumber" column="CLEAN_NUMBER"/>
+        <property name="bigTableWare" column="BIG_TABLEWARE"/>
+        <property name="smallTableWare" column="SMALL_TABLEWARE"/>
+        <property name="bonePlate" column="BONE_PLATE"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttRestStoreBO" table="att_rest_store">
+        <id name="storeId" type="string" unsaved-value="null">
+            <column name="store_id" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="recordType" column="record_type"/>
+        <property name="itemId" column="item_id"/>
+        <property name="days" column="days"/>
+        <property name="status" column="status"/>
+        <property name="restTime" column="rest_time"/>
+        <property name="useDays" column="use_days"/>
+        <property name="levDays" column="lev_days"/>
+        <property name="personId" column="person_id"/>
+        <property name="daysDesc" column="days_desc"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttRestChangeBO" table="att_rest_change">
+        <id name="chgId" type="string" unsaved-value="null">
+            <column name="chg_id" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="storeId" column="store_id"/>
+        <property name="useDays" column="use_days"/>
+        <property name="beginTime" column="begin_time"/>
+        <property name="endTime" column="end_time"/>
+        <property name="personId" column="person_id"/>
+    </class>
+    
+    
+</hibernate-mapping>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.hr319wg.rpt.pojo.bo.RptDataBO" table="rpt_data">
+		<id name="itemID" type="string" unsaved-value="null">
+			<column name="ITEM_ID" sql-type="varchar(32)" />
+			<generator class="assigned" />
+		</id>
+		<property name="rptcode" column="RPTCODE" />
+		<property name="orguid" column="ORGUID" />
+		<property name="staticdate" column="STATISTICDATE" />
+		<property name="innerCheck" column="INNERCHECK" />
+		<property name="outterCheck" column="OUTERCHECK" />
+	</class>
+	<class name="com.hr319wg.rpt.pojo.bo.RptClassBO" table="rpt_info">
+		<id name="rptcode" type="string" unsaved-value="null">
+			<column name="RPTCODE" sql-type="NUMBER(5)" />
+		</id>
+		<property name="rptDesc" column="DESCRIPTION" />
+		<property name="type" column="TYPE" />
+		<property name="prptcode" column="PRPTCODE" />
+		<property name="userCode" column="USERCODE" />
+	</class>
+    
+    <class name="com.hr319wg.rpt.pojo.bo.RptDateListBO" table="RPT_PROCESS">
+		<id name="itemID" type="string" unsaved-value="null">
+			<column name="ITEM_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="orguid" column="ORGUID" />
+		<property name="staticdate" column="STATIC_DATE" />
+		<property name="stauts" column="STATUS" />
+		<property name="description" column="Description" />
+		<property name="createID" column="CREATE_ID" />
+		<property name="auditID" column="AUDIT_ID" />
+		<property name="auditResult" column="AUDIT_RESULT" />
+        <property name="rptSet" column="RPT_SET" />
+        <property name="staticWeek" column="static_week" />
+    </class>
+
+	<class name="com.hr319wg.rpt.pojo.vo.RptInfoVO" table="rpt_info">
+		<id name="Rptcode" type="string" unsaved-value="null">
+			<column name="rptcode" sql-type="NUMBER(5)" />
+		</id>
+		<property name="Description" column="Description" />
+		<property name="Rpttype" column="Rpttype" />
+		<property name="Datatype" column="Datatype" />
+	</class>
+
+	<class name="com.hr319wg.rpt.pojo.bo.FlowRptInfoBO" table="RPT_flow">
+		<id name="Title" type="string" unsaved-value="null">
+			<column name="TITLE" sql-type="varchar(100)" />
+		</id>
+		<property name="RptDesc" column="RPTDESCRIPTON " />
+		<property name="Rptcode" column="RPTCODE" />
+		<property name="crDate" column="crDate" />
+	</class>
+
+	<class name="com.hr319wg.rpt.pojo.bo.ArchiveRptInfoBO" table="rpt_statictype">
+		<id name="StaticCode" type="string" unsaved-value="null">
+			<column name="StaticCode" sql-type="NUMBER(5)" />
+		</id>
+		<property name="Rptcode" column="Rptcode" />
+		<property name="Orguid" column="Orguid" />
+		<property name="StaticTypeID" column="StaticTypeID" />
+		<property name="StaticGDDESC" column="StaticGDDESC" />
+		<property name="RptDesc" column="RptDesc" />
+	</class>
+
+
+       <!-- 表套定义 -->
+      <class name="com.hr319wg.rpt.pojo.bo.RptSetBO" table="RPT_SET">
+      		<id name="setId" type="string" unsaved-value="null">
+			<column name="SET_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="setName" column="SET_NAME" />
+		<property name="isUse" column="IS_USE" />
+		<property name="isFlow" column="FLOW_FLAG" />
+        <property name="achivesType" column="achives_type" />
+    </class>
+
+    <class name="com.hr319wg.rpt.pojo.bo.RptSetUserBO" table="RPT_SET_USER">
+      		<id name="itemId" type="string" unsaved-value="null">
+			<column name="ITEM_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="setId" column="SET_ID" />
+		<property name="userId" column="USER_ID" />
+    </class>
+
+     <!-- 表样定义 -->
+	<class name="com.hr319wg.rpt.pojo.bo.RptSetItemBO" table="RPT_SET_ITEM">
+		      		<id name="itemId" type="string" unsaved-value="null">
+			<column name="ITEM_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="setId" column="SET_ID" />
+		<property name="rptCode" column="RPTCODE" />
+	</class>     
+	
+	
+	 
+            <!--    汇总关系定义    -->
+            
+      <class name="com.hr319wg.rpt.pojo.bo.RptGroupBO" table="RPT_GROUP">
+		      		<id name="groupId" type="string" unsaved-value="null">
+			<column name="GROUP_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="groupName" column="GROUP_NAME" />
+		<property name="isUser" column="IS_USER" />
+	</class>      
+                  
+      <class name="com.hr319wg.rpt.pojo.bo.RptGroupItemBO" table="RPT_GROUP_ITEM">
+		      		<id name="itemId" type="string" unsaved-value="null">
+			<column name="ITEM_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="dirId" column="DIR_ID" />
+		<property name="orgId" column="ORGUID" />
+		<property name="seq" column="SEQ" />
+	</class>             
+            
+  <class name="com.hr319wg.rpt.pojo.bo.RptGroupDirBO" table="RPT_GROUP_DIR">
+		      		<id name="dirId" type="string" unsaved-value="null">
+			<column name="DIR_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="groupId" column="GROUP_ID" />
+		<property name="dirName" column="DIR_NAME" />
+		<property name="seq" column="SEQ" />
+		<property name="parentId" column="PARENT_ID" />
+	</class>                      
+            
+            
+            
+            
+            
+</hibernate-mapping>

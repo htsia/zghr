@@ -1,0 +1,192 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+
+    <definition name="/eLearn/classSignMore.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/classSignMore.jsp"/>
+    </definition>
+    <definition name="/eLearn/selfClassSign.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/selfClassSign.jsp"/>
+    </definition>
+
+    <definition name="/eLearn/selectCourse.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/selectCourse.jsp"/>
+    </definition>
+
+    <definition name="/eLearn/ShowCourse.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/ShowCourse.jsp"/>
+    </definition>
+
+    <definition name="/eLearn/doGraderPerson.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/doGraderPerson.jsp"/>
+    </definition>
+
+    <definition name="/eLearn/doGrader.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/doGrader.jsp"/>
+    </definition>
+
+    <definition name="/eLearn/grader.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/grader.jsp"/>
+    </definition>
+
+    <definition name="/eLearn/TestPersonList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/TestPersonList.jsp"/>
+    </definition>
+
+    <definition name="/eLearn/MaterialList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/MaterialList.jsp"/>
+    </definition>
+
+    <definition name="/eLearn/MaterialMore.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/MaterialMore.jsp"/>
+    </definition>
+
+    <definition name="/eLearn/UpFilePop.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/UpFilePop.jsp"/>
+    </definition>
+
+    <definition name="/eLearn/QueryOneBulletin.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/QueryOneBulletin.jsp"/>
+    </definition>
+    <definition name="/eLearn/BulletinMore.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/BulletinMore.jsp"/>
+    </definition>
+    <definition name="/eLearn/BulletinEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/BulletinEdit.jsp"/>
+    </definition>
+    <definition name="/eLearn/BulletinList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/BulletinList.jsp"/>
+    </definition>
+    <definition name="/eLearn/testList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/student/testList.jsp"/>
+    </definition>
+    <definition name="/eLearn/studyList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/student/studyList.jsp"/>
+    </definition>
+    <definition name="/eLearn/studyUnitList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/student/studyUnitList.jsp"/>
+    </definition>
+    <definition name="/eLearn/LMSMain.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/LMSMain.jsp"/>
+    </definition>
+    <definition name="/eLearn/LMSFrame.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/LMSFrame.jsp"/>
+    </definition>
+    <definition name="/eLearn/doTest.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/doTest.jsp"/>
+    </definition>
+    <definition name="/eLearn/CourceWareManListChild.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/CourceWareManListChild.jsp"/>
+    </definition>
+    <definition name="/eLearn/FileEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/FileEdit.jsp"/>
+    </definition>
+    <definition name="/eLearn/DictEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/DictEdit.jsp"/>
+    </definition>
+    <definition name="/eLearn/eLearnIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/eLearnIndex.jsp"/>
+    </definition>
+    <definition name="/eLearn/LearnInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/LearnInfo.jsp"/>
+    </definition>
+    <definition name="/eLearn/coursemanage.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/coursemanage.jsp"/>
+    </definition>
+    <definition name="/eLearn/questionLib.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/questionLib.jsp"/>
+    </definition>
+    <definition name="/eLearn/paperLib.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/paperLib.jsp"/>
+    </definition>
+    <definition name="/eLearn/paperList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/paperList.jsp"/>
+    </definition>
+    <definition name="/eLearn/libDirEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/libDirEdit.jsp"/>
+    </definition>
+    <definition name="/eLearn/paperLibDirEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/paperLibDirEdit.jsp"/>
+    </definition>
+    <definition name="/eLearn/QuestionList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/QuestionList.jsp"/>
+    </definition>
+    <definition name="/eLearn/QuestionEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/QuestionEdit.jsp"/>
+    </definition>
+    <definition name="/eLearn/AnswerList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/AnswerList.jsp"/>
+    </definition>
+    <definition name="/eLearn/AnswerEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/AnswerEdit.jsp"/>
+    </definition>
+    <definition name="/eLearn/paperEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/paperEdit.jsp"/>
+    </definition>
+    <definition name="/eLearn/paperContentLib.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/paperContentLib.jsp"/>
+    </definition>
+    <definition name="/eLearn/paperItemSetEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/paperItemSetEdit.jsp"/>
+    </definition>
+    <definition name="/eLearn/paperItemList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/paperItemList.jsp"/>
+    </definition>
+    <definition name="/eLearn/paperItemEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/paperItemEdit.jsp"/>
+    </definition>
+    <definition name="/eLearn/testSet.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/eLearn/testSet.jsp"/>
+    </definition>
+    <definition name="/eLearn/TestEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/TestEdit.jsp"/>
+    </definition>
+    
+    <definition name="/eLearn/questionSelLib.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/questionSelLib.jsp"/>
+    </definition>
+    <definition name="/eLearn/QuestionSelList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/eLearn/QuestionSelList.jsp"/>
+    </definition>
+</tiles-definitions>

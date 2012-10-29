@@ -1,0 +1,335 @@
+<!DOCTYPE tiles-definitions
+    [
+        <!ELEMENT component-definitions (definition+)>
+        <!ELEMENT tiles-definitions (definition+)>
+        <!ELEMENT definition (put*, putList*)>
+        <!ATTLIST definition
+            name CDATA #REQUIRED
+            pages CDATA #IMPLIED
+            path CDATA #IMPLIED
+            extends CDATA #IMPLIED
+            role CDATA #IMPLIED
+            template CDATA #IMPLIED
+            controllerClass CDATA #IMPLIED
+            controllerUrl CDATA #IMPLIED>
+        <!ELEMENT put (#PCDATA)>
+        <!ATTLIST put
+            name CDATA #REQUIRED
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+        <!ATTLIST putList
+            name CDATA #REQUIRED>
+        <!ELEMENT putListElements (add | item | bean)>
+        <!ELEMENT add (#PCDATA)>
+        <!ATTLIST add
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT bean (#PCDATA)>
+        <!ATTLIST bean
+            classtype CDATA #REQUIRED>
+        <!ELEMENT item (#PCDATA)>
+        <!ATTLIST item
+            value CDATA #REQUIRED
+            link CDATA #REQUIRED
+            classtype CDATA #IMPLIED
+            icon CDATA #IMPLIED
+            tooltip CDATA #IMPLIED>
+    ]>
+
+<tiles-definitions>
+    <definition name="/cont/receiveChange.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/receiveChange.jsp" />
+    </definition>
+    
+    <definition name="/cont/PersonChangeInfo.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/PersonChangeInfo.jsp" />
+    </definition>
+
+    <definition name="/cont/ModiCountDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ModiCountDetail.jsp" />
+    </definition>
+
+    <definition name="/cont/modiRule.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/modiRule.jsp" />
+    </definition>
+
+    <definition name="/cont/modiAddRule.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/modiAddRule.jsp" />
+    </definition>
+
+    <definition name="/cont/modiEndRule.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/modiEndRule.jsp" />
+    </definition>
+
+    <definition name="/cont/modiTerminateRule.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/modiTerminateRule.jsp" />
+    </definition>
+
+    <definition name="/cont/PersonContCount.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/cont/PersonContCount.jsp" />
+    </definition>
+
+    <definition name="/cont/SelectPauseCont.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/SelectPauseCont.jsp" />
+    </definition>
+
+    <definition name="/cont/viewCodeDlg.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/cont/viewCodeDlg.jsp" />
+    </definition>
+
+    <definition name="/cont/listCodeDlg.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/cont/listCodeDlg.jsp" />
+    </definition>
+
+    <definition name="/cont/contSheet.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/cont/contSheet.jsp" />
+    </definition>
+
+    <definition name="/cont/contSheetChild.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/cont/contSheetChild.jsp" />
+    </definition>
+
+    <definition name="/cont/TemplateClassList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/TemplateClassList.jsp" />
+    </definition>
+
+    <definition name="/cont/TemplateClassEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/TemplateClassEdit.jsp" />
+    </definition>
+
+    <definition name="/cont/TemplateList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/TemplateList.jsp" />
+    </definition>
+    <definition name="/cont/TemplateEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/TemplateEdit.jsp" />
+    </definition>
+
+    <definition name="/cont/SignRight.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/SignRight.jsp" />
+    </definition>
+
+    <definition name="/cont/TemplateRight.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/TemplateRight.jsp" />
+    </definition>
+
+    <definition name="/cont/import/PerDataUpload.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/cont/import/PerDataUpload.jsp"/>
+    </definition>
+    <definition name="/cont/import/PerDataUploadList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/cont/import/PerDataUploadList.jsp"/>
+    </definition>
+
+    <definition name="/cont/ApproveRight.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ApproveRight.jsp" />
+    </definition>
+
+    <definition name="/cont/SelectValidDateForNewSign.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/SelectValidDateForNewSign.jsp" />
+    </definition>
+
+    <definition name="/cont/PersonList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/PersonList.jsp" />
+    </definition>
+
+    <definition name="/cont/AdjustPersonList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/AdjustPersonList.jsp" />
+    </definition>
+
+    <definition name="/cont/PersonEndList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/PersonEndList.jsp" />
+    </definition>
+
+    <definition name="/cont/PersonEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/PersonEdit.jsp" />
+    </definition>
+    <definition name="/cont/PersonView.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/PersonView.jsp" />
+    </definition>
+
+    <definition name="/cont/ContNewSignList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContNewSignList.jsp" />
+    </definition>
+    <definition name="/cont/ContNewSignAdd.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContNewSignAdd.jsp" />
+    </definition>
+    <definition name="/cont/ContNewSignEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContNewSignEdit.jsp" />
+    </definition>
+    <definition name="/cont/ContNewSignView.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContNewSignView.jsp" />
+    </definition>
+    <definition name="/cont/ContNewSignEditMainContCode.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContNewSignEditMainContCode.jsp" />
+    </definition>
+    <definition name="/cont/EditMainContCodeDlg.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/EditMainContCodeDlg.jsp" />
+    </definition>
+    <definition name="/cont/PrintIntroLetter.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/PrintIntroLetter.jsp" />
+    </definition>
+    <definition name="/cont/CondCodeUse.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/CondCodeUse.jsp" />
+    </definition>
+    <definition name="/cont/ContApproveList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContApproveList.jsp" />
+    </definition>
+    <definition name="/cont/CondCodeAdd.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/CondCodeAdd.jsp" />
+    </definition>
+    <definition name="/cont/ContApproveListChild.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContApproveListChild.jsp" />
+    </definition>
+    <definition name="/cont/ContCodeInfoList.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/cont/ContCodeInfoList.jsp" />
+    </definition>
+    <definition name="/cont/ContApproveAdd.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContApproveAdd.jsp" />
+    </definition>
+    <definition name="/cont/ContApproveView.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContApproveView.jsp" />
+    </definition>
+    <definition name="/cont/ContApprovePersonView.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContApprovePersonView.jsp" />
+    </definition>
+
+    <definition name="/cont/ContSignList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContSignList.jsp" />
+    </definition>
+    <definition name="/cont/ContSignAdd.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContSignAdd.jsp" />
+    </definition>
+
+    <definition name="/cont/SelectNewPerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/SelectNewPerson.jsp" />
+    </definition>
+
+    <definition name="/cont/SelectAdjustPerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/SelectAdjustPerson.jsp" />
+    </definition>
+
+    <definition name="/cont/SelectNoEndPerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/SelectNoEndPerson.jsp" />
+    </definition>
+
+    <definition name="/cont/SelectEndPerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/SelectEndPerson.jsp" />
+    </definition>
+
+    <definition name="/cont/ContSignEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContSignEdit.jsp" />
+    </definition>
+    <definition name="/cont/PersonStatResult.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/PersonStatResult.jsp" />
+    </definition>
+    <definition name="/cont/ContSignEditMainContCode.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContSignEditMainContCode.jsp" />
+    </definition>
+
+    <definition name="/cont/ContFollowSignList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContFollowSignList.jsp" />
+    </definition>
+    <definition name="/cont/ContFollowSignAdd.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContFollowSignAdd.jsp" />
+    </definition>
+    <definition name="/cont/ContFollowSignEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContFollowSignEdit.jsp" />
+    </definition>
+    <definition name="/cont/ContFollowSignEditMainContCode.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContFollowSignEditMainContCode.jsp" />
+    </definition>
+
+    <definition name="/cont/ContEndSignList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContEndSignList.jsp" />
+    </definition>
+    <definition name="/cont/ContEndSignAdd.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContEndSignAdd.jsp" />
+    </definition>
+    <definition name="/cont/ContEndSignEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContEndSignEdit.jsp" />
+    </definition>
+    <definition name="/cont/ContEndSignEditMainContCode.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContEndSignEditMainContCode.jsp" />
+    </definition>
+
+    <definition name="/cont/ContChangeSignList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContChangeSignList.jsp" />
+    </definition>
+    <definition name="/cont/ContChangeSignAdd.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContChangeSignAdd.jsp" />
+    </definition>
+    <definition name="/cont/ContChangeSignEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContChangeSignEdit.jsp" />
+    </definition>
+    <definition name="/cont/ContChangeSignEditMainContCode.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContChangeSignEditMainContCode.jsp" />
+    </definition>
+
+    <definition name="/cont/ProtSignList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ProtSignList.jsp" />
+    </definition>
+    <definition name="/cont/ProtSignAdd.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ProtSignAdd.jsp" />
+    </definition>
+    <definition name="/cont/ProtSignEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ProtSignEdit.jsp" />
+    </definition>
+    <definition name="/cont/ProtSignEditMainContCode.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ProtSignEditMainContCode.jsp" />
+    </definition>
+
+    <definition name="/cont/ContPauseSignList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContPauseSignList.jsp" />
+    </definition>
+    <definition name="/cont/ContPauseSignAdd.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContPauseSignAdd.jsp" />
+    </definition>
+    <definition name="/cont/ContPauseSignEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContPauseSignEdit.jsp" />
+    </definition>
+    <definition name="/cont/ContPauseSignEditMainContCode.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContPauseSignEditMainContCode.jsp" />
+    </definition>
+
+    <definition name="/cont/ContResumeList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContResumeList.jsp" />
+    </definition>
+    <definition name="/cont/ContResumeAdd.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContResumeAdd.jsp" />
+    </definition>
+    <definition name="/cont/ContResumeEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContResumeEdit.jsp" />
+    </definition>
+    <definition name="/cont/ContResumeSignEditMainContCode.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContResumeSignEditMainContCode.jsp" />
+    </definition>
+
+   <definition name="/cont/ContQueryList.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/cont/ContQueryList.jsp" />
+    </definition>
+    <definition name="/cont/ContQueryListChild.tiles" extends="layout.busitemplateSelf" >
+         <put name="body" value="/pages/cont/ContQueryListChild.jsp" />
+     </definition>
+    <definition name="/cont/ContQueryHistory.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContQueryHistory.jsp" />
+    </definition>
+    <definition name="/cont/ContQueryA710View.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContQueryA710View.jsp" />
+    </definition>
+    <definition name="/cont/ContQueryA712View.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContQueryA712View.jsp" />
+    </definition>
+    <definition name="/cont/ContQueryA715View.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContQueryA715View.jsp" />
+    </definition>
+    <definition name="/cont/ContQueryA720View.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContQueryA720View.jsp" />
+    </definition>
+    <definition name="/cont/ContQueryA708View.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/cont/ContQueryA708View.jsp" />
+    </definition>
+</tiles-definitions>

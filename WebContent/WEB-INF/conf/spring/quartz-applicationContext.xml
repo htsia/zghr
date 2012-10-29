@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!--启动时任务-->
+    <bean id="sysInit" class="com.hr319wg.util.SystemInit">
+        <property name="startQueue" value="false"/>
+    </bean>
+    <bean id="sysTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+        <property name="delay">
+            <value>10000</value>
+        </property>
+        <property name="period">
+            <value>10000</value>
+        </property>
+        <property name="fixedRate">
+            <value>false</value>
+        </property>
+        <property name="timerTask">
+            <ref bean="sysInit"/>
+        </property>
+    </bean>
+    <bean id="timerFactory" class="org.springframework.scheduling.timer.TimerFactoryBean">
+        <property name="scheduledTimerTasks">
+            <list>
+                <ref bean="sysTask"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--
+        时间元素（按照顺序）：
+        秒（0-59）：
+        分（0-59）：
+        小时（0-23）：
+        每月第几天（1-31）：
+        月（1-12或JAN-DEC）：
+        每星期第几天（1-7或SUN-SAT）：
+        年(1970-2099)：
+
+        其中:不用设置的用”?”.
+        (1)每月第几天和每星期第几天是互斥的，两个只能设置1个。如果有好几个时间点，可以使用”,”符号，例如：”0 0 10,12,14 * * ?”表示每天的10时，12时，14时执行Job.
+        (2)对于连续时间可以使用”-”符号。例如：”0 10,12,14 1-15 * ?”表示每月的1到15日10时，12时，14时执行Job.
+        (3)时间格式的年可以不用制定。例如”0 0 10,12,14 ? MON 2006”表示2006年每星期一的10时，12时，14时执行Job.
+    -->
+
+    <!-- 提醒计算-->
+    <bean id="remindJobDetail"  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="sys_RemindResultQueryAPI"/>
+        </property>
+        <property name="targetMethod">
+            <value>queryRemind</value>
+        </property>
+    </bean>
+
+    <bean id="sysRemindTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="remindJobDetail"/>
+        </property>
+        <property name="cronExpression">
+            <value>0 0 2 * * ? *</value>
+        </property>
+    </bean>
+	<!-- 
+    <bean id="serviceJobDetail"  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="sys_RemindResultQueryAPI"/>
+        </property>
+        <property name="targetMethod">
+            <value>refreshServiceData</value>
+        </property>
+    </bean>
+    <bean id="serviceRefreshTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="serviceJobDetail"/>
+        </property>
+        <property name="cronExpression">
+            <value>0 0,15,30,45 * * * ? *</value>
+        </property>
+    </bean>
+	-->
+    <!-- 清楚垃圾-->
+    <bean id="Cleaner"  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="sys_CleanerAPI"/>
+        </property>
+        <property name="targetMethod">
+            <value>doClean</value>
+        </property>
+    </bean>
+    <bean id="cleanTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="Cleaner"/>
+        </property>
+        <property name="cronExpression">
+            <value>0 0 3 * * ? *</value>
+        </property>
+    </bean>
+
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+       <property name="triggers">
+           <list>
+               <ref bean="sysRemindTrigger"/>
+<!--                <ref bean="serviceRefreshTrigger"/> -->
+               <ref bean="cleanTrigger"/>
+           </list>
+       </property>
+   </bean>
+    
+</beans>

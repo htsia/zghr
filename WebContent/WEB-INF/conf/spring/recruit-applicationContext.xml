@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="recruit_operatedao" class="com.hr319wg.recruit.dao.ResumeOperateDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="recruit_outterdao" class="com.hr319wg.recruit.dao.outterRecruitDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+     <bean id="recruit_outterservice" class="com.hr319wg.recruit.service.OutterRecruitService">
+        <property name="outterdao">
+            <ref bean="recruit_outterdao"/>
+        </property>
+
+        <property name="activeAPI">
+            <ref bean="sys_activePageApi"/>
+        </property>
+
+        <property name="operatedao">
+            <ref bean="recruit_operatedao"/>
+        </property>
+        
+		<property name="sysapi">
+            <ref bean="sys_SysAPI"/>
+        </property>
+        <property name="activepageservice">
+            <ref bean="sys_activePageService"/>
+        </property>
+        <property name="userservice">
+            <ref bean="user_userManageService"/>
+        </property>
+        <property name="attachmentservice" ref="common_attachmentService"></property>
+    </bean>
+
+
+    <bean id="recruit_outterucc" class="com.hr319wg.recruit.ucc.impl.OutterRecruitUCC">
+        <property name="outerservice">
+            <ref bean="recruit_outterservice"/>
+        </property>
+        <property name="testservice">
+            <ref bean="eLearn_testservice"/>
+        </property>
+    </bean>
+
+
+    <bean id="recruit_innerdao" class="com.hr319wg.recruit.dao.innerRecruitDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="recruit_innerservice" class="com.hr319wg.recruit.service.InnerRecruitService">
+        <property name="innerdao">
+            <ref bean="recruit_innerdao"/>
+        </property>
+
+        <property name="activeAPI">
+            <ref bean="sys_activePageApi"/>
+        </property>
+
+    </bean>
+    
+    <bean id="recruit_innerucc" class="com.hr319wg.recruit.ucc.impl.InnerRecruitUCC">
+        <property name="innerservice">
+            <ref bean="recruit_innerservice"/>
+        </property>
+    </bean>
+     <!-- 高海星 -->
+    <bean id="recruitmanagerdao" class="com.hr319wg.recruit.dao.RecruitManagerDAO">
+    	<property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="recruitmanagerservice" class="com.hr319wg.recruit.service.RecruitManagerService"> 
+    	<property name="recruitmanagerdao" ref="recruitmanagerdao"></property>
+    	<property name="recuplandao" ref="recu_plandao"/>
+    	<property name="innerrecruitdao" ref="recruit_innerdao"></property>
+		<property name="outterrecruitdao" ref="recruit_outterdao"></property>
+    </bean>
+    <bean id="recruitManagerUcc" class="com.hr319wg.recruit.ucc.impl.RecruitManagerUcc">
+    	<property name="recruitmanagerservice" ref="recruitmanagerservice"></property>
+    </bean>
+    <!-- 芳霞 -->
+    <bean id="recu_need_collectdao" class="com.hr319wg.recruit.dao.recuNeedCollectDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="recu_need_collectservice" class="com.hr319wg.recruit.service.RecuNeedCollectService">
+        <property name="recuneeddao">
+            <ref bean="recu_need_collectdao"/>
+        </property>
+    </bean>
+    <bean id="recu_need_collectucc" class="com.hr319wg.recruit.ucc.impl.RecuNeedCollectUCC">
+        <property name="recuneedservice">
+            <ref bean="recu_need_collectservice"/>
+        </property>
+    </bean>
+    <!--乔磊 -->
+    <bean id="recu_plandao" class="com.hr319wg.recruit.dao.RecuPlanDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    
+    <!-- 业务设置(崔海健) -->
+	<bean id="iv_emaildao" class="com.hr319wg.recruit.dao.InterViewEmailDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="sg_emaildao" class="com.hr319wg.recruit.dao.SignInEmailDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="refuseemaildao" class="com.hr319wg.recruit.dao.RefuseEmailDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="recruit_channelservice" class="com.hr319wg.recruit.service.OperationRecruitService">
+		<property name="ivemaildao">
+			<ref bean="iv_emaildao" />
+		</property>
+		<property name="sgemaildao">
+			<ref bean="sg_emaildao" />
+		</property>
+		<property name="channeldao">
+    		<ref bean="recruit_channeldao"/>
+    	</property>
+    	<property name="materialdao">
+    		<ref bean="recruit_material"/>
+    	</property>
+    	<property name="refuseemaildao">
+    		<ref bean="refuseemaildao"/>
+    	</property>
+	</bean>
+
+	<bean id="recruit_operationrecruitucc" class="com.hr319wg.recruit.ucc.impl.OperationRecruitUCC">
+		<property name="operationservice">
+			<ref bean="recruit_channelservice" />
+		</property>
+	</bean>
+	
+	 <bean id="recruit_channeldao" class="com.hr319wg.recruit.dao.channelRecruitDAO">
+	     <property name="hibernatetemplate">
+	            <ref bean="hibernateTemplate"/>
+	     </property>
+    </bean>
+    <bean id="recruit_material" class="com.hr319wg.recruit.dao.materialRecruitDAO">
+	     <property name="hibernatetemplate">
+	            <ref bean="hibernateTemplate"/>
+	     </property>
+    </bean>
+    <bean id="resumetemplatedao" class="com.hr319wg.recruit.dao.RecuResumeTemplateDAO">
+	     <property name="hibernatetemplate">
+	            <ref bean="hibernateTemplate"/>
+	     </property>
+	     <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+     <bean id="resumetemplateservice" class="com.hr319wg.recruit.service.RecuResumeTemplateService">
+        <property name="resumetemplatedao">
+            <ref bean="resumetemplatedao"/>
+        </property>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="resume_tempucc" class="com.hr319wg.recruit.ucc.impl.ResumeTempUcc">
+		<property name="resumetemplateservice">
+			<ref bean="resumetemplateservice" />
+		</property>
+	</bean>
+
+     <bean id="autoreceivemail" class="com.hr319wg.recruit.service.AutoReceiveMailService">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+</beans>
+

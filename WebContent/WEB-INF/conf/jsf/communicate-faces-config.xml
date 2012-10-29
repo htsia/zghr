@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+    <managed-bean>
+      <managed-bean-name>self_surveyBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.self.web.SurveyBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>surveyucc</property-name>
+            <value>#{self_surveyUCC}</value>
+      </managed-property>
+    </managed-bean>
+
+        <managed-bean>
+          <managed-bean-name>self_surveyprocessBB</managed-bean-name>
+          <managed-bean-class>com.hr319wg.self.web.SurveyProcessBackingBean</managed-bean-class>
+          <managed-bean-scope>request</managed-bean-scope>
+          <managed-property>
+                <property-name>surveyucc</property-name>
+                <value>#{self_surveyUCC}</value>
+          </managed-property>
+            <managed-property>
+                  <property-name>userreportucc</property-name>
+                  <value>#{user_userReportUccImpl}</value>
+            </managed-property>
+
+        </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_surveyBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.SurveyBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>surveyucc</property-name>
+            <value>#{self_surveyUCC}</value>
+      </managed-property>
+    </managed-bean>
+    
+<managed-bean>
+      <managed-bean-name>self_forumEditBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.ForumEditBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>forumucc</property-name>
+            <value>#{self_forumUCC}</value>
+      </managed-property>
+        <managed-property>
+            <property-name>linkucc</property-name>
+            <value>#{sys_inprocessUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>self_forumListBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.ForumListBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>forumucc</property-name>
+            <value>#{self_forumUCC}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_answerBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.AnswerBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>surveyucc</property-name>
+            <value>#{self_surveyUCC}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_questionBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.QuestionBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>surveyucc</property-name>
+            <value>#{self_surveyUCC}</value>
+      </managed-property>
+    </managed-bean>
+    <managed-bean>
+      <managed-bean-name>self_QuestionEditBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.QuestionEditBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>forumucc</property-name>
+            <value>#{self_forumUCC}</value>
+      </managed-property>
+        <managed-property>
+              <property-name>selfapi</property-name>
+              <value>#{sys_selfApi}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>self_QuestionListBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.QuestionListBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>forumucc</property-name>
+            <value>#{self_forumUCC}</value>
+      </managed-property>
+    </managed-bean>
+    <managed-bean>
+      <managed-bean-name>sys_forumEditBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.HelpEditBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>forumucc</property-name>
+            <value>#{sys_forumUCC}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_forumListBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.HelpListBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>forumucc</property-name>
+            <value>#{sys_forumUCC}</value>
+      </managed-property>
+    </managed-bean>
+
+
+  <managed-bean>
+      <managed-bean-name>self_advicesListBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.AdvicesListBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>advucc</property-name>
+            <value>#{self_advicesUCC}</value>
+      </managed-property>
+    </managed-bean>
+
+<managed-bean>
+      <managed-bean-name>self_advicesEditBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.AdvicesEditBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>advucc</property-name>
+            <value>#{self_advicesUCC}</value>
+      </managed-property>
+    <managed-property>
+          <property-name>orgapi</property-name>
+          <value>#{org_OrgAPI}</value>
+    </managed-property>
+</managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_smGroupBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.SMGroupBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>groupucc</property-name>
+            <value>#{sys_GroupUCC}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_smGroupitemBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.SMGroupitemBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>groupucc</property-name>
+            <value>#{sys_GroupUCC}</value>
+      </managed-property>
+        <managed-property>
+              <property-name>activepageapi</property-name>
+              <value>#{sys_activePageApi}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>sys_smListBackingBean </managed-bean-name>
+        <managed-bean-class>
+            com.hr319wg.sys.web.ShortMessageListBackingBean
+        </managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>shortmessageucc</property-name>
+            <value>#{sys_SMUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>usermanageucc</property-name>
+            <value>#{user_userManageUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_smEditBackingBean </managed-bean-name>
+        <managed-bean-class>
+            com.hr319wg.sys.web.ShortMessageEditBackingBean
+        </managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>shortmessageucc</property-name>
+            <value>#{sys_SMUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>groupucc</property-name>
+            <value>#{sys_GroupUCC}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/system/SendMessage.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/system/GroupSendMessage.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+            <from-view-id>/system/AddForum.jsp</from-view-id>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+            </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/survey/QuestionEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+            <from-view-id>/self/ReplyAdvices.jsp</from-view-id>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+            </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+            <from-view-id>/self/AddForum.jsp</from-view-id>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+            </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+       <from-view-id>/system/survey/PaperEdit.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>success</from-outcome>
+           <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/system/survey/AnswerEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/common/DoSurvey.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/system/help/AddForum.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+     <navigation-rule>
+        <from-view-id>/system/help/AddAnswer.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+ </faces-config>

@@ -1,0 +1,242 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+    <!-- 党组织机构图 -->
+      <definition name="/ccp/chart/ShowParyChart.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/chart/ShowParyChart.jsp"/>
+    </definition>
+    <!--user define begin -->
+    <definition name="/ccp/RelationLeave.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/RelationLeave.jsp"/>
+    </definition>
+    <definition name="/ccp/RelationLeaveEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/RelationLeaveEdit.jsp"/>
+    </definition>
+    <definition name="/ccp/RelationChange.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/RelationChange.jsp"/>
+    </definition>
+    <definition name="/ccp/RelationChangeList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/RelationChangeList.jsp"/>
+    </definition>
+    <definition name="/ccp/RelationReceive.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/RelationReceive.jsp"/>
+    </definition>
+    <definition name="/ccp/RelationReceiveList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/RelationReceiveList.jsp"/>
+    </definition>
+    <definition name="/ccp/RelationLeaveSystem.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/RelationLeaveSystem.jsp"/>
+    </definition>
+    <definition name="/ccp/RelationLeaveSysEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/RelationLeaveSysEdit.jsp"/>
+    </definition>
+    <definition name="/ccp/RelationInSystem.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/RelationInSystem.jsp"/>
+    </definition>
+    <definition name="/ccp/RelationInSysEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/RelationInSysEdit.jsp"/>
+    </definition>
+    <definition name="/ccp/RelationInSysChange.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/RelationInSysChange.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyPrint.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyPrint.jsp"/>
+    </definition>
+    <definition name="/ccp/PartySelPerson.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartySelPerson.jsp"/>
+    </definition>
+    <definition name="/ccp/TreeSelPerson.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/TreeSelPerson.jsp"/>
+    </definition>
+
+
+    <definition name="/ccp/PartyAdd.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyAdd.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyBaseInfo.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyBaseInfo.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyInfoIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/PartyInfoIndex.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyInfoQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyInfoQuery.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyEditIndex.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyEditIndex.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyItemTree.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyItemTree.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyInfoDetail.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyInfoDetail.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyInfoDetailList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyInfoDetailList.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyFeeDetailList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyFeeDetailList.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyFeeDetail.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyFeeDetail.jsp"/>
+    </definition>
+     
+    <definition name="/ccp/PartyFeeRecPrint.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyFeeRecPrint.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyFeeBillPrint.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyFeeBillPrint.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyDismissIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/PartyDismissIndex.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyDismissQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyDismissQuery.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyBackIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/PartyBackIndex.jsp"/>
+    </definition>
+    <definition name="/ccp/PartyBackQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/PartyBackQuery.jsp"/>
+    </definition>
+    <definition name="/ccp/chart/PartyChart.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/chart/PartyChart.jsp"/>
+    </definition>
+    <definition name="/ccp/sort/PartySort.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/sort/PartySort.jsp"/>
+    </definition>
+
+
+    <definition name="/ccp/member/InfoIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/member/InfoIndex.jsp"/>
+    </definition>
+    <definition name="/ccp/member/InfoQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/member/InfoQuery.jsp"/>
+    </definition>
+    
+        <!--  删除部分
+    <definition name="/ccp/member/InfoEditIndex.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/member/InfoEditIndex.jsp"/>
+    </definition>
+    
+    <definition name="/ccp/member/InfoDetailList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/member/InfoDetailList.jsp"/>
+    </definition>
+    <definition name="/ccp/member/InfoDetail.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/member/InfoDetail.jsp"/>
+    </definition>
+     -->
+    <definition name="/ccp/member/InfoMultiEditIndex.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/member/InfoMultiEditIndex.jsp"/>
+    </definition>
+    
+    
+    <definition name="/ccp/member/PersonList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/member/PersonList.jsp"/>
+    </definition>
+
+    <!-- weitao  add  start -->
+    
+    <definition name="/ccp/member/ShowInsideTrans.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/member/ShowInsideTrans.jsp"/>
+    </definition>
+    
+     <definition name="/ccp/member/ShowImportFromEhr.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/member/ShowImportFromEhr.jsp"/>
+    </definition>
+    
+     <definition name="/ccp/member/DevelopPartyNumberIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/member/DevelopPartyNumberIndex.jsp"/>
+    </definition>
+    
+     <definition name="/ccp/member/PartyNumberInOutIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/member/PartyNumberInOutIndex.jsp"/>
+    </definition>
+    
+     <definition name="/ccp/member/PartyQueryTypeView.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/member/PartyQueryTypeView.jsp"/>
+    </definition>
+    
+     <definition name="/ccp/member/DevelopInfoQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/member/DevelopInfoQuery.jsp"/>
+    </definition>
+    
+      <definition name="/ccp/member/ShowQueryInfo.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/member/ShowQueryInfo.jsp"/>
+    </definition>
+    
+    <!-- weitao  add  end -->
+    <definition name="/ccp/import/OrgDataUpload.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/import/OrgDataUpload.jsp"/>
+    </definition>
+    <definition name="/ccp/import/OrgDataUploadList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/import/OrgDataUploadList.jsp"/>
+    </definition>
+    <definition name="/ccp/batch/BatchAddQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/batch/BatchAddQuery.jsp"/>
+    </definition>
+    <definition name="/ccp/batch/BatchAddEditIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/batch/BatchAddEditIndex.jsp"/>
+    </definition>
+    <definition name="/ccp/batch/BatchUpdateQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/batch/BatchUpdateQuery.jsp"/>
+    </definition>
+    <definition name="/ccp/batch/BatchUpdateEditIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/batch/BatchUpdateEditIndex.jsp"/>
+    </definition>
+
+     <!-- 党费 -->
+    <definition name="/ccp/fee/QueryPartyFeeIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/fee/QueryPartyFeeIndex.jsp"/>
+    </definition>
+    <definition name="/ccp/fee/PartyFeeQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/fee/PartyFeeQuery.jsp"/>
+    </definition>
+    <definition name="/ccp/report/PartyFeeReportIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/ccp/report/PartyFeeReportIndex.jsp"/>
+    </definition>
+    <definition name="/ccp/report/PartyFeeReport.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/ccp/report/PartyFeeReport.jsp"/>
+    </definition>
+</tiles-definitions>

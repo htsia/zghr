@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.self.pojo.bo.SurveyPaperBO" table="SELF_SURVEY_PAPER">
+        <id name="paperID" type="string" unsaved-value="null">
+            <column name="PAPER_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="name"	       column="NAME" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="description"	   column="description" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="isUse"	   column="IS_USE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="createDate"	   column="CREATE_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="orgID"	   column="ORG_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="createOrg"	   column="CREATE_ORG" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="publish"	   column="publish"/>
+        <property name="voteCount"	   column="vote_count"/>
+        <property name="moduleid"	   column="moduleid"/>
+        <property name="isRegName"	   column="IS_REGNAME"/>
+        <property name="isHide"	   column="IS_HIDE"/>
+        <property name="method" column="PROC_METHOD"></property>
+    </class>
+
+    <class name="com.hr319wg.self.pojo.bo.SurveyQuestionBO" table="SELF_SURVEY_QUESTION">
+        <id name="questionID" type="string" unsaved-value="null">
+            <column name="QUESTION_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="paperID"	       column="PAPER_ID" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="title"	   column="TITLE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="type"	   column="QUES_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="showSeq"	   column="SHOW_SEQ" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="lowChars"	   column="Low_chars"/>
+        <property name="fileName"	   column="fileName"/>
+     </class>
+
+    <class name="com.hr319wg.self.pojo.bo.SurveyAnswerBO" table="SELF_QUESTION_ANSWER">
+        <id name="answerID" type="string" unsaved-value="null">
+            <column name="ANSWER_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="questionID"	       column="QUESTION_ID" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="code"	   column="ANSWER_CODE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="answerName"	   column="ANSWER_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="type"	   column="ANSWER_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.self.pojo.bo.SurveyResultBO" table="SELF_SURVEY_RESULT">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="paperID"	       column="PAPER_ID" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="personID"	   column="PERSON_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="answerDate"	   column="ANSWER_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="ip"	   column="IP" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.self.pojo.bo.SurveyDetailBO" table="SELF_SURVEY_DETAIL">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="answerID"	       column="ANSWER_ID" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="personID"	   column="PERSON_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="selectResult"	   column="SELECT_RESULT" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="textResult"	   column="TEXT_RESULT" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    
+    <class name="com.hr319wg.sys.pojo.bo.ShortMessageBO" table="SYS_SHORT_MESSAGE">
+        <id name="smID"   unsaved-value="null">
+            <column name="SM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="sendID"	       column="SM_SENDER" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="receiveID"	   column="SM_RECEIVER" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="sendTime"	   column="SM_TIME" />
+        <property name="content"	   column="SM_CONTENT"  type="com.hr319wg.sys.service.GBKString"/>
+        <property name="isPopup"	   column="IS_POPUP" />
+        <property name="linkOperate"	   column="LINK_OPERATE"/>
+        <property name="att_file" column="ATT_FILE" type="com.hr319wg.sys.service.GBKString"></property>
+    </class>
+    <class name="com.hr319wg.sys.pojo.bo.AdvicesBO" table="SELF_ADVISE">
+        <id name="advID" type="string" unsaved-value="null">
+            <column name="ADV_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="advSender"	       column="ADV_SENDER" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="advOrg"	   column="ADV_ORG" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="advSenddate"	   column="ADV_SENDDATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="advSubject"	   column="ADV_SUBJECT" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="advContent"	   column="ADV_CONTENT" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="advReplyer"	   column="ADV_REPLYER" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="advReplyContent"	   column="ADV_REPLYCONTENT" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="advReplyDate"	   column="ADV_REPLYDATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="advReplyed"	   column="ADV_REPLYED" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.sys.pojo.bo.ForumQuestionBO" table="SELF_FORUM_QUESTION">
+        <id name="fomID" type="string" unsaved-value="null">
+            <column name="FOM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="subject"	       column="SUBJECT" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="submitTime"	   column="SubmitTime" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="nickName"	   column="NickName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="content"	   column="Content" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="color"	   column="Color" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="headImage"	   column="HeadImage" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="hiteCounter"	   column="HiteCounter" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="ansCounter"	   column="AnsCounter" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="solved"	   column="solved" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="pith"	   column="Pith" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.sys.pojo.bo.ForumAnswerBO" table="SELF_FORUM_ANSWER">
+        <id name="ansID" type="string" unsaved-value="null">
+            <column name="ANS_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="fomID"	   column="FOM_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="levelNum"	   column="LEVELNUM" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="subject"	       column="ANS_SUBJECT" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="submitTime"	   column="ANS_SubmitTime" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="nickName"	   column="ANS_NickName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="content"	   column="ANS_Content" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="color"	   column="ANS_Color" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="headImage"	   column="ANS_HeadImage" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+            <class name="com.hr319wg.sys.pojo.bo.UseQuestionBO" table="SYS_USE_QUESTION">
+        <id name="fomID"   unsaved-value="null">
+            <column name="FOM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="subject"	       column="SUBJECT" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="submitTime"	   column="Submit_Time" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personID"	   column="Person_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="attFile" column="ATT_FILE" type="com.hr319wg.sys.service.GBKString"></property>
+       	<property name="pjid" column="PM_PROJECT_ID"></property>
+       	<property name="transFlag" column="TRANS_FLAG"></property>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.UseAnswerBO" table="SYS_USE_ANSWER">
+        <id name="ansID"   unsaved-value="null">
+            <column name="ANS_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="fomID"	   column="FOM_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="ansTime" column="ANS_TIME" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="ansContent" column="ANS_Content" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="ansName" column="ANS_NAME" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="direction" column="DIRECTION" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="transFlag" column="TRANS_FLAG" type="com.hr319wg.sys.service.GBKString"></property>
+    </class>
+</hibernate-mapping>

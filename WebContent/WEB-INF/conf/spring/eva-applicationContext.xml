@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="eva_scoredao" class="com.hr319wg.eva.dao.EvaScoreDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="eva_scoreservice" class="com.hr319wg.eva.service.EvaScoreService">
+        <property name="scoredao" ref="eva_scoredao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="jobestimatdao" ref="jobestimatdao"/>
+        <property name="taskdao" ref="eva_taskdao"/>
+        <property name="evaobjectdao" ref="eva_objectdao"/>
+        <property name="evagradedao" ref="eva_gradedao"/>
+        <property name="evaplandao" ref="eva_plandao"/>
+        <property name="evakeydao" ref="eva_keydao"/>
+    </bean>
+    <bean id="eva_scoreUCC" class="com.hr319wg.eva.ucc.impl.EvaScoreUCC">
+        <property name="scoreservice" ref="eva_scoreservice"/>
+    </bean>
+
+    
+    <bean id="eva_objectdao" class="com.hr319wg.eva.dao.EvaObjectsDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="eva_objectservice" class="com.hr319wg.eva.service.EvaObjectsService">
+        <property name="evaobjectdao" ref="eva_objectdao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="eva_objectUCC" class="com.hr319wg.eva.ucc.impl.EvaObjectsUCC">
+        <property name="evaservice" ref="eva_objectservice"/>
+    </bean>
+
+    <bean id="eva_plandao" class="com.hr319wg.eva.dao.EvaPlanDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="eva_planservice" class="com.hr319wg.eva.service.EvaPlanService">
+        <property name="evaplandao" ref="eva_plandao"/>
+    </bean>
+    <bean id="eva_planUCC" class="com.hr319wg.eva.ucc.impl.EvaPlanUCC">
+        <property name="evaplanservice" ref="eva_planservice"/>
+        <property name="actionPageServie" ref="sys_activePageService"/>
+    </bean>
+
+    <bean id="eva_gradedao" class="com.hr319wg.eva.dao.EvaGradeDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="eva_gradeservice" class="com.hr319wg.eva.service.EvaGradeService">
+        <property name="evagradedao" ref="eva_gradedao"/>
+    </bean>
+    <bean id="eva_gradeUCC" class="com.hr319wg.eva.ucc.impl.EvaGradeUCC">
+        <property name="evagradeservice" ref="eva_gradeservice"/>
+    </bean>
+
+    <bean id="eva_keydao" class="com.hr319wg.eva.dao.EvaKeyItemDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="eva_keyitemservice" class="com.hr319wg.eva.service.EvaKeyItemService">
+        <property name="evakeydao" ref="eva_keydao"/>
+    </bean>
+    <bean id="eva_keyitemucc" class="com.hr319wg.eva.ucc.impl.EvaKeyItemUCC">
+        <property name="evakeyservice" ref="eva_keyitemservice"/>
+    </bean>
+	<!-- gaohaixing_jisuan -->
+	<bean id="jobestimatdao" class="com.hr319wg.eva.dao.jobEstimateDAO">
+		 <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+	</bean>
+	<!-- qiaolei -->
+	<bean id="eva_jobestimatedao" class="com.hr319wg.eva.dao.jobEstimateDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="eva_jobestimateservice" class="com.hr319wg.eva.service.jobEstimateService">
+        <property name="jobEstimateDAO" ref="eva_jobestimatedao"/>
+        <property name="activePageAPI" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="eva_jobestimateucc" class="com.hr319wg.eva.ucc.impl.jobEstimateUCC">
+        <property name="jobestimateservice" ref="eva_jobestimateservice"/>
+    </bean>
+    <bean id="eva_taskdao" class="com.hr319wg.eva.dao.EvaTaskEstimateDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+     <bean id="eva_taskservice" class="com.hr319wg.eva.service.EvaTaskEstimateService">
+         <property name="taskdao">
+            <ref bean="eva_taskdao"/>
+        </property>
+        <property name="activePageAPI" ref="sys_activePageApi"/>
+    </bean>
+     <bean id="eva_taskucc" class="com.hr319wg.eva.ucc.impl.EvaTaskEstimateUcc">
+         <property name="taskservice">
+            <ref bean="eva_taskservice"/>
+        </property>
+    </bean>
+</beans>

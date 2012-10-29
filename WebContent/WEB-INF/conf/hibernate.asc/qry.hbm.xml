@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.hr319wg.qry.pojo.bo.NameListBO" table="QRY_NAMELIST">
+        <id name="listId" type="string" unsaved-value="null">
+            <column name="LIST_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="name" column="LIST_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="listField" column="LIST_FIELD" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.qry.pojo.bo.NameListItemBO" table="QRY_NAMELIST_ITEM">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="listId" column="LIST_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="name" column="ITEM_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="itemCondition" column="ITEM_CONDITION" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="itemOrder" column="ITEM_ORDER" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+     <class name="com.hr319wg.qry.pojo.bo.QueryClassBO" table="qry_query_class">
+        <id name="classId" type="string" unsaved-value="null">
+            <column name="class_id" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="name" column="class_name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="createUser" column="create_user" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="treeId" column="tree_id" />
+        <property name="superId" column="super_id" />
+        <property name="rootId" column="root_id" />
+        <property name="typeFlag" column="type_flag" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.qry.pojo.bo.QueryBO" table="qry_query">
+        <id name="qryId" type="string" unsaved-value="null">
+            <column name="qry_id" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="classId" column="class_id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="createDate" column="create_date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="createUser" column="create_user" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="historyFlag" column="history_Flag" />
+        <property name="idFlag" column="id_flag" />
+        <property name="name" column="qry_name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="orgIds" column="org_ids" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="orgNames" column="org_names" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="qsType" column="qs_type" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="sysFlag" column="sys_flag" />
+        <property name="setType" column="set_type" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="addedCondition" column="added_condition" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="unitType" column="unit_type" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="staticItemId" column="static_item_id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="avg" column="static_avg" />
+        <property name="max" column="static_max" />
+        <property name="min" column="static_min" />
+        <property name="count" column="static_count" />
+        <property name="sum" column="static_sum"/>
+        <property name="historySet" column="history_set" />
+        <property name="linksuperdept" column="LinkSuperDept" />
+    </class>
+
+    <class name="com.hr319wg.qry.pojo.bo.QueryStaticBO" table="qry_static">
+        <id name="staticId" type="string" unsaved-value="null">
+            <column name="static_id" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="group" column="query_group" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="groupShow" column="query_group_show" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="name" column="static_name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="qryId" column="qry_id" />
+        <property name="seq" column="static_seq" />
+        <property name="staticItem" column="static_item" />
+        <property name="staticType" column="static_type" />
+    </class>
+
+    <class name="com.hr319wg.qry.pojo.bo.QueryItemBO" table="qry_query_item">
+        <id name="qryItemId" type="string" unsaved-value="null">
+            <column name="qry_item_id" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="defaultFlag" column="default_flag" />
+        <property name="defaultType" column="default_type" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="itemId" column="item_id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="orderFlag" column="order_flag" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="orderSeq" column="order_seq" />
+        <property name="qryId" column="qry_id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="setId" column="set_id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="showHistory" column="show_History" />
+        <property name="showId" column="show_id" />
+        <property name="hide" column="IS_HIDE"/>
+    </class>
+
+    <class name="com.hr319wg.qry.pojo.bo.QueryConditionBO" table="qry_condition">
+        <id name="condiId" type="string" unsaved-value="null">
+            <column name="condition_id" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="groupId" column="group_id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="itemId" column="item_id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="operator" column="condi_operator" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="setId" column="set_id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="staticId" column="static_id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="value" column="condi_value" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="value2" column="condi_value2" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="text" column="condi_text" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="text2" column="condi_text2" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.common.pojo.bo.QueueBO" table="sys_queue">
+        <id name="queueId" type="string" unsaved-value="null">
+            <column name="queue_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="createUnit" column="create_unit" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="createUser" column="create_user" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="finishTime" column="finish_time" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="activeTime" column="active_time" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="errorMessage" column="error_message" type="com.hr319wg.sys.service.GBKString"/>    
+        <property name="param1" column="para_001" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="param2" column="para_002" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="param3" column="para_003" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="param4" column="para_004" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="param5" column="para_005" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="param6" column="para_006" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="param7" column="para_007" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="param8" column="para_008" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="param9" column="para_009" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="param10" column="para_010" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="queueTime" column="queue_time" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="runTime" column="run_time" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="taskClassPath" column="task_Class_Path" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="taskName" column="task_name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="taskParam" column="task_param" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="taskStatus" column="task_Status" type="com.hr319wg.sys.service.GBKString"/>
+
+    </class>
+
+
+
+</hibernate-mapping>

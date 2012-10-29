@@ -1,0 +1,607 @@
+﻿RYGL-0300|人员管理|人員管理|Employee Manager
+RYGL-0301|信息联动|信息聯動|Information Linkage
+RYGL-0302|集团人事管理|集團人事管理|Human Manager
+RYGL-0306|单位内部部门调动|單位內部部門調動|Department Redeploy Inside
+RYGL-0311|信息维护|資訊維護|Information Maintenance
+RYGL-0312|人员信息管理|人員資訊管理|Employee Info Manager
+RYGL-031401|审批工人调转介绍信|審批工人調轉介紹信|Examine Worker Recommendation
+RYGL-031402|审批干部调转介绍信|審批幹部調轉介紹信|Examine Leader Recommendation
+RYGL-0315|批量处理|批量處理|Batch Deal
+RYGL-0316|批量增加|批量增加|Batch Add
+RYGL-0317|批量修改|批量修改|Batch Update
+RYGL-0318|信息导入|信息導入|Information Import
+RYGL-0319|人员部门内排序|人員部門內排序|Employee Compositor Inside
+RYGL-0325|生成姓名简拼|生成姓名簡拼|Name Spelling
+RYGL-0326|更新年龄工龄等参数|更新年齡工齡等參數|Update Length Of service And Age
+RYGL-0327|跨单位兼职管理|跨單位兼職管理|Sideline Manager
+RYGL-0328|批量导入照片|批量導入照片|Batch Import Photo
+RYGL-0330|后备人才|後備人才|Reserve Personnel
+RYGL-0331|后备人才信息维护|後備人才資訊維護|Reserve Personnel Maintenance
+RYGL-0332|后备人才管理|後備人才管理|Reserve Personnel Manager
+RYGL-0336|项目团队管理|專案團隊管理|Project Group Manager
+RYGL-0350|统一招工|統一招工|Unification Recruit
+RYGL-0362|干部引进|幹部引進|Lead Fetch
+RYGL-0368|离职人员信息|離職人員資訊|Dimission Information
+RYGL-0370|机构人员基数核算|機構人員基數核算|Cardinal Number Audit 
+RYGL-037001|修改计算规则|修改計算規則|Calculate Ruler
+RYGL-0379|备用|備用|Standby
+RYGL-0380|人员变动情况|人員變動情況|Personnel Change
+RYGL-0384|集团人员核查|集團人員核查|Bloc Personnel Check
+RYGL-0390|人员信息对比|人員資訊對比|Personnel Contrast
+RYGL-0393|二维分析|二維分析|Planar Analyse
+RYGL-0394|人力资源状况分析|人力資源狀況分析|Human Resource Analyse
+RYGL-0395|分类别统计情况|分類別統計情況|Classify Statistics 
+RYGL-0396|备用|備用|Standby
+RYGL-0397|备用|備用|Standby
+RYGL-0398|备用|備用|Standby
+RYGL-0399|备用|備用|Standby
+RYGL-066301|基层工人调转介绍信|基層工人調轉介紹信|Basic Worker Recommendation
+RYGL-066302|基层干部调转介绍信|基層幹部調轉介紹信|Basic Leader Recommendation
+RYGL-0830|信息检查|資訊檢查|Information Check
+RYGL-0986|员工信息审核|員工資訊審核|Employee Informatin Examine 
+RYGL-0987|工资性费用与员工类别|工資性費用與員工類別|Wage And Employee Classify
+RYGL-0988|职务级别对应|職務級別對應|Duty Level
+RYGL-0989|工人岗次对应|工人崗次對應|Employee Post
+RYGL-1300|人员档案浏览|人員檔案流覽|Personnel Archives Browser
+RYGL-1301|管理人员|管理人員|Manager Personnel
+RYGL-1302|工程技术人员|工程技術人員|Engine Technic Personnel
+RYGL-1303|行政管理人员|行政管理人員|Administration Manage Personnel
+RYGL-1304|中级管理人员|中級管理人員|Intermediate Manage Personnel
+RYGL-1305|一般管理人员|一般管理人員|Common Manage Personnel
+RYGL-1307|专业技术人员|專業技術人員|Speciality Technic Personnel
+RYGL-1308|生产人员|生產人員|Produce Personnel
+RYGL-1309|工勤人员|工勤人員|Logistics Personnel
+RYGL-1310|服务人员|服務人員|Service Personnel
+RYGL-1311|人员查询统计|人員查詢統計|Query Or Count Personnel
+RYGL-1312|人员查询|人員查詢|Query
+RYGL-1313|人员统计|人員統計|Count
+RYGL-1315|人员增减变化查询|人員增減變化查詢|Personnel Degression Query
+RYGL-1316|人员内部调配查询|人員內部調配查詢|Personnel Admeasure Query
+RYGL-1317|信息校验与审核|信息校驗與審核|Information Checkout And Audit
+RYGL-1321|按条件显示人员名单|按條件顯示人員名單|Show Name By Condition
+RYGL-1322|按机构显示人员名单|按機構顯示人員名單|Show Name By Organ
+RYGL-1330|出国管理|出國管理|Go Abroad Manager
+RYGL-1331|护照管理|護照管理|Passport Manager
+RYGL-1332|出访计划管理|出訪計畫管理|Visit Arranged Manager
+RYGL-1333|出访任务管理|出訪任務管理|Visit Task Manager
+RYGL-1334|部门出访计划|部門出訪計畫|DepartMent Vist Arranged
+RYGL-1000|浏览方式|流覽方式|Browser Type
+RYGL-1001|姓名或员工编号|姓名或員工編號|Name Or Employee ID
+RYGL-1002|信息审核－修改信息 |資訊審核－修改資訊|Information Audit -Amend Information
+RYGL-1003|信息审核－新增信息 |資訊審核－新增資訊|Information Audit -Add Information
+RYGL-1004|数据对比|資料對比|Data Contrast
+RYGL-1005|选择需要对比的指标集|選擇需要對比的指標集|Select The Contrast Item You Need
+RYGL-1006|文件格式说明|文件格式說明|File Format Explain
+RYGL-1007|1.对比文件的格式为CSV文件|1.對比檔的格式為CSV檔 |File Format Explain
+RYGL-1008|2.选择的指标集和需要的对比的数据指标集一致，且按文件中各项的顺序选择数据项|2.選擇的指標集和需要的對比的資料指標集一致，且按檔中各項的順序選擇資料項目|324234
+RYGL-1009|3.电子表格的第一行为标题行，数据从第二行开始，电子表格的前两列固定为：身份证号、姓名.|3.試算表的第一行為標題行，資料從第二行開始，試算表的前兩列固定為：身份證號、姓名.|File Format Explain
+RYGL-1010|4.电子表格的所有列的数据格式设置为文本格式|4.試算表的所有列的資料格式設置為文本格式。|File Format Explain
+RYGL-1011|6.如果是代码项，那么必须是代码值而不是代码名称。|6.如果是代碼項，那麼必須是代碼值而不是代碼名稱。|File Format Explain
+RYGL-A001|5.导入数据中，不能出现空行，且机构代码不能为空值。|5.導入資料中，不能出現空行，且機構代碼不能為空值。|File Format Explain
+RYGL-A002|选择需要上传的指标集|選擇需要上傳的指標集|Select Upload Item Set
+RYGL-A003|选择需要上传的指标|選擇需要上傳的指標|Select Upload Item
+RYGL-A004|备选输入项|備選輸入項|Selected Item
+RYGL-A005|已选输入项|已選輸入項|Standby Item
+RYGL-A006|左移|左移|Left
+RYGL-A007|右移|右移|Right
+RYGL-1012|7.如果是6位日期类型数据，数据格式为6位数字，如"200609",如果是8位日期类型数据，数据格式为8位数字，如"20060918"。|7.如果是6位元日期類型資料，資料格式為6位元數位，如"200609",如果是8位元日期類型資料，資料格式為8位元數位，如"20060918"。|File Format Explain
+RYGL-1013|备选项|備選項|In Support
+RYGL-1014|已选项|已選項|Selected Item
+RYGL-1015|身份证号|身份證號|ID Card NO.
+RYGL-1016|姓名|姓名|Name
+RYGL-1017|上移|上移|Up
+RYGL-1018|下移|下移|Down
+RYGL-1019|检查项目|檢查專案|Check Item
+RYGL-1020|已存在该数据|已存在該資料|Exist Date
+RYGL-1021|数据库不存在该人员|資料庫不存在該人員|The Person Inexistence
+RYGL-1021|上传excel文件:|上傳excel文件:|Upload excel File
+RYGL-1022|对比|對比|Contrast
+RYGL-2000|出防任务编辑|出防任務編輯|Visit Task Edit
+RYGL-2001|出访任务|出訪任務|Visit Task 
+RYGL-2002|出访目的|出訪目的|Visit Aim
+RYGL-2003|计划类型|計畫類型|Visit Type
+RYGL-2004|出访国家|出訪國家|Visit Country
+RYGL-2005|项目|項目|Project
+RYGL-2006|预算|預算|Budget
+RYGL-2007|拜访客户|拜訪客戶|Visit Customer
+RYGL-2008|结束日期|結束日期|End Date
+RYGL-2009|开始日期|開始日期|Start Date
+RYGL-2010|对应时间|對應時間|Corresponding Time
+RYGL-2011|出访计划编辑|出訪計畫編輯|Visit Plan Edit
+RYGL-2012|出访国家|出訪國家|Visit Country
+RYGL-2013|计划类型|計畫類型|Plan Type
+RYGL-2014|员工编码|員工編碼|Employee Number
+RYGL-2015|计划时间|計畫時間|Plan Time 
+RYGL-2016|制定时间|制定時間|Stipulate Time
+RYGL-2017|制定人|制定人|Stipulate Person
+RYGL-2017|客户|客戶|Customer
+RYGL-2018|出访计划管理|出訪計畫管理|Visit Plan Manager
+RYGL-2019|入职机构|調入部門|Fold Department
+RYGL-2020|新岗位|新崗位|New Post
+RYGL-2021|任免审批|任免審批|Relegation Examine
+RYGL-2022|转岗审批|轉崗審批|Turn Around Post Examine
+RYGL-2023|审批意见|審批意見|Examine Attitude
+RYGL-2024|原因|原因|Reason
+RYGL-2025|原职务|原職務|Primary Duty
+RYGL-2026|新职务|新職務|New Duty
+RYGL-2027|全部显示|全部顯示|Dispaly All
+RYGL-2028|初审意见|初審意見|Maiden Examine Attitude
+RYGL-2029|复审意见|複審意見|Rehear Attitude
+RYGL-2030|终审意见|終審意見|Finally Attitude
+RYGL-2031|任免管理|任免管理|Patronage Manager
+RYGL-2032|拟定|擬定|Study Out
+RYGL-2033|审批|審批|Examine
+RYGL-2034|批准|批准|Approve
+RYGL-2035|人事信息生效|人事資訊生效|Human Info Act
+RYGL-2036|工资调整|工資調整|Wage Change
+RYGL-2037|薪资调整时间|薪資調整時間|Wage Change Time
+RYGL-2038|拟定时间|擬定時間|Study Out Time
+RYGL-2039|任职方式|任職方式|Serve Type
+RYGL-2040|是否初任|是否初任|Whether First
+RYGL-2041|指标项|指標項|Guide Line
+RYGL-2042|指标名称|指標名稱|Guide Line Name
+RYGL-2043|原值|原值|Primary Value
+RYGL-2044|调整依据|調整依據|Adjust Thereunder
+RYGL-2045|机构任免设置|機構任免設置|Organ Patronage Set
+RYGL-2046|薪资变动相关指标项|薪資變動相關指標項|Wage Adjust Item
+RYGL-2047|信息集|信息集|Info Set
+RYGL-2048|信息项|信息項|Info Item
+RYGL-2049|人员姓名|人員姓名|User Name
+RYGL-2050|任职文号|任職文號|Serve Number
+RYGL-2051|解聘或免职文号|解聘或免職文號|Dismiss Or Serve Number
+RYGL-2052|基本情况表|基本情況表|Basic Info Table
+RYGL-2053|籍贯|籍貫|Registered Permanent Residence
+RYGL-2054|政治面貌|政治面貌|Polity Face
+RYGL-2055|参加党派时间|參加黨派時間|Join Denomination Time
+RYGL-2056|出生地|出生地|Homeplace
+RYGL-2057|民族|民族|Nationality
+RYGL-2058|健康状况|健康狀況|Health
+RYGL-2059|工作时间|工作時間|Work Time
+RYGL-2060|来系统时间|來系統時間|The Time Of Come In System
+RYGL-2061|专业技术资格|專業技術資格|Speciality Technic Competency
+RYGL-2062|所在分行|所在分行|Branch
+RYGL-2063|所在机构|所在機構|DepartMent
+RYGL-2064|现任职务|現任職務|Duty
+RYGL-2065|职务等级|職務等級|Duty Level
+RYGL-2066|任同职等职务时间|任同職等職務時間|Same Duty Time
+RYGL-2067|后备人才培养方向|後備人才培養方向|In Support Direction
+RYGL-2068|确定为后备人才时间|確定為後備人才時間|Sure In Support 
+RYGL-2069|最高学历|最高學歷|Best Certificate
+RYGL-2070|毕业院校及专业|畢業院校及專業|Graduate School And Speciality 
+RYGL-2071|最高学位|最高學位|Best Degree 
+RYGL-2072|毕业院校及专业|畢業院校及專業|Graduate School And Speciality 
+RYGL-2073|全日制|全日制|Whole-day 
+RYGL-2074|在　职|在　職|In-service 
+RYGL-2075|简历|簡歷|Biography
+RYGL-2076|主要家庭成员及社会关系情况|主要家庭成員及社會關係情況|Member Of The Family And Relationship
+RYGL-2077|称谓|稱謂|Appellation 
+RYGL-2078|别|别|Other
+RYGL-2079|工作单位及职务|工作單位及職務|Unit And Duty
+RYGL-2080|日常考察情况表|日常考察情況表|Daily Review
+RYGL-2081|日常考察情况表|日常考察情況表|Daily Review
+RYGL-2082|考察时间|考察時間|Review Time
+RYGL-2083|考察人|考察人|Reviewer
+RYGL-2084|所 在 行 行 长 意 见|所 在 行 行 長 意 見|President Attitude
+RYGL-2085|不足|不足|Deficiency
+RYGL-2086|优势|優勢|Advantage
+RYGL-2087|所 在 行 其 他 行 级 领 导 见|所 在 行 其 他 行 級 領 導 見|Other President Attitude
+RYGL-2088|所 在 行 同 级 领 导 意 见|所 在 行 同 級 領 導 意 見|Same Level President Attitude
+RYGL-2089|奖惩情况表|獎懲情況表|Commend And Amerce
+RYGL-2090|获奖情况|獲獎情況|Commend
+RYGL-2091|奖励名称|獎勵名稱|Commend Name
+RYGL-2092|获奖时间|獲獎時間|Commend Time
+RYGL-2093|授奖单位|授獎單位|Commend Unit
+RYGL-2094|因何种原因授奖|因何種原因授獎|Commend Reason
+RYGL-2095|惩罚情况|懲罰情況|Amerce 
+RYGL-2096|处分名称|處分名稱|Amerce Name
+RYGL-2097|处分时间|處分時間|Amerce Time
+RYGL-2098|处分单位|處分單位|Amerce Unit
+RYGL-2099|因何种原因处分|因何種原因處分|Amerce Reason
+RYGL-2100|导出并打印|匯出並列印|Import And Print
+RYGL-2101|拓展训练情况表|拓展訓練情況表|Enlarge Educate
+RYGL-2102|参训时间|參訓時間|Educate Time
+RYGL-2103|培训班名称|培訓班名稱|Class Name
+RYGL-2104|得分档次|得分檔次|Account Arrangement
+RYGL-2105|综合表现及典型事例|綜合表現及典型事例|
+RYGL-2106|该项目介绍|該項目介紹|Contrast
+RYGL-2107|拓展训练情况表|拓展訓練情況表|Contrast
+RYGL-2108|项目名称|項目名稱|Contrast
+RYGL-2109|得分档次|得分檔次|Contrast
+RYGL-2110|综合表现及典型事例|綜合表現及典型事例|Colligate Comport And Instance
+RYGL-2111|该项目介绍|該項目介紹|Project Introduce
+RYGL-2112|选择指标|選擇指標|Select Item
+RYGL-2113|修改内容|修改內容|Modify Content
+RYGL-2114|请选择指标|請選擇指標|Please Select Item
+RYGL-2115|保存|保存|Save
+RYGL-2116|关闭|關閉|Close
+RYGL-2117|1、请把照片文件(JGP格式)按规定方式命名，如28-0054.JGP ")|1、請把照片檔(JGP格式)按規定方式命名，如28-0054.JGP ")|Contrast
+RYGL-2118|2、把所有照片压缩到一个文件中，格式为zip文件。如photo.zip|2、把所有照片壓縮到一個檔中，格式為zip檔。如photo.zip|Contrast
+RYGL-2119|3、上传该文件|3、上傳該文件|Contrast
+RYGL-2120|4、然后点保存到数据库即可|4、然後點保存到資料庫即可|Contrast
+RYGL-2121|5、选择命名方式|5、選擇命名方式|Seledt Rename Type
+RYGL-2122|人员编号|人員編號|User Number
+RYGL-2123|人员调配|人員調配|User Prepare
+RYGL-2124|见习管理|見習管理|Noviciate Regularization Approval
+RYGL-2125|原岗位级别|原岗位级别|Original Post Level
+RYGL-2126|转正后岗位级别 |轉正後崗位級別|Regularization Post Level
+RYGL-2127|当前岗位级别|轉正後崗位級別|Current Post Level
+RYGL-2129|预计转正时间|預計轉正時間|Expected Regularization Time
+RYGL-2130|转正倒计时天数|轉正倒計時天數|Regularization Days
+RYGL-2131|转正倒计时天数|轉正倒計時天數|Regularization Days
+RYGL-2132|试用|試用|Use
+RYGL-2133|转正审批|轉正審批|Regularization Approval
+RYGL-2134|转正|轉正|Regularization
+RYGL-2135|查看导入照片文件数据|查看導入照片檔資料|View photo files into the data
+RYGL-2136|员工姓名|員工姓名|Employee Name
+RYGL-2137|所在机构|所在機構|Their organizations
+RYGL-2138|调整转正日期|調整轉正日期|Date of adjustment to positive
+RYGL-2139|预计转正日期|預計轉正日期|Expected date of regularization
+RYGL-2140|转岗管理|轉崗管理|Reorientation Management
+RYGL-2141|机构见习设置|機構见习設置|Institutions set to positive
+RYGL-2142|见习期|见习期|Probation
+RYGL-2143|薪资变动相关指标项|薪資變動相關指標項|Related to changes in key indicators of wage
+RYGL-2144|商调函编号|商調函編號|Business transfer letter No.
+RYGL-2145|人员性别|人員性別|Sex workers
+RYGL-2146|原单位|原單位|The original unit
+RYGL-2147|商调函号|商調函號|Business transfer letter No.
+RYGL-2148|处理日期|處理日期|Processing Date
+RYGL-2150|办理状态|辦理狀態|For state
+RYGL-2151|办理状态|辦理狀態|For state
+RYGL-2152|拟分配单位|擬分配單位|Units to be allocated
+RYGL-2153|最晚报到时间|最晚報到時間|To the time of the evening
+RYGL-2154|编号|編號|No.
+RYGL-2155|调出单位|調出單位|Units transferred out
+RYGL-2156|调入单位|調入單位|Transferred unit
+RYGL-2157|人员身份|人員身份|Their status
+RYGL-2158|原编号|原編號|The original number
+RYGL-2159|新编号|新編號|New Number
+RYGL-2160|新开干部调转介绍信|新開幹部調轉介紹信|Turned to open a letter of introduction of new cadres
+RYGL-2161|介绍信编号|介紹信編號|No letter of introduction
+RYGL-2162|只有主管部门已审批，且已经办理了解除合同程序才能生成介绍信|只有主管部門已審批，且已經辦理了解除合同程式才能生成介紹信|Only the competent authorities have approved,and have procedures for the termination of the contract to generate a letter of introduction
+RYGL-2163|申请日期|申請日期|Date of application
+RYGL-2164|调往单位|調往單位|Transferred unit
+RYGL-2165|原单位意见|原單位意見|Views of the original unit
+RYGL-2166|新单位合同情况|新單位合同情況|Contracts of new units
+RYGL-2167|调入单位审批时间|調入單位審批時間|Transferred to the processing time units
+RYGL-2168|调入单位审批原因|調入單位審批原因|Units transferred to the reasons for approval
+RYGL-2169|调入单位意见|調入單位意見|Transferred by unit
+RYGL-2170|原单位合同情况|原單位合同情況|Contracts of the original unit
+RYGL-2171|原单位审批时间|原單位審批時間|The original unit processing time
+RYGL-2172|原单位审批原因|原單位審批原因|Approval because the original unit
+RYGL-2173|新开工人调转介绍信|新開工人調轉介紹信|Introduction of new starts were turned
+RYGL-2174|只有主管部门已审批，且已经办理了解除合同程序才能生成介绍信|只有主管部門已審批，且已經辦理了解除合同程式才能生成介紹信|Only the competent authorities have approved,and have procedures for the termination of the contract to generate a letter of introduction
+RYGL-2175|调往单位|調往單位|Transferred unit
+RYGL-2176|身份|身份|Identity
+RYGL-2177|调入单位合同情况|調入單位合同情況|Case transferred to the contract unit
+RYGL-2178|人数|人數|Number
+RYGL-2179|调配管理|調配管理|Allocation management
+RYGL-2180|主管部门审批|主管部門審批|Authorities for approval
+RYGL-2181|详细信息|詳細資訊|Details
+RYGL-2182|原因|原因|Reason
+RYGL-2183|截至报到日期|截至報到日期|As at reporting date
+RYGL-2184|审批日期|審批日期|Approval Date
+RYGL-2185|审批表格|審批表格|Approval form
+RYGL-2186|仅显示待审批|僅顯示待審批|Show only pending
+RYGL-2187|主管审批时间|主管審批時間|Charge of the processing time
+RYGL-2188|主管审批原因|主管審批原因|Charge of the reasons for approval
+RYGL-2189|主管单位意见|主管單位意見|Head unit advice
+RYGL-2190|申请时间|申請時間|Application Period
+RYGL-2191|原单位帐套情况|原單位帳套情況|Case the original unit set of books
+RYGL-2192|接收单位审批|接收單位審批|Approval of the receiving unit
+RYGL-2193|姓名或编号|姓名或編號|Name or number
+RYGL-2194|全选 |全選|Select All
+RYGL-2195|调出单位审批时间 |調出單位審批時間|Transferred out of unit processing time
+RYGL-2196|调出单位审批结果 |調出單位審批結果|Recall units of the outcome of
+RYGL-2197|调出单位意见 |調出單位意見|Transferred out by unit
+RYGL-2198|调入审批结果|調入審批結果|Transferred to the outcome of their
+RYGL-2199|工资帐套情况|工資帳套情況|Wage case set of books
+RYGL-2200|调入审批|調入審批|Transferred to approve
+RYGL-2201|以下为详细信息|以下為詳細資訊|The following is the detailed information
+RYGL-2202|调出业务审批|調出業務審批|Transferred out of the business approval
+RYGL-2203|审批结果|審批結果|The outcome of their
+RYGL-2204|调出审批|調出審批|Recall approval
+RYGL-2205|审批表|審批表|Approval Form
+RYGL-2206|以下为薪资信息|以下為薪資資訊|The following is the salary information
+RYGL-2206|以下为薪资信息|以下為薪資資訊|The following is the salary information
+RYGL-2207|选择调往单位|選擇調往單位|Choose transferred unit
+RYGL-2208|以下人员申请办理调往系统内其它单位|以下人員申請辦理調往系統內其它單位|The following people apply for transfer to other units within the system
+RYGL-2209|调动原因|調動原因|Mobilization of the reasons
+RYGL-2210|调往机构|調往機構|Transferred to institutions
+RYGL-2211|申请调往系统内单位|申請調往系統內單位|Apply for transfer to the system unit
+RYGL-2212|报到处理|報到處理|Check processing
+RYGL-2213|介绍信|介紹信|Letter of introduction
+RYGL-2214|主管部门意见|主管部門意見|Views of the competent authorities
+RYGL-2215|接收日期|接收日期|Date Received
+RYGL-2216|相关表格|相關表格|Related Forms
+RYGL-2217|设定拟任部门和岗位|設定擬任部門和崗位|Set aspiring departments and positions
+RYGL-2218|接收部门|接收部門|Receiving department
+RYGL-2219|拟任岗位|擬任崗位|Preparation for post
+RYGL-2220|转正后人员类别|轉正後人員類別|Passing probation officer category
+RYGL-2221|当前岗位|當前崗位|Current Status
+RYGL-2222|转正后岗位|轉正後崗位|Turned positive after the post
+RYGL-2223|D级员工转正审批|D級員工轉正審批|D Positive staff approval
+RYGL-2224|D级员工转正式管理|D級員工轉正式管理|D Formal management employees transferred
+RYGL-2225|D级员工机构转正设置|D級員工機構轉正設置|D Set to positive employee organization
+RYGL-2226|D级员工转正|D級員工轉正|D Positive staff
+RYGL-2227|以下人员要办理划转业务|以下人員要辦理劃轉業務|The following personnel to handle the transfer of business
+RYGL-2228|调入机构|調入機構|Transferred to institutions
+RYGL-2229|人员划转|人員劃轉|Personnel transfer
+RYGL-2230|学历变动|學歷變動|Degree of change
+RYGL-2231|初始|初始|Initial
+RYGL-2232|生效|生效|Effect
+RYGL-2233|毕业学校|畢業學校|Graduate School
+RYGL-2234|毕业时间|畢業時間|Graduation
+RYGL-2235|原学历|原學歷|Primary education
+RYGL-2236|新学历|新學歷|New qualification
+RYGL-2237|薪资规则设定|薪資規則設定|Set the salary rules
+RYGL-2238|机构职称变动设定|機構職稱變動設定|Changes in institutional settings titles
+RYGL-2239|学历|學歷|Education
+RYGL-2240|1.导入文件的格式为CSV文件(Excel打开,选csv格式另存为即可)|1.導入檔的格式為CSV檔(Excel打開,選csv格式另存為即可)|1.Importing CSV file format files (Excel open,choose Save As to csv format)
+RYGL-2241|3.电子表格的第一行为标题行，数据从第二行开始，电子表格的前两列固定为：人员编号、姓名.人员编号不能为空值|3.試算表的第一行為標題行，資料從第二行開始，試算表的前兩列固定為：人員編號、姓名.人員編號不能為空值|3.ELECTRONIC forms the first line of the line,the data starting from the second row,spreadsheet,two columns fixed to the front:personnel number,name.personnel number can not be null
+RYGL-2242|4.电子表格的所有列的数据格式设置为文本格式|4.試算表的所有列的資料格式設置為文本格式|4.spreadsheet format for all columns of data formatted as text
+RYGL-2243|使用身份证|使用身份證|Use of identity cards
+RYGL-2244|使用旧系统编号|使用舊系統編號|Using the old system number
+RYGL-2245|上传导入excel文件|上傳導入excel文件|Import excel file upload
+RYGL-2246|业务时间|業務時間|Business hours
+RYGL-2247|使用|使用|Use
+RYGL-2248|配置名称|配置名稱|Configuration name
+RYGL-2249|新进工人审批|新進工人審批|New workers approve
+RYGL-2250|新进干部审批|新進幹部審批|New cadres approval
+RYGL-2251|表外人员审批|表外人員審批|Staff approval sheet
+RYGL-2252|代码值|代碼值|Code value
+RYGL-2253|高限|高限|High Limit
+RYGL-2254|低限|低限|Low Limit
+RYGL-2255|聘后人员类别|聘後人員類別|After the categories of persons employed
+RYGL-2256|月份|月份|Month
+RYGL-2257|上月基数|上月基數|The base last month
+RYGL-2258|培养方向|培養方向|Training Direction
+RYGL-2259|人员变动汇总情况|人員變動匯總情況|Personnel changes summarized in
+RYGL-2260|员工管理|員工管理|Staff Management
+RYGL-2261|增加后备人才|增加後備人才|Increase the reserve talents
+RYGL-2262|输入姓名或编号|輸入姓名或編號|Enter the name or number
+RYGL-2263|请选择|請選擇|Please select
+RYGL-2264|退出原因|退出原因|Exit reason
+RYGL-2265|退出时间|退出時間|Exit Time
+RYGL-2266|拟培养方向|擬培養方向|The direction of the proposed training
+RYGL-2267|培养前职务|培養前職務|Before the job training
+RYGL-2268|任现职时间|任現職時間|Current position of time
+RYGL-2269|入司时间|入司時間|Division of time into
+RYGL-2270|年龄|年齡|Age
+RYGL-2271|公司|公司|Company
+RYGL-2272|3.电子表格的第一行为标题行，数据从第二行开始，电子表格的前几列固定|3.試算表的第一行為標題行，資料從第二行開始，試算表的前幾列固定|3.ELECTRONIC forms the first line of the line,the data starting from the second row,spreadsheet,the first few columns fixed
+RYGL-2273|导入文件数据如下(共|導入檔資料如下(共|Import file are as follows (total
+RYGL-2274|个|個|A
+RYGL-2275|注意|注意|Note
+RYGL-2276|只对当前记录进行操作|只對目前記錄進行操作|Operate only on the current record
+RYGL-2277|结果设置|結果設置|Result set
+RYGL-2278|开始时间|開始時間|Start Time
+RYGL-2279|结束时间|結束時間|End time
+RYGL-2280|待审批入库人员|待審批入庫人員|Warehouse personnel for approval
+RYGL-2281|注意:未审批的非法数据可以由主管部门删除|注意:未審批的非法資料可以由主管部門刪除|Note:No approval by the competent authorities of illegal data deleted
+RYGL-2282|增员时间|增員時間|Increase in staff time
+RYGL-2283|兼职情况|兼職情況|Occupation
+RYGL-2284|主单位|主單位|Main unit
+RYGL-2285|兼职部门|兼職部門|Part-time department
+RYGL-2286|主部门|主部門|Main sectors
+RYGL-2287|取消兼职|取消兼職|Cancel part-time
+RYGL-2288|兼职单位|兼職單位|Part-time unit
+RYGL-2290|所属机构 |所屬機構|Affiliation
+RYGL-2291|显示列合计 |顯示列合計 |Shows the total column
+RYGL-2292|显示行合计 |顯示行合計 |Display line together
+RYGL-2293|数据反查 |數據反查|Anti-check data
+RYGL-2294|数值低限 |數值低限|Low value
+RYGL-2295|数值高限|數值高限|High limit value
+RYGL-2296|分析项目设置|分析專案設置|Analysis of project settings
+RYGL-2297|变更前类别|變更前類別|Category before the change
+RYGL-2298|变更后类别|變更後類別|Changed category
+RYGL-2299|减员原因|減員原因|The reasons for attrition
+RYGL-2300|变更后状态|變更後狀態|State after the change
+RYGL-2301|办理接收|辦理接收|For receiving
+RYGL-2302|单位名称|單位名稱|Name
+RYGL-2303|办理人|辦理人|Transactor
+RYGL-2304|办理时间|辦理時間|Contrast
+RYGL-2305|原状态|原狀態|Original state
+RYGL-2306|原类别|原類別|Original class
+RYGL-2307|减员时间|減員時間|Attrition time
+RYGL-2308|参加工作时间|參加工作時間|Time to work
+RYGL-2309|确定时间|確定時間|Determine the time
+RYGL-2310|返聘人员管理|返聘人員管理|Fanpin personnel management
+RYGL-2311|返聘时间|返聘時間|Fanpin time
+RYGL-2312|返聘单位|返聘單位|Fanpin unit
+RYGL-2313|返聘部门|返聘部門|Fanpin sector
+RYGL-2314|集团人事管理|集團人事管理|Personnel Management Group
+RYGL-2315|人数核查|人數核查|Verification Number
+RYGL-2316|人数汇总设置|人數匯總設置|Set the number of summary
+RYGL-2317|增加设置|增加設置|Increase the set
+RYGL-2318|减少设置|減少設置|Reduced set
+RYGL-2319|汇总项目|匯總項目|Project Summary
+RYGL-2320|选择分类代码|選擇分類代碼|Select Category Code
+RYGL-2321|汇总方式|匯總方式|Summary mode
+RYGL-2322|请定义分类条件|請定義分類條件|Definitions of terms,please
+RYGL-2323|分类项目|分類專案|Classification Project
+RYGL-2324|分类值|分類值|Category values
+RYGL-2325|基本信息|基本資訊|Basic information
+RYGL-2326|户口所在地|戶口所在地|Account Location
+RYGL-2327|新员工入职|新員工入職|New staff
+RYGL-2328|根据身份证计算性别/出生日期:开启|根據身份證計算性別/出生日期:開啟|Calculated based on gender identity /birth date:Open
+RYGL-2329|根据身份证计算性别/出生日期:关闭|根據身份證計算性別/出生日期:關閉|Calculated based on gender identity /Date of Birth:Close
+RYGL-2330|员工照片|員工照片|Staff Photos
+RYGL-2331|员工身份|員工身份|Staff Identity
+RYGL-2332|增员情况|增員情況|Members of the situation by
+RYGL-2333|接收毕业生|接收畢業生|Graduates received
+RYGL-2334|工作证号|工作證號|Work NO.
+RYGL-2335|国籍|國籍|Nationality
+RYGL-2336|专长|專長|Expertise
+RYGL-2337|学制|學制|School system
+RYGL-2338|学位|學位|Degree
+RYGL-2339|学位授予时间|學位授予時間|Time,degree-granting
+RYGL-2340|婚姻状况|婚姻狀況|Marital status
+RYGL-2341|接受复原/转业军人|接受復原/轉業軍人|To receive rehabilitation /demobilized soldiers
+RYGL-2342|复转前在军队职务|複轉前在軍隊職務|Positions in the army before the transit
+RYGL-2343|批准复转单位|批准複轉單位|Approved the re-transfer units
+RYGL-2344|批准复转时间|批准複轉時間|Approval of the transit time
+RYGL-2345|复转类别|複轉類別|Re-turn type
+RYGL-2346|增加人员|增加人員|Additional staff
+RYGL-2347|主管部门|主管部門|Authorities
+RYGL-2348|人员照片|人員照片|Staff photo
+RYGL-2349|户籍地|戶籍地|Domicile
+RYGL-2350|入伍时间|入伍時間|Recruitment time
+RYGL-2351|原部队职务级别|原部隊職務級別|Original force level positions
+RYGL-2352|原部队职务|原部隊職務|The original force duties
+RYGL-2353|原所在部队|原所在部隊|Where the force of the original
+RYGL-2354|原军队情况|原軍隊情況|The military situation in the former
+RYGL-2355|移动电话|行動電話|Mobile phone
+RYGL-2356|家庭联系电话|家庭聯繫電話|Home Phone
+RYGL-2357|工作单位|工作單位|Work units
+RYGL-2358|家庭住址|家庭住址|Home Address
+RYGL-2360|现居住地区|現居住地區|Living Area
+RYGL-2361|联系方式|聯繫方式|Contact
+RYGL-2362|学生管理|學生管理|Student Management
+RYGL-2363|增加学生|增加學生|To increase students
+RYGL-2364|班级|班級|Class
+RYGL-2365|当前单位|當前單位|Current unit
+RYGL-2366|浏览人员信息|流覽人員資訊|Browse personnel information
+RYGL-2367|办理人员如下 |辦理人員如下|Processing staff as follows
+RYGL-2368|变更后人员类别 |變更後人員類別|Category of personnel after the change
+RYGL-2369|人员唯一标识 |人員唯一標識|Uniquely identifies staff
+RYGL-2370|多人信息维护|多人資訊維護|Information maintenance people
+RYGL-2371|以下人员要办理|以下人員要辦理|The following personnel should handle
+RYGL-2372|注意只有审批后才生效|注意只有審批後才生效|Note that only take effect after approval
+RYGL-2373|减员类别|減員類別|Attrition categories
+RYGL-2374|减员日期|減員日期|Date of attrition
+RYGL-2375|来往单位|来往單位|Variable between units
+RYGL-2376|以下人员要办理审批业务|以下人員要辦理審批業務|The following personnel to handle the approval of business
+RYGL-2377|自动通知|自動通知|Automatic notification
+RYGL-2378|自动发送|自動發送|Automatic transmission
+RYGL-2379|接收集团内其他单位调入|接收集團內其他單位調入|Transferred to other units within the group receiving
+RYGL-2380|接收处理|接收處理|Receiving and processing
+RYGL-2381|工人减少审批|工人減少審批|Fewer workers approve
+RYGL-2382|当前选择机构|當前選擇機構|Currently selected institutions
+RYGL-2383|所属单位|所屬單位|Affiliation
+RYGL-2384|减少类别|減少類別|Reduce class
+RYGL-2385|审批状态|審批狀態|Approval Status
+RYGL-2386|干部减少审批|幹部減少審批|Cadres to reduce approval
+RYGL-2387|人员调配 待审批减少人员|人員調配 待審批減少人員|Pending deployment of personnel to reduce personnel
+RYGL-2388|退出后备人才|退出後備人才|Exit Reserve
+RYGL-2389|选择指标项|選擇指標項|Select items of indexes
+RYGL-2390|调往集团内其他单位|調往集團內其他單位|Transferred to other units within the group
+RYGL-2391|统计时间|統計時間|Statistical time
+RYGL-2392|选择过滤条件|選擇過濾條件|Select filter
+RYGL-2393|全部|全部|All
+RYGL-2394|汇总|匯總|Summary
+RYGL-2395|全部项目|全部專案|All items
+RYGL-2396|已选项目|已選項目|Selected projects
+RYGL-2397|项目团队名称|項目團隊名稱|Name of the project team
+RYGL-2398|应用范围|應用範圍|Applications
+RYGL-2399|机构|机构|Agencies
+RYGL-2400|岗位|崗位|Post
+RYGL-2401|时间|時間|Time
+RYGL-2402|新类别|新類別|New category
+RYGL-2403|待审批人员|待審批人員|Pending personnel
+RYGL-2404|增加用户 |增加用戶|Add user
+RYGL-2405|登陆名 |登陸名|Login Name
+RYGL-2406|非领导职务 |非領導職務|Non-leadership positions
+RYGL-2407|总经理|總經理|General Manager
+RYGL-2408|副总经理|副總經理|Deputy General Manager
+RYGL-2409|总经理助理|總經理助理|Assistant General Manager
+RYGL-2410|非领导职务|非領導職務|Non-leadership positions
+RYGL-2411|相关数据|相關資料|Data
+RYGL-2412|计算方法|計算方法|Calculation
+RYGL-2413|计算精度|計算精度|Accuracy
+RYGL-2414|不足一年时的处理规则|不足一年時的處理規則|Processing rules when less than one year
+RYGL-2415|计算规则|計算規則|Calculation rules
+RYGL-2416|根据姓名信息(A001001)产生简拼(A001002),仅抽取每个字的第一个字母|根據姓名資訊(A001001)產生簡拼(A001002),僅抽取每個字的第一個字母|Information based on names (A001001)have Jianpin (A001002),taking only the first letter of each word
+RYGL-2417|输入查询时间|輸入查詢時間|Enter the query time
+RYGL-2418|选择人员|選擇人員|Selection of personnel
+RYGL-2419|人员名单|人員名單|List of
+RYGL-2420|查询条件|查詢準則|Query
+RYGL-2421|新机构|新機構|New department
+RYGL-2422|原岗位|原崗位|Original position
+RYGL-2423|原部门|原部門|Primary sector
+RYGL-2424|薪资调整日期|薪資調整日期|Date of salary adjustment
+RYGL-2425|人事生效日期|人事生效日期|Effective Date of Personnel
+RYGL-2426|试用期(月)|試用期(月)|Trial period (months)
+RYGL-2430|转正月数|轉正月數|Turned positive in January
+RYGL-2431|生效|生效|Has turned positive
+RYGL-2432|修改人员排序信息,默认排序是人员入库顺序|修改人員排序資訊,預設排序是人員入庫順序|Modify the staff sort of information,the default sort order is the personnel storage
+RYGL-2433|按姓名排序|按姓名排序|Sort by name
+RYGL-2434|已选择人员列表|已選擇人員列表|List of people who have chosen
+RYGL-2435|共有|共有|Total
+RYGL-2436|人|人|People
+RYGL-2437|拟报资格|擬報資格|Eligible to be reported
+RYGL-2438|拟报专业|擬報專業|Professional to be reported
+RYGL-2439|拟报等级|擬報等級|Level to be reported
+RYGL-2440|总分|總分|Total
+RYGL-2441|通过轮次|通過輪次|By round
+RYGL-2442|第一轮|第一輪|The first round
+RYGL-2443|第二轮|第二輪|Second round
+RYGL-2444|年度|年度|Year
+RYGL-2445|申报人数|申報人數|Number of reported
+RYGL-2446|职称管理|職稱管理|Title Management
+RYGL-2447|部门评审|部門評審|Departmental assessment
+RYGL-2448|查看信息集|查看信息集|View information set
+RYGL-2449|查看信息项|查看信息項|View information items
+RYGL-2450|过滤字段|過濾欄位|Filtration column
+RYGL-2451|过滤字段值|過濾欄位值|Field value filtering
+RYGL-2452|过滤模式|過濾模式|Filter Pattern
+RYGL-2453|选择指标集|選擇指標集|Select index set
+RYGL-2454|选择项|選擇項|Selection
+RYGL-2455|职称申报|職稱申報|Title report
+RYGL-2456|打分|打分|Scoring
+RYGL-2457|申报资格|申報資格|Declared eligible for
+RYGL-2458|申报专业|申報專業|Professional reporting
+RYGL-2459|拟申报等级|擬申報等級|To be declared class
+RYGL-2460|分数|分數|Score
+RYGL-2461|审批情况|審批情況|Approval conditions
+RYGL-2462|职称个人申报管理|職稱個人申報管理|Individual titles and reporting management
+RYGL-2463|申报信息|申報資訊|Reporting information
+RYGL-2464|个人基本信息|個人基本資訊|Basic personal information
+RYGL-2465|工作经历|工作經歷|Work experience
+RYGL-2466|成果奖励|成果獎勵|Outcome
+RYGL-2467|论文作品|論文作品|Paper work
+RYGL-2468|打分结果|打分結果|Scoring results
+RYGL-2469|排除原因|排除原因|Excluded because
+RYGL-2470|部门名称|部門名稱|Department Name
+RYGL-2471|退回原因|退回原因|Reason for the return
+RYGL-2472|评审时间|評審時間|Review time
+RYGL-2473|评审团|評審團|Jury
+RYGL-2474|权重模式名称|權重模式名稱|Weight model name
+RYGL-2475|专家打分分数线|專家打分分數線|Expert scoring score
+RYGL-2476|专家权重(%)|專家權重(%)|Expert weights (%)
+RYGL-2477|部门打分权重(%)|部門打分權重(%)|Sector weighting rate (%)
+RYGL-2478|权重模式名称|權重模式名稱|Weight model name
+RYGL-2479|专业名称|專業名稱|Professional Title
+RYGL-2480|技术级别|專業技術級別|Technical level
+RYGL-2481|专业技术岗位管理|專業技術崗位管理|Management of professional and technical posts
+RYGL-2482|专业技术等级|专业技术等级|Professional and technical levels
+RYGL-2483|专业|專業|Professional
+RYGL-2484|职称变动|職稱變動|Title Change
+RYGL-2485|职称评审权重管理|職稱評審權重管理|Weight Management Review Title
+RYGL-2486|部门权重列表|部門權重列表|Sector weighting list
+RYGL-2487|职称级别|職稱級別|Title level
+RYGL-2488|专家最多通过数|專家最多通過數|Most experts through several
+RYGL-2489|打分低限|打分低限|Low scoring
+RYGL-2490|打分高限|打分高限|Scoring high limit
+RYGL-2491|进入第二轮最少专家数|進入第二輪最少專家|At least a few experts in the second round
+RYGL-2492|最少通过专家数|最少通過專家數|At least by the number of experts
+RYGL-2493|模式名称|模式名稱|Model Name
+RYGL-2494|权重(%)|權重(%)|Weight (%)
+RYGL-2495|部门权重设置|部門權重設置|Sector weighting set
+RYGL-2496|选择部门|選擇部門|Select Sector
+RYGL-2497|原等级|原等級|The original level
+RYGL-2498|新等级|新等級|New Level
+RYGL-2499|原专业|原專業|Former professional
+RYGL-2500|新专业|新專業|New professional
+RYGL-2501|原资格|原資格|The original qualification
+RYGL-2502|新资格|新資格|New qualification
+RYGL-2503|评审权重模式|評審權重模式|Weight model assessment
+RYGL-2504|实习员工转正审批|實習員工轉正審批|Practice positive staff approval
+RYGL-2505|实习转正审批|實習轉正審批|Internship to positive approval
+RYGL-2506|转正后员工类别|轉正後員工類別|Passing probation staff category
+RYGL-2507|当前员工类别|當前員工類別|The current staff category
+RYGL-2508|实习转正式管理|實習轉正式管理|Formal management training transfer
+RYGL-3001|离职死亡|離職死亡|Die
+
+
+
+

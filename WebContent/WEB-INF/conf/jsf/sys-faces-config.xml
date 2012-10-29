@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+
+    <managed-bean>
+      <managed-bean-name>sys_toolsBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.ToolsBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_fingerBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.FingerBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+              <property-name>fingerucc</property-name>
+              <value>#{sys_fingerUCC}</value>
+        </managed-property>
+        <managed-property>
+              <property-name>aucc</property-name>
+              <value>#{common_attachmentUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_otpBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.OptBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+              <property-name>otpapi</property-name>
+              <value>#{sys_licapi}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_buttonBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.ButtonBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+
+    <managed-bean>
+      <managed-bean-name>sys_commonInfoBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.CommonInfoBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+
+    <managed-bean>
+      <managed-bean-name>sys_workexcludeBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.WorkFlowExcludeBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>wfservice</property-name>
+            <value>#{sys_wfservice}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_workflowprocessBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.WorkFlowProcessBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>wfservice</property-name>
+            <value>#{sys_wfservice}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_workflownodeBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.WorkFlowNodeBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>wfservice</property-name>
+            <value>#{sys_wfservice}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_viewworkcfgBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.ViewWorkFlowBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>wfservice</property-name>
+            <value>#{sys_wfservice}</value>
+      </managed-property>
+        <managed-property>
+              <property-name>usermanagerucc</property-name>
+              <value>#{user_userManageUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_workflowcfgBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.WorkFlowCfgBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>wfservice</property-name>
+            <value>#{sys_wfservice}</value>
+      </managed-property>
+        <managed-property>
+              <property-name>usermanagerucc</property-name>
+              <value>#{user_userManageUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_videoNewsBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.VideoNewsBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>videoucc</property-name>
+            <value>#{sys_videoUCC}</value>
+      </managed-property>
+    </managed-bean>
+
+
+    <managed-bean>
+      <managed-bean-name>sys_CleanBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.CleanBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>api</property-name>
+            <value>#{sys_activePageApi}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_wageselfItemBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.WageSelfItemBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>wageapi</property-name>
+            <value>#{wage_api}</value>
+      </managed-property>
+        <managed-property>
+              <property-name>wagesetucc</property-name>
+              <value>#{wage_SetUccImpl}</value>
+        </managed-property>
+    </managed-bean>
+
+
+    <managed-bean>
+      <managed-bean-name>sys_selfinfoPowerBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.SelfInfoListBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+              <property-name>selfinfoUCC</property-name>
+              <value>#{user_selfinfoUccImpl}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_selflevelListBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.SelfLevelListBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>selflevelUCC</property-name>
+            <value>#{user_selflevelUccImpl}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_selflevelEditBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.SelfLevelEditBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>selflevelUCC</property-name>
+            <value>#{user_selflevelUccImpl}</value>
+      </managed-property>
+    </managed-bean>
+
+
+
+
+    <managed-bean>
+        <managed-bean-name>sys_AddressBookItemBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.AddressBookItemBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>addressucc</property-name>
+            <value>#{emp_addressUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>activepageapi</property-name>
+            <value>#{sys_activePageApi}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>addressbookucc</property-name>
+            <value>#{emp_addressbookUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_StarsBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.StarsBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>starsucc</property-name>
+            <value>#{self_starsUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>activepageapi</property-name>
+            <value>#{sys_activePageApi}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_AddressBookBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.AddressBookBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>addressucc</property-name>
+            <value>#{emp_addressUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>activepageapi</property-name>
+            <value>#{sys_activePageApi}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>addressbookucc</property-name>
+            <value>#{emp_addressbookUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+       <managed-bean-name>sys_personDeleteBB</managed-bean-name>
+       <managed-bean-class>com.hr319wg.sys.web.PersonDeleteBackingBean</managed-bean-class>
+       <managed-bean-scope>request</managed-bean-scope>
+       <managed-property>
+           <property-name>personucc</property-name>
+           <value>#{emp_personUCC}</value>
+       </managed-property>
+        <managed-property>
+            <property-name>wageapi</property-name>
+            <value>#{wage_api}</value>
+        </managed-property>
+
+   </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_inProcessBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.InProcessBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>linkucc</property-name>
+            <value>#{sys_inprocessUCC}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>userapi</property-name>
+            <value>#{user_pmsAPI}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>usermanageucc</property-name>
+            <value>#{user_userManageUCC}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>selfucc</property-name>
+            <value>#{user_selfinfoUccImpl}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>workservice</property-name>
+            <value>#{sys_wfservice}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>wagedateucc</property-name>
+            <value>#{wage_DateUccImpl}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>setucc</property-name>
+            <value>#{wage_SetUcc}</value>
+        </managed-property>
+
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_linkBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.FriendLinkBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>linkucc</property-name>
+            <value>#{sys_linkUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_portalBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.PortalFunBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>portalucc</property-name>
+            <value>#{sys_portalUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_linkEditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.FriendLinkEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>linkucc</property-name>
+            <value>#{sys_linkUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>sys_codeSetListBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.CodeSetListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>codesetucc</property-name>
+            <value>#{sys_codeSetUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>usermanageucc</property-name>
+            <value>#{user_userManageUCC}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>sys_codeSetEditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.CodeSetEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>codesetucc</property-name>
+            <value>#{sys_codeSetUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_itemRefBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.ItemRefBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>infoitemucc</property-name>
+            <value>#{sys_infoItemUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_codeItemListBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.CodeItemListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>codesetucc</property-name>
+            <value>#{sys_codeSetUCC}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>codeitemucc</property-name>
+            <value>#{sys_codeItemUCC}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>usermanageucc</property-name>
+            <value>#{user_userManageUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_itemRelationBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.ItemRelationBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_codeItemEditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.CodeItemEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>codeitemucc</property-name>
+            <value>#{sys_codeItemUCC}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>sys_infoSetListBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.InfoSetListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>infosetucc</property-name>
+            <value>#{sys_infoSetUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>usermanageucc</property-name>
+            <value>#{user_userManageUCC}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>sys_infoSetEditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.InfoSetEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>infosetucc</property-name>
+            <value>#{sys_infoSetUCC}</value>
+        </managed-property>
+    </managed-bean>
+    
+  <managed-bean>
+        <managed-bean-name>sys_infoItemListBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.InfoItemListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>infoitemucc</property-name>
+            <value>#{sys_infoItemUCC}</value>
+        </managed-property>
+      <managed-property>
+          <property-name>usermanageucc</property-name>
+          <value>#{user_userManageUCC}</value>
+      </managed-property>
+    </managed-bean>
+
+  <managed-bean>
+        <managed-bean-name>sys_parameterBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.ParameterBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ucc</property-name>
+            <value>#{sys_parameterUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+      <managed-bean>
+        <managed-bean-name>sys_infoItemEditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.InfoItemEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>infoitemucc</property-name>
+            <value>#{sys_infoItemUCC}</value>
+        </managed-property>
+             <managed-property>
+              <property-name>codesetucc</property-name>
+              <value>#{sys_codeSetUCC}</value>
+          </managed-property>
+          
+          </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_SysLogOperBackingBean</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.SysLogOperBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>isyslogoperUCC</property-name>
+            <value>#{sys_SysLogOperUCC}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>loginucc</property-name>
+            <value>#{sys_loginLogUCC}</value>
+        </managed-property>
+
+    </managed-bean>
+
+    <!--       公告管理             -->
+    <managed-bean>
+      <managed-bean-name>sys_BulletinListBackingBean</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.BulletinListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>bulletinmanageucc</property-name>
+            <value>#{sys_ibulletinManageUCC}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+      <managed-bean-name>sys_BulletinEditBackingBean</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.BulletinEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>bulletinmanageucc</property-name>
+            <value>#{sys_ibulletinManageUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>selflevelUCC</property-name>
+            <value>#{user_selflevelUccImpl}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+            <managed-bean-name>sys_bulletinbriefMoreBB </managed-bean-name>
+            <managed-bean-class>
+                com.hr319wg.sys.web.BulletinBriefMoreBackingBean
+            </managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+            <managed-property>
+                <property-name>bulletinqueryucc</property-name>
+                <value>#{sys_BulletinQueryUCC}</value>
+            </managed-property>
+        </managed-bean>
+
+    <!--       新闻管理             -->
+    <managed-bean>
+      <managed-bean-name>sys_NewsListBackingBean</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.NewsListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>newsmanageucc</property-name>
+            <value>#{sys_inewsManageUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_NewsBriefMoreBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.NewsBriefMoreBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>newsmanageucc</property-name>
+            <value>#{sys_inewsManageUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>newsqueryucc</property-name>
+            <value>#{sys_NewsQueryUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>sys_NewsEditBackingBean</managed-bean-name>
+        <managed-bean-class>com.hr319wg.sys.web.NewsEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>newsmanageucc</property-name>
+            <value>#{sys_inewsManageUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>selflevelUCC</property-name>
+            <value>#{user_selflevelUccImpl}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+            <managed-bean-name> sys_RemindPreSetBackingBean </managed-bean-name>
+            <managed-bean-class>
+                com.hr319wg.sys.web.RemindPreSetBackingBean
+            </managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+            <managed-property>
+                <property-name>remindsetucc</property-name>
+                <value>#{sys_RemindSetUCC}</value>
+            </managed-property>
+        </managed-bean>
+
+        <managed-bean>
+            <managed-bean-name> sys_RemindSetBackingBean  </managed-bean-name>
+            <managed-bean-class>
+                com.hr319wg.sys.web.RemindSetBackingBean
+            </managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+            <managed-property>
+                <property-name>remindsetucc</property-name>
+                <value>#{sys_RemindSetUCC}</value>
+            </managed-property>
+            <managed-property>
+                <property-name>remindAPI</property-name>
+                <value>#{sys_RemindResultQueryAPI}</value>
+            </managed-property>
+        </managed-bean>
+
+        <managed-bean>
+            <managed-bean-name>sys_RemindScopeSetBackingBean  </managed-bean-name>
+            <managed-bean-class>
+                com.hr319wg.sys.web.RemindScopeSetBackingBean
+            </managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+            <managed-property>
+                <property-name>remindsetucc</property-name>
+                <value>#{sys_RemindSetUCC}</value>
+            </managed-property>
+        </managed-bean>
+
+        <managed-bean>
+            <managed-bean-name> sys_RemindResultBackingBean </managed-bean-name>
+            <managed-bean-class>
+                com.hr319wg.sys.web.RemindResultBackingBean
+            </managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+            <managed-property>
+                <property-name>remindsetucc</property-name>
+                <value>#{sys_RemindSetUCC}</value>
+            </managed-property>
+        </managed-bean>
+
+        <managed-bean>
+            <managed-bean-name>sys_RemDetailBackingBean </managed-bean-name>
+            <managed-bean-class>
+                com.hr319wg.sys.web.RemResultDetailBackingBean
+            </managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+            <managed-property>
+                <property-name>remindsetucc</property-name>
+                <value>#{sys_RemindSetUCC}</value>
+            </managed-property>
+        </managed-bean>
+
+        <managed-bean>
+            <managed-bean-name>  sys_RemindSelectBackingBean   </managed-bean-name>
+            <managed-bean-class>
+                com.hr319wg.sys.web.RemindSelectBackingBean
+            </managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+            <managed-property>
+                <property-name>remindsetucc</property-name>
+                <value>#{sys_RemindSetUCC}</value>
+            </managed-property>
+        </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>sys_eMailEditBackingBean </managed-bean-name>
+        <managed-bean-class>
+            com.hr319wg.sys.web.eMailEditBackingBean
+        </managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>shortmessageucc</property-name>
+            <value>#{sys_SMUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>groupucc</property-name>
+            <value>#{sys_GroupUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/system/CodeSetList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/system/CodeSetEdit.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/system/CodeSetEdit.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>itemlist</from-outcome>
+            <to-view-id>/system/CodeItemList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/CodeSetEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>setlist</from-outcome>
+            <to-view-id>/system/CodeSetList.jsf</to-view-id>
+        </navigation-case>
+   </navigation-rule>
+
+
+    <navigation-rule>
+      <from-view-id>/system/*</from-view-id>
+        <navigation-case>
+       <from-outcome>sys_newslist</from-outcome>
+       <to-view-id>/system/NewsList.jsf</to-view-id>
+       <redirect/>
+       </navigation-case>
+
+      <navigation-case>
+        <from-outcome>sys_newsedit</from-outcome>
+        <to-view-id>/system/NewsEdit.jsf</to-view-id>
+      </navigation-case>
+   </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/system/CodeItemList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/system/CodeItemEdit.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/system/CodeItemEdit.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>setlist</from-outcome>
+            <to-view-id>/system/CodeSetList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/system/CodeItemEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>itemlist</from-outcome>
+            <to-view-id>/system/CodeItemList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/InfoSetList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/system/InfoSetEdit.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/system/InfoSetEdit.jsf</to-view-id>
+        </navigation-case>
+           <navigation-case>
+            <from-outcome>itemlist</from-outcome>
+            <to-view-id>/system/InfoItemList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+            <from-view-id>/system/InfoSetEdit.jsp</from-view-id>
+            <navigation-case>
+                <from-outcome>setlist</from-outcome>
+                <to-view-id>/system/InfoSetList.jsf</to-view-id>
+            </navigation-case>
+        </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/InfoItemList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/system/InfoItemEdit.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/system/InfoItemEdit.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>setlist</from-outcome>
+            <to-view-id>/system/InfoSetList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/InfoItemEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>itemlist</from-outcome>
+            <to-view-id>/system/InfoItemList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/InfoItemEditBySet.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>itemlist</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/RemindList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>sys_RemindEdit</from-outcome>
+            <to-view-id>/system/RemindEdit.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+       <from-view-id>/system/AddExclude.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>success</from-outcome>
+           <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+     <navigation-rule>
+        <from-view-id>/system/RemindEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+       <from-view-id>/system/auditRegEdit.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>success</from-outcome>
+           <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+       <from-view-id>/system/ItemRefRelation.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>success</from-outcome>
+           <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+       <from-view-id>/system/BulletinEdit.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>success</from-outcome>
+           <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+       <from-view-id>/system/SendMail.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>success</from-outcome>
+           <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+       <from-view-id>/system/PortalFunEdit.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>success</from-outcome>
+           <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+       <from-view-id>/system/EditItemCodeRelation.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>success</from-outcome>
+           <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+       <from-view-id>/system/AddAnswer.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>success</from-outcome>
+           <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+       <from-view-id>/system/StarsEdit.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>success</from-outcome>
+           <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+
+    <navigation-rule>
+       <from-view-id>/system/FriendLinkEdit.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>success</from-outcome>
+           <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/RemindScopeSet.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/RemindResult.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>sys_RemResultDetail</from-outcome>
+            <to-view-id>/system/RemResultDetail.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>sys_RemindItemDetail</from-outcome>
+            <to-view-id>/system/RemindItemDetail.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/RemindBriefMore.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>sys_RemResultDetail</from-outcome>
+            <to-view-id>/system/RemResultDetail.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>sys_RemResultDetail</from-outcome>
+            <to-view-id>/system/RemResultDetail.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/RemindAdmin.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>sys_RemResultDetail</from-outcome>
+            <to-view-id>/system/RemResultDetail.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/system/RemindSelectPeople.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>close</from-outcome>
+            <to-view-id>/pages/system/close.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/RemindSelectRole.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>close</from-outcome>
+            <to-view-id>/pages/system/close.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/system/BookEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/PersonSort.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/SelfLevelEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/system/GroupEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/system/SetInfoToExport.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/system/ShowStruExport.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/CodeInfoToExport.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/system/ShowStruExport.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/VideoNewsEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/DeletePersonProcess.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>close</from-outcome>
+            <to-view-id>/pages/system/DeletePersonClose.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/wfInfoEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/system/wfNodeEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+       <from-view-id>/system/wfTransEdit.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>success</from-outcome>
+           <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+ </faces-config>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="oa_worklogdao" class="com.oa319wg.user.dao.OAWorkLogDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+     </bean>
+    <bean id="oa_worklogservice" class="com.oa319wg.user.service.OAWorkLogService">
+        <property name="worklogdao">
+            <ref bean="oa_worklogdao"/>
+        </property>
+        <property name="postdao">
+            <ref bean="post_postDAO"/>
+        </property>
+     </bean>
+
+    <bean id="oa_worklogucc" class="com.oa319wg.user.ucc.impl.OAWorkLogUCC">
+        <property name="workservice">
+            <ref bean="oa_worklogservice"/>
+        </property>
+    </bean>
+
+    <bean id="oa_userdao" class="com.oa319wg.user.dao.OAUserInfoDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+     </bean>
+
+    <bean id="oa_userservice" class="com.oa319wg.user.service.OAUserManageService">
+        <property name="userinfodao">
+            <ref bean="user_userInfoDAO"/>
+        </property>
+        <property name="oa_userinfodao">
+            <ref bean="oa_userdao"/>
+        </property>
+
+     </bean>
+
+    <bean id="oa_userucc" class="com.oa319wg.user.ucc.impl.OAUserManageUCC">
+        <property name="oauserservice">
+            <ref bean="oa_userservice"/>
+        </property>
+    </bean>
+
+</beans>
+

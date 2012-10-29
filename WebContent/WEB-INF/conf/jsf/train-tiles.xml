@@ -1,0 +1,300 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+
+    <definition name="/train/postTrainCourse.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/postTrainCourse.jsp"/>
+    </definition>
+
+    <definition name="/train/CWMore.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/train/CWMore.jsp"/>
+    </definition>
+    <definition name="/train/CWMoreChild.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/train/CWMoreChild.jsp"/>
+    </definition>
+
+    <definition name="/train/CourceWareManList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/train/CourceWareManList.jsp"/>
+    </definition>
+    <definition name="/train/CourceWareManListChild.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/CourceWareManListChild.jsp"/>
+    </definition>
+    <definition name="/train/CWDictEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/CWDictEdit.jsp"/>
+    </definition>
+    <definition name="/train/CWFileEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/CWFileEdit.jsp"/>
+    </definition>
+
+    <definition name="/train/TrainOrgIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/train/TrainOrgIndex.jsp"/>
+    </definition>
+    <definition name="/train/TrainOrgList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/TrainOrgList.jsp"/>
+    </definition>
+    <definition name="/train/TrainOrgEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/TrainOrgEdit.jsp"/>
+    </definition>
+    <!--gaohaixing_teachers -->
+    <definition name="/train/TrainTeacherIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/train/TrainTeacherIndex.jsp"/>
+    </definition>
+    <definition name="/train/TrainTeacherList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/TrainTeacherList.jsp"/>
+    </definition>
+    <definition name="/train/TrainTeacherEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/TrainTeacherEdit.jsp"/>
+    </definition>
+    <!--qiaolei_books -->
+    <definition name="/train/TrainBookIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/train/TrainBookIndex.jsp"/>
+    </definition>
+    <definition name="/train/TrainBookList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/TrainBookList.jsp"/>
+    </definition>
+    <definition name="/train/TrainBookEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/TrainBookEdit.jsp"/>
+    </definition>
+     <!-- 汪伟 培训场所开始 -->
+    <definition name="/train/TrainPlaceIndex.tiles" extends="layout.busitemplateLogin">
+    	<put name="body" value="/pages/train/TrainPlaceIndex.jsp"/>
+    </definition>
+    <definition name="/train/TrainPlaceList.tiles" extends="layout.busitemplate">
+    	<put name="body" value="/pages/train/TrainPlaceList.jsp"/>
+    </definition>
+    <definition name="/train/TrainPlaceEdit.tiles" extends="layout.busitemplateSelf">
+    	<put name="body" value="/pages/train/TrainPlaceEdit.jsp"></put>
+    </definition>
+     <!--  培训器材 -->
+     <definition name="/train/TrainEquipmentIndex.tiles" extends="layout.busitemplateLogin">
+    <put name="body" value="/pages/train/TrainEquipmentIndex.jsp"/>
+    </definition>
+    <definition name="/train/TrainEquipmentList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/TrainEquipmentList.jsp"/>
+    </definition>
+    <definition name="/train/TrainEquipmentEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/TrainEquipmentEdit.jsp"/>
+    </definition>
+    <!-- 内部讲师 -->
+     <definition name="/train/TrainInnerteacherIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/train/TrainInnerteacherIndex.jsp"/>
+    </definition>
+    <definition name="/train/TrainInnerteacherList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/TrainInnerteacherList.jsp"/>
+    </definition>
+    <definition name="/train/TrainInnerteacherList1.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/TrainInnerteacherList1.jsp"/>
+    </definition>
+    <definition name="/train/TrainInnerteacherEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/TrainInnerteacherEdit.jsp"/>
+    </definition>
+     <!-- 浏览培训需求 -->
+     <definition name="/train/TrainDemandIndex.tiles" extends="layout.busitemplateLogin">
+    	<put name="body" value="/pages/train/TrainDemandIndex.jsp"/>
+    </definition>
+    <definition name="/train/DemandList.tiles" extends="layout.busitemplate">
+    	<put name="body" value="/pages/train/DemandList.jsp"/>
+    </definition>
+     <definition name="/train/TrainDetailDemand.tiles" extends="layout.busitemplate">
+    	<put name="body" value="/pages/train/TrainDetailDemand.jsp"/>
+    </definition>
+     <!--录入部门需求-->
+    <definition name="/train/TrainDepartDemandIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/train/TrainDepartDemandIndex.jsp"/>
+    </definition>
+    <definition name="/train/TrainDepartDemandList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/TrainDepartDemandList.jsp"/>
+    </definition>
+    <definition name="/train/TrainDepartDemandEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/TrainDepartDemandEdit.jsp"/>
+    </definition>
+    <!-- 培训个人需要 -->
+    <definition name="/train/TrainPersonDemandIndex.tiles" extends="layout.busitemplateLogin">
+    <put name="body" value="/pages/train/TrainPersonDemandIndex.jsp"/>
+    </definition>
+    <definition name="/train/TrainPersonDemandList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/TrainPersonDemandList.jsp"/>
+    </definition>
+    <definition name="/train/TrainPersonDemandEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/TrainPersonDemandEdit.jsp"/>
+    </definition>
+     <!--自助录入部门需求-->
+    <definition name="/train/TrainSelfDepartDemandIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/train/TrainSelfDepartDemandIndex.jsp"/>
+    </definition>
+    <definition name="/train/TrainSelfDepartDemandList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/TrainSelfDepartDemandList.jsp"/>
+    </definition>
+    <definition name="/train/TrainSelfDepartDemandEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/TrainSelfDepartDemandEdit.jsp"/>
+    </definition>
+     <!-- 自助培训个人需要开始 -->
+    <definition name="/train/SelfPersonDemand.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/SelfPersonDemand.jsp"/>
+    </definition>
+    <definition name="/train/SelfPersonDemandEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/SelfPersonDemandEdit.jsp"/>
+    </definition>
+    <!-- 培训计划 -->
+    <definition name="/train/makePlan.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/train/makePlan.jsp" />
+    </definition>
+    <definition name="/train/addTrainPlan.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/addTrainPlan.jsp" />
+    </definition>
+    <definition name="/train/planAuditList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/train/planAuditList.jsp" />
+    </definition>
+    <definition name="/train/auditPlan.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/train/auditPlan.jsp" />
+    </definition>
+    <definition name="/train/trainPlanAuditEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/trainPlanAuditEdit.jsp" />
+    </definition>
+     <definition name="/train/trainPlanAuditQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/trainPlanAuditQuery.jsp" />
+    </definition>
+    <!-- 培训班管理与审批 -->
+    <definition name="/train/trainClassList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/train/trainClassList.jsp" />
+    </definition>
+    <definition name="/train/trainClassEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/trainClassEdit.jsp" />
+    </definition>
+    
+    <definition name="/train/TrainClassAuditQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/TrainClassAuditQuery.jsp" />
+    </definition>
+    <!-- 培训班报名 -->
+    <definition name="/train/trainClassSign.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/train/trainClassSign.jsp" />
+    </definition>
+    <definition name="/train/trainClassQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/train/trainClassQuery.jsp" />
+    </definition>
+    <definition name="/train/trainClassSignList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/trainClassSignList.jsp"/>
+    </definition>
+    <definition name="/train/personAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/train/personAdd.jsp"/>
+    </definition>
+     <definition name="/train/trainClassSignList1.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/train/trainClassSignList1.jsp"/>
+    </definition>
+    <!-- 培训学生审批 -->
+     <definition name="/train/studentAudit.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/train/studentAudit.jsp" />
+    </definition>
+    <definition name="/train/studentAuditList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/train/studentAuditList.jsp" />
+    </definition>
+    <definition name="/train/TrainStudentAuditEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/TrainStudentAuditEdit.jsp" />
+    </definition>
+     <!-- 培训班结算 -->
+     <definition name="/train/trainClassFinish.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/train/trainClassFinish.jsp" />
+    </definition>
+    
+    <definition name="/train/TrainOutTeacherQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/TrainOutTeacherQuery.jsp" />
+    </definition>
+    
+     <definition name="/train/TrainInnerteacherQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/TrainInnerteacherQuery.jsp" />
+    </definition>
+    
+    <definition name="/train/TrainBookListQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/TrainBookListQuery.jsp" />
+    </definition>
+   
+    <definition name="/train/teacherInforSet.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/train/teacherInforSet.jsp" />
+    </definition>
+    
+    <definition name="/train/trainClassManager.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/trainClassManager.jsp" />
+    </definition>
+     <!-- 中间节点审批 -->
+    <definition name="/train/midAuditPlan.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/train/midAuditPlan.jsp" />
+    </definition>
+    <definition name="/train/trainPlanAuditLevel1.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/trainPlanAuditLevel1.jsp" />
+    </definition>
+    <definition name="/train/trainPlanAuditLevel2.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/trainPlanAuditLevel2.jsp" />
+    </definition>
+    <definition name="/train/trainPlanAuditLevel3.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/trainPlanAuditLevel3.jsp" />
+    </definition>
+    <definition name="/train/trainSystemList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/trainSystemList.jsp" />
+    </definition>
+    <definition name="/train/trainSystem.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/train/trainSystem.jsp" />
+    </definition>
+    <definition name="/train/trainSystemPost.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/train/trainSystemPost.jsp" />
+    </definition>
+     <definition name="/train/trainSystemEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/trainSystemEdit.jsp" />
+    </definition>
+    <definition name="/train/trainSystemPostList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/train/trainSystemPostList.jsp" />
+    </definition>
+    <definition name="/train/trainSystemPostEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/trainSystemPostEdit.jsp" />
+    </definition>
+    <!-- 培训需求公告 -->
+    <definition name="/train/publicDemand.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/train/publicDemand.jsp" />
+    </definition>
+    <definition name="/train/publicDemandEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/publicDemandEdit.jsp" />
+    </definition>
+    <definition name="/train/selPrivateCourse.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/train/selPrivateCourse.jsp" />
+    </definition>
+</tiles-definitions>

@@ -1,0 +1,12 @@
+ClearCase CopyAreaDB|4
+HRD_App\WebContent\pages\post\info
+2
+8
+10:PostEditInfo.jsp|1|10cd20e3f83|f81|caf67083|b92400f7844e4330847649331e096f25|0
+11:PostInfoIndex.jsp|1|10d38e9de5d|a7a|941be782|cdac79d402d347da974d5e22d6c6adc6|0
+16:PostInfoDetailList.jsp|1|10cfc9ed18f|e12|fdc70df1|99dae34846584f70a53054de1e29d57d|0
+c:PostNote.jsp|1|10dab8efaef|504a|f6cb7b2a|51a9dfbccac148d79c21b196a73214a3|0
+b:PostAdd.jsp|1|10dab8efa14|2155|1809f30e|c533c2cf865a4fa7bcbd107f12b19eca|0
+11:PostInfoQuery.jsp|1|10f7ff109af|c4f|8affbd1f|8a6628ad0db9450ba3320b7d72af1fad|0
+f:InfoSetTree.jsp|1|10dab8ef9b7|122d|2a3a5284|f08b47c6bc3a4d88a9267886023e8adf|0
+12:PostInfoDetail.jsp|1|10d38e9de1e|1330|e570ca94|08280f7e19e74d36af6fe96fec2e1791|0

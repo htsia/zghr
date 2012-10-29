@@ -1,0 +1,8 @@
+ClearCase CopyAreaDB|4
+HRD_App\WebContent\pages\wage\unit
+2
+4
+d:WageIndex.jsp|1|10dbeb5d216|1a90|ffc9a5c1|3d0e6db3d6f94651b8a3309acd2413f3|0
+c:UnitEdit.jsp|1|10d91c4c562|dbc|74976ab6|a164e2e3a98b48178cb581e7c0e9a108|0
+c:UnitList.jsp|1|10d38ea20f4|1278|bcd8968f|9e40465266c14d719bae72f71879f058|0
+c:UnitTree.jsp|1|10dbeb5d199|1c9b|3490763e|948abb0007cf408abdbe8006903b8290|0

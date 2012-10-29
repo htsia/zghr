@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <class name="com.hr319wg.college.pojo.bo.CollegeDateBO" table="cle_yearList">
+        <id name="dateID" type="string" unsaved-value="null">
+            <column name="CLE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="year" column="YEAR"/>
+        <property name="createDate" column="CREATE_DATE"/>
+        <property name="creator" column="CREATOR"/>
+    </class>
+
+    <class name="com.hr319wg.college.pojo.bo.ClassBO" table="B001">
+        <id name="classId" type="string" unsaved-value="null">
+            <column name="ORGUID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="className"	   column="B001005"/>
+		<property name="year"     column="B001015"/>
+    </class>
+
+    <class name="com.hr319wg.college.pojo.vo.ClassVO" table="class_info">
+        <id name="classId" type="string" unsaved-value="null">
+            <column name="ORGUID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="className"	   column="B001005"/>
+		<property name="year"     column="B001015"/>
+        <property name="studentCount"     column="B002700"/>
+        <property name="status"     column="B002701"/>
+    </class>
+
+</hibernate-mapping>

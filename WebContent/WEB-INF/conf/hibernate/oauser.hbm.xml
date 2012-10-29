@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.oa319wg.user.pojo.bo.OAOperateBO" table="OA_OPERATE">
+        <id name="operateId" type="string" unsaved-value="null">
+            <column name="OPERATE_ID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="operateName" column="OPERATE_NAME"/>
+        <property name="url" column="MENU_URL"/>
+        <property name="treeId" column="TREEID"/>
+        <property name="operateType" column="OPERATE_TYPE"/>
+        <property name="superId" column="SUPERID"/>
+        <property name="moduleID" column="MODULEID"/>
+        <property name="isUse" column="is_use"/>
+        <property name="webIcon" column="web_icon"/>
+    </class>
+
+</hibernate-mapping>

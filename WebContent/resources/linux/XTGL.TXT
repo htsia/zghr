@@ -1,0 +1,439 @@
+﻿XTGL-0803|查询操作日志|查詢操作日誌|Query  Log
+XTGL-0900|系统管理|系統管理|System Manager
+XTGL-0901|系统构建|系統構建|System Build
+XTGL-0902|自助员工信息权限管理|自助員工資訊許可權管理|Employee Self-Help
+XTGL-0903|权限管理|許可權管理|Might Manager 
+XTGL-0904|自助薪资权限管理|自助薪資許可權管理|Wage Might Self-Help
+XTGL-0905|指标管理|指標管理|Item Manager
+XTGL-090501|修改|修改|Modify
+XTGL-0906|用户管理|用戶管理|User Manager
+XTGL-0907|角色管理|角色管理|Role Manager 
+XTGL-0908|用户授权| 用戶授權|User Impower
+XTGL-0909|新闻公告角色管理|新聞公告角色管理|New Affiche Role  
+XTGL-0910|代码管理|代碼管理|Code Manager
+XTGL-091001|修改|修改|Modify 
+XTGL-0911|新增注册|新增註冊|New Register
+XTGL-0912|删除人员数据|刪除人員資料|Delete User
+XTGL-0913|刷新缓存|刷新緩存|Refresh Cache
+XTGL-0914|整理数据|整理資料|Data Neaten
+XTGL-0920|工作流配置|工作流配置|Work Flow Set
+XTGL-0921|报表权限管理|報表許可權管理|Report Approbate Manager
+XTGL-0922|用户注册| 用戶註冊|User Register 
+XTGL-0923|注册审核|註冊審核|Register Audit
+XTGL-0930|法规与制度|法規與制度|Law System
+XTGL-0931|劳动人事法规|勞動人事法規|Work Law
+XTGL-0932|人力资源管理制度|人力資源管理制度|Human Resource System
+XTGL-0940|提醒设置| 提醒設置|Awoke Set
+XTGL-0941|提醒设置|提醒設置|Awoke Set
+XTGL-0943|提醒浏览|提醒流覽|Awoke Browser
+XTGL-0950|信息交流平台|資訊交流平臺|Information Communion
+XTGL-0951|最新公告|最新公告|New Notice 
+XTGL-0952|新闻|新聞|News
+XTGL-0953|员工风采|員工風采|Employee Mien 
+XTGL-0954|友好链接|友好鏈結|Friend Link
+XTGL-0955|建议与反馈|建議與回饋|Advice And Feedback
+XTGL-0956|论坛管理|論壇管理|Forum Manager
+XTGL-0957|通讯录管理| 通訊錄管理|Address List
+XTGL-0958|培训课件管理|培訓課件管理|Training Courseware Manager
+XTGL-0959|调查问卷管理|調查問卷管理|Product Enregister
+XTGL-095901|管理|管理|Manager
+XTGL-0960|日志管理|日誌管理|Log Manager
+XTGL-0961|视频播报|視頻播報|Video Play
+XTGL-0962|门户应用|門戶應用|Vocation Adhibition
+XTGL-0970|领导查询设置|領導查詢設置|Lead Query Set
+XTGL-0971|人员查询方案|人員查詢方案|Personnal Query Scheme 
+XTGL-1000| 仅显示启用指标集|僅顯示啟用指標集|Only Show Item Set
+XTGL-1001| 系统当前信息集列表|系統當前資訊集列表|Current Information List
+XTGL-1002|类型|類型|Type
+XTGL-1003|范围|範圍|Area
+XTGL-1004|记录类型|記錄類型|Record Type
+XTGL-1005|显示顺序|顯示順序|Display Order 
+XTGL-1006|启用/禁用|啟用/禁用|Start/Stop 
+XTGL-1007|按名称排序|按名稱排序|Compositor Order By Name
+XTGL-1008|国标代码|國標代碼|Standard Code
+XTGL-1009|代码集名称|代碼集名稱| Code Set Name
+XTGL-1010|录入标志|錄入標誌|Record Sign 
+XTGL-1011|删除人员(注意:删除后无法恢复!) |刪除人員(注意:刪除後無法恢復!)|Delete Person(Notice：Cant't Comeback If Delete)
+XTGL-1012|选择人员类别|選擇人員類別|Person Type    
+XTGL-1013|姓名或员工编号|姓名或員工編號|Name Or Employee Number
+XTGL-1014|缓存管理|缓存管理|Cache Manager 
+XTGL-1015|描述|描述|Description
+XTGL-1016|更新系统参数|更新系統參數|Udate System Parameter
+XTGL-1017|加载行政机构到缓存|載入行政機構到緩存|Load Organ To Cache
+XTGL-1018|加载党组织到缓存|載入黨組織到緩存|Load Party To Cache
+XTGL-1019|加载发薪机构到缓存|載入發薪機構到緩存|Load Wage Organ To Cache
+XTGL-1020|加载岗位到缓存|載入崗位到緩存|Load Post To Cache
+XTGL-1021|加载指标集指标项到缓存|載入指標集指標項到緩存|Load Item Set To Cache
+XTGL-1022|加载代码集代码项到缓存|載入代碼集代碼項到緩存|Load Code  To Cache
+XTGL-1023|更新人员缓存：人员编码| 更新人員緩存：人員編碼|Update Person Cache
+XTGL-1024|执行|執行| Execute
+XTGL-1025|释放全部人员缓存|釋放全部人員緩存| Release All Person Cache
+XTGL-1026|清理数据|清理資料|Clear Data
+XTGL-1027|该功能将整理数据，清除垃圾数据。按开始按钮开始执行 |該功能將整理資料，清除垃圾資料。按開始按鈕開始執行|Clear Data Press The Button  
+XTGL-1028|当前机构:|當前機構:|Current Organ:
+XTGL-1029|序号|序號|Sequence Number
+XTGL-1030|是否启用|是否啟用|Whether Use:
+XTGL-1031|归属机构|適用機構|Apply Organ:
+XTGL-1032|适用机构|適用部門|Apply Department:
+XTGL-1033|适用条件|適用條件|Apply Condition:           
+XTGL-1034|增加新员工|增加新員工|Add Employee    
+XTGL-1035|注意：新增人员需审批后才生效|注意：新增人員需審批後才生效|Notice：new person necome effective after examine and approve  
+XTGL-1036|自动开通用户| 自動開通用戶|Automatism dredge user   
+XTGL-1037|默认登陆名:员工编号| 默認登陸名:員工編號|Default Login Name : Employee Number
+XTGL-1038|默认登陆名:身份证号| 默認登陸名:身份證號|Default Login Name : ID Card
+XTGL-1039|默认登陆名:姓名简拼| 默認登陸名:姓名簡拼|Default Login Name : Name Spelling 
+XTGL-1040|默认密码:| 默認密碼:|Default Password
+XTGL-1041|默认密码:身份证后4位| 默認密碼:身份證後4位|Default Password : Last Four Number
+XTGL-1042|员工编号|員工編號| Employee Code
+XTGL-1043|身份证号|身份證號|ID Card 
+XTGL-1044|员工类别|員工類別|Employee Type
+XTGL-1045|所在部门|所在部門|Department
+XTGL-1046|所在岗位|所在崗位|Post
+XTGL-1047|增员类别|增員類別|Add Type
+XTGL-1048|审核注册申请|審核註冊申請|Register Audit Apply
+XTGL-1049|仅显示待审核|僅顯示待審核|Only Displaly Wait Audit
+XTGL-1050|报道时间|報導時間|Cover Time
+XTGL-1051|状态|狀態|State
+XTGL-1052|审核人|審核人|Auditor
+XTGL-1053|审核时间|審核時間|Audit Time
+XTGL-1054|增员方式|增員方式 |Add Person Type
+XTGL-1055|当前人员类别|當前人員類別|Current Person Type
+XTGL-1056|姓名或员工编号|姓名或員工編號|Name Or Code
+XTGL-1057|登录验证模式|登錄驗證模 |Login Validate Mode
+XTGL-1058|管理该用户的角色|理該用戶的角色 |Role Superior 
+XTGL-1059|自助级别|自助級別|Help-Self Level
+XTGL-1060|岗位类别|崗位類別|Post Type 
+XTGL-1061|人员类别|人員類別|Person Type      
+XTGL-1062|登录名  |登錄名    |Login Name 
+XTGL-1063|显示全部角色 |顯示全部角色 |Display All Role
+XTGL-1064|角色名称  |角色名稱|Role Name
+XTGL-1065|上级角色  |上級角色 |Parent Role
+XTGL-1066|机构权限类型  |機構許可權類型 |Organ Power Type
+XTGL-1067|系统管理员  |系統管理員|System Manager
+XTGL-1068|机构领导|機構領導 |Organ Lead
+XTGL-1069|部门领导  |部門領導  |Department Lead  
+XTGL-1070|HR专业人员  |HR專業人員  |HR Professional
+XTGL-1071| 禁用 |禁用 |Forfend
+XTGL-1072|管理员 |管理員 |Manager
+XTGL-1073|自助权限级别管理 |自助权限级别管理|Self Approbate Level
+XTGL-1074|拒绝 |拒絕 |Refuse 
+XTGL-1075|操作所有选项 |操作所有選項 |Operate All Option
+XTGL-1076|读 |讀 |Read
+XTGL-1077|写|寫|Write
+XTGL-1078|表权限|表許可權 |Table Right
+XTGL-1083|发薪单位|發薪單位：| Wage Unit
+XTGL-1079|薪资账套：|薪資賬套:| Wage Schema
+XTGL-1080|薪资项顺序|薪資項順序|Wage Sequence 
+XTGL-1081|薪资项名称   |薪資項名稱  |Wage Item Name
+XTGL-1082|是否用于自助  |是否用於自助|Whether Self
+XTGL-1085|报表编号|報表編號|Report Code
+XTGL-1084|表名 |表名|Table Name
+XTGL-1086|设置权限 |設置許可權|Right Set
+XTGL-1087|选择用户 |選擇用戶|Select User
+XTGL-1089|公告标题 |公告標題|Affiche Title
+XTGL-1090|生效时间  |生效時間|Become Effective Time
+XTGL-1091|标示失效时间  |標示失效時間|Market Invalidation Time  
+XTGL-1092|失效时间  |失效時間 |Invalidation Time 
+XTGL-1093|公告范围 |公告範圍|Affiche Area 
+XTGL-1094|新闻标题 |新聞標題|New Title
+XTGL-1095|新闻生效时间 |新聞生效時間|Become Effective Time
+XTGL-1096|新闻失效时间 |新聞失效時間|Market Invalidation Time  
+XTGL-1097|新闻范围 |新聞範圍|New Area 
+XTGL-1098|员工风采 |員工風采|Employee Mien  
+XTGL-1099|序号 |序號|Number        
+XTGL-1100|单位范围 |單位範圍|Unit Area       
+XTGL-1101|是否显示 |是否顯示 |Display       
+XTGL-1102|事迹|事蹟|Story        
+XTGL-1103|链接地址|連結位址|Link Address
+XTGL-1104|链接图片|連結圖片|Link Image          
+XTGL-1105|标题|標題|Title
+XTGL-1106|建议列表|建議列表|Advice List
+XTGL-1107|显示全部|顯示全部|Display  
+XTGL-1108|发送日期|發送日期|Send Date 
+XTGL-1109|发送人|發送人|Send Person
+XTGL-1110|欲发机构|欲發機構|Object Organ 
+XTGL-1111|内容|內容|Content
+XTGL-1112|是否回复|是否回復|Rejoinder 
+XTGL-1113|回复时间|回復時間|Rejoinder Time
+XTGL-1114|回复内容|回復內容|Rejoinder Content  
+XTGL-1115|作者|作者|Rejoinder Content  
+XTGL-1116|回复数|回復數|Rejoinder Content  
+XTGL-1117|人气数|人氣數|Rejoinder Content 
+XTGL-1118|通讯录|通訊錄|Book List
+XTGL-1119|培训课件管理|培訓課件管理|Courseware Manager
+XTGL-1120|发布时间|發佈時間|Issuance Time 
+XTGL-1121|是否当前|是否當前|Current
+XTGL-1122|门户应用|門戶應用|Portal
+XTGL-1123|提醒设置|提醒設置|Awoke Set  
+XTGL-1124|提醒事项名称|提醒事項名稱|Awoke Item 
+XTGL-1125|条件说明|條件說明|Constraint 
+XTGL-1126|提示信息|提示資訊| Message
+XTGL-1127|提醒信息列表|提醒資訊清單| Awoke Message List
+XTGL-1128|提醒列表|提醒列表|Awoke List
+XTGL-1129|法规管理|法規管理|Law Manager
+XTGL-1130|规章管理|規章管理|Rule Manager
+XTGL-1131|当前类别:|當前類別:|Current Type
+XTGL-1132|文件编号|文件編號|File Number
+XTGL-1133|关键字| 關鍵字|Primary Key
+XTGL-1134| 是否区间编码|是否區間編碼|Interzone 
+XTGL-1135|查看指标集|查看指標集|Examine Item Set  
+XTGL-1136|指标集名称|指標集名稱|Item Set Name 
+XTGL-1137|是否允许用于自助|是否允許用於自助|Whether Self Help 
+XTGL-1138|是否允许导入|是否允許導入|Whether Import
+XTGL-1139|增加节点|增加節點|Add Node
+XTGL-1140|节点序号|節點序號|Node Number
+XTGL-1141|节点名称|節點名稱|Node Name
+XTGL-1142|转向消息|轉向消息|Turning Message
+XTGL-1143|转向节点名称|轉向節點名稱|Turning Node Name
+XTGL-1144|转向节点序号|轉向節點序號|Turning Node Number
+XTGL-1145|当前项目值|當前項目值|Current Value
+XTGL-1146|当前状态|當前狀態|Current State
+XTGL-1147|离开时间|離開時間|Leave Time
+XTGL-1148|处理人|處理人|Dispose Person
+XTGL-1149|进入时间|進入時間|Enter Time
+XTGL-1150|请求人|進入時間|Request Person
+XTGL-1151|备选代码值|備選代碼值|In Support Code Value
+XTGL-1152|备选指标项|備選指標項|In Support Item Value
+XTGL-1153|流程限定条件|流程限定條件| Flow  Constraint 
+XTGL-1154|流程模版|流程模版|Flow Templete
+XTGL-1155|节点类型|節點類型|Node Type
+XTGL-1156|关联操作|關聯操作|Relationship Operation 
+XTGL-1157|顺序|順序 |Sequence
+XTGL-1158|流向|流向 |Orientation
+XTGL-1159|回馈消息|回饋消息|Message Format
+XTGL-1160|选择流向|選擇流向|Orientation
+XTGL-1161|流向决定模式|流向決定模式|Orientation Mode
+XTGL-1162|等于该值时转移|等於該值時轉移|Devolve When Value Equivalency 
+XTGL-1163|当|當|When
+XTGL-1164|满足条件时转移|滿足條件時轉移|Devolve When Condition Meet 
+XTGL-1165|条件模式下比较值|條件模式下比較值|Compare In Condition Mode
+XTGL-1166|发送消息|發送消息|Send Message
+XTGL-1167|增加用戶|增加用户|Add User
+XTGL-1168|用户编号|用戶編號|User Number
+XTGL-1169|审批说明|審批說明|Examine and approve
+XTGL-1170|选择导出项|選擇匯出項|Select Import Item
+XTGL-1171|所属代码集|所屬代碼集|Remain with code set  
+XTGL-1172|上级代码项|上級代碼項|Superior Code Item 
+XTGL-1173|代码项名称|代碼項名稱|Code Item Name
+XTGL-1174|用户编码|使用者編碼 |User Number
+XTGL-1175|缩写|縮寫|Abbreviate 
+XTGL-1176|拼音/英文|拼音/英文|PinYin/English
+XTGL-1177|同级内排序码|同級內排序碼|Same grade compositor  
+XTGL-1178|区间编码低值|區間編碼低值|Interzone Code low  value   
+XTGL-1179|区间编码高值|區間編碼高值|Interzone Code hight  value    
+XTGL-1180|代码集|代碼集|Code Set
+XTGL-1181|当前代码|當前代碼|Current Code
+XTGL-1182|人员|人員|User
+XTGL-1183|机构|機構|Organ
+XTGL-1184|岗位|崗位|Post
+XTGL-1185|党组织|黨組織|Party
+XTGL-1185|定制条件|定制條件|Customize Condition 
+XTGL-1186|个数|個數|Count
+XTGL-1187|将要删除以下人员(物理删除)|You will delete underside person(Physics delete)
+XTGL-1188|设定对应关系|設定對應關係|Set correspond connection  
+XTGL-1189|等于|等於|Equal  
+XTGL-1190|指标项名称|指標項名稱|Item Name 
+XTGL-1191|项目用途|項目用途|Project Use
+XTGL-1192|允许挂接帐套里|允許掛接帳套裡|Allow 
+XTGL-1193|缺省值|缺省值|Default Value
+XTGL-1194|最小值|最小值|Min value 
+XTGL-1195|最大值|最大值|Max value 
+XTGL-1196|小数位数|小數位數|Decimal Fraction 
+XTGL-1197|数据长度|數據長度|Data Length 
+XTGL-1198|下拉框显示|下拉清單顯示|ComboBox  
+XTGL-1199|数据类型|資料類型|Data Type
+XTGL-1200|是否必填项|是否必填項|Must Input
+XTGL-1201|指标属性|指标属性|Item Attribute 
+XTGL-1202|指标集|指標集|Index set
+XTGL-1203|仅显示启用指标|僅顯示啟用指標|Show only enabled infoitem
+XTGL-1204|仅显示用户指标|僅顯示使用者指標|Show only user infoitem
+XTGL-1205|发起时间|發起時間|Item Attribute  
+XTGL-1206|发起人|發起人|Start Time
+XTGL-1207|说明|說明|Help
+XTGL-1208|代码显示上级 |代碼顯示上級|Code shows a higher level
+XTGL-1209|赋值为|賦值為|Assigned
+XTGL-1230|结果|結果|Results
+XTGL-1231|条件|條件|Conditions
+XTGL-1232|分类|分類|Categories
+XTGL-1233|设定引用关系|設定引用關係|Set the reference relationship
+XTGL-1234|引用字段|引用欄位|Reference field
+XTGL-1235|条件类型|條件類型|Condition Type
+XTGL-1236|条件语句|條件陳述式|Conditional statement
+XTGL-1237|清除|清除|Clear
+XTGL-1238|取当前记录值|取目前記錄值|Take the current record value
+XTGL-1239|操作日志查询|操作日誌查詢|Operation log query
+XTGL-1240|操作员姓名|操作員姓名|Operator Name
+XTGL-1241|操作日期|操作日期|Operation Date
+XTGL-1242|至|至|To
+XTGL-1243|时间|時間|Time
+XTGL-1244|操作对象|操作物件|Operation object
+XTGL-1245|操作类型|操作類型|Action Type
+XTGL-1246|参数设置|參數設置|Parameter settings
+XTGL-1247|常量名|常量名|Constant Name
+XTGL-1248|值|值|Value
+XTGL-1249|登陆日志查询|登陸日誌查詢|Login log
+XTGL-1250|登陆主机名|登陸主機名稱|Log host name
+XTGL-1251|登陆IP|登陸IP|IP Login
+XTGL-1252|本功能主要用于新员工入职。|本功能主要用於新員工入職。|This function is mainly used for new workers
+XTGL-1253|注册后且审核通过后，即可使用身份证和密码登录|註冊後且審核通過後，即可使用身份證和密碼登錄|After registration and through the audit, you can use the ID and password
+XTGL-1254|点击查看可以查询当前状态|點擊查看可以查詢當前狀態|Click to view the current status can be queried
+XTGL-1255|<-请输入您的身份证号|<-請輸入您的身份證號|<- Please enter your ID number
+XTGL-1256| 密　码|密　碼|Password
+XTGL-1257|<-请输入您的密码|<-請輸入您的密碼|<- Please enter your password
+XTGL-1258|<-初始： 等待审核 审核通过：可以登录系统 审核未通过：无效申请|<-初始： 等待審核 審核通過：可以登錄系統 審核未通過：無效申請|<- initial: Wait for review by the Audit: Audit can log failed: Invalid application
+XTGL-1259| 说  明|說  明|Description
+XTGL-1260| <-如果是新注册，请录入员工类别|<-如果是新註冊，請錄入員工類別|<- If a new register, entry staff category
+XTGL-1261|<-如果是新注册，请录入增员类别|<-如果是新註冊，請錄入增員類別|<- If a new register, input by staff category
+XTGL-1262|自助权限管理|自助許可權管理|Self-rights management
+XTGL-1263|是否允许群功能|是否允許群功能|Whether to allow the group functions
+XTGL-1264|是否允许跨单位发消息|是否允許跨單位發消息|Whether to allow cross-unit Message
+XTGL-1265|是否允许跨单位发消息|是否允許跨單位發消息|Whether to allow cross-unit Message
+XTGL-1266|级别描述|級別描述|Level Description
+XTGL-1267|级别名称(两位数字)|級別名稱(兩位元數字)|Level name (two digits) 
+XTGL-1268|生成结果文件|生成結果檔|Generated results file
+XTGL-1269|结果已经生成，单击下述按钮可以打开=〉|結果已經生成，按一下下述按鈕可以打開=〉|Results have been generated, click the following button to open the =>
+XTGL-1270|查看对应关系|查看對應關係|View corresponding relationship
+XTGL-1271|结果代码|結果代碼|Result Code
+XTGL-1272|关系符号|關係符號|Relationship symbols
+XTGL-1273|对应代码|對應代碼|The corresponding code
+XTGL-1274|WebLogic执行队列监控|對應代碼|WebLogic執行佇列監控|WebLogic Monitoring the implementation of the queue
+XTGL-1275|刷新时间|刷新時間|Refresh time
+XTGL-1276|执行队列整体情况|執行佇列整體情況|The overall situation of the implementation of the queue
+XTGL-1277|个线程|個執行緒|Threads
+XTGL-1278|空闲线程|空閒執行緒|Idle thread
+XTGL-1279|工作线程|工作執行緒|Worker thread
+XTGL-1280|阻塞线程|阻塞執行緒|Item Attribute
+XTGL-1281|Java虚拟机情况|Java虛擬機器情況|Java Virtual Machine case
+XTGL-1282|JDK版本|JDK版本|JDK version
+XTGL-1283|WebLogic当前情况|WebLogic當前情況|WebLogic current situation
+XTGL-1284|运行状态|運行狀態|Running
+XTGL-1285|队列名|佇列名|Queue Name
+XTGL-1286|正在执行请求|正在執行請求|Execution of the request is
+XTGL-1287|处理总请求数|處理總請求數|The total number of requests handled
+XTGL-1288|显示通讯录|顯示通訊錄|Show Contacts
+XTGL-1289|输入人员姓名或编号|輸入人員姓名或編號|Enter the name or number who
+XTGL-1290|此名单下没有人|此名單下沒有人|No one under this list
+XTGL-1291|提出建议|提出建議|Recommendations
+XTGL-1292|公告信息列表|公告資訊清單|Notice Information List
+XTGL-1293|请选择状态|請選擇狀態|Please select state
+XTGL-1294|公告信息|公告資訊|Notice Information
+XTGL-1295|发布|發佈|Published
+XTGL-1296|公告内容|公告內容|Content of the announcement
+XTGL-1297|生效时间|生效時間|Take effect
+XTGL-1298|查看级别|查看級別|View class
+XTGL-1299|是否公开|是否公開|Are open
+XTGL-1300|公告对象|公告對象|Notice the object
+XTGL-1301|附件列表|附件清單|List of Annexes
+XTGL-1302|接收信箱|接收信箱|Receive Mail
+XTGL-1303|接收人|接收人|Recipient
+XTGL-1304|发送人|发送人|Sender
+XTGL-1305|发送信箱|發送信箱|Send Mail
+XTGL-1306|回复|回復|Reply 
+XTGL-1307|署名方式|署名方式|License requirements
+XTGL-1308|发新帖|發新帖|New posts
+XTGL-1309|署名方式|署名方式|License requirements
+XTGL-1310|论坛|論壇|Forum
+XTGL-1311|论坛|論壇|Forum
+XTGL-1312|发帖日期|發帖日期|Posting Date
+XTGL-1313|楼层|樓層|Floor
+XTGL-1314|地址|地址|Address
+XTGL-1315|显示单位范围|顯示單位範圍|Range of display units
+XTGL-1316|回复管理|回復管理|Reply Manager
+XTGL-1317|回复编辑|回復編輯|Reply Edit
+XTGL-1318|提出问题|提出問題|Questions
+XTGL-1319|问题|問題|Questions
+XTGL-1320|附件|附件|Accessories
+XTGL-1321|在线提问|線上提問|Online questions
+XTGL-1322|提出日期|提出日期|Proposed date of transfer
+XTGL-1323|传输|傳輸|Transmission
+XTGL-1324|使用答疑|使用答疑|Use Q & A
+XTGL-1325|提出人|提出人|Make people
+XTGL-1326|所在单位|所在單位|Unit
+XTGL-1327|联系电话|聯繫電話|Contact
+XTGL-1328|回答者|回答者|Respondent
+XTGL-1329|回复日期|回復日期|Reply Date
+XTGL-1330|回复人|回復人|Replies were
+XTGL-1331|新闻信息|新聞資訊|News
+XTGL-1332|新闻信息列表|新聞資訊清單|News List
+XTGL-1333|新闻来源|新聞來源|News sources
+XTGL-1334|新闻图片|新聞圖片|News Photos
+XTGL-1335|新闻内容|新聞內容|News
+XTGL-1336|标题图片|標題圖片|Header image
+XTGL-1337|视频文件|視頻檔|Video files
+XTGL-1338|导入授权文件|導入授權文件|Import authorization
+XTGL-1339|导入令牌文件|導入權杖文件|Import token file
+XTGL-1340|图标|圖示|Icon
+XTGL-1341|提醒项目|提醒項目|Alert the project
+XTGL-1342|设置提醒事项名称|設置提醒事項名稱|Set the tooltip
+XTGL-1343|设置提示信息|設置提示資訊|Item Attribute
+XTGL-1344|设置提醒条件|設置提醒條件|Set reminders conditions
+XTGL-1345|提醒信息内容|提醒資訊內容|Reminded the information content
+XTGL-1346|提醒定义|提醒定义|Remind the definition of
+XTGL-1347|保存后进行提醒查询|保存後進行提醒查詢|Save the query after the reminder
+XTGL-1348|提醒应用范围设置|提醒應用範圍設置|Set reminder application
+XTGL-1349|提醒名称|提醒名稱|Remind Name
+XTGL-1350|提醒对象|提醒對象|Reminded the object
+XTGL-1351|已设置提醒的人员|已設置提醒的人員|Reminded the staff has been set
+XTGL-1352|人员姓名|人員姓名|Name of person
+XTGL-1353|已设置提醒对象的角色|已設置提醒物件的角色|The role of the object has been set reminders
+XTGL-1354|创建时间|創建時間|Created
+XTGL-1355|人员选择|人員選擇|Personnel selection
+XTGL-1356|人员姓名或编号|人員姓名或編號|Name of person or number
+XTGL-1357|角色选择|角色選擇|Role selection
+XTGL-1358|所创建的角色|所創建的角色|The role created
+XTGL-1359|提醒项目内容列表|提醒專案內容清單|Content list reminder
+XTGL-1360|是否公用|是否公用|Whether the public
+XTGL-1361|管理群数据|管理群資料|Data Management Group
+XTGL-1362|输入人员姓名或编号|輸入人員姓名或編號|Enter the name or number who
+XTGL-1363|群管理|群管理|Group Management
+XTGL-1364|接收群|接收群|Receive group
+XTGL-1365|发送时间|發送時間|Sent
+XTGL-1366|在线消息|線上消息|Online news
+XTGL-1367|信息修改|資訊修改|Information Change
+XTGL-1368|图片|圖片|Pictures
+XTGL-1369|对应题目|對應題目|Corresponding subject
+XTGL-1371|题目|題目|Subject
+XTGL-1372|调查单位范围|調查單位範圍|The scope of investigation unit
+XTGL-1373|选照片最大值|選照片最大值|Select Photo Max
+XTGL-1374|是否记名|是否記名|Whether the division
+XTGL-1375|是否公开结果|是否公開結果|The results are open
+XTGL-1376|调查方式|調查方式|Method of investigation
+XTGL-1377|显示百分比|顯示百分比|Shows the percentage of
+XTGL-1378|回收问卷|回收問卷|Questionnaires
+XTGL-1379|A选项及计数|A選項及計數|A Options and counting
+XTGL-1380|B选项及计数|B選項及計數|B Options and counting
+XTGL-1381|C选项及计数|C選項及計數|C Options and counting
+XTGL-1382|D选项及计数|D選項及計數|D Options and counting
+XTGL-1383|E选项及计数|E選項及計數|E Options and counting
+XTGL-1384|F选项及计数|F選項及計數|F Options and counting
+XTGL-1385|G选项及计数|G選項及計數|G Options and counting
+XTGL-1386|H选项及计数|H選項及計數|H Options and counting
+XTGL-1387|I选项及计数|I選項及計數|I Options and counting
+XTGL-1388|J选项及计数|J選項及計數|J Options and counting
+XTGL-1389|K选项及计数|K選項及計數|K Options and counting
+XTGL-1390|L选项及计数|L選項及計數|L Options and counting
+XTGL-1391|M选项及计数|M選項及計數|M Options and counting
+XTGL-1392|N选项及计数|N選項及計數|N Options and counting
+XTGL-1393|结果公布状态|結果公佈狀態|Results for state
+XTGL-1394|浏览问卷|流覽問卷|View the questionnaire
+XTGL-1395|题目类型|題目類型|Question Types
+XTGL-1396|最少字数|最少字數|Minimum number of words
+XTGL-1397|关联图片|關聯圖片|Related pictures
+XTGL-1398|被调查人|被調查人|The person being investigated
+XTGL-1399|查看結果|查看結果|View Results
+XTGL-1400|高|高|High
+XTGL-1401|宽|寬|Width
+
+
+
+
+
+
+
+
+
+
+
+
+
+

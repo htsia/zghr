@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.custom.wage.pojo.bo.ClassWageBO" table="a242">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="subid" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="userID" column="id"/>
+        <property name="classNum" column="A242200"/>
+        <property name="wage" column="A242201"/>
+        <property name="reduce" column="A242202"/>
+        <property name="realwage" column="A242203"/>
+        <property name="createUserID" column="A242204"/>
+        <property name="year" column="A242205"/>
+        <property name="level2" column="A242206"/>
+    </class>
+    <class name="com.hr319wg.custom.eva.pojo.bo.EvaWageBO" table="a746">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="userID" column="ID"/>
+        <property name="status" column="A746000"/>
+        <property name="evaName" column="A746701"/>
+        <property name="evaType" column="A746705"/>
+        <property name="beginDate" column="A746710"/>
+        <property name="endDate" column="A746715"/>
+        <property name="unitID" column="A746720"/>
+        <property name="result" column="A746730"/>
+        <property name="resultLevel" column="A746735"/>
+        <property name="sort" column="A746750"/>
+        <property name="xishu" column="A746740"/>
+        <property name="chuqinlv" column="A746200"/>
+        <property name="evaWage" column="A746201"/>
+        <property name="evaReduceWage" column="A746202"/>
+        <property name="evaRealWage" column="A746203"/>
+        <property name="come" column="A746755"/>
+    </class>
+     <class name="com.hr319wg.custom.pojo.bo.RoleUserBO" table="sys_role_user_r">
+        <id name="rolePersonID" type="string" unsaved-value="null">
+            <column name="role_person_id" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="roleID" column="role_id"/>
+        <property name="personID" column="person_id"/>
+    </class>
+    <class name="com.hr319wg.custom.pojo.bo.WageSetPersonBO" table="wage_set_pers_r">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="wageSetID" column="A815700"/>
+    </class>
+    
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageDataSetBO" table="wage_dataset">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="name" column="name"/>
+        <property name="createDate" column="create_date"/>
+        <property name="itemType" column="item_type"/>
+        <property name="status" column="status"/>
+        <property name="totalmoney" column="totalmoney"/>
+        <property name="beginDate" column="begin_date"/>
+        <property name="endDate" column="end_date"/>
+        <property name="excludeDate" column="exclude_date"/>
+        <property name="usedMonth" column="usedMonth"/>
+        <property name="usedMoney" column="usedMoney"/>
+        <property name="createUserID" column="create_UserID"/>
+        <property name="desc" column="description"/>
+        <property name="selfstatus" column="selfstatus"/>
+    </class>
+
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageDataSetUserBO" table="wage_dataset_user">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setID" column="setID"/>
+        <property name="userID" column="userID"/>
+        <property name="money" column="money"/>
+        <property name="userCode" column="userCode"/>
+        <property name="userName" column="userName"/>
+        <property name="orgName" column="orgName"/>
+        <property name="deptName" column="deptName"/>
+        <property name="remark" column="remark"/>
+    </class>
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageDataRecordBO" table="wage_data_record">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setID" column="setID"/>
+        <property name="userID" column="userID"/>
+        <property name="money" column="money"/>
+        <property name="userCode" column="userCode"/>
+        <property name="userName" column="userName"/>
+        <property name="orgName" column="orgName"/>
+        <property name="deptName" column="deptName"/>
+        <property name="yearMonth" column="yearMonth"/>
+        <property name="remark" column="remark"/>
+    </class>
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageDataSetVerifyBO" table="wage_dataset_verify">
+        <id name="ID" type="string" unsaved-value="null">					
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="datasetUserID" column="dataset_user_id"/>
+        <property name="yearMonth" column="yearMonth"/>
+        <property name="status" column="status"/>
+    </class>
+    
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageNuanqiBO" table="A225">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="id" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="money" column="A225200"/>
+        <property name="modifyMoney" column="A225201"/>
+        <property name="modifyDate" column="A225202"/>
+    </class>
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageFangzuBO" table="A226">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="id" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="money" column="A226200"/>
+        <property name="modifyMoney" column="A226201"/>
+        <property name="modifyDate" column="A226202"/>
+    </class>
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageFangbuBO" table="A227">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="id" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="money" column="A227200"/>
+        <property name="modifyMoney" column="A227201"/>
+        <property name="modifyDate" column="A227202"/>
+    </class>
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageCarBO" table="a233">
+        <id name="ID" type="string" unsaved-value="null">
+             <column name="id" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="money" column="A233200"/>
+        <property name="yearMonth" column="A233201"/>
+        <property name="status" column="A233202"/>
+    </class>
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageScienceBO" table="A228">
+        <id name="ID" type="string" unsaved-value="null">
+             <column name="id" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="money" column="A228200"/>
+        <property name="yearMonth" column="A228201"/>
+        <property name="status" column="A228202"/>
+    </class>
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageOvertimeBO" table="A229">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="id" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="money" column="A229200"/>
+        <property name="yearMonth" column="A229201"/>
+        <property name="status" column="A229202"/>
+    </class>
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageKouOther1BO" table="A237">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="id" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="money" column="A237200"/>
+        <property name="yearMonth" column="A237201"/>
+        <property name="status" column="A237202"/>
+    </class>
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageKouOther2BO" table="A230">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="id" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="money" column="A230200"/>
+        <property name="yearMonth" column="A230201"/>
+        <property name="status" column="A230202"/>
+    </class>
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageEmpBO" table="A239">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="id" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="wage" column="A239200"/>
+        <property name="yearMonth" column="A239201"/>
+        <property name="status" column="A239202"/>
+    </class>
+    
+	<class name="com.hr319wg.custom.pojo.bo.UserBO" table="A001">
+        <id name="userID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(200)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="name" column="A001001"/>
+        <property name="shortName" column="A001002"/>
+        <property name="orgId" column="A001701"/>
+        <property name="deptId" column="A001705"/>
+        <property name="personSeq" column="A001735"/>
+        <property name="postId" column="A001715"/>
+        <property name="personType" column="A001054"/>
+        <property name="ssDeptID" column="A001703"/>
+        <property name="sDeptID" column="A001704"/>
+        <property name="secDeptID" column="A001239"/>
+        <property name="deptSort" column="A001738"/>
+        <property name="cardNO" column="A001077"/>
+        <property name="bankNO" column="A001242"/>
+        <property name="mainDeptSort" column="A001728"/>
+        <property name="comeDate" column="A001044"/>
+        <property name="xueli" column="A001221"/>
+        <property name="xuewei" column="A001222"/>
+        <property name="zhicheng" column="A001240"/>
+        <property name="zhichengLevel" column="A001243"/>
+        <property name="zhichengXulie" column="A001244"/>
+        <property name="a001730" column="A001730"/>
+        <property name="a001753" column="A001753"/>
+        <property name="leixing" column="a001218"/>
+    </class>
+	
+    <!-- 考勤管理 -->
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttLeaveBO" table="att_leave">
+        <id name="leaveId" type="string" unsaved-value="null">
+            <column name="leave_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="person_id"/>
+        <property name="leaveType" column="leave_type"/>
+        <property name="beginTime" column="begin_time"/>
+        <property name="endTime" column="end_time"/>
+        <property name="applyDays" column="apply_days"/>
+        <property name="reason" column="reason"/>
+        <property name="applyTime" column="apply_time"/>
+        <property name="status" column="status"/>
+        <property name="processId" column="process_id"/>
+        <property name="createType" column="create_type"/>
+        <property name="isBack" column="is_back"/>
+        <property name="leaveBackDate" column="back_date"/>
+        <property name="totalDays" column="total_days"/>
+    </class>
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttOutBO" table="att_out">
+        <id name="Id" type="string" unsaved-value="null">
+            <column name="id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="person_id"/>
+        <property name="beginTime" column="begin_time"/>
+        <property name="endTime" column="end_time"/>
+        <property name="applyDays" column="apply_days"/>
+        <property name="reason" column="reason"/>
+        <property name="applyTime" column="apply_time"/>
+        <property name="status" column="status"/>
+        <property name="processId" column="process_id"/>
+        <property name="createType" column="create_type"/>
+    </class>
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttOvertimeBO" table="att_overtime">
+        <id name="Id" type="string" unsaved-value="null">
+            <column name="id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="person_id"/>
+        <property name="applyDays" column="apply_days"/>
+        <property name="beginTime" column="begin_time"/>
+        <property name="endTime" column="end_time"/>
+        <property name="reason" column="reason"/>
+        <property name="applyTime" column="apply_time"/>
+        <property name="status" column="status"/>
+        <property name="processId" column="process_id"/>
+        <property name="createType" column="create_type"/>
+    </class>
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttRestBO" table="att_rest">
+        <id name="Id" type="string" unsaved-value="null">
+            <column name="id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="person_id"/>
+        <property name="beginTime" column="begin_time"/>
+        <property name="endTime" column="end_time"/>
+        <property name="applyDays" column="apply_days"/>
+        <property name="reason" column="reason"/>
+        <property name="applyTime" column="apply_time"/>
+        <property name="status" column="status"/>
+        <property name="processId" column="process_id"/>
+        <property name="createType" column="create_type"/>
+    </class>
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttLogBO" table="att_log">
+        <id name="logId" type="string" unsaved-value="null">
+            <column name="log_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="leaveId" column="leave_id"/>
+        <property name="personId" column="person_id"/>
+        <property name="auditResult" column="audit_result"/>
+        <property name="auditTime" column="audit_time"/>
+        <property name="auditxplan" column="audit_explan"/>
+    </class>
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttMachineBO" table="att_machine">
+        <id name="machineID" type="string" unsaved-value="null">
+            <column name="machine_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="machineName" column="machine_name"/>
+        <property name="machineIP" column="machine_ip"/>
+        <property name="machinePlace" column="machine_place"/>
+        <property name="machineType" column="machine_type"/>
+    </class>
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttFingerBO" table="a232">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="finger0" column="a232200" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="finger1" column="a232201" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="finger2" column="a232202" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="finger3" column="a232203" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="finger4" column="a232204" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="finger5" column="a232205" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="finger6" column="a232206" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="finger7" column="a232207" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="finger8" column="a232208" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="finger9" column="a232209" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="privilege" column="a232210" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="password" column="a232211" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="personCode" column="a232212" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="name" column="a232213" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+    </class>
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttPutoffBO" table="a235">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="totalTime" column="A235200"/>
+        <property name="applyYear" column="A235201"/> 
+        <property name="addToWage" column="A235202"/>
+    </class>
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttPutoffDataBO" table="att_putoff">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="totalTime" column="totalTime"/>
+    </class>
+    
+   <class name="com.hr319wg.custom.attence.pojo.bo.AttMonthBO"
+           table="A810">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(100)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="personId" column="ID"/>
+        <property name="record" column="A810000"/>
+        <property name="attenceDate" column="A810700"/>
+        <property name="shouldTime" column="A810701"/>
+        <property name="realityTime" column="A810702"/>
+        <property name="attenceRate" column="A810703"/>
+        <property name="lateTime" column="A810704"/>
+        <property name="earlyTime" column="A810705"/>
+        <property name="awayTime" column="A810706"/>
+        <property name="leaveReasons" column="A810707"/>
+        <property name="leaveSick" column="A810708"/>
+        <property name="leaveMaternity" column="A810709"/>
+        <property name="leaveWedding" column="A810710"/>
+        <property name="leaveHome" column="A810711"/>
+        <property name="leaveYear" column="A810712"/>
+        <property name="leaveIndustrialInjury" column="A810713"/>
+        <property name="leaveArrangingFuneral" column="A810714"/>
+        <property name="evcctionValue" column="A810715"/>
+        <property name="outWorkValue" column="A810716"/>
+        <property name="publicHolidayValue" column="A810717"/>
+        <property name="timeOffValue" column="A810718"/>
+        <property name="workAddValue" column="A810719"/>
+        <property name="weekAddValue" column="A810720"/>
+        <property name="feastAddValue" column="A810721"/>
+        <property name="beginShouldTime" column="A810791"/>
+        <property name="endShouldTime" column="A810792"/>
+        
+        <property name="lateModify" column="A810200"/>
+        <property name="awayModify" column="A810201"/>
+        <property name="leaveReasonsModify" column="A810202"/>
+        <property name="sickModify" column="A810203"/>
+        <property name="maternityModify" column="A810204"/>
+        <property name="weddingModify" column="A810205"/>
+        <property name="homeModify" column="A810206"/>
+        <property name="industrialInjuryModify" column="A810207"/>
+        <property name="arrangingFuneralModify" column="A810208"/>
+        <property name="outModify" column="A810209"/>
+        <property name="overtimeModify" column="A810210"/>
+        <property name="modifyDate" column="A810211"/>
+        <property name="status" column="A810212"/>
+        <property name="isDimission" column="A810217"/>
+        <property name="dimissionDate" column="A810218"/>
+                <property name="laterDeduction" column="A810213"/>
+        <property name="awayDeduction" column="A810214"/>
+        <property name="nomalLeaveDeduction" column="A810215"/>
+        <property name="illLeaveDeduction" column="A810216"/>
+        <property name="chanjiaLeaveDeduction" column="A810219"/>
+        <property name="nanchanjiaLeaveDeduction" column="A810220"/>
+        <property name="leaveNanchanjia" column="A810221"/>
+        
+    </class>
+    <class name="com.hr319wg.attence.pojo.bo.AttClassBO" table="ATT_CLASS">
+        <id name="classID" type="string" unsaved-value="null">
+            <column name="CLASS_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="className" column="CLASS_NAME"/>
+        <property name="shortName" column="SHORT_NAME"/>
+        <property name="createDate" column="CREATE_DATE"/>
+        <property name="createUser" column="CREATE_USER"/>
+        <property name="orgID" column="ORG_ID"/>
+        <property name="sectionCount" column="SECTION_COUNT"/>
+        <property name="isUse" column="IS_USE"/>
+        <property name="createOrg" column="CREATE_ORG"/>
+        <property name="daySpan" column="DAY_SPAN"/>
+        <property name="dayTake" column="DAY_TAKE"/>
+        <property name="overTimeFlag" column="OVERTIME_FLAG"/>
+        <property name="totalWorkLong" column="total_work_long"/>
+        <property name="frequencyType" column="frequency_type"/>
+        <property name="frequencyTxt" column="frequency_txt"/>
+        <property name="raleQry" column="rale_qry"/>
+        <property name="raleType" column="rale_type"/>
+        <property name="applyBeginDate" column="apply_begin_date"/>
+        <property name="applyEndDate" column="apply_end_date"/>
+    </class>
+
+    <class name="com.hr319wg.attence.pojo.bo.AttClassDetailBO" table="ATT_CLASS_DETAIL">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="classID" column="CLASS_ID"/>
+        <property name="itemName" column="ITEM_NAME"/>
+        <property name="itemTime" column="ITEM_TIME"/>
+        <property name="dayFlag" column="DAY_FLAG"/>
+        <property name="orderFlag" column="ORDER_FLAG"/>
+    </class>
+    <class name="com.hr319wg.attence.pojo.bo.AttClassUserBO" table="att_class_user">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="userID" column="userid"/>
+        <property name="classID" column="classid"/>
+        <property name="bianhao" column="bianhao"/>
+        <property name="orgName" column="orgname"/>
+        <property name="deptName" column="deptname"/>
+        <property name="name" column="name"/>
+        <property name="userType" column="usertype"/>
+    </class>
+    
+    <class name="com.hr319wg.attence.pojo.bo.AttSignDetailBO" table="att_sign_detail">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="day" column="day"/>
+        <property name="createOrgID" column="create_orgID"/>
+        <property name="userID" column="userID"/>
+        <property name="signCase" column="sign_case"/>
+        <property name="apm" column="apm"/>
+        <property name="classID" column="classID"/>
+        <property name="classType" column="classType"/>
+    </class>
+    
+    <!-- 工资杂项-丁永亮 -->
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageOthersDataSetBO" table="wage_others_dataset">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="name" column="name"/>
+        <property name="createDate" column="create_date"/>
+        <property name="status" column="status"/>
+        <property name="totalmoney" column="totalmoney"/>
+        <property name="beginDate" column="begin_date"/>
+        
+        <property name="endDate" column="end_date"/>
+        <property name="excludeDate" column="exclude_date"/>
+        <property name="createUserID" column="create_UserID"/>
+        <property name="desc" column="description"/>
+        <property name="targetData" column="target_data"/>
+    </class>
+    <class name="com.hr319wg.custom.wage.pojo.bo.WageOthersDataSetUserBO" table="wage_others_dataset_user">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setID" column="setID"/>
+        <property name="userID" column="userID"/>
+        <property name="money" column="money"/>
+        <property name="userCode" column="userCode"/>
+        <property name="userName" column="userName"/>
+        <property name="orgName" column="orgName"/>
+        <property name="deptName" column="deptName"/>
+        <property name="remark" column="remark"/>
+    </class>
+    
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttSignDetail2BO" table="att_sign_detail">
+        <id name="Id" type="string" unsaved-value="null">
+            <column name="id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="userid" column="userid"/>
+        <property name="day" column="day"/>
+        <property name="time0" column="time0"/>
+        <property name="time1" column="time1"/>
+        <property name="time2" column="time2"/>
+        <property name="time3" column="time3"/>
+        <property name="time4" column="time4"/>
+        <property name="time5" column="time5"/>
+        <property name="time6" column="time6"/>
+        <property name="time7" column="time7"/>
+        <property name="normal1" column="normal1"/>
+        <property name="normal2" column="normal2"/>
+        <property name="later1" column="later1"/>
+        <property name="later2" column="later2"/>
+        <property name="away1" column="away1"/>
+        <property name="away2" column="away2"/>
+        <property name="normal" column="normal"/>
+        <property name="later" column="later"/>
+        <property name="away" column="away"/>
+        <property name="classid" column="classid"/>
+        <property name="classtype" column="classtype"/>
+        <property name="recordtype" column="recordtype"/>
+        <property name="ignore" column="ignore"/>
+    </class>
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttPutoff2BO" table="a236">
+        <id name="id" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="putoffDays" column="a236200"/>
+        <property name="leaveDays" column="a236201"/>
+        <property name="bingjia" column="a236202"/>
+        <property name="hunjia" column="a236203"/>
+        <property name="sangjia" column="a236204"/>
+        <property name="chanjia" column="a236205"/>
+        <property name="nanchanjia" column="a236206"/>
+        <property name="daixinjia" column="a236207"/>
+        <property name="name" column="a236208"/>
+        <property name="deptName" column="a236209"/>
+        <property name="yearAttence" column="a236210"/>
+                <property name="yearRealAttence" column="a236211"/>
+        <property name="attenceRate" column="a236212"/>
+        <property name="overtimeHours" column="a236214"/>
+        
+    </class>
+</hibernate-mapping>

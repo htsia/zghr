@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="sys_datainterfacedao" class="com.hr319wg.sys.dao.DataInterfaceDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="sys_sysseldomdao" class="com.hr319wg.sys.dao.SysSeldomDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="sys_fingerUCC" class="com.hr319wg.sys.ucc.impl.FingerUCC">
+        <property name="fingerservice" ref="sys_fingerservice"/>
+    </bean>
+    <bean id="sys_fingerservice" class="com.hr319wg.sys.service.FingerService">
+        <property name="fingerdao" ref="sys_fingerPrintdao"/>
+    </bean>
+    <bean id="sys_fingerPrintdao" class="com.hr319wg.sys.dao.fingerPrintDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="sys_licapi" class="com.hr319wg.sys.api.OTPServerAPI">
+        <property name="licService" ref="sys_licservice"/>
+        <property name="tokenService" ref="sys_tokenservice"/>
+    </bean>
+    <bean id="sys_licservice" class="com.hr319wg.sys.api.OTP.LicenseService">
+        <property name="licdao" ref="sys_licdao"/>
+    </bean>
+    <bean id="sys_tokenservice" class="com.hr319wg.sys.api.OTP.TokenFileServer">
+        <property name="tokendao" ref="sys_tokendao"/>
+        <property name="licdao" ref="sys_licdao"/>
+    </bean>
+
+    <bean id="sys_navidao" class="com.hr319wg.sys.dao.NavigateDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+
+    <bean id="sys_orgCodedao" class="com.hr319wg.sys.dao.OrgCodeRelationDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="sys_licdao" class="com.hr319wg.sys.dao.LicenseDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="sys_tokendao" class="com.hr319wg.sys.dao.TokenDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="sys_regdao" class="com.hr319wg.sys.dao.RegInfoDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="sys_reginfoservice" class="com.hr319wg.sys.service.RegInfoService">
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="reginfodao" ref="sys_regdao"/>
+    </bean>
+    <bean id="sys_reginfoUCC" class="com.hr319wg.sys.ucc.impl.RegInfoUCC">
+        <property name="reginfoser" ref="sys_reginfoservice"/>
+    </bean>
+   
+    <bean id="sys_wfdao" class="com.hr319wg.sys.dao.WorkFlowDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="sys_wfservice" class="com.hr319wg.sys.service.WorkFlowService">
+        <property name="wfdao" ref="sys_wfdao"/>
+        <property name="inDao" ref="sys_inprocessdao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+      <bean id="wage_api" class="com.hr319wg.sys.api.WageAPI">
+        <property name="wagedatedao">
+            <ref bean="wage_DateDAO"/>
+        </property>
+        <property name="wagesetdao">
+            <ref bean="wage_SetDAO"/>
+        </property>
+        <property name="api">
+            <ref bean="sys_activePageApi"/>
+        </property>
+        <property name="pmsapi">
+            <ref bean="user_pmsAPI"/>
+        </property>
+        <property name="wagenotedao">
+            <ref bean="wage_NoteDAO"/>
+        </property>
+        <property name="wageitemsetdao" ref="wage_wageItemSetDAO"/>
+    </bean>
+    
+    <bean id="sys_portaldao" class="com.hr319wg.sys.dao.PortalFunDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="sys_portalservice" class="com.hr319wg.sys.service.PortalFunService">
+        <property name="portaldao" ref="sys_portaldao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="sys_portalUCC" class="com.hr319wg.sys.ucc.impl.PortalFunUCC">
+        <property name="portalservice" ref="sys_portalservice"/>
+    </bean>
+    
+    <bean id="sys_videonewdao" class="com.hr319wg.sys.dao.VideoNewsDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="sys_videoservice" class="com.hr319wg.sys.service.VideoNewsService">
+        <property name="videodao" ref="sys_videonewdao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="sys_videoUCC" class="com.hr319wg.sys.ucc.impl.VideoNewsUCC">
+        <property name="videoservice" ref="sys_videoservice"/>
+    </bean>
+
+    <bean id="sys_showitemsdao" class="com.hr319wg.sys.dao.SetshowItemsDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="sys_showitemsservice" class="com.hr319wg.sys.service.SetshowItemsService">
+        <property name="setshowitemsdao" ref="sys_showitemsdao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="sys_showitemsUCC" class="com.hr319wg.sys.ucc.impl.SetshowItemsUCC">
+        <property name="itemservice" ref="sys_showitemsservice"/>
+    </bean>
+
+    <bean id="sys_loginLogUCC" class="com.hr319wg.sys.ucc.impl.SysLoginLogUCC">
+        <property name="logservice" ref="user_logservice"/>
+    </bean>
+
+    <bean id="sys_inprocessUCC" class="com.hr319wg.sys.ucc.impl.SysInProcessUCC">
+        <property name="inService" ref="sys_inprocessservice"/>
+    </bean>
+    <bean id="sys_inprocessservice" class="com.hr319wg.sys.service.SysInProcessService">
+        <property name="inDao" ref="sys_inprocessdao"/>
+        <property name="userselfoperdao" ref="user_selfoperdao"/>
+        <property name="userApi" ref="user_pmsAPI"/>
+        <property name="wfservice" ref="sys_wfservice"/>
+    </bean>
+
+    <bean id="sys_inprocessdao" class="com.hr319wg.sys.dao.SysInProcessDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+
+    <bean id="sys_bulletinParamDAO" class="com.hr319wg.sys.dao.BulletinParamDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="sys_bulletinContentDAO" class="com.hr319wg.sys.dao.BulletinContentDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="sys_bulletinScopeDAO" class="com.hr319wg.sys.dao.BulletinScopeDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="sys_newsParamDAO" class="com.hr319wg.sys.dao.NewsParamDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="sys_newsContentDAO" class="com.hr319wg.sys.dao.NewsContentDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="sys_newsScopeDAO" class="com.hr319wg.sys.dao.NewsScopeDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="sys_infoSetDAO" class="com.hr319wg.sys.dao.InfoSetDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+        <property name="jdbctemplate">
+            <ref bean="jdbcTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="sys_infoItemDAO" class="com.hr319wg.sys.dao.InfoItemDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+        <property name="jdbctemplate">
+            <ref bean="jdbcTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="sys_CodeSetDAO" class="com.hr319wg.sys.dao.CodeSetDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="sys_CodeItemDAO" class="com.hr319wg.sys.dao.CodeItemDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+
+    </bean>
+
+    <bean id="sys_parameterDAO" class="com.hr319wg.sys.dao.ParameterDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="sys_inputtempDAO" class="com.hr319wg.sys.dao.InputTemplateDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="sys_SysLogOperDAO" class="com.hr319wg.sys.dao.SysLogOperDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="sys_RemListDAO" class="com.hr319wg.sys.dao.RemListDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+        <property name="jdbctemplate">
+            <ref bean="jdbcTemplate" />
+        </property>
+    </bean>
+    <bean id="sys_RemResultDAO" 
+      class="com.hr319wg.sys.dao.RemResultDAO" lazy-init="default" autowire="default" dependency-check="default">
+      <property name="hibernatetemplate">
+      <ref bean="hibernateTemplate" />
+      </property>
+   </bean>
+
+    <bean id="sys_RemScopeDAO"
+        class="com.hr319wg.sys.dao.RemScopeDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+
+    <bean id="sys_linkDAO"
+        class="com.hr319wg.sys.dao.FriendLinkDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="sys_linkService"
+            class="com.hr319wg.sys.service.FriendLinkService">
+            <property name="linkdao">
+                <ref bean="sys_linkDAO" />
+            </property>
+    </bean>
+    <bean id="sys_linkUCC"
+            class="com.hr319wg.sys.ucc.impl.FriendLinkUCC">
+            <property name="linkservice">
+                <ref bean="sys_linkService" />
+            </property>
+    </bean>
+
+    <bean id="sys_remindSetService"
+            class="com.hr319wg.sys.service.RemindSetService">
+            <property name="remlistdao">
+                <ref bean="sys_RemListDAO" />
+            </property>
+            <property name="remresultdao">
+                <ref bean="sys_RemResultDAO" />
+            </property>
+            <property name="remscopedao">
+                <ref bean="sys_RemScopeDAO" />
+            </property>
+            <property name="persondao">
+                <ref bean="emp_personDAO" />
+            </property>
+        </bean>
+
+
+    <bean id="sys_parameterService" class="com.hr319wg.sys.service.ParameterService">
+        <property name="parameterdao" ref="sys_parameterDAO"/>
+    </bean>
+
+    <bean id="sys_inputtempService" class="com.hr319wg.sys.service.InputTemplateService">
+        <property name="inputtempdao" ref="sys_inputtempDAO"/>
+        <property name="wagesetdao" ref="wage_SetDAO"/>
+    </bean>
+
+    <bean id="sys_codeSetService" class="com.hr319wg.sys.service.CodeSetService">
+        <property name="codesetdao">
+            <ref bean="sys_CodeSetDAO"/>
+        </property>
+        <property name="codeitemdao">
+            <ref bean="sys_CodeItemDAO"/>
+        </property>
+    </bean>
+
+    <bean id="sys_codeItemService" class="com.hr319wg.sys.service.CodeItemService">
+        <property name="codeitemdao">
+            <ref bean="sys_CodeItemDAO"/>
+        </property>
+    </bean>
+    
+    <bean id="sys_infoSetService" class="com.hr319wg.sys.service.InfoSetService">
+        <property name="infosetdao">
+            <ref bean="sys_infoSetDAO"/>
+        </property>
+    </bean>
+
+    <bean id="sys_infoItemService" class="com.hr319wg.sys.service.InfoItemService">
+        <property name="infoitemdao">
+            <ref bean="sys_infoItemDAO"/>
+        </property>
+        <property name="orgcodedao">
+            <ref bean="sys_orgCodedao"/>
+        </property>
+    </bean>
+    
+    <bean id="sys_SysLogOperService" class="com.hr319wg.sys.service.SysLogOperService">
+        <property name="syslogoperdao">
+            <ref bean="sys_SysLogOperDAO"/>
+        </property>
+    </bean>
+
+   	<bean id="sys_bulletinManageService" class="com.hr319wg.sys.service.BulletinManageService">
+		<property name="bulletinparamdao">
+			<ref bean="sys_bulletinParamDAO"/>
+		</property>
+		<property name="bulletincontentdao">
+			<ref bean="sys_bulletinContentDAO"/>
+		</property>
+		<property name="bulletinscopedao">
+			<ref bean="sys_bulletinScopeDAO"/>
+		</property>
+	</bean>
+
+    <bean id="sys_bulletinQueryAPI" class="com.hr319wg.sys.api.BulletinQueryAPI">
+        <property name="bulletinparamdao">
+         <ref bean="sys_bulletinParamDAO"/>
+        </property>
+        <property name="bulletincontentdao">
+         <ref bean="sys_bulletinContentDAO"/>
+        </property>
+        <property name="bulletinscopedao">
+         <ref bean="sys_bulletinScopeDAO"/>
+        </property>
+    </bean>
+
+    <bean id="sys_newsQueryAPI" class="com.hr319wg.sys.api.NewsQueryAPI">
+        <property name="newsparamdao">
+         <ref bean="sys_newsParamDAO"/>
+        </property>
+        <property name="newscontentdao">
+         <ref bean="sys_newsContentDAO"/>
+        </property>
+        <property name="newsscopedao">
+         <ref bean="sys_newsScopeDAO"/>
+        </property>
+    </bean>
+
+    <bean id="sys_newsManageService" class="com.hr319wg.sys.service.NewsManageService">
+     <property name="newsparamdao">
+         <ref bean="sys_newsParamDAO"/>
+     </property>
+     <property name="newscontentdao">
+         <ref bean="sys_newsContentDAO"/>
+     </property>
+     <property name="newsscopedao">
+         <ref bean="sys_newsScopeDAO"/>
+     </property>
+ </bean>
+
+   <!--ucc-->
+   <bean id="sys_bulletinManageUCC" class="com.hr319wg.sys.ucc.impl.BulletinManageUCC">
+	        <property name="bulletinmanageservice">
+		        <ref bean="sys_bulletinManageService"/>
+	        </property>
+			<property name="usermanageservice">
+				<ref bean="user_userManageService" />
+			</property>
+  </bean>
+
+    <bean id="sys_ibulletinManageUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+      <property name="proxyInterfaces">
+          <list>
+              <value>com.hr319wg.sys.ucc.IBulletinManageUCC</value>
+          </list>
+      </property>
+      <property name="target">
+          <ref bean="sys_bulletinManageUCC"/>
+      </property>
+      <property name="transactionManager">
+          <ref bean="transactionManager"/>
+      </property>
+      <property name="transactionAttributeSource">
+          <ref bean="namingTransactionAttribute"/>
+      </property>
+      </bean>
+
+      <bean id="sys_BulletinQueryUCC"
+            class="com.hr319wg.sys.ucc.impl.BulletinQueryUCC">
+            <property name="bulletinAPI">
+                <ref bean="sys_bulletinQueryAPI" />
+            </property>
+      </bean>
+
+      <bean id="sys_ibulletinQueryUCC"
+            class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.sys.ucc.IBulletinQueryUCC</value>
+                </list>
+            </property>
+            <property name="target">
+                <ref bean="sys_BulletinQueryUCC" />
+            </property>
+            <property name="transactionManager">
+                <ref bean="transactionManager" />
+            </property>
+            <property name="transactionAttributeSource">
+                <ref bean="namingTransactionAttribute" />
+            </property>
+     </bean>
+
+    <bean id="sys_newsManageUCC" class="com.hr319wg.sys.ucc.impl.NewsManageUCC">
+             <property name="newsmanageservice">
+                 <ref bean="sys_newsManageService"/>
+             </property>
+             <property name="usermanageservice">
+                 <ref bean="user_userManageService" />
+             </property>
+            <property name="newsqueryapi">
+                <ref bean="sys_newsQueryAPI" />
+            </property>
+   </bean>
+
+     <bean id="sys_inewsManageUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+       <property name="proxyInterfaces">
+           <list>
+               <value>com.hr319wg.sys.ucc.INewsManageUCC</value>
+           </list>
+       </property>
+       <property name="target">
+           <ref bean="sys_newsManageUCC"/>
+       </property>
+       <property name="transactionManager">
+           <ref bean="transactionManager"/>
+       </property>
+       <property name="transactionAttributeSource">
+           <ref bean="namingTransactionAttribute"/>
+       </property>
+       </bean>
+
+       <bean id="sys_NewsQueryUCC"
+             class="com.hr319wg.sys.ucc.impl.NewsQueryUCC">
+             <property name="newsAPI">
+                 <ref bean="sys_newsQueryAPI" />
+             </property>
+       </bean>
+
+       <bean id="sys_inewsQueryUCC"
+             class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+             <property name="proxyInterfaces">
+                 <list>
+                     <value>com.hr319wg.sys.ucc.INewsQueryUCC</value>
+                 </list>
+             </property>
+             <property name="target">
+                 <ref bean="sys_BulletinQueryUCC" />
+             </property>
+             <property name="transactionManager">
+                 <ref bean="transactionManager" />
+             </property>
+             <property name="transactionAttributeSource">
+                 <ref bean="namingTransactionAttribute" />
+             </property>
+      </bean>
+
+
+     <bean id="sys_parameterUCCImpl" class="com.hr319wg.sys.ucc.impl.ParameterUCCImpl">
+        <property name="service">
+            <ref bean="sys_parameterService"/>
+        </property>
+         <property name="activeapi">
+             <ref bean="sys_activePageApi"/>
+         </property>
+    </bean>
+
+    <bean id="sys_inputtempUCC" class="com.hr319wg.sys.ucc.impl.InputTemplateUCC">
+       <property name="service">
+           <ref bean="sys_inputtempService"/>
+       </property>
+    </bean>
+
+    <bean id="sys_codeSetUccImpl" class="com.hr319wg.sys.ucc.impl.CodeSetUCC">
+        <property name="codesetservice">
+            <ref bean="sys_codeSetService"/>
+        </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+
+    </bean>
+
+    <bean id="sys_codeItemUccImpl" class="com.hr319wg.sys.ucc.impl.CodeItemUCC">
+        <property name="codeitemservice">
+            <ref bean="sys_codeItemService"/>
+        </property>
+    </bean>
+
+    <bean id="sys_infoSetUccImpl" class="com.hr319wg.sys.ucc.impl.InfoSetUCC">
+        <property name="infosetservice">
+            <ref bean="sys_infoSetService"/>
+        </property>
+        <property name="infoitemservice">
+            <ref bean="sys_infoItemService"/>
+        </property>
+        <property name = "roledataservice">
+            <ref bean = "user_roleDataService"/>
+        </property>
+        <property name = "usermanageservice">
+            <ref bean = "user_userManageService"/>
+        </property>
+        <property name="wageapi">
+            <ref bean="wage_api"/>
+        </property>
+    </bean>
+    <bean id="sys_infoItemUccImpl" class="com.hr319wg.sys.ucc.impl.InfoItemUCC">
+        <property name="infoitemservice">
+            <ref bean="sys_infoItemService"/>
+        </property>
+         <property name = "roledataservice">
+            <ref bean = "user_roleDataService"/>
+        </property>
+        <property name = "usermanageservice">
+            <ref bean = "user_userManageService"/>
+        </property>
+        <property name="wageapi">
+            <ref bean="wage_api"/>
+        </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+
+    </bean>
+
+    <bean id="sys_SysLogOperUCCImpl" class="com.hr319wg.sys.ucc.impl.SysLogOperUCC">
+        <property name="syslogoperservice">
+            <ref bean="sys_SysLogOperService"/>
+        </property>
+    </bean>
+    
+    <!--proxy-->
+    <bean id="sys_parameterUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.sys.ucc.IParameterUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="sys_parameterUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <bean id="sys_codeSetUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.sys.ucc.ICodeSetUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="sys_codeSetUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <bean id="sys_codeItemUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.sys.ucc.ICodeItemUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="sys_codeItemUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <bean id="sys_infoSetUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.sys.ucc.IInfoSetUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="sys_infoSetUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <bean id="sys_infoItemUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.sys.ucc.IInfoItemUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="sys_infoItemUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    
+    <bean id="sys_SysLogOperUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.sys.ucc.ISysLogOperUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="sys_SysLogOperUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <bean id="sys_RemindSetUCC"
+            class="com.hr319wg.sys.ucc.impl.RemindSetUCC">
+            <property name="remindsetservice">
+                <ref bean="sys_remindSetService" />
+            </property>
+            <property name="rolemanageservice">
+                <ref bean="user_roleManageService" />
+            </property>
+            <property name="usermanageservice">
+                <ref bean="user_userManageService" />
+            </property>
+            <property name="remindresultqueryapi">
+                <ref bean="sys_RemindResultQueryAPI" />
+            </property>
+        </bean>
+
+    <bean id="sys_iremindSetUCC"
+            class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.sys.ucc.IRemindSetUCC</value>
+                </list>
+            </property>
+            <property name="target">
+                <ref bean="sys_RemindSetUCC" />
+            </property>
+            <property name="transactionManager">
+                <ref bean="transactionManager" />
+            </property>
+            <property name="transactionAttributeSource">
+                <ref bean="namingTransactionAttribute" />
+            </property>
+        </bean>
+
+    <!--             api                   -->
+    <bean id="sys_selfApi" class="com.hr319wg.sys.api.SelfAPI">
+        <property name="api" ref="sys_activePageApi"/>
+    </bean>
+
+    <bean id="sys_ruleApi" class="com.hr319wg.sys.api.RuleAPI">
+        <property name="api" ref="sys_activePageApi"/>
+    </bean>
+
+    <bean id="sys_trainApi" class="com.hr319wg.sys.api.TrainAPI">
+        <property name="api" ref="sys_activePageApi"/>
+    </bean>
+
+
+    <bean id="qry_queryApi" class="com.hr319wg.sys.api.QueryAPI">
+        <property name="querydao" ref="qry_queryDAO"/>
+        <property name="itemdao" ref="qry_queryItemDAO"/>
+        <property name="staticdao" ref="qry_queryStaticDAO"/>
+        <property name="api" ref="sys_activePageApi"/>
+        <property name="conditiondao" ref="qry_queryConditionDAO"/>
+    </bean>
+    <bean id="org_OrgAPI" class="com.hr319wg.sys.api.OrgAPI">
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+    <bean id="sys_personAPI" class="com.hr319wg.sys.api.PersonAPI">
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+        <property name="wageapi">
+            <ref bean="wage_api"/>
+        </property>
+        <property name="wagesetdeptchange">
+            <ref bean="wage_setDeptChangeDAO"/>
+        </property>
+    </bean>
+
+    <bean id="sys_RemindResultQueryAPI"
+        class="com.hr319wg.sys.api.RemindResultQueryAPI">
+        <property name="remlistdao">
+            <ref bean="sys_RemListDAO" />
+        </property>
+        <property name="remresultdao">
+            <ref bean="sys_RemResultDAO" />
+        </property>
+        <property name="remscopedao">
+            <ref bean="sys_RemScopeDAO" />
+        </property>
+        <property name="jdbctemplate">
+            <ref bean="jdbcTemplate" />
+        </property>
+        <property name="userroledao">
+            <ref bean="user_userRoleDAO" />
+        </property>
+        <property name="orgapi">
+            <ref bean="org_OrgAPI" />
+        </property>
+     </bean>
+
+    <bean id="sys_CleanerAPI"
+        class="com.hr319wg.sys.api.CleanerAPI">
+        <property name="activeapi">
+            <ref bean="sys_activePageApi" />
+        </property>
+     </bean>
+
+    <bean id="sys_SysAPI" class="com.hr319wg.sys.api.SysAPI">
+        <property name="infosetdao">
+            <ref bean="sys_infoSetDAO"/>
+        </property>
+        <property name="infoitemdao">
+            <ref bean="sys_infoItemDAO"/>
+        </property>
+        <property name="codesetdao">
+            <ref bean="sys_CodeSetDAO"/>
+        </property>
+        <property name="codeitemdao">
+            <ref bean="sys_CodeItemDAO"/>
+        </property>
+        <property name="userinfodao">
+            <ref bean="user_userInfoDAO"/>
+        </property>
+        <property name="navidao">
+            <ref bean="sys_navidao"/>
+        </property>
+    </bean>
+
+    <bean id="user_pmsAPI" class="com.hr319wg.sys.api.UserAPI">
+        <property name="api">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+
+</beans>

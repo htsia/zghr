@@ -1,0 +1,24 @@
+ClearCase CopyAreaDB|4
+HRD_App\WebContent\pages\wage\payoff
+2
+14
+11:DateListTable.jsp|1|10f559c07a5|145e|1c8461e4|70df48c3de3d4e9cbc7661b961848589|0
+13:DateListHistory.jsp|1|10f7061a99b|1d2a|3bf0f9f2|dba963fff90a46d083a6306180a8ce79|0
+13:DateFinanceItem.jsp|1|11135c4d14a|b58|618c6b19|4283e2a4059346cfa6a4679d3d8901db|0
+d:CheckEdit.jsp|1|10d91c4d8ac|e87|8bf4b396|85ddf086e4b94e60a6da4ed67d05ef6d|0
+13:WelfSetDateList.jsp|1|10dab8f6bca|1dbf|b95b43be|0f937b7b23834df4bd6e2f7fc4c0aa6c|0
+1e:ComputePersonListByFinance.jsp|1|10f12c0f134|1b30|4e771c22|55216761b45c49bd8a6c89fd257045fd|0
+10:WageNoteView.jsp|1|10dab8f69c6|1074|355dca14|0fca12580b5641c58787e18061cc4203|0
+12:WageDetailView.jsp|1|10f7061a92e|103f|e592147|ff9f930b3cec448686b3b318acf4cb65|0
+d:AuditEdit.jsp|1|11048e1bac0|f8e|28eb172f|4cf40813989e4d6c8f06ca7dad952f7f|0
+13:WelfComputeList.jsp|1|10dce81db18|25eb|67246173|f7da1785572f477aa9f240abb7aa9256|0
+c:DateList.jsp|1|11135c4d08f|2610|4bdbb22b|4d2240890957423bb2bd1377ceddf63d|0
+d:CheckList.jsp|1|10f7061a863|c11|23b1b50a|77decf52840a4e879ab3c690d7470371|0
+c:DateEdit.jsp|1|10d38ea3d17|bb1|712897ab|d880ef3de95f4f8996ba4f4130231727|0
+e:PayoffList.jsp|1|10f7061a8ff|e1d|4be0636e|f0c74c22ce064f10ba8050f485864396|0
+e:PayoffEdit.jsp|1|110a60f5801|169d|1f5326a8|ee9a9946e994437192e369e88a25ef78|0
+b:SetList.jsp|1|10d91c4da52|acd|1f258a3|3a7b92a13a034df3a35e383d6ef180ee|0
+16:DeptWageDetailView.jsp|1|10f7061a96c|1439|72153acf|427b838590134433b43bd8bc07274cb1|0
+d:AuditList.jsp|1|10f7061a834|d26|770d14c0|d7a81c1d74d3478984d60eb523b51f2b|0
+17:ComputeShowItemEdit.jsp|1|10f12c0ef8e|e22|b9334e80|638d6d82ca9d47dcb7783a9f4f125b6e|0
+15:ComputePersonList.jsp|1|110a605e6d4|2ad1|9c7d3a1|9f40c437ce7040ff83ea4d7713ca435b|0

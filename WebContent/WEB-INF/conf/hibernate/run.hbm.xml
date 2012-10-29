@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping default-lazy="false">
+
+<class name="com.hr319wg.run.pojo.bo.UpFileBO" table="sys_upfile">
+    <id name="attachid" type="string" unsaved-value="null">
+        <column name="attachid" sql-type="varchar(32)"/>
+        <generator class="uuid.hex"/>
+    </id>
+    <property name="filesize" column="filesize"/>
+    <property name="relativepath" column="relativepath"/>
+    <property name="filepath" column="filepath"/>
+    <property name="filename" column="filename"/>
+    <property name="datetime" column="datetime"/>
+    <property name="describe" column="describe"/>
+    <property name="serialnumber" column="serialnumber"/>
+</class>
+
+</hibernate-mapping>

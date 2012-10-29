@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="annu_personucc" class="com.hr319wg.insurace.ucc.impl.AnnuUCC">
+        <property name="annuservice" ref="annu_personService"/>
+    </bean>
+    
+    <bean id="annu_personService" class="com.hr319wg.insurace.service.AnnuService">
+        <property name="annudao" ref="annu_persondao"/>
+        <property name="annuOrgdao" ref="annu_orgdao"/>
+        <property name="api" ref="sys_activePageApi"/>
+    </bean>
+
+    <bean id="annu_orgdao" class="com.hr319wg.insurace.dao.OrgAnnuDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="annu_persondao" class="com.hr319wg.insurace.dao.AnnuPersonDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="ins_medicalPayoffService" class="com.hr319wg.insurace.service.MedicalPayoffService">
+        <property name="medicalpayoffdao" ref="ins_medicaldao"/>
+    </bean>
+
+    <bean id="ins_medicalPayoffucc" class="com.hr319wg.insurace.ucc.impl.MedicalPayoffUCC">
+        <property name="medicalpayoffservice" ref="ins_medicalPayoffService"/>
+    </bean>
+    
+    <bean id="ins_medicaldao" class="com.hr319wg.insurace.dao.MedicalPayoffRateDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="ins_GroupPowerDAO" class="com.hr319wg.insurace.dao.InsGroupPowerDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="ins_DeptPowerDAO" class="com.hr319wg.insurace.dao.InsDeptPowerDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="ins_personCountDAO" class="com.hr319wg.insurace.dao.personCountDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="ins_itempowerDAO" class="com.hr319wg.insurace.dao.InsItemPowerDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="insurace_basesetdao" class="com.hr319wg.insurace.dao.BaseSetDAO">
+         <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="insurace_basesetser" class="com.hr319wg.insurace.service.BaseSetService">
+        <property name="basesetdao" ref="insurace_basesetdao"/>
+    </bean>
+
+    <bean id="insurace_basesetucc" class="com.hr319wg.insurace.ucc.impl.BaseSetUCC">
+        <property name="baseservice" ref="insurace_basesetser"/>
+        <property name="wageapi" ref="wage_api"/>
+    </bean>
+
+</beans>

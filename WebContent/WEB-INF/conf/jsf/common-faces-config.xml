@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+    <managed-bean>
+      <managed-bean-name>sys_showstaticBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.sys.web.ShowStaticBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+              <property-name>activeapi</property-name>
+              <value>#{sys_activePageApi}</value>
+        </managed-property>
+
+        <managed-property>
+              <property-name>wageitemucc</property-name>
+              <value>#{wage_SetItemUccImpl}</value>
+        </managed-property>
+
+        <managed-property>
+              <property-name>formulaucc</property-name>
+              <value>#{wage_FormulaUcc}</value>
+        </managed-property>
+
+        <managed-property>
+              <property-name>personucc</property-name>
+              <value>#{emp_personUCC}</value>
+        </managed-property>
+
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>common_UpPhBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.common.web.UploadPhotoBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+        
+        <managed-property>
+            <property-name>attachucc</property-name>
+            <value>#{common_attachmentUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/common/editPhotoField.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/common/deletePhotoField.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

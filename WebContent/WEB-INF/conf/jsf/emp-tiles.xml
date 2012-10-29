@@ -1,0 +1,410 @@
+<!DOCTYPE tiles-definitions
+    [
+        <!ELEMENT component-definitions (definition+)>
+        <!ELEMENT tiles-definitions (definition+)>
+        <!ELEMENT definition (put*, putList*)>
+        <!ATTLIST definition
+            name CDATA #REQUIRED
+            pages CDATA #IMPLIED
+            path CDATA #IMPLIED
+            extends CDATA #IMPLIED
+            role CDATA #IMPLIED
+            template CDATA #IMPLIED
+            controllerClass CDATA #IMPLIED
+            controllerUrl CDATA #IMPLIED>
+        <!ELEMENT put (#PCDATA)>
+        <!ATTLIST put
+            name CDATA #REQUIRED
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+        <!ATTLIST putList
+            name CDATA #REQUIRED>
+        <!ELEMENT putListElements (add | item | bean)>
+        <!ELEMENT add (#PCDATA)>
+        <!ATTLIST add
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT bean (#PCDATA)>
+        <!ATTLIST bean
+            classtype CDATA #REQUIRED>
+        <!ELEMENT item (#PCDATA)>
+        <!ATTLIST item
+            value CDATA #REQUIRED
+            link CDATA #REQUIRED
+            classtype CDATA #IMPLIED
+            icon CDATA #IMPLIED
+            tooltip CDATA #IMPLIED>
+    ]>
+
+<tiles-definitions>
+    <definition name="/employee/PersonAdjustInfo.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/PersonAdjustInfo.jsp" />
+    </definition>
+    <definition name="/employee/PersonChangeInfo.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/PersonChangeInfo.jsp" />
+    </definition>
+    <definition name="/employee/info/d2anaDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/d2anaDetail.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/reApplyProcess.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/reApplyProcess.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/d2ana.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/d2ana.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/AddD2ItemDetail_Num.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/AddD2ItemDetail_Num.jsp"/>
+    </definition>
+    <definition name="/employee/info/AddD2ItemDetail_Code.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/AddD2ItemDetail_Code.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/D2ItemConfigList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/employee/info/D2ItemConfigList.jsp"/>
+    </definition>
+    <definition name="/employee/info/D2ItemList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/D2ItemList.jsp"/>
+    </definition>
+    <definition name="/employee/info/AddD2Item.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/AddD2Item.jsp"/>
+    </definition>
+    <definition name="/employee/info/ShowD2Item.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/employee/info/ShowD2Item.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/GroupPCountChild.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/GroupPCountChild.jsp"/>
+    </definition>
+    <definition name="/employee/info/GroupPersonCount.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/GroupPersonCount.jsp"/>
+    </definition>
+    <definition name="/employee/info/PersonBrowIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/PersonBrowIndex.jsp"/>
+    </definition>
+    <definition name="/employee/info/PersonBrowChild.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/employee/info/PersonBrowChild.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/doBatchReduceAudit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/doBatchReduceAudit.jsp"/>
+    </definition>
+    <definition name="/employee/info/doReduceAudit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/doReduceAudit.jsp"/>
+    </definition>
+    <definition name="/employee/info/ResumeReduceAudit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/ResumeReduceAudit.jsp"/>
+    </definition>
+    <definition name="/employee/info/ShowEmpSurvey.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/ShowEmpSurvey.jsp"/>
+    </definition>
+    <definition name="/employee/info/busiProcess.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/busiProcess.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/busiInputSelect.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/busiInputSelect.jsp"/>
+    </definition>
+     <definition name="/employee/info/busiInputEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/busiInputEdit.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/batchUpdate.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/batchUpdate.jsp"/>
+    </definition>
+    <definition name="/employee/info/ShowItemEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/ShowItemEdit.jsp"/>
+    </definition>
+    <definition name="/employee/info/busiModiData.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/busiModiData.jsp"/>
+    </definition>
+    <definition name="/employee/info/ShowGroup.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/ShowGroup.jsp"/>
+    </definition>
+    <definition name="/employee/info/busiquery.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/busiquery.jsp"/>
+    </definition>
+   
+    <definition name="/employee/info/ShowEmpSurveyByCode.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/ShowEmpSurveyByCode.jsp"/>
+    </definition>
+    <definition name="/employee/info/ShowEmpSurveyByCodeDetail.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/ShowEmpSurveyByCodeDetail.jsp"/>
+    </definition>
+    <definition name="/employee/info/ReducingPerson.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/employee/info/ReducingPerson.jsp"/>
+    </definition>
+    <definition name="/employee/info/ReduceAudit.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/ReduceAudit.jsp"/>
+    </definition>
+    <definition name="/employee/info/ReduceCaderAudit.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/ReduceCaderAudit.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/ReduceAuditChild.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/employee/info/ReduceAuditChild.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/BatchAddPerson.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/BatchAddPerson.jsp"/>
+    </definition>
+
+
+    <definition name="/employee/info/engage.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/employee/info/engage.jsp"/>
+    </definition>
+    <definition name="/employee/info/addEngage.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/addEngage.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/BatchAddPersonList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/BatchAddPersonList.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/modiRule.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/modiRule.jsp"/>
+    </definition>
+    <definition name="/employee/info/modiAddRule.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/modiAddRule.jsp"/>
+    </definition>
+    <definition name="/employee/info/modiDieRule.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/modiDieRule.jsp"/>
+    </definition>
+    <definition name="/employee/info/modiMinusRule.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/modiMinusRule.jsp"/>
+    </definition>
+    <definition name="/employee/info/ModiCountDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/ModiCountDetail.jsp"/>
+    </definition>
+    <definition name="/employee/info/AllPersonCount.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/AllPersonCount.jsp"/>
+    </definition>
+
+
+    <definition name="/employee/info/PersonCount.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/PersonCount.jsp"/>
+    </definition>
+    <definition name="/employee/info/PersonCountDetail.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/employee/info/PersonCountDetail.jsp"/>
+    </definition>
+    <definition name="/employee/info/addMonth.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/addMonth.jsp"/>
+    </definition>
+
+    <definition name="/employee/info/ChangeInfo.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/info/ChangeInfo.jsp" />
+    </definition>
+    <definition name="/employee/info/addAudit.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/addAudit.jsp" />
+    </definition>
+    <definition name="/employee/info/addAuditCarder.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/addAuditCarder.jsp" />
+    </definition>
+    <definition name="/employee/info/addAuditOther.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/addAuditOther.jsp" />
+    </definition>
+    <definition name="/employee/info/addAuditChild.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/info/addAuditChild.jsp" />
+    </definition>
+    <definition name="/employee/info/ProcessAduit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/info/ProcessAduit.jsp" />
+    </definition>
+
+    <definition name="/employee/QueryPersonIndex.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/QueryPersonIndex.jsp" />
+    </definition>
+    <definition name="/employee/QueryPersonList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/QueryPersonList.jsp" />
+    </definition>
+    <definition name="/employee/QueryDeptPersonIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/QueryDeptPersonIndex.jsp" />
+    </definition>
+    <definition name="/employee/QueryDeptPersonList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/QueryDeptPersonList.jsp" />
+    </definition>
+
+    <definition name="/employee/cadres/WorkImport.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/cadres/WorkImport.jsp" />
+    </definition>
+    <definition name="/employee/cadres/addWork.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/cadres/addWork.jsp" />
+    </definition>
+    <definition name="/employee/cadres/processWorker.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/cadres/processWorker.jsp" />
+    </definition>
+
+    <definition name="/employee/cadres/cadImport.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/cadres/cadImport.jsp" />
+    </definition>
+    <definition name="/employee/cadres/addCardres.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/cadres/addCardres.jsp" />
+    </definition>
+    <definition name="/employee/cadres/processCardres.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/cadres/processCardres.jsp" />
+    </definition>
+
+    <definition name="/employee/sort/PersonSortIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/sort/PersonSortIndex.jsp" />
+    </definition>
+    <definition name="/employee/sort/PersonSort.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/sort/PersonSort.jsp" />
+    </definition>
+    <definition name="/employee/sort/OrderInput.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/sort/OrderInput.jsp" />
+    </definition>
+
+    <definition name="/employee/info/leavedPerson.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/employee/info/leavedPerson.jsp" />
+   </definition>
+    <definition name="/employee/info/OtherPersonAdd.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/employee/info/OtherPersonAdd.jsp" />
+   </definition>
+
+   <definition name="/employee/info/PersonAdd.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/employee/info/PersonAdd.jsp" />
+   </definition>
+    <definition name="/employee/info/PersonAdd1.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/employee/info/PersonAdd1.jsp" />
+   </definition>
+    <definition name="/employee/info/PersonAdd2.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/employee/info/PersonAdd2.jsp" />
+   </definition>
+
+    <definition name="/employee/info/receivePerson.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/receivePerson.jsp" />
+    </definition>
+    <definition name="/employee/info/receiveWork.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/receiveWork.jsp" />
+    </definition>
+    <definition name="/employee/info/doReceive.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/employee/info/doReceive.jsp" />
+    </definition>
+    <definition name="/employee/info/doReceiveWork.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/doReceiveWork.jsp" />
+    </definition>
+
+    <definition name="/employee/info/PersonInfoIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/PersonInfoIndex.jsp" />
+    </definition>
+     <definition name="/employee/info/PersonInfoQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/info/PersonInfoQuery.jsp" />
+    </definition>
+
+    <definition name="/employee/info/PersonInfoPhotoQuery.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/employee/info/PersonInfoPhotoQuery.jsp" />
+   </definition>
+
+    <definition name="/employee/info/CheckingPerson.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/employee/info/CheckingPerson.jsp" />
+   </definition>
+
+     <definition name="/employee/info/PersonEditInfo.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/PersonEditInfo.jsp" />
+    </definition>
+     <definition name="/employee/info/PersonInfoDetail.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/PersonInfoDetail.jsp" />
+    </definition>
+    <definition name="/employee/info/PersonInfoDetailList.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/PersonInfoDetailList.jsp" />
+    </definition>
+      <definition name="/employee/info/PersonManyEditInfo.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/info/PersonManyEditInfo.jsp" />
+    </definition>
+      <definition name="/employee/info/PersonList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/info/PersonList.jsp" />
+    </definition>
+    <definition name="/employee/info/ConCurrentPostList.tiles" extends="layout.busitemplate" >
+      <put name="body" value="/pages/employee/info/ConCurrentPostList.jsp" />
+    </definition>
+    <definition name="/employee/info/ConCurrentPost.tiles" extends="layout.busitemplateLogin" >
+      <put name="body" value="/pages/employee/info/ConCurrentPost.jsp" />
+    </definition>
+    <definition name="/employee/info/ConCurrentPersonAdd.tiles" extends="layout.busitemplateSelf" >
+      <put name="body" value="/pages/employee/info/ConCurrentPersonAdd.jsp" />
+    </definition>
+    <definition name="/employee/info/ConCurrentPersonCancel.tiles" extends="layout.busitemplateSelf" >
+      <put name="body" value="/pages/employee/info/ConCurrentPersonCancel.jsp" />
+    </definition>
+    <definition name="/employee/info/changetype.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/changetype.jsp" />
+    </definition>
+
+    <definition name="/employee/info/TypeChangingPerson.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/TypeChangingPerson.jsp" />
+    </definition>
+
+    <definition name="/employee/info/changetypeChild.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/info/changetypeChild.jsp" />
+    </definition>
+    <definition name="/employee/info/PersonChangeType.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/info/PersonChangeType.jsp" />
+    </definition>
+
+    <definition name="/employee/info/TypeChangeAudit.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/info/TypeChangeAudit.jsp" />
+    </definition>
+    <definition name="/employee/info/TypeChangeAuditChild.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/info/TypeChangeAuditChild.jsp" />
+    </definition>
+
+
+    <definition name="/employee/batch/BatchAddIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/batch/BatchAddIndex.jsp" />
+    </definition>
+    <definition name="/employee/batch/UploadPhotos.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/batch/UploadPhotos.jsp" />
+    </definition>
+    <definition name="/employee/batch/UploadPhotosList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/batch/UploadPhotosList.jsp" />
+    </definition>
+    <definition name="/employee/batch/BatchAddQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/batch/BatchAddQuery.jsp" />
+    </definition>
+     <definition name="/employee/batch/BatchAddFrame.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/batch/BatchAddFrame.jsp" />
+    </definition>
+     <definition name="/employee/batch/BatchAddInfo.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/batch/BatchAddInfo.jsp" />
+    </definition>
+       <definition name="/employee/batch/BatchUpdateIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/employee/batch/BatchUpdateIndex.jsp" />
+    </definition>
+    <definition name="/employee/batch/BatchUpdateQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/batch/BatchUpdateQuery.jsp" />
+    </definition>
+     <definition name="/employee/batch/BatchUpdateFrame.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/batch/BatchUpdateFrame.jsp" />
+    </definition>
+     <definition name="/employee/batch/BatchUpdateInfo.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/batch/BatchUpdateInfo.jsp" />
+    </definition>
+
+     <definition name="/employee/DrawoutAge.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/DrawoutAge.jsp" />
+    </definition>
+    <definition name="/employee/GenerateShort.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/employee/GenerateShort.jsp" />
+    </definition>
+
+
+    <definition name="/employee/import/PerDataUpload.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/import/PerDataUpload.jsp"/>
+    </definition>
+    <definition name="/employee/import/PerDataUploadList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/import/PerDataUploadList.jsp"/>
+    </definition>
+    <definition name="/employee/import/PerDataUploadBySet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/import/PerDataUploadBySet.jsp"/>
+    </definition>
+    <definition name="/employee/import/PerDataUploadListBySet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/import/PerDataUploadListBySet.jsp"/>
+    </definition>
+
+</tiles-definitions>

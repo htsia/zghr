@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.eLearn.pojo.bo.TestPersonResultBO" table="ELN_TEST_RESULT">
+        <id name="resultID" type="string" unsaved-value="null">
+            <column name="RESULT_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="testPersonID"	       column="TEST_PERSON_ID"/>
+        <property name="paperItemID"	       column="PAPER_ITEM_ID"></property>
+        <property name="result"	       column="RESULT"/>
+        <property name="score"	       column="SCORE"/>
+   </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.TestPersonBO" table="ELN_TEST_PERSON">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="testID"	       column="TEST_ID"/>
+        <property name="personID"	       column="PERSON_ID"></property>
+        <property name="testDate"	       column="TEST_DATE"/>
+        <property name="score"	       column="SCORE"/>
+        <property name="isfinish"	       column="isfinish"/>
+        <property name="lastTime"	       column="last_time"/>
+   </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.eLearnMaterialBO" table="ELN_MATERIAL">
+        <id name="attachid" type="string" unsaved-value="null">
+            <column name="ATTACHID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="filesize"	       column="FILESIZE"/>
+        <property name="relativepath"	       column="RELATIVEPATH"></property>
+        <property name="filepath"	       column="FILEPATH"/>
+        <property name="filename"	       column="FILENAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="datetime"	       column="createDate"/>
+        <property name="describe"	       column="material_describe" type="com.hr319wg.sys.service.GBKString"/>
+   </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.elearnBulletinBO"      table="ELN_BULLETIN_CONTENT">
+        <id name="blltnId" type="string" column="BLLTN_ID" >
+            <generator class="uuid.hex" />
+        </id>
+        <property name="authorId" type="string" column="AUTHOR_ID" />
+        <property name="submitDate" type="string" column="SUBMIT_DATE"/>
+        <property name="blltnTopic" type="com.hr319wg.sys.service.GBKString" column="BLLTN_TOPIC"/>
+        <property name="startDate" type="string" column="START_DATE"/>
+        <property name="newEndDate" type="string" column="NEW_ENDDATE"/>
+        <property name="endDate" type="string" column="END_DATE"/>
+        <property name="blltnContent" type="com.hr319wg.sys.service.GBKString" column="BLLTN_CONTENT" />
+        <property name="attFile1" type="com.hr319wg.sys.service.GBKString" column="BULLETIN_AttFile1" />
+        <property name="attFile2" type="com.hr319wg.sys.service.GBKString" column="BULLETIN_AttFile2" />
+        <property name="attFile3" type="com.hr319wg.sys.service.GBKString" column="BULLETIN_AttFile3" />
+        <property name="attFile4" type="com.hr319wg.sys.service.GBKString" column="BULLETIN_AttFile4" />
+        <property name="attFile5" type="com.hr319wg.sys.service.GBKString" column="BULLETIN_AttFile5" />
+        <property name="attTitle1" type="com.hr319wg.sys.service.GBKString" column="BULLETIN_ATTTITLE1" />
+        <property name="attTitle2" type="com.hr319wg.sys.service.GBKString" column="BULLETIN_ATTTITLE2" />
+        <property name="attTitle3" type="com.hr319wg.sys.service.GBKString" column="BULLETIN_ATTTITLE3" />
+        <property name="attTitle4" type="com.hr319wg.sys.service.GBKString" column="BULLETIN_ATTTITLE4" />
+        <property name="attTitle5" type="com.hr319wg.sys.service.GBKString" column="BULLETIN_ATTTITLE5" />
+    </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.eLearnTestBO" table="ELN_TEST">
+        <id name="testID" type="string" unsaved-value="null">
+            <column name="TEST_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="testName"	       column="TEST_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="beginTime"	       column="BEGIN_TIME"></property>
+        <property name="endTime"	       column="END_TIME"/>
+        <property name="testminute"	       column="TEST_MINUTE"/>
+        <property name="createpid"	       column="CREATE_PID"/>
+        <property name="isUse"	       column="IS_USE"/>
+        <property name="paperID"	       column="Paper_ID"/>
+        <property name="createOrg"	       column="CREATE_ORG"/>
+        <property name="scopeType"	       column="SCOPE_TYPE"/>
+        <property name="recuPlan" column="RECU_PLAN"/>
+        <property name="testMode"  column="TEST_MODE"/>
+   </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.PaperItemBO" table="ELN_PAPER_ITEM">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="setID"	       column="SET_ID"/>
+        <property name="linkID"	       column="LINK_ID"></property>
+        <property name="score"	       column="score"/>
+        <property name="showSeq"	       column="SHOW_SEQ"/>
+   </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.PaperItemSetBO" table="ELN_PAPER_ITEM_SET">
+        <id name="setID" type="string" unsaved-value="null">
+            <column name="SET_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="paperID"	       column="Paper_ID"/>
+        <property name="setName"	       column="SET_NAME" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="setType"	       column="SET_TYPE"/>
+        <property name="showSeq"	       column="SHOW_SEQ"></property>
+        <property name="totalscore"	       column="TOTAL_SCORE"/>
+        <property name="questioncount"	       column="QUESTION_COUNT"></property>
+   </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.PaperLiBBO" table="ELN_PAPER_LIB">
+        <id name="libID" type="string" unsaved-value="null">
+            <column name="LIB_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="libName"	column="LIB_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="parentID"	column="PARENT_ID"></property>
+   </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.eLearnPaperBO" table="ELN_PAPER">
+        <id name="paperID" type="string" unsaved-value="null">
+            <column name="PAPER_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="libID"	       column="LIB_ID"/>
+        <property name="name"	       column="name" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="description"   column="DISCRIPTION" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="isUse"	       column="is_use"></property>
+        <property name="createDate"	       column="CREATE_DATE"></property>
+        <property name="orgID"	       column="ORG_ID"></property>
+        <property name="createOrg"	       column="CRATE_ORG"></property>
+        <property name="paperType"	       column="PAPER_TYPE"></property>
+        <property name="totalscore"	       column="TOTAL_SCORE"></property>
+   </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.QuestionLiBBO" table="ELN_QUESTION_LIB">
+        <id name="libID" type="string" unsaved-value="null">
+            <column name="LIB_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="libName"	       column="LIB_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="parentID"	       column="PARENT_ID"></property>
+   </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.QuestionBO" table="ELN_QUESTION">
+        <id name="questionID" type="string" unsaved-value="null">
+            <column name="QUESTION_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="title"	       column="TITLE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="libID"	       column="LIB_ID"></property>
+        <property name="questionType"	       column="QUESTION_TYPE"></property>
+        <property name="lowChars"	       column="LOW_CHARS"></property>
+        <property name="createOrguid"	       column="create_org"></property>
+        <property name="Orgscope"	       column="org_scope"></property>
+        <property name="referKey"	       column="REFER_KEY"></property>
+        <property name="isRight"	       column="ISRight"></property>
+   </class>
+    
+    <class name="com.hr319wg.eLearn.pojo.bo.AnswerListBO" table="ELN_QUESTION_ANSWER">
+        <id name="answerID" type="string" unsaved-value="null">
+            <column name="ANSWER_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="questionID"	       column="QUESTION_ID"/>
+        <property name="answerCode"	       column="ANSWER_CODE" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="answerName"	       column="ANSWER_NAME" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="answerType"	       column="ANSWER_TYPE" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="isRight"	       column="ISRight"></property>
+        <property name="referKey"	       column="REFER_KEY"></property>
+   </class>
+    
+
+    <class name="com.hr319wg.eLearn.pojo.bo.elearnStudyBO" table="ELN_STUDY">
+        <id name="studyID" type="string" unsaved-value="null">
+            <column name="STUDY_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="studentID"	       column="Student_ID"/>
+        <property name="courseID"	       column="COURSE_ID"></property>
+        <property name="firstTime"	       column="FIRST_TIME"></property>
+        <property name="curUnitID"	       column="CURUNITID"></property>
+        <property name="unitCount"	       column="unitCount"></property>
+        <property name="learnCount"	       column="learnCount"></property>
+        <property name="courseType"	       column="COURSE_TYPE"></property>
+   </class>
+    
+    <class name="com.hr319wg.eLearn.pojo.bo.elearnTranscriptBO" table="ELN_Transcript">
+        <id name="transID" type="string" unsaved-value="null">
+            <column name="Trans_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="studentID"	       column="Student_ID"/>
+        <property name="unitID"	       column="Unit_ID"></property>
+        <property name="lessonStatus"	       column="LessonStatus"></property>
+        <property name="firstTime"	       column="firstTime"></property>
+        <property name="completed"	       column="completed"></property>
+        <property name="sessionTime"	       column="sessionTime"></property>
+        <property name="seq"	       column="seq"></property>
+        <property name="studyID"	       column="study_id"></property>
+    </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.elearnUnitBO" table="ELN_UNIT">
+        <id name="unitID" type="string" unsaved-value="null">
+            <column name="unit_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="unitName"	       column="unit_Name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="courseID"	       column="course_id"></property>
+        <property name="uri"	       column="uri"></property>
+        <property name="parentID"	       column="parent_ID"></property>
+        <property name="identifier"	       column="identifier"></property>
+        <property name="seq"	       column="seq"></property>
+    </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.elearnCourseBO" table="ELN_Course">
+        <id name="courseID" type="string" unsaved-value="null">
+            <column name="course_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="courseName"	       column="course_Name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="dirID"	       column="dir_ID"/>
+        <property name="unitCount"	       column="unit_Count"/>
+    </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.eLearnDirBO" table="ELN_DIR">
+        <id name="typeID" type="string" unsaved-value="null">
+            <column name="TYPE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="typeName"	       column="TYPE_NAME" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="parentTypeid"	   column="PARENT_ID"/>
+    </class>
+
+    <class name="com.hr319wg.eLearn.pojo.bo.studentFunctionBO" table="SYS_ELEARN_FUNCTION">
+        <id name="operateId" type="string" unsaved-value="null">
+            <column name="OPERATE_ID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="operateName" column="OPERATE_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="url" column="MENU_URL"/>
+        <property name="treeId" column="TREEID"/>
+        <property name="operateType" column="OPERATE_TYPE"/>
+        <property name="superId" column="SUPERID"/>
+        <property name="moduleID" column="MODULEID"/>
+        <property name="isUse" column="is_use"/>
+        <property name="haveReport" column="have_report"/>
+        <property name="haveQuery" column="have_query"/>
+        <property name="webIcon" column="WEB_ICON"/>
+    </class>
+
+</hibernate-mapping>
+

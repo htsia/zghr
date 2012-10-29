@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+                              "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+
+    <managed-bean>
+      <managed-bean-name>run_SystemInfoBackingBean</managed-bean-name>
+        <managed-bean-class>com.hr319wg.run.web.SystemInfoBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+        <property-name>activeapi</property-name>
+           <value>#{sys_activePageApi}</value>
+        </managed-property>
+
+        <managed-property>
+           <property-name>shortmessageucc</property-name>
+           <value>#{sys_SMUCC}</value>
+        </managed-property>
+
+        <managed-property>
+           <property-name>userucc</property-name>
+           <value>#{user_userManageUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>upFileBackingBean</managed-bean-name>
+        <managed-bean-class>com.hr319wg.run.web.UpFileBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+        <property-name>upfileucc2</property-name>
+           <value>#{upfile_ucc}</value>
+        </managed-property>
+    </managed-bean>
+
+     <managed-bean>
+        <managed-bean-name>downFileBackingBean</managed-bean-name>
+        <managed-bean-class>com.hr319wg.run.web.DownFileBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+        <property-name>upfileucc3</property-name>
+           <value>#{upfile_ucc}</value>
+        </managed-property>
+    </managed-bean>
+
+     <managed-bean>
+        <managed-bean-name>upFilePopBackingBean</managed-bean-name>
+        <managed-bean-class>com.hr319wg.run.web.UpFilePopBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+         <managed-property>
+        <property-name>upfileucc</property-name>
+           <value>#{upfile_ucc}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/run/UpFilePop.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/run/StopWarn.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>
+

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+    <managed-bean>
+        <managed-bean-name>post_selPostBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.post.web.QueryPostBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>postucc</property-name>
+            <value>#{post_postUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>pmsapi</property-name>
+            <value>#{user_pmsAPI}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>post_PostAddBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.post.web.PostAddBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>postucc</property-name>
+            <value>#{post_postUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>post_editPostBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.post.web.PostEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>orgucc</property-name>
+            <value>#{org_orgUCC}</value>
+        </managed-property>
+         <managed-property>
+            <property-name>postucc</property-name>
+            <value>#{post_postUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+
+    </managed-bean>
+
+
+
+
+    <managed-bean>
+        <managed-bean-name>post_PostMapBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.post.web.PostMapBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>postucc</property-name>
+            <value>#{post_postUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>post_PostListBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.post.web.PostListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>postucc</property-name>
+            <value>#{post_postUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>post_PostWeaveBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.post.web.PostWeaveBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>postucc</property-name>
+            <value>#{post_postUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+    </managed-bean>
+    
+
+    <managed-bean>
+        <managed-bean-name>post_postTemplateListBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.post.web.PostTemplateListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>posttemucc</property-name>
+            <value>#{post_postTemplateUCC}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>post_postTemplateEditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.post.web.PostTemplateEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>postucc</property-name>
+            <value>#{post_postUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>posttemucc</property-name>
+            <value>#{post_postTemplateUCC}</value>
+        </managed-property>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/post/template/PostTempAdd.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/post/info/PostEditInfo.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/pages/post/SelPost.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>list</from-outcome>
+            <to-view-id>/pages/post/SelPost.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/post/info/PostInfoDetailList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>info</from-outcome>
+            <to-view-id>/post/info/PostInfoDetail.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/post/info/PostInfoDetail.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>list</from-outcome>
+            <to-view-id>/post/info/PostInfoDetailList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/post/info/PostAdd.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/post/info/PostEditInfo.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/post/info/PostChangeSuper.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

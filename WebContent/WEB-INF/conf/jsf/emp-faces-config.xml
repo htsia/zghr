@@ -1,0 +1,1243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+
+    <managed-bean>
+      <managed-bean-name>emp_baseInputBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.emp.web.BusiInputBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+          <property-name>wagesetpersonucc</property-name>
+          <value>#{wage_SetPersonUcc}</value>
+      </managed-property>
+      <managed-property>
+          <property-name>wagesetucc</property-name>
+          <value>#{wage_SetUcc}</value>
+      </managed-property>
+      <managed-property>
+          <property-name>wagepersonqueryucc</property-name>
+          <value>#{wage_PersonQueryUcc}</value>
+      </managed-property>
+        <managed-property>
+            <property-name>showitemucc</property-name>
+            <value>#{sys_showitemsUCC}</value>
+        </managed-property>
+  </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_d2AnaBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.D2AnaBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>d2anaucc</property-name>
+            <value>#{emp_D2AnaUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>api</property-name>
+            <value>#{sys_activePageApi}</value>
+        </managed-property>
+        <managed-property>
+           <property-name>queryucc</property-name>
+           <value>#{qry_QueryUCCImpl}</value>
+       </managed-property>
+        <managed-property>
+           <property-name>queryapi</property-name>
+           <value>#{qry_queryApi}</value>
+       </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_personBrowBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.PersonBrowBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>activepageapi</property-name>
+            <value>#{sys_activePageApi}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>aucc</property-name>
+            <value>#{common_attachmentUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+     <managed-bean-name>emp_busiqueryBB</managed-bean-name>
+     <managed-bean-class>com.hr319wg.emp.web.BusiQueryBackingBean</managed-bean-class>
+     <managed-bean-scope>request</managed-bean-scope>
+     <managed-property>
+         <property-name>wageapi</property-name>
+         <value>#{wage_api}</value>
+     </managed-property>
+     <managed-property>
+         <property-name>wagedeptucc</property-name>
+         <value>#{wage_deptUCC}</value>
+     </managed-property>
+     <managed-property>
+         <property-name>wagesetucc</property-name>
+         <value>#{wage_SetUcc}</value>
+     </managed-property>
+
+     <managed-property>
+         <property-name>wagepowerucc</property-name>
+         <value>#{wage_itemPowerUCC}</value>
+     </managed-property>
+
+     <managed-property>
+         <property-name>wagesetitemucc</property-name>
+         <value>#{wage_SetItemUcc}</value>
+     </managed-property>
+
+     <managed-property>
+         <property-name>wagedateucc</property-name>
+         <value>#{wage_DateUcc}</value>
+     </managed-property>
+
+     <managed-property>
+         <property-name>wagepersonqueryucc</property-name>
+         <value>#{wage_PersonQueryUcc}</value>
+     </managed-property>
+
+         <managed-property>
+             <property-name>userreportucc</property-name>
+             <value>#{user_userReportUccImpl}</value>
+         </managed-property>
+ </managed-bean>
+
+    <managed-bean>
+     <managed-bean-name>emp_busiprocessBB</managed-bean-name>
+     <managed-bean-class>com.hr319wg.emp.web.BusiProcessBackingBean</managed-bean-class>
+     <managed-bean-scope>request</managed-bean-scope>
+     <managed-property>
+         <property-name>wageapi</property-name>
+         <value>#{wage_api}</value>
+     </managed-property>
+     <managed-property>
+         <property-name>wagedeptucc</property-name>
+         <value>#{wage_deptUCC}</value>
+     </managed-property>
+     <managed-property>
+         <property-name>wagesetucc</property-name>
+         <value>#{wage_SetUcc}</value>
+     </managed-property>
+
+     <managed-property>
+         <property-name>wagepowerucc</property-name>
+         <value>#{wage_itemPowerUCC}</value>
+     </managed-property>
+
+     <managed-property>
+         <property-name>wagesetitemucc</property-name>
+         <value>#{wage_SetItemUcc}</value>
+     </managed-property>
+
+     <managed-property>
+         <property-name>wagedateucc</property-name>
+         <value>#{wage_DateUcc}</value>
+     </managed-property>
+
+     <managed-property>
+         <property-name>wagepersonqueryucc</property-name>
+         <value>#{wage_PersonQueryUcc}</value>
+     </managed-property>
+
+         <managed-property>
+             <property-name>userreportucc</property-name>
+             <value>#{user_userReportUccImpl}</value>
+         </managed-property>
+
+        <managed-property>
+            <property-name>showitemucc</property-name>
+            <value>#{sys_showitemsUCC}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>activeapi</property-name>
+            <value>#{sys_activePageApi}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>orgucc</property-name>
+            <value>#{org_orgUCC}</value>
+        </managed-property>
+
+ </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_surveyByCodeBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.EmpSurveyByCodeBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>survyucc</property-name>
+            <value>#{emp_SurveyUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>api</property-name>
+            <value>#{sys_activePageApi}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_surveyBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.EmpSurveyBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>survyucc</property-name>
+            <value>#{emp_SurveyUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>api</property-name>
+            <value>#{sys_activePageApi}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_engageBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.EmpEngageBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>wfservice</property-name>
+            <value>#{sys_wfservice}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_OrgSumItemSetBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.OrgSumItemSetBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>orgsumucc</property-name>
+            <value>#{org_OrgSumItemUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+       <managed-bean-name>emp_PersonCountBB</managed-bean-name>
+       <managed-bean-class>com.hr319wg.emp.web.PersonCountBackingBean</managed-bean-class>
+       <managed-bean-scope>request</managed-bean-scope>
+       <managed-property>
+           <property-name>orgucc</property-name>
+           <value>#{org_orgUCC}</value>
+       </managed-property>
+        <managed-property>
+            <property-name>orgsumucc</property-name>
+            <value>#{org_OrgSumItemUCC}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+
+   </managed-bean>
+
+
+
+    <managed-bean>
+        <managed-bean-name>emp_selfauditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.SelfAuditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+          <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+         <managed-property>
+           <property-name>wageapi</property-name>
+           <value>#{wage_api}</value>
+       </managed-property>
+        <managed-property>
+          <property-name>selfinfoUCC</property-name>
+          <value>#{user_selfinfoUccImpl}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_DataAddBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.DataAddBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>datauploaducc</property-name>
+            <value>#{emp_datauploadUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>infosetucc</property-name>
+            <value>#{sys_infoSetUccImpl}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>showitemucc</property-name>
+            <value>#{sys_showitemsUCC}</value>
+        </managed-property>
+
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_DataUploadBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.DataUploadBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>datauploaducc</property-name>
+            <value>#{emp_datauploadUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>infosetucc</property-name>
+            <value>#{sys_infoSetUccImpl}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>showitemucc</property-name>
+            <value>#{sys_showitemsUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_ConPostListBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.ConPostListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_ConPostEditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.ConPostEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>wageapi</property-name>
+            <value>#{wage_api}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_AddressBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.AddressBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>addressucc</property-name>
+            <value>#{emp_addressUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>activepageapi</property-name>
+            <value>#{sys_activePageApi}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>addressbookucc</property-name>
+            <value>#{emp_addressbookUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>emp_LeavePersonBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.PersonLeaveShowBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>empchangeucc</property-name>
+            <value>#{emp_changeucc}</value>
+        </managed-property>
+        
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_PersonChangeBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.PersonChangeShowBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_PersonAdjustBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.PersonAdjustShowBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_selPersonBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.QueryPersonBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+
+          <managed-property>
+            <property-name>pmsapi</property-name>
+            <value>#{user_pmsAPI}</value>
+        </managed-property>
+
+        <managed-property>
+          <property-name>addressucc</property-name>
+          <value>#{emp_addressUCC}</value>
+      </managed-property>
+
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_selBackPersonBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.QueryBackPersonBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+         <managed-property>
+            <property-name>pmsapi</property-name>
+            <value>#{user_pmsAPI}</value>
+        </managed-property>
+        <managed-property>
+           <property-name>queryucc</property-name>
+           <value>#{qry_QueryUCCImpl}</value>
+       </managed-property>
+        <managed-property>
+           <property-name>queryapi</property-name>
+           <value>#{qry_queryApi}</value>
+       </managed-property>
+    </managed-bean>
+
+     <managed-bean>
+        <managed-bean-name>emp_personAddBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.PersonAddBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+
+         <managed-property>
+          <property-name>linkucc</property-name>
+          <value>#{sys_inprocessUCC}</value>
+         </managed-property>
+
+         <managed-property>
+          <property-name>wageapi</property-name>
+          <value>#{wage_api}</value>
+         </managed-property>
+
+         <managed-property>
+          <property-name>usermanageucc</property-name>
+          <value>#{user_userManageUCC}</value>
+         </managed-property>
+
+         <managed-property>
+          <property-name>wagesetpersonucc</property-name>
+          <value>#{wage_SetPersonUcc}</value>
+         </managed-property>
+         
+        <managed-property>
+            <property-name>wfservice</property-name>
+            <value>#{sys_wfservice}</value>
+        </managed-property>
+         <managed-property>
+             <property-name>auditucc</property-name>
+             <value>#{emp_addAuditucc}</value>
+         </managed-property>
+         <managed-property>
+			<property-name>codeItemDAO</property-name>
+			<value>#{sys_CodeItemDAO}</value>
+		</managed-property>
+		<managed-property>
+            <property-name>adjustucc</property-name>
+            <value>#{wage_adjustUCC}</value>
+        </managed-property>
+        <managed-property>
+			<property-name>orgprobationucc</property-name>
+			<value>#{orgprobationucc}</value>
+		</managed-property>
+    </managed-bean>
+
+    <managed-bean>
+       <managed-bean-name>emp_typeChangeBB</managed-bean-name>
+       <managed-bean-class>com.hr319wg.emp.web.PersonTypeChangeBackingBean</managed-bean-class>
+       <managed-bean-scope>request</managed-bean-scope>
+       <managed-property>
+           <property-name>personucc</property-name>
+           <value>#{emp_personUCC}</value>
+       </managed-property>
+        <managed-property>
+            <property-name>userqryucc</property-name>
+            <value>#{user_userQryUccImpl}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>queryucc</property-name>
+            <value>#{qry_QueryUCCImpl}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>orgucc</property-name>
+            <value>#{org_orgUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>shortmessageucc</property-name>
+            <value>#{sys_SMUCC}</value>
+        </managed-property>
+   </managed-bean>
+
+
+
+    <managed-bean>
+       <managed-bean-name>emp_reApplyBB</managed-bean-name>
+       <managed-bean-class>com.hr319wg.emp.web.ReApplyBackingBean</managed-bean-class>
+       <managed-bean-scope>request</managed-bean-scope>
+       <managed-property>
+           <property-name>personucc</property-name>
+           <value>#{emp_personUCC}</value>
+       </managed-property>
+        <managed-property>
+           <property-name>wfservice</property-name>
+           <value>#{sys_wfservice}</value>
+       </managed-property>
+   </managed-bean>
+    
+     <managed-bean>
+        <managed-bean-name>emp_personListBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.PersonListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+         <managed-property>
+             <property-name>userqryucc</property-name>
+             <value>#{user_userQryUccImpl}</value>
+         </managed-property>
+         <managed-property>
+             <property-name>queryucc</property-name>
+             <value>#{qry_QueryUCCImpl}</value>
+         </managed-property>
+         <managed-property>
+             <property-name>orgucc</property-name>
+             <value>#{org_orgUCC}</value>
+         </managed-property>
+         <managed-property>
+             <property-name>userreportucc</property-name>
+             <value>#{user_userReportUccImpl}</value>
+         </managed-property>
+         <managed-property>
+             <property-name>shortmessageucc</property-name>
+             <value>#{sys_SMUCC}</value>
+         </managed-property>
+
+         <managed-property>
+          <property-name>wageapi</property-name>
+          <value>#{wage_api}</value>
+         </managed-property>
+
+         <managed-property>
+          <property-name>wagesetpersonucc</property-name>
+          <value>#{wage_SetPersonUcc}</value>
+         </managed-property>
+
+         <managed-property>
+            <property-name>wfservice</property-name>
+            <value>#{sys_wfservice}</value>
+        </managed-property>
+         <managed-property>
+            <property-name>userApi</property-name>
+            <value>#{user_pmsAPI}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_ManyPersonBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.ManyPersonBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+       <managed-bean-name>emp_WorkImportBB</managed-bean-name>
+       <managed-bean-class>com.hr319wg.emp.web.WorkImportBackingBean</managed-bean-class>
+       <managed-bean-scope>request</managed-bean-scope>
+       <managed-property>
+           <property-name>personucc</property-name>
+           <value>#{emp_personUCC}</value>
+       </managed-property>
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>salaryrelationucc</property-name>
+            <value>#{wage_salaryRelationUcc}</value>
+        </managed-property>
+   </managed-bean>
+
+    <managed-bean>
+       <managed-bean-name>emp_CadresImportBB</managed-bean-name>
+       <managed-bean-class>com.hr319wg.emp.web.CadresImportBackingBean</managed-bean-class>
+       <managed-bean-scope>request</managed-bean-scope>
+       <managed-property>
+           <property-name>personucc</property-name>
+           <value>#{emp_personUCC}</value>
+       </managed-property>
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>salaryrelationucc</property-name>
+            <value>#{wage_salaryRelationUcc}</value>
+        </managed-property>
+   </managed-bean>
+
+    <managed-bean>
+       <managed-bean-name>emp_changeInfoBB</managed-bean-name>
+       <managed-bean-class>com.hr319wg.emp.web.ChangeInfoBackingBean</managed-bean-class>
+       <managed-bean-scope>request</managed-bean-scope>
+       <managed-property>
+           <property-name>personucc</property-name>
+           <value>#{emp_personUCC}</value>
+       </managed-property>
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+   </managed-bean>
+
+     <managed-bean>
+        <managed-bean-name>emp_PersonDismissListBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.PersonDismissListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+     <managed-bean>
+        <managed-bean-name>emp_BatchPersonListBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.BatchPersonListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+    </managed-bean>
+     <managed-bean>
+        <managed-bean-name>emp_BatchPersonAddBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.BatchAddPersonBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+    </managed-bean>
+     <managed-bean>
+        <managed-bean-name>emp_BatchPersonUpdateBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.BatchUpdatePersonBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+    </managed-bean>
+     <managed-bean>
+        <managed-bean-name>emp_PersonSortBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.PersonSortBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+    </managed-bean>
+     <managed-bean>
+        <managed-bean-name>emp_RetireBackBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.RetireBackBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_personEditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.PersonEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>orgucc</property-name>
+            <value>#{org_orgUCC}</value>
+        </managed-property>
+          <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+         <managed-property>
+           <property-name>wageapi</property-name>
+           <value>#{wage_api}</value>
+       </managed-property>
+        <managed-property>
+            <property-name>empchangeucc</property-name>
+            <value>#{emp_changeucc}</value>
+        </managed-property>
+        
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_pieceEditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.PieceEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>orgucc</property-name>
+            <value>#{org_orgUCC}</value>
+        </managed-property>
+          <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+         <managed-property>
+           <property-name>wageapi</property-name>
+           <value>#{wage_api}</value>
+       </managed-property>
+        <managed-property>
+          <property-name>wagedateucc</property-name>
+          <value>#{wage_DateUcc}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_pieceBatchEditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.PieceBatchEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+          <property-name>wagedateucc</property-name>
+          <value>#{wage_DateUcc}</value>
+      </managed-property>
+        <managed-property>
+          <property-name>wagepersonqueryucc</property-name>
+          <value>#{wage_PersonQueryUcc}</value>
+      </managed-property>
+       <managed-property>
+         <property-name>wagesetucc</property-name>
+         <value>#{wage_SetUcc}</value>
+     </managed-property>
+        <managed-property>
+          <property-name>wagesetpersonucc</property-name>
+          <value>#{wage_SetPersonUcc}</value>
+      </managed-property>
+    </managed-bean>
+
+     <managed-bean>
+        <managed-bean-name>emp_DrawoutAgeBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.DrawoutAgeBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>taskucc</property-name>
+            <value>#{emp_taskUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>emp_backUpBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.emp.web.BackUpBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>backupucc</property-name>
+            <value>#{emp_backUpUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <!--   navigation-rule      -->
+    <navigation-rule>
+        <from-view-id>/employee/chg/PersonDismiss.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>close</from-outcome>
+            <to-view-id>/pages/employee/chg/DismissClose.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/sendProcess.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>close</from-outcome>
+            <to-view-id>/pages/common/CommonClose.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/ModiCountDetail.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/reApplyProcess.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/AddD2Item.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/AddD2ItemDetail_Code.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/AddD2ItemDetail_Num.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/addEngage.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/employee/info/ShowItemEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/doReduceAudit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/doBatchReduceAudit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/ResumeReduceAudit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/chg/ModifyLetterNo.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/chg/BasicModifyLetterNo.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/ProcessAduit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/addMonth.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/PersonChangeType.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>close</from-outcome>
+            <to-view-id>/pages/employee/chg/DismissClose.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/ChangeInfo.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/adjust/PersonAdjust.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>close</from-outcome>
+            <to-view-id>/pages/employee/adjust/AdjustClose.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/dispatch/PersonAdjust.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>close</from-outcome>
+            <to-view-id>/pages/employee/dispatch/AdjustClose.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/common/SelBackPerson.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>close</from-outcome>
+            <to-view-id>/pages/common/close.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/common/PersonQuery.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>close</from-outcome>
+            <to-view-id>/pages/common/parentClose.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+     <from-view-id>/employee/info/doReceive.jsp</from-view-id>
+     <navigation-case>
+      <from-outcome>success</from-outcome>
+      <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+      <redirect/>
+     </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+     <from-view-id>/employee/info/doReceiveWork.jsp</from-view-id>
+     <navigation-case>
+      <from-outcome>success</from-outcome>
+      <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+      <redirect/>
+     </navigation-case>
+   </navigation-rule>
+
+     <navigation-rule>
+      <from-view-id>/employee/chg/OldOrgOpinionEdit.jsp</from-view-id>
+      <navigation-case>
+       <from-outcome>success</from-outcome>
+       <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       <redirect/>
+      </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+     <from-view-id>/employee/cadres/addCardres.jsp</from-view-id>
+     <navigation-case>
+      <from-outcome>success</from-outcome>
+      <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+      <redirect/>
+     </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+     <from-view-id>/employee/cadres/addWork.jsp</from-view-id>
+     <navigation-case>
+      <from-outcome>success</from-outcome>
+      <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+      <redirect/>
+     </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+     <from-view-id>/employee/cadres/processCardres.jsp</from-view-id>
+     <navigation-case>
+      <from-outcome>success</from-outcome>
+      <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+      <redirect/>
+     </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+     <from-view-id>/employee/cadres/processWorker.jsp</from-view-id>
+     <navigation-case>
+      <from-outcome>success</from-outcome>
+      <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+      <redirect/>
+     </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+      <from-view-id>/employee/chg/NewOrgOpinionEdit.jsp</from-view-id>
+      <navigation-case>
+       <from-outcome>success</from-outcome>
+       <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       <redirect/>
+      </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+      <from-view-id>/employee/chg/ManagerOpinionEdit.jsp</from-view-id>
+      <navigation-case>
+       <from-outcome>success</from-outcome>
+       <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       <redirect/>
+      </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+      <from-view-id>/employee/chg/SetPositionEdit.jsp</from-view-id>
+      <navigation-case>
+       <from-outcome>success</from-outcome>
+       <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       <redirect/>
+      </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+      <from-view-id>/employee/chg/Receive.jsp</from-view-id>
+      <navigation-case>
+       <from-outcome>success</from-outcome>
+       <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+       <redirect/>
+      </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/QueryDeptPersonIndex.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>list</from-outcome>
+            <to-view-id>/employee/QueryDeptPersonList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+     <navigation-rule>
+        <from-view-id>/employee/info/PersonInfoDetailList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>info</from-outcome>
+            <to-view-id>/employee/info/PersonInfoDetail.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+     <from-view-id>/employee/info/ConCurrentPersonAdd.jsp</from-view-id>
+     <navigation-case>
+      <from-outcome>success</from-outcome>
+      <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+      <redirect/>
+     </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+     <from-view-id>/employee/info/ConCurrentPersonCancel.jsp</from-view-id>
+     <navigation-case>
+      <from-outcome>success</from-outcome>
+      <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+      <redirect/>
+     </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+     <from-view-id>/employee/batch/UploadPhotos.jsp</from-view-id>
+     <navigation-case>
+      <from-outcome>success</from-outcome>
+      <to-view-id>/employee/batch/UploadPhotosList.jsf</to-view-id>
+      <redirect/>
+     </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+     <from-view-id>/employee/batch/UploadPhotosList.jsp</from-view-id>
+     <navigation-case>
+      <from-outcome>upload</from-outcome>
+      <to-view-id>/employee/batch/UploadPhotos.jsf</to-view-id>
+      <redirect/>
+     </navigation-case>
+   </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/employee/info/PersonInfoDetail.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>list</from-outcome>
+            <to-view-id>/employee/info/PersonInfoDetailList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+     <navigation-rule>
+        <from-view-id>/employee/info/PersonAdd.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/employee/info/PersonEditInfo.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+       <from-view-id>/employee/info/PersonAdd1.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>edit</from-outcome>
+           <to-view-id>/employee/info/PersonEditInfo.jsf</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+    <navigation-rule>
+       <from-view-id>/employee/info/PersonAdd2.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>edit</from-outcome>
+           <to-view-id>/employee/info/PersonEditInfo.jsf</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+
+
+    <navigation-rule>
+       <from-view-id>/employee/info/OtherPersonAdd.jsp</from-view-id>
+       <navigation-case>
+           <from-outcome>edit</from-outcome>
+           <to-view-id>/employee/info/PersonEditInfo.jsf</to-view-id>
+       </navigation-case>
+   </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/import/PerDataUpload.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>list</from-outcome>
+            <to-view-id>/employee/import/PerDataUpload.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>download</from-outcome>
+            <to-view-id>/pages/common/DownloadTemplate.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>perInfoList</from-outcome>
+            <to-view-id>/employee/import/PerDataUploadList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/import/PerDataUploadBySet.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>list</from-outcome>
+            <to-view-id>/employee/import/PerDataUpload.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>download</from-outcome>
+            <to-view-id>/pages/common/DownloadTemplate.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>perInfoList</from-outcome>
+            <to-view-id>/employee/import/PerDataUploadListBySet.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/BatchAddPerson.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>perInfoList</from-outcome>
+            <to-view-id>/employee/info/BatchAddPersonList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+   <navigation-rule>
+        <from-view-id>/employee/info/BatchAddPersonList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>upload</from-outcome>
+            <to-view-id>/employee/info/BatchAddPerson.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+         <from-view-id>/employee/sort/OrderInput.jsp</from-view-id>
+         <navigation-case>
+             <from-outcome>success</from-outcome>
+             <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+         </navigation-case>
+     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/import/PerDataUploadList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>upload</from-outcome>
+            <to-view-id>/employee/import/PerDataUpload.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/import/PerDataUploadListBySet.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>upload</from-outcome>
+            <to-view-id>/employee/import/PerDataUploadBySet.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/busiInputSelect.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>inputEdit</from-outcome>
+            <to-view-id>/employee/info/busiInputEdit.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/employee/info/busiInputEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

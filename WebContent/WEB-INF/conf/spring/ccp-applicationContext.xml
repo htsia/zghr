@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="ccp_transferDAO" class="com.hr319wg.ccp.dao.TransferDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"></property>
+    </bean>                                     
+    <bean id="ccp_transferService" class="com.hr319wg.ccp.service.TransferService">
+        <property name="transferdao" ref="ccp_transferDAO"></property>
+    </bean>
+    <bean id="ccp_transferUCCImpl" class="com.hr319wg.ccp.ucc.impl.TransferUCC">
+        <property name="transferservice" ref="ccp_transferService"></property>
+        <property name="activepageapi" ref="sys_activePageApi"></property>
+    </bean>
+    <bean id="ccp_transferUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.ccp.ucc.ITransferUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="ccp_transferUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <bean id="ccp_partyDAO" class="com.hr319wg.ccp.dao.PartyDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"></property>
+    </bean>
+    <bean id="ccp_partyService" class="com.hr319wg.ccp.service.PartyService">
+        <property name="partydao" ref="ccp_partyDAO"></property>
+    </bean>
+    <bean id="ccp_partyUCCImpl" class="com.hr319wg.ccp.ucc.impl.PartyUCC">
+        <property name="partyservice" ref="ccp_partyService"></property>
+        <property name="activepageapi" ref="sys_activePageApi"></property>
+        <property name="sysapi" ref="sys_SysAPI"></property>
+        <property name="queryapi" ref="qry_queryApi"></property>
+        <property name="backupservice" ref="emp_backUpService"></property>
+        <property name="pmsapi" ref="user_pmsAPI"></property>
+    </bean>
+    <bean id="ccp_partyUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.ccp.ucc.IPartyUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="ccp_partyUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <bean id="ccp_partymemberImpl" class="com.hr319wg.ccp.ucc.impl.PartyMemberImpl">
+        <property name="activepageapi" ref="sys_activePageApi"></property>
+        <property name="queryapi" ref="qry_queryApi"></property>
+        <property name="pmsapi" ref="user_pmsAPI"></property>
+        <property name="personservice" ref="emp_personService"></property>
+        <property name="backupservice" ref="emp_backUpService"></property>
+    </bean>
+    <bean id="ccp_partymemberUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.ccp.ucc.IPartyMemberUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="ccp_partymemberImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+</beans>

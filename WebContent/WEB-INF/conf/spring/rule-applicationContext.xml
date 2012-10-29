@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+     <bean id="rule_infoDAO" class="com.hr319wg.rule.dao.RuleInfoDAO">
+          <property name="hibernatetemplate">
+              <ref bean="hibernateTemplate"/>
+          </property>
+      </bean>
+
+      <bean id="rule_infoservice" class="com.hr319wg.rule.service.RuleInfoService">
+          <property name="ruledao">
+              <ref bean="rule_infoDAO"/>
+          </property>
+          <property name="activeapi">
+              <ref bean="sys_activePageApi"/>
+          </property>
+      </bean>
+
+       <bean id="rule_infoucc" class="com.hr319wg.rule.ucc.impl.RuleInfoUCCImpl">
+          <property name="ruleservice">
+              <ref bean="rule_infoservice"/>
+          </property>
+           <property name="activeAPI">
+               <ref bean="sys_activePageApi"/>
+           </property>
+      </bean>
+
+      <bean id="law_infoDAO" class="com.hr319wg.rule.dao.LawInfoDAO">
+          <property name="hibernatetemplate">
+              <ref bean="hibernateTemplate"/>
+          </property>
+      </bean>
+
+      <bean id="law_infoservice" class="com.hr319wg.rule.service.LawInfoService">
+          <property name="lawdao">
+              <ref bean="law_infoDAO"/>
+          </property>
+
+          <property name="activeapi">
+              <ref bean="sys_activePageApi"/>
+          </property>
+      </bean>
+
+       <bean id="law_infoucc" class="com.hr319wg.rule.ucc.impl.LawInfoUCCImpl">
+          <property name="lawservice">
+              <ref bean="law_infoservice"/>
+          </property>
+           <property name="activeAPI">
+               <ref bean="sys_activePageApi"/>
+           </property>
+      </bean>
+</beans>
+	

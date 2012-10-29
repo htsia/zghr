@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="orgtemplatedao" class="com.hr319wg.org.dao.OrgTemplateDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="orgtemplatesevcie" class="com.hr319wg.org.service.OrgTemplateService">
+        <property name="orgtemplatedao">
+            <ref bean="orgtemplatedao"/>
+        </property>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+
+    <bean id="orgtemplateucc" class="com.hr319wg.org.ucc.impl.OrgTemplateUCC">
+        <property name="orgtemplatesevcie">
+            <ref bean="orgtemplatesevcie"/>
+        </property>
+    </bean>
+    
+    <bean id="orgprobationdao" class="com.hr319wg.org.dao.OrgProBationDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="orgenterdao" class="com.hr319wg.org.dao.OrgEnterDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="orgprobationservice" class="com.hr319wg.org.service.OrgProbationService">
+        <property name="orgprobationdao">
+            <ref bean="orgprobationdao"/>
+        </property>
+    </bean>
+
+    <bean id="orgprobationucc" class="com.hr319wg.org.ucc.impl.OrgProbationUcc">
+        <property name="orgprobationservice">
+            <ref bean="orgprobationservice"/>
+        </property>
+    </bean>
+    
+
+</beans>

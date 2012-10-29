@@ -1,0 +1,96 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+    <definition name="/coalsafe/coalAmerceStdSet.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/coalsafe/coalAmerceStdSet.jsp"/>
+    </definition>
+    <definition name="/coalsafe/amerceStdDirEidt.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/coalsafe/amerceStdDirEidt.jsp"/>
+    </definition>
+    <definition name="/coalsafe/dirChildList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/coalsafe/dirChildList.jsp"/>
+    </definition>
+    <definition name="/coalsafe/amerceStdEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/coalsafe/amerceStdEdit.jsp"/>
+    </definition>
+    <definition name="/coalsafe/overseeMgr.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/coalsafe/overseeMgr.jsp"/>
+    </definition>
+    <definition name="/coalsafe/amerceEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/coalsafe/amerceEdit.jsp"/>
+    </definition>
+     <definition name="/coalsafe/selStdSet.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/coalsafe/selStdSet.jsp"/>
+    </definition>
+    <definition name="/coalsafe/selDirChildList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/coalsafe/selDirChildList.jsp"/>
+    </definition>
+    <definition name="/coalsafe/selQueryOversee.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/coalsafe/selQueryOversee.jsp"/>
+    </definition>
+    <definition name="/coalsafe/caclAmerce.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/coalsafe/caclAmerce.jsp"/>
+    </definition>
+    <definition name="/coalsafe/showPersonAmerce.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/coalsafe/showPersonAmerce.jsp"/>
+    </definition>
+    <definition name="/coalsafe/overseeMgrIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/coalsafe/overseeMgrIndex.jsp"/>
+    </definition>
+    <definition name="/coalsafe/workTaskCtr.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/coalsafe/workTaskCtr.jsp"/>
+    </definition>
+    <definition name="/coalsafe/taskEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/coalsafe/taskEdit.jsp"/>
+    </definition>
+    <definition name="/coalsafe/taskSetPerson.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/coalsafe/taskSetPerson.jsp"/>
+    </definition>
+    <definition name="/coalsafe/personAmerce.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/coalsafe/personAmerce.jsp"/>
+    </definition>
+    <definition name="/coalsafe/taskAmerce.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/coalsafe/taskAmerce.jsp"/>
+    </definition>
+</tiles-definitions>

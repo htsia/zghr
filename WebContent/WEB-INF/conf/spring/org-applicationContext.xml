@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="org_ReportUCC" class="com.hr319wg.org.ucc.impl.OrgReportUCC">
+        <property name="orgreportservice">
+            <ref bean="org_ReportService"/>
+        </property>
+    </bean>
+
+    <bean id="org_ReportService" class="com.hr319wg.org.service.OrgReportService">
+        <property name="orgreportdao">
+            <ref bean="org_OrgReportDAO"/>
+        </property>
+    </bean>
+
+    <bean id="org_OrgReportDAO" class="com.hr319wg.org.dao.OrgReportDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="org_OrgSumItemDAO" class="com.hr319wg.org.dao.EmpOrgSumItemDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="org_OrgSumItemService" class="com.hr319wg.org.service.OrgSumItemService">
+        <property name="orgitemsetdao">
+            <ref bean="org_OrgSumItemDAO"/>
+        </property>
+        <property name="activepageapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+
+    <bean id="org_OrgSumItemUCC" class="com.hr319wg.org.ucc.impl.OrgSumItemUCC">
+        <property name="orgsumservice">
+            <ref bean="org_OrgSumItemService"/>
+        </property>
+
+        <property name="activepageapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+
+    <bean id="org_infoDAO" class="com.hr319wg.org.dao.OrgInfoDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"></property>
+    </bean>
+
+    <bean id="org_orgDAO" class="com.hr319wg.org.dao.OrgDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"></property>
+         <property name="jdbcTemplate" ref ="jdbcTemplate" ></property>
+    </bean>
+    <bean id="org_orgService" class="com.hr319wg.org.service.OrgService">
+        <property name="orginfodao" ref="org_infoDAO"></property>
+        <property name="orgdao" ref="org_orgDAO"></property>
+        <property name="api" ref="sys_activePageApi"></property>
+    </bean>
+
+    <bean id="org_orgUCCImpl" class="com.hr319wg.org.ucc.impl.OrgUCC">
+        <property name="orgservice" ref="org_orgService"></property>
+        <property name="queryapi" ref="qry_queryApi"></property>
+        <property name="activepageservice" ref="sys_activePageService"></property>
+        <property name="sysapi" ref="sys_SysAPI"></property>
+        <property name="attachmentservice" ref="common_attachmentService"></property>
+        <property name="pmsapi" ref="user_pmsAPI"></property>
+    </bean>
+    <bean id="org_orgUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.org.ucc.IOrgUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="org_orgUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+</beans>

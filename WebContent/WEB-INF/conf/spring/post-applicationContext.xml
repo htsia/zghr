@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="post_postDAO" class="com.hr319wg.post.dao.PostDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"></property>
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+    <bean id="post_postService" class="com.hr319wg.post.service.PostService">
+        <property name="postdao" ref="post_postDAO"></property>
+        <property name="api" ref="sys_activePageApi"></property>
+    </bean>
+
+    <bean id="post_postUCCImpl" class="com.hr319wg.post.ucc.impl.PostUCC">
+        <property name="postservice" ref="post_postService"></property>
+        <property name="activepageservice" ref="sys_activePageService"></property>
+        <property name="queryapi" ref="qry_queryApi"></property>
+        <property name="sysapi" ref="sys_SysAPI"></property>
+    </bean>
+    <bean id="post_postUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.post.ucc.IPostUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="post_postUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+     <bean id="post_postTemplateImpl" class="com.hr319wg.post.ucc.impl.PostTemplateImpl">
+        <property name="activepageapi" ref="sys_activePageApi"></property>
+        <property name="queryapi" ref="qry_queryApi"></property>
+        <property name="backupservice" ref="emp_backUpService"></property>
+    </bean>
+    <bean id="post_postTemplateUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.post.ucc.IPostTemplateUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="post_postTemplateImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+</beans>

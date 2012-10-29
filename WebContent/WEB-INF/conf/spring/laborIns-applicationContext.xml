@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- 物资管理 -->
+	<bean id="lianSupplyDAO" class="com.hr319wg.lain.dao.LainSupplyDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+	<!-- 供应商管理 -->
+	<bean id="lianStockDAO" class="com.hr319wg.lain.dao.LainStockDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<!-- 物资申请单管理-->
+	<bean id="lianDrawDAO" class="com.hr319wg.lain.dao.LainDrawkDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	
+	<!-- 物资申请单明细管理-->
+	<bean id="lianDrawItemDAO" class="com.hr319wg.lain.dao.LainDrawItemkDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<!-- 入库-->
+	<bean id="lainAcceptDAO" class="com.hr319wg.lain.dao.LainAcceptDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="lainAcceptItemDAO" class="com.hr319wg.lain.dao.LainAcceptItemDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	
+	
+	<bean id="lainSupplyService" class="com.hr319wg.lain.service.LainSupplyService">
+		<property name="lianSupplyDAO"   ref="lianSupplyDAO" />
+		<property name="lianStockDAO"    ref="lianStockDAO" />
+		<property name="lianDrawDAO"     ref="lianDrawDAO" />
+		<property name="lianDrawItemDAO" ref="lianDrawItemDAO" />
+		<property name="lainAcceptDAO"   ref="lainAcceptDAO" />
+		<property name="lainAcceptItemDAO"   ref="lainAcceptItemDAO" />
+		
+	</bean>
+
+	<bean id="lainSupplyUCC" class="com.hr319wg.lain.ucc.impl.LainSupplyUCC">
+		<property name="lainSupplyService" ref="lainSupplyService" />
+	</bean>
+</beans>

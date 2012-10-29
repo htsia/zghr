@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="sys_activePageDAO" class="com.hr319wg.sys.dao.ActivePageDAO">
+           <property name="jdbcTemplate">
+			<ref bean="jdbcTemplate"/>
+		</property>
+    </bean>
+    <bean id="sys_activePageService" class="com.hr319wg.sys.service.ActivePageService">
+           <property name="activepagedao">
+			<ref bean="sys_activePageDAO"/>
+		</property>
+         <property name="sysapi">
+			<ref bean="sys_SysAPI"/>
+		</property>
+         <property name="pmsapi">
+			<ref bean="user_pmsAPI"/>
+		</property>
+         <property name="operlogdao">
+			<ref bean="sys_SysLogOperDAO"/>
+		</property>
+        <property name="csdao">
+           <ref bean="sys_CodeSetDAO"/>
+       </property>
+        <property name="infoitemdao">
+           <ref bean="sys_infoItemDAO"/>
+       </property>
+        <property name="attservice">
+           <ref bean="common_attachmentService"/>
+       </property>
+
+    </bean>
+
+    <bean id="sys_activePageApi" class="com.hr319wg.sys.api.ActivePageAPI">
+           <property name="activepagedao">
+			<ref bean="sys_activePageDAO"/>
+		</property>
+         <property name="sysapi">
+			<ref bean="sys_SysAPI"/>
+		</property>
+         <property name="pmsapi">
+			<ref bean="user_pmsAPI"/>
+		</property>
+          <property name="operlogdao">
+			<ref bean="sys_SysLogOperDAO"/>
+		</property>
+        <property name="activeservice">
+          <ref bean="sys_activePageService"/>
+      </property>
+
+    </bean>
+
+     <bean id="sys_dutyHandelLink" class="com.hr319wg.sys.service.DutyHandelLink">
+           <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+    </bean>
+
+    <bean id="sys_A001LinkHandle" class="com.hr319wg.sys.service.A001LinkHandle">
+         <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+        <property name="csdao">
+           <ref bean="sys_CodeSetDAO"/>
+       </property>
+        <property name="persontool" ref="emp_persontool"></property>
+    </bean>
+
+    <bean id="sys_B001LinkHandle" class="com.hr319wg.sys.service.B001LinkHandle">
+         <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+        <property name="csdao">
+           <ref bean="sys_CodeSetDAO"/>
+       </property>
+    </bean>
+
+    <bean id="sys_A0795LinkHandle" class="com.hr319wg.sys.service.A795LinkHandle">
+           <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+    </bean>
+     <bean id="sys_A818LinkHandle" class="com.hr319wg.sys.service.A818LinkHandle">
+           <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+    </bean>
+     <bean id="sys_A830LinkHandle" class="com.hr319wg.sys.service.A830LinkHandle">
+           <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+    </bean>
+      <bean id="sys_C005LinkHandle" class="com.hr319wg.sys.service.C005LinkHandle">
+           <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+    </bean>
+     <bean id="sys_A740LinkHandle" class="com.hr319wg.sys.service.A740LinkHandle">
+           <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+    </bean>
+    <bean id="sys_A845LinkHandle" class="com.hr319wg.sys.service.A845LinkHandle">
+           <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+    </bean>
+      <bean id="sys_C001LinkHandle" class="com.hr319wg.sys.service.C001LinkHandle">
+           <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+    </bean>
+     <bean id="sys_A710LinkHandle" class="com.hr319wg.sys.service.A710LinkHandle">
+           <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+    </bean>
+      <bean id="sys_A712LinkHandle" class="com.hr319wg.sys.service.A712LinkHandle">
+           <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+    </bean>
+        <bean id="sys_A715LinkHandle" class="com.hr319wg.sys.service.A715LinkHandle">
+           <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+    </bean>
+        <bean id="sys_A720LinkHandle" class="com.hr319wg.sys.service.A720LinkHandle">
+           <property name="activepageapi">
+			<ref bean="sys_activePageApi"/>
+		</property>
+        </bean>
+    <bean id="sys_A820LinkHandle" class="com.hr319wg.sys.service.A820LinkHandle">
+       <property name="activepageapi">
+        <ref bean="sys_activePageApi"/>
+    </property>
+    </bean>
+      <bean id="sys_A067LinkHandle" class="com.hr319wg.sys.service.A067LinkHandle">
+       <property name="activepageapi">
+        <ref bean="sys_activePageApi"/>
+    </property>
+    </bean>
+</beans>

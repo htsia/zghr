@@ -1,0 +1,483 @@
+<!DOCTYPE tiles-definitions
+    [
+        <!ELEMENT component-definitions (definition+)>
+        <!ELEMENT tiles-definitions (definition+)>
+        <!ELEMENT definition (put*, putList*)>
+        <!ATTLIST definition
+            name CDATA #REQUIRED
+            pages CDATA #IMPLIED
+            path CDATA #IMPLIED
+            extends CDATA #IMPLIED
+            role CDATA #IMPLIED
+            template CDATA #IMPLIED
+            controllerClass CDATA #IMPLIED
+            controllerUrl CDATA #IMPLIED>
+        <!ELEMENT put (#PCDATA)>
+        <!ATTLIST put
+            name CDATA #REQUIRED
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+        <!ATTLIST putList
+            name CDATA #REQUIRED>
+        <!ELEMENT putListElements (add | item | bean)>
+        <!ELEMENT add (#PCDATA)>
+        <!ATTLIST add
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT bean (#PCDATA)>
+        <!ATTLIST bean
+            classtype CDATA #REQUIRED>
+        <!ELEMENT item (#PCDATA)>
+        <!ATTLIST item
+            value CDATA #REQUIRED
+            link CDATA #REQUIRED
+            classtype CDATA #IMPLIED
+            icon CDATA #IMPLIED
+            tooltip CDATA #IMPLIED>
+    ]>
+
+<tiles-definitions>
+    <!-- 绩效管理-->
+    <definition name="/xys/eva/RelSetIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/xys/eva/RelSetIndex.jsp"/>
+    </definition>
+    <definition name="/xys/eva/RelSetPost.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/RelSetPost.jsp"/>
+    </definition>
+    <definition name="/xys/eva/RelSetPostList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/RelSetPostList.jsp"/>
+    </definition>
+    <definition name="/xys/eva/RelSetPostEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/RelSetPostEdit.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PlanList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/PlanList.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PlanEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PlanEdit.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PlanMgrPostIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PlanMgrPostIndex.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PlanMgrPostList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PlanMgrPostList.jsp"/>
+    </definition>
+    <definition name="/xys/eva/ModeSetEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/ModeSetEdit.jsp"/>
+    </definition>
+     <definition name="/xys/eva/PlanWeightList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/PlanWeightList.jsp" />
+    </definition>
+    <definition name="/xys/eva/PlanWeightEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/PlanWeightEdit.jsp" />
+    </definition>
+    <definition name="/xys/eva/PlanWeightPers.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/PlanWeightPers.jsp" />
+    </definition>
+    
+
+    <definition name="/xys/eva/Set360KeyLib.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/xys/eva/Set360KeyLib.jsp" />
+    </definition>
+    <definition name="/xys/eva/Set360KeyLibEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/Set360KeyLibEdit.jsp" />
+    </definition>
+    <definition name="/xys/eva/Set360Key.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/xys/eva/Set360Key.jsp" />
+    </definition>
+    <definition name="/xys/eva/Set360KeyEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/Set360KeyEdit.jsp" />
+    </definition>
+
+     <definition name="/xys/eva/KpiLibSet.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/xys/eva/KpiLibSet.jsp" />
+    </definition>
+     <definition name="/xys/eva/KpiLibPost.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/xys/eva/KpiLibPost.jsp" />
+    </definition>
+    <definition name="/xys/eva/SetKpiKeyLib.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/SetKpiKeyLib.jsp" />
+    </definition>
+    <definition name="/xys/eva/SetKpiKey.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/SetKpiKey.jsp" />
+    </definition>
+     <definition name="/xys/eva/SetKpiKeyLibEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/SetKpiKeyLibEdit.jsp" />
+    </definition>
+    <definition name="/xys/eva/SetKpiKeyEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/SetKpiKeyEdit.jsp" />
+    </definition>
+
+    <definition name="/xys/eva/Set360TempLib.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/xys/eva/Set360TempLib.jsp" />
+    </definition>
+    <definition name="/xys/eva/Set360TempList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/xys/eva/Set360TempList.jsp" />
+    </definition>
+    <definition name="/xys/eva/Set360TempLibEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/Set360TempLibEdit.jsp" />
+    </definition>
+     <definition name="/xys/eva/Set360TempEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/Set360TempEdit.jsp" />
+    </definition>
+
+    <definition name="/xys/eva/Set360TempSet.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/Set360TempSet.jsp" />
+    </definition>
+    <definition name="/xys/eva/Set360TempSetEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/Set360TempSetEdit.jsp" />
+    </definition>
+    <definition name="/xys/eva/Set360TempItemList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/Set360TempItemList.jsp" />
+    </definition>
+    <definition name="/xys/eva/Set360TempItemEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/xys/eva/Set360TempItemEdit.jsp" />
+    </definition>
+
+    <definition name="/xys/eva/planKeySetIndex.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/planKeySetIndex.jsp"/>
+    </definition>
+    <definition name="/xys/eva/DeptKpiSetIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/DeptKpiSetIndex.jsp"/>
+    </definition>
+    <definition name="/xys/eva/DeptKpiSetList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/DeptKpiSetList.jsp"/>
+    </definition>
+    <definition name="/xys/eva/KpiKeyUpLoad.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/KpiKeyUpLoad.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SelPostIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SelPostIndex.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SelPostList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SelPostList.jsp"/>
+    </definition>
+     <definition name="/xys/eva/SetDeptObjKeyLib.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SetDeptObjKeyLib.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SetDeptObjKey.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SetDeptObjKey.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SetDeptObjKeyLibEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SetDeptObjKeyLibEdit.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SetDeptObjKeyEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SetDeptObjKeyEdit.jsp"/>
+    </definition>
+
+    <definition name="/xys/eva/PersonKpiSetIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PersonKpiSetIndex.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PersonKpiSetList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PersonKpiSetList.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PersonKpiKeyUpLoad.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PersonKpiKeyUpLoad.jsp"/>
+    </definition>
+
+    <definition name="/xys/eva/SelfDeptKpiSet.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/SelfDeptKpiSet.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SelfDeptKpiSetAudit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/SelfDeptKpiSetAudit.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SelfDeptKpiAudit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SelfDeptKpiAudit.jsp"/>
+    </definition>
+
+    <definition name="/xys/eva/SelfPersonKpiSet.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/SelfPersonKpiSet.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SelfPersonKpiSetAudit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/SelfPersonKpiSetAudit.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SelfPersonKpiAudit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SelfPersonKpiAudit.jsp"/>
+    </definition>
+
+    <definition name="/xys/eva/DeptKpiAuditCtr.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/DeptKpiAuditCtr.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PersonKpiAuditCtr.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/PersonKpiAuditCtr.jsp"/>
+    </definition>
+    <definition name="/xys/eva/DeptKpiScoreQry.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/DeptKpiScoreQry.jsp"/>
+    </definition>
+    <definition name="/xys/eva/DeptKpiScoreQryInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/DeptKpiScoreQryInfo.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PersonKpiQryIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PersonKpiQryIndex.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PersonKpiScoreQry.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PersonKpiScoreQry.jsp"/>
+    </definition>
+     <definition name="/xys/eva/PersonKpiScoreQryInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PersonKpiScoreQryInfo.jsp"/>
+    </definition>
+    <definition name="/xys/eva/ScoreCtrList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/ScoreCtrList.jsp"/>
+    </definition>
+    <definition name="/xys/eva/ScoreCtrEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/ScoreCtrEdit.jsp"/>
+    </definition>
+    
+    
+    <definition name="/xys/eva/DeptKpiAudit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/DeptKpiAudit.jsp"/>
+    </definition>
+    <definition name="/xys/eva/DeptKpiScoreSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/DeptKpiScoreSet.jsp"/>
+    </definition>
+    
+    <definition name="/xys/eva/PersonKpiAudit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/PersonKpiAudit.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PersonKpiScoreSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PersonKpiScoreSet.jsp"/>
+    </definition>
+    
+    
+    <definition name="/xys/eva/Person360SetIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/Person360SetIndex.jsp"/>
+    </definition>
+    <definition name="/xys/eva/Person360SetList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/Person360SetList.jsp"/>
+    </definition>
+    <definition name="/xys/eva/Person360SetIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/Person360SetIndex.jsp"/>
+    </definition>
+    <definition name="/xys/eva/Sel360Template.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/Sel360Template.jsp"/>
+    </definition>
+    
+    
+    <definition name="/xys/eva/Person360AuditCtr.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/Person360AuditCtr.jsp"/>
+    </definition>
+    <definition name="/xys/eva/Person360Audit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/Person360Audit.jsp"/>
+    </definition>
+    <definition name="/xys/eva/Person360ScoreSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/Person360ScoreSet.jsp"/>
+    </definition>
+    <definition name="/xys/eva/Person360QryIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/Person360QryIndex.jsp"/>
+    </definition>
+    <definition name="/xys/eva/Person360ScoreQry.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/Person360ScoreQry.jsp"/>
+    </definition>
+    <definition name="/xys/eva/Person360ScoreQryInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/Person360ScoreQryInfo.jsp"/>
+    </definition>
+    
+    <definition name="/xys/eva/EvaRoleList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/EvaRoleList.jsp"/>
+    </definition>
+    <definition name="/xys/eva/EvaRoleEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/EvaRoleEdit.jsp"/>
+    </definition>
+    
+    <definition name="/xys/eva/SelEvaRole.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SelEvaRole.jsp"/>
+    </definition>
+    
+    <definition name="/xys/eva/regStudentGrade.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/regStudentGrade.jsp"/>
+    </definition>
+    
+    <definition name="/xys/eva/ShowGradeError.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/ShowGradeError.jsp"/>
+    </definition>
+    
+    <definition name="/xys/eva/DeptKpiScoreShow.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/DeptKpiScoreShow.jsp"/>
+    </definition>
+    <definition name="/xys/eva/Person360ScoreShow.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/Person360ScoreShow.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PersonKpiScoreShow.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PersonKpiScoreShow.jsp"/>
+    </definition>
+    <definition name="/xys/eva/RelSetPostAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/RelSetPostAdd.jsp"/>
+    </definition>
+    
+    
+    <definition name="/xys/eva/StudentGradeInput.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/StudentGradeInput.jsp"/>
+    </definition>
+    <definition name="/xys/eva/StudentGradeList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/StudentGradeList.jsp"/>
+    </definition>
+    <definition name="/xys/eva/StudentGradeEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/StudentGradeEdit.jsp"/>
+    </definition>
+    
+    <definition name="/xys/eva/auditGroup.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/auditGroup.jsp"/>
+    </definition>
+     <definition name="/xys/eva/auditGroupEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/auditGroupEdit.jsp"/>
+    </definition>
+    <definition name="/xys/eva/auditGroupPost.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/auditGroupPost.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PlanPostLevelWeight.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PlanPostLevelWeight.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PlanPostLevelWeightBatch.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PlanPostLevelWeightBatch.jsp"/>
+    </definition>
+    
+    <definition name="/xys/eva/PersonKpiDataCtr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PersonKpiDataCtr.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PersonKpiDataCtrInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PersonKpiDataCtrInfo.jsp"/>
+    </definition>
+    <definition name="/xys/eva/PersonKpiDataInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/PersonKpiDataInfo.jsp"/>
+    </definition>
+    
+    
+    <definition name="/xys/eva/SelfPersonKpiGrade.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/SelfPersonKpiGrade.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SelfPersonKpiScoreSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SelfPersonKpiScoreSet.jsp"/>
+    </definition>
+    
+    
+    <definition name="/xys/eva/SelfDeptKpiGrade.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/SelfDeptKpiGrade.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SelfDeptKpiScoreSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SelfDeptKpiScoreSet.jsp"/>
+    </definition>
+    
+    <definition name="/xys/eva/DeptKpiDataCtr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/DeptKpiDataCtr.jsp"/>
+    </definition>
+    <definition name="/xys/eva/DeptKpiDataInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/DeptKpiDataInfo.jsp"/>
+    </definition>
+    
+    <definition name="/xys/eva/Person360DataCtr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/Person360DataCtr.jsp"/>
+    </definition>
+    <definition name="/xys/eva/Person360DataCtrInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/Person360DataCtrInfo.jsp"/>
+    </definition>
+    <definition name="/xys/eva/Person360DataInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/Person360DataInfo.jsp"/>
+    </definition>
+    
+    <definition name="/xys/eva/caclEvaPlan.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/caclEvaPlan.jsp"/>
+    </definition>
+    <definition name="/xys/eva/caclPersonKpiIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/caclPersonKpiIndex.jsp"/>
+    </definition>
+    <definition name="/xys/eva/caclPersonKpi.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/caclPersonKpi.jsp"/>
+    </definition>
+    <definition name="/xys/eva/caclPerson360Index.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/caclPerson360Index.jsp"/>
+    </definition>
+    <definition name="/xys/eva/caclPerson360.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/caclPerson360.jsp"/>
+    </definition>
+    <definition name="/xys/eva/caclDeptKpi.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/caclDeptKpi.jsp"/>
+    </definition>
+    <definition name="/xys/eva/DeptKpiDiv.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/DeptKpiDiv.jsp"/>
+    </definition>
+    <definition name="/xys/eva/DeptKpiDivEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/DeptKpiDivEdit.jsp"/>
+    </definition>
+    
+    <definition name="/xys/eva/caclEvaObjIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/caclEvaObjIndex.jsp"/>
+    </definition>
+    <definition name="/xys/eva/caclEvaObj.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/caclEvaObj.jsp"/>
+    </definition>
+    
+    
+    <definition name="/xys/eva/SetSpread.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SetSpread.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SetSpreadEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SetSpreadEdit.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SetSpreadItem.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SetSpreadItem.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SetSpreadItemEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SetSpreadItemEdit.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SetSpreadDept.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SetSpreadDept.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SetSpreadDeptEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SetSpreadDeptEdit.jsp"/>
+    </definition>
+    <definition name="/xys/eva/auditEvaPlan.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/auditEvaPlan.jsp"/>
+    </definition>
+    <definition name="/xys/eva/publicEvaPlan.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/publicEvaPlan.jsp"/>
+    </definition>
+    <definition name="/xys/eva/SelGrade.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/SelGrade.jsp"/>
+    </definition>
+    <definition name="/xys/eva/StudentGradeUpLoad.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/StudentGradeUpLoad.jsp"/>
+    </definition>
+     <definition name="/xys/eva/EvaGradeUpLoad.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/EvaGradeUpLoad.jsp"/>
+    </definition>
+    
+    
+    <!-- 流程管理-->
+    <definition name="/xys/workflow/processMgr.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/workflow/processMgr.jsp"/>
+    </definition>
+    <definition name="/xys/workflow/processEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/workflow/processEdit.jsp"/>
+    </definition>
+    <!-- 考勤管理-->
+    <definition name="/xys/attence/leave_apply.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/attence/leave_apply.jsp"/>
+    </definition>
+    <definition name="/xys/attence/leave_edit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/attence/leave_edit.jsp"/>
+    </definition>
+    <definition name="/xys/attence/leave_log.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/attence/leave_log.jsp"/>
+    </definition>
+    <definition name="/xys/attence/leave_audit_header.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/attence/leave_audit_header.jsp"/>
+    </definition>
+    <definition name="/xys/attence/leave_audit_header_edit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/attence/leave_audit_header_edit.jsp"/>
+    </definition>
+    <definition name="/xys/attence/leave_audit_dean_edit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/attence/leave_audit_dean_edit.jsp"/>
+    </definition>
+    <definition name="/xys/attence/leave_audit_master_edit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/attence/leave_audit_master_edit.jsp"/>
+    </definition>
+    <definition name="/xys/attence/leave_audit_hr_edit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/attence/leave_audit_hr_edit.jsp"/>
+    </definition>
+   
+</tiles-definitions>

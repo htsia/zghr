@@ -1,0 +1,20 @@
+ClearCase CopyAreaDB|4
+HRD_App\WebContent\pages\emp\info
+2
+10
+13:PersonBackQuery.jsp|1|10f7ff0f442|160c|ab2d49bc|f7a35dfbbdc14e3394a7526bb9e988e5|0
+14:PersonInfoDetail.jsp|1|10cd20d2460|133e|1224cc01|c4cd0c4c8c2641fbad6ab2c91eb1ee78|0
+13:PersonInfoIndex.jsp|1|10dab8ea0c9|1287|80a235bd|4500c9554d0340648dcf5e2481803d67|0
+f:InfoSetTree.jsp|1|10f9db0f1a1|1169|cf8838fc|94979769dea4436a8b5d975cbaa26d54|0
+12:PersonEditInfo.jsp|1|10dab8e9cc2|11a7|a88238dc|a13d629508db42d7917c316228f714f1|0
+18:PersonInfoDetailList.jsp|1|10cfc9e55c7|e51|3a6414ff|7cf0f93a312c468491a6110621687742|0
+16:PersonDismissIndex.jsp|1|10d38e9ac9e|b59|a2002529|a48617b9a97b4cb48e3df70eb49b248b|0
+11:RetireDismiss.jsp|1|10fbcf35950|f63|53b6a13c|7661280eb942458793dc6c7b8663e0ac|0
+13:PersonBackIndex.jsp|1|10dab8ea1a4|b8c|b7144001|6fb61785823b4767b51691c2fa19d2c4|0
+11:PersonDismiss.jsp|1|10fbcf356cf|f11|beb67ecb|656de6e7b2e74ab1931bdddb06312bc2|0
+16:PersonManyEditInfo.jsp|1|10dab8ea165|14f8|efff06e5|7a12056c116c4265a5408f570e307a68|0
+10:BackInfoTree.jsp|1|10e315b0be9|1245|62ae728e|ba6528d64fc742b5910b160c370b1af6|0
+16:PersonDismissQuery.jsp|1|10f7ff0f2cb|18ed|5c63c335|908840a856744fcbaefedae387c87455|0
+13:PersonInfoQuery.jsp|1|10f7ff0f3a6|15d0|e8a0358e|e102a318bc2a4f989422b3bd672b6b9c|0
+d:PersonAdd.jsp|1|10f559bc174|495c|2e091054|392354d4195c4f5ca39d9aabae00d9b4|0
+e:PersonList.jsp|1|10cd20d2598|8ae|36c98ae7|e6ab2e5062d14a62aaa6753f3b872e96|0

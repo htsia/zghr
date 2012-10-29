@@ -1,0 +1,1640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+
+	<managed-bean>
+		<managed-bean-name>att_computelistBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttenceComputeBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>wagecomputeucc</property-name>
+			<value>#{wage_ComputeUcc}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>wagepersonqueryucc</property-name>
+			<value>#{wage_PersonQueryUcc}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>wagesetitemucc</property-name>
+			<value>#{wage_SetItemUcc}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>wagesetucc</property-name>
+			<value>#{wage_SetUcc}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userreportucc</property-name>
+			<value>#{user_userReportUccImpl}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>wagesetpersonucc</property-name>
+			<value>#{wage_SetPersonUccImpl}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>wageapi</property-name>
+			<value>#{wage_api}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>personucc</property-name>
+			<value>#{emp_personUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userqryucc</property-name>
+			<value>#{user_userQryUccImpl}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>queryapi</property-name>
+			<value>#{qry_queryApi}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>wagedeptucc</property-name>
+			<value>#{wage_deptUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>wagemanyucc</property-name>
+			<value>#{wage_manyUcc}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>basesetucc</property-name>
+			<value>#{insurace_basesetucc}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>wagepowerucc</property-name>
+			<value>#{wage_itemPowerUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>att_inputBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.attInputItemBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>wagedeptucc</property-name>
+			<value>#{wage_deptUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>wagesetucc</property-name>
+			<value>#{wage_SetUcc}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>wageapi</property-name>
+			<value>#{wage_api}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>queryapi</property-name>
+			<value>#{qry_queryApi}</value>
+		</managed-property>
+	</managed-bean>
+	<navigation-rule>
+		<from-view-id>/attence/AttInputPowerEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/attence/DateList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>personList</from-outcome>
+			<to-view-id>/attence/ComputePersonList.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!--liuyunlong-->
+	<managed-bean>
+		<managed-bean-name>att_machine_mgrchildBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttMachineMgrChildBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/attmachineEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>att_feast_mgrchildBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttFeastChildBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>codeItemDAO</property-name>
+			<value>#{sys_CodeItemDAO}</value>
+		</managed-property>
+				
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/FeastEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>feast_work_mgrBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.FeastWorkMgrBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>period_setBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PeriodSetBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>userqryucc</property-name>
+			<value>#{user_userQryUccImpl}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/PeriodSetEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>AttCardMgr_ChildBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttCardMgrChildBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>personucc</property-name>
+			<value>#{emp_personUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userqryucc</property-name>
+			<value>#{user_userQryUccImpl}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>queryucc</property-name>
+			<value>#{qry_QueryUCCImpl}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>orgucc</property-name>
+			<value>#{org_orgUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userreportucc</property-name>
+			<value>#{user_userReportUccImpl}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>shortmessageucc</property-name>
+			<value>#{sys_SMUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/attCardMgrEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>close</from-outcome>
+			<to-view-id>/pages/attence/ChangeClose.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>att_card_messageBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttCardMessageBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>att_class_set_childBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttClassSetChildBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+             <property-name>userqryucc</property-name>
+             <value>#{user_userQryUccImpl}</value>
+         </managed-property>
+         <managed-property>
+             <property-name>userapi</property-name>
+             <value>#{user_pmsAPI}</value>
+       </managed-property>
+       <managed-property>
+            <property-name>attBusiService</property-name>
+            <value>#{attBusiService}</value>
+        </managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/AttFrequency.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/attence/AttPerson.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/attence/attClassSetEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>att_class_detailBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttClassDetailBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+            <property-name>attBusiService</property-name>
+            <value>#{attBusiService}</value>
+        </managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/attClassDetailEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>group_mgrBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.GroupMgrBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/groupMgrEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>group_mgr_listBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.GroupMgrListBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/groupMgrListAddList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>att_rearrangeBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttRearrangeBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/attRearangeEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>att_importRuleBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttImportRuleBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/importRuleAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>att_importRuleListBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttImportRuleListBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/importRuleListAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>person_serviceBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PersonServiceBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>punch_cardmessageBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PunchCardMessageBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>personucc</property-name>
+			<value>#{emp_personUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/punchCardMessageEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>punch_carddaycollectBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PunchCardDayCollectBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>personucc</property-name>
+			<value>#{emp_personUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>punch_cardmonthcollectBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PunchCardMonthCollectBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>personucc</property-name>
+			<value>#{emp_personUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>periodsetopenBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PeriodSetOpenBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>personucc</property-name>
+			<value>#{emp_personUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>periodsetattcaclinfoBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PeriodSetAttCaclInfoBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>personucc</property-name>
+			<value>#{emp_personUCC}</value>
+		</managed-property>
+        <managed-property>
+			<property-name>attDataCaclUcc</property-name>
+			<value>#{attDataCaclUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>personleaveBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PersonLeaveBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/personLeaveMessage.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personEvectionMessages.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personLeaveMessages.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personLeaveAuditEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personLeaveAuditEdit1.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personLeaveAuditEdit2.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personLeaveAuditEdit3.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personLeaveAuditEdit4.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<managed-bean>
+		<managed-bean-name>personevectionBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PersonEvectionBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+           <property-name>usermanageucc</property-name>
+           <value>#{user_userManageUCC}</value>
+        </managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/personEvectionMessage.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personEvcctionAuditEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personEvcctionAuditEdit1.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personEvcctionAuditEdit2.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personEvcctionAuditEdit3.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personEvcctionAuditEdit4.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>punshcardmanagerBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PunshCardManagerBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/PeriodSetOpen.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- 导入文件 -->
+	<navigation-rule>
+		<from-view-id>/attence/AttenceCardDataUpload.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/employee/import/PerDataUpload.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>download</from-outcome>
+			<to-view-id>/pages/common/DownloadTemplate.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>perInfoList</from-outcome>
+			<to-view-id>/attence/AttenceCardDataUploadListBySet.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/AttenceCardDataUploadListBySet.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>upload</from-outcome>
+			<to-view-id>/attence/AttenceCardDataUpload.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>att_DataUploadBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttDataUploadBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>datauploaducc</property-name>
+			<value>#{emp_datauploadUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>infosetucc</property-name>
+			<value>#{sys_infoSetUccImpl}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>showitemucc</property-name>
+			<value>#{sys_showitemsUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>groupCalendarEditBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.GroupCalendarEditBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>workcalenderUCC</property-name>
+			<value>#{att_workCalenderUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/showCalendaEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/showCalendaEditSort.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>
+			personChangeWorkBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PersonChangeWorkBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/personChangeWorkEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personChangeWorkAuditEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personChangeWorkAuditEdit1.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>
+			adjustClassChildBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AdjustClassChildBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/adjustClassChildEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>
+			annualRuleBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AnnualRuleBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attAnnualUcc</property-name>
+			<value>#{attAnnualUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/annualRuleAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>
+			annualRuleItemBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AnnualRuleItemBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attAnnualUcc</property-name>
+			<value>#{attAnnualUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/annualRuleListAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>
+			annualMgrBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AnnualMgrBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attAnnualUcc</property-name>
+			<value>#{attAnnualUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/annualMgrAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>
+			annualMgrListBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AnnualMgrListBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+
+        <managed-property>
+			<property-name>attAnnualUcc</property-name>
+			<value>#{attAnnualUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>
+			annualMgrListChildBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AnnualMgrListChildBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attAnnualUcc</property-name>
+			<value>#{attAnnualUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/annualMgrListAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>
+			attimportlogBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttImportLogBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>
+			attcaclruleBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttCaclRuleBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/attcaclrule.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/AttenceCardDataUpload.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>
+			querycardlogBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.QueryCardLogBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>personucc</property-name>
+			<value>#{emp_personUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userqryucc</property-name>
+			<value>#{user_userQryUccImpl}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>queryucc</property-name>
+			<value>#{qry_QueryUCCImpl}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>orgucc</property-name>
+			<value>#{org_orgUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userreportucc</property-name>
+			<value>#{user_userReportUccImpl}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>shortmessageucc</property-name>
+			<value>#{sys_SMUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>
+			itemsetconfigBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.ItemSetConfigBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/itemSetConfigAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>
+			seeAttenceTableBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.SeeAttenceTableBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+        <managed-property>
+			<property-name>attSumDataMgrUcc</property-name>
+			<value>#{attSumDataMgrUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>personaddworkBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PersonAddWorkBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/personAddWorkMessage.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personAddWorkAuditEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personAddWorkAuditEdit1.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personAddWorkAuditEdit2.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personAddWorkAuditEdit3.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personAddWorkAuditEdit4.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>seepersonaddworkListBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.SeePersonAddWorkListBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attOverTimeUcc</property-name>
+			<value>#{attOverTimeUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/RollbookRegistrationListChild.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>attexecluderuletBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttExecludeRuletBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attAnnualUcc</property-name>
+			<value>#{attAnnualUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/attExecludeRuleAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>attexecluderuletitemBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttExecludeRuletItemBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attAnnualUcc</property-name>
+			<value>#{attAnnualUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/attExecludeRuleItemAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/annualMgrListExecludeRule.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>networkholidayBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.NetWorkHolidayBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attAnnualUcc</property-name>
+			<value>#{attAnnualUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>networkholidaychildaddBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.NetWorkHolidayChildAddBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attAnnualUcc</property-name>
+			<value>#{attAnnualUcc}</value>
+		</managed-property>
+        <managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/networkholidayChildAddEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/networkholidayChildAddAuditEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/networkholidayChildAddAuditEdit1.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/networkholidayChildAddAuditEdit2.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/networkholidayChildAddAuditEdit3.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/networkholidayChildAddAuditEdit4.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>setstandardBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.SetStandardBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/catering/setStandardAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>autorearrangeBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AutoRearrangeBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>autorearrangelistBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AutoRearrangeListBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>autorearrangelistselectitemBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AutoRearrangeListSelectItemBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/catering/autoRearrangeAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>setsumBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.SetSumBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/catering/setSumAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>setweeksumBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.SetWeekSumBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/catering/setWeekSumAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>personoutworkBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PersonOutWorkBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+		<managed-property>
+         <property-name>usermanageucc</property-name>
+         <value>#{user_userManageUCC}</value>
+        </managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/personOutWorkMessage.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personOutWorkMessages.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personOutWorkAuditEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personOutWorkAuditEdit1.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personOutWorkAuditEdit2.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personOutWorkAuditEdit3.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/personOutWorkAuditEdit4.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>attfeastworkdateBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttFeastWorkDateBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/FeastWorkDateEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>evcctionStateSearchBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttEvcctionStateSearchBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attEvcctionStateUcc</property-name>
+			<value>#{attEvcctionStateUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>mrnetworkholidayBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.MrNetWorkHolidayBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/attence/mrNetworkholidayMessage.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/mrNetWorkHolidayAuditEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/mrNetWorkHolidayAuditEdit1.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/mrNetWorkHolidayAuditEdit2.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/mrNetWorkHolidayAuditEdit3.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/mrNetWorkHolidayAuditEdit4.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/attence/mrNetWorkHolidayAuditEdit5.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+    <navigation-rule>
+		<from-view-id>/attence/personEvectionMessagePersonListChild.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/attence/personEvectionMessageTimeOff.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/attence/personOutWorkMessageTimeOff.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<managed-bean>
+		<managed-bean-name>autoclassmanagerBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AutoClassManagerBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<navigation-rule>
+		<from-view-id>/attence/catering/autoClassManagerAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<managed-bean>
+		<managed-bean-name>autoclassmanagerruleBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AutoClassManagerRuleBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+    <navigation-rule>
+		<from-view-id>/attence/catering/autoClassManagerRuleAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/attence/catering/autoClassManagerWater.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<managed-bean>
+		<managed-bean-name>autoclassmanagerlistBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AutoClassManagerListBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>autoclassmanagerlistselectitemBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AutoClassManagerListSelectItemBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<navigation-rule>
+		<from-view-id>/attence/catering/autoClassManagerWaterAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<managed-bean>
+		<managed-bean-name>atttimeoffBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttTimeOffBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+    <managed-bean>
+		<managed-bean-name>attwriteroutworkBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.ATTWriterOutWorkBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>attwriterevcctionBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.ATTWriterEvcctionBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>attwriterBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.ATTWriterBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>attwriteraddworkBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.ATTWriterAddWorkBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>plnwhBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.PersonLeaveNetworkholidayBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>amtolBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.ATTModifyTimeOfListBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attenceSetUCC</property-name>
+			<value>#{att_setUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<navigation-rule>
+		<from-view-id>/attence/modifyTimeOfEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<managed-bean>
+		<managed-bean-name>attwriternetworkBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.ATTWriterNetWorkBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attAnnualUcc</property-name>
+			<value>#{attAnnualUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+     <managed-bean>
+		<managed-bean-name>attOutWorkMgrBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttOutWorkMgrBackBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attOutWorkUcc</property-name>
+			<value>#{attOutWorkUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+     <managed-bean>
+		<managed-bean-name>attFurloughRecMgrBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttFurloughRecMgrBackBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attFurloughRecUcc</property-name>
+			<value>#{attFurloughRecUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+    <managed-bean>
+		<managed-bean-name>attMImicReportRecQryBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttMimicReportRecQryBackBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attAnnualUCC</property-name>
+			<value>#{attAnnualUcc}</value>
+		</managed-property>
+	</managed-bean>
+
+    <navigation-rule>
+		<from-view-id>/attence/mrNetworkholidayEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<managed-bean>
+		<managed-bean-name>attRestStoreBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.attence.web.AttRestStoreBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attRestChgUCC</property-name>
+			<value>#{attRestChgUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+</faces-config>

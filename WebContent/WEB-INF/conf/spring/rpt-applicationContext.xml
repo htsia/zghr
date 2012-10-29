@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    
+    <bean id="rpt_usersetDAO" class="com.hr319wg.rpt.dao.RptSetUserDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="rpt_infoDAO" class="com.hr319wg.rpt.dao.RptInfoDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="rpt_datelistDAO" class="com.hr319wg.rpt.dao.RptDateListDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="rpt_arcdao" class="com.hr319wg.rpt.dao.ArchiveRptInfoDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="rpt_flowdao" class="com.hr319wg.rpt.dao.FlowRptInfoDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="rpt_infoService" class="com.hr319wg.rpt.service.RptInfoService">
+        <property name="rptinfodao">
+            <ref bean="rpt_infoDAO"/>
+        </property>
+        <property name="rptdatelistdao">
+            <ref bean="rpt_datelistDAO"/>
+        </property>
+    </bean>
+
+    <bean id="rpt_infoClient" class="com.hr319wg.rpt.service.RptClient">
+        <property name="rptinfoservice">
+            <ref bean="rpt_infoService"/>
+        </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+
+    <bean id="rpt_infoucc" class="com.hr319wg.rpt.ucc.impl.RptInfoUCC">
+        <property name="rptinfoservice" ref="rpt_infoService"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="userReportService" ref="user_userReportService"/>
+    </bean>
+    
+    <!-- weitao add -->
+    <bean id="receive" class="com.hr319wg.common.service.Receive">
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+
+</beans>

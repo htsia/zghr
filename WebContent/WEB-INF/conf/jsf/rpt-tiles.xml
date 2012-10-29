@@ -1,0 +1,188 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+    <definition name="/report/EditFlowReport.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/EditFlowReport.jsp" />
+	</definition>
+
+    <definition name="/report/ReceiveRptFile.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/ReceiveRptFile.jsp" />
+	</definition>
+
+	<definition name="/report/ReportDefine.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/ReportDefine.jsp" />
+	</definition>
+
+	<definition name="/report/ReportDefineEdit.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/ReportDefineEdit.jsp" />
+	</definition>
+	
+	<definition name="/report/ReportDefineList.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/ReportDefineList.jsp" />
+	</definition>
+	
+	<definition name="/report/showRptStatus.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/showRptStatus.jsp" />
+	</definition>
+
+	<definition name="/report/DateEdit.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/report/DateEdit.jsp" />
+	</definition>
+
+	<definition name="/report/DateList.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/report/DateList.jsp" />
+	</definition>
+
+	<definition name="/report/GroupDateList.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/report/GroupDateList.jsp" />
+	</definition>
+
+	<definition name="/report/GroupBrowerChild.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/report/GroupBrowerChild.jsp" />
+	</definition>
+	<definition name="/report/GroupBrowerChild2.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/report/GroupBrowerChild2.jsp" />
+	</definition>
+	<definition name="/report/showChildStatus.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/showChildStatus.jsp" />
+	</definition>
+
+	<definition name="/report/GroupBrower.tiles" extends="layout.busitemplateLogin">
+		<put name="body" value="/pages/report/GroupBrower.jsp" />
+	</definition>
+	<definition name="/report/GroupBrowerView.tiles" extends="layout.busitemplateLogin">
+		<put name="body" value="/pages/report/GroupBrowerView.jsp" />
+	</definition>
+	<definition name="/report/handBookIndex.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/handBookIndex.jsp" />
+	</definition>
+
+	<definition name="/report/RptInfoIndex.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/report/RptInfoIndex.jsp" />
+	</definition>
+	<definition name="/report/ProcessReport.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/report/ProcessReport.jsp" />
+	</definition>
+	<definition name="/report/ArchiveReport.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/ArchiveReport.jsp" />
+	</definition>
+
+	<definition name="/report/GroupArchiveReport.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/report/GroupArchiveReport.jsp" />
+	</definition>
+
+	<definition name="/report/ArchiveReportShow.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/report/ArchiveReportShow.jsp" />
+	</definition>
+	<definition name="/report/DeptReportShow.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/DeptReportShow.jsp" />
+	</definition>
+	<definition name="/report/ReportPowerMgr.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/ReportPowerMgr.jsp" />
+	</definition>
+	<definition name="/report/ReportPowerMgrAddChildSort.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/ReportPowerMgrAddChildSort.jsp" />
+	</definition>
+    <definition name="/report/ReportSetPowerMgr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/report/ReportSetPowerMgr.jsp" />
+    </definition>
+
+	              <!-- *****************卫 涛********************** -->
+	              
+	              
+	 <definition name="/report/RptSetDefine.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/RptSetDefine.jsp" />
+	</definition>  
+	
+	<definition name="/ajax/RptSetList.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/ajax/RptSetList.jsp" />
+	</definition>  
+	 
+	 <definition name="/report/ShowRptSetDefine.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/ShowRptSetDefine.jsp" />
+	</definition>  
+	
+	<definition name="/report/RptSetEdit.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/RptSetEdit.jsp" />
+	</definition>    
+	
+	 
+	
+	  <!-- 报表汇总定义 -->
+	<definition name="/report/GroupDefine.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/RptGroupDefine.jsp" />
+	</definition>
+	
+	<definition name="/report/ShowRptGroupDir.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/ShowRptGroupDir.jsp" />
+	</definition>
+	
+	<definition name="/report/RptGroupEdit.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/RptGroupEdit.jsp" />
+	</definition>
+	       
+	<definition name="/report/ShowRptGroupItem.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/ShowRptGroupItem.jsp" />
+	</definition>
+	
+	<definition name="/report/RptGroupDirEdit.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/RptGroupDirEdit.jsp" />
+	</definition>
+	
+	<definition name="/report/RptGroupItemEdit.tiles"
+		extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/report/RptGroupItemEdit.jsp" />
+	</definition>
+	       
+</tiles-definitions>

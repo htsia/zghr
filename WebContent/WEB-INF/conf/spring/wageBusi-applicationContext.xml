@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="wage_adjustUCC" class="com.hr319wg.wage.ucc.impl.WageAdjustUCC">
+       <property name="adjustservice" ref="wage_adjustservice"/>
+   </bean>
+    <bean id="wage_adjustservice" class="com.hr319wg.wage.service.WageAdjustService">
+        <property name="adjustdao" ref="wage_adjustDAO"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="wageapi" ref="wage_api"/>
+        <property name="wagesetpersonservice" ref="wage_SetPersonService"/>
+
+    </bean>
+    <bean id="wage_adjustDAO" class="com.hr319wg.wage.dao.WageAdjustDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+	 <bean id="wagenomaladjustdao" class="com.hr319wg.wage.dao.WageNomalAdjustDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+     <bean id="wagenomalajustservice" class="com.hr319wg.wage.service.WageNomalAdjustService">
+        <property name="wagenomaladjustdao">
+            <ref bean="wagenomaladjustdao"/>
+        </property>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="wageApi" ref="wage_api"/>
+    </bean>
+     <bean id="wagenomaladjustucc" class="com.hr319wg.wage.ucc.impl.WageNormalAdjustUCC">
+        <property name="wagenomalajustservice">
+            <ref bean="wagenomalajustservice"/>
+        </property>
+    </bean>
+    <bean id="confirmLevelservice" class="com.hr319wg.wage.service.ConfirmLevelService">
+        <property name="empprobationdao">
+            <ref bean="empprobationdao"/>
+        </property>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="wageApi" ref="wage_api"/>
+    </bean>
+     <bean id="confirmLevelucc" class="com.hr319wg.wage.ucc.impl.ConfirmLevelUcc">
+        <property name="confirmLevelservice">
+            <ref bean="confirmLevelservice"/>
+        </property>
+    </bean>
+    <bean id="postionChangeService" class="com.hr319wg.wage.service.PostionChangeService">
+        <property name="emppostchangeDao">
+            <ref bean="emppostchangeDao"/>
+        </property>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="wageApi" ref="wage_api"/>
+        <property name="adjustservice" ref="wage_adjustservice"/>
+    </bean>
+
+     <bean id="postionChangeUcc" class="com.hr319wg.wage.ucc.impl.PostionChangeUcc">
+        <property name="postionChangeService">
+            <ref bean="postionChangeService"/>
+        </property>
+    </bean>
+
+    <bean id="jobajustChangeService" class="com.hr319wg.wage.service.JobAjustChangeService">
+        <property name="empappordissmissdao">
+            <ref bean="empappordissmissdao"/>
+        </property>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="wageApi" ref="wage_api"/>
+        <property name="adjustservice" ref="wage_adjustservice"/>
+    </bean>
+
+    <bean id="jobajustchangeUcc" class="com.hr319wg.wage.ucc.impl.JobAjustChangeUcc">
+        <property name="jobajustChangeService">
+            <ref bean="jobajustChangeService"/>
+        </property>
+    </bean>
+    <bean id="wageReformMgrDao" class="com.hr319wg.wage.dao.WageReformMgrDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+     <bean id="wageReformMgrService" class="com.hr319wg.wage.service.WageReformMgrService">
+        <property name="wageReformMgrDao">
+            <ref bean="wageReformMgrDao"/>
+        </property>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="wageApi" ref="wage_api"/>
+    </bean>
+     <bean id="wageReformMgrucc" class="com.hr319wg.wage.ucc.impl.WageReformMgrUcc">
+        <property name="wageReformMgrService">
+            <ref bean="wageReformMgrService"/>
+        </property>
+        <property name="activePageService">
+            <ref bean="sys_activePageService"/>
+        </property>
+    </bean>
+    <bean id="titleChangeWageService" class="com.hr319wg.wage.service.TitleChangeWageService">
+        <property name="empTitleChangeDao">
+            <ref bean="empTitleChangeDao"/>
+        </property>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="wageApi" ref="wage_api"/>
+    </bean>
+    <bean id="titleChangeWageUcc" class="com.hr319wg.wage.ucc.impl.TitleChangeWageUcc">
+        <property name="titleChangeWageService">
+            <ref bean="titleChangeWageService"/>
+        </property>
+    </bean>
+    <bean id="eduChangeWageService" class="com.hr319wg.wage.service.EduChangeWageService">
+        <property name="empEduChangeDao">
+            <ref bean="empEduChangeDao"/>
+        </property>
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="wageApi" ref="wage_api"/>
+    </bean>
+    <bean id="eduChangeWageUcc" class="com.hr319wg.wage.ucc.impl.EduChangeWageUcc">
+        <property name="eduChangeWageService">
+            <ref bean="eduChangeWageService"/>
+        </property>
+    </bean>
+</beans>

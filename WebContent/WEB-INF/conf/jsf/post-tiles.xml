@@ -1,0 +1,97 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+    <definition name="/post/info/PostAdd.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/post/info/PostAdd.jsp"/>
+    </definition>
+
+    <definition name="/post/info/PostChangeSuper.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/post/info/PostChangeSuper.jsp"/>
+    </definition>
+
+    <definition name="/post/info/postWeave.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/post/info/postWeave.jsp"/>
+    </definition>
+    <definition name="/post/info/postWeaveChild.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/post/info/postWeaveChild.jsp"/>
+    </definition>
+
+    <definition name="/post/info/postMap.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/post/info/postMap.jsp"/>
+    </definition>
+    <definition name="/post/info/postMapShow.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/post/info/postMapShow.jsp"/>
+    </definition>
+
+     <definition name="/post/info/PostInfoIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/post/info/PostInfoIndex.jsp"/>
+    </definition>
+     <definition name="/post/info/PostInfoQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/post/info/PostInfoQuery.jsp"/>
+    </definition>
+    <definition name="/post/info/PostEditInfo.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/post/info/PostEditInfo.jsp"/>
+    </definition>
+     <definition name="/post/info/PostInfoDetail.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/post/info/PostInfoDetail.jsp"/>
+    </definition>
+     <definition name="/post/info/PostInfoDetailList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/post/info/PostInfoDetailList.jsp"/>
+    </definition>
+       <definition name="/post/del/PostDelIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/post/del/PostDelIndex.jsp"/>
+    </definition>
+     <definition name="/post/del/PostDelQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/post/del/PostDelQuery.jsp"/>
+    </definition>
+    <definition name="/post/template/PostTemplateIndex.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/post/template/PostTemplateIndex.jsp"/>
+    </definition>
+    <definition name="/post/template/PostInfoQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/post/template/PostInfoQuery.jsp"/>
+    </definition>
+    <definition name="/post/template/PostTempAdd.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/post/template/PostTempAdd.jsp"/>
+    </definition>
+</tiles-definitions>

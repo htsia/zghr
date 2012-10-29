@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.org.pojo.bo.OrgReportCfgBO" table="ORG_REPORT_CONFIG">
+        <id name="cfgID" type="string" unsaved-value="null">
+            <column name="cfg_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="cfgName" column="cfg_name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="cfgOrder" column="cfg_order"/>
+        <property name="cfgUrl" column="CFG_URL"/>
+    </class>
+
+    <class name="com.hr319wg.org.pojo.bo.OrgEditTemplateBO" table="ORG_EDITTEMP">
+        <id name="tempid" type="string" unsaved-value="null">
+            <column name="TEMP_ID" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tempDes" column="TEMP_DES" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="setID" column="TEMP_SET" />
+        <property name="fields" column="TEMP_FIELD" />
+    </class>
+   
+    <class name="com.hr319wg.org.pojo.bo.EmpOrgSumItemBO" table="Org_ORGSUM_ITEM">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="sumType" column="sum_Type" />
+        <property name="sumFieldName" column="sum_Field_Name" />
+        <property name="classFieldValue" column="class_Field_Value"/>
+        <property name="classFieldName" column="class_Field_Name" />
+        <property name="classFieldValue2" column="class_Field_Value2" />
+        <property name="classFieldName2" column="class_Field_Name2" />
+        <property name="classFieldValue3" column="class_Field_Value3"/>
+        <property name="classFieldName3" column="class_Field_Name3"/>
+        <property name="classFieldValue4" column="class_Field_Value4"/>
+        <property name="classFieldName4" column="class_Field_Name4"/>
+        <property name="classFieldValue5" column="class_Field_Value5"/>
+        <property name="classFieldName5" column="class_Field_Name5"/>
+        <property name="excPart" column="EXCL_PART"/>
+        <property name="excReturn" column="EXCL_RETURN"/>
+    </class>
+
+    <class name="com.hr319wg.org.pojo.bo.OrgInfoModiBO" table="ORG_INFO_MODI">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="orguID"	       column="ORGUID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="setID"	   column="set_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="fieldID"	   column="field_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="oldValue"	   column="old_Value" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="newValue"	   column="new_Value" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="status"	   column="status" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="modidate"	   column="Modi_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="operID"	   column="operID" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.org.pojo.bo.OrgBO" table="ORG_INFO">
+        <id name="orgId" type="string" unsaved-value="null">
+            <column name="ORGUID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="name"	   column="B001005" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="superId"     column="B001002" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="treeId"	   column="B001003" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="orgCode"    column="B001010" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="orgSort"    column="B001715" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="orgHeader"    column="B001080" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="orgCancel"    column="B001730" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="orgType"    column="B001075" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="orgClass"    column="B001050" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="orgAddress"  column="B001040" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="orgPhoto"    column="B001082" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="postCode"    column="B001015" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="postAddress"    column="B001020" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="phone"    column="B001025" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="partySetup"    column="B001083" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="insuraceID"    column="B001700" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="taxID"    column="B001701" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="lawID"    column="B001703" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="registType"    column="B001704" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="vocation"    column="B001705" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="subordinate"    column="B001706" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="account"    column="B001707" />
+        <property name="control"    column="B001708" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="orgRegAddress"    column="B001081" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="orgScale"    column="B001804"></property>
+        <property name="orgTask"    column="B001806" type="com.hr319wg.sys.service.GBKString"></property>
+        <property name="orgCreateDate"   column="B001807"></property>
+        <property name="bodyStyle"  column="B001004"></property>
+    </class>
+    
+    <class name="com.hr319wg.org.pojo.bo.OrgRelationBO" table="ORG_DEPT_RELATION">
+        <id name="relationId" type="string" unsaved-value="null">
+            <column name="RELATION_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="deptId"	   column="DEPT_ID" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="orgId"     column="ORG_ID" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="superDeptId"	   column="SUPER_DEPT_ID" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="superOrgId"    column="SUPER_ORG_ID" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="setDate"    column="SET_DATE" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="setPerson"    column="SET_PERSON_ID" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+</hibernate-mapping>

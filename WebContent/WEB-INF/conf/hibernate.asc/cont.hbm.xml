@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.cont.pojo.bo.ContSumItemBO" table="CONT_SUM_ITEM">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="sumType" column="sum_Type"/>
+        <property name="sumFieldName" column="sum_Field_Name"/>
+        <property name="classFieldValue" column="class_Field_Value"/>
+        <property name="classFieldName" column="class_Field_Name"/>
+        <property name="classFieldValue2" column="class_Field_Value2"/>
+        <property name="classFieldName2" column="class_Field_Name2"/>
+        <property name="classFieldValue3" column="class_Field_Value3"/>
+        <property name="classFieldName3" column="class_Field_Name3"/>
+    </class>
+
+    <class name="com.hr319wg.cont.pojo.bo.ContTemplateClassBO" table="CONT_TEMPLATE_CLASS">
+        <id name="templateClassId" type="string" unsaved-value="null">
+            <column name="template_class_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="templateClassName" column="template_class_name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="createOrgId" column="create_org_id"/>
+        <property name="isPublic" column="ISPUBLIC"/>
+    </class>
+
+    <class name="com.hr319wg.cont.pojo.bo.ContCodeInfoBO" table="cont_code_info">
+        <id name="orguid" type="string" unsaved-value="null">
+            <column name="orguid" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="low1" column="low_value1" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="high1" column="high_value1" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="low2" column="low_value2" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="high2" column="high_value2" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="low3" column="low_value3" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="high3" column="high_value3" type="com.hr319wg.sys.service.GBKString"/>
+
+    </class>
+
+    <class name="com.hr319wg.cont.pojo.bo.ContTemplateBO" table="CONT_TEMPLATE">
+        <id name="templateId" type="string" unsaved-value="null">
+            <column name="template_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="templateName" column="template_Name" type="com.hr319wg.sys.service.GBKString"/>
+        <many-to-one  name="contTemplateClassBO"  class="com.hr319wg.cont.pojo.bo.ContTemplateClassBO" lazy="false">
+           <column  name="template_Class_Id" length="32" />
+        </many-to-one>
+        <property name="templateEdition" column="template_Edition" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="templateType" column="template_Type" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="lastCreateDate" column="last_Create_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="attachmentId" column="attachment_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="isPublic" column="ISPUBLIC"/>
+    </class>
+    <!--SignRight-->
+    <class name="com.hr319wg.cont.pojo.bo.SignRightBO" table="cont_sign_right">
+        <id name="authorizeId" type="string" unsaved-value="null">
+            <column name="authorize_Id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="authorizeOrgId" column="authorize_Org_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="authorizePersonId" column="authorize_Person_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="permitOrgId" column="permit_Org_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="authorizeLong" column="authorize_long" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="authorizeShort" column="authorize_short" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <!--TemplateRight-->
+    <class name="com.hr319wg.cont.pojo.bo.TemplateRightBO" table="cont_template_right">
+        <id name="authorizeId" type="string" unsaved-value="null">
+            <column name="authorize_Id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="authorizeOrgId" column="authorize_Org_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="authorizePersonId" column="authorize_Person_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="permitOrgId" column="permit_Org_Id" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <!--ApproveRight-->
+    <class name="com.hr319wg.cont.pojo.bo.ApproveRightBO" table="cont_Approve_right">
+        <id name="authorizeId" type="string" unsaved-value="null">
+            <column name="authorize_Id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="authorizeOrgId" column="authorize_Org_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="authorizePersonId" column="authorize_Person_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="permitOrgId" column="permit_Org_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="authorizeLong" column="authorize_long" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="authorizeShort" column="authorize_short" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.cont.pojo.bo.ContPersonBO" table="cont_person">
+        <id name="personId" type="string" unsaved-value="null">
+            <column name="person_Id" sql-type="varchar(32)"/>
+        </id>
+        <property name="createDate" column="create_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="approveStatus" column="approve_Status" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="isValid" column="is_Valid" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contClass" column="Cont_CLASS" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.cont.pojo.bo.ContBO" table="CONT_INFO">
+        <id name="contId" type="string" unsaved-value="null">
+            <column name="cont_Id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="contCode" column="cont_Code" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contClass" column="cont_Class" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="protClass" column="prot_Class" type="com.hr319wg.sys.service.GBKString"/>
+        <many-to-one name="contPersonBO"  class="com.hr319wg.cont.pojo.bo.ContPersonBO" lazy="false">
+           <column name="person_Id" length="32" />
+        </many-to-one>
+        <property name="contStartDate" column="cont_Start_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contEndDate" column="cont_End_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contTermClass" column="cont_Term_Class" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contRemark" column="cont_Remark" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="templateClassId" column="template_Class_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="templateId" column="template_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="attachmentId" column="attachment_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="approveStatus" column="approve_Status" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="uptoValidDate" column="upto_Valid_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="approveRemark" column="approve_Remark" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="approvePersonId" column="approve_Person_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="approveDate" column="approve_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="approveOrgId" column="approve_Org_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contTerm" column="cont_Term" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="probationStartDate" column="probation_Start_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="probationEndDate" column="probation_End_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="postName" column="post_Name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="workPlace" column="work_Place" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="workContent" column="work_Content" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="salaryClass" column="salary_Class" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contFactEndDate" column="cont_Fact_End_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="pauseContTerm" column="pause_Cont_Term" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="resumeExecuteContDate" column="resume_Execute_Cont_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="pauseContIdForResume" column="pause_cont_Id_for_resume" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="resumeFlag" column="resume_Flag" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="lastContClass" column="last_Cont_Class" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="pkValueForResume" column="Pk_Value_For_Resume" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contChangeSignDate" column="cont_change_Sign_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contEndSignDate" column="cont_End_Sign_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="repairMoney" column="repair_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="fellbackMoney" column="fellback_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="medicineMoney" column="medicine_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="otherMoney" column="other_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="oneOffMoney" column="one_off_money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="createOrgId" column="create_Org_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="agreeTestify" column="agree_Testify" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="isValid" column="is_Valid" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="validDate" column="valid_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contCreateDate" column="cont_Create_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="workTimeSet" column="work_Time_Set" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="praxisEndDate" column="praxis_end_date" type="com.hr319wg.sys.service.GBKString"/>
+
+        <property name="paySalaryDate" column="pay_Salary_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="probationSalaryMoney" column="probation_Salary_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="salaryInclude" column="salary_Include" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="standardSalaryMoney" column="standard_Salary_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="basicSalaryMoney" column="basic_Salary_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="performanceSalaryMoney" column="performance_Salary_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="jobLimitTerm" column="job_Limit_Term" type="com.hr319wg.sys.service.GBKString"/>
+
+        <property name="serviceStartDate" column="service_Start_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="serviceEndDate" column="service_End_Date" type="com.hr319wg.sys.service.GBKString"/>
+
+        <property name="mainContValidDate" column="main_Cont_Valid_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="mainContCode" column="main_Cont_Code" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="validOverdue" column="valid_overdue" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="factPaymentMoney" column="fact_Payment_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="operator" column="operator" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="endReason" column="end_Reason" type="com.hr319wg.sys.service.GBKString"/>
+        
+        <property name="contPostName" column="ContPostName" type="com.hr319wg.sys.service.GBKString"/>
+        
+    </class>
+    
+    <class name="com.hr319wg.cont.pojo.bo.ContSignBO" table="CONT_INFO">
+        <id name="contId" type="string" unsaved-value="null">
+            <column name="cont_Id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="contCode" column="cont_Code" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contClass" column="cont_Class" />
+        <property name="protClass" column="prot_Class" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personId" column="person_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personName" column="person_Name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contStartDate" column="cont_Start_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contEndDate" column="cont_End_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contTermClass" column="cont_Term_Class" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contRemark" column="cont_Remark" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="templateClassId" column="template_Class_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="templateId" column="template_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="attachmentId" column="attachment_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="approveStatus" column="approve_Status" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="uptoValidDate" column="upto_Valid_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="approveRemark" column="approve_Remark" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="approvePersonId" column="approve_Person_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="approveDate" column="approve_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="approveOrgId" column="approve_Org_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contTerm" column="cont_Term" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="probationStartDate" column="probation_Start_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="probationEndDate" column="probation_End_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="postName" column="post_Name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="workPlace" column="work_Place" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="workContent" column="work_Content" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="salaryClass" column="salary_Class" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contFactEndDate" column="cont_Fact_End_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="pauseContTerm" column="pause_Cont_Term" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="resumeExecuteContDate" column="resume_Execute_Cont_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="pauseContIdForResume" column="pause_cont_Id_for_resume" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="resumeFlag" column="resume_Flag" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="lastContClass" column="last_Cont_Class" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="pkValueForResume" column="Pk_Value_For_Resume" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contChangeSignDate" column="cont_change_Sign_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contEndSignDate" column="cont_End_Sign_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="repairMoney" column="repair_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="fellbackMoney" column="fellback_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="medicineMoney" column="medicine_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="otherMoney" column="other_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="oneOffMoney" column="one_off_money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="createOrgId" column="create_Org_Id" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="agreeTestify" column="agree_Testify" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="isValid" column="is_Valid" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="validDate" column="valid_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contCreateDate" column="cont_Create_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="workTimeSet" column="work_Time_Set" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="praxisEndDate" column="praxis_end_date" type="com.hr319wg.sys.service.GBKString"/>
+        
+        <property name="paySalaryDate" column="pay_Salary_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="probationSalaryMoney" column="probation_Salary_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="salaryInclude" column="salary_Include" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="standardSalaryMoney" column="standard_Salary_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="basicSalaryMoney" column="basic_Salary_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="performanceSalaryMoney" column="performance_Salary_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="jobLimitTerm" column="job_Limit_Term" type="com.hr319wg.sys.service.GBKString"/>
+
+        <property name="serviceStartDate" column="service_Start_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="serviceEndDate" column="service_End_Date" type="com.hr319wg.sys.service.GBKString"/>
+
+        <property name="mainContValidDate" column="main_Cont_Valid_Date" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="mainContCode" column="main_Cont_Code" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="validOverdue" column="valid_overdue" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="factPaymentMoney" column="fact_Payment_Money" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="operator" column="operator"/>
+        <property name="endReason" column="end_Reason" />
+        <property name="endPlace" column="end_Place" />
+        
+    </class>
+    
+</hibernate-mapping>

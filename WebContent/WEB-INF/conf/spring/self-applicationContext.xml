@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="lead_anaUCC" class="com.hr319wg.lead.ucc.impl.LeadAnaUCC">
+        <property name="leadservice" ref="lead_anaservice"/>
+    </bean>
+    <bean id="lead_anaservice" class="com.hr319wg.lead.service.LeadAnaService">
+        <property name="leaddao" ref="lead_leadanadao"/>
+        <property name="wageanalydao" ref="lead_wageanadao"/>
+    </bean>
+    <bean id="lead_leadanadao" class="com.hr319wg.lead.dao.LeadAnaDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="lead_wageanadao" class="com.hr319wg.lead.dao.LeadWageAnalyseDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="lead_createData" class="com.hr319wg.lead.batch.LeadCreateData">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="leadChart" ref="lead_leadchart"/>
+        <property name="unitService" ref="lead_UnitService"/>
+    </bean>
+
+     <bean id="lead_leadchart" class="com.hr319wg.lead.batch.LeadCreateChart">
+         <property name="jdbcTemplate" ref="jdbcTemplate"/>
+         <property name="resmaintenanceucc" ref="lead_iresmaintenanceUCC"/>
+         <property name="fmtmaintenanceucc" ref="lead_ifmtmaintenanceUCC"/>
+         <property name="graphgetucc" ref="lead_igraphgetUCC"/>
+    </bean>
+
+    <bean id="self_iselfbulletinucc" class="com.hr319wg.self.ucc.impl.SelfBulletinUCC">
+        <property name="bulletinqueryapi" ref="sys_bulletinQueryAPI"/>
+    </bean>
+
+    <bean id="self_iselfnewucc" class="com.hr319wg.self.ucc.impl.SelfNewsUCC">
+        <property name="newsqueryapi" ref="sys_newsQueryAPI"/>
+    </bean>
+
+    <bean id="lead_igridgetUCC" class="com.hr319wg.lead.ucc.impl.GridGetUCC">
+        <property name="gridgetservice" ref="lead_gridgetservice"/>
+    </bean>
+    <bean id="lead_gridgetservice" class="com.hr319wg.lead.service.GridGetService">
+        <property name="gridgetdao" ref="lead_gridgetdao"/>
+        <property name="leadunitdao" ref="lead_leadorgdao"/>
+        <property name="resourcedao" ref="lead_resMaintDAO"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="lead_gridgetdao" class="com.hr319wg.lead.dao.GridGetDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="self_htmlucc" class="com.hr319wg.lead.ucc.impl.HtmlTextUCC">
+        <property name="htmlservice" ref="lead_htmlservice"/>
+    </bean>
+    <bean id="lead_htmlservice" class="com.hr319wg.lead.service.HtmlTextService">
+        <property name="filedao" ref="lead_htmldao"/>
+    </bean>
+    <bean id="lead_htmldao" class="com.hr319wg.lead.dao.HtmlFileDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+
+    <bean id="lead_itextgetUCC" class="com.hr319wg.lead.ucc.impl.TextGetUCC">
+        <property name="textgetservice" ref="lead_textgetservice"/>
+    </bean>
+    <bean id="lead_textgetservice" class="com.hr319wg.lead.service.TextGetService">
+        <property name="textgetdao" ref="lead_textgetdao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+
+    <bean id="lead_textgetdao" class="com.hr319wg.lead.dao.TextGetDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="lead_igraphgetUCC" class="com.hr319wg.lead.ucc.impl.GraphGetUCC">
+        <property name="graphgetservice" ref="lead_graphgetservice"/>
+    </bean>
+    <bean id="lead_graphgetservice" class="com.hr319wg.lead.service.GraphGetService">
+        <property name="graphgetdao" ref="lead_graphgetdao"/>
+    </bean>
+    <bean id="lead_graphgetdao" class="com.hr319wg.lead.dao.GraphGetDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="self_starsUCC" class="com.hr319wg.self.ucc.impl.StarsUCC">
+        <property name="starsservice" ref="self_starsservice"/>
+    </bean>
+    <bean id="self_starsservice" class="com.hr319wg.self.service.StarsService">
+        <property name="starsdao" ref="self_starsdao"/>
+    </bean>
+    <bean id="self_starsdao" class="com.hr319wg.self.dao.StarsDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    
+
+    <bean id="self_operdao" class="com.hr319wg.sys.dao.SelfOperateDAO">
+       <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="self_ibaseoptucc" class="com.hr319wg.self.ucc.impl.BaseOptUCC">
+       <property name="activepageservice">
+            <ref bean="sys_activePageService"/>
+        </property>
+    </bean>
+
+    <bean id="self_iquerypayucc" class="com.hr319wg.self.ucc.impl.QueryPayUCC">
+       <property name="wageapi">
+            <ref bean="wage_api"/>
+        </property>
+    </bean>
+
+    <bean id="lead_leadorgdao" class="com.hr319wg.lead.dao.LeadOrgDAO">
+           <property name="hibernatetemplate">
+		        <ref bean="hibernateTemplate"/>
+		   </property>
+    </bean>
+
+    <bean id="lead_resMaintDAO" class="com.hr319wg.lead.dao.ResourceMaintenanceDAO">
+           <property name="hibernatetemplate">
+		        <ref bean="hibernateTemplate"/>
+		   </property>
+    </bean>
+    <bean id="lead_sqlDAO" class="com.hr319wg.lead.dao.LeadSqlDAO">
+           <property name="hibernatetemplate">
+		        <ref bean="hibernateTemplate"/>
+		   </property>
+    </bean>
+
+    <bean id="lead_fmtmaintenanceservice" class="com.hr319wg.lead.service.FmtMaintenanceService">
+           <property name="resDAO">
+               <ref bean="lead_resMaintDAO"/>
+           </property>
+        <property name="sqlDAO">
+            <ref bean="lead_sqlDAO"/>
+        </property>
+    </bean>
+    <bean id="lead_resmaintenanceservice" class="com.hr319wg.lead.service.ResMaintenanceService">
+           <property name="resMaintDAO">
+               <ref bean="lead_resMaintDAO"/>
+           </property>
+    </bean>
+
+   <bean id="lead_ifmtmaintenanceUCC" class="com.hr319wg.lead.ucc.impl.FmtMaintenanceUCC">
+          <property name="fmtmaintenanceservice">
+              <ref bean="lead_fmtmaintenanceservice"/>
+          </property>
+   </bean>
+   <bean id="lead_iresmaintenanceUCC" class="com.hr319wg.lead.ucc.impl.ResMaintenanceUCC">
+          <property name="resmaintenanceservice">
+              <ref bean="lead_resmaintenanceservice"/>
+          </property>
+   </bean>
+    <bean id="lead_UnitService" class="com.hr319wg.lead.service.LeadUnitService">
+        <property name="leadunitdao">
+            <ref bean="lead_leadorgdao"/>
+        </property>
+        <property name="api" ref="sys_activePageApi"/>
+    </bean>
+
+    <bean id="lead_UnitUccImpl" class="com.hr319wg.lead.ucc.impl.LeadUnitUCC">
+        <property name="leadunitservice" ref="lead_UnitService"/>
+    </bean>
+
+    <bean id="lead_UnitUcc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.lead.ucc.ILeadUnitUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="lead_UnitUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+  
+</beans>

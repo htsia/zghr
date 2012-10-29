@@ -1,0 +1,558 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!-- 绩效管理 -->
+    <class name="com.hr319wg.xys.eva.pojo.bo.EvaRelBO" table="xys_eva_rel">
+        <id name="relId" type="string" unsaved-value="null">
+            <column name="rel_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="postId" column="post_id"/>
+        <property name="evaPostId" column="eva_post_id"/>
+        <property name="evaType" column="eva_type"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysEvaPlanBO" table="xys_eva_plan">
+        <id name="planId" type="string" unsaved-value="null">
+            <column name="plan_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="planName" column="plan_name"/>
+        <property name="beginTime" column="begin_time"/>
+        <property name="endTime" column="end_time"/>
+        <property name="status" column="status"/>
+        <property name="planType" column="plan_type"/>
+        <property name="planGrade" column="plan_grade"/>
+        <property name="scorePers" column="score_pers"/>
+        <property name="year" column="year"/>
+        <property name="deptKpiStatus" column="dept_kpi_status"/>
+        <property name="personKpiStatus" column="person_kpi_status"/>
+        <property name="person360Status" column="person_360_status"/>
+        <property name="createOrg" column="create_org"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.EvaExcPostBO" table="xys_eva_exc_post">
+        <id name="excId" type="string" unsaved-value="null">
+            <column name="exc_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="planId" column="plan_id"/>
+        <property name="postId" column="post_id"/>
+    </class>
+
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysEvaModeSetBO" table="xys_eva_mode_set">
+        <id name="setId" type="string" unsaved-value="null">
+            <column name="set_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="planId" column="plan_id"/>
+        <property name="postId" column="post_id"/>
+        <property name="weightKpi" column="weight_kpi"/>
+        <property name="weight360" column="weight_360"/>
+        <property name="weightXspj" column="weight_xspj"/>
+    </class>
+
+    <class name="com.hr319wg.xys.eva.pojo.bo.Xys360KeyLibBO" table="xys_360_key_lib">
+        <id name="libId" type="string" unsaved-value="null">
+            <column name="lib_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="libName" column="lib_name"/>
+        <property name="superId" column="super_id"/>
+    </class>
+
+    <class name="com.hr319wg.xys.eva.pojo.bo.Xys360KeyBO" table="xys_360_key">
+        <id name="keyId" type="string" unsaved-value="null">
+            <column name="key_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="libId" column="lib_id"/>
+        <property name="keyName" column="key_name"/>
+        <property name="keyType" column="key_type"/>
+        <property name="keyDesc" column="key_desc"/>
+    </class>
+
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysKpiKeyLibBO" table="xys_kpi_key_lib">
+        <id name="libId" type="string" unsaved-value="null">
+            <column name="lib_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="libName" column="lib_name"/>
+        <property name="postId" column="post_id"/>
+    </class>
+
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysKpiKeyBO" table="xys_kpi_key">
+        <id name="keyId" type="string" unsaved-value="null">
+            <column name="key_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="keyName" column="key_name"/>
+        <property name="gradeStd" column="grade_std"/>
+        <property name="aimValue" column="aim_value"/>
+        <property name="dataSource" column="data_source"/>
+        <property name="weight" column="weight"/>
+        <property name="hiValue" column="hi_value"/>
+        <property name="lowValue" column="low_value"/>
+        <property name="libId" column="lib_id"/>
+    </class>
+
+     <class name="com.hr319wg.xys.eva.pojo.bo.Xys360TempLibBO" table="xys_360_temp_lib">
+        <id name="tempLibId" type="string" unsaved-value="null">
+            <column name="temp_lib_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="tempLibName" column="temp_lib_name"/>
+        <property name="superId" column="super_id"/>
+    </class>
+
+    <class name="com.hr319wg.xys.eva.pojo.bo.Xys360TempBO" table="xys_360_temp">
+        <id name="tempId" type="string" unsaved-value="null">
+            <column name="temp_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="tempName" column="temp_name"/>
+        <property name="tmpLibId" column="tmp_lib_id"/>
+        <property name="tatalScore" column="total_score"/>
+    </class>
+
+    <class name="com.hr319wg.xys.eva.pojo.bo.Xys360TempSetBO" table="xys_360_temp_set">
+        <id name="setId" type="string" unsaved-value="null">
+            <column name="set_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setName" column="set_name"/>
+        <property name="tempId" column="temp_id"/>
+        <property name="setType" column="set_type"/>
+    </class>
+
+    <class name="com.hr319wg.xys.eva.pojo.bo.Xys360TempItemBO" table="xys_360_temp_item">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="itemName" column="item_name"/>
+        <property name="itemDesc" column="item_desc"/>
+        <property name="weight" column="weight"/>
+        <property name="hiValue" column="hi_value"/>
+        <property name="lowValue" column="low_value"/>
+        <property name="keyId" column="key_id"/>
+        <property name="setId" column="set_id"/>
+    </class>
+
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysWeightSetBO" table="xys_weight_set">
+            <id name="setId" type="string" unsaved-value="null">
+                <column name="set_id" sql-type="varchar(32)"/>
+                <generator class="uuid.hex"/>
+            </id>
+            <property name="postId" column="post_id"/>
+            <property name="type" column="type"/>
+            <property name="evaPostId" column="eva_post_id"/>
+            <property name="evaType" column="eva_type"/>
+            <property name="planId" column="plan_Id"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysKpiDeptObjBO" table="xys_kpi_dept_obj">
+        <id name="objId" type="string" unsaved-value="null">
+            <column name="obj_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="person_id"/>
+        <property name="planId" column="plan_id"/>
+        <property name="score" column="score"/>
+        <property name="keyStatus" column="key_status"/>
+        <property name="deptId" column="dept_id"/>
+        <property name="gradeStatus" column="grade_status"/>
+        <property name="scoreLeader" column="score_leader"/>
+        <property name="scorePreLeader" column="score_pre_leader"/>
+        <property name="scoreOtherLeader" column="score_other_leader"/>
+        <property name="scoreError" column="score_error"/>
+        <property name="gradeItem" column="grade_item"/>
+        <property name="scoreSort" column="score_sort"/>
+        <property name="postId" column="post_id"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysKpiDeptSbjBO" table="xys_kpi_dept_sbj">
+        <id name="sbjId" type="string" unsaved-value="null">
+            <column name="sbj_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="objId" column="obj_id"/>
+        <property name="personId" column="person_id"/>
+        <property name="score" column="score"/>
+        <property name="gradeItem" column="grade_item"/>
+        <property name="postId" column="post_id"/>
+        <property name="evaType" column="eva_type"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysKpiObjLibBO" table="xys_kpi_obj_lib">
+        <id name="objLibId" type="string" unsaved-value="null">
+            <column name="obj_lib_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="objId" column="obj_id"/>
+        <property name="objLibName" column="obj_lib_name"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysKpiObjKeyBO" table="xys_kpi_obj_key">
+        <id name="objKeyId" type="string" unsaved-value="null">
+            <column name="obj_key_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="keyName" column="key_name"/>
+        <property name="gradeStd" column="grade_std"/>
+        <property name="aimValue" column="aim_value"/>
+        <property name="dataSource" column="data_source"/>
+        <property name="weight" column="weight"/>
+        <property name="hiValue" column="hi_value"/>
+        <property name="lowValue" column="low_value"/>
+        <property name="objLibId" column="obj_lib_id"/>
+        <property name="objId" column="obj_id"/>
+        <property name="execution" column="execution"/>
+        <property name="selfGrade" column="self_grade"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysKpiDeptObjScoreBO" table="xys_kpi_dept_obj_score">
+        <id name="scoreId" type="string" unsaved-value="null">
+            <column name="score_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="objId" column="obj_id"/>
+        <property name="sbjId" column="sbj_id"/>
+        <property name="objKeyId" column="obj_key_id"/>
+        <property name="score" column="score"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysKpiPersonObjBO" table="xys_kpi_person_obj">
+        <id name="objId" type="string" unsaved-value="null">
+            <column name="obj_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="person_id"/>
+        <property name="planId" column="plan_id"/>
+        <property name="score" column="score"/>
+        <property name="keyStatus" column="key_status"/>
+        <property name="gradeStatus" column="grade_status"/>
+        <property name="scoreLeader" column="score_leader"/>
+        <property name="scorePreLeader" column="score_pre_leader"/>
+        <property name="scoreOtherLeader" column="score_other_leader"/>
+        <property name="scoreError" column="score_error"/>
+        <property name="postId" column="post_id"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysKpiPersonSbjBO" table="xys_kpi_person_sbj">
+        <id name="sbjId" type="string" unsaved-value="null">
+            <column name="sbj_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="objId" column="obj_id"/>
+        <property name="personId" column="person_id"/>
+        <property name="score" column="score"/>
+        <property name="gradeItem" column="grade_item"/>
+        <property name="postId" column="post_id"/>
+        <property name="evaType" column="eva_type"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysKpiPersonScoreBO" table="xys_kpi_person_score">
+        <id name="scoreId" type="string" unsaved-value="null">
+            <column name="score_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="objId" column="obj_id"/>
+        <property name="sbjId" column="sbj_id"/>
+        <property name="objKeyId" column="obj_key_id"/>
+        <property name="score" column="score"/>
+    </class>
+	<class name="com.hr319wg.xys.eva.pojo.bo.XysScoreCtrBO" table="xys_score_ctr">
+        <id name="ctrId" type="string" unsaved-value="null">
+            <column name="ctr_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="type" column="type"/>
+        <property name="gradeItem" column="grade_item"/>
+        <property name="count" column="count"/>
+        <property name="planId" column="plan_id"/>
+    </class>
+    
+    <class name="com.hr319wg.xys.eva.pojo.bo.Xys360ObjBO" table="xys_360_obj">
+        <id name="objId" type="string" unsaved-value="null">
+            <column name="obj_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="person_id"/>
+        <property name="planId" column="plan_id"/>
+        <property name="score" column="score"/>
+        <property name="templateId" column="template_id"/>
+        <property name="gradeStatus" column="grade_status"/>
+        <property name="scoreLeader" column="score_leader"/>
+        <property name="scorePreLeader" column="score_pre_leader"/>
+        <property name="scoreOtherLeader" column="score_other_leader"/>
+        <property name="scoreVis" column="score_vis"/>
+        <property name="scoreOtherVis" column="score_other_vis"/>
+        <property name="scoreLower" column="score_lower"/>
+        <property name="scoreError" column="score_error"/>
+        <property name="postId" column="post_id"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.Xys360ObjKeyBO" table="xys_360_obj_key">
+        <id name="keyId" type="string" unsaved-value="null">
+            <column name="key_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="objId" column="obj_id"/>
+        <property name="keyName" column="key_name"/>
+        <property name="keyDesc" column="key_desc"/>
+        <property name="weight" column="weight"/>
+        <property name="hiValue" column="hi_value"/>
+        <property name="lowValue" column="low_value"/>
+        <property name="keyType" column="key_type"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.Xys360SbjBO" table="xys_360_sbj">
+        <id name="sbjId" type="string" unsaved-value="null">
+            <column name="sbj_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="objId" column="obj_id"/>
+        <property name="personId" column="person_id"/>
+        <property name="score" column="score"/>
+        <property name="gradeItem" column="grade_item"/>
+        <property name="postId" column="post_id"/>
+        <property name="evaType" column="eva_type"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.Xys360ObjScoreBO" table="xys_360_obj_score">
+        <id name="scoreId" type="string" unsaved-value="null">
+            <column name="score_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="sbjId" column="sbj_id"/>
+        <property name="objId" column="obj_id"/>
+        <property name="keyId" column="key_id"/>
+        <property name="score" column="score"/>
+    </class>
+     <class name="com.hr319wg.xys.eva.pojo.bo.XysEvaRoleBO" table="xys_eva_role">
+        <id name="roleId" type="string" unsaved-value="null">
+            <column name="role_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="roleName" column="role_name"/>
+        <property name="template360" column="template_360"/>
+        <property name="createOrg" column="create_org"/>
+        <property name="createPid" column="create_pid"/>
+        <property name="createTime" column="create_time"/>
+        <property name="weightKpi" column="weight_kpi"/>
+        <property name="weight360" column="weight_360"/>
+        <property name="weightXspj" column="weight_xspj"/>
+    </class>
+     
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysWeightExcPersBO" table="xys_weight_exc_pers">
+        <id name="excId" type="string" unsaved-value="null">
+            <column name="exc_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setId" column="set_id"/>
+        <property name="personId" column="person_id"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysPostRoleRelBO" table="xys_post_role_rel">
+        <id name="relId" type="string" unsaved-value="null">
+            <column name="rel_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="postId" column="post_id"/>
+        <property name="roleId" column="role_id"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysBeginGradeErrorBO" table="xys_begin_grade_error">
+        <id name="errorId" type="string" unsaved-value="null">
+            <column name="error_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="planId" column="plan_id"/>
+        <property name="objId" column="obj_id"/>
+        <property name="objType" column="obj_type"/>
+        <property name="error" column="error"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysXspjScoreBO" table="xys_xspj_score">
+        <id name="scoreId" type="string" unsaved-value="null">
+            <column name="score_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="person_id"/>
+        <property name="planId" column="plan_id"/>
+        <property name="score" column="score"/>
+        <property name="score2" column="score2"/>
+        <property name="avgScore" column="avg_score"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.EvaGroupBO" table="xys_eva_group">
+        <id name="groupId" type="string" unsaved-value="null">
+            <column name="group_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="groupName" column="group_name"/>
+        <property name="createOrg" column="create_org"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.EvaGroupPostBO" table="xys_eva_group_post">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="groupId" column="group_id"/>
+        <property name="postId" column="post_id"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysLevelWeightSetBO" table="xys_level_weight_set">
+        <id name="setId" type="string" unsaved-value="null">
+            <column name="set_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="planId" column="plan_id"/>
+        <property name="postId" column="post_id"/>
+        <property name="weightLeader" column="weight_leader"/>
+        <property name="weightVis" column="weight_vis"/>
+        <property name="weightLower" column="weight_lower"/>
+        <property name="weightPreLeader" column="weight_pre_leader"/>
+        <property name="weightOtherLeader" column="weight_other_leader"/>
+        <property name="weightOtherVis" column="weight_other_vis"/>
+        <property name="type" column="type"/>
+        <property name="gradeType" column="grade_type"/>
+    </class>
+    
+     <class name="com.hr319wg.xys.eva.pojo.vo.XysKpiPersonObjVO" table="v_xys_kpi_person_obj">
+        <id name="objId" type="string" unsaved-value="null">
+            <column name="obj_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+      <property name="personId" column="person_id"/>
+      <property name="planId" column="plan_id"/>
+      <property name="score" column="score"/>
+      <property name="keyStatus" column="key_status"/>
+      <property name="gradeStatus" column="grade_status"/>
+       <property name="postId" column="A001715"/>
+       <property name="orgId" column="A001701"/>
+       <property name="deptId" column="A001705"/>
+       <property name="orgTreeId" column="A001728"/>
+       <property name="deptTreeId" column="A001738"/>
+       <property name="weightLeader" column="weight_leader"/>
+       <property name="weightVis" column="weight_vis"/>
+       <property name="weightLower" column="weight_lower"/>
+       <property name="weightPreLeader" column="weight_pre_leader"/>
+       <property name="weightOtherLeader" column="weight_other_leader"/>
+       <property name="weightOtherVis" column="weight_other_vis"/>
+       <property name="type" column="type"/>
+       <property name="gradeType" column="grade_type"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.vo.XysKpiDeptObjVO" table="v_xys_kpi_dept_obj">
+        <id name="objId" type="string" unsaved-value="null">
+            <column name="obj_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+       <property name="personId" column="person_id"/>
+       <property name="planId" column="plan_id"/>
+       <property name="score" column="score"/>
+       <property name="keyStatus" column="key_status"/>
+       <property name="deptId" column="dept_id"/>
+       <property name="gradeStatus" column="grade_status"/>
+       <property name="postId" column="A001715"/>
+       <property name="weightLeader" column="weight_leader"/>
+       <property name="weightVis" column="weight_vis"/>
+       <property name="weightLower" column="weight_lower"/>
+       <property name="weightPreLeader" column="weight_pre_leader"/>
+       <property name="weightOtherLeader" column="weight_other_leader"/>
+       <property name="weightOtherVis" column="weight_other_vis"/>
+       <property name="type" column="type"/>
+       <property name="gradeType" column="grade_type"/>
+    </class>
+    
+     <class name="com.hr319wg.xys.eva.pojo.vo.Xys360ObjVO" table="v_xys_360_obj">
+        <id name="objId" type="string" unsaved-value="null">
+            <column name="obj_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+       <property name="personId" column="person_id"/>
+       <property name="planId" column="plan_id"/>
+       <property name="score" column="score"/>
+       <property name="templateId" column="template_id"/>
+       <property name="gradeStatus" column="grade_status"/>
+       <property name="postId" column="A001715"/>
+       <property name="orgId" column="A001701"/>
+       <property name="deptId" column="A001705"/>
+       <property name="orgTreeId" column="A001728"/>
+       <property name="deptTreeId" column="A001738"/>
+       <property name="weightLeader" column="weight_leader"/>
+       <property name="weightVis" column="weight_vis"/>
+       <property name="weightLower" column="weight_lower"/>
+       <property name="weightPreLeader" column="weight_pre_leader"/>
+       <property name="weightOtherLeader" column="weight_other_leader"/>
+       <property name="weightOtherVis" column="weight_other_vis"/>
+       <property name="type" column="type"/>
+       <property name="gradeType" column="grade_type"/>
+    </class>
+    
+     <class name="com.hr319wg.xys.eva.pojo.bo.XysExportTempBO" table="xys_export_temp">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="objId" column="obj_id"/>
+        <property name="planId" column="plan_id"/>
+        <property name="v1" column="v1"/>
+        <property name="v2" column="v2"/>
+        <property name="v3" column="v3"/>
+        <property name="v4" column="v4"/>
+        <property name="v5" column="v5"/>
+        <property name="v6" column="v6"/>
+        <property name="personId" column="person_id"/>
+    </class>
+    
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysDeptKpiDivBO" table="xys_dept_kpi_div">
+        <id name="divId" type="string" unsaved-value="null">
+            <column name="div_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="planId" column="plan_id"/>
+        <property name="personId" column="person_id"/>
+        <property name="deptKpiScore" column="dept_kpi_score"/>
+        <property name="weight" column="weight"/>
+        <property name="objId" column="obj_id"/>
+    </class>
+    
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysEvaObjBO" table="xys_eva_obj">
+        <id name="objId" type="string" unsaved-value="null">
+            <column name="obj_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="planId" column="plan_id"/>
+        <property name="personId" column="person_id"/>
+        <property name="scoreKpi" column="score_kpi"/>
+        <property name="score360" column="score_360"/>
+        <property name="scoreXspj" column="score_xspj"/>
+        <property name="totalScore" column="total_score"/>
+        <property name="natureSort" column="nature_sort"/>
+        <property name="natureGrade" column="nature_grade"/>
+        <property name="forceSort" column="force_sort"/>
+        <property name="forceGrade" column="force_grade"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysSpreadSetBO" table="xys_spread_set">
+        <id name="setId" type="string" unsaved-value="null">
+            <column name="set_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="planId" column="plan_id"/>
+        <property name="gradeItem" column="grade_item"/>
+        <property name="ctrType" column="ctr_type"/>
+        <property name="ctrCount" column="ctr_count"/>
+        <property name="chgGradeItem" column="chg_grade_item"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysSpreadSetItemBO" table="xys_spread_set_item">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setId" column="set_id"/>
+        <property name="gradeItem" column="grade_item"/>
+        <property name="ctrType" column="ctr_type"/>
+        <property name="ctrCount" column="ctr_count"/>
+        <property name="chgGradeItem" column="chg_grade_item"/>
+    </class>
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysSpreadDeptSetBO" table="xys_spread_dept_set">
+        <id name="setId" type="string" unsaved-value="null">
+            <column name="set_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="planId" column="plan_id"/>
+        <property name="deptId" column="dept_id"/>
+        <property name="gradeItem" column="grade_item"/>
+        <property name="ctrType" column="ctr_type"/>
+        <property name="ctrCount" column="ctr_count"/>
+        <property name="chgGradeItem" column="chg_grade_item"/>
+    </class>
+    
+</hibernate-mapping>

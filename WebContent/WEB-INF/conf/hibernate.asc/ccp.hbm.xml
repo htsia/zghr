@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <class name="com.hr319wg.ccp.pojo.bo.PartyFlowInfoBO" table="CCP_PARTY_FLOW_INFO">
+        <id name="introduceId" type="string" unsaved-value="null">
+            <column name="INTRODUCE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="flowId" column="FLOW_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="stepId" column="STEP_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="relationId" column="RELATION_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="qryId" column="QRY_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="introduceDocId" column="INTRODUCE_DOCID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="sendUnit" column="SEND_UNIT" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="transcateDate" column="TRANSCATE_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="transcatePerson" column="TRANSCATE_PERSON" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="feeStopDate" column="PARTY_STOPDATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="transTime" column="TRANS_TIME"/>
+        <property name="transcateStatus" column="TRANSCATE_STATUS" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="sendByUnit" column="SENDBY_UNIT" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="partyNewUnit" column="PARTY_NEWUNIT" type="com.hr319wg.sys.service.GBKString"/>
+         <property name="partyAddr" column="PARTY_ADDR" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="partyTel" column="PARTY_TEL" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="partyFax" column="PARTY_FAX" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="partyPostalcode" column="PARTY_POSTALCODE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="rebackParty" column="REBACK_PARTY" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.ccp.pojo.bo.PersonInfoBO" table="CCP_PARTY_PERSON_INFO">
+        <id name="flowId" type="string" unsaved-value="null">
+            <column name="FLOW_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="PERSON_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personName" column="PERSON_NAME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personGender" column="PERSON_GENDER" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personBirthday" column="PERSON_BIRTHDAY" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="partyFigure" column="PARTY_FIGURE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="partyUnit" column="PARTY_UNIT" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="leaveDate" column="LEAVE_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="leaveType" column="LEAVE_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="comeDate" column="COME_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="comeType" column="COME_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="transcateType" column="TRANSCATE_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personAge" column="PERSON_AGE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personNation" column="PERSON_NATION" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personTel" column="PERSON_TEL" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personalCode" column="PERSONAL_CODE" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.ccp.pojo.bo.PartyBO" table="PARTY_INFO">
+        <id name="partyId" type="string" unsaved-value="null">
+            <column name="PARTYID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="treeId"	   column="D001003" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="partyName"	   column="D001001" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="partyType"	   column="D001005" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="partyEstablishDate"	   column="D001010" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="partyCancelDate"	   column="D001015" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="superId"     column="D001002" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="partyMember"     column="D001020" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="memberType"     column="D001030" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="partyCode"    column="D001025" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="partySort"    column="D001715" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.ccp.pojo.bo.RelationBO" table="CCP_DATA_RELATION">
+        <id name="relationId" type="string" unsaved-value="null">
+            <column name="RELATIONID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="origTable"	   column="ORIGTABLE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="origItem"	   column="ORIGITEM" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="destTable"	   column="DESTTABLE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="destItem"	   column="DESTITEM" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="linkType"	   column="LINKTYPE" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+</hibernate-mapping>

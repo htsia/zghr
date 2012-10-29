@@ -1,0 +1,5 @@
+增加线面内容
+
+<definition name="/eva/ShowSelfJobDetailAduit.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/ShowSelfJobDetailAduit.jsp" />
+</definition>

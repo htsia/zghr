@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="emp_blackDeleteDAO" class="com.hr319wg.emp.dao.EmpBlackDeleteDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="emp_blackDAO" class="com.hr319wg.emp.dao.EmpBlackSheetDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="emp_persontool" class="com.hr319wg.emp.util.PersonTool">
+        <property name="activepageapi" ref="sys_activePageApi"/>
+    </bean>
+
+    <bean id="emp_D2AnaUCC" class="com.hr319wg.emp.ucc.impl.D2AnaUCC">
+        <property name="anaservice" ref="emp_D2AnaService"/>
+        <property name="api" ref="sys_activePageApi"/>
+        <property name="queryapi" ref="qry_queryApi"/>
+    </bean>
+    
+    <bean id="emp_D2AnaService" class="com.hr319wg.emp.service.D2AnaService">
+        <property name="anakdao" ref="emp_D2AnaDAO"/>
+    </bean>
+
+    <bean id="emp_D2AnaDAO" class="com.hr319wg.emp.dao.D2AnaDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emp_typeChangeConfigDAO" class="com.hr319wg.emp.dao.EmpTypeChangeConfigDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+
+    <bean id="emp_TypeChangeDAO" class="com.hr319wg.emp.dao.EmpTypeChangeDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emp_ReduceDAO" class="com.hr319wg.emp.dao.EmpReduceDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emp_SurveyDAO" class="com.hr319wg.emp.dao.EmpSurveyDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emp_SurveyService" class="com.hr319wg.emp.service.EmpSurveyService">
+        <property name="surveydao" ref="emp_SurveyDAO"/>
+    </bean>
+    <bean id="emp_SurveyUCC" class="com.hr319wg.emp.ucc.impl.EmpSurveyUCC">
+        <property name="surveyservice" ref="emp_SurveyService"/>
+        <property name="api" ref="sys_activePageApi"/>
+    </bean>
+
+    <bean id="emp_engageDAO" class="com.hr319wg.emp.dao.EmpEngageDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emp_InfomodiDAO" class="com.hr319wg.emp.dao.EmpInfoDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="emp_CadresDAO" class="com.hr319wg.emp.dao.CadresImportDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emp_WorkDAO" class="com.hr319wg.emp.dao.WorkImportDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="emp_LetterDAO" class="com.hr319wg.emp.dao.LetterDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emp_LetterService" class="com.hr319wg.emp.service.LetterService">
+        <property name="letterdao" ref="emp_LetterDAO"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="emp_LetterUCC" class="com.hr319wg.emp.ucc.impl.LetterUCC">
+        <property name="letterservice" ref="emp_LetterService"/>
+    </bean>
+
+    <bean id="emp_importDAO" class="com.hr319wg.emp.dao.EmpImportSetDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emp_importService" class="com.hr319wg.emp.service.EmpImportSetService">
+        <property name="empimportsetdao" ref="emp_importDAO"/>
+    </bean>
+    <bean id="emp_importUCC" class="com.hr319wg.emp.ucc.impl.EmpImportSetUCC">
+        <property name="empimportservice" ref="emp_importService"></property>
+    </bean>
+
+    <bean id="emp_addressDAO" class="com.hr319wg.emp.dao.AddressDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emp_addressService" class="com.hr319wg.emp.service.AddressService">
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="addressdao" ref="emp_addressDAO"/>
+    </bean>
+    <bean id="emp_addressUCC" class="com.hr319wg.emp.ucc.impl.AddressUCC">
+        <property name="addservice" ref="emp_addressService"></property>
+    </bean>
+
+    <bean id="emp_addressbookDAO" class="com.hr319wg.emp.dao.AddressBookDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="emp_addressbookService" class="com.hr319wg.emp.service.AddressBookService">
+        <property name="addressbookdao" ref="emp_addressbookDAO"/>
+    </bean>
+    <bean id="emp_addressbookUCC" class="com.hr319wg.emp.ucc.impl.AddressBookUCC">
+        <property name="addbookservice" ref="emp_addressbookService"></property>
+    </bean>
+    
+    <bean id="emp_personDAO" class="com.hr319wg.emp.dao.PersonDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"></property>
+    </bean>
+    <bean id="emp_conPostDAO" class="com.hr319wg.emp.dao.ConPostDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"></property>
+    </bean>
+
+    <bean id="emp_personService" class="com.hr319wg.emp.service.PersonService">
+        <property name="conpostdao" ref="emp_conPostDAO"></property>
+        <property name="persondao" ref="emp_personDAO"></property>
+        <property name="cadresdao" ref="emp_CadresDAO"></property>
+        <property name="workdao" ref="emp_WorkDAO"></property>
+        <property name="api" ref="sys_activePageApi"></property>
+        <property name="personcountdao" ref="ins_personCountDAO"></property>
+        <property name="empinfodao" ref="emp_InfomodiDAO"></property>
+        <property name="empengagedao" ref="emp_engageDAO"></property>
+        <property name="empreducedao" ref="emp_ReduceDAO"></property>
+        <property name="emptypechangdao" ref="emp_TypeChangeDAO"></property>
+        <property name="changeinfodao" ref="emp_changeInfoDAO"></property>
+        <property name="typeconfigdao" ref="emp_typeChangeConfigDAO"></property>
+        <property name="empblackdao" ref="emp_blackDAO"></property>
+        <property name="empblackdeletedao" ref="emp_blackDeleteDAO"></property>
+        <property name="orgenterdao" ref="orgenterdao"></property>
+    </bean>
+
+    <bean id="emp_personUCCImpl" class="com.hr319wg.emp.ucc.impl.PersonUCC">
+        <property name="personservice" ref="emp_personService"></property>
+        <property name="activepageservice" ref="sys_activePageService"></property>
+        <property name="sysapi" ref="sys_SysAPI"></property>
+        <property name="pmsapi" ref="user_pmsAPI"></property>
+        <property name="queryapi" ref="qry_queryApi"></property>
+        <property name="wageapi" ref="wage_api"></property>
+        <property name="attachmentservice" ref="common_attachmentService"></property>
+        <property name="userservice" ref="user_userManageService"></property>
+        <property name="wagesetucc" ref="wage_SetUccImpl"></property>
+        <property name="postservice" ref="post_postService"></property>
+        <property name="persontool" ref="emp_persontool"></property>
+        <property name="wfservice" ref="sys_wfservice"></property>
+    </bean>
+
+    <bean id="emp_personUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.emp.ucc.IPersonUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="emp_personUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <bean id="emp_qryPersonListDAO" class="com.hr319wg.emp.dao.QueryPersonListDAO">
+        <property name="jdbctemplate" ref="jdbcTemplate"></property>
+    </bean>
+    <bean id="emp_qryPersonListService" class="com.hr319wg.emp.service.QueryPersonListService">
+        <property name="qrypersonlistdao" ref="emp_qryPersonListDAO"></property>
+    </bean>
+    <bean id="emp_qryPersonListUCCImpl" class="com.hr319wg.emp.ucc.impl.QueryPersonListUCCImpl">
+        <property name="qrypersonlistservice" ref="emp_qryPersonListService"></property>
+        <property name="orgservice" ref="org_orgService"></property>
+        <property name="queryapi" ref="qry_queryApi"></property>
+        <property name="namelistucc" ref="qry_nameUCCImpl"></property>
+    </bean>
+    <bean id="emp_qryPersonListUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.emp.ucc.IQueryPersonListUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="emp_qryPersonListUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+    <bean id="emp_backUpDAO" class="com.hr319wg.emp.dao.BackUpDAO">
+        <property name="jdbctemplate" ref="jdbcTemplate"></property>
+    </bean>
+    <bean id="emp_backUpService" class="com.hr319wg.emp.service.BackUpService">
+        <property name="backupdao" ref="emp_backUpDAO"></property>
+    </bean>
+    <bean id="emp_backUpUCCImpl" class="com.hr319wg.emp.ucc.impl.BackUpUCCImpl">
+        <property name="backupservice" ref="emp_backUpService"></property>
+    </bean>
+    <bean id="emp_backUpUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.emp.ucc.IBackUpUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="emp_backUpUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+     <bean id="emp_taskUCCImpl" class="com.hr319wg.emp.ucc.impl.TaskUCC">
+        <property name="activepageapi" ref="sys_activePageApi"></property>
+        <property name="persontool" ref="emp_persontool"></property>
+    </bean>
+    <bean id="emp_taskUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.emp.ucc.ITaskUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="emp_taskUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+     <bean id="emp_datauploadImpl" class="com.hr319wg.emp.ucc.impl.DataUploadImpl">
+        <property name="sysapi" ref="sys_SysAPI"></property>
+        <property name="activepageapi" ref="sys_activePageApi"></property>
+         <property name="personucc" ref="emp_personUCCImpl"></property>
+    </bean>
+    
+    <bean id="emp_datauploadUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.emp.ucc.IDataUploadUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="emp_datauploadImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+</beans>

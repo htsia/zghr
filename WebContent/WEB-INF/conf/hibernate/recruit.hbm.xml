@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.hr319wg.recruit.pojo.bo.RecuA843BO" table="recu_A843">
+         <id name="subId" type="string" unsaved-value="null">
+             <column name="sub_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="person_id" />
+         <property name="a843701"	       column="A843701" />
+         <property name="a843702"	       column="A843702"/>
+         <property name="a843703"	       column="A843703"/>
+         <property name="a843704"	       column="A843704"/>
+     </class>
+     <class name="com.hr319wg.recruit.pojo.bo.RecuA837BO" table="recu_A837">
+         <id name="subId" type="string" unsaved-value="null">
+             <column name="sub_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="person_id" />
+         <property name="a837700"	       column="A837700" />
+         <property name="a837701"	       column="A837701"/>
+         <property name="a837702"	       column="A837702"/>
+         <property name="a837704"	       column="A837704"/>
+     </class>
+     <class name="com.hr319wg.recruit.pojo.bo.RecuA838BO" table="recu_A838">
+         <id name="subId" type="string" unsaved-value="null">
+             <column name="sub_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="id" />
+         <property name="a838701"	       column="A838701" />
+         <property name="a838702"	       column="A838702"/>
+         <property name="a838703"	       column="A838703"/>
+         <property name="a838704"	       column="A838704"/>
+     </class>
+     <class name="com.hr319wg.recruit.pojo.bo.RecuA836BO" table="recu_A836">
+         <id name="subId" type="string" unsaved-value="null">
+             <column name="sub_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="id" />
+         <property name="a836700"	       column="A836700" />
+         <property name="a836701"	       column="A836701"/>
+         <property name="a836702"	       column="A836702"/>
+         <property name="a836703"	       column="A836703"/>
+         <property name="a836704"	       column="A836704"/>
+     </class>
+	<class name="com.hr319wg.recruit.pojo.bo.RecuPersonMartiralBO" table="recu_person_material">
+         <id name="materId" type="string" unsaved-value="null">
+             <column name="mater_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personId"	       column="person_id" />
+         <property name="title"	       column="title" />
+         <property name="attId"	       column="att_id"/>
+         <property name="type"	       column="type"/>
+     </class>
+    
+    <class name="com.hr319wg.recruit.pojo.bo.recuPersonBO" table="recu_a001">
+         <id name="id" type="string" unsaved-value="null">
+             <column name="ID" sql-type="varchar(32)"/>
+             <generator class="assigned"/>
+         </id>
+         <property name="a001001"	       column="a001001" />
+         <property name="a001007"	       column="a001007"/>
+         <property name="a001011"	       column="a001011"/>
+         <property name="a001021"	       column="a001021"/>
+         <property name="a001077"	       column="a001077"/>
+         <property name="a001780"	       column="a001780"/>
+         <property name="password"	       column="password"/>
+         <property name="status"	       column="status"/>
+         <property name="a001009"	       column="a001009"/>
+         <property name="a001027"	       column="a001027"/>
+         <property name="a001041"	       column="a001041"/>
+         <property name="a001785"	       column="a001785"/>
+         <property name="a001071"	       column="a001071"/>
+         <property name="a001710"	       column="a001710"/>
+         <property name="a001711"	       column="a001711"/>
+         <property name="a001783"	       column="a001783"/>
+         <property name="recuMailId"	       column="recu_mail_id"/>
+         <property name="loginName"	       column="loginName"/>
+     </class>
+
+    <class name="com.hr319wg.recruit.pojo.bo.recuPersonAddressBO" table="recu_a080">
+         <id name="subid" type="string" unsaved-value="null">
+             <column name="sub_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="pid"	       column="id" />
+         <property name="a080000"	       column="a080000" />
+         <property name="a080710"	       column="a080710"/>
+         <property name="a080725"	       column="a080725"/>
+         <property name="a080720"	       column="a080720"/>
+         <property name="a080721"	       column="a080721"/>
+         <property name="a080735"	       column="a080735"/>
+         <property name="a080722"	       column="a080722"/>
+         <property name="a080726"	       column="a080726"/>
+         <property name="a080727"	       column="a080727"/>
+         <property name="a080728"	       column="a080728"/>
+     </class>
+
+    <class name="com.hr319wg.recruit.pojo.bo.recuPersonEducationBO" table="recu_a004">
+         <id name="subid" type="string" unsaved-value="null">
+             <column name="sub_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="pid"	       column="id" />
+         <property name="a004000"	       column="a004000" />
+         <property name="a004005"	       column="a004005"/>
+         <property name="a004015"	       column="a004015"/>
+         <property name="a004030"	       column="a004030"/>
+         <property name="a004035"	       column="a004035"/>
+         <property name="a004010"	       column="A004010"/>
+         <property name="a004012"	       column="A004012"/>
+     </class>
+     <class name="com.hr319wg.recruit.pojo.bo.outterRecruitWorkInfoBo" table="recu_a019">
+         <id name="subId" type="string" unsaved-value="null">
+             <column name="sub_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="pid"	       column="id" />
+         <property name="a019000"	       column="a019000" />
+         <property name="a019005"	       column="a019005"/>
+         <property name="a019010"	       column="a019010"/>
+         <property name="a019015"	       column="a019015"/>
+         <property name="a019020"	       column="a019020"/>
+         <property name="a019025"	       column="a019025"/>
+     </class>
+      <class name="com.hr319wg.recruit.pojo.bo.RecuDesireBO" table="RECU_DESIRE">
+         <id name="subId" type="string" unsaved-value="null">
+             <column name="sub_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="ids"	       column="id" />
+         <property name="desireType"	       column="DESIRE_TYPE" />
+         <property name="desireWage"	       column="DESIRE_WAGE"/>
+         <property name="desireCity"	       column="DESIRE_city"/>
+     </class>
+     <class name="com.hr319wg.recruit.pojo.bo.LanguageAbilityBo" table="RECU_A842">
+         <id name="subId" type="string" unsaved-value="null">
+             <column name="sub_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="ids"	       column="id" />
+         <property name="a842701"	       column="a842701" />
+         <property name="a842702"	       column="a842702"/>
+         <property name="a842708"	       column="a842708"/>
+     </class>
+     
+     <class name="com.hr319wg.recruit.pojo.bo.SpecialLetterBO" table="RECU_A010">
+         <id name="subId" type="string" unsaved-value="null">
+             <column name="sub_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="ids"	       column="id" />
+         <property name="a010005"	       column="a010005" />
+         <property name="a010015"	       column="a010015"/>
+         <property name="a010006"	       column="a010006"/>
+         <property name="a010706"	       column="a010706"/>
+     </class>
+    <class name="com.hr319wg.recruit.pojo.bo.recuIvResultBO" table="recu_iv_result">
+         <id name="ivId" type="string" unsaved-value="null">
+             <column name="iv_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="detailId"	       column="detail_id" />
+         <property name="ivDate"	       column="iv_date"/>
+         <property name="ivResult" column="iv_result"/>
+         <property name="ivContent"	       column="iv_content"/>
+         <property name="viewer"	       column="viewer"/>
+         <property name="status"	       column="status"/>
+         <property name="score"	       column="score"/>
+    </class>
+    <class name="com.hr319wg.recruit.pojo.bo.RecuitNoticeBO" table="RECU_NOTICE">
+         <id name="noticeId" type="string" unsaved-value="null">
+             <column name="NOTICE_ID " sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="sender"	       column="SENDER" />
+         <property name="receiver"	       column="RECEIVE"/>
+         <property name="content"	       column="Content"/>
+         <property name="viewed"	       column="Viewed"/>
+         <property name="sendTime"	       column="send_time"/>
+         <property name="postId"	       column="post_id"/>
+    </class>
+     
+	<class name="com.hr319wg.recruit.pojo.bo.outterRecruitBO" table="recu_outter">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_id " sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="postId"	       column="post_id" />
+         <property name="publishDate"	       column="publish_date"/>
+         <property name="publishPerson"	       column="publish_person"/>
+         <property name="planId"	       column="plan_Id"/>
+         <property name="needCount" column="need_count"/>
+         <property name="paperID" column="paperID"/>
+         <property name="interviewPID" column="intervicwID"/>
+         <property name="postType" column="post_type"/>
+         <property name="majorType" column="major_type"/>
+      </class>
+     
+      <class name="com.hr319wg.recruit.pojo.bo.outterRecruitDetailBO" table="recu_outter_detail">
+         <id name="detailId" type="string" unsaved-value="null">
+             <column name="detail_id " sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="itemId"	       column="item_id" />
+         <property name="personId"	       column="person_id"/>
+         <property name="applyDate"	       column="apply_date"/>
+         <property name="status" column="status"/>       
+         <property name="paperID" column="paperid"/>
+         <property name="interviewPID" column="intervicwID"/>
+         <property name="ivResult" column="IV_RESULT"/>
+         <property name="finalResult" column="FINAL_RESULT"/>
+         <property name="testID" column="test_id"/>
+         <property name="testPersonItemid" column="testPerson_Itemid"/>
+         <property name="browflag" column="browflag"/>
+         <property name="ivScore" column="iv_score"/>
+         <property name="finalResultExplain" column="final_result_explain"/>
+         <property name="firstAuditStatus" column="first_audit_status"/>
+     </class>
+    <class name="com.hr319wg.recruit.pojo.bo.innerRecruitBO" table="recu_inner">
+         <id name="itemid" type="string" unsaved-value="null">
+             <column name="item_id " sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="postid"	       column="post_id" />
+         <property name="publishdate"	       column="publish_date"/>
+         <property name="publishperson"	       column="publish_person"/>
+         <property name="planId" column="plan_id" />
+         <property name="needCount" column="need_count"/>
+         <property name="postType" column="post_type"/>
+         <property name="majorType" column="major_type"/>
+     </class>
+
+    <class name="com.hr319wg.recruit.pojo.bo.innerRecruitDetailBO" table="recu_inner_detail">
+         <id name="detailid" type="string" unsaved-value="null">
+             <column name="detail_id " sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="itemid"	       column="item_id" />
+         <property name="pid"	       column="person_id"/>
+         <property name="applyDate"	       column="apply_date"/>
+         <property name="result"	       column="result"/>
+     </class>
+     
+    <class name="com.hr319wg.recruit.pojo.bo.recuPlanBO" table="RECU_PLAN">
+         <id name="planID" type="string" unsaved-value="null">
+             <column name="PLAN_ID" sql-type="varchar2(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="planName"	       column="PLAN_NAME" />
+         <property name="planType"	       column="PLAN_TYPE"/>
+         <property name="startDate"	       column="START_DATE"/>
+         <property name="endDate"	       column="END_DATE"/>
+         <property name="budget"	       column="BUDGET" />
+         <property name="description"	       column="DESCRIPTION"/>
+         <property name="planStatus"	       column="PLAN_STATUS"/>
+         <property name="createID"	       column="CREATE_ID"/>
+         <property name="createOrg"	       column="CREATE_ORG" />
+         <property name="createDate"	       column="CREATE_DATE"/>
+         <property name="approveID"	       column="APPROVE_ID"/>
+         <property name="approveDate"	       column="APPROVE_DATE"/>
+         <property name="approveResult"	       column="APPROVE_RESULT"/>
+         <property name="approveReason"	       column="APPROVE_REASON"/>
+         <property name="planMethod"	       column="PLAN_METHOD "/>
+         <property name="midAudResult1"	   column="MIDAD_RESULT1"/>
+        <property name="midAudContent1"	   column="MIDAD_CONTENT1"/>
+        <property name="midAudOper1"	   column="MIDAD_OPER1"/>
+        <property name="midAudDate1"	   column="MIDAD_DATE1"/>
+        <property name="midAudResult2"	   column="MIDAD_RESULT2"/>
+        <property name="midAudContent2"	   column="MIDAD_CONTENT2"/>
+        <property name="midAudOper2"	   column="MIDAD_OPER2"/>
+        <property name="midAudDate2"	   column="MIDAD_DATE2"/>
+        <property name="midAudResult3"	   column="MIDAD_RESULT3"/>
+        <property name="midAudContent3"	   column="MIDAD_CONTENT3"/>
+        <property name="midAudOper3"	   column="MIDAD_OPER3"/>
+        <property name="midAudDate3"	   column="MIDAD_DATE3"/>
+        <property name="postMode"	   column="post_mode"/>
+        <property name="haveTest"	   column="have_test"/>
+        <property name="maxRecuPost"	   column="max_recu_post"/>
+     </class>
+     
+     <class name="com.hr319wg.recruit.pojo.bo.recuNeedCollectBO" table="RECU_NEED_COLLECT">
+         <id name="itemId" type="string" unsaved-value="null">
+             <column name="item_ID " sql-type="varchar(50)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="postId"	     column="post_ID" />
+         <property name="publishDate"	  column="publish_date" />
+         <property name="publishPersonId"	column="publish_person" />
+         <property name="needCount"	column="need_count" />
+         <property name="importPlan"	column="import_plan" />
+     </class>
+     <!-- 设置通知面试邮件格式 (崔海健)-->
+     <class name="com.hr319wg.recruit.pojo.bo.InterViewEmailBO" table="RECU_IVEmail">
+         <id name="icOrg" type="string" unsaved-value="null">
+             <column name="IV_ORG " sql-type="varchar(32)"/>
+             <generator class="assigned"/>
+         </id>
+         <property name="ivContent"	       column="IV_CONTENT" />
+     </class>
+     <!-- 设置通知报道邮件格式 (崔海健)-->
+     <class name="com.hr319wg.recruit.pojo.bo.SignInEmailBO" table="RECU_SignInEmail">
+         <id name="sgOrg" type="string" unsaved-value="null">
+             <column name="SG_ORG " sql-type="varchar(32)"/>
+             <generator class="assigned"/>
+         </id>
+         <property name="sgContent"	       column="SG_CONTENT" />
+     </class>
+     
+     <class name="com.hr319wg.recruit.pojo.bo.RefuseEmailBO" table="recu_refuse_email">
+         <id name="refuseOrg" type="string" unsaved-value="null">
+             <column name="refuse_org" sql-type="varchar(32)"/>
+             <generator class="assigned"/>
+         </id>
+         <property name="refuseContent"	       column="refuse_content" />
+     </class>
+
+     
+          <class name="com.hr319wg.recruit.pojo.bo.channelRecruitBO" table="RECU_CHANNEL">
+         <id name="chanID" type="string" unsaved-value="null">
+             <column name="CHAN_ID " sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+        <property name="chanName"	       column="CHAN_NAME"/>
+         <property name="chanAdde"	       column="CHAN_ADDE"/>
+         <property name="chanDesc"	       column="CHAN_DESC" />
+         <property name="chanPer1"	       column="CHAN_PER1"/>
+         <property name="chanTel1"	       column="CHAN_TEL1"/>
+         <property name="chanMobile1"	       column="CHAN_MOBILE1" />
+         <property name="chanPer2"	       column="CHAN_PER2"/>
+         <property name="chanTel2"	       column="CHAN_TEL2"/>
+         <property name="chanMobile2"	       column="CHAN_MOBILE2"/>
+         <property name="orgID"	       column="ORG_ID"/>
+     </class>
+
+    <class name="com.hr319wg.recruit.pojo.bo.materialRecruitBO" table="RECU_MATERIAL">
+         <id name="materiallID" type="string" unsaved-value="null">
+             <column name="MATERIALL_ID" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="materiallName"	       column="MATERIALL_NAME"/>
+         <property name="description"	       column="DESCRIPTION"/>
+         <property name="createOrg"	       column="Create_ORG" />
+         <property name="orgID"	       column="ORG_ID"/>
+         <property name="planAtt"	       column="planAtt"/>
+     </class>
+
+    <class name="com.hr319wg.recruit.pojo.bo.ResumeFunctionBO" table="SYS_RESUME_FUNCTION">
+        <id name="operateId" type="string" unsaved-value="null">
+            <column name="OPERATE_ID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="operateName" column="OPERATE_NAME"/>
+        <property name="url" column="MENU_URL"/>
+        <property name="treeId" column="TREEID"/>
+        <property name="operateType" column="OPERATE_TYPE"/>
+        <property name="superId" column="SUPERID"/>
+        <property name="moduleID" column="MODULEID"/>
+        <property name="isUse" column="is_use"/>
+        <property name="haveReport" column="have_report"/>
+        <property name="haveQuery" column="have_query"/>
+        <property name="webIcon" column="WEB_ICON"/>
+    </class>
+    
+    <class name="com.hr319wg.recruit.pojo.bo.RecuResumeEmailBO" table="recu_resume_mail">
+        <id name="recuMailId" type="string" unsaved-value="null">
+            <column name="recu_mail_id" sql-type="varchar(50)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="orgId" column="org_id"/>
+        <property name="sender" column="sender"/>
+        <property name="sendDate" column="send_date"/>
+        <property name="isRead" column="is_read"/>
+        <property name="content" column="content"/>
+    </class>
+    <class name="com.hr319wg.recruit.pojo.bo.RecuImportTemplateBO" table="recu_import_template">
+        <id name="templateId" type="string" unsaved-value="null">
+            <column name="template_id" sql-type="varchar(50)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="templateName" column="template_name"/>
+        <property name="isUse" column="is_use"/>
+    </class>
+    <class name="com.hr319wg.recruit.pojo.bo.RecuImportTempItemBO" table="recu_import_temp_item">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(50)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="templateId" column="template_id"/>
+        <property name="setId" column="set_id"/>
+        <property name="fieldId" column="field_id"/>
+        <property name="tagBegin" column="tag_begin"/>
+        <property name="tagEnd" column="tag_end"/>
+    </class>
+    <class name="com.hr319wg.recruit.pojo.bo.RecuOrgEmailBO" table="recu_org_email">
+    	<id name="orgId" type="string" unsaved-value="null">
+            <column name="orgId" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="pop3" column="POP3"/>
+        <property name="userName" column="userName"/>
+        <property name="password" column="password"/>
+    </class>
+</hibernate-mapping>

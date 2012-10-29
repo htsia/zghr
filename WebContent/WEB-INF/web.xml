@@ -1,0 +1,342 @@
+<?xml version="1.0"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+    <listener>
+        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.apache.axis.transport.http.AxisHTTPSessionListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>
+            /WEB-INF/tiles-faces-config.xml,
+            /WEB-INF/conf/jsf/chk-faces-config.xml,
+            /WEB-INF/conf/jsf/ccp-faces-config.xml,
+            /WEB-INF/conf/jsf/cont-faces-config.xml,
+            /WEB-INF/conf/jsf/common-faces-config.xml,
+            /WEB-INF/conf/jsf/doc-faces-config.xml,
+            /WEB-INF/conf/jsf/emp-faces-config.xml,
+            /WEB-INF/conf/jsf/empBusi-faces-config.xml,            
+            /WEB-INF/conf/jsf/insurace-faces-config.xml,
+            /WEB-INF/conf/jsf/eva-faces-config.xml,
+            /WEB-INF/conf/jsf/org-faces-config.xml,
+            /WEB-INF/conf/jsf/orgBusi-faces-config.xml,
+            /WEB-INF/conf/jsf/user-faces-config.xml,
+            /WEB-INF/conf/jsf/post-faces-config.xml,
+            /WEB-INF/conf/jsf/qry-faces-config.xml,
+            /WEB-INF/conf/jsf/rpt-faces-config.xml,
+            /WEB-INF/conf/jsf/run-faces-config.xml,
+            /WEB-INF/conf/jsf/self-faces-config.xml,
+            /WEB-INF/conf/jsf/sys-faces-config.xml,
+            /WEB-INF/conf/jsf/wage-faces-config.xml,
+            /WEB-INF/conf/jsf/rule-faces-config.xml,
+            /WEB-INF/conf/jsf/train-faces-config.xml,
+            /WEB-INF/conf/jsf/attence-faces-config.xml,
+            /WEB-INF/conf/jsf/eLearn-faces-config.xml,
+            /WEB-INF/conf/jsf/recruit-faces-config.xml,
+            /WEB-INF/conf/jsf/wageBusi-faces-config.xml,
+            /WEB-INF/conf/jsf/lead-faces-config.xml,
+            /WEB-INF/conf/jsf/oa-faces-config.xml,
+            /WEB-INF/conf/jsf/crm-faces-config.xml,
+            /WEB-INF/conf/jsf/laborIns-faces-config.xml,
+            /WEB-INF/conf/jsf/dataexchange-faces-config.xml,
+            /WEB-INF/conf/jsf/communicate-faces-config.xml ,
+            /WEB-INF/conf/jsf/coalsafe-faces-config.xml,
+            /WEB-INF/conf/jsf/college-faces-config.xml,
+            /WEB-INF/conf/jsf/title-faces-config.xml,
+            /WEB-INF/conf/jsf/custom-faces-config.xml,
+            /WEB-INF/conf/jsf/xys-faces-config.xml
+        </param-value>
+        <description>Comma separated list of URIs of (additional) faces config files.
+            (e.g. /WEB-INF/my-config.xml)
+            See JSF 1.0 PRD2, 10.3.2</description>
+    </context-param>
+
+   <context-param>
+        <param-name>weblogic.httpd.inputCharset./*</param-name>
+        <param-value>GBK</param-value>
+    </context-param>
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>/WEB-INF/classes/log4j.properties</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>tiles-definitions</param-name>
+        <param-value>
+            /WEB-INF/conf/jsf/common-tiles.xml,
+            /WEB-INF/conf/jsf/chk-tiles.xml,
+            /WEB-INF/conf/jsf/ccp-tiles.xml,
+            /WEB-INF/conf/jsf/cont-tiles.xml,
+            /WEB-INF/conf/jsf/doc-tiles.xml,
+            /WEB-INF/conf/jsf/emp-tiles.xml,
+            /WEB-INF/conf/jsf/empBusi-tiles.xml,            
+            /WEB-INF/conf/jsf/insurace-tiles.xml,
+            /WEB-INF/conf/jsf/eva-tiles.xml,
+            /WEB-INF/conf/jsf/org-tiles.xml,
+            /WEB-INF/conf/jsf/orgBusi-tiles.xml,
+            /WEB-INF/conf/jsf/user-tiles.xml,
+            /WEB-INF/conf/jsf/post-tiles.xml,
+            /WEB-INF/conf/jsf/rpt-tiles.xml,
+            /WEB-INF/conf/jsf/qry-tiles.xml,
+            /WEB-INF/conf/jsf/run-tiles.xml,
+            /WEB-INF/conf/jsf/rule-tiles.xml,
+            /WEB-INF/conf/jsf/self-tiles.xml,
+            /WEB-INF/conf/jsf/sys-tiles.xml,
+            /WEB-INF/conf/jsf/wage-tiles.xml,
+            /WEB-INF/conf/jsf/train-tiles.xml,
+            /WEB-INF/conf/jsf/attence-tiles.xml,
+            /WEB-INF/conf/jsf/eLearn-tiles.xml,
+            /WEB-INF/conf/jsf/lead-tiles.xml,
+            /WEB-INF/conf/jsf/recruit-tiles.xml,
+            /WEB-INF/conf/jsf/wageBusi-tiles.xml,
+            /WEB-INF/conf/jsf/MyProject-config.xml,
+            /WEB-INF/conf/jsf/oa-tiles.xml,
+            /WEB-INF/conf/jsf/crm-tiles.xml,
+            /WEB-INF/conf/jsf/laborIns-tiles.xml,
+            /WEB-INF/conf/jsf/dataexchange-tiles.xml,
+            /WEB-INF/conf/jsf/portalLogin-tiles.xml,
+            /WEB-INF/conf/jsf/communicate-tiles.xml,
+            /WEB-INF/conf/jsf/coalsafe-tiles.xml,
+            /WEB-INF/conf/jsf/college-tiles.xml,
+            /WEB-INF/conf/jsf/title-tiles.xml,
+            /WEB-INF/conf/jsf/custom-tiles.xml,
+            /WEB-INF/conf/jsf/xys-tiles.xml
+        </param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.apache.myfaces.ALLOW_JAVASCRIPT</param-name>
+        <param-value>true</param-value>
+        <description>This parameter tells MyFaces if javascript code should be allowed in the
+            rendered HTML output.
+            If javascript is allowed, command_link anchors will have javascript code
+            that submits the corresponding form.
+            If javascript is not allowed, the state saving info and nested parameters
+            will be added as url parameters.
+            Default: "true"</description>
+    </context-param>
+
+    <context-param>
+        <param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
+        <param-value>false</param-value>
+        <description>This parameter tells MyFaces if javascript code should be allowed in the
+            rendered HTML output.
+            If javascript is allowed, command_link anchors will have javascript code
+            that submits the corresponding form.
+            If javascript is not allowed, the state saving info and nested parameters
+            will be added as url parameters.
+            Default: "false"
+
+            Setting this param to true should be combined with STATE_SAVING_METHOD "server" for
+            best results.
+
+            This is an EXPERIMENTAL feature. You also have to enable the detector filter/filter mapping below to get
+            JavaScript detection working.</description>
+    </context-param>
+
+    <context-param>
+        <param-name>org.apache.myfaces.PRETTY_HTML</param-name>
+        <param-value>true</param-value>
+        <description>If true, rendered HTML code will be formatted, so that it is "human readable".
+            i.e. additional line separators and whitespace will be written, that do not
+            influence the HTML code.
+            Default: "true"</description>
+    </context-param>
+
+    <context-param>
+        <param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
+        <param-value>true</param-value>
+        <description>If true, a javascript function will be rendered that is able to restore the
+            former vertical scroll on every request. Convenient feature if you have pages
+            with long lists and you do not want the browser page to always jump to the top
+            if you trigger a link or button action that stays on the same page.
+            Default: "false"</description>
+    </context-param>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/conf/spring/*.xml
+        </param-value>
+    </context-param>
+    <filter>
+        <filter-name>logincheckFilter</filter-name>
+        <filter-class>com.hr319wg.user.util.logincheckfilter</filter-class>
+        <init-param>
+            <param-name>unfilterPath</param-name>
+            <param-value>
+                    /pages/cache,/services,/pages/include,/file/bulletin,/file/news,/pages/uum,/pages/custom/attence/attassist</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>logincheckFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>extensionsFilter</filter-name>
+        <filter-class>org.apache.myfaces.component.html.util.ExtensionsFilter</filter-class>
+        <init-param>
+            <param-name>uploadMaxFileSize</param-name>
+            <param-value>100m</param-value>
+            <description>Set the size limit for uploaded files.
+                Format: 10 - 10 bytes
+                10k - 10 KB
+                10m - 10 MB
+                1g - 1 GB</description>
+        </init-param>
+        <init-param>
+            <param-name>uploadThresholdSize</param-name>
+            <param-value>100k</param-value>
+            <description>Set the threshold size - files
+                below this limit are stored in memory, files above
+                this limit are stored on disk.
+
+                Format: 10 - 10 bytes
+                10k - 10 KB
+                10m - 10 MB
+                1g - 1 GB</description>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>extensionsFilter</filter-name>
+        <url-pattern>*.jsf</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>extensionsFilter</filter-name>
+        <url-pattern>/faces/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+      <servlet-name>AxisServlet</servlet-name>
+      <display-name>Apache-Axis Servlet</display-name>
+      <servlet-class>
+          org.apache.axis.transport.http.AxisServlet
+      </servlet-class>
+    </servlet>
+
+    <servlet>
+      <servlet-name>AdminServlet</servlet-name>
+      <display-name>Axis Admin Servlet</display-name>
+      <servlet-class>
+          org.apache.axis.transport.http.AdminServlet
+      </servlet-class>
+      <load-on-startup>100</load-on-startup>
+    </servlet>
+
+    <servlet>
+      <servlet-name>SOAPMonitorService</servlet-name>
+      <display-name>SOAPMonitorService</display-name>
+      <servlet-class>
+          org.apache.axis.monitor.SOAPMonitorService
+      </servlet-class>
+      <init-param>
+        <param-name>SOAPMonitorPort</param-name>
+        <param-value>5001</param-value>
+      </init-param>
+      <load-on-startup>100</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>AxisServlet</servlet-name>
+      <url-pattern>/servlet/AxisServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>AxisServlet</servlet-name>
+      <url-pattern>*.jws</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>AxisServlet</servlet-name>
+      <url-pattern>/services/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>SOAPMonitorService</servlet-name>
+      <url-pattern>/SOAPMonitor</url-pattern>
+    </servlet-mapping>
+   
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+
+    <!-- LMS -->
+    <servlet>
+        <servlet-name>NewHRLMSServlet</servlet-name>
+        <servlet-class>com.hr319wg.scorm.NewHRServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+		<servlet-name>NewHRLMSServlet</servlet-name>
+		<url-pattern>/lmscmi</url-pattern>
+	</servlet-mapping>
+
+    <mime-mapping>
+        <extension>xls</extension>
+        <mime-type>application/vnd.ms-excel</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>csv</extension>
+        <mime-type>application/vnd.ms-excel</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>mht</extension>
+        <mime-type>application/vnd.ms-word</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>doc</extension>
+        <mime-type>application/vnd.ms-word</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+            <extension>rtf</extension>
+            <mime-type>application/vnd.ms-word</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+            <extension>ppt</extension>
+            <mime-type>application/vnd.ms-ppt</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+            <extension>pdf</extension>
+            <mime-type>application/vnd.ms-pdf</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>wsdl</extension>
+         <mime-type>text/xml</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>xsd</extension>
+        <mime-type>text/xml</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>rar</extension>
+        <mime-type>application/rar</mime-type>
+    </mime-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

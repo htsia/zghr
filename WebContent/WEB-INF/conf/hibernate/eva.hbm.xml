@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.hr319wg.eva.pojo.bo.EvaTaskProcessBO" table="eva_task_process">
+		<id name="processId" type="string" unsaved-value="null">
+			<column name="process_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="itemId" column="item_id" />
+		<property name="reportDate" column="reportDate" />
+		<property name="process" column="process" />
+		<property name="description" column="description" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaTaskEstimateLogBO" table="eva_task_estimate_log">
+		<id name="logId" type="string" unsaved-value="null">
+			<column name="log_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="masterId" column="master_id" />
+		<property name="operId" column="oper_ID" />
+		<property name="action" column="action" />
+		<property name="actionDate" column="action_date" />
+		<property name="content" column="content" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaTaskMasterBO" table="EVA_TASK_MASTER">
+		<id name="masterId" type="string" unsaved-value="null">
+			<column name="master_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="planId" column="PLAN_ID" />
+		<property name="personId" column="PERSON_ID" />
+		<property name="score" column="score" />
+		<property name="status" column="status" />
+		<property name="gradeItem" column="grade_itemId" />
+		<property name="sumScore" column="sum_score" />
+		<property name="sumSort" column="sum_sort" />
+		<property name="sumGrade" column="sum_grade" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaTaskEstimateBO" table="EVA_TASK_ESTIMATE">
+		<id name="itemId" type="string" unsaved-value="null">
+			<column name="item_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="masterId" column="master_id" />
+		<property name="score" column="score" />
+		<property name="selfScore" column="self_score" />
+		<property name="seq" column="seq" />
+		<property name="taskContent" column="task_content" />
+		<property name="taskPlan" column="task_plan" />
+		<property name="taskStandard" column="task_stadard" />
+		<property name="taskDate" column="task_date" />
+		<property name="purview" column="purview" />
+		<property name="option" column="lead_option" />
+		<property name="planBeginDate" column="plan_begin_date" />
+		<property name="planEndDate" column="plan_end_date" />
+		<property name="actBeginDate" column="act_begin_date" />
+		<property name="actEndDate" column="ant_end_date" />
+		<property name="level" column="mask_level" />
+		<property name="venture" column="venture" />
+		<property name="process" column="process" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaLevelPurview" table="Evalevel_purview">
+		<id name="levelId" type="string" unsaved-value="null">
+			<column name="level_id " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="objectId" column="object_id" />
+		<property name="masterType" column="master_type" />
+		<property name="purview" column="purview" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaDefaultLevelBO" table="eva_default_level_set">
+		<id name="levelId" type="string" unsaved-value="null">
+			<column name="level_id " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="planId" column="plan_id" />
+		<property name="masterType" column="master_type" />
+		<property name="purview" column="purview" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaScoreBO" table="EVA_SCORES">
+		<id name="scoreID" type="string" unsaved-value="null">
+			<column name="SCORE_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="objectID" column="OBJECT_ID" />
+		<property name="masterID" column="MASTER_ID" />
+		<property name="itemID" column="ITEM_ID" />
+		<property name="score" column="score" />
+		<property name="calascore" column="calcscore" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.EvaMasterBO" table="eva_masters">
+		<id name="masterID" type="string" unsaved-value="null">
+			<column name="master_id " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="objectID" column="object_id" />
+		<property name="personID" column="PERSON_ID" />
+		<property name="purview" column="purview" />
+		<property name="score" column="score" />
+		<property name="masterType" column="MASTER_TYPE" />
+		<property name="gradeId" column="grade_id" />
+		<property name="isMark" column="IS_MARK" />
+        <property name="isCacl" column="is_cacl" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.EvaTempMasterBO" table="EVA_TEMMASTER">
+		<id name="masterID" type="string" unsaved-value="null">
+			<column name="MASTER_ID" sql-type="varchar(32)" />
+			<generator class="assigned" />
+		</id>
+		<property name="evaPlanID" column="EVA_PLANID" />
+		<property name="masterName" column="MASTER_NAME" />
+		<property name="password" column="password" />
+		<property name="is_use" column="is_use" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.vo.EvaObjectsVO" table="v_evaobjects">
+		<id name="objectID" type="string" unsaved-value="null">
+			<column name="OBJECT_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="planID" column="PLAN_ID" />
+		<property name="personID" column="PERSON_ID" />
+		<property name="templateID" column="template_ID" />
+		<property name="personName" column="A001001" />
+		<property name="shortName" column="A001002" />
+		<property name="orgid" column="A001701" />
+		<property name="deptid" column="A001705" />
+		<property name="depttree" column="A001738" />
+		<property name="gradeItemId" column="grade_itemId" />
+		<property name="score" column="score" />
+		<property name="sortId" column="sort_id" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.EvaObjectsBO" table="EVA_OBJECTS">
+		<id name="objectID" type="string" unsaved-value="null">
+			<column name="OBJECT_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="planID" column="PLAN_ID" />
+		<property name="personID" column="PERSON_ID" />
+		<property name="templateID" column="template_ID" />
+		<property name="score" column="score" />
+		<property name="summaryFile" column="summaryFile" />
+		<property name="gradeItem" column="grade_itemId" />
+		<property name="sortId" column="sort_id" />
+		<property name="sumScore" column="sum_score" />
+		<property name="sumSort" column="sum_sort" />
+		<property name="sumGrade" column="sum_grade" />
+		<property name="summaryText" column="summaryText" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.TemplateItemBO" table="eva_template_item">
+		<id name="itemID" type="string" unsaved-value="null">
+			<column name="ITEM_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="templateID" column="TEMPLATE_ID" />
+		<property name="linkID" column="link_ID" />
+		<property name="setID" column="SET_ID" />
+		<property name="showSEQ" column="SHOWSEQ" />
+		<property name="createDate" column="CREATE_DATE" />
+		<property name="score" column="score" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.TemplateItemSetBO" table="eva_template_itemset">
+		<id name="setID" type="string" unsaved-value="null">
+			<column name="SET_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="setName" column="NAME" />
+		<property name="parentID" column="PARENT_ID" />
+		<property name="showSEQ" column="SHOW_SEQ" />
+		<property name="createDate" column="CREATE_DATE" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.EvaTemplateBO" table="EVA_TEMPLATE">
+		<id name="templateID" type="string" unsaved-value="null">
+			<column name="TEMPLATE_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="setID" column="TEMPLATE_SETID" />
+		<property name="showSEQ" column="SHOW_SEQ" />
+		<property name="templateName" column="TEMPLATE_NAME" />
+		<property name="totalscore" column="TOTAL_SCORE" />
+		<property name="curscore" column="CURRENT_SCORE" />
+		<property name="createDate" column="CREATE_DATE" />
+		<property name="isUse" column="IS_USE" />
+		<property name="level" column="LEVEL_COUNT" />
+		<property name="orguid" column="orguid" />
+		<property name="createOrguid" column="CreateOrguid" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.EvaTemplateSetBO" table="EVA_TEMPLATE_SET">
+		<id name="setID" type="string" unsaved-value="null">
+			<column name="TEMPLATE_SETID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="setName" column="TEMPLATE_SETNAME" />
+		<property name="parentID" column="PARENT_ID" />
+		<property name="showSEQ" column="SHOW_SEQ" />
+		<property name="createDate" column="CREATE_DATE" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.EvaKeyItemBO" table="EVA_KEYITEM">
+		<id name="itemID" type="string" unsaved-value="null">
+			<column name="ITEM_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="itemName" column="ITEM_NAME" />
+		<property name="setID" column="SET_ID" />
+		<property name="itemType" column="ITEM_TYPE" />
+		<property name="validFlag" column="VALID_FLAG" />
+		<property name="itemFun" column="item_fun" />
+		<property name="orguid" column="ORGUID" />
+		<property name="showSEQ" column="SHOW_SEQ" />
+		<property name="scoreStandard" column="SCORE_STANDARD" />
+		<property name="lowValue" column="LOW_VALUE" />
+		<property name="highValue" column="HIGH_VALUE" />
+		<property name="createDate" column="CREATE_DATE" />
+		<property name="itemDes" column="ITEM_DES" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.EvaKeyItemSetBO" table="EVA_KEYITEM_SET">
+		<id name="setID" type="string" unsaved-value="null">
+			<column name="SET_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="setName" column="SET_NAME" />
+		<property name="parentID" column="PARENT_ID" />
+		<property name="showSEQ" column="SHOW_SEQ" />
+		<property name="createDate" column="CREATE_DATE" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.EvaGradeItemBO" table="EVA_GRADE_ITEM">
+		<id name="itemID" type="string" unsaved-value="null">
+			<column name="ITEM_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="gradeID" column="GRADE_ID" />
+		<property name="itemName" column="ITEM_NAME" />
+		<property name="itemDes" column="ITEM_DES" />
+		<property name="lowValue" column="LOW_VALUE" />
+		<property name="highValue" column="HIGH_VALUE" />
+		<property name="flagChar" column="flagChar" />
+		<property name="showSeq" column="SHOW_SEQ" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.EvaGradeBO" table="EVA_GRADE">
+		<id name="gradeID" type="string" unsaved-value="null">
+			<column name="GRADE_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="gradeName" column="GRADE_NAME" />
+		<property name="gradeDes" column="GRADE_DES" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.EvaPlanBO" table="EVA_PLAN">
+		<id name="planId" type="string" unsaved-value="null">
+			<column name="PLAN_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="planName" column="NAME" />
+		<property name="orgId" column="ORG_ID" />
+		<property name="planDate" column="PLAN_DATE" />
+		<property name="beginDate" column="BEGIN_DATE" />
+		<property name="endDate" column="END_DATE" />
+		<property name="description" column="DESCRIPTION" />
+		<property name="templates" column="TEMPLATE_IDS" />
+		<property name="createPersonId" column="CREATE_USER" />
+		<property name="createDate" column="CREATE_DATE" />
+		<property name="aduitPersonId" column="APPROVE_USER" />
+		<property name="aduitDate" column="APPROVE_DATE" />
+		<property name="aduitContent" column="APPROVE_CONTENT" />
+		<property name="aduitResult" column="APPROVE_RESULT" />
+		<property name="status" column="STATUS" />
+		<property name="planType" column="PLAN_TYPE" />
+		<property name="evaMethod" column="EVA_MENTHOD" />
+		<property name="pruview" column="PRUVIEW" />
+		<property name="planGrade" column="PLAN_GRADE" />
+		<property name="evaModel" column="EVA_MODEL" />
+		<property name="resultAuditExplain" column="RESULTAUDIT_EXPLAIN" />
+		<property name="resultAuditResult" column="RESULTAUDIT_RESULT" />
+		<property name="resultAuditPerson" column="RESULTAUDIT_PERSION" />
+		<property name="resultAuditDate" column="RESULTAUDIT_DATE" />
+		<property name="evaFile" column="eva_file" />
+		<property name="planObjectType" column="plan_object_type" />
+		<property name="evaFileBull" column="EVA_FILE_BULL" />
+		<property name="scorePers" column="eva_cacl_pres" />
+		<property name="levelPers" column="eva_level_pres" />
+		<property name="allowMark" column="ALLOW_MARK" />
+		<property name="isVirtual" column="is_virtual" />
+		<property name="notShowPercent" column="not_show_percent" />
+		<property name="notShowHr" column="not_show_hr" />
+		<property name="gradeString" column="gradeString" />
+        <property name="showWorkSum" column="is_show_worksum" />
+        <property name="caclMode" column="cacl_mode" />
+	</class>
+	<!-- gaohaixing -->
+	<class name="com.hr319wg.eva.pojo.bo.EvaJobContentBO" table="EVA_JOB_CONTENT">
+		<id name="taskID" type="string" unsaved-value="null">
+			<column name="TASK_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="itemID" column="ITEM_ID" />
+		<property name="seq" column="SEQ" />
+		<property name="content" column="CONTENT" />
+		<property name="preview" column="PREVIEW" />
+		<property name="selfScore" column="self_score" />
+		<property name="leadScore" column="lead_score" />
+		<property name="result" column="result" />
+	</class>
+	<!-- qiaolei -->
+	<class name="com.hr319wg.eva.pojo.bo.EvaJobEstimateBO" table="EVA_JOB_ESTIMATE">
+		<id name="itemID" type="string" unsaved-value="null">
+			<column name="ITEM_ID " sql-type="varchar2(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="planID" column="PLAN_ID" />
+		<property name="personID" column="PERSON_ID" />
+		<property name="score" column="SCORE" />
+		<property name="allowModi" column="ALLOW_MODI" />
+		<property name="c008001" column="C008001" />
+		<property name="c008005" column="C008005" />
+		<property name="c008010" column="C008010" />
+		<property name="c008015" column="C008015" />
+		<property name="c008701" column="C008701" />
+		<property name="c008702" column="C008702" />
+		<property name="c008703" column="C008703" />
+		<property name="c008704" column="C008704" />
+		<property name="c008705" column="C008705" />
+		<property name="c008706" column="C008706" />
+		<property name="c008707" column="C008707" />
+		<property name="c008708" column="C008708" />
+		<property name="c008709" column="C008709" />
+		<property name="c008710" column="C008710" />
+		<property name="c008711" column="C008711" />
+		<property name="c008712" column="C008712" />
+		<property name="c008713" column="C008713" />
+		<property name="c008714" column="C008714" />
+		<property name="c008715" column="C008715" />
+		<property name="c008716" column="C008716" />
+		<property name="c008717" column="C008717" />
+		<property name="c008718" column="C008718" />
+		<property name="c008719" column="C008719" />
+		<property name="c008720" column="C008720" />
+		<property name="c008721" column="C008721" />
+		<property name="c008722" column="C008722" />
+		<property name="c008723" column="C008723" />
+		<property name="c008724" column="C008724" />
+		<property name="c008725" column="C008725" />
+		<property name="c008726" column="C008726" />
+		<property name="c008727" column="C008727" />
+		<property name="c008728" column="C008728" />
+		<property name="c008729" column="C008729" />
+		<property name="c008730" column="C008730" />
+		<property name="c008731" column="C008731" />
+		<property name="c008732" column="C008732" />
+		<property name="c008733" column="C008733" />
+		<property name="c008734" column="C008734" />
+		<property name="c008735" column="C008735" />
+		<property name="c008736" column="C008736" />
+		<property name="status" column="status" />
+		<property name="gradeItem" column="grade_itemId" />
+		<property name="sumScore" column="sum_score" />
+		<property name="sumSort" column="sum_sort" />
+		<property name="sumGrade" column="sum_grade" />
+	</class>
+
+	<class name="com.hr319wg.eva.pojo.bo.JobEstimateLogBO" table="EVA_JOB_ESTIMATE_LOG">
+		<id name="logID" type="string" unsaved-value="null">
+			<column name="LOG_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="itemID" column="ITEM_ID" />
+		<property name="operateID" column="OPERATE_ID" />
+		<property name="action" column="action" />
+		<property name="actionDate" column="Action_date" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaCaclScoresBO" table="eva_cacl_scores">
+		<id name="scoreId" type="string" unsaved-value="null">
+			<column name="score_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="objectId" column="object_id" />
+		<property name="itemId" column="item_id" />
+		<property name="purview" column="purview" />
+		<property name="score" column="score" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaPlanControlBO" table="eva_plan_control">
+		<id name="itemId" type="string" unsaved-value="null">
+			<column name="item_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="planId" column="plan_id" />
+		<property name="templateId" column="template_id" />
+		<property name="gradeItem" column="grade_item" />
+		<property name="gradeCount" column="grade_count" />
+		<property name="deptItem" column="dept_item" />
+		<property name="deptCount" column="dept_count" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaAuditGroupBO" table="eva_audit_group">
+		<id name="groupId" type="string" unsaved-value="null">
+			<column name="group_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="planId" column="plan_id" />
+		<property name="groupName" column="group_name" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaAGItemBO" table="eva_ag_item">
+		<id name="itemId" type="string" unsaved-value="null">
+			<column name="item_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="groupId" column="group_id" />
+		<property name="personId" column="person_id" />
+		<property name="masterType" column="master_type" />
+		<property name="purview" column="purview" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaPlanElectionControlBO"
+		table="eva_plan_Election_control">
+		<id name="itemId" type="string" unsaved-value="null">
+			<column name="item_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="planId" column="plan_id" />
+		<property name="masterType" column="master_type" />
+		<property name="gradeItem" column="grade_item" />
+		<property name="gradeCount" column="grade_count" />
+		<property name="deptCount" column="dept_count" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaPlanMixBO"
+		table="eva_plan_mix">
+		<id name="mixId" type="string" unsaved-value="null">
+			<column name="mix_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="planId" column="plan_id" />
+		<property name="mixPlan" column="mix_plan" />
+		<property name="purview" column="purview" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaSelectionResultItemBO"
+		table="eva_selectionResult_item">
+		<id name="itemId" type="string" unsaved-value="null">
+			<column name="item_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="setId" column="set_id" />
+		<property name="objectId" column="object_id" />
+		<property name="masterType" column="master_type" />
+		<property name="caclScore" column="cacl_score" />
+		<property name="caclPers" column="cacl_pers" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaSelectionResultSetBO"
+		table="eva_selectionResult_set">
+		<id name="setId" type="string" unsaved-value="null">
+			<column name="set_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="setName" column="set_name" />
+		<property name="gradeItems" column="grade_items" />
+		<property name="isCacl" column="is_cacl" />
+		<property name="isSel" column="is_sel" />
+		<property name="planId" column="plan_id" />
+	</class>
+	<class name="com.hr319wg.eva.pojo.bo.EvaGradersBO"
+		table="eva_graders">
+		<id name="objectId" type="string" unsaved-value="null">
+			<column name="object_id" sql-type="varchar(32)" />
+			<generator class="assigned" />
+		</id>
+		<property name="personId" column="person_id" />
+		<property name="s1" column="s1" />
+		<property name="s2" column="s2" />
+		<property name="s3" column="s3" />
+		<property name="s4" column="s4" />
+		<property name="s5" column="s5" />
+		<property name="s6" column="s6" />
+		<property name="s7" column="s7" />
+		<property name="s8" column="s8" />
+		<property name="s9" column="s9" />
+		<property name="s10" column="s10" />
+		<property name="s" column="s" />
+		<property name="f1" column="f1" />
+		<property name="f2" column="f2" />
+		<property name="f3" column="f3" />
+		<property name="f4" column="f4" />
+		<property name="f5" column="f5" />
+		<property name="f6" column="f6" />
+		<property name="f7" column="f7" />
+		<property name="f8" column="f8" />
+		<property name="f9" column="f9" />
+		<property name="f10" column="f10" />
+		<property name="f" column="f" />
+	</class>
+
+    <class name="com.hr319wg.eva.pojo.bo.EvaCaclControlBO" table="eva_cacl_control">
+		<id name="itemId" type="string" unsaved-value="null">
+			<column name="item_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="planId" column="plan_id" />
+		<property name="templateId" column="template_id" />
+		<property name="masterType" column="master_type" />
+        <property name="caclMode" column="cacl_mode" />
+        <property name="selScoreMode" column="sel_score_mode" />
+	</class>
+    <class name="com.hr319wg.eva.pojo.vo.EvaMastersVO" table="v_evamasters">
+		<id name="masterId" type="string" unsaved-value="null">
+			<column name="master_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="objectId" column="object_id" />
+		<property name="personId" column="person_id" />
+		<property name="purview" column="purview" />
+        <property name="score" column="score" />
+        <property name="masterType" column="master_type" />
+        <property name="gradeId" column="grade_id" />
+        <property name="isMark" column="is_mark" />
+        <property name="templateId" column="template_id" />
+        <property name="planId" column="plan_id" />
+        <property name="isCacl" column="is_cacl" />
+	</class>
+</hibernate-mapping>

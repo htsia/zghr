@@ -1,0 +1,787 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+
+    <definition name="/wage/adjust/selectWageSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/selectWageSet.jsp"/>
+    </definition>
+                         
+     <!-- unit -->
+    <definition name="/wage/unit/WageIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/wage/unit/WageIndex.jsp"/>
+    </definition>
+    <definition name="/wage/unit/UnitList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/unit/UnitList.jsp"/>
+    </definition>
+    <definition name="/wage/unit/UnitEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/unit/UnitEdit.jsp"/>
+    </definition>
+
+    <!-- base -->
+    <definition name="/wage/base/childFeeCalc.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/childFeeCalc.jsp"/>
+    </definition>
+    <definition name="/wage/base/ageWageSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/base/ageWageSet.jsp"/>
+    </definition>
+    <definition name="/wage/base/AddWageSheetSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/base/AddWageSheetSet.jsp"/>
+    </definition>
+
+    <definition name="/wage/base/WageSheetSet.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/WageSheetSet.jsp"/>
+    </definition>
+
+    <definition name="/wage/base/FormulaChangeView.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/FormulaChangeView.jsp"/>
+    </definition>
+    <definition name="/wage/base/showFormulaChange.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/base/showFormulaChange.jsp"/>
+    </definition>
+    <definition name="/wage/base/FormulaDelete.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/FormulaDelete.jsp"/>
+    </definition>
+    <definition name="/wage/base/showSetItemChange.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/base/showSetItemChange.jsp"/>
+    </definition>
+    <definition name="/wage/base/ModifyDeptItem.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/base/ModifyDeptItem.jsp"/>
+    </definition>
+    <definition name="/wage/base/ModifyOrgSumItem.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/base/ModifyOrgSumItem.jsp"/>
+    </definition>
+    <definition name="/wage/base/StandardList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/StandardList.jsp"/>
+    </definition>
+    <definition name="/wage/base/StandardEditItem.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/StandardEditItem.jsp"/>
+    </definition>
+    <definition name="/wage/base/StandardEditCode.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/StandardEditCode.jsp"/>
+    </definition>
+    <definition name="/wage/base/StandardEditValue.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/StandardEditValue.jsp"/>
+    </definition>
+    <definition name="/wage/base/StandardEditValueDlg.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/StandardEditValueDlg.jsp"/>
+    </definition>
+    <definition name="/wage/base/StandardEditName.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/StandardEditName.jsp"/>
+    </definition>
+    <definition name="/wage/base/FormulaList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/FormulaList.jsp"/>
+    </definition>
+    <definition name="/wage/base/FormulaEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/base/FormulaEdit.jsp"/>
+    </definition>
+    <definition name="/wage/base/FormulaView.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/FormulaView.jsp"/>
+    </definition>
+    <definition name="/wage/base/PersonInfoQry.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/PersonInfoQry.jsp"/>
+    </definition>
+    <definition name="/wage/base/PersonInfoDetailList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/PersonInfoDetailList.jsp"/>
+    </definition>
+    <definition name="/wage/base/PersonInfoDetail.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/PersonInfoDetail.jsp"/>
+    </definition>
+    <definition name="/wage/base/QueryPerson.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/QueryPerson.jsp"/>
+    </definition>
+    <definition name="/wage/base/QueryRelaPerson.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/QueryRelaPerson.jsp"/>
+    </definition>
+    <definition name="/wage/base/QueryNotePerson.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/QueryNotePerson.jsp"/>
+    </definition>
+    <definition name="/wage/base/SetDeptItem.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/SetDeptItem.jsp"/>
+    </definition>
+    <definition name="/wage/base/SetWageDeptItem.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/base/SetWageDeptItem.jsp"/>
+    </definition>
+    <definition name="/wage/base/editWageItem.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/base/editWageItem.jsp"/>
+    </definition>
+
+    <definition name="/wage/base/SetPersonItem.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/SetPersonItem.jsp"/>
+    </definition>
+    <definition name="/wage/base/SetWageItem.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/SetWageItem.jsp"/>
+    </definition>
+    <definition name="/wage/base/SetOrgSumItem.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/SetOrgSumItem.jsp"/>
+    </definition>
+    <definition name="/wage/base/SetPieceItem.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/SetPieceItem.jsp"/>
+    </definition>
+    <definition name="/wage/base/SetOrgPieceItem.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/base/SetOrgPieceItem.jsp"/>
+    </definition>
+
+    <!-- fb -->
+    <definition name="/wage/fb/StandardList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/fb/StandardList.jsp"/>
+    </definition>
+    <definition name="/wage/fb/StandardEditItem.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/fb/StandardEditItem.jsp"/>
+    </definition>
+    <definition name="/wage/fb/StandardEditCode.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/fb/StandardEditCode.jsp"/>
+    </definition>
+    <definition name="/wage/fb/StandardEditValue.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/fb/StandardEditValue.jsp"/>
+    </definition>
+    <definition name="/wage/fb/StandardEditName.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/fb/StandardEditName.jsp"/>
+    </definition>
+    <definition name="/wage/fb/FBCompute.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/fb/FBCompute.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/receiveProcess.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/receiveProcess.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/receiveTransfer.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/receiveTransfer.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/PostLink.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/PostLink.jsp"/>
+    </definition>
+    <definition name="/wage/set/taxCountMethod.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/taxCountMethod.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/taxYearCountMethod.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/taxYearCountMethod.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/OrgInsSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/OrgInsSet.jsp"/>
+    </definition>
+    <definition name="/wage/set/watchWageSet.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/watchWageSet.jsp"/>
+    </definition>
+    <definition name="/wage/set/exportDeptInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/exportDeptInfo.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/DeptInfoList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/DeptInfoList.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/SetWageSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetWageSet.jsp"/>
+    </definition>
+    <definition name="/wage/set/RestoreSelect.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/RestoreSelect.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/SetStardard.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetStardard.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/SetList.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetInitList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/SetInitList.jsp"/>
+    </definition>
+    <definition name="/wage/set/WageSetInitEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/WageSetInitEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetPowerEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetPowerEdit.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/ConstEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/ConstEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetItemList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/SetItemList.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetItemListView.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/SetItemListView.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetItemEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/SetItemEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetItemEditForInput.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/SetItemEditForInput.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetItemCountSeq.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/SetItemCountSeq.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetItemShowSeq.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/SetItemShowSeq.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetPersonList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/SetPersonList.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetPersonQuery.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetPersonQuery.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetInputList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/SetInputList.jsp"/>
+    </definition>
+    <definition name="/wage/set/OrderInput.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/OrderInput.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetInputClear.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetInputClear.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetInputSelect.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetInputSelect.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetInputEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetInputEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/SingleInputEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SingleInputEdit.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/BaseInputEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/BaseInputEdit.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/BaseInputSelect.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/BaseInputSelect.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/SetInputAddPersonEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/SetInputAddPersonEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetInputUpload.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetInputUpload.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetInputUploadList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetInputUploadList.jsp"/>
+    </definition>
+    <definition name="/wage/set/ReinForce.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/ReinForce.jsp"/>
+    </definition>
+    <definition name="/wage/set/InputEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/InputEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetDeptInput.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetDeptInput.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetConst.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetConst.jsp"/>
+    </definition>
+    <definition name="/wage/set/CessList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/CessList.jsp"/>
+    </definition>
+    <definition name="/wage/set/ViewCess.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/ViewCess.jsp"/>
+    </definition>
+    <definition name="/wage/set/BankList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/BankList.jsp"/>
+    </definition>
+    <definition name="/wage/set/BankEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/BankEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/BankItemList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/BankItemList.jsp"/>
+    </definition>
+    <definition name="/wage/set/BankItemEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/BankItemEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/CessEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/CessEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/CessItemEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/CessItemEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/TemplateList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/TemplateList.jsp"/>
+    </definition>
+    <definition name="/wage/set/TemplateEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/TemplateEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/PersonNotInSetQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/set/PersonNotInSetQuery.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetWageDeptList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetWageDeptList.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetWageDeptPower.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetWageDeptPower.jsp"/>
+    </definition>
+    <definition name="/wage/set/SetGroupDeptPower.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetGroupDeptPower.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/SetInputPower.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/SetInputPower.jsp"/>
+    </definition>
+    
+    <definition name="/wage/set/WageInputPowerEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/WageInputPowerEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/WageViewPowerEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/WageViewPowerEdit.jsp"/>
+    </definition>
+
+    <definition name="/wage/set/WageDeptEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/WageDeptEdit.jsp"/>
+    </definition>
+    <definition name="/wage/set/WageDeptPowerEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/set/WageDeptPowerEdit.jsp"/>
+    </definition>
+    <!-- note -->
+    <definition name="/wage/note/NoteList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/note/NoteList.jsp"/>
+    </definition>
+    <definition name="/wage/note/NoteEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/note/NoteEdit.jsp"/>
+    </definition>
+
+
+    <definition name="/wage/payoff/CreateTaxFile.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/CreateTaxFile.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/showInputAudit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/showInputAudit.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/RptWageSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/RptWageSet.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/RptWageSetEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/RptWageSetEdit.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/showComputerHis.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/wage/payoff/showComputerHis.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/showDataInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/showDataInfo.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/MaskQuestion.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/wage/payoff/MaskQuestion.jsp" />
+    </definition>
+    <definition name="/wage/payoff/WageTaxView.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/wage/payoff/WageTaxView.jsp" />
+    </definition>
+    <definition name="/wage/payoff/WageTaxAudit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/wage/payoff/WageTaxAudit.jsp" />
+    </definition>
+    <definition name="/wage/payoff/CheckTaxDate.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/wage/payoff/CheckTaxDate.jsp" />
+    </definition>
+    <definition name="/wage/payoff/AuditTaxDate.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/wage/payoff/AuditTaxDate.jsp" />
+    </definition>
+    <definition name="/wage/payoff/TaxQuerySum.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/wage/payoff/TaxQuerySum.jsp" />
+    </definition>
+    <definition name="/wage/payoff/showCalcTime.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/wage/payoff/showCalcTime.jsp" />
+    </definition>
+    <definition name="/wage/payoff/showApply.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/wage/payoff/showApply.jsp" />
+    </definition>
+
+    <definition name="/wage/payoff/SelectItems.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/SelectItems.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/showInvalidDate.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/showInvalidDate.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/doCheckData.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/doCheckData.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/ShowCard.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/ShowCard.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/specialQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/specialQuery.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/showPersonChange.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/showPersonChange.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/showPersonChangeByMonth.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/showPersonChangeByMonth.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/showPersonChangeByMonth2.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/showPersonChangeByMonth2.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/showDeptChange.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/showDeptChange.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/showConstChange.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/showConstChange.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/ShowTaxDetail.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/ShowTaxDetail.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/ShowPersonDetail.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/ShowPersonDetail.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/WageQuerySum.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/WageQuerySum.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/WageQuerySum2.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/WageQuerySum2.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/WageAuditTypeList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/WageAuditTypeList.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/WageAuditItemList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/WageAuditItemList.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/WageAuditItemSort.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/WageAuditItemSort.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/AuditTypeEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/AuditTypeEdit.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/wagequery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/wagequery.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/wagePersonquery.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/wagePersonquery.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/AuditViewDetail.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/AuditViewDetail.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/checkInsuraceRate.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/checkInsuraceRate.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/DateList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/DateList.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/InputPersonList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/InputPersonList.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/DateEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/DateEdit.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/DateFinanceItem.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/DateFinanceItem.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/ComputePersonList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/wage/payoff/ComputePersonList.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/ComputePersonListTry.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/wage/payoff/ComputePersonListTry.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/ComputePersonListByFinance.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/ComputePersonListByFinance.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/GroupShowItemEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/GroupShowItemEdit.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/ComputeShowItemEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/ComputeShowItemEdit.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/WelfSetDateList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/WelfSetDateList.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/WelfComputeList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/WelfComputeList.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/ShowMonthSum.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/ShowMonthSum.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/ShowSumInfo.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/ShowSumInfo.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/CheckList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/CheckList.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/DateListTable.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/DateListTable.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/DateListHistory.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/DateListHistory.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/CheckEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/CheckEdit.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/AuditList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/AuditList.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/groupPayoff.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/groupPayoff.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/AuditEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/AuditEdit.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/AuditView.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/AuditView.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/PayoffList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/PayoffList.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/PayoffDialog.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/PayoffDialog.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/PayoffEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/PayoffEdit.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/GroupPayoffEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/GroupPayoffEdit.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/GroupPayoffView.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/GroupPayoffView.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/SelectCreateBankFile.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/SelectCreateBankFile.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/CreateBankFile.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/CreateBankFile.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/WageDetailView.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/WageDetailView.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/WageNoteView.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/WageNoteView.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/batchUpdate.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/batchUpdate.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/ShowDiff.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/ShowDiff.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/WriteDiff.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/WriteDiff.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/ShowDiffDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/ShowDiffDetail.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/ShowDeptDiff.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/ShowDeptDiff.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/ShowOrgDiff.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/ShowOrgDiff.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/WageManyDept.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/WageManyDept.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/AddWageManyDept.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/AddWageManyDept.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/BatchAddWageManyDept.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/BatchAddWageManyDept.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/AuditShowGroup.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/AuditShowGroup.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/ShowGroup.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/ShowGroup.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/showChangeRecord.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/showChangeRecord.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/ShowUnitGroup.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/ShowUnitGroup.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/ShowClass.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/ShowClass.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/AuditShowClass.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/AuditShowClass.jsp"/>
+    </definition>
+
+    <definition name="/wage/payoff/GroupView.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/payoff/GroupView.jsp"/>
+    </definition>
+    <definition name="/wage/payoff/SetSelectToExport.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/payoff/SetSelectToExport.jsp"/>
+    </definition>
+
+
+    <!-- Gross -->
+    <definition name="/wage/gross/ApplySum.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/gross/ApplySum.jsp"/>
+    </definition>
+
+    <definition name="/wage/gross/ShowApplyDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/gross/ShowApplyDetail.jsp"/>
+    </definition>
+
+    <definition name="/wage/gross/AuditApplySum.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/gross/AuditApplySum.jsp"/>
+    </definition>
+    <definition name="/wage/gross/ShowSumChange.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/gross/ShowSumChange.jsp"/>
+    </definition>
+    <definition name="/wage/gross/GrossInput.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/gross/GrossInput.jsp"/>
+    </definition>
+    <definition name="/wage/gross/GrossView.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/gross/GrossView.jsp"/>
+    </definition>
+    <definition name="/wage/gross/GrossDetailView.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/gross/GrossDetailView.jsp"/>
+    </definition>
+    <definition name="/wage/gross/AddGrossPlan.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/gross/AddGrossPlan.jsp"/>
+    </definition>
+    <definition name="/wage/gross/GrossPlanAdjust.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/gross/GrossPlanAdjust.jsp"/>
+    </definition>
+    <definition name="/wage/gross/GrossPlanList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/gross/GrossPlanList.jsp"/>
+    </definition>
+    <definition name="/wage/gross/GrossPlanStauts.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/gross/GrossPlanStauts.jsp"/>
+    </definition>
+    <definition name="/wage/gross/MonthPlanList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/gross/MonthPlanList.jsp"/>
+    </definition>
+    <definition name="/wage/gross/GrossMonthInput.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/gross/GrossMonthInput.jsp"/>
+    </definition>
+
+
+    <definition name="/wage/piece/pieceinfo.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/piece/pieceinfo.jsp"/>
+    </definition>
+    <definition name="/wage/piece/ComputePersonList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/piece/ComputePersonList.jsp"/>
+    </definition>
+    <definition name="/wage/piece/addPiece.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/piece/addPiece.jsp"/>
+    </definition>
+    <definition name="/wage/piece/batchAddPiece.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/piece/batchAddPiece.jsp"/>
+    </definition>
+    <definition name="/wage/piece/Selectperson.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/piece/Selectperson.jsp"/>
+    </definition>
+    <definition name="/wage/piece/ShowSumInfo.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/piece/ShowSumInfo.jsp"/>
+    </definition>
+    <definition name="/wage/piece/ShowOrgSumInfo.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/piece/ShowOrgSumInfo.jsp"/>
+    </definition>
+
+    <definition name="/wage/relation/AddManyHeadPerson.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/AddManyHeadPerson.jsp"/>
+    </definition>
+    <definition name="/wage/relation/AgentAnnuityClear.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/AgentAnnuityClear.jsp"/>
+    </definition>
+    <definition name="/wage/relation/AgentHouseAllowanceClear.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/AgentHouseAllowanceClear.jsp"/>
+    </definition>
+    <definition name="/wage/relation/AgentInsuranceClear.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/AgentInsuranceClear.jsp"/>
+    </definition>
+    <definition name="/wage/relation/AgentWageClear.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/AgentWageClear.jsp"/>
+    </definition>
+    <definition name="/wage/relation/ManyHeadPersonSetup.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/ManyHeadPersonSetup.jsp"/>
+    </definition>
+    <definition name="/wage/relation/ManyHeadPutout.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/ManyHeadPutout.jsp"/>
+    </definition>
+    <definition name="/wage/relation/SalaryChange.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/SalaryChange.jsp"/>
+    </definition>
+    <definition name="/wage/relation/SalaryInEndView.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/SalaryInEndView.jsp"/>
+    </definition>
+    <definition name="/wage/relation/SalaryInList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/SalaryInList.jsp"/>
+    </definition>
+    <definition name="/wage/relation/SalaryInView.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/SalaryInView.jsp"/>
+    </definition>
+    <definition name="/wage/relation/SalaryOutEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/SalaryOutEdit.jsp"/>
+    </definition>
+    <definition name="/wage/relation/SalaryOutList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/SalaryOutList.jsp"/>
+    </definition>
+    <definition name="/wage/relation/ViewManyHeadPerson.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/ViewManyHeadPerson.jsp"/>
+    </definition>
+    <definition name="/wage/relation/ProcessFamily.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/ProcessFamily.jsp"/>
+    </definition>
+    <definition name="/wage/relation/ViewWage.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/ViewWage.jsp"/>
+    </definition>
+    <definition name="/wage/relation/SetWage.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/SetWage.jsp"/>
+    </definition>
+    <definition name="/wage/relation/SetInsurace.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/relation/SetInsurace.jsp"/>
+    </definition>
+
+</tiles-definitions>

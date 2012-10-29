@@ -1,0 +1,20 @@
+<PUBLIC:COMPONENT tagName="input">
+
+<ATTACH EVENT="oncontentready" ></ATTACH> 
+
+<PUBLIC:ATTACH EVENT="onkeydown" HANDLER="onKeyDown"/>
+
+<PROPERTY NAME="nullProperty" get=getNullProperty />
+
+<PUBLIC:METHOD NAME="null"/>
+
+</PUBLIC:COMPONENT>
+
+<script language="javascript">
+ function onKeyDown(){
+  if(this.type == "text"){
+   if(event.keyCode == 13)
+    event.keyCode = 9;
+  }
+ }
+</script>

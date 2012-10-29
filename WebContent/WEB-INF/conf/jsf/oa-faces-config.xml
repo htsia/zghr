@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+    <managed-bean>
+        <managed-bean-name>oa_worklogBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.oa.web.WorkLogBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>worklogucc</property-name>
+            <value>#{oa_worklogucc}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>workflowservice</property-name>
+            <value>#{sys_wfservice}</value>
+        </managed-property>
+    </managed-bean>
+
+    <navigation-rule>
+		<from-view-id>/OA/WorkLogEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+</faces-config>

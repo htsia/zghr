@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <class name="com.hr319wg.ccp.pojo.bo.PartyFlowInfoBO" table="CCP_PARTY_FLOW_INFO">
+        <id name="introduceId" type="string" unsaved-value="null">
+            <column name="INTRODUCE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="flowId" column="FLOW_ID"/>
+        <property name="stepId" column="STEP_ID"/>
+        <property name="relationId" column="RELATION_ID"/>
+        <property name="qryId" column="QRY_ID"/>
+        <property name="introduceDocId" column="INTRODUCE_DOCID"/>
+        <property name="sendUnit" column="SEND_UNIT"/>
+        <property name="transcateDate" column="TRANSCATE_DATE"/>
+        <property name="transcatePerson" column="TRANSCATE_PERSON"/>
+        <property name="feeStopDate" column="PARTY_STOPDATE"/>
+        <property name="transTime" column="TRANS_TIME"/>
+        <property name="transcateStatus" column="TRANSCATE_STATUS"/>
+        <property name="sendByUnit" column="SENDBY_UNIT"/>
+        <property name="partyNewUnit" column="PARTY_NEWUNIT"/>
+         <property name="partyAddr" column="PARTY_ADDR"/>
+        <property name="partyTel" column="PARTY_TEL"/>
+        <property name="partyFax" column="PARTY_FAX"/>
+        <property name="partyPostalcode" column="PARTY_POSTALCODE"/>
+        <property name="rebackParty" column="REBACK_PARTY"/>
+    </class>
+
+    <class name="com.hr319wg.ccp.pojo.bo.PersonInfoBO" table="CCP_PARTY_PERSON_INFO">
+        <id name="flowId" type="string" unsaved-value="null">
+            <column name="FLOW_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="PERSON_ID"/>
+        <property name="personName" column="PERSON_NAME"/>
+        <property name="personGender" column="PERSON_GENDER"/>
+        <property name="personBirthday" column="PERSON_BIRTHDAY"/>
+        <property name="partyFigure" column="PARTY_FIGURE"/>
+        <property name="partyUnit" column="PARTY_UNIT"/>
+        <property name="leaveDate" column="LEAVE_DATE"/>
+        <property name="leaveType" column="LEAVE_TYPE"/>
+        <property name="comeDate" column="COME_DATE"/>
+        <property name="comeType" column="COME_TYPE"/>
+        <property name="transcateType" column="TRANSCATE_TYPE"/>
+        <property name="personAge" column="PERSON_AGE"/>
+        <property name="personNation" column="PERSON_NATION"/>
+        <property name="personTel" column="PERSON_TEL"/>
+        <property name="personalCode" column="PERSONAL_CODE"/>
+    </class>
+
+    <class name="com.hr319wg.ccp.pojo.bo.PartyBO" table="PARTY_INFO">
+        <id name="partyId" type="string" unsaved-value="null">
+            <column name="PARTYID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="treeId"	   column="D001003"/>
+        <property name="partyName"	   column="D001001"/>
+        <property name="partyType"	   column="D001005"/>
+        <property name="partyEstablishDate"	   column="D001010"/>
+        <property name="partyCancelDate"	   column="D001015"/>
+		<property name="superId"     column="D001002"/>
+        <property name="partyMember"     column="D001020"/>
+        <property name="memberType"     column="D001030"/>
+        <property name="partyCode"    column="D001025"/>
+		<property name="partySort"    column="D001715"/>
+    </class>
+
+    <class name="com.hr319wg.ccp.pojo.bo.RelationBO" table="CCP_DATA_RELATION">
+        <id name="relationId" type="string" unsaved-value="null">
+            <column name="RELATIONID" sql-type="varchar(20)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="origTable"	   column="ORIGTABLE"/>
+        <property name="origItem"	   column="ORIGITEM"/>
+        <property name="destTable"	   column="DESTTABLE"/>
+        <property name="destItem"	   column="DESTITEM"/>
+        <property name="linkType"	   column="LINKTYPE"/>
+    </class>
+</hibernate-mapping>

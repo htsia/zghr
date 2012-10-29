@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    
+    <class name="com.hr319wg.coalsafe.pojo.bo.CoalAmerceStandardDirBO" table="coal_amercestandard_dir">
+        <id name="dirId" type="string" unsaved-value="null">
+            <column name="dir_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="dirName" column="dir_name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="superId" column="super_id"/>
+    </class>
+    <class name="com.hr319wg.coalsafe.pojo.bo.CoalAmerceStandardItemBO" table="coal_amerceStandard_item">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="itemNum" column="item_num"/>
+        <property name="itemName" column="item_name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="itemScore" column="item_score"/>
+        <property name="dirId" column="dir_id"/>
+        <property name="riskGrade" column="risk_grade" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="amerce" column="amerce"/>
+    </class>
+    <class name="com.hr319wg.coalsafe.pojo.bo.CoalAmerceBO" table="coal_amerce">
+        <id name="recordId" type="string" unsaved-value="null">
+            <column name="record_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="person_id"/>
+        <property name="operaterPid" column="operater_pid"/>
+        <property name="operateTime" column="operate_time"/>
+        <property name="address" column="address" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="itemId" column="item_id"/>
+        <property name="amerceType" column="amerce_type"/>
+    </class>
+     <class name="com.hr319wg.coalsafe.pojo.bo.CoalAmerceCalBO" table="coal_amerce_cal">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="person_id"/>
+        <property name="caclTime" column="cal_time"/>
+        <property name="score" column="score"/>
+        <property name="amerce" column="amerce"/>
+    </class>
+    <class name="com.hr319wg.coalsafe.pojo.bo.CoalTaskCtrBO" table="coal_task_ctr">
+        <id name="taskId" type="string" unsaved-value="null">
+            <column name="task_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="taskContent" column="task_content" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="taskTime" column="task_time"/>
+        <property name="taskMaster" column="task_master"/>
+        <property name="createPid" column="create_pid"/>
+        <property name="status" column="status"/>
+    </class>
+    <class name="com.hr319wg.coalsafe.pojo.bo.CoalTaskPersonBO" table="coal_task_person">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="person_id"/>
+        <property name="taskId" column="task_id"/>
+    </class>
+</hibernate-mapping>

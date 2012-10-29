@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="coalsafeMgrUcc" class="com.hr319wg.coalsafe.ucc.impl.CoalSafeMgrUcc">
+        <property name="coalsafeMgrService" ref="coalsafeMgrService"/>
+    </bean>
+    <bean id="coalsafeMgrService" class="com.hr319wg.coalsafe.service.CoalSafeMgrService">
+        <property name="coalsafeMgrDao" ref="coalsafeMgrDao"/>
+    </bean>
+    <bean id="coalsafeMgrDao" class="com.hr319wg.coalsafe.dao.CoalSafeMgrDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+	 <bean id="coalOverseeDao" class="com.hr319wg.coalsafe.dao.CoalOverseeMgrDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="coalOverseeService" class="com.hr319wg.coalsafe.service.CoalOverseeService">
+        <property name="coalOverseeDao" ref="coalOverseeDao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+     <bean id="coalOverseeUcc" class="com.hr319wg.coalsafe.ucc.impl.CoalOverseeUcc">
+        <property name="coalOverseeService" ref="coalOverseeService"/>
+    </bean>
+    <bean id="coalTaskMgrDao" class="com.hr319wg.coalsafe.dao.CoalTaskMgrDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="coalTaskMgrService" class="com.hr319wg.coalsafe.service.CoalTaskMgrService">
+        <property name="coalTaskMgrDao" ref="coalTaskMgrDao"/>
+    </bean>
+    <bean id="coalTaskMgrUcc" class="com.hr319wg.coalsafe.ucc.impl.CoalTaskMgrUcc">
+        <property name="coalTaskMgrService" ref="coalTaskMgrService"/>
+    </bean>
+</beans>

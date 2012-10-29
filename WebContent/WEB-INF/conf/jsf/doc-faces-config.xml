@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+                              "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+    <managed-bean>
+        <managed-bean-name>post_PostNoteBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.doc.web.PostNoteBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>postucc</property-name>
+            <value>#{post_postUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+		<managed-bean-name>doc_DeptNoteBackingBean</managed-bean-name>
+		<managed-bean-class>
+			com.hr319wg.doc.web.DeptNoteBackingBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>docbrowseucc</property-name>
+			<value>#{doc_idocBrowseUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>orgucc</property-name>
+			<value>#{org_orgUCC}</value>
+		</managed-property>
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>attucc</property-name>
+            <value>#{common_attachmentUCC}</value>
+        </managed-property>
+
+    </managed-bean>
+
+    <managed-bean>
+		<managed-bean-name>doc_DocBrowseBackingBean</managed-bean-name>
+		<managed-bean-class>
+			com.hr319wg.doc.web.DocBrowseBackingBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>docbrowseucc</property-name>
+			<value>#{doc_idocBrowseUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>orgucc</property-name>
+			<value>#{org_orgUCC}</value>
+		</managed-property>
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>attucc</property-name>
+            <value>#{common_attachmentUCC}</value>
+        </managed-property>
+
+    </managed-bean>
+	
+
+	<managed-bean>
+		<managed-bean-name>
+			doc_PartyBrowseBackingBean
+		</managed-bean-name>
+		<managed-bean-class>
+			com.hr319wg.doc.web.PartyBrowseBackingBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>docbrowseucc</property-name>
+			<value>#{doc_idocBrowseUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>doc_OrgBrowseBackingBean</managed-bean-name>
+		<managed-bean-class>
+			com.hr319wg.doc.web.OrgBrowseBackingBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>docbrowseucc</property-name>
+			<value>#{doc_idocBrowseUCC}</value>
+		</managed-property>
+
+        <managed-property>
+			<property-name>orgucc</property-name>
+			<value>#{org_orgUCC}</value>
+		</managed-property>
+        <managed-property>
+			<property-name>userreportucc</property-name>
+			<value>#{user_userReportUccImpl}</value>
+		</managed-property>
+
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>doc_QueryPersonBackingBean</managed-bean-name>
+		<managed-bean-class>
+			com.hr319wg.doc.web.QueryPersonBackingBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>personucc</property-name>
+			<value>#{emp_personUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>doc_QueryBackingBean</managed-bean-name>
+		<managed-bean-class>
+			com.hr319wg.doc.web.QueryBackingBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>postUCC</property-name>
+			<value>#{post_postUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<!--application managed-bean end-->
+
+	<!--*******start navigation*******-->
+	<navigation-rule>
+		<from-view-id>/doc/QueryPersonResult.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>doc_PersonBasicInfo</from-outcome>
+			<to-view-id>/doc/PersonBasicInfo.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+	<!--application navigation-rule begin-->
+
+	<!--common navigation-rule end-->
+
+</faces-config>
+

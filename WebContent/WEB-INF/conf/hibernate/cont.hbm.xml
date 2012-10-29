@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.cont.pojo.bo.ContSumItemBO" table="CONT_SUM_ITEM">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="sumType" column="sum_Type"/>
+        <property name="sumFieldName" column="sum_Field_Name"/>
+        <property name="classFieldValue" column="class_Field_Value"/>
+        <property name="classFieldName" column="class_Field_Name"/>
+        <property name="classFieldValue2" column="class_Field_Value2"/>
+        <property name="classFieldName2" column="class_Field_Name2"/>
+        <property name="classFieldValue3" column="class_Field_Value3"/>
+        <property name="classFieldName3" column="class_Field_Name3"/>
+    </class>
+
+	<class name="com.hr319wg.cont.pojo.bo.ContTemplateClassBO" table="CONT_TEMPLATE_CLASS">
+		<id name="templateClassId" type="string" unsaved-value="null">
+			<column name="template_class_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="templateClassName" column="template_class_name" />
+		<property name="createOrgId" column="create_org_id" />
+		<property name="isPublic" column="ISPUBLIC" />
+	</class>
+
+	<class name="com.hr319wg.cont.pojo.bo.ContCodeInfoBO" table="cont_code_info">
+		<id name="orguid" type="string" unsaved-value="null">
+			<column name="orguid" sql-type="varchar(32)" />
+			<generator class="assigned" />
+		</id>
+		<property name="low1" column="low_value1" />
+		<property name="high1" column="high_value1" />
+		<property name="low2" column="low_value2" />
+		<property name="high2" column="high_value2" />
+		<property name="low3" column="low_value3" />
+		<property name="high3" column="high_value3" />
+
+	</class>
+
+	<class name="com.hr319wg.cont.pojo.bo.ContTemplateBO" table="CONT_TEMPLATE">
+		<id name="templateId" type="string" unsaved-value="null">
+			<column name="template_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="templateName" column="template_Name" />
+		<many-to-one name="contTemplateClassBO"
+			class="com.hr319wg.cont.pojo.bo.ContTemplateClassBO" lazy="false">
+			<column name="template_Class_Id" length="32" />
+		</many-to-one>
+		<property name="templateEdition" column="template_Edition" />
+		<property name="templateType" column="template_Type" />
+		<property name="lastCreateDate" column="last_Create_Date" />
+		<property name="attachmentId" column="attachment_Id" />
+		<property name="isPublic" column="ISPUBLIC" />
+	</class>
+
+	<class name="com.hr319wg.cont.pojo.bo.SignRightBO" table="cont_sign_right">
+		<id name="authorizeId" type="string" unsaved-value="null">
+			<column name="authorize_Id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="authorizeOrgId" column="authorize_Org_Id" />
+		<property name="authorizePersonId" column="authorize_Person_Id" />
+		<property name="permitOrgId" column="permit_Org_Id" />
+		<property name="authorizeLong" column="authorize_long" />
+		<property name="authorizeShort" column="authorize_short" />
+	</class>
+	<!--TemplateRight-->
+	<class name="com.hr319wg.cont.pojo.bo.TemplateRightBO" table="cont_template_right">
+		<id name="authorizeId" type="string" unsaved-value="null">
+			<column name="authorize_Id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="authorizeOrgId" column="authorize_Org_Id" />
+		<property name="authorizePersonId" column="authorize_Person_Id" />
+		<property name="permitOrgId" column="permit_Org_Id" />
+	</class>
+	<!--ApproveRight-->
+	<class name="com.hr319wg.cont.pojo.bo.ApproveRightBO" table="cont_Approve_right">
+		<id name="authorizeId" type="string" unsaved-value="null">
+			<column name="authorize_Id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="authorizeOrgId" column="authorize_Org_Id" />
+		<property name="authorizePersonId" column="authorize_Person_Id" />
+		<property name="permitOrgId" column="permit_Org_Id" />
+		<property name="authorizeLong" column="authorize_long" />
+		<property name="authorizeShort" column="authorize_short" />
+	</class>
+
+	<class name="com.hr319wg.cont.pojo.bo.ContPersonBO" table="cont_person">
+		<id name="personId" type="string" unsaved-value="null">
+			<column name="person_Id" sql-type="varchar(32)" />
+		</id>
+		<property name="createDate" column="create_Date" />
+		<property name="approveStatus" column="approve_Status" />
+		<property name="isValid" column="is_Valid" />
+		<property name="contClass" column="Cont_CLASS" />
+	</class>
+
+	<class name="com.hr319wg.cont.pojo.bo.ContBO" table="CONT_INFO">
+		<id name="contId" type="string" unsaved-value="null">
+			<column name="cont_Id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="contCode" column="cont_Code" />
+		<property name="contClass" column="cont_Class" />
+		<property name="protClass" column="prot_Class" />
+		<many-to-one name="contPersonBO" class="com.hr319wg.cont.pojo.bo.ContPersonBO"
+			lazy="false">
+			<column name="person_Id" length="32" />
+		</many-to-one>
+		<property name="contStartDate" column="cont_Start_Date" />
+		<property name="contEndDate" column="cont_End_Date" />
+		<property name="contTermClass" column="cont_Term_Class" />
+		<property name="contRemark" column="cont_Remark" />
+		<property name="templateClassId" column="template_Class_Id" />
+		<property name="templateId" column="template_Id" />
+		<property name="attachmentId" column="attachment_Id" />
+		<property name="approveStatus" column="approve_Status" />
+		<property name="uptoValidDate" column="upto_Valid_Date" />
+		<property name="approveRemark" column="approve_Remark" />
+		<property name="approvePersonId" column="approve_Person_Id" />
+		<property name="approveDate" column="approve_Date" />
+		<property name="approveOrgId" column="approve_Org_Id" />
+		<property name="contTerm" column="cont_Term" />
+		<property name="probationStartDate" column="probation_Start_Date" />
+		<property name="probationEndDate" column="probation_End_Date" />
+		<property name="postName" column="post_Name" />
+		<property name="workPlace" column="work_Place" />
+		<property name="workContent" column="work_Content" />
+		<property name="salaryClass" column="salary_Class" />
+		<property name="contFactEndDate" column="cont_Fact_End_Date" />
+		<property name="pauseContTerm" column="pause_Cont_Term" />
+		<property name="resumeExecuteContDate" column="resume_Execute_Cont_Date" />
+		<property name="pauseContIdForResume" column="pause_cont_Id_for_resume" />
+		<property name="resumeFlag" column="resume_Flag" />
+		<property name="lastContClass" column="last_Cont_Class" />
+		<property name="pkValueForResume" column="Pk_Value_For_Resume" />
+		<property name="contChangeSignDate" column="cont_change_Sign_Date" />
+		<property name="contEndSignDate" column="cont_End_Sign_Date" />
+		<property name="repairMoney" column="repair_Money" />
+		<property name="fellbackMoney" column="fellback_Money" />
+		<property name="medicineMoney" column="medicine_Money" />
+		<property name="otherMoney" column="other_Money" />
+		<property name="oneOffMoney" column="one_off_money" />
+		<property name="createOrgId" column="create_Org_Id" />
+		<property name="agreeTestify" column="agree_Testify" />
+		<property name="isValid" column="is_Valid" />
+		<property name="validDate" column="valid_Date" />
+		<property name="contCreateDate" column="cont_Create_Date" />
+		<property name="workTimeSet" column="work_Time_Set" />
+		<property name="praxisEndDate" column="praxis_end_date" />
+
+		<property name="paySalaryDate" column="pay_Salary_Date" />
+		<property name="probationSalaryMoney" column="probation_Salary_Money" />
+		<property name="salaryInclude" column="salary_Include" />
+		<property name="standardSalaryMoney" column="standard_Salary_Money" />
+		<property name="basicSalaryMoney" column="basic_Salary_Money" />
+		<property name="performanceSalaryMoney" column="performance_Salary_Money" />
+		<property name="jobLimitTerm" column="job_Limit_Term" />
+
+		<property name="serviceStartDate" column="service_Start_Date" />
+		<property name="serviceEndDate" column="service_End_Date" />
+
+		<property name="mainContValidDate" column="main_Cont_Valid_Date" />
+		<property name="mainContCode" column="main_Cont_Code" />
+		<property name="validOverdue" column="valid_overdue" />
+		<property name="factPaymentMoney" column="fact_Payment_Money" />
+		<property name="operator" column="operator" />
+		<property name="endReason" column="end_Reason" />
+
+		<property name="contPostName" column="ContPostName" />
+
+	</class>
+
+	<class name="com.hr319wg.cont.pojo.bo.ContSignBO" table="CONT_INFO">
+		<id name="contId" type="string" unsaved-value="null">
+			<column name="cont_Id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="contCode" column="cont_Code" />
+		<property name="contClass" column="cont_Class" />
+		<property name="protClass" column="prot_Class" />
+		<property name="personId" column="person_Id" />
+		<property name="personName" column="person_Name" />
+		<property name="contStartDate" column="cont_Start_Date" />
+		<property name="contEndDate" column="cont_End_Date" />
+		<property name="contTermClass" column="cont_Term_Class" />
+		<property name="contRemark" column="cont_Remark" />
+		<property name="templateClassId" column="template_Class_Id" />
+		<property name="templateId" column="template_Id" />
+		<property name="attachmentId" column="attachment_Id" />
+		<property name="approveStatus" column="approve_Status" />
+		<property name="uptoValidDate" column="upto_Valid_Date" />
+		<property name="approveRemark" column="approve_Remark" />
+		<property name="approvePersonId" column="approve_Person_Id" />
+		<property name="approveDate" column="approve_Date" />
+		<property name="approveOrgId" column="approve_Org_Id" />
+		<property name="contTerm" column="cont_Term" />
+		<property name="probationStartDate" column="probation_Start_Date" />
+		<property name="probationEndDate" column="probation_End_Date" />
+		<property name="postName" column="post_Name" />
+		<property name="workPlace" column="work_Place" />
+		<property name="workContent" column="work_Content" />
+		<property name="salaryClass" column="salary_Class" />
+		<property name="contFactEndDate" column="cont_Fact_End_Date" />
+		<property name="pauseContTerm" column="pause_Cont_Term" />
+		<property name="resumeExecuteContDate" column="resume_Execute_Cont_Date" />
+		<property name="pauseContIdForResume" column="pause_cont_Id_for_resume" />
+		<property name="resumeFlag" column="resume_Flag" />
+		<property name="lastContClass" column="last_Cont_Class" />
+		<property name="pkValueForResume" column="Pk_Value_For_Resume" />
+		<property name="contChangeSignDate" column="cont_change_Sign_Date" />
+		<property name="contEndSignDate" column="cont_End_Sign_Date" />
+		<property name="repairMoney" column="repair_Money" />
+		<property name="fellbackMoney" column="fellback_Money" />
+		<property name="medicineMoney" column="medicine_Money" />
+		<property name="otherMoney" column="other_Money" />
+		<property name="oneOffMoney" column="one_off_money" />
+		<property name="createOrgId" column="create_Org_Id" />
+		<property name="agreeTestify" column="agree_Testify" />
+		<property name="isValid" column="is_Valid" />
+		<property name="validDate" column="valid_Date" />
+		<property name="contCreateDate" column="cont_Create_Date" />
+		<property name="workTimeSet" column="work_Time_Set" />
+		<property name="praxisEndDate" column="praxis_end_date" />
+
+		<property name="paySalaryDate" column="pay_Salary_Date" />
+		<property name="probationSalaryMoney" column="probation_Salary_Money" />
+		<property name="salaryInclude" column="salary_Include" />
+		<property name="standardSalaryMoney" column="standard_Salary_Money" />
+		<property name="basicSalaryMoney" column="basic_Salary_Money" />
+		<property name="performanceSalaryMoney" column="performance_Salary_Money" />
+		<property name="jobLimitTerm" column="job_Limit_Term" />
+
+		<property name="serviceStartDate" column="service_Start_Date" />
+		<property name="serviceEndDate" column="service_End_Date" />
+
+		<property name="mainContValidDate" column="main_Cont_Valid_Date" />
+		<property name="mainContCode" column="main_Cont_Code" />
+		<property name="validOverdue" column="valid_overdue" />
+		<property name="factPaymentMoney" column="fact_Payment_Money" />
+		<property name="operator" column="operator" />
+		<property name="endReason" column="end_Reason" />
+        <property name="endPlace" column="end_Place" />
+
+    </class>
+	
+</hibernate-mapping>

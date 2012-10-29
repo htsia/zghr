@@ -1,0 +1,145 @@
+<!DOCTYPE tiles-definitions
+    [
+        <!ELEMENT component-definitions (definition+)>
+        <!ELEMENT tiles-definitions (definition+)>
+        <!ELEMENT definition (put*, putList*)>
+        <!ATTLIST definition
+            name CDATA #REQUIRED
+            pages CDATA #IMPLIED
+            path CDATA #IMPLIED
+            extends CDATA #IMPLIED
+            role CDATA #IMPLIED
+            template CDATA #IMPLIED
+            controllerClass CDATA #IMPLIED
+            controllerUrl CDATA #IMPLIED>
+        <!ELEMENT put (#PCDATA)>
+        <!ATTLIST put
+            name CDATA #REQUIRED
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+        <!ATTLIST putList
+            name CDATA #REQUIRED>
+        <!ELEMENT putListElements (add | item | bean)>
+        <!ELEMENT add (#PCDATA)>
+        <!ATTLIST add
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT bean (#PCDATA)>
+        <!ATTLIST bean
+            classtype CDATA #REQUIRED>
+        <!ELEMENT item (#PCDATA)>
+        <!ATTLIST item
+            value CDATA #REQUIRED
+            link CDATA #REQUIRED
+            classtype CDATA #IMPLIED
+            icon CDATA #IMPLIED
+            tooltip CDATA #IMPLIED>
+    ]>
+
+<tiles-definitions>
+
+    <definition name="layout.busitemplateDesktop" path="/pages/include/templateDesktop.jsp" >
+    </definition>
+    <definition name="layout.busitemplateDTLogin" path="/pages/include/templateDTLogin.jsp" >
+    </definition>
+
+
+    <definition name="layout.busitemplate" path="/pages/include/template.jsp" >
+    </definition>
+    <definition name="layout.wordtemplate" path="/pages/include/wordtemplate.jsp" >
+    </definition>
+    <definition name="layout.exceltemplate" path="/pages/include/exceltemplate.jsp" >
+    </definition>
+    <definition name="layout.busitemplateLogin" path="/pages/include/templateLogin.jsp" >
+    </definition>
+    <definition name="layout.busitemplateSelf" path="/pages/include/templateSelf.jsp" >
+    </definition>
+
+    <definition name="/common/DateEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/DateEdit.jsp" />
+    </definition>
+
+    <definition name="/common/activepage/ShowItemProperty.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/activepage/ShowItemProperty.jsp" />
+    </definition>
+
+    <definition name="/common/activepage/ShowStatic.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/activepage/ShowStatic.jsp" />
+    </definition>
+    <definition name="/common/activepage/ShowGather.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/activepage/ShowGather.jsp" />
+    </definition>
+
+    <definition name="/common/activepage/ShowGroup.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/activepage/ShowGroup.jsp" />
+    </definition>
+    <definition name="/common/activepage/ShowGroupDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/activepage/ShowGroupDetail.jsp" />
+    </definition>
+
+    <definition name="/common/activepage/ShowOrg.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/activepage/ShowOrg.jsp" />
+    </definition>
+    <definition name="/common/SelPost.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/common/SelPost.jsp"/>
+    </definition>
+    <definition name="/common/SelPostByDept.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/common/SelPostByDept.jsp"/>
+    </definition>
+
+    <definition name="/common/PersonQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/common/PersonQuery.jsp" />
+    </definition>
+    <definition name="/common/SelBackTreePerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/SelBackTreePerson.jsp" />
+    </definition>
+    <definition name="/common/SelBackPerson.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/common/SelBackPerson.jsp" />
+    </definition>
+
+    <definition name="/common/SelMutiPerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/SelMutiPerson.jsp" />
+    </definition>
+    <definition name="/common/SelPerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/SelPerson.jsp" />
+    </definition>
+    <definition name="/common/SelPersonInSelf.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/SelPersonInSelf.jsp" />
+    </definition>
+    <definition name="/common/SelPersonMail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/SelPersonMail.jsp" />
+    </definition>
+
+    <definition name="/common/DoSurvey.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/common/DoSurvey.jsp" />
+    </definition>
+    <definition name="/common/ShowSurvey.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/common/ShowSurvey.jsp" />
+    </definition>
+    <definition name="/common/ShowSurveyInWord.tiles" extends="layout.wordtemplate" >
+        <put name="body" value="/pages/common/ShowSurvey.jsp" />
+    </definition>
+
+    <definition name="/common/ManyPersonCon.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/ManyPersonCon.jsp" />
+    </definition>
+    <definition name="/common/UploadPhoto.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/common/UploadPhoto.jsp" />
+    </definition>
+    <definition name="/common/editPhotoField.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/editPhotoField.jsp" />
+    </definition>
+
+    <definition name="/common/deletePhotoField.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/common/deletePhotoField.jsp" />
+    </definition>
+
+    <definition name="/common/UploadPhotoToFile.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/common/UploadPhotoToFile.jsp" />
+    </definition>
+</tiles-definitions>

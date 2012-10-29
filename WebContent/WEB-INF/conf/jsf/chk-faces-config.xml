@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+    <managed-bean>
+        <managed-bean-name>chk_DataCheckBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.chk.web.DataCheckBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>datauploaducc</property-name>
+            <value>#{emp_datauploadUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>infosetucc</property-name>
+            <value>#{sys_infoSetUccImpl}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>chk_verifyItemBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.chk.web.VerifyItemBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>verifyucc</property-name>
+            <value>#{chk_verifyUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>chk_verifyResBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.chk.web.VerifyResBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>verifyucc</property-name>
+            <value>#{chk_verifyUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/datachk/ChkPersonInfoList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>info</from-outcome>
+            <to-view-id>/datachk/PersonInfoDetail.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/datachk/PersonInfoDetail.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>list</from-outcome>
+            <to-view-id>/datachk/ChkPersonInfoList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/datachk/ChkStart.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>tempdocview</from-outcome>
+            <to-view-id>/datachk/PersonTempDocView.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/datachk/VerifyItemList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>VerifyResultList</from-outcome>
+            <to-view-id>/datachk/VerifyResultList.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/datachk/VerifyResultList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>VerifyItemList</from-outcome>
+            <to-view-id>/datachk/VerifyItemList.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/datachk/ExcelInfoCheck.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>perInfoList</from-outcome>
+            <to-view-id>/datachk/ExcelDataCheckList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/datachk/ExcelDataCheckList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>upload</from-outcome>
+            <to-view-id>/datachk/ExcelInfoCheck.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

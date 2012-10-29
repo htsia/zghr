@@ -1,0 +1,358 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+    <definition name="/system/generateSpell.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/generateSpell.jsp"/>
+    </definition>
+    <definition name="/system/ImportTokenFile.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/otp/ImportTokenFile.jsp"/>
+    </definition>
+    <definition name="/system/SetParamter.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/SetParamter.jsp"/>
+    </definition>
+    <definition name="/system/auditReg.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/auditReg.jsp"/>
+    </definition>
+
+    <definition name="/system/auditRegEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/auditRegEdit.jsp"/>
+    </definition>
+
+    <definition name="/system/InProcessMore.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/InProcessMore.jsp" />
+    </definition>
+
+    <definition name="/system/SelfInProcessMore.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/SelfInProcessMore.jsp" />
+    </definition>
+
+    <definition name="/system/powerSet.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/workflow/powerSet.jsp" />
+    </definition>
+
+    <definition name="/system/wfTransEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/workflow/wfTransEdit.jsp" />
+    </definition>
+
+    <definition name="/system/cfgNodeTrans.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/workflow/cfgNodeTrans.jsp" />
+    </definition>
+
+    <definition name="/system/wfInfoEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/workflow/wfInfoEdit.jsp" />
+    </definition>
+
+    <definition name="/system/wfNodeEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/workflow/wfNodeEdit.jsp" />
+    </definition>
+
+    <definition name="/system/showWorkFlowLog.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/workflow/showWorkFlowLog.jsp" />
+    </definition>
+
+    <definition name="/system/workFlowEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/workflow/workFlowEdit.jsp" />
+    </definition>
+
+    <definition name="/system/workFlowCfg.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/system/workflow/workFlowCfg.jsp" />
+    </definition>
+
+    <definition name="/system/ExcludeFlowList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/workflow/ExcludeFlowList.jsp" />
+    </definition>
+
+    <definition name="/system/AddExclude.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/workflow/AddExclude.jsp" />
+    </definition>
+
+    <definition name="/system/workFlowList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/workflow/workFlowList.jsp" />
+    </definition>
+
+    <definition name="/system/viewWorkFlow.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/workflow/viewWorkFlow.jsp" />
+    </definition>
+
+    <definition name="/system/addPerson.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/system/addPerson.jsp" />
+    </definition>
+
+    <definition name="/system/QueryOwnLog.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/system/QueryOwnLog.jsp" />
+    </definition>
+
+    <definition name="/system/ViewItemCodeRelation.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/ViewItemCodeRelation.jsp" />
+    </definition>
+    <definition name="/system/ItemCodeRelation.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/ItemCodeRelation.jsp" />
+    </definition>
+    
+    <definition name="/system/ItemRefRelation.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/ItemRefRelation.jsp" />
+    </definition>
+
+    <definition name="/system/EditItemCodeRelation.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/EditItemCodeRelation.jsp" />
+    </definition>
+
+    <definition name="/system/ShowStruExport.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/system/ShowStruExport.jsp" />
+    </definition>
+
+    <definition name="/system/SetInfoToExport.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/system/SetInfoToExport.jsp" />
+    </definition>
+    <definition name="/system/CodeInfoToExport.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/system/CodeInfoToExport.jsp" />
+    </definition>
+
+    <definition name="/system/cleandata.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/system/cleandata.jsp" />
+    </definition>
+    <definition name="/system/IDCardConvert.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/system/IDCardConvert.jsp" />
+    </definition>
+
+    <definition name="/system/SelfWageItemSet.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/system/SelfWageItemSet.jsp" />
+    </definition>
+
+    <definition name="/system/CodeSetList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/CodeSetList.jsp"/>
+    </definition>
+    <definition name="/system/CodeSetEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/CodeSetEdit.jsp"/>
+    </definition>
+    <definition name="/system/CodeItemList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/CodeItemList.jsp"/>
+    </definition>
+    <definition name="/system/CodeItemEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/CodeItemEdit.jsp"/>
+    </definition>
+    <definition name="/system/InfoSetList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/InfoSetList.jsp"/>
+    </definition>
+    <definition name="/system/InfoSetIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/system/InfoSetIndex.jsp"/>
+    </definition>
+    <definition name="/system/InfoSetTypeTree.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/InfoSetTypeTree.jsp"/>
+    </definition>
+    <definition name="/system/InfoSetEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/InfoSetEdit.jsp"/>
+    </definition>
+
+    <definition name="/system/StarsList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/starts/StarsList.jsp"/>
+    </definition>
+    <definition name="/system/StarsEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/starts/StarsEdit.jsp"/>
+    </definition>
+
+    <definition name="/system/PortalFunList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/portal/PortalFunList.jsp"/>
+    </definition>
+    <definition name="/system/PortalFunEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/portal/PortalFunEdit.jsp"/>
+    </definition>
+
+    <definition name="/system/FriendLinkList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/friendlink/FriendLinkList.jsp"/>
+    </definition>
+    <definition name="/system/FriendLinkEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/friendlink/FriendLinkEdit.jsp"/>
+    </definition>
+
+    <definition name="/system/BookList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/addressbook/BookList.jsp"/>
+    </definition>
+    <definition name="/system/BookEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/addressbook/BookEdit.jsp"/>
+    </definition>
+    <definition name="/system/BookItemList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/addressbook/BookItemList.jsp"/>
+    </definition>
+    <definition name="/system/PersonSort.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/addressbook/PersonSort.jsp"/>
+    </definition>
+
+
+    <definition name="/system/InfoItemListBySet.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/InfoItemListBySet.jsp"/>
+    </definition>
+
+    <definition name="/system/InfoItemList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/InfoItemList.jsp"/>
+    </definition>
+    <definition name="/system/InfoItemEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/InfoItemEdit.jsp"/>
+    </definition>
+    <definition name="/system/InfoItemEditBySet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/InfoItemEditBySet.jsp"/>
+    </definition>
+
+    <definition name="/system/ParaSetting.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/ParaSetting.jsp"/>
+    </definition>
+    
+    <definition name="/system/LogInfoQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/LogInfoQuery.jsp"/>
+    </definition>
+
+    <!--    公告管理            -->
+    <definition name="/system/BulletinList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/system/bulletin/BulletinList.jsp" />
+    </definition>
+
+
+    <definition name="/system/MorePublicBull.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/system/bulletin/MorePublicBull.jsp" />
+    </definition>
+
+    <definition name="/system/BulletinEdit.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/system/bulletin/BulletinEdit.jsp"/>
+	</definition>
+
+    <definition name="/system/BulletinBriefMore.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/system/bulletin/BulletinBriefMore.jsp"/>
+	</definition>
+
+    <definition name="/system/BulletinBriefMoreChild.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/system/bulletin/BulletinBriefMoreChild.jsp"/>
+	</definition>
+
+    <!--    新闻管理            -->
+    <definition name="/system/NewsList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/system/news/NewsList.jsp" />
+    </definition>
+    <definition name="/system/NewsEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/news/NewsEdit.jsp"/>
+    </definition>
+
+    <definition name="/system/NewsBriefMore.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/system/news/NewsBriefMore.jsp"/>
+	</definition>
+
+    <definition name="/system/NewsBriefMoreChild.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/system/news/NewsBriefMoreChild.jsp"/>
+	</definition>
+
+    <definition name="/system/VideoNewsList.tiles" extends="layout.busitemplate">
+		<put name="body" value="/pages/system/news/VideoNewsList.jsp"/>
+	</definition>
+    <definition name="/system/VideoNewsEdit.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/system/news/VideoNewsEdit.jsp"/>
+	</definition>
+
+    <definition name="/system/MorePublicNews.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/system/news/MorePublicNews.jsp"/>
+	</definition>
+
+    <!--    提醒管理            -->
+    <definition name="/system/RemindList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/remind/RemindList.jsp"/>
+    </definition>
+
+    <definition name="/system/RemindScopeSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/remind/RemindScopeSet.jsp"/>
+    </definition>
+
+    <definition name="/system/RemindEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/remind/RemindEdit.jsp"/>
+    </definition>
+
+    <definition name="/system/RemindResult.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/remind/RemindResult.jsp"/>
+    </definition>
+
+    <definition name="/system/RemResultDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/remind/RemResultDetail.jsp"/>
+    </definition>
+        <definition name="/system/RemindSelectRole.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/remind/RemindSelectRole.jsp"/>
+    </definition>
+
+    <definition name="/system/RemindSelectPeople.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/remind/RemindSelectPeople.jsp"/>
+    </definition>
+    
+    <definition name="/system/RemindMore.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/remind/RemindMore.jsp"/>
+    </definition>
+
+    <definition name="/system/RemindItemDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/remind/RemindItemDetail.jsp"/>
+    </definition>
+
+
+    <definition name="/system/SendMail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/eMail/SendMail.jsp"/>
+    </definition>
+
+    <definition name="/system/SelfLevelList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/SelfLevelList.jsp"/>
+    </definition>
+
+    <definition name="/system/SelfLevelEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/system/SelfLevelEdit.jsp"/>
+    </definition>
+
+    <definition name="/system/SelfInfoPower.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/system/SelfInfoPower.jsp"/>
+    </definition>
+
+    <definition name="/system/DeletePerson.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/system/DeletePerson.jsp" />
+    </definition>
+    <definition name="/system/DeletePersonQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/system/DeletePersonQuery.jsp" />
+    </definition>
+    <definition name="/system/DeletePersonProcess.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/system/DeletePersonProcess.jsp" />
+   </definition>
+
+
+</tiles-definitions>

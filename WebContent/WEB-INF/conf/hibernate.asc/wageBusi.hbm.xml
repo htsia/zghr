@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.wage.pojo.bo.WageAdjustRuleBO" table="WAGE_ADJUST_RULE">
+        <id name="orgID" type="string" unsaved-value="null">
+         <column name="ORG_ID" sql-type="varchar(32)"/>
+         <generator class="assigned"/>
+        </id>
+        <property name="wageItems" column="WAGE_ITEMS"/>
+    </class>
+    
+    <class name="com.hr319wg.wage.pojo.bo.WageAdjustBO" table="WAGE_ADJUST">
+        <id name="itemID" type="string" unsaved-value="null">
+         <column name="ITEM_ID" sql-type="varchar(32)"/>
+         <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="PERSON_ID"/>
+        <property name="orgID" column="Org_ID"/>
+        <property name="applyDate" column="ADJUST_DATE"/>
+        <property name="status" column="status"/>
+        <property name="applyDate" column="APPLY_DATE"/>
+        <property name="linkID" column="LINK_ID"/>
+        <property name="adjustType" column="adjust_type"/>
+
+        <property name="audit1Oper" column="AUDIT1_OPER"/>
+        <property name="audit1Date" column="AUDIT1_DATE"/>
+        <property name="audit1Result" column="AUDIT1_RESULT"/>
+        <property name="audit1Reason" column="AUDIT1_REASON"/>
+
+        <property name="audit2Oper" column="AUDIT2_OPER"/>
+        <property name="audit2Date" column="AUDIT2_DATE"/>
+        <property name="audit2Result" column="AUDIT2_RESULT"/>
+        <property name="audit2Reason" column="AUDIT2_REASON"/>
+
+        <property name="audit3Oper" column="AUDIT3_OPER"/>
+        <property name="audit3Date" column="AUDIT3_DATE"/>
+        <property name="audit3Result" column="AUDIT3_RESULT"/>
+        <property name="audit3Reason" column="AUDIT3_REASON"/>
+        
+    </class>
+
+    <class name="com.hr319wg.wage.pojo.bo.WageAdjustDetailBO" table="WAGE_ADJUST_DETAIL">
+        <id name="adjustID" type="string" unsaved-value="null">
+         <column name="ADJUST_ID" sql-type="varchar(32)"/>
+         <generator class="uuid.hex"/>
+        </id>
+        <property name="itemID" column="ITEM_ID"/>
+        <property name="fieldID" column="FIELD_ID"/>
+        <property name="oldValue" column="OLD_VALUE"/>
+        <property name="newValue" column="NEW_VALUE"/>
+        <property name="status" column="status"/>
+    </class>
+    
+    <class name="com.hr319wg.wage.pojo.bo.WageNormalAdjustBO" table="wage_normal_adjust">
+        <id name="adjId" type="string" unsaved-value="null">
+         <column name="adj_id" sql-type="varchar(32)"/>
+         <generator class="uuid.hex"/>
+        </id>
+        <property name="adjCreateDate" column="adj_create_date"/>
+        <property name="adjCreateOper" column="adj_create_oper"/>
+        <property name="status" column="status"/>
+        <property name="adjOrgId" column="adj_orgId"/>
+        <property name="auditResult" column="audit_result" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="auditDate" column="audit_date"/>
+        <property name="auditOption" column="audit_option" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="auditOper" column="audit_oper"/>
+        <property name="auditResult2" column="audit_result2"/>
+        <property name="auditDate2" column="audit_date2"/>
+        <property name="auditOption2" column="audit_option2" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="auditOper2" column="audit_oper2"/>
+        <property name="auditResult3" column="audit_result3"/>
+        <property name="auditDate3" column="audit_date3"/>
+        <property name="auditOption3" column="audit_option3" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="auditOper3" column="audit_oper3"/>
+    </class>
+    <class name="com.hr319wg.wage.pojo.bo.WageNormalAdjustItemBO" table="wage_normal_adjust_item">
+        <id name="itemId" type="string" unsaved-value="null">
+         <column name="item_id" sql-type="varchar(32)"/>
+         <generator class="uuid.hex"/>
+        </id>
+        <property name="adjId" column="adj_id"/>
+        <property name="personId" column="person_id"/>
+        <property name="scopeValue" column="scope_value" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="timeValue" column="time_value" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="resultNew" column="result_new" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="resultOld" column="result_old" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="wageNew" column="wage_new"/>
+        <property name="wageOld" column="wage_old"/>
+        <property name="resultFiled" column="RESULT_FIELD"/>
+    </class>
+    <class name="com.hr319wg.wage.pojo.bo.WageNormalAdjustExcBO" table="wage_normal_adjust_ext">
+        <id name="itemId" type="string" unsaved-value="null">
+         <column name="item_id" sql-type="varchar(32)"/>
+         <generator class="uuid.hex"/>
+        </id>
+        <property name="adjId" column="adj_id"/>
+        <property name="personId" column="person_id"/>
+    </class>
+    <class name="com.hr319wg.wage.pojo.bo.WageNaRuleBO" table="wage_na_rule">
+        <id name="adjId" type="string" unsaved-value="null">
+         <column name="adj_id" sql-type="varchar(32)"/>
+         <generator class="uuid.hex"/>
+        </id>
+        <property name="adjOrgId" column="adj_orgId"/>
+        <property name="adjCreateOrg" column="adj_createOrg"/>
+        <property name="scopeField" column="scope_field" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="scopeValue" column="scope_value" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="timeField" column="time_field" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="timeValueLow" column="time_value_low" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="timeValueHigh" column="time_value_high" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="resultField" column="result_field" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="resultValue" column="result_value" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.wage.pojo.bo.WageReformSetBO" table="wage_reform_set">
+        <id name="setId" type="string" unsaved-value="null">
+         <column name="set_id" sql-type="varchar(32)"/>
+         <generator class="uuid.hex"/>
+        </id>
+        <property name="setName" column="set_name" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.wage.pojo.bo.WageReformColBO" table="wage_reform_col">
+        <id name="colId" type="string" unsaved-value="null">
+         <column name="col_id" sql-type="varchar(32)"/>
+         <generator class="uuid.hex"/>
+        </id>
+        <property name="setId" column="set_id"/>
+        <property name="seq" column="seq"/>
+        <property name="title" column="title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="lowValue" column="low_value"/>
+        <property name="highValue" column="high_value"/>
+    </class>
+    <class name="com.hr319wg.wage.pojo.bo.WageReformRowBO" table="wage_reform_row">
+        <id name="rowId" type="string" unsaved-value="null">
+         <column name="row_id" sql-type="varchar(32)"/>
+         <generator class="uuid.hex"/>
+        </id>
+        <property name="setId" column="set_id"/>
+        <property name="seq" column="seq"/>
+        <property name="jobLevel" column="job_level"/>
+        <property name="title" column="title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="lowValue" column="low_value"/>
+        <property name="highValue" column="high_value"/>
+    </class>
+    <class name="com.hr319wg.wage.pojo.bo.WageReformDataBO" table="wage_reform_data">
+        <id name="dataId" type="string" unsaved-value="null">
+         <column name="data_id" sql-type="varchar(32)"/>
+         <generator class="uuid.hex"/>
+        </id>
+        <property name="setId" column="set_id"/>
+        <property name="colId" column="col_id"/>
+        <property name="rowId" column="row_id"/>
+        <property name="dataValue" column="data_value"/>
+        <property name="linkCode" column="link_code"/>
+    </class>
+    <class name="com.hr319wg.wage.pojo.bo.WageReformCaclBO" table="wage_reform_cacl">
+        <id name="dataId" type="string" unsaved-value="null">
+         <column name="data_id" sql-type="varchar(32)"/>
+         <generator class="uuid.hex"/>
+        </id>
+        <property name="personId" column="person_id"/>
+        <property name="setId" column="set_id"/>
+        <property name="caclDate" column="cacl_date"/>
+        <property name="jobLevel" column="job_level"/>
+        <property name="jobDate" column="job_date"/>
+        <property name="lastJobLevel" column="last_job_level"/>
+        <property name="lastJobDate" column="last_job_date"/>
+        <property name="titleLevel" column="title_level"/>
+        <property name="titleDate" column="title_date"/>
+        <property name="lastTitleLevel" column="last_title_level"/>
+        <property name="lastTitleTitleDate" column="last_title_title_date"/>
+        <property name="workerLevel" column="worker_level"/>
+        <property name="workerDate" column="worker_date"/>
+        <property name="lastWorkerLevel" column="last_worker_level"/>
+        <property name="lastWorkerDate" column="last_worker_date"/>
+        <property name="workDate" column="work_date"/>
+        <property name="curPostWage" column="cur_post_wage"/>
+        <property name="curPostWageMoney" column="cur_post_wage_money"/>
+        <property name="curLevelWage" column="cur_level_wage"/>
+        <property name="curLevelWageMoney" column="cur_level_wage_money"/>
+        <property name="curTotal" column="cur_total"/>
+        <property name="lastPostWage" column="last_post_wage"/>
+        <property name="lastPostWageMoney" column="last_post_wage_money"/>
+        <property name="lastLevelWage" column="last_level_wage"/>
+        <property name="lastLevelWageMoney" column="last_level_wage_money"/>
+        <property name="lastTotal" column="last_total"/>
+        <property name="status" column="status"/>
+    </class>
+    <class name="com.hr319wg.wage.pojo.vo.WageJobLevelVO" table="A705">
+        <id name="subId" type="string" unsaved-value="null">
+         <column name="subId" sql-type="varchar(32)"/>
+         <generator class="assigned"/>
+        </id>
+        <property name="personId" column="id"/>
+        <property name="jobLevel" column="A705718"/>
+        <property name="jobDate" column="A705728"/>
+        <property name="forNow" column="A705000"/>
+    </class>
+    <class name="com.hr319wg.wage.pojo.vo.WageTitleLevelVO" table="A010">
+        <id name="subId" type="string" unsaved-value="null">
+         <column name="subId" sql-type="varchar(32)"/>
+         <generator class="assigned"/>
+        </id>
+        <property name="personId" column="id"/>
+        <property name="titleLevel" column="A010006"/>
+        <property name="titleDate" column="A010015"/>
+        <property name="forNow" column="A010000"/>
+    </class>
+    <class name="com.hr319wg.wage.pojo.vo.WageWorkerLevelVO" table="A081">
+        <id name="subId" type="string" unsaved-value="null">
+         <column name="subId" sql-type="varchar(32)"/>
+         <generator class="assigned"/>
+        </id>
+        <property name="personId" column="id"/>
+        <property name="workerLevel" column="A081701"/>
+        <property name="workerDate" column="A081708"/>
+        <property name="forNow" column="A081000"/>
+    </class>
+    <class name="com.hr319wg.wage.pojo.bo.WageReformJobWageBO" table="wage_reform_jobwage">
+        <id name="itemId" type="string" unsaved-value="null">
+         <column name="item_id" sql-type="varchar(32)"/>
+         <generator class="uuid.hex"/>
+        </id>
+        <property name="sourceField" column="source_field"/>
+        <property name="sourceCode" column="source_code"/>
+        <property name="desCode" column="des_code"/>
+    </class>
+   </hibernate-mapping>

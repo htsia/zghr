@@ -1,0 +1,64 @@
+YXGL-0800|运行管理|運行管理|Run Manager
+YXGL-0880|数据交换平台|資料交換平臺|Data Alternation
+YXGL-0881|系统登记|系統登記|System Enregister
+YXGL-0882|产品登记|產品登記|Product Enregister
+YXGL-0883|运行监控|運行監控|Run Monitor
+YXGL-0891|在线用户|線上用戶|Online User
+YXGL-0893|访问数据库|訪問資料庫|Visit DataBase
+YXGL-0894|系统信息|系統資訊|System Information
+YXGL-0896|软件下载|軟體下載|Soft DownLoad
+YXGL-0898|软件上传|軟體上傳|Soft UpLoad 
+YXGL-0899|软件下载|軟體下載|Soft DownLoad
+YXGL-1000|软件编号|軟體編號  |Soft  Number
+YXGL-1001|系统编号|系統編號 |System Number
+YXGL-1002|系统名称|系統名稱 |System Name
+YXGL-1003|系统发布号 |系統發佈號|Sysetem Issuance Number
+YXGL-1004|详细版本|詳細版本 |Detail Version
+YXGL-1005|发布时间|發佈時間 |Issuance Time
+YXGL-1006|报表服务版本 |報表服務版本|Report Server Version
+YXGL-1007|要求数据库更新|要求資料庫更新 |Support DataBase Version
+YXGL-1008|数据库类型|資料庫類型 |DataBase Type
+YXGL-1009|数据库更新号|資料庫更新號 |DataBase Update Number
+YXGL-1010|应用服务器 |應用伺服器| Server
+YXGL-1011|运行目录 |運行目錄|Run Directory
+YXGL-1013|错误日志|錯誤日誌|Error Log
+YXGL-1014|运行模式 |運行模式|Run Mode
+YXGL-1015|调试模式 |調試模式 |Debug Mode
+YXGL-1016|正常模式 |正常模式|General Mode
+YXGL-1017|浏览器  |流覽器|Browser
+YXGL-1018|分辨率 |解析度| Resolving Power 
+YXGL-1019|分页显示 |分頁顯示|Pagination
+YXGL-1020|返回行数 |返回行數| Return Rows
+YXGL-1021|返回信息|返回資訊| Return Information
+YXGL-1022|选择 |選擇 |Select
+YXGL-1023|文件名|檔案名|File Name
+YXGL-1024|描述 |描述|Description
+YXGL-1025|文件大小|檔大小|Return Information
+YXGL-1026|操作|操作|Operation
+YXGL-1027|下载|下載|DownLoad
+YXGL-1028|机构|機構|Organization
+YXGL-1029|部门|部門|Department
+YXGL-1031|登陆时间|登陸時間|Login Time
+YXGL-1032|操作时间|操作時間|Operation Time
+YXGL-1033|总登陆次数|總登陸次數|Login Count
+YXGL-1034|当天登陆次数|當天登陸次數|Today Login Count
+YXGL-1035|序号|序號|Sequence 
+YXGL-1036|系统编号|系統編號|System Number
+YXGL-1037|系统名称|系統名稱|System Name
+YXGL-1038|数据库服务器|資料庫伺服器|DataBase Server
+YXGL-1039|端口|埠|Port
+YXGL-1040|数据库名称|資料庫名稱|DataBase Name
+YXGL-1041|数据库用户|資料庫用戶|DataBase User
+YXGL-1042|数据库密码|資料庫密碼|Password
+YXGL-1048|产品投递地址|產品投遞位址|Product Post Address
+YXGL-1049|登录用户|登錄用戶|Login User
+YXGL-1050|登录密码|登錄密碼|Login Password
+
+
+ 
+
+
+
+
+
+

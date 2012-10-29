@@ -1,0 +1,185 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+    <definition name="/wage/adjust/OrgAdjustItemSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/OrgAdjustItemSet.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/validateAdjust.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/validateAdjust.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/AuditAdjustEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/AuditAdjustEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/CommonWageItemEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/CommonWageItemEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/AuditAdjust.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/adjust/AuditAdjust.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/CommonAdjust.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/adjust/CommonAdjust.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/CommonAdjustEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/CommonAdjustEdit.jsp"/>
+    </definition>
+
+    <definition name="/wage/adjust/OrgEnterEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/OrgEnterEdit.jsp"/>
+    </definition>
+
+    <definition name="/wage/adjust/titleWageEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/titleWageEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/eduWageEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/eduWageEdit.jsp"/>
+    </definition>
+    
+	<definition name="/wage/adjust/normalChange.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/adjust/normalChange.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/wageAdjustEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/wageAdjustEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/wageAdjustRule.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/wageAdjustRule.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/adjRuleEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/adjRuleEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/wageNomalAdjDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/wageNomalAdjDetail.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/showNomalAdjDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/showNomalAdjDetail.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/probationWageEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/probationWageEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/AuditWageAdjust.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/wage/adjust/AuditWageAdjust.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/AuditWageAdjust2.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/wage/adjust/AuditWageAdjust2.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/AuditWageAdjust3.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/wage/adjust/AuditWageAdjust3.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/AuditWageAdjustList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/adjust/AuditWageAdjustList.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/AduitshowNomalAdj1.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/AduitshowNomalAdj1.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/AduitshowNomalAdj2.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/AduitshowNomalAdj2.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/AduitshowNomalAdj3.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/AduitshowNomalAdj3.jsp"/>
+    </definition>
+    <definition name="/wage/institution/normalChange.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/institution/normalChange.jsp"/>
+    </definition>
+    <definition name="/wage/institution/wageNomalAdjItemList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/institution/wageNomalAdjItemList.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/postChangeWageEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/postChangeWageEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/jobAdjustEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/jobAdjustEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/SetReform.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/wage/adjust/SetReform.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/showSetDetail.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/adjust/showSetDetail.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/reformRowList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/reformRowList.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/rowEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/rowEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/reformColList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/reformColList.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/colEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/colEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/SetJobStandard.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/adjust/SetJobStandard.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/SetJobTitleStandard.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/adjust/SetJobTitleStandard.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/SetWorkStandard.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/adjust/SetWorkStandard.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/managerEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/managerEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/titleEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/titleEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/workerEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/workerEdit.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/CalcReform.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/adjust/CalcReform.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/addPerson.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/adjust/addPerson.jsp"/>
+    </definition>
+    <definition name="/wage/institution/showNomalAdjDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/wage/institution/showNomalAdjDetail.jsp"/>
+    </definition>
+ <!-- 王哥2010-11-08 -->
+     <definition name="/wage/adjust/enterMgr.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/adjust/enterMgr.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/exitMgr.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/adjust/exitMgr.jsp"/>
+    </definition>
+    
+</tiles-definitions>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.hr319wg.train.pojo.bo.TrainSystemBO" table="train_system">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="itemType"	       column="item_type"/>
+		<property name="postId"	   column="post_id"/>
+		<property name="linkCourse"	   column="link_course"/>
+		<property name="courseType"	   column="course_type"/>
+		<property name="period"	   column="period"/>
+		<property name="score"	   column="score"/>
+    </class>
+    <class name="com.hr319wg.train.pojo.bo.TrainSystemExcuteBO" table="train_system_execute">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="itemType"	       column="item_type"/>
+		<property name="postId"	   column="post_id"/>
+		<property name="linkCourse"	   column="link_course"/>
+		<property name="personId"	   column="person_id"/>
+		<property name="classId"	   column="train_class"/>
+    </class>
+	<class name="com.hr319wg.train.pojo.bo.TrainClassTeacherBO" table="Train_class_teacher">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="classId"	       column="class_id"/>
+		<property name="teacherId"	   column="teacher_id"/>
+		<property name="teacherType"	   column="teacher_type"/>
+    </class>
+    
+    <class name="com.hr319wg.train.pojo.bo.TrainClassBookBO" table="Train_class_book">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="bookId"	       column="book_id"/>
+		<property name="classId"	   column="class_id"/>
+    </class>
+	
+    <class name="com.hr319wg.train.pojo.bo.CourceWareTypeBO" table="train_courcewaretype">
+        <id name="typeID" type="string" unsaved-value="null">
+            <column name="TYPE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="typeName"	       column="TYPE_NAME"/>
+		<property name="parentTypeid"	   column="PARENT_ID"/>
+    </class>
+
+    <class name="com.hr319wg.train.pojo.bo.CourceWareItemBO" table="TRAIN_COURCEWAREITEM">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="Item_ID " sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="typeID"	   column="TYPE_ID"/>
+		<property name="title"	   column="TITLE"/>
+        <property name="createDate"	   column="CreateDate"/>
+        <property name="fileName"	   column="File_Name"/>
+        <property name="startDate" type="string" column="START_DATE"/>
+        <property name="newEndDate" type="string" column="NEW_ENDDATE"/>
+        <property name="endDate" type="string" column="END_DATE"/>
+        <property name="orgID" type="string" column="ORG_ID"/>
+        <property name="action" type="string" column="action"/>
+        <property name="createor"   column="CREATEOR" />
+        <property name="iconFile"   column="icon_file" />
+        <property name="publicFlag"   column="public_flag" />
+    </class>
+
+    <class name="com.hr319wg.train.pojo.bo.TrainOrgBO" table="TRAIN_ORG">
+        <id name="orgID" type="string" unsaved-value="null">
+            <column name="ORG_ID " sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="orgName"	   column="ORG_NAME"/>
+		<property name="orgDescription"	   column="ORG_DESCRIPTION"/>
+        <property name="contactPerson"	   column="CONTACT_PERSON"/>
+        <property name="contactTel"	   column="CONTACT_TEL"/>
+        <property name="contactAddress"	   column="CONTACT_ADDRESS"/>
+        <property name="fax"	   column="FAX"/>
+        <property name="postcode"	   column="POSTCODE"/>
+        <property name="website"	   column="WEBSITE"/>
+        <property name="contactEMail"	   column="EMAIL"/>
+        <property name="createOrg"	   column="CREATE_ORG"/>
+        <property name="showSeq"	   column="SHOW_SEQ"/>
+        <property name="orgScope"	   column="orgScope"/>
+    </class>
+    <!-- 培训讲师 -->
+    <class name="com.hr319wg.train.pojo.bo.TrainTeacherBO" table="TRAIN_TEACHER">
+    	<id name="teacherID" type="string" unsaved-value="null">
+    		<column name="TEACHER_ID" sql-type="varchar(32)"/>
+    		<generator class="uuid.hex"/>
+    	</id>
+    	<property name="teacherName" column="TEACHER_NAME"/>
+    	<property name="teacherBirthday" column="TEACHER_birthday"/>
+    	<property name="teacherSex" column="TEACHER_sex"/>
+    	<property name="teacherDegree" column="TEACHER_DEGREE"/>
+    	<property name="teacherMajor" column="TEACHER_MAJOR"/>
+    	<property name="teacherColleage" column="TEACHER_COLLEAGE"/>
+    	<property name="teacherTel" column="TEACHER_TEL"/>
+    	<property name="teacherMobile" column="TEACHER_MOBILE"/>
+    	<property name="teacherEmail" column="TEACHER_EMAIL"/>
+    	<property name="teacherWork" column="TEACHER_WORK"/>
+    	<property name="teacherOrg" column="TEACHER_ORG"/>
+    	<property name="teacherMemo" column="TEACHER_MEMO"/>
+    	<property name="createOrg" column="create_org"/>
+    	<property name="teacherCas" column="teacher_cas"/>
+    	<property name="teacherPric" column="teacher_pric"/>
+    	<property name="teacherGlo" column="teacher_glo"/>
+    	<property name="teacherCou" column="teacher_cou"/>
+    	<property name="teacherClie" column="teacher_clie"/>
+    	<property name="teacherPho" column="teacher_pho"/>
+    </class>
+    <!-- 培训教材 -->
+     <class name="com.hr319wg.train.pojo.bo.TrainBookBO" table="TRAIN_BOOK">
+        <id name="bookID" type="string" unsaved-value="null">
+            <column name="BOOK_ID " sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="bookName"	   column="BOOK_NAME"/>
+		<property name="bookAuthor"	   column="BOOK_AUTHOR"/>
+        <property name="bookPublisher"	   column="BOOK_PUBLISHER"/>
+        <property name="bookPrice"	   column="BOOK_PRICE"/>
+        <property name="bookOrg"	   column="BOOK_ORG"/>
+        <property name="bookMemo"	   column="BOOK_MEMO"/>
+        <property name="createOrg"	   column="CREATE_ORG"/>
+    </class>
+    <!-- 培训场地 -->
+     <class name="com.hr319wg.train.pojo.bo.TrainPlaceBO" table="TRAIN_PLACE">
+    	<id name="placeID" unsaved-value="null">
+    		<column name="PLACE_ID" sql-type="varchar(32)"/>
+    		<generator class="uuid.hex"></generator>
+    	</id>
+    	<property name="placeName" column="PLACE_NAME" />
+    	<property name="placeLocate" column="PLACE_LOCATE" />
+    	<property name="placeMemo" column="PLACE_MEMO" />
+    	<property name="placeOrg" column="PLACE_ORG" />
+    	<property name="createOrg" column="CREATE_ORG"/>
+    </class>
+    
+    <!-- 培训器材 -->
+     <class name="com.hr319wg.train.pojo.bo.TrainEquipmentBO" table="TRAIN_EQUIPMENT">
+    <id name="equipmentId" type="string"  unsaved-value="null">
+    <column name="EQUIPMENT_ID" sql-type="varchar2(32)"/>
+    <generator class="uuid.hex"/>
+    </id>
+    <property name="equipmentName" column="EQUIPMENT_NAME"/>
+    <property name="equipmentMemo" column="EQUIPMENT_MEMO" />
+    <property name="equipmentOrg" column="EQUIPMENT_ORG" />
+     <property name="createOrg" column="CREATE_ORG"/>
+    </class>
+   <!-- 内部教师 -->
+	<class name="com.hr319wg.train.pojo.bo.TrainInnerteacherBO"
+		table="TRAIN_INNERTEACHER">
+		<id name="teacherID" type="string" unsaved-value="null">
+			<column name="TEACHER_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="teacherOrg" column="TEACHER_ORG" />
+		<property name="personId" column="Person_ID" />
+		<property name="createOrg" column="CREATE_ORG" />
+	</class>
+	<!-- 培训需求 -->
+	 <class name="com.hr319wg.train.pojo.bo.TrainDemandBO" table="TRAIN_DEMAND">
+        <id name="demandID" type="string" unsaved-value="null">
+            <column name="DEMAND_ID " sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="demandType"	   column="DEMAND_TYPE"/>
+        <property name="personID"	   column="PERSON_ID"/>
+        <property name="deptID"	   column="DEPT_ID"/>
+        <property name="createDate"	   column="CREATE_DATE"/>
+        <property name="memo"	   column="MEMO"/>
+        <property name="demandStyle"	   column="DEMAND_STYLE"/>
+        <property name="demandTime"	   column="DEMAND_TIME"/>
+        <property name="demandLocked"	   column="DEMAND_LOCKED"/>
+        <property name="bullId"	   column="bull_id"/>
+    </class>
+    <!-- 培训计划制定与审批 -->
+    <class name="com.hr319wg.train.pojo.bo.TrainPlanBo" table="TRAIN_PLAN">
+        <id name="planID" type="string" unsaved-value="null">
+            <column name="PLAN_ID " sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="planName"	   column="PLAN_NAME"/>
+        <property name="planDesc"	   column="PLAN_DESC"/>
+        <property name="createOrg"	   column="CREATE_ORG"/>
+        <property name="dateType"	   column="DATE_TYPE"/>
+        <property name="dateValue"	   column="DATE_VALUE"/>
+        <property name="createaOper"	   column="CREATE_OPER"/>
+        <property name="createDate"	   column="CREATE_DATE"/>
+        <property name="planBudget"	   column="PLAN_BUDGET"/>
+        <property name="auditResult"	   column="AUDIT_RESULT"/>
+        <property name="auditContent"	   column="AUDIT_CONTENT"/>
+        <property name="auditOper"	   column="AUDIT_OPER"/>
+        <property name="auditDate"	   column="AUDIT_DATE"/>
+        <property name="status"	   column="STATUS"/>
+        <property name="planAtt"	   column="plan_att"/>
+        <property name="midAudResult1"	   column="MIDAD_RESULT1"/>
+        <property name="midAudContent1"	   column="MIDAD_CONTENT1"/>
+        <property name="midAudOper1"	   column="MIDAD_OPER1"/>
+        <property name="midAudDate1"	   column="MIDAD_DATE1"/>
+        <property name="midAudResult2"	   column="MIDAD_RESULT2"/>
+        <property name="midAudContent2"	   column="MIDAD_CONTENT2"/>
+        <property name="midAudOper2"	   column="MIDAD_OPER2"/>
+        <property name="midAudDate2"	   column="MIDAD_DATE2"/>
+        <property name="midAudResult3"	   column="MIDAD_RESULT3"/>
+        <property name="midAudContent3"	   column="MIDAD_CONTENT3"/>
+        <property name="midAudOper3"	   column="MIDAD_OPER3"/>
+        <property name="midAudDate3"	   column="MIDAD_DATE3"/>
+    </class>
+    <!-- 培训课程 -->
+    <class name="com.hr319wg.train.pojo.bo.TrainClassBO" table="TRAIN_CLASS">
+        <id name="classID" type="string" unsaved-value="null">
+            <column name="CLASS_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="className"	   column="CLASS_NAME"/>
+        <property name="classMajor"	   column="CLASS_MAJOR"/>
+        <property name="classAid"	   column="CLASS_AID"/>
+        <property name="classDesc"	   column="CLASS_DESC"/>
+        <property name="classScope"	   column="CLASS_SCOPE"/>
+        <property name="classPCount"	   column="CLASS_PCOUNT"/>
+        <property name="classBudget"	   column="CLASS_BUDGET"/>
+        <property name="classHour"	   column="CLASS_HOUR"/>
+        <property name="signBeginTime"	   column="SIGN_BEGIN_TIME"/>
+        <property name="signEndTime"	   column="SIGN_END_TIME"/>
+        <property name="beginTime"	   column="BEGIN_TIME"/>
+        <property name="endTime"	   column="END_TIME"/>
+        <property name="classCourse"	   column="CLASS_COURSE"/>
+        <property name="classStatus"	   column="CLASS_STATUS"/>
+        <property name="auditResult"	   column="AUDIT_RESULT"/>
+        <property name="auditOper"	   column="AUDIT_OPER"/>
+        <property name="auditDate"	   column="AUDIT_DATE"/>
+        <property name="auditContent"	   column="AUDIT_CONTENT"/>
+        <property name="createOrg"	   column="CREATE_ORG"/>
+        <property name="org_scope"	   column="ORG_SCOPE"/>
+        <property name="linkCourse"	   column="LINK_COURSE"/>
+        <property name="planId"	   column="plan_id"/>
+        <property name="classType"	   column="class_type"/>
+        <property name="classLinkSystem"	   column="class_link_system"/>
+    </class>
+    <!-- 培训学生 -->
+    <class name="com.hr319wg.train.pojo.bo.TrainStudentBO" table="TRAIN_STUDENT">
+		<id name="studentID" type="string" unsaved-value="null">
+			<column name="STUDENT_ID " sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="personID" column="PERSON_ID" />
+		<property name="classID" column="CLASS_ID" />
+		<property name="signTime" column="SIGN_TIME" />
+		<property name="status" column="STATUS" />
+	</class>
+	
+	<class name="com.hr319wg.train.pojo.bo.TrainDemandBullBO" table="train_demand_bull">
+		<id name="bullId" type="string" unsaved-value="null">
+			<column name="bull_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="demandType" column="demand_type" />
+		<property name="personId" column="person_id" />
+		<property name="createDate" column="create_date" />
+		<property name="beginDate" column="begin_date" />
+		<property name="endDate" column="end_date" />
+		<property name="status" column="status" />
+		<property name="bulletin" column="bulletin" />
+		<property name="content" column="content" />
+	</class>
+	
+</hibernate-mapping>

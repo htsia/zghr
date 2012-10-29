@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="cont_contsumUCC" class="com.hr319wg.cont.ucc.impl.ContOrgSumUCC">
+           <property name="contservice">
+               <ref bean="cont_sumService"/>
+           </property>
+    </bean>
+
+    <bean id="cont_sumService" class="com.hr319wg.cont.service.ContOrgSumService">
+        <property name="contsumdao">
+            <ref bean="cont_contsumDAO"/>
+        </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+     </bean>
+
+    <bean id="cont_contsumDAO" class="com.hr319wg.cont.dao.ContOrgSumItemDAO">
+       <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+       </property>
+    </bean>
+
+    <bean id="cont_contcodeinfoDAO" class="com.hr319wg.cont.dao.ContCodeInfoDAO">
+       <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+       </property>
+    </bean>
+
+    <bean id="cont_contcodeInfoService" class="com.hr319wg.cont.service.ContCodeInfoService">
+        <property name="contdao">
+            <ref bean="cont_contcodeinfoDAO"/>
+        </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+     </bean>
+
+    <bean id="cont_contcodeInfoUCC" class="com.hr319wg.cont.ucc.impl.ContCodeInfoUCC">
+           <property name="contservice">
+               <ref bean="cont_contcodeInfoService"/>
+           </property>
+    </bean>
+
+    <bean id="cont_contTemplateClassDAO" class="com.hr319wg.cont.dao.ContTemplateClassDAO">
+           <property name="hibernatetemplate">
+		        <ref bean="hibernateTemplate"/>
+		   </property>
+    </bean>
+    <bean id="cont_contTemplateClassService" class="com.hr319wg.cont.service.ContTemplateClassService">
+            <property name="conttemplateclassdao">
+                <ref bean="cont_contTemplateClassDAO"/>
+            </property>
+     </bean>
+     <bean id="cont_contTemplateClassUCC" class="com.hr319wg.cont.ucc.impl.ContTemplateClassUCC">
+            <property name="conttemplateclassservice">
+                <ref bean="cont_contTemplateClassService"/>
+            </property>
+     </bean>
+     <bean id="cont_iContTemplateClassUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.cont.ucc.IContTemplateClassUCC</value>
+                </list>
+            </property>
+            <property name="target" ref="cont_contTemplateClassUCC"/>
+            <property name="transactionManager" ref="transactionManager"/>
+            <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+     <!--contTemplate-->
+    <bean id="cont_contTemplateDAO" class="com.hr319wg.cont.dao.ContTemplateDAO">
+           <property name="hibernatetemplate">
+		        <ref bean="hibernateTemplate"/>
+		   </property>
+    </bean>
+    <bean id="cont_contTemplateService" class="com.hr319wg.cont.service.ContTemplateService">
+            <property name="conttemplatedao">
+                <ref bean="cont_contTemplateDAO"/>
+            </property>
+     </bean>
+     <bean id="cont_contTemplateUCC" class="com.hr319wg.cont.ucc.impl.ContTemplateUCC">
+            <property name="conttemplateservice">
+                <ref bean="cont_contTemplateService"/>
+            </property>
+     </bean>
+     <bean id="cont_iContTemplateUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.cont.ucc.IContTemplateUCC</value>
+                </list>
+            </property>
+            <property name="target" ref="cont_contTemplateUCC"/>
+            <property name="transactionManager" ref="transactionManager"/>
+            <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <!--signRight-->
+    <bean id="cont_signRightDAO" class="com.hr319wg.cont.dao.SignRightDAO">
+           <property name="hibernatetemplate">
+		        <ref bean="hibernateTemplate"/>
+		   </property>
+    </bean>
+    <bean id="cont_signRightService" class="com.hr319wg.cont.service.SignRightService">
+            <property name="signrightdao">
+                <ref bean="cont_signRightDAO"/>
+            </property>
+     </bean>
+     <bean id="cont_signRightUCC" class="com.hr319wg.cont.ucc.impl.SignRightUCC">
+            <property name="signrightservice">
+                <ref bean="cont_signRightService"/>
+            </property>
+     </bean>
+     <bean id="cont_iSignRightUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.cont.ucc.ISignRightUCC</value>
+                </list>
+            </property>
+            <property name="target" ref="cont_signRightUCC"/>
+            <property name="transactionManager" ref="transactionManager"/>
+            <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+<!--TemplateRight-->
+    <bean id="cont_templateRightDAO" class="com.hr319wg.cont.dao.TemplateRightDAO">
+           <property name="hibernatetemplate">
+		        <ref bean="hibernateTemplate"/>
+		   </property>
+    </bean>
+    <bean id="cont_templateRightService" class="com.hr319wg.cont.service.TemplateRightService">
+            <property name="templaterightdao">
+                <ref bean="cont_templateRightDAO"/>
+            </property>
+     </bean>
+     <bean id="cont_templateRightUCC" class="com.hr319wg.cont.ucc.impl.TemplateRightUCC">
+            <property name="templaterightservice">
+                <ref bean="cont_templateRightService"/>
+            </property>
+     </bean>
+     <bean id="cont_iTemplateRightUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.cont.ucc.ITemplateRightUCC</value>
+                </list>
+            </property>
+            <property name="target" ref="cont_templateRightUCC"/>
+            <property name="transactionManager" ref="transactionManager"/>
+            <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+<!--ApproveRight-->
+    <bean id="cont_approveRightDAO" class="com.hr319wg.cont.dao.ApproveRightDAO">
+           <property name="hibernatetemplate">
+		        <ref bean="hibernateTemplate"/>
+		   </property>
+    </bean>
+    <bean id="cont_approveRightService" class="com.hr319wg.cont.service.ApproveRightService">
+            <property name="approverightdao">
+                <ref bean="cont_approveRightDAO"/>
+            </property>
+     </bean>
+     <bean id="cont_approveRightUCC" class="com.hr319wg.cont.ucc.impl.ApproveRightUCC">
+            <property name="approverightservice">
+                <ref bean="cont_approveRightService"/>
+            </property>
+     </bean>
+     <bean id="cont_iApproveRightUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.cont.ucc.IApproveRightUCC</value>
+                </list>
+            </property>
+            <property name="target" ref="cont_approveRightUCC"/>
+            <property name="transactionManager" ref="transactionManager"/>
+            <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <!--ContPerson-->
+    <bean id="cont_contPersonDAO" class="com.hr319wg.cont.dao.ContPersonDAO">
+           <property name="hibernatetemplate">
+		        <ref bean="hibernateTemplate"/>
+		   </property>
+    </bean>
+    <bean id="cont_contPersonService" class="com.hr319wg.cont.service.ContPersonService">
+            <property name="contpersondao">
+                <ref bean="cont_contPersonDAO"/>
+            </property>
+            <property name="activeapi" ref="sys_activePageApi" />
+            
+     </bean>
+
+     <bean id="cont_contPersonUCC" class="com.hr319wg.cont.ucc.impl.ContPersonUCC">
+            <property name="contpersonservice">
+                <ref bean="cont_contPersonService"/>
+            </property>
+         <property name="activeapi">
+             <ref bean="sys_activePageApi"/>
+         </property>
+     </bean>
+
+     <bean id="cont_iContPersonUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.cont.ucc.IContPersonUCC</value>
+                </list>
+            </property>
+            <property name="target" ref="cont_contPersonUCC"/>
+            <property name="transactionManager" ref="transactionManager"/>
+            <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <!--ContInfo-->
+        <bean id="cont_contDAO" class="com.hr319wg.cont.dao.ContDAO">
+               <property name="hibernatetemplate">
+                    <ref bean="hibernateTemplate"/>
+               </property>
+        </bean>
+
+        <bean id="cont_contService" class="com.hr319wg.cont.service.ContService">
+            <property name="contdao">
+                <ref bean="cont_contDAO"/>
+            </property>
+            <property name="queryapi">
+                <ref bean="qry_queryApi"/>
+            </property>
+            <property name="activepageservice">
+                <ref bean="sys_activePageService"/>
+            </property>
+         </bean>
+
+         <bean id="cont_contUCC" class="com.hr319wg.cont.ucc.impl.ContUCC">
+                <property name="contservice">
+                    <ref bean="cont_contService"/>
+                </property>
+                <property name="contpersonservice">
+                    <ref bean="cont_contPersonService"/>
+                </property>
+                <property name="sysactivepageapi">
+                    <ref bean="sys_activePageApi"/>
+                </property>
+                <property name="userservice" ref="user_userManageService">
+                </property>
+         </bean>
+
+         <bean id="cont_iContUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+                <property name="proxyInterfaces">
+                    <list>
+                        <value>com.hr319wg.cont.ucc.IContUCC</value>
+                    </list>
+                </property>
+                <property name="target" ref="cont_contUCC"/>
+                <property name="transactionManager" ref="transactionManager"/>
+                <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+        </bean>
+ <!--ContSign-->
+        <bean id="cont_contSignDAO" class="com.hr319wg.cont.dao.ContSignDAO">
+               <property name="hibernatetemplate">
+                    <ref bean="hibernateTemplate"/>
+               </property>
+        </bean>
+
+        <bean id="cont_contSignService" class="com.hr319wg.cont.service.ContSignService">
+            <property name="contsigndao">
+                <ref bean="cont_contSignDAO"/>
+            </property>
+            <property name="sysactivepageapi">
+                <ref bean="sys_activePageApi"/>
+            </property>
+            <property name="contcodedao">
+            <ref bean="cont_contcodeinfoDAO"/>
+            </property>
+         </bean>
+
+         <bean id="cont_contSignUCC" class="com.hr319wg.cont.ucc.impl.ContSignUCC">
+            <property name="contsignservice">
+                <ref bean="cont_contSignService"/>
+            </property>
+            <property name="sysactivepageapi">
+                <ref bean="sys_activePageApi"/>
+            </property>
+            <property name="pmsapi">
+                <ref bean="user_pmsAPI"/>
+            </property>
+            <property name="contpersonservice">
+              <ref bean="cont_contPersonService"/>
+            </property>
+            <property name="contservice">
+              <ref bean="cont_contService"/>
+            </property>
+         </bean>
+
+         <bean id="cont_iContSignUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+                <property name="proxyInterfaces">
+                    <list>
+                        <value>com.hr319wg.cont.ucc.IContSignUCC</value>
+                    </list>
+                </property>
+                <property name="target" ref="cont_contSignUCC"/>
+                <property name="transactionManager" ref="transactionManager"/>
+                <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+        </bean>
+
+
+</beans>

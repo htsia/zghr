@@ -1,0 +1,60 @@
+<html>
+<head>
+  <title></title>
+    <script type="text/javascript">
+        function installDrv(){
+            try{
+                 document.all('cardIApi').GetLibVersion();
+            }
+            catch(err){
+                return false;
+            }
+            return true;
+        }
+
+    function showProcessBar() {
+       x = document.body.clientWidth / 2 - 150;
+       y = document.body.clientHeight / 2;
+       document.all('processbar').style.top = y;
+       document.all('processbar').style.left = x;
+       document.all('processbar').style.display = "";
+    }
+        function checkCabState(){
+            if (installDrv()){
+                alert("安装成功！");
+                window.close();
+            }
+            else{
+                showProcessBar();
+                setTimeout("checkCabState()", 500);
+            }
+        }
+    </script>
+</head>
+<body>
+<object CLASSID="clsid:0272DA76-96FB-449E-8298-178876E0EA89"
+    codeBase="/pages/system/CardI/cardI.cab"
+    BORDER="0" VSPACE="0" HSPACE="0" ALIGN="TOP" HEIGHT="0" WIDTH="0"
+	id="cardIApi" style="LEFT: 0px; TOP: 0px"
+	name="cardIApi" VIEWASTEXT>
+</object>
+
+<marquee id="processbar" style="position:absolute;display:none;border:1px solid #000000" direction="right" width="300"
+         scrollamount="5" scrolldelay="10"
+         bgcolor="#ECF2FF">
+    <table cellspacing="1" cellpadding="0">
+        <tr height=8>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+        </tr>
+    </table>
+</marquee>
+<script type="text/javascript">
+     checkCabState();
+</script>
+</body>
+</html>

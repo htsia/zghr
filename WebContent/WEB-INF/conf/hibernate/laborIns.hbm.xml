@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ 
+ <!-- 供应商管理 -->
+  <class name="com.hr319wg.lain.pojo.bo.SupplyBO" table="LAIN_SUPPLY">
+        <id name="supId" type="string" unsaved-value="null">
+            <column name="SUP_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="supName" column="SUP_NAME" />
+        <property name="createOrg" column="CREATE_ORG" />
+        <property name="orgScoppe" column="ORG_SCOPE" />
+        <property name="showSeq" column="SHOW_SEQ" />
+        
+        <property name="contactPerson" column="CONTACT_PERSON" />
+        <property name="contactTel" column="CONTACT_TEL" />
+        <property name="contactAdres" column="CONTACT_ADDRESS" />
+        <property name="postCode" column="POSTCODE" />
+        <property name="fax" column="FAX" />
+        <property name="webSite" column="WEBSITE" />
+        <property name="email" column="EMAIL" />
+     </class>
+     
+     <!-- 物资管理     -->
+     
+	  <class name="com.hr319wg.lain.pojo.bo.StockBO" table="LAIN_STOCK">
+        <id name="stockId" type="string" unsaved-value="null">
+            <column name="STOCK_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="stockName" column="STOCK_NAME" />
+        <property name="createOrg" column="CREATE_ORG" />
+        <property name="stockType" column="STOCK_TYPE" />
+        <property name="stockUnit" column="STOCK_UNIT" />
+        <property name="stockSum" column="STOCK_SUM" />
+        <property name="stockLow" column="STOCK_LOW" />
+     </class>
+     
+       <!-- 领用申请单     -->
+     
+	  <class name="com.hr319wg.lain.pojo.bo.DrawBO" table="LAIN_DRAW">
+        <id name="drawId" type="string" unsaved-value="null">
+            <column name="DRAW_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+         <property name="drawCode" column="DRAW_CODE" />
+        <property name="drawDate" column="DRAW_DATE" />
+        <property name="drawPerson" column="DRAW_PERSON" />
+         <property name="drawStatus" column="DRAW_STATUS" />
+     </class>
+     
+       <!-- 领用申请明细单 -->
+   
+     
+	  <class name="com.hr319wg.lain.pojo.bo.DrawItemBO" table="LAIN_DRAW_ITEM">
+        <id name="drawItemId" type="string" unsaved-value="null">
+            <column name="DRAW_ITEMID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="drawId" column="DRAW_ID"   />
+        <property name="stockId" column="STOCK_ID"   />
+         <property name="drawSum" column="DRAW_SUM"  />
+     </class>
+     
+     <!--  入库       -->
+      <class name="com.hr319wg.lain.pojo.bo.AcceptBO" table="LAIN_ACCEPT">
+        <id name="acceptId" type="string" unsaved-value="null">
+            <column name="ACC_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+         <property name="acceptCode" column="ACC_CODE"   />
+        <property name="acceptDate" column="ACC_DATE"   />
+        <property name="acceptPerson" column="ACC_PERSON"   />
+     </class>
+     
+       <class name="com.hr319wg.lain.pojo.bo.AcceptItemBO" table="LAIN_ACCEPT_ITEM">
+        <id name="acceptItemId" type="string" unsaved-value="null">
+            <column name="ACC_ITEMID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="acceptId" column="ACC_ID"   />
+        <property name="stockId" column="STOCK_ID"   />
+        <property name="acceptSum" column="ACC_SUM"   />
+         <property name="supId" column="SUP_ID"   />
+         <property name="acceptPrice" column="ACC_PRICE"   />
+         <property name="acceptTotal" column="ACC_TOTAL"   />
+     </class>
+</hibernate-mapping>
+
+
+
+

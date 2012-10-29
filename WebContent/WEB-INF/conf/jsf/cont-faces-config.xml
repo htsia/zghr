@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN" "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+
+<faces-config>
+
+   <managed-bean>
+        <managed-bean-name>cont_PersonChangeBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.cont.web.PersonChangeShowBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>cont_staticBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.cont.web.ContStaticBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+
+        <managed-property>
+         <property-name>orgucc</property-name>
+         <value>#{org_orgUCC}</value>
+        </managed-property>
+
+        <managed-property>
+         <property-name>contsumucc</property-name>
+         <value>#{cont_contsumUCC}</value>
+        </managed-property>
+
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>cont_codeinfoBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.cont.web.ContCodeInfoBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+       <property-name>contucc</property-name>
+       <value>#{cont_contcodeInfoUCC}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>cont_importAttachBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.cont.web.importAttach.ImportAttachBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+       <property-name>ucc</property-name>
+       <value>#{cont_iImportAttachmentUCC}</value>
+      </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>cont_personQueryBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.cont.web.ContPersonQueryBackingBean</managed-bean-class>
+       <managed-bean-scope>request</managed-bean-scope>
+       <managed-property>
+           <property-name>personucc</property-name>
+           <value>#{emp_personUCC}</value>
+       </managed-property>
+        <managed-property>
+            <property-name>userqryucc</property-name>
+            <value>#{user_userQryUccImpl}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>queryucc</property-name>
+            <value>#{qry_QueryUCCImpl}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>orgucc</property-name>
+            <value>#{org_orgUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>userreportucc</property-name>
+            <value>#{user_userReportUccImpl}</value>
+        </managed-property>
+   </managed-bean>
+
+
+<managed-bean>
+  <managed-bean-name>cont_contTemplateClassBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ContTemplateClassBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContTemplateClassUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_template</property-name>
+   <value>#{cont_iContTemplateUCC}</value>
+  </managed-property>
+</managed-bean>
+<!-- contTemplate-->
+<managed-bean>
+  <managed-bean-name>cont_contTemplateBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ContTemplateBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContTemplateUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_templateClass</property-name>
+   <value>#{cont_iContTemplateClassUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_attachment</property-name>
+   <value>#{common_attachmentUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_cont</property-name>
+   <value>#{cont_iContUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_contSign</property-name>
+   <value>#{cont_iContSignUCC}</value>
+  </managed-property>
+</managed-bean>
+<!-- signRight-->
+<managed-bean>
+  <managed-bean-name>cont_signRightBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.SignRightBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iSignRightUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_approveRight</property-name>
+   <value>#{cont_iApproveRightUCC}</value>
+  </managed-property>
+</managed-bean>
+<!-- TemplateRight-->
+<managed-bean>
+  <managed-bean-name>cont_templateRightBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.TemplateRightBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iTemplateRightUCC}</value>
+  </managed-property>
+</managed-bean>
+<!-- ApproveRight-->
+<managed-bean>
+  <managed-bean-name>cont_approveRightBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ApproveRightBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iApproveRightUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_signRight</property-name>
+   <value>#{cont_iSignRightUCC}</value>
+  </managed-property>
+</managed-bean>
+<!-- ContPerson-->
+<managed-bean>
+  <managed-bean-name>cont_contPersonBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ContPersonBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContPersonUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_contNewSign</property-name>
+   <value>#{cont_iContUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_template</property-name>
+   <value>#{cont_iContTemplateUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_attachment</property-name>
+   <value>#{common_attachmentUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_signRight</property-name>
+   <value>#{cont_iSignRightUCC}</value>
+  </managed-property>
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>cont_contSelectNewPersonBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.SelectNewPersonBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContPersonUCC}</value>
+  </managed-property>
+</managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>cont_contSelectEndPersonBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.cont.web.SelectEndPersonBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+       <property-name>ucc</property-name>
+       <value>#{cont_iContPersonUCC}</value>
+      </managed-property>
+    </managed-bean>
+
+  <managed-bean>
+  <managed-bean-name>cont_contNewSignBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ContNewSignBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContUCC}</value>
+  </managed-property>
+
+  <managed-property>
+   <property-name>ucc_contPerson</property-name>
+   <value>#{cont_iContPersonUCC}</value>
+  </managed-property>
+
+  <managed-property>
+   <property-name>ucc_templateClass</property-name>
+   <value>#{cont_iContTemplateClassUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_template</property-name>
+   <value>#{cont_iContTemplateUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_attachment</property-name>
+   <value>#{common_attachmentUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_signRight</property-name>
+   <value>#{cont_iSignRightUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_approveRight</property-name>
+   <value>#{cont_iApproveRightUCC}</value>
+   </managed-property>
+
+    <managed-property>
+     <property-name>signucc</property-name>
+     <value>#{cont_iContSignUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>personucc</property-name>
+     <value>#{emp_personUCC}</value>
+    </managed-property>
+
+      <managed-property>
+       <property-name>linkucc</property-name>
+       <value>#{sys_inprocessUCC}</value>
+      </managed-property>
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>cont_contApproveBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ContApproveBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_contPerson</property-name>
+   <value>#{cont_iContPersonUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_attachment</property-name>
+   <value>#{common_attachmentUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_template</property-name>
+   <value>#{cont_iContTemplateUCC}</value>
+  </managed-property>    
+
+    <managed-property>
+     <property-name>userreportucc</property-name>
+     <value>#{user_userReportUccImpl}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>shortmessageucc</property-name>
+     <value>#{sys_SMUCC}</value>
+    </managed-property>
+  <managed-property>
+   <property-name>contsignUCC</property-name>
+   <value>#{cont_iContSignUCC}</value>
+  </managed-property>
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>cont_contSignBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ContSignBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContSignUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_templateClass</property-name>
+   <value>#{cont_iContTemplateClassUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_template</property-name>
+   <value>#{cont_iContTemplateUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_attachment</property-name>
+   <value>#{common_attachmentUCC}</value>
+  </managed-property>
+    <managed-property>
+     <property-name>personucc</property-name>
+     <value>#{emp_personUCC}</value>
+    </managed-property>
+    <managed-property>
+     <property-name>contpersonucc</property-name>
+     <value>#{cont_iContPersonUCC}</value>
+    </managed-property>
+    <managed-property>
+     <property-name>contucc</property-name>
+     <value>#{cont_iContUCC}</value>
+    </managed-property>
+    <managed-property>
+     <property-name>linkucc</property-name>
+     <value>#{sys_inprocessUCC}</value>
+    </managed-property>
+    
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>cont_contFollowSignBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ContFollowSignBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContSignUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_templateClass</property-name>
+   <value>#{cont_iContTemplateClassUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_template</property-name>
+   <value>#{cont_iContTemplateUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_attachment</property-name>
+   <value>#{common_attachmentUCC}</value>
+  </managed-property>
+
+    <managed-property>
+     <property-name>personucc</property-name>
+     <value>#{emp_personUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>contpersonucc</property-name>
+     <value>#{cont_iContPersonUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>contucc</property-name>
+     <value>#{cont_iContUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>linkucc</property-name>
+     <value>#{sys_inprocessUCC}</value>
+    </managed-property>
+
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>cont_contEndSignBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ContEndSignBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContSignUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_templateClass</property-name>
+   <value>#{cont_iContTemplateClassUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_template</property-name>
+   <value>#{cont_iContTemplateUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_attachment</property-name>
+   <value>#{common_attachmentUCC}</value>
+  </managed-property>
+
+    <managed-property>
+     <property-name>contucc</property-name>
+     <value>#{cont_iContUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>personucc</property-name>
+     <value>#{emp_personUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>ucc_contPerson</property-name>
+     <value>#{cont_iContPersonUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>linkucc</property-name>
+     <value>#{sys_inprocessUCC}</value>
+    </managed-property>
+
+</managed-bean>
+
+
+<managed-bean>
+  <managed-bean-name>cont_contChangeSignBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ContChangeSignBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContSignUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_templateClass</property-name>
+   <value>#{cont_iContTemplateClassUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_template</property-name>
+   <value>#{cont_iContTemplateUCC}</value>
+  </managed-property>
+
+  <managed-property>
+   <property-name>ucc_attachment</property-name>
+   <value>#{common_attachmentUCC}</value>
+  </managed-property>
+
+    <managed-property>
+     <property-name>contpersonucc</property-name>
+     <value>#{cont_iContPersonUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>personucc</property-name>
+     <value>#{emp_personUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>contucc</property-name>
+     <value>#{cont_iContUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>linkucc</property-name>
+     <value>#{sys_inprocessUCC}</value>
+    </managed-property>
+    
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>cont_protSignBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ProtSignBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContSignUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_templateClass</property-name>
+   <value>#{cont_iContTemplateClassUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_template</property-name>
+   <value>#{cont_iContTemplateUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_attachment</property-name>
+   <value>#{common_attachmentUCC}</value>
+  </managed-property>
+    <managed-property>
+     <property-name>personucc</property-name>
+     <value>#{emp_personUCC}</value>
+    </managed-property>
+    <managed-property>
+     <property-name>contucc</property-name>
+     <value>#{cont_iContUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>ucc_contPerson</property-name>
+     <value>#{cont_iContPersonUCC}</value>
+    </managed-property>
+    
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>cont_contPauseSignBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ContPauseSignBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContSignUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_templateClass</property-name>
+   <value>#{cont_iContTemplateClassUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_template</property-name>
+   <value>#{cont_iContTemplateUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_attachment</property-name>
+   <value>#{common_attachmentUCC}</value>
+  </managed-property>
+    <managed-property>
+     <property-name>personucc</property-name>
+     <value>#{emp_personUCC}</value>
+    </managed-property>
+  <managed-property>
+   <property-name>ucc_contPerson</property-name>
+   <value>#{cont_iContPersonUCC}</value>
+  </managed-property>
+    <managed-property>
+     <property-name>contucc</property-name>
+     <value>#{cont_iContUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>linkucc</property-name>
+     <value>#{sys_inprocessUCC}</value>
+    </managed-property>
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>cont_contSelectPauseContBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.SelectPauseContBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContSignUCC}</value>
+  </managed-property>
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>cont_contResumeBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ContResumeBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContSignUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_templateClass</property-name>
+   <value>#{cont_iContTemplateClassUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_template</property-name>
+   <value>#{cont_iContTemplateUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_attachment</property-name>
+   <value>#{common_attachmentUCC}</value>
+  </managed-property>
+
+    <managed-property>
+     <property-name>ucc_contPerson</property-name>
+     <value>#{cont_iContPersonUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>contucc</property-name>
+     <value>#{cont_iContUCC}</value>
+    </managed-property>
+
+    <managed-property>
+        <property-name>personucc</property-name>
+        <value>#{emp_personUCC}</value>
+    </managed-property>
+
+    <managed-property>
+     <property-name>linkucc</property-name>
+     <value>#{sys_inprocessUCC}</value>
+    </managed-property>
+</managed-bean>
+
+
+<managed-bean>
+      <managed-bean-name>cont_contSheetBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.cont.web.ContSheetBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+       <property-name>ucc</property-name>
+       <value>#{cont_iContSignUCC}</value>
+      </managed-property>
+
+    <managed-property>
+     <property-name>contucc</property-name>
+     <value>#{cont_contUCC}</value>
+    </managed-property>
+
+      <managed-property>
+       <property-name>ucc_query</property-name>
+       <value>#{qry_queryUCC}</value>
+      </managed-property>
+      <managed-property>
+       <property-name>ucc_attachment</property-name>
+       <value>#{common_attachmentUCC}</value>
+      </managed-property>
+    </managed-bean>
+<managed-bean>
+    
+  <managed-bean-name>cont_contQueryBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.cont.web.ContQueryBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>ucc</property-name>
+   <value>#{cont_iContSignUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_query</property-name>
+   <value>#{qry_queryUCC}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>ucc_attachment</property-name>
+   <value>#{common_attachmentUCC}</value>
+  </managed-property>
+</managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/cont/TemplateClassEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/cont/ModiCountDetail.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/cont/import/PerDataUpload.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>perInfoList</from-outcome>
+            <to-view-id>/cont/import/PerDataUploadList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/cont/TemplateEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+      <from-view-id>/*</from-view-id>
+
+      <navigation-case>
+       <from-outcome>cont_TemplateClassList_jsf</from-outcome>
+       <to-view-id>/cont/TemplateClassList.jsf</to-view-id>
+         <redirect/>
+      </navigation-case>
+
+      <navigation-case>
+       <from-outcome>cont_TemplateList_jsf</from-outcome>
+       <to-view-id>/cont/TemplateList.jsf</to-view-id>
+         <redirect/>
+      </navigation-case>
+
+      <navigation-case>
+       <from-outcome>cont_SignRight_jsf</from-outcome>
+       <to-view-id>/cont/SignRight.jsf</to-view-id>
+          <redirect/>
+      </navigation-case>
+
+      <navigation-case>
+       <from-outcome>cont_TemplateRight_jsf</from-outcome>
+       <to-view-id>/cont/TemplateRight.jsf</to-view-id>
+          <redirect/>
+      </navigation-case>
+
+      <navigation-case>
+       <from-outcome>cont_ApproveRight_jsf</from-outcome>
+       <to-view-id>/cont/ApproveRight.jsf</to-view-id>
+          <redirect/>
+      </navigation-case>
+
+      <navigation-case>
+       <from-outcome>cont_PersonEdit_jsf</from-outcome>
+       <to-view-id>/cont/PersonEdit.jsf</to-view-id>
+      </navigation-case>
+
+      <navigation-case>
+       <from-outcome>cont_PersonView_jsf</from-outcome>
+       <to-view-id>/cont/PersonView.jsf</to-view-id>
+      </navigation-case>
+
+      <navigation-case>
+       <from-outcome>cont_PersonList_jsf</from-outcome>
+       <to-view-id>/cont/PersonList.jsf</to-view-id>
+       <redirect/>
+      </navigation-case>
+
+        <navigation-case>
+         <from-outcome>cont_adjustPersonList_jsf</from-outcome>
+         <to-view-id>/cont/AdjustPersonList.jsf</to-view-id>
+         <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+         <from-outcome>contEnd_PersonList_jsf</from-outcome>
+         <to-view-id>/cont/PersonEndList.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+      <navigation-case>
+       <from-outcome>cont_NewSignList_jsf</from-outcome>
+       <to-view-id>/cont/ContNewSignList.jsf</to-view-id>
+         <redirect/>
+      </navigation-case>
+
+      <navigation-case>
+       <from-outcome>cont_NewSignAdd_jsf</from-outcome>
+       <to-view-id>/cont/ContNewSignAdd.jsf</to-view-id>
+      </navigation-case>
+      <navigation-case>
+       <from-outcome>cont_NewSignEdit_jsf</from-outcome>
+       <to-view-id>/cont/ContNewSignEdit.jsf</to-view-id>
+      </navigation-case>
+      <navigation-case>
+       <from-outcome>cont_NewSignView_jsf</from-outcome>
+       <to-view-id>/cont/ContNewSignView.jsf</to-view-id>
+      </navigation-case>
+      <navigation-case>
+       <from-outcome>cont_PrintIntroLetter_jsf</from-outcome>
+       <to-view-id>/cont/PrintIntroLetter.jsf</to-view-id>
+      </navigation-case>
+
+  <navigation-case>
+   <from-outcome>cont_ApproveList_jsf</from-outcome>
+   <to-view-id>/cont/ContApproveList.jsf</to-view-id>
+     <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_ApproveView_jsf</from-outcome>
+   <to-view-id>/cont/ContApproveView.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_ApprovePersonView_jsf</from-outcome>
+   <to-view-id>/cont/ContApprovePersonView.jsf</to-view-id>
+  </navigation-case>
+<!-- ContSign-->
+  <navigation-case>
+   <from-outcome>cont_signList_jsf</from-outcome>
+   <to-view-id>/cont/ContSignList.jsf</to-view-id>
+     <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_signAdd_jsf</from-outcome>
+   <to-view-id>/cont/ContSignAdd.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_signEdit_jsf</from-outcome>
+   <to-view-id>/cont/ContSignEdit.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_personStat_jsf</from-outcome>
+   <to-view-id>/cont/PersonStatResult.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_signEditMainContCode_jsf</from-outcome>
+   <to-view-id>/cont/ContSignEditMainContCode.jsf</to-view-id>
+  </navigation-case>
+<!-- ContFollowSign-->
+  <navigation-case>
+   <from-outcome>cont_followSignList_jsf</from-outcome>
+   <to-view-id>/cont/ContFollowSignList.jsf</to-view-id>
+     <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_followSignAdd_jsf</from-outcome>
+   <to-view-id>/cont/ContFollowSignAdd.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_followSignEdit_jsf</from-outcome>
+   <to-view-id>/cont/ContFollowSignEdit.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_followSignEditMainContCode_jsf</from-outcome>
+   <to-view-id>/cont/ContFollowSignEditMainContCode.jsf</to-view-id>
+  </navigation-case>
+
+  <navigation-case>
+   <from-outcome>cont_endSignList_jsf</from-outcome>
+   <to-view-id>/cont/ContEndSignList.jsf</to-view-id>
+     <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_endSignAdd_jsf</from-outcome>
+   <to-view-id>/cont/ContEndSignAdd.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_endSignEdit_jsf</from-outcome>
+   <to-view-id>/cont/ContEndSignEdit.jsf</to-view-id>
+  </navigation-case>
+
+  <navigation-case>
+   <from-outcome>cont_endSignEditMainContCode_jsf</from-outcome>
+   <to-view-id>/cont/ContEndSignEditMainContCode.jsf</to-view-id>
+  </navigation-case>
+
+    <navigation-case>
+     <from-outcome>cont_newSignEditMainContCode_jsf</from-outcome>
+     <to-view-id>/cont/ContNewSignEditMainContCode.jsf</to-view-id>
+    </navigation-case>
+
+  <navigation-case>
+   <from-outcome>cont_changeSignList_jsf</from-outcome>
+   <to-view-id>/cont/ContChangeSignList.jsf</to-view-id>
+     <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_changeSignAdd_jsf</from-outcome>
+   <to-view-id>/cont/ContChangeSignAdd.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_changeSignEdit_jsf</from-outcome>
+   <to-view-id>/cont/ContChangeSignEdit.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_changeSignEditMainContCode_jsf</from-outcome>
+   <to-view-id>/cont/ContChangeSignEditMainContCode.jsf</to-view-id>
+  </navigation-case>
+<!-- ProtSign-->
+  <navigation-case>
+   <from-outcome>cont_protSignList_jsf</from-outcome>
+   <to-view-id>/cont/ProtSignList.jsf</to-view-id>
+     <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_protSignAdd_jsf</from-outcome>
+   <to-view-id>/cont/ProtSignAdd.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_protSignEdit_jsf</from-outcome>
+   <to-view-id>/cont/ProtSignEdit.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_protSignEditMainContCode_jsf</from-outcome>
+   <to-view-id>/cont/ProtSignEditMainContCode.jsf</to-view-id>
+  </navigation-case>
+<!-- ContPauseSign-->
+  <navigation-case>
+   <from-outcome>cont_pauseSignList_jsf</from-outcome>
+   <to-view-id>/cont/ContPauseSignList.jsf</to-view-id>
+     <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_pauseSignAdd_jsf</from-outcome>
+   <to-view-id>/cont/ContPauseSignAdd.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_pauseSignEdit_jsf</from-outcome>
+   <to-view-id>/cont/ContPauseSignEdit.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_pauseSignEditMainContCode_jsf</from-outcome>
+   <to-view-id>/cont/ContPauseSignEditMainContCode.jsf</to-view-id>
+  </navigation-case>
+<!-- ContResume-->
+  <navigation-case>
+   <from-outcome>cont_resumeList_jsf</from-outcome>
+   <to-view-id>/cont/ContResumeList.jsf</to-view-id>
+     <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_resumeAdd_jsf</from-outcome>
+   <to-view-id>/cont/ContResumeAdd.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_resumeEdit_jsf</from-outcome>
+   <to-view-id>/cont/ContResumeEdit.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_resumeSignEditMainContCode_jsf</from-outcome>
+   <to-view-id>/cont/ContResumeSignEditMainContCode.jsf</to-view-id>
+  </navigation-case>
+
+  <navigation-case>
+   <from-outcome>cont_queryList_jsf</from-outcome>
+   <to-view-id>/cont/ContQueryList.jsf</to-view-id>
+  </navigation-case>
+
+  <navigation-case>
+   <from-outcome>cont_queryHistory_jsf</from-outcome>
+   <to-view-id>/cont/ContQueryHistory.jsf</to-view-id>
+  </navigation-case>
+
+  <navigation-case>
+   <from-outcome>cont_A710View_jsf</from-outcome>
+   <to-view-id>/cont/ContQueryA710View.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_A712View_jsf</from-outcome>
+   <to-view-id>/cont/ContQueryA712View.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_A715View_jsf</from-outcome>
+   <to-view-id>/cont/ContQueryA715View.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_A720View_jsf</from-outcome>
+   <to-view-id>/cont/ContQueryA720View.jsf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cont_A708View_jsf</from-outcome>
+   <to-view-id>/cont/ContQueryA708View.jsf</to-view-id>
+  </navigation-case>
+</navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/cont/ContApproveAdd.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/cont/EditMainContCodeDlg.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>cont_NewSignList_jsf</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/cont/CondCodeAdd.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/cont/import/PerDataUploadList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>upload</from-outcome>
+            <to-view-id>/cont/import/PerDataUpload.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

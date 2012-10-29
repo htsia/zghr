@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+   <!-- 客户关系配置 -->
+	<bean id="crm_CustomerDAO" class="com.crm319wg.customer.dao.CustomerDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	
+	<bean id="crm_Service" class="com.crm319wg.customer.service.CustomerService">
+			<property name="customerDAO">
+			<ref bean="crm_CustomerDAO" />
+		</property>
+	</bean>
+	
+	<bean id="crm_CustomerUCC" class="com.crm319wg.customer.ucc.impl.CustomerTemplateUCC">
+			<property name="customerService">
+			<ref bean="crm_Service" />
+		</property>
+	</bean>
+	
+	 <!-- 活动管理配置 -->
+	<bean id="crm_ActionDAO" class="com.crm319wg.action.dao.ActionDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	
+	<bean id="crm_ActionService" class="com.crm319wg.action.service.ActionService">
+			<property name="crm_ActionDAO">
+			<ref bean="crm_ActionDAO" />
+		</property>
+	</bean>
+	
+	<bean id="crm_ActionUCC" class="com.crm319wg.action.ucc.impl.ActionUCC">
+			<property name="crm_ActionService">
+			<ref bean="crm_ActionService" />
+		</property>
+	</bean>
+	
+	 <!-- CRM系统管理(团队管理) -->
+	 
+	   <bean id="crm_GroupDAO" class="com.crm319wg.crmsm.dao.SaleGroupDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	
+	<bean id="crm_GroupService" class="com.crm319wg.crmsm.service.SaleGroupService">
+			<property name="crm_GroupDAO">
+			<ref bean="crm_GroupDAO" />
+		</property>
+	</bean>
+	
+	<bean id="crm_GroupUCC" class="com.crm319wg.crmsm.ucc.impl.SaleGroupUCC">
+			<property name="crm_GroupService">
+			<ref bean="crm_GroupService" />
+		</property>
+	</bean>
+	
+	<!-- 竞争部分 -->
+	<bean id="competitionDao" class="com.crm319wg.competition.dao.CompetitionDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="competitionService" class="com.crm319wg.competition.service.CompetitionService">
+		<property name="competitionDao">
+			<ref bean="competitionDao" />
+		</property>
+	</bean>
+	<bean id="competitionUcc" class="com.crm319wg.competition.ucc.impl.CompetitionUCC">
+		<property name="competitionService">
+			<ref bean="competitionService" />
+		</property>
+	</bean>
+
+</beans>

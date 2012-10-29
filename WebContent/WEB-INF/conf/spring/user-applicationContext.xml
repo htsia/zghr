@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="user_userPostUccImpl" class="com.hr319wg.user.ucc.impl.RolePostUCC">
+        <property name="rolepostservice">
+            <ref bean="user_rolePostService"/>
+        </property>
+    </bean>
+
+    <bean id="user_rolePostService" class="com.hr319wg.user.service.RolePostService">
+        <property name="rolepostdao">
+            <ref bean="user_rolepostdao"/>
+        </property>
+
+        <property name="api">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+
+    <bean id="user_rolepostdao" class="com.hr319wg.user.dao.RolePostDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="user_roleoperdao" class="com.hr319wg.user.dao.RoleSelfOperDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="user_selfoperdao" class="com.hr319wg.user.dao.UserSelfOperDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="user_operatedao" class="com.hr319wg.user.dao.OperateDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="user_selfinfodao" class="com.hr319wg.self.dao.SelfInfoDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="user_selfinfopowerdao" class="com.hr319wg.user.dao.SelfInfoPowerDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="user_userRoleUccImpl" class="com.hr319wg.user.ucc.impl.UserRoleUCC">
+        <property name="userroleservice">
+            <ref bean="user_userRoleService"/>
+        </property>
+    </bean>
+    
+    <bean id="user_userRoleService" class="com.hr319wg.user.service.UserRoleService">
+        <property name="userroledao">
+            <ref bean="user_userRoleDAO"/>
+        </property>
+    </bean>
+    
+    <bean id="user_selfinfoservice" class="com.hr319wg.user.service.SelfInfoPowerService">
+        <property name="selfdao">
+            <ref bean="user_selfinfopowerdao"/>
+        </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+        <property name="infosetdao">
+            <ref bean="sys_infoSetDAO"/>
+        </property>
+        <property name="infoitemdao">
+            <ref bean="sys_infoItemDAO"/>
+        </property>
+        <property name="selfinfodao">
+            <ref bean="user_selfinfodao"/>
+        </property>
+        <property name="usermanageservice">
+            <ref bean="user_userManageService"/>
+        </property>
+     </bean>
+
+    <bean id="user_selfinfoUccImpl" class="com.hr319wg.user.ucc.impl.SelfInfoPowerUCC">
+        <property name="selfservice">
+            <ref bean="user_selfinfoservice"/>
+        </property>
+    </bean>
+
+    <bean id="user_selfleveldao" class="com.hr319wg.user.dao.SelfLevelDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="user_selflevelervice" class="com.hr319wg.user.service.SelfLevelService">
+        <property name="selfledao">
+            <ref bean="user_selfleveldao"/>
+        </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+     </bean>
+
+    <bean id="user_selflevelUccImpl" class="com.hr319wg.user.ucc.impl.SelfLevelUCC">
+        <property name="selfservice">
+            <ref bean="user_selflevelervice"/>
+        </property>
+    </bean>
+   
+    <bean id="user_loginlogdao" class="com.hr319wg.user.dao.LoginLogDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="user_userInfoDAO" class="com.hr319wg.user.dao.UserInfoDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+        <property name="jdbctemplate">
+            <ref bean="jdbcTemplate"/>
+        </property>
+        <property name="orgdao">
+            <ref bean="org_orgDAO"/>
+        </property>
+        <property name="otpapi">
+            <ref bean="sys_licapi"/>
+        </property>
+    </bean>
+
+    <bean id="user_userRoleDAO" class="com.hr319wg.user.dao.UserRoleDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="SYS_ROLEINFODAO" class="com.hr319wg.user.dao.RoleInfoDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="user_roleOperateDAO" class="com.hr319wg.user.dao.RoleOperateDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="user_roleDataDAO" class="com.hr319wg.user.dao.RoleDataDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="user_roleOrgScaleDAO" class="com.hr319wg.user.dao.RoleOrgScaleDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="user_rolePartyScaleDAO" class="com.hr319wg.user.dao.RolePartyScaleDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="user_userReportDAO" class="com.hr319wg.user.dao.UserRptDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="user_userQryDAO" class="com.hr319wg.user.dao.UserQryDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="user_logservice" class="com.hr319wg.user.service.LoginLogService">
+        <property name="loginlogdao">
+            <ref bean="user_loginlogdao"/>
+        </property>
+     </bean>
+
+    <bean id="user_userManageService" class="com.hr319wg.user.service.UserManageService">
+        <property name="roleoperservice">
+            <ref bean="user_roleOperateService"/>
+        </property>
+        <property name="userinfodao">
+            <ref bean="user_userInfoDAO"/>
+        </property>
+        <property name="userroledao">
+            <ref bean="user_userRoleDAO"/>
+        </property>
+        <property name="selfoperdao">
+            <ref bean="self_operdao"/>
+        </property>
+        <property name="selfservice">
+            <ref bean="user_selfinfoservice"/>
+        </property>
+        <property name="selflevel">
+            <ref bean="user_selflevelervice"/>
+        </property>
+        <property name="userselfoperdao">
+            <ref bean="user_selfoperdao"/>
+        </property>
+        <property name="opertedao">
+            <ref bean="user_operatedao"/>
+        </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+        <property name="portaldao">
+            <ref bean="sys_portaldao"/>
+        </property>
+        <property name="rptsetuserdao">
+            <ref bean="rpt_usersetDAO"/>
+        </property>
+    </bean>
+
+    <bean id="user_roleManageService" class="com.hr319wg.user.service.RoleManageService">
+        <property name="userroledao">
+            <ref bean="user_userRoleDAO"/>
+        </property>
+        <property name="roleinfodao">
+            <ref bean="SYS_ROLEINFODAO"/>
+        </property>
+        <property name="api">
+            <ref bean="sys_activePageApi"/>
+        </property>
+
+    </bean>
+
+    <bean id="user_roleOperateService" class="com.hr319wg.user.service.RoleOperateService">
+        <property name="roleoperatedao">
+            <ref bean="user_roleOperateDAO"/>
+        </property>
+        <property name="api">
+            <ref bean="sys_activePageApi"/>
+        </property>
+        <property name="selfoperdao">
+            <ref bean="user_roleoperdao"/>
+        </property>
+        <property name="userroledao">
+            <ref bean="user_userRoleDAO"/>
+        </property>
+
+    </bean>
+
+    <bean id="user_roleDataService" class="com.hr319wg.user.service.RoleDataService">
+        <property name="roledatadao">
+            <ref bean="user_roleDataDAO"/>
+        </property>
+        <property name="infosetdao">
+            <ref bean="sys_infoSetDAO"/>
+        </property>
+        <property name="infoitemdao">
+            <ref bean="sys_infoItemDAO"/>
+        </property>
+    </bean>
+
+    <bean id="user_roleOrgScaleService" class="com.hr319wg.user.service.RoleOrgScaleService">
+        <property name="roleorgscaledao">
+            <ref bean="user_roleOrgScaleDAO"/>
+        </property>
+    </bean>
+    <bean id="user_rolePartyScaleService" class="com.hr319wg.user.service.RolePartyScaleService">
+        <property name="rolepartyscaledao">
+            <ref bean="user_rolePartyScaleDAO"/>
+        </property>
+    </bean>
+
+    <bean id="user_userReportService" class="com.hr319wg.user.service.UserRptService">
+        <property name="usesrptdao">
+            <ref bean="user_userReportDAO"/>
+        </property>
+        <property name="arcdao">
+            <ref bean="rpt_arcdao"/>
+        </property>
+        <property name="flowdao">
+            <ref bean="rpt_flowdao"/>
+        </property>
+        <property name="activeapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+
+    <bean id="user_userQryService" class="com.hr319wg.user.service.UserQryService">
+        <property name="usesqrydao">
+            <ref bean="user_userQryDAO"/>
+        </property>
+    </bean>
+    <!--ucc-->
+    <bean id="user_userManageUccImpl" class="com.hr319wg.user.ucc.impl.UserManageUCC">
+        <property name="usermanageservice">
+            <ref bean="user_userManageService"/>
+        </property>
+        <property name="logservice">
+            <ref bean="user_logservice"/>
+        </property>
+    </bean>
+    <bean id="user_roleManageUccImpl" class="com.hr319wg.user.ucc.impl.RoleManageUCC">
+        <property name="rolemanageservice">
+            <ref bean="user_roleManageService"/>
+        </property>
+
+    </bean>
+    <bean id="user_roleOperateUccImpl" class="com.hr319wg.user.ucc.impl.RoleOperateUCC">
+        <property name="roleoperateservice">
+            <ref bean="user_roleOperateService"/>
+        </property>
+
+    </bean>
+    <bean id="user_roleDataUccImpl" class="com.hr319wg.user.ucc.impl.RoleDataUCC">
+        <property name="roledataservice">
+            <ref bean="user_roleDataService"/>
+        </property>
+    </bean>
+    <bean id="user_roleOrgScaleUccImpl" class="com.hr319wg.user.ucc.impl.RoleOrgScaleUCC">
+        <property name="roleorgscaleservice">
+            <ref bean="user_roleOrgScaleService"/>
+        </property>
+    </bean>
+    <bean id="user_rolePartyScaleUccImpl" class="com.hr319wg.user.ucc.impl.RolePartyScaleUCC">
+        <property name="rolepartyscaleservice">
+            <ref bean="user_rolePartyScaleService"/>
+        </property>
+    </bean>
+    <bean id="user_userReportUccImpl" class="com.hr319wg.user.ucc.impl.UserReportUCC">
+        <property name="userreportservice">
+            <ref bean="user_userReportService"/>
+        </property>
+    </bean>
+
+    <bean id="user_userQryUccImpl" class="com.hr319wg.user.ucc.impl.UserQryUCC">
+        <property name="userqryservice">
+            <ref bean="user_userQryService"/>
+        </property>
+        <property name="activepageapi">
+            <ref bean="sys_activePageApi"/>
+        </property>
+    </bean>
+
+    <!--proxy-->
+    <bean id="user_userManageUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.user.ucc.IUserManageUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="user_userManageUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    
+    <bean id="user_roleManageUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.user.ucc.IRoleManageUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="user_roleManageUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <bean id="user_roleOperateUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.user.ucc.IRoleOperateUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="user_roleOperateUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <bean id="user_roleDataUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.user.ucc.IRoleDataUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="user_roleDataUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <bean id="user_roleOrgScaleUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.user.ucc.IRoleOrgScaleUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="user_roleOrgScaleUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <bean id="user_rolePartyScaleUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.user.ucc.IRolePartyScaleUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="user_rolePartyScaleUccImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+
+</beans>
+

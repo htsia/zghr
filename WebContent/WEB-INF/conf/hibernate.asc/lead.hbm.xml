@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+    <class  name="com.hr319wg.lead.pojo.bo.LeadWageAnalyseBO" table="LEAD_WAGE_ANALYSE">
+        <id  name="itemID" type="java.lang.String" column="item_id"  >
+             <generator class="uuid.hex"/>
+        </id>
+        <property name="itemName" column="ITEM_NAME"  />
+        <property name="fields" column="FIELDS"    />
+        <property name="seq" column="seq"    />
+        <property name="nouse"  column="NOTUSE"    />
+    </class>
+    
+    <class  name="com.hr319wg.lead.pojo.bo.LeadCurAnaBO" table="lead_current_analyse">
+        <id  name="itemID" type="java.lang.String" column="item_id"  >
+             <generator class="uuid.hex"/>
+        </id>
+        <property name="itemtype" type="java.lang.String" column="item_type"  />
+        <property name="itemName" type="java.lang.String" column="item_name"  />
+        <property  name="itemUrl" type="java.lang.String" column="item_url"    />
+    </class>
+
+<class   name="com.hr319wg.lead.pojo.bo.LeadSqlBO" table="LEAD_SQL">
+    <id  name="sqlId" type="java.lang.String" column="SQL_ID"  >
+         <generator class="uuid.hex"/>
+    </id>
+    <property name="resId"   column="LEAD_RESID"  />
+    <property  name="sqltype"   column=" SQL_TYPE"    type="com.hr319wg.sys.service.GBKString"/>
+    <property name="sqlstr"   column="SQL_STR"      type="com.hr319wg.sys.service.GBKString"/>
+    <property name="paraName"   column="PARA_NAME"   type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="paraOrder"   column="PARA_ORDER"    type="com.hr319wg.sys.service.GBKString"  />
+</class>
+
+
+<class  name="com.hr319wg.lead.pojo.bo.GraphResultBO"   table="LEAD_GRAPH_RESULT" >
+    <id  name="resultId"   column="RESULT_ID" >
+       <generator class="uuid.hex"/>
+    </id>
+    <property name="orgId"   column="ORG_ID" not-null="true"  type="com.hr319wg.sys.service.GBKString" />
+    <property name="resId"   column="res_id"  type="com.hr319wg.sys.service.GBKString" />
+    <property name="archivesDate"   column="CALC_DATE"   type="com.hr319wg.sys.service.GBKString" />
+    <property  name="graphXLabel"    column="X_LABLE" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="graphYLabel"      column="Y_LABLE"   type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="x" type="int"  column="X"   />
+    <property  name="y" type="int"   column="Y"   />
+    <property  name="graphValue"   column="GRAPH_VALUE"  type="com.hr319wg.sys.service.GBKString" />
+</class>
+
+    <class	name="com.hr319wg.lead.pojo.bo.HtmlFileBO" table="LEAD_HTML_FILE">
+        <id  name="fileId" type="java.lang.String" column="FILE_ID"  >
+             <generator class="uuid.hex"/>
+        </id>
+        <property name="orgId" type="java.lang.String" column="ORG_ID"  />
+        <property name="resId" type="java.lang.String" column="res_id"      />
+         <property  name="archivesDate" type="java.lang.String" column="CALC_DATE"      />
+        <property  name="fileName" type="java.lang.String"  column="FILE_NAME"    />
+    </class>
+
+   <class	name="com.hr319wg.lead.pojo.bo.GraphFileBO" table="LEAD_GRAPH_FILE">
+    <id  name="fileId"   column="FILE_ID"  >
+         <generator class="uuid.hex"/>
+    </id>
+    <property name="orgId"   column="ORG_ID" type="com.hr319wg.sys.service.GBKString" />
+    <property name="resId"   column="res_id"  type="com.hr319wg.sys.service.GBKString"    />
+     <property  name="archivesDate"   column="CALC_DATE"   type="com.hr319wg.sys.service.GBKString"   />
+    <property  name="graphName"    column="GRAPH_NAME"  type="com.hr319wg.sys.service.GBKString"  />
+</class>
+
+<class name="com.hr319wg.lead.pojo.bo.GraphResourceBO" table="LEAD_GRAPH_RESOURCE">
+    <id name="graphID"     column="graph_ID"  >
+              <generator class="uuid.hex"/>
+    </id>
+    <property name="resId"    column="res_ID"   />
+    <property name="graphTitle"    column="GRAPH_TITLE" type="com.hr319wg.sys.service.GBKString"  />
+    <property name="labelTitleX"    column="GRAPH_X_LABEL" type="com.hr319wg.sys.service.GBKString"  />
+    <property name="labelTitleY"    column="GRAPH_Y_LABEL"  type="com.hr319wg.sys.service.GBKString" />
+    <property name="smallHeight"  type="java.math.BigDecimal" column="SMALL_HEIGHT"  />
+    <property name="smallWidth"  type="java.math.BigDecimal" column="SMALL_WIDTH"   />
+    <property name="largeWidth"  type="java.math.BigDecimal" column="LARGE_WIDTH"   />
+    <property name="largeHeight"  type="java.math.BigDecimal" column="LARGE_HEIGHT"   />
+    <property name="graphType"  type="java.math.BigDecimal" column="GRAPH_TYPE"   />
+</class>
+
+<class name="com.hr319wg.lead.pojo.bo.GraphResourceItemBO" table="LEAD_GRAPH_RESOURCE_ITEM">
+        <id name="itemID"     column="GRAPH_ITEM_ID"  >
+                  <generator class="uuid.hex"/>
+        </id>
+        <property name="graphID"    column="GRAPH_ID" type="com.hr319wg.sys.service.GBKString"  />
+        <property name="labelTitleX"    column="GRAPH_X_LABEL" type="com.hr319wg.sys.service.GBKString"  />
+        <property name="labelTitleY"    column="GRAPH_Y_LABEL"  type="com.hr319wg.sys.service.GBKString" />
+        <property name="x"  type="int" column="X"   />
+        <property name="y"  type="int" column="Y"  />
+        <property name="graphValue"    column="GRAPH_PARA" type="com.hr319wg.sys.service.GBKString"  />
+ </class>
+
+<class  name="com.hr319wg.lead.pojo.bo.GridResultBO"  table="LEAD_GRID_RESULT">
+    <id  name="resultId"   column="RESULT_ID" >
+       <generator class="uuid.hex"/>
+    </id>
+    <property name="resId"    column="res_ID" type="com.hr319wg.sys.service.GBKString"/>
+    <property name="orgId"   column="ORG_ID" type="com.hr319wg.sys.service.GBKString"/>
+    <property name="calcdate"   column="CALC_DATE" type="com.hr319wg.sys.service.GBKString" />
+    <property  name="orderNo"   column="ORDER_NO" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo1"     column="P01" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo2"     column="P02" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo3"     column="P03" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo4"     column="P04" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo5"     column="P05" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo6"     column="P06" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo7"     column="P07" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo8"     column="P08" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo9"     column="P09" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo10"     column="P10" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo11"     column="P11" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo12"     column="P12" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo13"     column="P13" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo14"     column="P14" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo15"     column="P15" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo16"     column="P16" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo17"     column="P17" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo18"     column="P18" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo19"     column="P19" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo20"     column="P20" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo21"  type="com.hr319wg.sys.service.GBKString"  column="P21" />
+    <property   name="showInfo22"  type="com.hr319wg.sys.service.GBKString"  column="P22" />
+    <property   name="showInfo23"  type="com.hr319wg.sys.service.GBKString"  column="P23" />
+    <property   name="showInfo24"  type="com.hr319wg.sys.service.GBKString"  column="P24" />
+    <property   name="showInfo25"  type="com.hr319wg.sys.service.GBKString"  column="P25" />
+    <property   name="showInfo26"  type="com.hr319wg.sys.service.GBKString"  column="P26" />
+    <property   name="showInfo27"  type="com.hr319wg.sys.service.GBKString"  column="P27" />
+    <property   name="showInfo28"  type="com.hr319wg.sys.service.GBKString"  column="P28" />
+    <property   name="showInfo29"  type="com.hr319wg.sys.service.GBKString"  column="P29" />
+    <property   name="showInfo30"  type="com.hr319wg.sys.service.GBKString"  column="P30" />
+    <property   name="showInfo31"  type="com.hr319wg.sys.service.GBKString"  column="P31" />
+    <property   name="showInfo32"  type="com.hr319wg.sys.service.GBKString"  column="P32" />
+    <property   name="showInfo33"  type="com.hr319wg.sys.service.GBKString"  column="P33" />
+    <property   name="showInfo34"  type="com.hr319wg.sys.service.GBKString"  column="P34" />
+    <property   name="showInfo35"  type="com.hr319wg.sys.service.GBKString"  column="P35" />
+    <property   name="showInfo36"  type="com.hr319wg.sys.service.GBKString"  column="P36" />
+    <property   name="showInfo37"  type="com.hr319wg.sys.service.GBKString"  column="P37" />
+    <property   name="showInfo38"  type="com.hr319wg.sys.service.GBKString"  column="P38" />
+    <property   name="showInfo39"  type="com.hr319wg.sys.service.GBKString"  column="P39" />
+    <property   name="showInfo40"  type="com.hr319wg.sys.service.GBKString"  column="P40" />
+
+</class>
+
+<class name="com.hr319wg.lead.pojo.bo.GridResourceBO" table="lead_grid_resource">
+    <id  name="gridID"   column="grid_id">
+         <generator class="uuid.hex"/>
+    </id>
+    <property  name="resId"    column="res_ID" not-null="true" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo1"    column="P01" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo2"   column="P02"  type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo3"     column="P03" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo4"     column="P04" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo5"   column="P05" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo6"     column="P06" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo7"     column="P07" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo8"    column="P08" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo9"   column="P09" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo10"   column="P10" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo11"     column="P11" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo12"   column="P12" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo13"      column="P13" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo14"    column="P14" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo15"    column="P15" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo16"     column="P16" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo17"    column="P17" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo18"   column="P18" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo19"     column="P19" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo20"   column="P20" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showInfo21"  type="com.hr319wg.sys.service.GBKString"  column="P21" />
+    <property   name="showInfo22"  type="com.hr319wg.sys.service.GBKString"  column="P22" />
+    <property   name="showInfo23"  type="com.hr319wg.sys.service.GBKString"  column="P23" />
+    <property   name="showInfo24"  type="com.hr319wg.sys.service.GBKString"  column="P24" />
+    <property   name="showInfo25"  type="com.hr319wg.sys.service.GBKString"  column="P25" />
+    <property   name="showInfo26"  type="com.hr319wg.sys.service.GBKString"  column="P26" />
+    <property   name="showInfo27"  type="com.hr319wg.sys.service.GBKString"  column="P27" />
+    <property   name="showInfo28"  type="com.hr319wg.sys.service.GBKString"  column="P28" />
+    <property   name="showInfo29"  type="com.hr319wg.sys.service.GBKString"  column="P29" />
+    <property   name="showInfo30"  type="com.hr319wg.sys.service.GBKString"  column="P30" />
+    <property   name="showInfo31"  type="com.hr319wg.sys.service.GBKString"  column="P31" />
+    <property   name="showInfo32"  type="com.hr319wg.sys.service.GBKString"  column="P32" />
+    <property   name="showInfo33"  type="com.hr319wg.sys.service.GBKString"  column="P33" />
+    <property   name="showInfo34"  type="com.hr319wg.sys.service.GBKString"  column="P34" />
+    <property   name="showInfo35"  type="com.hr319wg.sys.service.GBKString"  column="P35" />
+    <property   name="showInfo36"  type="com.hr319wg.sys.service.GBKString"  column="P36" />
+    <property   name="showInfo37"  type="com.hr319wg.sys.service.GBKString"  column="P37" />
+    <property   name="showInfo38"  type="com.hr319wg.sys.service.GBKString"  column="P38" />
+    <property   name="showInfo39"  type="com.hr319wg.sys.service.GBKString"  column="P39" />
+    <property   name="showInfo40"  type="com.hr319wg.sys.service.GBKString"  column="P40" />
+    
+    <property name="orderNo"   column="ORDER_NO" type="com.hr319wg.sys.service.GBKString"/>
+</class>
+
+
+<class    name="com.hr319wg.lead.pojo.bo.LeadResourceBO"   table="LEAD_RESOURCE">
+    <id  name="resId"       column="LEAD_RESID"  >
+          <generator class="uuid.hex"/>
+    </id>
+    <property   name="showCode"     column="SHOW_CODE"   not-null="true" type="com.hr319wg.sys.service.GBKString"/>
+    <property   name="showName"     column="SHOW_NAME" not-null="true" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="storeTable"    column="STORE_TABLE"   not-null="true"   type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="isuse"    column="IS_USE"    not-null="false" type="com.hr319wg.sys.service.GBKString" />
+    <property  name="updateFrequency"    column="UPDATE_FREQUENCY" type="com.hr319wg.sys.service.GBKString" />
+    <property  name="orderNo"       column="ORDER_NO" type="com.hr319wg.sys.service.GBKString" />
+</class>
+
+<class name="com.hr319wg.lead.pojo.bo.TextResultBO"  table="LEAD_TEXT_RESULT">
+    <id  name="resultId"   column="RESULT_ID" >
+       <generator class="uuid.hex"/>
+    </id>
+
+    <property name="orgId"    column="ORG_ID" type="com.hr319wg.sys.service.GBKString" />
+    <property name="calcdate"   column="Calc_DATE" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="resId"    column="res_id"  type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo1"   column="P01" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo2"   column="P02" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo3"   column="P03" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo4"   column="P04" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo5"   column="P05" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo6"   column="P06" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo7"   column="P07" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo8"   column="P08" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo9"   column="P09" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo10"   column="P10" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo11"   column="P11" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo12"   column="P12" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo13"   column="P13" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo14"   column="P14" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo15"   column="P15" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo16"   column="P16" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo17"   column="P17" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo18"   column="P18" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo19"   column="P19" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo20"   column="P20" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo21"   column="P21" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo22"   column="P22" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo23"   column="P23" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo24"   column="P24" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo25"   column="P25" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo26"   column="P26" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo27"   column="P27" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo28"   column="P28" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo29"   column="P29" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo30"   column="P30" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo31"   column="P31" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="showInfo32"   column="P32" type="com.hr319wg.sys.service.GBKString"/>
+</class>
+
+<class  name="com.hr319wg.lead.pojo.bo.TextResourceBO" table="LEAD_TEXT_RESOURCE" >
+    <id name="txtID"   column="TXT_ID">
+        <generator class="uuid.hex"/>
+    </id>
+    <property name="resId"   column="res_id"  not-null="true" type="com.hr319wg.sys.service.GBKString"/>
+    <property name="expressions"    column="EXPRESSIONS"  type="com.hr319wg.sys.service.GBKString"/>
+    <property name="updateFrequency"    column="UPDATE_FREQUENCY" type="com.hr319wg.sys.service.GBKString" />
+    <property name="updateFlag"   column="UPDATE_FLAG" type="com.hr319wg.sys.service.GBKString" />
+    <property  name="successFlag"    column="SUCCESS_FLAG" type="com.hr319wg.sys.service.GBKString"/>
+    <property  name="updateDate"     column="UPDATE_DATE" type="com.hr319wg.sys.service.GBKString"/>
+</class>
+
+<class name="com.hr319wg.lead.pojo.bo.LeadOrgBO" table="LEAD_UNIT" >
+    <id name="unitId"   unsaved-value="null">
+        <column name="UNIT_ID" sql-type="varchar(20)"/>
+        <generator class="assigned"/>
+    </id>
+    <property name="superId" column="SUPER_ID" type="com.hr319wg.sys.service.GBKString"/>
+    <property name="treeId" column="TREE_ID" type="com.hr319wg.sys.service.GBKString"/>
+    <property name="name" column="UNIT_NAME" type="com.hr319wg.sys.service.GBKString"/>
+    <property name="desc" column="UNIT_DESC" type="com.hr319wg.sys.service.GBKString"/>
+    <property name="order" column="UNIT_ORDER" type="com.hr319wg.sys.service.GBKString"/>
+</class>
+</hibernate-mapping>

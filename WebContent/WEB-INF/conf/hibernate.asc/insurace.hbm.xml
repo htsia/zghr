@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.insurace.pojo.bo.OrgAnnuBO" table="B742">
+        <id name="subid" type="string" unsaved-value="null">
+            <column name="subid" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orguid" column="orguid"/>
+        <property name="b742000" column="b742000"/>
+        <property name="b742701" column="b742701"/>
+        <property name="b742702" column="b742702"/>
+        <property name="b742703" column="b742703"/>
+        <property name="b742704" column="b742704"/>
+    </class>
+    
+    <class name="com.hr319wg.insurace.pojo.bo.AnnuPersonBO" table="annu_person_info">
+        <id name="personID" type="string" unsaved-value="null">
+            <column name="person_id" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="joinDate" column="join_date"/>
+        <property name="operator" column="operatorID"/>
+    </class>
+    
+    <class name="com.hr319wg.insurace.pojo.bo.MedicalPayoffRateBO" table="ins_medi_payrate">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="unitID" column="unit_id"/>
+        <property name="agelow" column="age_low"/>
+        <property name="agehigh" column="age_high"/>
+        <property name="unitRate" column="unit_rate"/>
+        <property name="personRate" column="person_rate"/>
+    </class>
+
+   <class name="com.hr319wg.insurace.pojo.bo.InsGroupitemPowerBO" table="INS_GROUPITEM_POWER">
+        <id name="powerID" type="string" unsaved-value="null">
+            <column name="POWER_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="personID" column="User_ID"/>
+        <property name="itemID" column="ITEM_IDs"/>
+    </class>
+
+    <class name="com.hr319wg.insurace.pojo.bo.InsDeptPowerBO" table="INS_DEPT_POWER">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_Id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setID" column="SET_ID" />
+        <property name="personID" column="User_ID" />
+        <property name="deptID" column="dept_ID" />
+    </class>
+
+    <class name="com.hr319wg.insurace.pojo.bo.InsItemPowerBO" table="INS_ITEM_POWER">
+        <id name="powerID" type="string" unsaved-value="null">
+            <column name="POWER_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setID" column="SET_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personID" column="User_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="itemID" column="ITEM_ID" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.insurace.pojo.bo.personCountBO" table="B735">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="subID" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orguid" column="orguid" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="b735000" column="b735000" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="b735701" column="b735701" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="b735702" column="b735702" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="b735703" column="b735703" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="b735704" column="b735704" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="b735705" column="b735705" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.insurace.pojo.bo.InsBasePowerBO" table="INS_BASE_POWER">
+        <id name="powerID" type="string" unsaved-value="null">
+            <column name="POWER_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setID" column="SET_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personID" column="User_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="itemID" column="ITEM_ID" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.insurace.pojo.bo.BaseSetBO" table="INS_BASESET">
+		<id name="itemID" type="string" unsaved-value="null">
+			<column name="ITEM_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+        <property name="setID" column="SET_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="personID" column="PERSON_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="startDate" column="START_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="endDate" column="END_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="status" column="STATUS" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="calcDate" column="CALC_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="publishDate" column="CONFIRM_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="field" column="FIELD" />
+        <property name="precise" column="PRECISE" />
+       
+    </class>
+
+    <class name="com.hr319wg.insurace.pojo.bo.BaseSetItemBO" table="ins_basedetail">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="personID" column="PERSON_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="month1" column="month1" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="month2" column="month2" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="month3" column="month3" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="month4" column="month4" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="month5" column="month5" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="month6" column="month6" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="month7" column="month7" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="month8" column="month8" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="month9" column="month9" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="month10" column="month10" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="month11" column="month11" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="month12" column="month12" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="avgResult" column="avgresult" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="payCount" column="pay_count" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+</hibernate-mapping>

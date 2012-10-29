@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.oa319wg.user.pojo.bo.OAWorkLogBO" table="OA_WORK_LOG">
+        <id name="logID" type="string" unsaved-value="null">
+            <column name="LOG_ID" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="logDate" column="LOG_DATE"/>
+        <property name="createID" column="CREATOR"/>
+        <property name="content" column="CONTENT" />
+        <property name="apply" column="APPLY"/>
+        <property name="linkPerson" column="LINK_PERSON"/>
+        <property name="process" column="PROCESS"/>
+        <property name="processor" column="PROCESSOR"/>
+        <property name="processDate" column="PROCESS_DATE"/>
+        <property name="leaderop" column="LEADER_OP"/>
+        <property name="leadDate" column="LEADER_DATE"/>
+        <property name="superop" column="SUPER_OP"/>
+        <property name="superDate" column="SUPER_DATE"/>
+        <property name="emgLevel" column="EMG_LEVEL"/>
+        <property name="shareDegree" column="SHARE_DEGREE"/>
+        <property name="result" column="RESULT"/>
+        <property name="resultOper" column="RESULT_OPER"/>
+        <property name="resultDate" column="RESULT_DATE"/>
+
+    </class>
+
+</hibernate-mapping>

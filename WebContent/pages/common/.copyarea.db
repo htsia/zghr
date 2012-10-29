@@ -1,0 +1,20 @@
+ClearCase CopyAreaDB|4
+HRD_App\WebContent\pages\common
+2
+10
+10:SelMutilCode.jsp|1|10d38e9543d|1f1b|205a2439|79e7bcbc58e14a28a660cf73e2e2a10e|0
+f:SelWageUnit.jsp|1|10dab8e6537|1caa|1e584946|025c8818434c47689a43ed39257cbd01|0
+f:SelWageItem.jsp|1|10d38e96489|a52|645404e7|431b7cab8678474eb7950c52beb9baab|0
+a:SelOrg.jsp|1|10f70616f03|1cfb|87b26a7c|19ec7fe6cff5428f93d2b882dd446f0d|0
+c:SelParty.jsp|1|10dab8e6640|18cc|3a90b80e|41a352a4037f44b2a78bdcd92de6cb1d|0
+f:CalendarDlg.jsp|1|10d91c3be61|1dc5|d1702131|42ba57cddca24ae8804638fbeb560d05|0
+13:SelMutiWageUnit.jsp|1|10f70616fce|2053|43c879d|a949a1bccfa7459a9eeece634cec6bcf|0
+11:SelMutilParty.jsp|1|10d38e954ba|1f74|2f3a72ff|bd67171a254e400d850cb4754865a330|0
+b:SelCode.jsp|1|10dab8e65d3|1b43|f7e40a18|e33a020662984f2e998be990a16e4323|0
+a:activepage|2|0|0|0|606f49160eec4a2cb273949343594c2c|0
+f:SelOptParty.jsp|1|10d38e9644a|18b9|f997910f|8dd8b6e52ce7494887fd8e68cc367cbd|0
+f:SelMutilOrg.jsp|1|10d38e95249|200f|5279704f|fca5da01f1c642e697d50fc7b4eac0ed|0
+e:SelCodeSet.jsp|1|10cfc9de932|7d6|281a6fbd|8777cc2689ca442093251a26578f221e|0
+b:csvhelp.htm|1|1114a235ce0|1a0|573cc0df|e109c480286343a98eb9bf02ed883bea|0
+11:ExportToExcel.jsp|1|10cd20cca3a|516|37f1808f|d0b8ee99e02046e097bd4378d82f7d7d|0
+d:SelOptOrg.jsp|1|10d38e9640c|1a45|e0f5c1f9|c1374f6144c54f77b189a94c3fb1ebad|0

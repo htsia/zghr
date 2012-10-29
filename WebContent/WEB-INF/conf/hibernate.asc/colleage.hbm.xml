@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <class name="com.hr319wg.college.pojo.bo.CollegeDateBO" table="cle_yearList">
+        <id name="dateID" type="string" unsaved-value="null">
+            <column name="CLE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="year" column="YEAR"/>
+        <property name="createDate" column="CREATE_DATE"/>
+        <property name="creator" column="CREATOR"/>
+    </class>
+
+</hibernate-mapping>

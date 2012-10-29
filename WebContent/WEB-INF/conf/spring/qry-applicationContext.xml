@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+
+    <!-- queryClass-->
+    <bean id="qry_queryClassDAO" class="com.hr319wg.qry.dao.QueryClassDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="qry_queryClassService" class="com.hr319wg.qry.service.QueryClassService">
+        <property name="classdao">
+            <ref bean="qry_queryClassDAO"/>
+        </property>
+    </bean>
+    <bean id="qry_queryClassUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.qry.ucc.IQueryClassUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="qry_queryClassUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <bean id="qry_queryClassUCCImpl" class="com.hr319wg.qry.ucc.impl.QueryClassUCCImpl">
+        <property name="classservice" ref="qry_queryClassService"/>
+        <property name="qservice" ref="qry_queryService"/>
+    </bean>
+
+    <bean id="qry_queryDAO" class="com.hr319wg.qry.dao.QueryDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="qry_queryService" class="com.hr319wg.qry.service.QueryService">
+        <property name="querydao">
+            <ref bean="qry_queryDAO"/>
+        </property>
+        <property name="staticservice">
+            <ref bean="qry_staticService"/>
+        </property>
+        <property name="conditionitemservice">
+            <ref bean="qry_conditionItemService"/>
+        </property>
+        <property name="queryitemservice">
+            <ref bean="qry_queryItemService"/>
+        </property>
+        <property name="api" ref="sys_activePageApi"/>
+        <property name="jdbctemplate" ref="jdbcTemplate"/>
+    </bean>
+    <bean id="qry_queryUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.qry.ucc.IQueryUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="qry_QueryUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    <bean id="qry_QueryUCCImpl" class="com.hr319wg.qry.ucc.impl.QueryUCCImpl">
+        <property name="queryservice" ref ="qry_queryService"/>
+        <property name="api" ref ="sys_activePageApi"/>
+    </bean>
+
+    <bean id="qry_queryItemDAO" class="com.hr319wg.qry.dao.QueryItemDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="qry_queryItemService" class="com.hr319wg.qry.service.QueryItemService">
+        <property name="itemdao">
+            <ref bean="qry_queryItemDAO"/>
+        </property>
+    </bean>
+
+    <bean id="qry_queryConditionDAO" class="com.hr319wg.qry.dao.QueryConditionDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="qry_conditionItemService" class="com.hr319wg.qry.service.ConditionItemService">
+        <property name="conditiondao">
+            <ref bean="qry_queryConditionDAO"/>
+        </property>
+    </bean>
+
+    <!--  qry_static -->
+    <bean id="qry_queryStaticDAO" class="com.hr319wg.qry.dao.QueryStaticDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="qry_staticService" class="com.hr319wg.qry.service.StaticService">
+        <property name="staticdao">
+            <ref bean="qry_queryStaticDAO"/>
+        </property>
+        <property name="conditionitemservice">
+            <ref bean="qry_conditionItemService"/>
+        </property>
+    </bean>
+
+
+    <!--   namelist -->
+    <bean id="qry_nameDAO" class="com.hr319wg.qry.dao.NameListDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="qry_nameService" class="com.hr319wg.qry.service.NameListService">
+        <property name="namedao">
+            <ref bean="qry_nameDAO"/>
+        </property>
+    </bean>
+    <bean id="qry_nameUCCImpl" class="com.hr319wg.qry.ucc.impl.NameListUCCImpl">
+        <property name="nameservice" ref ="qry_nameService"/>
+    </bean>
+
+    <bean id="qry_queueDAO" class="com.hr319wg.common.queue.QueueDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="qry_queueService" class="com.hr319wg.common.queue.QueueService">
+        <property name="queuedao" ref="qry_queueDAO"/>
+    </bean>
+    <bean id="qry_queueUCCImpl" class="com.hr319wg.common.queue.QueueUCCImpl">
+        <property name="queueservice" ref="qry_queueService"/>
+    </bean>
+    <bean id="qry_queueUCC" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.hr319wg.common.queue.IQueueUCC</value>
+            </list>
+        </property>
+        <property name="target" ref="qry_queueUCCImpl"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+</beans>

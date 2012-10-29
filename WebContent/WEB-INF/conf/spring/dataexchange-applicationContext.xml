@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+     <bean id="daexSystemDao" class="com.hr319wg.run.dao.DaexSystemDAO">
+          <property name="hibernatetemplate">
+              <ref bean="hibernateTemplate"/>
+          </property>
+      </bean>
+      <bean id="daexSystemService" class="com.hr319wg.run.service.DaexSystemService">
+          <property name="daexSystemDao">
+              <ref bean="daexSystemDao"/>
+          </property>
+      </bean>
+
+       <bean id="daexSystemUcc" class="com.hr319wg.run.ucc.impl.DaexSystemUCC">
+          <property name="daexSystemService">
+              <ref bean="daexSystemService"/>
+          </property>
+      </bean>
+	  <bean id="transfuns" class="com.hr319wg.daEx.TransFun"></bean>
+</beans>
+	

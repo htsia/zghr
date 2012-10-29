@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+        <class name="com.hr319wg.self.pojo.bo.SysToolsBO" table="sys_tools">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_id" sql-type="varchar(20)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="itemName"	   column="item_name" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="url"	   column="menu_url"/>
+        <property name="icon"	   column="menu_icon"/>
+        <property name="seq"	   column="seq"/>
+        <property name="onclick"	   column="onclick"/>
+        <property name="isUse"	   column="is_use"/>
+    </class>
+
+    <class name="com.hr319wg.self.pojo.bo.SelfInfoInsertBO" table="sys_selfinfo_insert">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="persID"	       column="person_id"/>
+		<property name="keyID"	   column="key_ID"/>
+        <property name="setID"	   column="set_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="fieldID"	   column="field_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="newValue"	   column="new_Value" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="status"	   column="status" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="orgID"	   column="org_ID" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.self.pojo.bo.SelfInfoModiBO" table="sys_selfinfo_modi">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="item_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="persID"	       column="person_id" />
+		<property name="keyID"	   column="key_ID" />
+        <property name="setID"	   column="set_ID" />
+        <property name="fieldID"	   column="field_ID" />
+        <property name="oldValue"	   column="old_Value" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="newValue"	   column="new_Value" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="reason"	   column="reason" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="status"	   column="status" />
+        <property name="orgID"	   column="org_ID" />
+        <property name="applyDate"	   column="applyDate"/>
+        <property name="auditDate"	   column="auditDate"/>
+
+    </class>
+
+
+
+
+    <class name="com.hr319wg.self.pojo.bo.StarsBO" table="self_showstars">
+        <id name="itemID" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="orgID"	       column="ORG_ID" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="persID"	   column="PERSON_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="photoFile"	   column="PHOTO_FILE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="story"	   column="STORY" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="showseq"	   column="SHOW_SEQ" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="isShow"	   column="IS_SHOW" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att1Title"	   column="Att1Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att1FileName"	   column="Att1FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att2Title"	   column="Att2Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att2FileName"	   column="Att2FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att3Title"	   column="Att3Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att3FileName"	   column="Att3FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att4Title"	   column="Att4Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att4FileName"	   column="Att4FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att5Title"	   column="Att5Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att5FileName"	   column="Att5FileName" type="com.hr319wg.sys.service.GBKString"/>
+        
+    </class>
+
+
+</hibernate-mapping>

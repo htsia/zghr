@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+     <bean id="upfile_dao" class="com.hr319wg.run.dao.UpFileDAO">
+          <property name="hibernatetemplate">
+              <ref bean="hibernateTemplate"/>
+          </property>
+      </bean>
+
+      <bean id="upfile_service" class="com.hr319wg.run.service.UpFileService">
+          <property name="upfiledao">
+              <ref bean="upfile_dao"/>
+          </property>
+      </bean>
+
+       <bean id="iupfile_ucc" class="com.hr319wg.run.ucc.impl.UpFileUCC">
+          <property name="upfileservice">
+              <ref bean="upfile_service"/>
+          </property>
+      </bean>
+
+      <bean id="upfile_ucc" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+          <property name="proxyInterfaces">
+              <list>
+                  <value>com.hr319wg.run.ucc.IUpFileUCC</value>
+              </list>
+          </property>
+          <property name="target">
+              <ref bean="iupfile_ucc"/>
+          </property>
+          <property name="transactionManager">
+              <ref bean="transactionManager"/>
+          </property>
+          <property name="transactionAttributeSource">
+              <ref bean="namingTransactionAttribute"/>
+          </property>
+      </bean>
+</beans>
+	

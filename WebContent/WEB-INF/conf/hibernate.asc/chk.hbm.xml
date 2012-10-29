@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <class name="com.hr319wg.chk.pojo.bo.VerifyBO" table="CHK_DATACHECK">
+        <id name="checkId" type="string" unsaved-value="null">
+            <column name="CHECK_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="checkDesc" column="CHECK_DESC" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="checkField" column="CHECK_FIELD" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="checkColumns" column="CHECK_COLUMNS" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="checkSql" column="CHECK_SQL" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="validFlag" column="VALID_FLAG" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.chk.pojo.bo.VerifyResBO" table="CHK_DATACHECK_RESULT">
+        <id name="resultId" type="string" unsaved-value="null">
+            <column name="RESULT_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="operatorId" column="OPERATOR_ID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="checkDesc" column="CHECK_DESC" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="checkDate" column="CHECK_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="beginTime" column="BEGIN_TIME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="endTime" column="END_TIME" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="fileName" column="FILE_NAME" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+</hibernate-mapping>

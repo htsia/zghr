@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="com.hr319wg.lain.pojo.bo.SupplyBO" table="LAIN_SUPPLY">
+        <id name="supId" type="string" unsaved-value="null">
+            <column name="SUP_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="supName" column="SUP_NAME"  type="com.hr319wg.sys.service.GBKString"/>
+        <property name="createOrg" column="CREATE_ORG" type="com.hr319wg.sys.service.GBKString" />
+        <property name="orgScoppe" column="ORG_SCOPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="showSeq" column="SHOW_SEQ" type="com.hr319wg.sys.service.GBKString"/>
+        
+        <property name="contactPerson" column="CONTACT_PERSON" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contactTel" column="CONTACT_TEL" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="contactAdres" column="CONTACT_ADDRESS" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="postCode" column="POSTCODE" type="com.hr319wg.sys.service.GBKString" />
+        <property name="fax" column="FAX" type="com.hr319wg.sys.service.GBKString" />
+        <property name="webSite" column="WEBSITE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="email" column="EMAIL"  type="com.hr319wg.sys.service.GBKString"/>
+     </class>
+	
+  <!-- 物资管理     -->
+     
+	  <class name="com.hr319wg.lain.pojo.bo.StockBO" table="LAIN_STOCK">
+        <id name="stockId" type="string" unsaved-value="null">
+            <column name="STOCK_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="stockName" column="STOCK_NAME" type="com.hr319wg.sys.service.GBKString" />
+        <property name="createOrg" column="CREATE_ORG" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="stockType" column="STOCK_TYPE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="stockUnit" column="STOCK_UNIT" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="stockSum" column="STOCK_SUM"   type="com.hr319wg.sys.service.GBKString"/>
+         <property name="stockLow" column="STOCK_LOW"  type="com.hr319wg.sys.service.GBKString" />
+     </class>
+     
+       <!-- 领用申请单     -->
+     
+	  <class name="com.hr319wg.lain.pojo.bo.DrawBO" table="LAIN_DRAW">
+        <id name="drawId" type="string" unsaved-value="null">
+            <column name="DRAW_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="drawCode" column="DRAW_CODE" type="com.hr319wg.sys.service.GBKString" />
+        <property name="drawDate" column="DRAW_DATE" type="com.hr319wg.sys.service.GBKString" />
+        <property name="drawPerson" column="DRAW_PERSON" type="com.hr319wg.sys.service.GBKString"  />
+         <property name="drawStatus" column="DRAW_STATUS" type="com.hr319wg.sys.service.GBKString"/>
+     </class>
+     
+      <!-- 领用申请明细单 -->
+   
+     
+	  <class name="com.hr319wg.lain.pojo.bo.DrawItemBO" table="LAIN_DRAW_ITEM">
+        <id name="drawItemId" type="string" unsaved-value="null">
+            <column name="DRAW_ITEMID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="drawId" column="DRAW_ID" type="com.hr319wg.sys.service.GBKString" />
+        <property name="stockId" column="STOCK_ID" type="com.hr319wg.sys.service.GBKString"  />
+         <property name="drawSum" column="DRAW_SUM" type="com.hr319wg.sys.service.GBKString"  />
+     </class>
+     
+      <!--  入库       -->
+      <class name="com.hr319wg.lain.pojo.bo.AcceptBO" table="LAIN_ACCEPT">
+        <id name="acceptId" type="string" unsaved-value="null">
+            <column name="ACC_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+         <property name="acceptCode" column="ACC_CODE"  type="com.hr319wg.sys.service.GBKString"  />
+        <property name="acceptDate" column="ACC_DATE"  type="com.hr319wg.sys.service.GBKString"  />
+        <property name="acceptPerson" column="ACC_PERSON"  type="com.hr319wg.sys.service.GBKString"  />
+     </class>
+     
+       <class name="com.hr319wg.lain.pojo.bo.AcceptItemBO" table="LAIN_ACCEPT_ITEM">
+        <id name="acceptItemId" type="string" unsaved-value="null">
+            <column name="ACC_ITEMID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="acceptId" column="ACC_ID"  type="com.hr319wg.sys.service.GBKString"  />
+        <property name="stockId" column="STOCK_ID"   type="com.hr319wg.sys.service.GBKString" />
+        <property name="acceptSum" column="ACC_SUM"   type="com.hr319wg.sys.service.GBKString" />
+         <property name="supId" column="SUP_ID"    type="com.hr319wg.sys.service.GBKString" />
+     </class>
+</hibernate-mapping>

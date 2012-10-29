@@ -1,0 +1,79 @@
+GWGL-0200|岗位管理|崗位管理|Post Manager
+GWGL-0215|岗位设置|崗位設置|Post Set
+GWGL-0216|新增岗位|新增崗位|Post Add
+GWGL-0217|岗位维护|崗位維護|Post Maintenance
+GWGL-0218|岗位删除|崗位刪除|Post Remove
+GWGL-0219|岗位查询|崗位查詢|Post Search
+GWGL-0220|岗位查询|查詢|Search
+GWGL-0221|岗位统计|統計|Count
+GWGL-0222|说明书浏览|說明書流覽|Manual Browse 
+GWGL-0223|岗位图|崗位圖|Post Char
+GWGL-0224|编制管理|編制管理|Preparation Manager
+GWGL-1000|变更岗位所属机构|變更崗位所屬機構|Subjection Post Change
+GWGL-1001|新隶属机构|新隸屬機構| New Subjection Organ 
+GWGL-1002|显示模式|顯示模式|Display Model
+GWGL-1003|设置|設置|Set
+GWGL-1004|岗位说明书|崗位說明書|Post Doument
+GWGL-1005|隶属机构|隸屬機構|Subjection Organ 
+GWGL-1006|直接上级岗位|直接上級崗位|Direction Organ 
+GWGL-1007|岗位编号|崗位編號|Post Code
+GWGL-1008|岗位等级|岗位等级|Post Level
+GWGL-1009|岗位编制|崗位編制|Post Authorized
+GWGL-1010|岗位目的|崗位目的|Post Object 
+GWGL-1011|选择岗位模板|選擇崗位範本|Select Post Templete
+GWGL-1012|查看|查看|Look Over
+GWGL-1013|纵向|縱向|On End
+GWGL-1014|横向|橫向Sidewards
+GWGL-1015|岗位信息|崗位資訊|PostInformation
+GWGL-1016|公司名称|公司名称|CompanyName
+GWGL-1017|部门|部門|Department
+GWGL-1018|任职者|任職者|TakeOffice
+GWGL-1019|接收|接收|Receive
+GWGL-1020|核准|核准|Sanction
+GWGL-1021|岗位目的（岗位存在的理由、限制条件和目标|崗位目的（崗位存在的理由、限制條件和目標|PostPurpose(Reason、Condition、Object)
+GWGL-1022|“为了…在…”|“為了…在…”|"bywayof"
+GWGL-1023|工作权限|工作許可權|WorkPower
+GWGL-1024|直接下属人事权限|直接下屬人事許可權|DirctionSubjectionPower
+GWGL-1025|关键绩效指标|關鍵績效指標|PrimaryKeyPerformance
+GWGL-1026|任务|任務|Task
+GWGL-1027|职责|職責|Responsibility
+GWGL-1028|结果/目标）|結果/目標）|Result/Object
+GWGL-1029|职责所要达到的|職責所要達到的|ResponsibilityObject
+GWGL-1030|工作职责|工作職責|WorkTrust
+GWGL-1031|工作时间比重（％）|工作時間比重（％）|WorkTimeProportion
+GWGL-1032|雇佣/解雇|雇傭/解雇|Dismissal/Dismissal
+GWGL-1033|无|無|No
+GWGL-1034|建议|建議|Advise
+GWGL-1035|决定|決定|Decision
+GWGL-1036|薪酬/业绩评估|薪酬/業績評估|Wage/AchievementAssessment
+GWGL-1037|升/降级|升/降級|Up/Down
+GWGL-1038|内部调动|內部調動|InnerManoeuvre
+GWGL-1039|下属人数|下屬人數|UnderlingNumber
+GWGL-1040|直接下属人数限数|直接下屬人數限|Limitthenumberofdirectreports
+GWGL-1041|间接下属人数|間接下屬人數|Numberofindirectsubordinates
+GWGL-1042|下属人数合计|下屬人數合計|Totalnumberofsubordinates
+GWGL-1043|人|人|Person
+GWGL-1044|1基本|1基本|1Basic
+GWGL-1045|2一般|2一般|2Gerneal
+GWGL-1046|3有效|3有效|3Availability
+GWGL-1047|4良好|4良好|4AllRight
+GWGL-1048|5优异|5優異|5Excellent
+GWGL-1049|岗位从业要求|崗位從業要求|PostRequest
+GWGL-1050|教育程度|教育程度|EducationLevel
+GWGL-1051|工作经验|工作經驗|WorkExperience
+GWGL-1052|其它|其它|Other
+GWGL-1053|岗位胜任素质|崗位勝任素質|PostRequestDiathesis
+GWGL-1054|胜任素质层级要求|勝任素質層級要求|
+GWGL-1055|请在各素质条目所要求的相应层级处打|請在各素質條目所要求的相應層級處打|PleaseAarkAtTheCorrespondencePlyRating
+GWGL-1056|1了解|1瞭解|1Understand
+GWGL-1057|2熟悉|2熟悉|2Acquaintance
+GWGL-1058|3掌握|3掌握|3Command
+GWGL-1059|4指导|4指導|4Guidance
+GWGL-1060|5精通|5精通|5Conversance
+GWGL-1061|新增岗位模板|新增崗位範本|NewPostTemplete
+GWGL-1062|上级岗位|上級崗位|SuperiorPost
+GWGL-1063|岗位IPE等级|崗位IPE等級|PostIPELevel
+GWGL-1064|说明书模板维护|說明書範本維護|DocumentTempleteMaintenance
+GWGL-1065|选择|選擇|Select
+GWGL-1066|选择岗位|選擇崗位|SelectPost
+GWGL-1067|取消选择|取消選擇|Cancle

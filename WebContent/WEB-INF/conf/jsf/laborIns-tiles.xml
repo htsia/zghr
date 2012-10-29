@@ -1,0 +1,146 @@
+
+<!DOCTYPE tiles-definitions
+    [
+        <!ELEMENT component-definitions (definition+)>
+        <!ELEMENT tiles-definitions (definition+)>
+        <!ELEMENT definition (put*, putList*)>
+        <!ATTLIST definition
+            name CDATA #REQUIRED
+            pages CDATA #IMPLIED
+            path CDATA #IMPLIED
+            extends CDATA #IMPLIED
+            role CDATA #IMPLIED
+            template CDATA #IMPLIED
+            controllerClass CDATA #IMPLIED
+            controllerUrl CDATA #IMPLIED>
+        <!ELEMENT put (#PCDATA)>
+        <!ATTLIST put
+            name CDATA #REQUIRED
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+        <!ATTLIST putList
+            name CDATA #REQUIRED>
+        <!ELEMENT putListElements (add | item | bean)>
+        <!ELEMENT add (#PCDATA)>
+        <!ATTLIST add
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT bean (#PCDATA)>
+        <!ATTLIST bean
+            classtype CDATA #REQUIRED>
+        <!ELEMENT item (#PCDATA)>
+        <!ATTLIST item
+            value CDATA #REQUIRED
+            link CDATA #REQUIRED
+            classtype CDATA #IMPLIED
+            icon CDATA #IMPLIED
+            tooltip CDATA #IMPLIED>
+    ]>
+
+<tiles-definitions>
+
+	<!-- ********************供应商管理******************** -->
+	
+	<definition name="/lain/supply.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/supply.jsp" />
+	</definition>
+	
+	<definition name="/lain/LainSupplyList.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/LainSupplyList.jsp" />
+	</definition>
+	
+	<definition name="/lain/LainSupplyEdit.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/LainSupplyEdit.jsp" />
+	</definition>
+	
+	<definition name="/lain/SupplyStockItem.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/SupplyStockItem.jsp" />
+	</definition>
+	
+	
+	<!--  ********************物资管理 ******************** -->
+	<definition name="/lain/stockList.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/stockList.jsp" />
+	</definition>
+	
+	<definition name="/lain/StockListShow.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/StockListShow.jsp" />
+	</definition>
+	
+	<definition name="/lain/LainStockEdit.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/LainStockEdit.jsp" />
+	</definition>
+	
+	<definition name="/lain/StockDrawItem.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/StockDrawItem.jsp" />
+	</definition>
+	
+	
+	<!--  ********************物资领用 ******************** -->
+	<definition name="/lain/drawList.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/drawList.jsp" />
+	</definition>
+	
+	<definition name="/lain/DrawEdit.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/DrawEdit.jsp" />
+	</definition>
+	
+	
+	<definition name="/lain/DrawItemEdit.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/DrawItemEdit.jsp" />
+	</definition>
+	
+	
+	
+	<!-- 入库  -->
+	<definition name="/lain/enterStock.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/EnterStock.jsp" />
+	</definition>
+	<definition name="/lain/acceptEdit.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/AcceptEdit.jsp" />
+	</definition>
+	
+	<definition name="/lain/acceptItemEdit.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/AcceptItemEdit.jsp" />
+	</definition>
+	
+	<!-- 供应商汇总  -->
+	<definition name="/lain/supplyGather.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/SupplyGather.jsp" />
+	</definition>
+		<!-- 物资入库汇总 -->
+	<definition name="/lain/StockGather.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/StockAcceptGather.jsp" />
+	</definition>
+		<!-- 物资领用汇总  -->
+	<definition name="/lain/StockSend.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/StockDrawGather.jsp" />
+	</definition>
+		<!-- 物资入库明细  -->
+	<definition name="/lain/StockAcceptItem.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/StockAcceptItem.jsp" />
+	</definition>
+	
+		<!-- 自助申请领用  -->
+	<definition name="/lain/selfDrawList.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/SelfDrawList.jsp" />
+	</definition>
+	<definition name="/lain/SelfDrawEdit.tiles" extends="layout.busitemplateSelf">
+		<put name="body" value="/pages/lain/SelfDrawEdit.jsp" />
+	</definition>
+	
+</tiles-definitions>
+
+
+
+
+
+
+
+
+

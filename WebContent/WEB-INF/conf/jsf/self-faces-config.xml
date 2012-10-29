@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+"http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+
+    <managed-bean>
+        <managed-bean-name>self_medicalPayoffBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.self.web.MedicalPayoffBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>wageapi</property-name>
+            <value>#{wage_api}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>wagedeptucc</property-name>
+            <value>#{wage_deptUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>wagedateucc</property-name>
+            <value>#{wage_DateUcc}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>medicalpayoffucc</property-name>
+            <value>#{ins_medicalPayoffucc}</value>
+        </managed-property>
+
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>self_taxmethodBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.self.web.taxCountMethodBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+      <managed-property>
+            <property-name>wageapi</property-name>
+            <value>#{wage_api}</value>
+      </managed-property>
+        <managed-property>
+              <property-name>wagesetucc</property-name>
+              <value>#{wage_SetUcc}</value>
+        </managed-property>
+        <managed-property>
+              <property-name>wagecessucc</property-name>
+              <value>#{wage_CessUccImpl}</value>
+        </managed-property>
+        <managed-property>
+              <property-name>wagesetitemucc</property-name>
+              <value>#{wage_SetItemUcc}</value>
+        </managed-property>
+        <managed-property>
+              <property-name>wageformulaucc</property-name>
+              <value>#{wage_FormulaUcc}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>self_personEditBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.self.web.PersonEditBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+          <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+         <managed-property>
+           <property-name>wageapi</property-name>
+           <value>#{wage_api}</value>
+       </managed-property>
+        <managed-property>
+          <property-name>selfinfoUCC</property-name>
+          <value>#{user_selfinfoUccImpl}</value>
+      </managed-property>
+        <managed-property>
+          <property-name>usermanageucc</property-name>
+          <value>#{user_userManageUccImpl}</value>
+      </managed-property>
+      </managed-bean>
+
+
+  <managed-bean>
+  <managed-bean-name>self_starsBB</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.StarsBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+		<property-name>starsucc</property-name>
+		<value>#{self_starsUCC}</value>
+  </managed-property>
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>user</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.UserBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>putxlsbb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.util.putxls</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>self_showbb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.ShowBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>self_sendmailbb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.SendMailBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>self_queryondutybb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.QueryOndutyBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+	<managed-property>
+		<property-name>iqueryondutyucc</property-name>
+		<value>#{self_iqueryondutyucc}</value>
+	</managed-property>    
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>self_bakinfobb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.BakInfoBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+	<managed-property>
+		<property-name>ibaseoptucc</property-name>
+		<value>#{self_ibaseoptucc}</value>
+	</managed-property>    
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>self_queryeffectcheckbb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.QueryEffectCheckBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+	<managed-property>
+		<property-name>ibaseoptucc</property-name>
+		<value>#{self_ibaseoptucc}</value>
+	</managed-property>    
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>self_querybasicinfobb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.QueryBasicInfoBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+	<managed-property>
+		<property-name>ibaseoptucc</property-name>
+		<value>#{self_ibaseoptucc}</value>
+	</managed-property>
+		<managed-property>
+			<property-name>orgucc</property-name>
+			<value>#{org_orgUCC}</value>
+		</managed-property>
+</managed-bean>
+
+
+<managed-bean>
+  <managed-bean-name>self_queryhousesubbb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.QueryHouseSubBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+	<managed-property>
+		<property-name>ibaseoptucc</property-name>
+		<value>#{self_ibaseoptucc}</value>
+	</managed-property>    
+</managed-bean>
+
+
+<managed-bean>
+  <managed-bean-name>self_querypaybb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.QueryPayBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+	<managed-property>
+		<property-name>iquerypayucc</property-name>
+		<value>#{self_iquerypayucc}</value>
+	</managed-property>
+    <managed-property>
+        <property-name>wageapi</property-name>
+        <value>#{wage_api}</value>
+    </managed-property>
+    <managed-property>
+        <property-name>wagesetucc</property-name>
+        <value>#{wage_SetUcc}</value>
+    </managed-property>
+
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>self_querypercostbb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.QueryPerCostBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+	<managed-property>
+		<property-name>iquerypercostucc</property-name>
+		<value>#{self_iquerypercostucc}</value>
+	</managed-property> 
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>self_querypostbookbb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.QueryPostBookBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>  
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>self_querybuyhistorybb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.QueryBuyHistoryBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+	<managed-property>
+		<property-name>iquerybuyhistoryucc</property-name>
+		<value>#{self_iquerybuyhistoryucc}</value>
+	</managed-property> 
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>self_integraldetailbb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.IntegralDetailBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+	<managed-property>
+		<property-name>iintegraldetailucc</property-name>
+		<value>#{self_iintegraldetailucc}</value>
+	</managed-property> 
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>self_selfnewsbb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.SelfNewsBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+        <property-name>iselfnewsucc</property-name>
+        <value>#{self_iselfnewucc}</value>
+    </managed-property>
+</managed-bean>
+
+<managed-bean>
+  <managed-bean-name>self_selfbulletinbb</managed-bean-name>
+  <managed-bean-class>com.hr319wg.self.web.SelfBulletinBackingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+        <property-name>iselfbulletinucc</property-name>
+        <value>#{self_iselfbulletinucc}</value>
+    </managed-property>
+    <managed-property>
+        <property-name>usermanageucc</property-name>
+        <value>#{user_userManageUCC}</value>
+    </managed-property>
+
+</managed-bean>
+
+
+
+<navigation-rule>
+  <from-view-id>/*</from-view-id>
+  
+   <navigation-case>
+   <from-outcome>self_PayQuery_jsf</from-outcome>
+   <to-view-id>/self/PayQuery.jsf</to-view-id>
+   </navigation-case>
+   
+   <navigation-case>
+   <from-outcome>self_PayOneQuery_jsf</from-outcome>
+   <to-view-id>/self/PayOneQuery.jsf</to-view-id>
+   </navigation-case>
+   
+   <navigation-case>
+   <from-outcome>self_PayQueryFalse_jsf</from-outcome>
+   <to-view-id>/self/PayQueryFalse.jsf</to-view-id>
+   </navigation-case>
+   
+
+    <navigation-case>
+   <from-outcome>self_ManpowerCostQuery_jsf</from-outcome>
+   <to-view-id>/self/ManpowerCostQuery.jsf</to-view-id>
+   </navigation-case>
+   
+ <navigation-case>
+   <from-outcome>self_ManpowerCostAllQuery_jsf</from-outcome>
+   <to-view-id>/self/ManpowerCostAllQuery.jsf</to-view-id>
+   </navigation-case>
+   
+</navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/self/PersonContact.jsp</from-view-id>
+        <navigation-case>
+                <from-outcome>self_PersonContactUpdate</from-outcome>
+                <to-view-id>/self/PersonContactUpdate.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/self/PersonContactUpdate.jsp</from-view-id>
+        <navigation-case>
+                <from-outcome>self_PersonContact</from-outcome>
+                <to-view-id>/self/PersonContact.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/self/PersonContact.jsp</from-view-id>
+        <navigation-case>
+                <from-outcome>self_PersonContactUpdate</from-outcome>
+                <to-view-id>/self/PersonInfoDetail.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+            <from-view-id>/self/PersonInfoDetail.jsp</from-view-id>
+            <navigation-case>
+                <from-outcome>list</from-outcome>
+                <to-view-id>/self/PersonInfoDetailList.jsf</to-view-id>
+            </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+            <from-view-id>/self/AddAdvices.jsp</from-view-id>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+            </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+            <from-view-id>/self/info/BatchModifyInfo.jsp</from-view-id>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+            </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+            <from-view-id>/self/info/InsertInfo.jsp</from-view-id>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+            </navigation-case>
+    </navigation-rule>
+
+     <navigation-rule>
+            <from-view-id>/self/AddAnswer.jsp</from-view-id>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+            </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/self/SelfInfo2.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/inProcess.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/hqlead/HQSelfInfo.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/inProcess.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+       <from-view-id>/self/PersonInfoDetailList.jsp</from-view-id>
+        <navigation-case>
+                <from-outcome>info</from-outcome>
+                <to-view-id>/self/PersonInfoDetail.jsf</to-view-id>
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/self/PersonInfoDetail.jsp</from-view-id>
+            <navigation-case>
+                <from-outcome>list</from-outcome>
+                <to-view-id>/self/PersonInfoDetailList.jsf</to-view-id>
+            </navigation-case>
+    </navigation-rule>
+
+ <application>
+  <view-handler>org.apache.myfaces.application.jsp.JspTilesViewHandlerImpl</view-handler>
+  <locale-config/>
+ </application>
+
+    <lifecycle/>
+ <factory/>
+</faces-config>
+

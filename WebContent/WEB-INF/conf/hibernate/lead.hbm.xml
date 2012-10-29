@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+    <class  name="com.hr319wg.lead.pojo.bo.LeadWageAnalyseBO" table="LEAD_WAGE_ANALYSE">
+        <id  name="itemID" type="java.lang.String" column="item_id"  >
+             <generator class="uuid.hex"/>
+        </id>
+        <property name="itemName" column="ITEM_NAME"  />
+        <property name="fields" column="FIELDS"    />
+        <property name="seq" column="seq"    />
+        <property name="nouse"  column="NOTUSE"    />
+    </class>
+
+    <class  name="com.hr319wg.lead.pojo.bo.LeadCurAnaBO" table="lead_desktop_analyse">
+        <id  name="itemID" type="java.lang.String" column="item_id"  >
+             <generator class="uuid.hex"/>
+        </id>
+        <property name="itemtype" type="java.lang.String" column="item_type"  />
+        <property name="itemName" type="java.lang.String" column="item_name"  />
+        <property  name="itemUrl" type="java.lang.String" column="item_url"    />
+    </class>
+
+<class
+    name="com.hr319wg.lead.pojo.bo.LeadSqlBO" table="LEAD_SQL">
+    <id  name="sqlId" type="java.lang.String" column="SQL_ID"  >
+         <generator class="uuid.hex"/>
+    </id>
+    <property name="resId" type="java.lang.String" column="LEAD_RESID"  />
+    <property  name="sqltype" type="java.lang.String" column=" SQL_TYPE"    />
+    <property name="sqlstr" type="java.lang.String" column="SQL_STR"      />
+    <property name="paraName" type="java.lang.String" column="PARA_NAME"   />
+    <property  name="paraOrder" type="java.lang.String" column="PARA_ORDER"      />
+</class>
+
+
+<class  name="com.hr319wg.lead.pojo.bo.GraphResultBO"   table="LEAD_GRAPH_RESULT" >
+    <id  name="resultId" type="java.lang.String" column="RESULT_ID" >
+       <generator class="uuid.hex"/>
+    </id>
+    <property name="orgId" type="java.lang.String" column="ORG_ID" not-null="true"   />
+    <property name="resId" type="java.lang.String" column="res_id"   />
+    <property name="archivesDate" type="java.lang.String" column="CALC_DATE"    />
+    <property  name="graphXLabel" type="java.lang.String"  column="X_LABLE" />
+    <property  name="graphYLabel"   type="java.lang.String"  column="Y_LABLE"   />
+    <property  name="x" type="int"  column="X"   />
+    <property  name="y" type="int"   column="Y"   />
+    <property  name="graphValue" type="java.lang.String" column="GRAPH_VALUE"   />
+</class>
+
+<class	name="com.hr319wg.lead.pojo.bo.GraphFileBO" table="LEAD_GRAPH_FILE">
+    <id  name="fileId" type="java.lang.String" column="FILE_ID"  >
+         <generator class="uuid.hex"/>
+    </id>
+    <property name="orgId" type="java.lang.String" column="ORG_ID"  />
+    <property name="resId" type="java.lang.String" column="res_id"      />
+     <property  name="archivesDate" type="java.lang.String" column="CALC_DATE"      />
+    <property  name="graphName" type="java.lang.String"  column="GRAPH_NAME"    />
+</class>
+
+    <class	name="com.hr319wg.lead.pojo.bo.HtmlFileBO" table="LEAD_HTML_FILE">
+        <id  name="fileId" type="java.lang.String" column="FILE_ID"  >
+             <generator class="uuid.hex"/>
+        </id>
+        <property name="orgId" type="java.lang.String" column="ORG_ID"  />
+        <property name="resId" type="java.lang.String" column="res_id"      />
+         <property  name="archivesDate" type="java.lang.String" column="CALC_DATE"      />
+        <property  name="fileName" type="java.lang.String"  column="FILE_NAME"    />
+    </class>
+
+ <class name="com.hr319wg.lead.pojo.bo.GraphResourceBO" table="LEAD_GRAPH_RESOURCE">
+    <id name="graphID"  type="java.lang.String"  column="graph_ID"  >
+              <generator class="uuid.hex"/>
+    </id>
+    <property name="resId"  type="java.lang.String" column="res_ID"   />
+    <property name="graphTitle"  type="java.lang.String" column="GRAPH_TITLE"   />
+    <property name="labelTitleX"  type="java.lang.String" column="GRAPH_X_LABEL"   />
+    <property name="labelTitleY"  type="java.lang.String" column="GRAPH_Y_LABEL"   />
+    <property name="smallHeight"  type="java.math.BigDecimal" column="SMALL_HEIGHT"   />
+    <property name="smallWidth"  type="java.math.BigDecimal" column="SMALL_WIDTH"    />
+    <property name="largeWidth"  type="java.math.BigDecimal" column="LARGE_WIDTH"    />
+    <property name="largeHeight"  type="java.math.BigDecimal" column="LARGE_HEIGHT"    />
+    <property name="graphType"  type="java.math.BigDecimal" column="GRAPH_TYPE"    />
+</class>
+
+<class name="com.hr319wg.lead.pojo.bo.GraphResourceItemBO" table="LEAD_GRAPH_RESOURCE_ITEM">
+        <id name="itemID"  type="java.lang.String"  column="GRAPH_ITEM_ID"  >
+                  <generator class="uuid.hex"/>
+        </id>
+        <property name="graphID"  type="java.lang.String" column="GRAPH_ID"   />
+        <property name="labelTitleX"  type="java.lang.String" column="GRAPH_X_LABEL"   />
+        <property name="labelTitleY"  type="java.lang.String" column="GRAPH_Y_LABEL"   />
+        <property name="x"  type="int" column="X"   />
+        <property name="y"  type="int" column="Y"   />
+        <property name="graphValue"  type="java.lang.String" column="GRAPH_PARA"   />
+ </class>
+
+<class  name="com.hr319wg.lead.pojo.bo.GridResultBO"  table="LEAD_GRID_RESULT">
+    <id  name="resultId" type="java.lang.String" column="RESULT_ID" >
+       <generator class="uuid.hex"/>
+    </id>
+    <property name="resId"  type="java.lang.String" column="res_ID" />
+    <property name="orgId" type="java.lang.String" column="ORG_ID" />
+    <property name="calcdate" type="java.lang.String" column="CALC_DATE" />
+    <property  name="orderNo" type="java.lang.String" column="ORDER_NO" />
+    <property   name="showInfo1"  type="java.lang.String"  column="P01" />
+    <property   name="showInfo2"  type="java.lang.String"  column="P02" />
+    <property   name="showInfo3"  type="java.lang.String"  column="P03" />
+    <property   name="showInfo4"  type="java.lang.String"  column="P04" />
+    <property   name="showInfo5"  type="java.lang.String"  column="P05" />
+    <property   name="showInfo6"  type="java.lang.String"  column="P06" />
+    <property   name="showInfo7"  type="java.lang.String"  column="P07" />
+    <property   name="showInfo8"  type="java.lang.String"  column="P08" />
+    <property   name="showInfo9"  type="java.lang.String"  column="P09" />
+    <property   name="showInfo10"  type="java.lang.String"  column="P10" />
+    <property   name="showInfo11"  type="java.lang.String"  column="P11" />
+    <property   name="showInfo12"  type="java.lang.String"  column="P12" />
+    <property   name="showInfo13"  type="java.lang.String"  column="P13" />
+    <property   name="showInfo14"  type="java.lang.String"  column="P14" />
+    <property   name="showInfo15"  type="java.lang.String"  column="P15" />
+    <property   name="showInfo16"  type="java.lang.String"  column="P16" />
+    <property   name="showInfo17"  type="java.lang.String"  column="P17" />
+    <property   name="showInfo18"  type="java.lang.String"  column="P18" />
+    <property   name="showInfo19"  type="java.lang.String"  column="P19" />
+    <property   name="showInfo20"  type="java.lang.String"  column="P20" />
+    <property   name="showInfo21"  type="java.lang.String"  column="P21" />
+    <property   name="showInfo22"  type="java.lang.String"  column="P22" />
+    <property   name="showInfo23"  type="java.lang.String"  column="P23" />
+    <property   name="showInfo24"  type="java.lang.String"  column="P24" />
+    <property   name="showInfo25"  type="java.lang.String"  column="P25" />
+    <property   name="showInfo26"  type="java.lang.String"  column="P26" />
+    <property   name="showInfo27"  type="java.lang.String"  column="P27" />
+    <property   name="showInfo28"  type="java.lang.String"  column="P28" />
+    <property   name="showInfo29"  type="java.lang.String"  column="P29" />
+    <property   name="showInfo30"  type="java.lang.String"  column="P30" />
+    <property   name="showInfo31"  type="java.lang.String"  column="P31" />
+    <property   name="showInfo32"  type="java.lang.String"  column="P32" />
+    <property   name="showInfo33"  type="java.lang.String"  column="P33" />
+    <property   name="showInfo34"  type="java.lang.String"  column="P34" />
+    <property   name="showInfo35"  type="java.lang.String"  column="P35" />
+    <property   name="showInfo36"  type="java.lang.String"  column="P36" />
+    <property   name="showInfo37"  type="java.lang.String"  column="P37" />
+    <property   name="showInfo38"  type="java.lang.String"  column="P38" />
+    <property   name="showInfo39"  type="java.lang.String"  column="P39" />
+    <property   name="showInfo40"  type="java.lang.String"  column="P40" />
+</class>
+
+<class name="com.hr319wg.lead.pojo.bo.GridResourceBO" table="lead_grid_resource">
+    <id  name="gridID" type="java.lang.String" column="grid_id">
+         <generator class="uuid.hex"/>
+    </id>
+    <property  name="resId"  type="java.lang.String" column="res_ID" not-null="true"/>
+    <property  name="showInfo1" type="java.lang.String"  column="P01" />
+    <property  name="showInfo2" type="java.lang.String" column="P02"  />
+    <property  name="showInfo3"  type="java.lang.String"  column="P03" />
+    <property  name="showInfo4"  type="java.lang.String"  column="P04" />
+    <property  name="showInfo5" type="java.lang.String" column="P05" />
+    <property  name="showInfo6"  type="java.lang.String"  column="P06"/>
+    <property  name="showInfo7"   type="java.lang.String" column="P07" />
+    <property  name="showInfo8"  type="java.lang.String" column="P08" />
+    <property  name="showInfo9" type="java.lang.String" column="P09" />
+    <property  name="showInfo10" type="java.lang.String" column="P10" />
+    <property  name="showInfo11"  type="java.lang.String"  column="P11" />
+    <property  name="showInfo12" type="java.lang.String" column="P12" />
+    <property  name="showInfo13"   type="java.lang.String"  column="P13" />
+    <property  name="showInfo14"  type="java.lang.String" column="P14"/>
+    <property  name="showInfo15"  type="java.lang.String" column="P15"/>
+    <property  name="showInfo16"   type="java.lang.String" column="P16"/>
+    <property  name="showInfo17"  type="java.lang.String" column="P17"/>
+    <property  name="showInfo18" type="java.lang.String" column="P18"/>
+    <property  name="showInfo19"  type="java.lang.String"  column="P19" />
+    <property  name="showInfo20" type="java.lang.String" column="P20" />
+    <property   name="showInfo21"  type="java.lang.String"  column="P21" />
+    <property   name="showInfo22"  type="java.lang.String"  column="P22" />
+    <property   name="showInfo23"  type="java.lang.String"  column="P23" />
+    <property   name="showInfo24"  type="java.lang.String"  column="P24" />
+    <property   name="showInfo25"  type="java.lang.String"  column="P25" />
+    <property   name="showInfo26"  type="java.lang.String"  column="P26" />
+    <property   name="showInfo27"  type="java.lang.String"  column="P27" />
+    <property   name="showInfo28"  type="java.lang.String"  column="P28" />
+    <property   name="showInfo29"  type="java.lang.String"  column="P29" />
+    <property   name="showInfo30"  type="java.lang.String"  column="P30" />
+    <property   name="showInfo31"  type="java.lang.String"  column="P31" />
+    <property   name="showInfo32"  type="java.lang.String"  column="P32" />
+    <property   name="showInfo33"  type="java.lang.String"  column="P33" />
+    <property   name="showInfo34"  type="java.lang.String"  column="P34" />
+    <property   name="showInfo35"  type="java.lang.String"  column="P35" />
+    <property   name="showInfo36"  type="java.lang.String"  column="P36" />
+    <property   name="showInfo37"  type="java.lang.String"  column="P37" />
+    <property   name="showInfo38"  type="java.lang.String"  column="P38" />
+    <property   name="showInfo39"  type="java.lang.String"  column="P39" />
+    <property   name="showInfo40"  type="java.lang.String"  column="P40" />
+    
+    <property name="orderNo" type="java.lang.String" column="ORDER_NO" />
+</class>
+
+
+<class    name="com.hr319wg.lead.pojo.bo.LeadResourceBO"   table="LEAD_RESOURCE">
+    <id  name="resId"   type="java.lang.String"   column="LEAD_RESID"  >
+          <generator class="uuid.hex"/>
+    </id>
+    <property   name="showCode"   type="java.lang.String" column="SHOW_CODE"   not-null="true" />
+    <property   name="showName"   type="java.lang.String" column="SHOW_NAME" not-null="true" />
+    <property  name="storeTable"  type="java.lang.String" column="STORE_TABLE"   not-null="true"   />
+    <property  name="isuse"  type="java.lang.String" column="IS_USE"    not-null="false"  />
+    <property  name="updateFrequency" type="java.lang.String"  column="UPDATE_FREQUENCY"  />
+    <property  name="orderNo"   type="java.lang.String"   column="ORDER_NO"  />
+</class>
+
+<class name="com.hr319wg.lead.pojo.bo.TextResultBO"  table="LEAD_TEXT_RESULT">
+    <id  name="resultId" type="java.lang.String" column="RESULT_ID" >
+       <generator class="uuid.hex"/>
+    </id>
+
+    <property name="orgId" type="java.lang.String"  column="ORG_ID"  />
+    <property name="calcdate" type="java.lang.String" column="Calc_DATE" />
+    <property  name="resId"  type="java.lang.String" column="res_id"  />
+    <property  name="showInfo1" type="java.lang.String" column="P01" />
+    <property  name="showInfo2" type="java.lang.String" column="P02" />
+    <property  name="showInfo3" type="java.lang.String" column="P03" />
+    <property  name="showInfo4" type="java.lang.String" column="P04" />
+    <property  name="showInfo5" type="java.lang.String" column="P05" />
+    <property  name="showInfo6" type="java.lang.String" column="P06" />
+    <property  name="showInfo7" type="java.lang.String" column="P07" />
+    <property  name="showInfo8" type="java.lang.String" column="P08" />
+    <property  name="showInfo9" type="java.lang.String" column="P09" />
+    <property  name="showInfo10" type="java.lang.String" column="P10" />
+    <property  name="showInfo11" type="java.lang.String" column="P11" />
+    <property  name="showInfo12" type="java.lang.String" column="P12" />
+    <property  name="showInfo13" type="java.lang.String" column="P13" />
+    <property  name="showInfo14" type="java.lang.String" column="P14" />
+    <property  name="showInfo15" type="java.lang.String" column="P15" />
+    <property  name="showInfo16" type="java.lang.String" column="P16" />
+    <property  name="showInfo17" type="java.lang.String" column="P17" />
+    <property  name="showInfo18" type="java.lang.String" column="P18" />
+    <property  name="showInfo19" type="java.lang.String" column="P19" />
+    <property  name="showInfo20" type="java.lang.String" column="P20" />
+    <property  name="showInfo21" type="java.lang.String" column="P21" />
+    <property  name="showInfo22" type="java.lang.String" column="P22" />
+    <property  name="showInfo23" type="java.lang.String" column="P23" />
+    <property  name="showInfo24" type="java.lang.String" column="P24" />
+    <property  name="showInfo25" type="java.lang.String" column="P25" />
+    <property  name="showInfo26" type="java.lang.String" column="P26" />
+    <property  name="showInfo27" type="java.lang.String" column="P27" />
+    <property  name="showInfo28" type="java.lang.String" column="P28" />
+    <property  name="showInfo29" type="java.lang.String" column="P29" />
+    <property  name="showInfo30" type="java.lang.String" column="P30" />
+    <property  name="showInfo31" type="java.lang.String" column="P31" />
+    <property  name="showInfo32" type="java.lang.String" column="P32" />
+</class>
+
+<class  name="com.hr319wg.lead.pojo.bo.TextResourceBO" table="LEAD_TEXT_RESOURCE" >
+    <id name="txtID" type="java.lang.String" column="TXT_ID">
+        <generator class="uuid.hex"/>
+    </id>
+    <property name="resId" type="java.lang.String" column="res_id"  not-null="true" />
+    <property name="expressions"  type="java.lang.String" column="EXPRESSIONS"  />
+    <property name="updateFrequency" type="java.lang.String"  column="UPDATE_FREQUENCY"  />
+    <property name="updateFlag" type="java.lang.String" column="UPDATE_FLAG"  />
+    <property  name="successFlag"  type="java.lang.String" column="SUCCESS_FLAG" />
+    <property  name="updateDate"  type="java.lang.String"  column="UPDATE_DATE" />
+</class>
+
+<class name="com.hr319wg.lead.pojo.bo.LeadOrgBO" table="LEAD_UNIT" >
+    <id name="unitId" type="java.lang.String" unsaved-value="null">
+        <column name="UNIT_ID" sql-type="varchar(20)"/>
+        <generator class="assigned"/>
+    </id>
+    <property name="superId" column="SUPER_ID"/>
+    <property name="treeId" column="TREE_ID"/>
+    <property name="name" column="UNIT_NAME"/>
+    <property name="desc" column="UNIT_DESC"/>
+    <property name="order" column="UNIT_ORDER"/>
+</class>
+</hibernate-mapping>

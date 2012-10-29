@@ -1,0 +1,318 @@
+<!DOCTYPE tiles-definitions
+    [
+        <!ELEMENT component-definitions (definition+)>
+        <!ELEMENT tiles-definitions (definition+)>
+        <!ELEMENT definition (put*, putList*)>
+        <!ATTLIST definition
+            name CDATA #REQUIRED
+            pages CDATA #IMPLIED
+            path CDATA #IMPLIED
+            extends CDATA #IMPLIED
+            role CDATA #IMPLIED
+            template CDATA #IMPLIED
+            controllerClass CDATA #IMPLIED
+            controllerUrl CDATA #IMPLIED>
+        <!ELEMENT put (#PCDATA)>
+        <!ATTLIST put
+            name CDATA #REQUIRED
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            body CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+        <!ATTLIST putList
+            name CDATA #REQUIRED>
+        <!ELEMENT putListElements (add | item | bean)>
+        <!ELEMENT add (#PCDATA)>
+        <!ATTLIST add
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            body CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT bean (#PCDATA)>
+        <!ATTLIST bean
+            classtype CDATA #REQUIRED>
+        <!ELEMENT item (#PCDATA)>
+        <!ATTLIST item
+            value CDATA #REQUIRED
+            link CDATA #REQUIRED
+            classtype CDATA #IMPLIED
+            icon CDATA #IMPLIED
+            tooltip CDATA #IMPLIED>
+    ]>
+
+<tiles-definitions>
+    <definition name="/lead/itemDescription.tiles" extends="layout.busitemplateSelf">
+       <put name="body" value="/pages/lead/wageAnalyse/itemDescription.jsp"/>
+   </definition>
+
+    <definition name="/lead/postMapShow.tiles" extends="layout.busitemplate">
+       <put name="body" value="/pages/lead/postMapShow.jsp"/>
+   </definition>
+
+    <definition name="/lead/chart/OrgChart.tiles" extends="layout.busitemplate">
+       <put name="body" value="/pages/lead/chart/OrgChart.jsp"/>
+   </definition>
+   <definition name="/lead/chart/OrgChartIndex.tiles" extends="layout.busitemplateLogin">
+       <put name="body" value="/pages/lead/chart/OrgChartIndex.jsp"/>
+   </definition>
+
+     <definition name="/lead/info/PersonInfoIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/lead/info/PersonInfoIndex.jsp" />
+    </definition>
+     <definition name="/lead/info/PersonInfoQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/lead/info/PersonInfoQuery.jsp" />
+    </definition>
+    
+    <definition name="/lead/OrganMain.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/childorgan/OrganMain.jsp"/>
+    </definition>
+    <definition name="/lead/OrganMain2.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/childorgan/OrganMain2.jsp"/>
+    </definition>
+
+    <definition name="/lead/OrganInfo.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/lead/childorgan/OrganInfo.jsp"/>
+    </definition>
+    <definition name="/lead/SelfHelpUnit.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/SelfHelpUnit.jsp"/>
+    </definition>
+    <definition name="/lead/UnitList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/lead/UnitList.jsp"/>
+    </definition>
+    <definition name="/lead/UnitTree.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/lead/UnitTree.jsp"/>
+    </definition>
+    <definition name="/lead/UnitEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/lead/UnitEdit.jsp"/>
+    </definition>
+    <definition name="/lead/DeptInfo.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/lead/dept/DeptInfo.jsp" />
+    </definition>
+    <definition name="/lead/DeptMain.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/lead/dept/DeptMain.jsp" />
+    </definition>
+    <definition name="/lead/DeptMain2.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/lead/dept/DeptMain2.jsp" />
+    </definition>
+
+    <definition name="/hqlead/HQOrganMain.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/organ/HQOrganMain.jsp"/>
+    </definition>
+
+    <definition name="/hqlead/HQOrganMain2.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/organ/HQOrganMain2.jsp"/>
+    </definition>
+    <definition name="/lead/PersonInfoList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/lead/organ/PersonInfoList.jsp"/>
+    </definition>
+
+    <definition name="/hqlead/HQOrganInfo.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/lead/organ/HQOrganInfo.jsp"/>
+    </definition>
+    <definition name="/lead/personview/PostInfoIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/personview/PostInfoIndex.jsp"/>
+    </definition>
+
+    <definition name="/lead/personview/DeptDocView.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/personview/DeptDocView.jsp"/>
+    </definition>
+    <definition name="/lead/personview/OrgDocView.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/lead/personview/OrgDocView.jsp"/>
+    </definition>
+    <definition name="/lead/htmlList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/manage/htmlList.jsp"/>
+    </definition>
+    <definition name="/lead/HtmlFileEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/lead/manage/HtmlFileEdit.jsp"/>
+    </definition>
+
+    <definition name="/lead/TextResMaintence.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/lead/manage/TextResMaintence.jsp" />
+    </definition>
+	<definition name="/lead/GridResMaintence.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/lead/manage/GridResMaintence.jsp" />
+    </definition>
+	<definition name="/lead/ChartResMaintence.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/lead/manage/ChartResMaintence.jsp" />
+    </definition>
+    <definition name="/lead/ResourceMaintence.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/lead/manage/ResourceMaintence.jsp" />
+    </definition>
+    <definition name="/lead/LeadResourceEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/lead/manage/LeadResourceEdit.jsp" />
+    </definition>
+    <definition name="/lead/LeadSQLEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/lead/manage/LeadSQLEdit.jsp" />
+    </definition>
+    <definition name="/lead/GridResEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/lead/manage/GridResEdit.jsp" />
+    </definition>
+    <definition name="/lead/ChartResEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/lead/manage/ChartResEdit.jsp" />
+    </definition>
+    <definition name="/lead/Publish.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/lead/manage/Publish.jsp" />
+    </definition>
+	<definition name="/CHG/ExchangeIntro.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/chg/ExchangeIntro.jsp" />
+    </definition>
+
+    <definition name="/lead/ShowText.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/datashow/ShowText.jsp"/>
+    </definition>
+
+    <definition name="/lead/showD2ana.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/datashow/showD2ana.jsp"/>
+    </definition>
+
+    <definition name="/lead/UnitShowText.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/datashow/UnitShowText.jsp"/>
+    </definition>
+    <definition name="/lead/TextResult.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/lead/datashow/TextResult.jsp"/>
+    </definition>
+    <definition name="/lead/ShowGrid.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/datashow/ShowGrid.jsp"/>
+    </definition>
+    <definition name="/lead/ShowHtml.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/datashow/ShowHtml.jsp"/>
+    </definition>
+    <definition name="/lead/ShowHtmlChild.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/datashow/ShowHtmlChild.jsp"/>
+    </definition>
+
+    <definition name="/lead/UnitShowGrid.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/datashow/UnitShowGrid.jsp"/>
+    </definition>
+    <definition name="/lead/GroupShowGrid.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/datashow/GroupShowGrid.jsp"/>
+    </definition>
+    <definition name="/lead/GroupShowGridRow.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/datashow/GroupShowGridRow.jsp"/>
+    </definition>
+
+    <definition name="/lead/GroupShowDetail.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/datashow/GroupShowDetail.jsp"/>
+    </definition>
+
+    <definition name="/lead/GridResult.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/lead/datashow/GridResult.jsp"/>
+    </definition>
+    <definition name="/lead/ShowGraph.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/datashow/ShowGraph.jsp"/>
+    </definition>
+    <definition name="/lead/UnitShowGraph.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/lead/datashow/UnitShowGraph.jsp"/>
+    </definition>
+    <definition name="/lead/GraphResult.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/lead/datashow/GraphResult.jsp"/>
+    </definition>
+
+    <!-- 总裁桌面 -->
+    <definition name="/hqlead/HQOrganMain3.tiles" extends="layout.busitemplateDTLogin">
+        <put name="body" value="/pages/lead/organ/HQOrganMain3.jsp"/>
+    </definition>
+    <definition name="/hqlead/HQSelfInfo.tiles" extends="layout.busitemplateDTLogin">
+        <put name="body" value="/pages/lead/organ/HQSelfInfo.jsp"/>
+    </definition>
+    <definition name="/hqlead/HQNewsInfo.tiles" extends="layout.busitemplateDTLogin">
+        <put name="body" value="/pages/lead/organ/HQNewsInfo.jsp"/>
+    </definition>
+    <definition name="/desktop/PersonEditInfo.tiles" extends="layout.busitemplateDTLogin" >
+        <put name="body" value="/pages/lead/info/PersonEditInfo.jsp" />
+    </definition>
+    <definition name="/desktop/PersonInfoDetail.tiles" extends="layout.busitemplateDTLogin" >
+        <put name="body" value="/pages/self/info/PersonInfoDetail.jsp" />
+    </definition>
+
+    <definition name="/desktop/PostBookQuery.tiles" extends="layout.busitemplateDTLogin" >
+            <put name="body" value="/pages/self/info/PostBookQuery.jsp" />
+    </definition>
+    <definition name="/desktop/PayQueryByMonth.tiles" extends="layout.busitemplateDTLogin" >
+        <put name="body" value="/pages/self/PayQueryByMonthDT.jsp" />
+    </definition>
+    <definition name="/desktop/PayQuerySum.tiles" extends="layout.busitemplateDTLogin" >
+        <put name="body" value="/pages/self/PayQuerySumDT.jsp" />
+    </definition>
+    <definition name="/desktop/TaxQuerySum.tiles" extends="layout.busitemplateDTLogin" >
+        <put name="body" value="/pages/self/TaxQuerySumDT.jsp" />
+    </definition>
+
+    <definition name="/desktop/taxCountMethod.tiles" extends="layout.busitemplateDTLogin" >
+        <put name="body" value="/pages/self/wage/taxCountMethod.jsp" />
+    </definition>
+
+    <definition name="/desktop/LawList.tiles" extends="layout.busitemplateDTLogin">
+        <put name="body" value="/pages/lead/rule/LawList.jsp"/>
+    </definition>
+    <definition name="/desktop/LawListChild.tiles" extends="layout.busitemplateDesktop">
+        <put name="body" value="/pages/rule/LawListChild.jsp"/>
+    </definition>
+
+    <definition name="/desktop/RulesList.tiles" extends="layout.busitemplateDTLogin">
+        <put name="body" value="/pages/lead/rule/RulesList.jsp"/>
+    </definition>
+    <definition name="/desktop/RulesListChild.tiles" extends="layout.busitemplateDesktop">
+        <put name="body" value="/pages/rule/RulesListChild.jsp"/>
+    </definition>
+
+   <definition name="/desktop/PersonInfoIndex.tiles" extends="layout.busitemplateDTLogin" >
+       <put name="body" value="/pages/lead/info/PersonInfoIndexDT.jsp" />
+   </definition>
+   <definition name="/desktop/PersonInfoQuery.tiles" extends="layout.busitemplateDesktop" >
+       <put name="body" value="/pages/lead/info/PersonInfoQuery.jsp" />
+   </definition>
+
+    <definition name="/desktop/SuveryIndex.tiles" extends="layout.busitemplateDesktop" >
+        <put name="body" value="/pages/lead/analyse/SuveryIndex.jsp" />
+    </definition>
+    
+
+    <definition name="/desktop/PersonInfoList.tiles" extends="layout.busitemplateDesktop">
+        <put name="body" value="/pages/lead/organ/PersonInfoList.jsp"/>
+    </definition>
+
+    <definition name="/desktop/ShowStars.tiles" extends="layout.busitemplateDesktop" >
+        <put name="body" value="/pages/self/ShowStars.jsp" />
+    </definition>
+    <definition name="/desktop/ShowEmpSurveyByCode.tiles" extends="layout.busitemplateDesktop">
+        <put name="body" value="/pages/employee/info/ShowEmpSurveyByCode.jsp"/>
+    </definition>
+
+    <definition name="/desktop/wagequery.tiles" extends="layout.busitemplateDesktop">
+        <put name="body" value="/pages/wage/payoff/wagequery.jsp"/>
+    </definition>
+
+    <definition name="/desktop/WageQuerySum.tiles" extends="layout.busitemplateDesktop">
+        <put name="body" value="/pages/wage/payoff/WageQuerySum.jsp"/>
+    </definition>
+
+    <definition name="/desktop/ShowEmpSurvey.tiles" extends="layout.busitemplateDesktop">
+        <put name="body" value="/pages/employee/info/ShowEmpSurvey.jsp"/>
+    </definition>
+
+    <definition name="/desktop/UnitShowGraph.tiles" extends="layout.busitemplateDTLogin">
+        <put name="body" value="/pages/lead/datashow/UnitShowGraphDT.jsp"/>
+    </definition>
+    <definition name="/desktop/GridResult.tiles" extends="layout.busitemplateDesktop">
+        <put name="body" value="/pages/lead/datashow/GridResult.jsp"/>
+    </definition>
+    <definition name="/desktop/GraphResult.tiles" extends="layout.busitemplateDesktop">
+        <put name="body" value="/pages/lead/datashow/GraphResult.jsp"/>
+    </definition>
+
+    <definition name="/desktop/GroupShowGrid.tiles" extends="layout.busitemplateDTLogin">
+        <put name="body" value="/pages/lead/datashow/GroupShowGrid.jsp"/>
+    </definition>
+    <definition name="/desktop/ShowQueryResult.tiles" extends="layout.busitemplateDTLogin">
+        <put name="body" value="/pages/qry/ShowQueryResultDT.jsp"/>
+    </definition>
+    <definition name="/desktop/PhotoListFrame.tiles" extends="layout.busitemplateDTLogin">
+        <put name="body" value="/pages/qry/PhotoListFrame.jsp"/>
+    </definition>
+    <definition name="/desktop/ActiveListFrame.tiles" extends="layout.busitemplateDTLogin">
+        <put name="body" value="/pages/qry/ActiveListFrame.jsp"/>
+    </definition>
+
+</tiles-definitions>

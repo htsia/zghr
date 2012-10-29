@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+  <!-- 客户关系管理 -->
+	<managed-bean>
+		<managed-bean-name>customerBB</managed-bean-name>
+		<managed-bean-class>com.crm319wg.customer.web.CustomerListBackBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	 <managed-property>
+       <property-name>crm_CustomerUCC</property-name>
+       <value>#{crm_CustomerUCC}</value>
+      </managed-property>
+	</managed-bean>
+	
+	<!-- 客户视图管理 -->
+	<managed-bean>
+		<managed-bean-name>customerViewBB</managed-bean-name>
+		<managed-bean-class>com.crm319wg.customer.web.CustomerViewBackBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	 <managed-property>
+       <property-name>crm_CustomerUCC</property-name>
+       <value>#{crm_CustomerUCC}</value>
+      </managed-property>
+	</managed-bean>
+	
+	
+	
+	 <!-- 活动管理 -->
+	<managed-bean>
+		<managed-bean-name>actionBB</managed-bean-name>
+		<managed-bean-class>com.crm319wg.action.web.ActionListBackBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	 <managed-property>
+       <property-name>crm_ActionUCC</property-name>
+       <value>#{crm_ActionUCC}</value>
+      </managed-property>
+      
+       <managed-property>
+       <property-name>crm_CustomerUCC</property-name>
+       <value>#{crm_CustomerUCC}</value>
+      </managed-property>
+	</managed-bean>
+	
+	
+	<!-- CRM系统管理(团队管理) -->
+	
+	<managed-bean>
+		<managed-bean-name>groupBB</managed-bean-name>
+		<managed-bean-class>com.crm319wg.crmsm.web.GroupListBackBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		 <managed-property>
+       <property-name>crm_GroupUCC</property-name>
+       <value>#{crm_GroupUCC}</value>
+      </managed-property>
+	</managed-bean>
+	
+	 
+	
+	<managed-bean>
+		<managed-bean-name>competitionBB</managed-bean-name>
+		<managed-bean-class>com.crm319wg.competition.web.CompetitionListBackBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	 <managed-property>
+       <property-name>competitionUcc</property-name>
+       <value>#{competitionUcc}</value>
+      </managed-property>
+	</managed-bean>
+	
+	
+	<managed-bean>
+		<managed-bean-name>compPersonBB</managed-bean-name>
+		<managed-bean-class>com.crm319wg.competition.web.CompetitionPersonBackBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	 <managed-property>
+       <property-name>competitionUcc</property-name>
+       <value>#{competitionUcc}</value>
+      </managed-property>
+	</managed-bean>
+	
+	
+	
+	<!-- *********************导航配置********************* -->
+	<navigation-rule>
+        <from-view-id>/crm/customer/CreateCustomerView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>query</from-outcome>
+            <to-view-id>/crm/customer/CustomerViewList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <navigation-rule>
+        <from-view-id>/crm/customer/CustomerViewList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>goback</from-outcome>
+            <to-view-id>/crm/customer/CreateCustomerView.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+	
+	<navigation-rule>
+        <from-view-id>/crm/customer/*</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/crm/competition/*</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/crm/action/*</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+	
+	 <navigation-rule>
+        <from-view-id>/crm/system/*</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

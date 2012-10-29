@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.rule.pojo.bo.LawTypeInfoBO" table="LAW_TYPEINFO">
+        <id name="typeID" type="string" unsaved-value="null">
+            <column name="TYPE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="typeName"	       column="TYPE_NAME" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="parentTypeid"	   column="PARENT_TYPEID" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+    <class name="com.hr319wg.rule.pojo.bo.LawFileInfoBO" table="LAW_FILEINFO">
+        <id name="fileID" type="string" unsaved-value="null">
+            <column name="FILE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="typeID"	   column="TYPE_ID" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="title"	   column="TITLE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="authorizer"	   column="AUTHORIZER" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="valid"	   column="VALID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="publicDate"	   column="PUBLIC_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="actDate"	   column="ACTDATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="invalidDate"	   column="INVALIDDATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="docno"	   column="DOCNO" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="keyWords"	   column="KEYWORDS" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="content"	   column="CONTENTS" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att1Title"	   column="Att1Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att1FileName"	   column="Att1FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att2Title"	   column="Att2Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att2FileName"	   column="Att2FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att3Title"	   column="Att3Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att3FileName"	   column="Att3FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att4Title"	   column="Att4Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att4FileName"	   column="Att4FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att5Title"	   column="Att5Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att5FileName"	   column="Att5FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="inputOrg"	   column="INPUT_ORG" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.rule.pojo.bo.RuleTypeInfoBO" table="RULE_TYPEINFO">
+        <id name="typeID" type="string" unsaved-value="null">
+            <column name="TYPE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="typeName"	       column="TYPE_NAME" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="parentTypeid"	   column="PARENT_TYPEID" type="com.hr319wg.sys.service.GBKString"/>
+    </class>
+
+    <class name="com.hr319wg.rule.pojo.bo.RuleFileInfoBO" table="RULE_FILEINFO">
+        <id name="fileID" type="string" unsaved-value="null">
+            <column name="FILE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="typeID"	   column="TYPE_ID" type="com.hr319wg.sys.service.GBKString"/>
+		<property name="title"	   column="TITLE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="authorizer"	   column="AUTHORIZER" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="valid"	   column="VALID" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="publicDate"	   column="PUBLIC_DATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="publicOrg"	   column="PUBLIC_ORG" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="actDate"	   column="ACTDATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="invalidDate"	   column="INVALIDDATE" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="docno"	   column="DOCNO" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="keyWords"	   column="KEYWORDS" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="content"	   column="CONTENTS" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att1Title"	   column="Att1Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att1FileName"	   column="Att1FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att2Title"	   column="Att2Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att2FileName"	   column="Att2FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att3Title"	   column="Att3Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att3FileName"	   column="Att3FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att4Title"	   column="Att4Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att4FileName"	   column="Att4FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att5Title"	   column="Att5Title" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="att5FileName"	   column="Att5FileName" type="com.hr319wg.sys.service.GBKString"/>
+        <property name="inputOrg"	   column="INPUT_ORG" type="com.hr319wg.sys.service.GBKString"/>        
+    </class>
+    
+</hibernate-mapping>

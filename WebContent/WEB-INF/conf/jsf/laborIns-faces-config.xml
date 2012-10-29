@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+
+	<!-- ****************** 供应商管理************* -->
+	
+	
+	 <managed-bean>
+		<managed-bean-name>lain_SupplyBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.lain.web.LainSupplyBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>lainSupplyUCC</property-name>
+			<value>#{lainSupplyUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	 <managed-bean>
+		<managed-bean-name>lain_EditSupplyBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.lain.web.LainSupplyEditBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>lainSupplyUCC</property-name>
+			<value>#{lainSupplyUCC}</value>
+		</managed-property>
+	</managed-bean>
+ 
+ <!-- ****************** 物资 管理************* -->
+ 
+ <managed-bean>
+		<managed-bean-name>lain_StockBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.lain.web.LainStockBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>lainSupplyUCC</property-name>
+			<value>#{lainSupplyUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>lain_EditStockBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.lain.web.LainStockEditBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>lainSupplyUCC</property-name>
+			<value>#{lainSupplyUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<!-- ****************** 申请单************* -->
+	<managed-bean>
+		<managed-bean-name>lain_DrawBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.lain.web.LainDrawBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>lainSupplyUCC</property-name>
+			<value>#{lainSupplyUCC}</value>
+		</managed-property>
+	</managed-bean>
+	 
+	
+<!-- 入库 -->
+  <managed-bean>
+		<managed-bean-name>lain_AcceptBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.lain.web.LainAcceptBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>lainSupplyUCC</property-name>
+			<value>#{lainSupplyUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+<!-- 供应商汇总 -->	  
+	 <managed-bean>
+		<managed-bean-name>lain_SupplyGatherBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.lain.web.SupplyGatherBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>lainSupplyUCC</property-name>
+			<value>#{lainSupplyUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+<!-- 物资入库汇总 -->	  
+	 <managed-bean>
+		<managed-bean-name>lain_StockAcceptGatherBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.lain.web.StockAcceptGatherBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>lainSupplyUCC</property-name>
+			<value>#{lainSupplyUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<!-- 物资领用汇总 -->	  
+	 <managed-bean>
+		<managed-bean-name>lain_StockDrawGatherBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.lain.web.StockDrawGatherBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>lainSupplyUCC</property-name>
+			<value>#{lainSupplyUCC}</value>
+		</managed-property>
+	</managed-bean>
+	<!-- 自助资领用申请 -->	  
+	 <managed-bean>
+		<managed-bean-name>lain_SelfDrawBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.lain.web.SelfDrawBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>lainSupplyUCC</property-name>
+			<value>#{lainSupplyUCC}</value>
+		</managed-property>
+	</managed-bean>
+		
+ 
+      <!--  *******************导航 配置**************  -->
+       <navigation-rule>
+        <from-view-id>/lain/acceptEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+      
+      <navigation-rule>
+        <from-view-id>/lain/LainSupplyEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/lain/LainStockEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+     <navigation-rule>
+        <from-view-id>/lain/DrawEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+     <navigation-rule>
+        <from-view-id>/lain/DrawItemEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/lain/acceptItemEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+</faces-config>

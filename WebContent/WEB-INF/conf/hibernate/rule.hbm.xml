@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hr319wg.rule.pojo.bo.LawTypeInfoBO" table="LAW_TYPEINFO">
+        <id name="typeID" type="string" unsaved-value="null">
+            <column name="TYPE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="typeName"	       column="TYPE_NAME"/>
+		<property name="parentTypeid"	   column="PARENT_TYPEID"/>
+    </class>
+    <class name="com.hr319wg.rule.pojo.bo.LawFileInfoBO" table="LAW_FILEINFO">
+        <id name="fileID" type="string" unsaved-value="null">
+            <column name="FILE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="typeID"	   column="TYPE_ID"/>
+		<property name="title"	   column="TITLE"/>
+        <property name="authorizer"	   column="AUTHORIZER"/>
+        <property name="valid"	   column="VALID"/>
+        <property name="publicDate"	   column="PUBLIC_DATE"/>
+        <property name="actDate"	   column="ACTDATE"/>
+        <property name="invalidDate"	   column="INVALIDDATE"/>
+        <property name="docno"	   column="DOCNO"/>
+        <property name="keyWords"	   column="KEYWORDS"/>
+        <property name="content"	   column="CONTENTS"/>
+        <property name="att1Title"	   column="Att1Title"/>
+        <property name="att1FileName"	   column="Att1FileName"/>
+        <property name="att2Title"	   column="Att2Title"/>
+        <property name="att2FileName"	   column="Att2FileName"/>
+        <property name="att3Title"	   column="Att3Title"/>
+        <property name="att3FileName"	   column="Att3FileName"/>
+        <property name="att4Title"	   column="Att4Title"/>
+        <property name="att4FileName"	   column="Att4FileName"/>
+        <property name="att5Title"	   column="Att5Title"/>
+        <property name="att5FileName"	   column="Att5FileName"/>
+        <property name="inputOrg"	   column="INPUT_ORG"/>
+    </class>
+
+    <class name="com.hr319wg.rule.pojo.bo.RuleTypeInfoBO" table="RULE_TYPEINFO">
+        <id name="typeID" type="string" unsaved-value="null">
+            <column name="TYPE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="typeName"	       column="TYPE_NAME"/>
+		<property name="parentTypeid"	   column="PARENT_TYPEID"/>
+    </class>
+
+    <class name="com.hr319wg.rule.pojo.bo.RuleFileInfoBO" table="RULE_FILEINFO">
+        <id name="fileID" type="string" unsaved-value="null">
+            <column name="FILE_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="typeID"	   column="TYPE_ID"/>
+		<property name="title"	   column="TITLE"/>
+        <property name="authorizer"	   column="AUTHORIZER"/>
+        <property name="valid"	   column="VALID"/>
+        <property name="publicDate"	   column="PUBLIC_DATE"/>
+        <property name="publicOrg"	   column="PUBLIC_ORG"/>
+        <property name="actDate"	   column="ACTDATE"/>
+        <property name="invalidDate"	   column="INVALIDDATE"/>
+        <property name="docno"	   column="DOCNO"/>
+        <property name="keyWords"	   column="KEYWORDS"/>
+        <property name="content"	   column="CONTENTS"/>
+        <property name="att1Title"	   column="Att1Title"/>
+        <property name="att1FileName"	   column="Att1FileName"/>
+        <property name="att2Title"	   column="Att2Title"/>
+        <property name="att2FileName"	   column="Att2FileName"/>
+        <property name="att3Title"	   column="Att3Title"/>
+        <property name="att3FileName"	   column="Att3FileName"/>
+        <property name="att4Title"	   column="Att4Title"/>
+        <property name="att4FileName"	   column="Att4FileName"/>
+        <property name="att5Title"	   column="Att5Title"/>
+        <property name="att5FileName"	   column="Att5FileName"/>
+        <property name="inputOrg"	   column="INPUT_ORG"/>        
+    </class>
+    
+</hibernate-mapping>

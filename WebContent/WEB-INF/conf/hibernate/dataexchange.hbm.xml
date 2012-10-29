@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<class name="com.hr319wg.run.pojo.bo.DaexSystemBO" table="daex_system">
+		<id name="sysId" type="string" unsaved-value="null">
+			<column name="sys_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="sysName" column="sys_name" />
+		<property name="dbType" column="db_type" />
+		<property name="dbHost" column="db_host" />
+		<property name="dbPort" column="db_port" />
+		<property name="dbName" column="db_name" />
+		<property name="dbUser" column="db_user" />
+		<property name="dbPass" column="db_pass" />
+		<property name="postAdd" column="db_add" />
+		<property name="loginUser" column="login_user" />
+		<property name="loginPass" column="login_pass" />
+        <property name="sysPass" column="SYS_PASS" />
+    </class>
+	<class name="com.hr319wg.run.pojo.bo.DaexProductBO" table="daex_product">
+		<id name="proId" type="string" unsaved-value="null">
+			<column name="pro_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="proName" column="pro_name" />
+		<property name="proType" column="pro_type" />
+		<property name="sendMsg" column="send_msg" />
+		<property name="proSql" column="pro_sql" />
+		<property name="sqlSource" column="sql_source" />
+	</class>
+	<class name="com.hr319wg.run.pojo.bo.DaexReceiveBO" table="daex_receive">
+		<id name="receiveId" type="string" unsaved-value="null">
+			<column name="receive_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="proId" column="pro_id" />
+		<property name="sysId" column="sys_id" />
+		<property name="receiveMethod" column="receive_method" />
+		<property name="receiveTable" column="receive_table" />
+		<property name="receiveSql" column="receive_sql" />
+		<property name="transClass" column="trans_class" />
+	</class>
+	<class name="com.hr319wg.run.pojo.bo.DaexSendBO" table="daex_send">
+		<id name="sendId" type="string" unsaved-value="null">
+			<column name="send_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="proId" column="pro_id" />
+		<property name="sysId" column="sys_id" />
+		<property name="proMethod" column="pro_method" />
+	</class>
+	<class name="com.hr319wg.run.pojo.bo.DaexStockBO" table="daex_stock">
+		<id name="stockId" type="string" unsaved-value="null">
+			<column name="stock_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="proId" column="pro_id" />
+		<property name="proSystem" column="pro_system" />
+		<property name="proDate" column="pro_date" />
+		<property name="proContent" column="pro_content" type="binary"/>
+	</class>
+	<class name="com.hr319wg.run.pojo.bo.DaexActionLogBO" table="daex_action_log">
+		<id name="logId" type="string" unsaved-value="null">
+			<column name="log_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="stockId" column="stock_id" />
+		<property name="sysId" column="sys_id" />
+		<property name="actionDate" column="action_date" />
+		<property name="action" column="action" />
+		<property name="actionResult" column="action_result" />
+		<property name="errMsg" column="err_msg" />
+	</class>
+
+</hibernate-mapping>

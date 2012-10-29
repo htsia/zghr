@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.hr319wg.qry.pojo.bo.NameListBO" table="QRY_NAMELIST">
+        <id name="listId" type="string" unsaved-value="null">
+            <column name="LIST_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="name" column="LIST_NAME"/>
+        <property name="listField" column="LIST_FIELD"/>
+    </class>
+
+    <class name="com.hr319wg.qry.pojo.bo.NameListItemBO" table="QRY_NAMELIST_ITEM">
+        <id name="itemId" type="string" unsaved-value="null">
+            <column name="ITEM_ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="listId" column="LIST_ID"/>
+        <property name="name" column="ITEM_NAME"/>
+        <property name="itemCondition" column="ITEM_CONDITION"/>
+        <property name="itemOrder" column="ITEM_ORDER"/>
+    </class>
+
+     <class name="com.hr319wg.qry.pojo.bo.QueryClassBO" table="qry_query_class">
+        <id name="classId" type="string" unsaved-value="null">
+            <column name="class_id" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="name" column="class_name"/>
+        <property name="createUser" column="create_user"/>
+        <property name="treeId" column="tree_id"/>
+        <property name="superId" column="super_id"/>
+        <property name="rootId" column="root_id"/>
+        <property name="typeFlag" column="type_flag"/>
+    </class>
+    <class name="com.hr319wg.qry.pojo.bo.QueryBO" table="qry_query">
+        <id name="qryId" type="string" unsaved-value="null">
+            <column name="qry_id" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="classId" column="class_id"/>
+        <property name="createDate" column="create_date"/>
+        <property name="createUser" column="create_user"/>
+        <property name="historyFlag" column="history_Flag"/>
+        <property name="idFlag" column="id_flag"/>
+        <property name="name" column="qry_name"/>
+        <property name="orgIds" column="org_ids"/>
+        <property name="orgNames" column="org_names"/>
+        <property name="qsType" column="qs_type"/>
+        <property name="sysFlag" column="sys_flag"/>
+        <property name="setType" column="set_type"/>
+        <property name="addedCondition" column="added_condition"/>
+        <property name="unitType" column="unit_type"/>
+        <property name="staticItemId" column="static_item_id"/>
+        <property name="avg" column="static_avg"/>
+        <property name="max" column="static_max"/>
+        <property name="min" column="static_min"/>
+        <property name="count" column="static_count"/>
+        <property name="sum" column="static_sum"/>
+        <property name="historySet" column="history_set"/>
+        <property name="linksuperdept" column="LinkSuperDept"/> 
+    </class>
+
+    <class name="com.hr319wg.qry.pojo.bo.QueryStaticBO" table="qry_static">
+        <id name="staticId" type="string" unsaved-value="null">
+            <column name="static_id" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="group" column="query_group"/>
+        <property name="groupShow" column="query_group_show" type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+        <property name="name" column="static_name"/>
+        <property name="qryId" column="qry_id"/>
+        <property name="seq" column="static_seq"/>
+        <property name="staticItem" column="static_item"/>
+        <property name="staticType" column="static_type"/>
+    </class>
+
+    <class name="com.hr319wg.qry.pojo.bo.QueryItemBO" table="qry_query_item">
+        <id name="qryItemId" type="string" unsaved-value="null">
+            <column name="qry_item_id" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="defaultFlag" column="default_flag"/>
+        <property name="defaultType" column="default_type"/>
+        <property name="itemId" column="item_id"/>
+        <property name="orderFlag" column="order_flag"/>
+        <property name="orderSeq" column="order_seq"/>
+        <property name="qryId" column="qry_id"/>
+        <property name="setId" column="set_id"/>
+        <property name="showHistory" column="show_History"/>
+        <property name="showId" column="show_id"/>
+        <property name="hide" column="IS_HIDE"/>
+    </class>
+
+    <class name="com.hr319wg.qry.pojo.bo.QueryConditionBO" table="qry_condition">
+        <id name="condiId" type="string" unsaved-value="null">
+            <column name="condition_id" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="groupId" column="group_id"/>
+        <property name="itemId" column="item_id"/>
+        <property name="operator" column="condi_operator"/>
+        <property name="setId" column="set_id"/>
+        <property name="staticId" column="static_id"/>
+        <property name="value" column="condi_value"/>
+        <property name="value2" column="condi_value2"/>
+        <property name="text" column="condi_text"/>
+        <property name="text2" column="condi_text2"/>
+    </class>
+    <class name="com.hr319wg.common.pojo.bo.QueueBO" table="sys_queue">
+        <id name="queueId" type="string" unsaved-value="null">
+            <column name="queue_id" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="createUnit" column="create_unit"/>
+        <property name="createUser" column="create_user"/>
+        <property name="finishTime" column="finish_time"/>
+        <property name="activeTime" column="active_time"/>
+        <property name="errorMessage" column="error_message"/>    
+        <property name="param1" column="para_001"/>
+        <property name="param2" column="para_002"/>
+        <property name="param3" column="para_003"/>
+        <property name="param4" column="para_004"/>
+        <property name="param5" column="para_005"/>
+        <property name="param6" column="para_006"/>
+        <property name="param7" column="para_007"/>
+        <property name="param8" column="para_008"/>
+        <property name="param9" column="para_009"/>
+        <property name="param10" column="para_010"/>
+        <property name="queueTime" column="queue_time"/>
+        <property name="runTime" column="run_time"/>
+        <property name="taskClassPath" column="task_Class_Path"/>
+        <property name="taskName" column="task_name"/>
+        <property name="taskParam" column="task_param"/>
+        <property name="taskStatus" column="task_Status"/>
+
+    </class>
+
+
+
+</hibernate-mapping>

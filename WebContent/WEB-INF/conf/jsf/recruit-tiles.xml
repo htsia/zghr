@@ -1,0 +1,467 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+	<definition name="/recruit/allRegisterResume.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/allRegisterResume.jsp" />
+    </definition>
+    <definition name="/recruit/QueryCheckInPerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/QueryCheckInPerson.jsp" />
+    </definition>
+    <definition name="/recruit/outterAddPost.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/outterAddPost.jsp" />
+    </definition>
+    <definition name="/recruit/recuA843Edit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recuA843Edit.jsp" />
+    </definition>
+    <definition name="/recruit/recuA836Edit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recuA836Edit.jsp" />
+    </definition>
+    <definition name="/recruit/recuA837Edit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recuA837Edit.jsp" />
+    </definition>
+    <definition name="/recruit/recuA838Edit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recuA838Edit.jsp" />
+    </definition>
+    <definition name="/recruit/personMaterEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/personMaterEdit.jsp" />
+    </definition>
+	<definition name="/recruit/outterSignPersonCount.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/outterSignPersonCount.jsp" />
+    </definition>
+    <definition name="/recruit/outterPublish.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/outterPublish.jsp" />
+    </definition>
+     <definition name="/recruit/outterPublishQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/outterPublishQuery.jsp" />
+    </definition>
+	<definition name="/recruit/OutterViewPersonList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/OutterViewPersonList.jsp" />
+    </definition>
+    
+    <definition name="/recruit/inner/signPersonCount.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/inner/signPersonCount.jsp" />
+    </definition>
+    
+    <definition name="/recruit/ResumeLogin.tiles" extends="layout.busitemplateLogin" >
+       <put name="body" value="/pages/ResumeLogin.jsp" />
+   </definition>
+   
+   <definition name="/recruit/resumeManage.tiles" extends="layout.busitemplateLogin" >
+       <put name="body" value="/pages/recruit/resumeManage.jsp" />
+   </definition>
+  	<definition name="/recruit/resumePasswordEdit.tiles" extends="layout.busitemplateSelf" >
+       <put name="body" value="/pages/recruit/resumePasswordEdit.jsp" />
+   </definition>
+    <definition name="/recruit/companyMessage.tiles" extends="layout.busitemplateLogin" >
+       <put name="body" value="/pages/recruit/companyMessage.jsp" />
+   </definition>
+   
+    <definition name="/recruit/gotoEmployList.tiles" extends="layout.busitemplateLogin" >
+       <put name="body" value="/pages/recruit/gotoEmployList.jsp" />
+   </definition>
+   
+   <definition name="/recruit/recuitNotice.tiles" extends="layout.busitemplateLogin" >
+       <put name="body" value="/pages/recruit/recuitNotice.jsp" />
+   </definition>
+    <definition name="/recruit/recruitNoticeRead.tiles" extends="layout.busitemplateSelf" >
+       <put name="body" value="/pages/recruit/recruitNoticeRead.jsp" />
+   </definition>
+     
+    <definition name="/recruit/register.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/recruit/register.jsp"/>
+    </definition>
+  
+    <definition name="/recruit/resumeMain.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/resumeMain.jsp" />
+   </definition>
+   
+    <definition name="/recruit/RecuPlanAuditQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/RecuPlanAuditQuery.jsp" />
+    </definition>
+    <definition name="/recruit/inner/publish.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/inner/publish.jsp" />
+    </definition>
+    <definition name="/recruit/inner/publishQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/inner/publishQuery.jsp" />
+    </definition>
+	<definition name="/recruit/inner/ViewPersonList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/inner/ViewPersonList.jsp" />
+    </definition>
+    <!-- 高海星 -->
+    <definition name="/recruit/recruitManagerList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/recruitManagerList.jsp" />
+    </definition>
+    <definition name="/recruit/recruitManagerEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recruitManagerEdit.jsp" />
+    </definition>
+	<!-- 芳霞 -->
+	 <definition name="/recruit/selfrecruitNeed.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/selfrecruitNeed.jsp" />
+    </definition>
+    
+    <definition name="/recruit/recruitNeed.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/recruit/recruitNeed.jsp" />
+    </definition>
+    <definition name="/recruit/publishPostInfoList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/publishPostInfoList.jsp" />
+    </definition>
+    
+    <definition name="/recruit/recruitNeedList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/recruitNeedList.jsp" />
+    </definition>
+    <definition name="/recruit/recruitNeedEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recruitNeedEdit.jsp" />
+    </definition>
+    <definition name="/recruit/selfrecruitNeedEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/selfrecruitNeedEdit.jsp" />
+    </definition>
+    <!-- 乔磊-->
+    <definition name="/recruit/planAudit.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/planAudit.jsp" />
+    </definition>
+    
+    <definition name="/recruit/PlanAuditIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/recruit/PlanAuditIndex.jsp" />
+    </definition>
+    
+    <definition name="/recruit/RecuPlanAuditEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/RecuPlanAuditEdit.jsp" />
+    </definition>
+    
+    <!-- 设置通知面试邮件格式 (崔海健)-->
+	<definition name="/recruit/interViewEmail.tiles"
+		extends="layout.busitemplate">
+		<put name="body" value="/pages/recruit/InterViewEmailEdit.jsp" />
+	</definition>
+
+	<!-- 设置通知报道邮件格式 (崔海健)-->
+	<definition name="/recruit/signInEmail.tiles"
+		extends="layout.busitemplate">
+		<put name="body" value="/pages/recruit/SignInEmailEdit.jsp" />
+	</definition>
+	<!--wang wei-->
+    <definition name="/recruit/channelList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/channelList.jsp" />
+    </definition>
+    
+	 <definition name="/recruit/channelEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/channelEdit.jsp" />
+    </definition>
+	
+	 <definition name="/recruit/materialList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/materialList.jsp" />
+    </definition>
+	
+	<definition name="/recruit/materialEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/materialEdit.jsp" />
+    </definition>
+     <!-- 方霞外部招聘信息发布 -->
+    <definition name="/recruit/publishInfo.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/recruit/publishInfo.jsp" />
+    </definition>
+    <definition name="/recruit/recuPublishInfoList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/recuPublishInfoList.jsp" />
+    </definition>
+    <definition name="/recruit/postCollect.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/postCollect.jsp" />
+    </definition>
+    
+    <!-- 方霞简历浏览 -->
+    <definition name="/recruit/resumeInfoIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/recruit/resumeInfoIndex.jsp" />
+    </definition>
+    <definition name="/recruit/resumePlanInfoList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/resumePlanInfoList.jsp" />
+    </definition>
+    <definition name="/recruit/resumePostList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/resumePostList.jsp" />
+    </definition>
+    <definition name="/recruit/resumeDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/resumeDetail.jsp" />
+    </definition>
+    <definition name="/recruit/recuResumeInfoSend.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recuResumeInfoSend.jsp" />
+    </definition>
+    
+    <definition name="/recruit/recuReportInfoSend.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recuReportInfoSend.jsp" />
+    </definition>
+    <definition name="/recruit/recuRegisterIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/recruit/recuRegisterIndex.jsp" />
+    </definition>
+    <definition name="/recruit/recuRegisterPlanList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/recuRegisterPlanList.jsp" />
+    </definition>
+    <definition name="/recruit/recuRegisterPostList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/recuRegisterPostList.jsp" />
+    </definition>
+    <definition name="/recruit/recuRegisterPersonList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/recuRegisterPersonList.jsp" />
+    </definition>
+ 	<!-- 乔磊面试结果综合-->
+     <definition name="/recruit/innerRecruitDemandIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/recruit/innerRecruitDemandIndex.jsp" />
+    </definition>
+    
+    <definition name="/recruit/innerRecruitDemand.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/innerRecruitDemand.jsp" />
+    </definition>
+    
+    <definition name="/recruit/innerRecruitDemandQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/innerRecruitDemandQuery.jsp" />
+    </definition>
+    
+    <definition name="/recruit/innerRecruitPostList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/innerRecruitPostList.jsp" />
+    </definition>
+    
+   <definition name="/recruit/ShowInterviewPaper.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/ShowInterviewPaper.jsp" />
+    </definition>
+    
+    <definition name="/recruit/interViewResult.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/interViewResult.jsp" />
+    </definition>
+    <definition name="/recruit/RecuPlanPersonIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/recruit/RecuPlanPersonIndex.jsp" />
+    </definition>
+    	
+    <definition name="/recruit/recuPlanPerson.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/recuPlanPerson.jsp" />
+    </definition>	
+    	
+    <definition name="/recruit/reservePerson.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/recruit/reservePerson.jsp" />
+    </definition>	
+    
+    <definition name="/recruit/reservePersonList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/reservePersonList.jsp" />
+    </definition>
+    
+    <definition name="/recruit/interViewPostPerson.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/interViewPostPerson.jsp" />
+    </definition>	
+    
+    <definition name="/recruit/PaperEdit.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/PaperEdit.jsp" />
+    </definition>
+    
+    <definition name="/recruit/interViewPerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/interViewPerson.jsp" />
+    </definition>
+    
+    <definition name="/recruit/interViewPassPerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/interViewPassPerson.jsp" />
+    </definition>
+    
+    <definition name="/recruit/interViewPost.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/interViewPost.jsp" />
+    </definition>
+    
+    <definition name="/recruit/interViewManage.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/interViewManage.jsp" />
+    </definition>
+    <definition name="/recruit/interviewResultindex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/recruit/interviewResultindex.jsp" />
+    </definition>
+    <definition name="/recruit/interViewPage.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/interViewPage.jsp" />
+    </definition>
+    <definition name="/recruit/reserveBackPersonList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/reserveBackPersonList.jsp" />
+    </definition>
+    <definition name="/recruit/recruitEducationEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recruitEducationEdit.jsp" />
+    </definition>
+     <definition name="/recruit/recuRegisterPostList2.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/recuRegisterPostList2.jsp" />
+    </definition>
+    <definition name="/recruit/checkInDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/checkInDetail.jsp" />
+    </definition>
+    <definition name="/recruit/recruitWorkInfoEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recruitWorkInfoEdit.jsp" />
+    </definition>
+   
+    <definition name="/recruit/beginTest.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/beginTest.jsp" />
+    </definition>
+    
+    <definition name="/recruit/onLineView.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/recruit/onLineView.jsp" />
+    </definition>
+    <definition name="/recruit/interviewResumeDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/interviewResumeDetail.jsp" />
+    </definition>
+   
+    <definition name="/recruit/interviewMatriaList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/interviewMatriaList.jsp" />
+    </definition>
+    <definition name="/recruit/doRecruitGrader.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/doRecruitGrader.jsp" />
+    </definition>
+    <definition name="/recruit/interviwResultList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/interviwResultList.jsp" />
+    </definition>
+    <!-- 中间节点审批 -->
+    <definition name="/recruit/midAuditRecuPlan.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/midAuditRecuPlan.jsp" />
+    </definition>
+    <definition name="/recruit/recuPlanAuditLevel1.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recuPlanAuditLevel1.jsp" />
+    </definition>
+    <definition name="/recruit/recuPlanAuditLevel2.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recuPlanAuditLevel2.jsp" />
+    </definition>
+    <definition name="/recruit/recuPlanAuditLevel3.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recuPlanAuditLevel3.jsp" />
+    </definition>
+    <!-- 简历管理语言和技术资格-->
+    <definition name="/recruit/recruitLanguageEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recruitLanguageEdit.jsp" />
+    </definition>
+    <definition name="/recruit/recruitLetterEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/recruitLetterEdit.jsp" />
+    </definition>
+    
+    <definition name="/recruit/BlankSheetList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/BlankSheetList.jsp" />
+    </definition>
+    <definition name="/recruit/resumeDetail2.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/resumeDetail2.jsp" />
+    </definition>
+    <definition name="/recruit/needListQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/needListQuery.jsp" />
+    </definition>
+    <definition name="/recruit/innerResultMgr.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/innerResultMgr.jsp" />
+    </definition>
+    
+    <definition name="/recruit/showSignPerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/showSignPerson.jsp" />
+    </definition>
+    <definition name="/recruit/auditInnerPerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/auditInnerPerson.jsp" />
+    </definition>
+    <definition name="/recruit/innerRecruit.tiles" extends="layout.busitemplateSelf" >
+            <put name="body" value="/pages/recruit/innerRecruit.jsp" />
+    </definition>
+    
+    <definition name="/recruit/RefuseEmail.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/refuseEmailEdit.jsp" />
+    </definition>
+   
+    <definition name="/recruit/resumeEmailList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/resumeEmailList.jsp" />
+    </definition>
+    <definition name="/recruit/resumeInfotemplate.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/recruit/resumeInfotemplate.jsp" />
+    </definition>
+    <definition name="/recruit/ResumeTempEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/ResumeTempEdit.jsp" />
+    </definition>
+   <definition name="/recruit/ResumeImportTemDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/ResumeImportTemDetail.jsp" />
+    </definition>
+    <definition name="/recruit/ResumeTempItemEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/ResumeTempItemEdit.jsp" />
+    </definition>
+    <definition name="/recruit/ResumeImport.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/ResumeImport.jsp" />
+    </definition>
+    <definition name="/recruit/selRecuPostList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/selRecuPostList.jsp" />
+    </definition>
+    <definition name="/recruit/showEmailBoxList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/showEmailBoxList.jsp" />
+    </definition>
+    <definition name="/recruit/orgEmailEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/orgEmailEdit.jsp" />
+    </definition>
+    <definition name="/recruit/inner/innerAddPost.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/inner/innerAddPost.jsp" />
+    </definition>
+    <definition name="/recruit/changePost.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/changePost.jsp" />
+    </definition>
+    <definition name="/recruit/AuditIvResume.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/recruit/AuditIvResume.jsp" />
+    </definition>
+
+    <definition name="/recruit/resume/resumeManageBase.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/recruit/resume/resumeManageBase.jsp" />
+   </definition>
+
+    <definition name="/recruit/resumeMenu.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/recruit/resumeMenu.jsp" />
+   </definition>
+    <definition name="/recruit/resume/resumeManageEdu.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/recruit/resume/resumeManageEdu.jsp" />
+   </definition>
+    <definition name="/recruit/resume/resumeMgrWork.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/recruit/resume/resumeMgrWork.jsp" />
+   </definition>
+
+    <definition name="/recruit/resume/resumeMgrLanguage.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/recruit/resume/resumeMgrLanguage.jsp" />
+   </definition>
+    <definition name="/recruit/resume/resumeMgrComputer.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/recruit/resume/resumeMgrComputer.jsp" />
+   </definition>
+    <definition name="/recruit/resume/resumeMgrLetter.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/recruit/resume/resumeMgrLetter.jsp" />
+   </definition>
+    <definition name="/recruit/resume/resumeMgrA837.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/recruit/resume/resumeMgrA837.jsp" />
+   </definition>
+     <definition name="/recruit/resume/resumeMgrA838.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/recruit/resume/resumeMgrA838.jsp" />
+   </definition>
+   <definition name="/recruit/resume/resumeMgrA836.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/recruit/resume/resumeMgrA836.jsp" />
+   </definition>
+   <definition name="/recruit/resume/resumeMgrBook.tiles" extends="layout.busitemplate" >
+       <put name="body" value="/pages/recruit/resume/resumeMgrBook.jsp" />
+   </definition>
+</tiles-definitions>

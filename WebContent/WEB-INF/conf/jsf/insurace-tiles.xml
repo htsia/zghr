@@ -1,0 +1,335 @@
+
+<!DOCTYPE tiles-definitions
+    [
+        <!ELEMENT component-definitions (definition+)>
+        <!ELEMENT tiles-definitions (definition+)>
+        <!ELEMENT definition (put*, putList*)>
+        <!ATTLIST definition
+            name CDATA #REQUIRED
+            pages CDATA #IMPLIED
+            path CDATA #IMPLIED
+            extends CDATA #IMPLIED
+            role CDATA #IMPLIED
+            template CDATA #IMPLIED
+            controllerClass CDATA #IMPLIED
+            controllerUrl CDATA #IMPLIED>
+        <!ELEMENT put (#PCDATA)>
+        <!ATTLIST put
+            name CDATA #REQUIRED
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+        <!ATTLIST putList
+            name CDATA #REQUIRED>
+        <!ELEMENT putListElements (add | item | bean)>
+        <!ELEMENT add (#PCDATA)>
+        <!ATTLIST add
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT bean (#PCDATA)>
+        <!ATTLIST bean
+            classtype CDATA #REQUIRED>
+        <!ELEMENT item (#PCDATA)>
+        <!ATTLIST item
+            value CDATA #REQUIRED
+            link CDATA #REQUIRED
+            classtype CDATA #IMPLIED
+            icon CDATA #IMPLIED
+            tooltip CDATA #IMPLIED>
+    ]>
+
+<tiles-definitions>
+    <definition name="/insurace/annuity/AnnuBateSetEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/annuity/AnnuBateSetEdit.jsp"/>
+    </definition>
+
+    <definition name="/insurace/annuity/AnnuBateSet.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/insurace/annuity/AnnuBateSet.jsp"/>
+    </definition>
+
+    <definition name="/insurace/annuity/AnnuRateEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/insurace/annuity/AnnuRateEdit.jsp"/>
+    </definition>
+
+    <definition name="/insurace/annuity/ComputePersonList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/annuity/ComputePersonList.jsp"/>
+    </definition>
+
+    <definition name="/insurace/annuity/DateList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/annuity/DateList.jsp" />
+    </definition>
+
+    <definition name="/insurace/annuity/AddAnnuPerson.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/annuity/AddAnnuPerson.jsp"/>
+    </definition>
+
+    <definition name="/insurace/annuity/AnnuPersonList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/annuity/AnnuPersonList.jsp"/>
+    </definition>
+
+    <definition name="/insurace/BaseRateApprove.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/BaseRateApprove.jsp"/>
+    </definition>
+    <definition name="/insurace/showBusiDetail.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/showBusiDetail.jsp"/>
+    </definition>
+    <definition name="/insurace/InsuraceInfo.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/InsuraceInfo.jsp"/>
+    </definition>
+    <definition name="/insurace/ModiManagePower.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/ModiManagePower.jsp"/>
+    </definition>
+    <definition name="/insurace/SetManagerPower.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/SetManagerPower.jsp"/>
+    </definition>
+
+    <definition name="/insurace/SaveDataToDisk.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/SaveDataToDisk.jsp"/>
+    </definition>
+    <definition name="/insurace/WageDeptPowerEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/WageDeptPowerEdit.jsp"/>
+    </definition>
+    <definition name="/insurace/InsuraceWageDetailView.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/InsuraceWageDetailView.jsp"/>
+    </definition>
+    <definition name="/insurace/BankList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/BankList.jsp"/>
+    </definition>
+    <definition name="/insurace/personinfochange.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/personinfochange.jsp"/>
+    </definition>
+    <definition name="/insurace/orginfochange.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/orginfochange.jsp"/>
+    </definition>
+    <definition name="/insurace/DeptPowerSet.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/DeptPowerSet.jsp"/>
+    </definition>
+
+    <definition name="/insurace/PersonInfoChangeQry.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/PersonInfoChangeQry.jsp"/>
+    </definition>
+    <definition name="/insurace/OrgInfoChangeQry.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/OrgInfoChangeQry.jsp"/>
+    </definition>
+
+    <definition name="/insurace/addMonth.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/addMonth.jsp"/>
+    </definition>
+    <definition name="/insurace/PersonCountDetail.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/PersonCountDetail.jsp"/>
+    </definition>
+
+    <definition name="/insurace/PersonCount.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/PersonCount.jsp"/>
+    </definition>
+    
+    <definition name="/insurace/PowerSet.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/PowerSet.jsp"/>
+    </definition>
+
+
+    <definition name="/insurace/PowerSetChild.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/PowerSetChild.jsp"/>
+    </definition>
+
+    <definition name="/insurace/PersonInfoQry.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/PersonInfoQry.jsp"/>
+    </definition>
+
+    <definition name="/insurace/WageIndex.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/WageIndex.jsp"/>
+    </definition>
+
+    <definition name="/insurace/ShowBase.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/ShowBase.jsp"/>
+    </definition>
+
+    <definition name="/insurace/CountBase.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/CountBase.jsp"/>
+    </definition>
+
+    <definition name="/insurace/SaveRate.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/SaveRate.jsp"/>
+    </definition>
+
+    <definition name="/insurace/wagequery.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/wagequery.jsp"/>
+    </definition>
+
+    <definition name="/insurace/SetInputPower.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/SetInputPower.jsp"/>
+    </definition>
+    <definition name="/insurace/SetBasePower.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/SetBasePower.jsp"/>
+    </definition>
+
+    <definition name="/insurace/InsInputPowerEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/InsInputPowerEdit.jsp"/>
+    </definition>
+
+    <definition name="/insurace/InsBaseInputPowerEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/InsBaseInputPowerEdit.jsp"/>
+    </definition>
+
+    <definition name="/insurace/BaseRateInput.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/BaseRateInput.jsp" />
+    </definition>
+
+    <definition name="/insurce/InsurceDetailView.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/insurace/InsurceDetailView.jsp" />
+    </definition>
+
+    <definition name="/insurace/RateSet.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/insurace/RateSet.jsp" />
+    </definition>
+
+    <definition name="/insurace/MedicateRateSet.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/insurace/MedicateRateSet.jsp" />
+    </definition>
+
+    <definition name="/insurace/addMedical.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/addMedical.jsp" />
+    </definition>
+
+    <definition name="/insurace/RateSetList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/RateSetList.jsp" />
+    </definition>
+
+    <definition name="/insurace/MedicaRateSetList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/MedicaRateSetList.jsp" />
+    </definition>
+
+    <definition name="/insurace/SelectType.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/SelectType.jsp" />
+    </definition>
+    <definition name="/insurace/BaseInfoList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/BaseInfoList.jsp" />
+    </definition>
+
+    <definition name="/insurace/PersonAddInfoIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/insurace/PersonAddInfoIndex.jsp" />
+    </definition>
+    <definition name="/insurace/PersonDeleteInfoIndex.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/insurace/PersonDeleteInfoIndex.jsp" />
+    </definition>
+
+    <definition name="/insurace/PersonAddInfoQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/PersonAddInfoQuery.jsp" />
+    </definition>
+    <definition name="/insurace/PersonDeleteInfoQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/PersonDeleteInfoQuery.jsp" />
+    </definition>
+    <definition name="/insurace/DateList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/DateList.jsp" />
+    </definition>
+
+    <definition name="/insurace/PersonAdd.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/PersonAdd.jsp" />
+    </definition>
+    <definition name="/insurace/PersonSingleAdd.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/PersonSingleAdd.jsp" />
+    </definition>
+    <definition name="/insurace/PersonDelete.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/PersonDelete.jsp" />
+    </definition>
+
+    <definition name="/insurace/ComputePersonList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/ComputePersonList.jsp"/>
+    </definition>
+
+    <definition name="/insurace/ChangeQuery.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/insurace/ChangeQuery.jsp"/>
+    </definition>
+    <definition name="/insurace/ChangeQueryRight.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/ChangeQueryRight.jsp"/>
+    </definition>
+    <definition name="/insurace/import/PerDataUpload.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/import/PerDataUpload.jsp"/>
+    </definition>
+    <definition name="/insurace/import/PerDataUploadList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/import/PerDataUploadList.jsp"/>
+    </definition>
+    <definition name="/insurace/openYearBaseInfoList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/insurace/openYearBaseInfoList.jsp"/>
+    </definition>
+    
+    <definition name="/insurace/BaseRateInputEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/BaseRateInputEdit.jsp" />
+    </definition>
+    <definition name="/insurace/BaseRateInputEditSelect.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/BaseRateInputEditSelect.jsp" />
+    </definition>
+
+
+
+
+	<definition name="/insurace/ins/PayIndex.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/ins/PayIndex.jsp" />
+    </definition>
+	<definition name="/insurace/ins/PayQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/ins/PayQuery.jsp" />
+    </definition>
+	
+	<definition name="/insurace/ins/StandardTable.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/ins/StandardTable.jsp" />
+    </definition>
+
+	<definition name="/insurace/ins/ReportWageIndex.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/ins/ReportWageIndex.jsp" />
+    </definition>
+	<definition name="/insurace/ins/ReportWageQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/ins/ReportWageQuery.jsp" />
+    </definition>
+
+	<definition name="/insurace/ins/BaseIndex.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/ins/BaseIndex.jsp" />
+    </definition>
+	<definition name="/insurace/ins/BaseSet.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/ins/BaseSet.jsp" />
+    </definition>
+
+	<definition name="/insurace/ins/InsBaseIndex.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/ins/InsBaseIndex.jsp" />
+    </definition>
+	<definition name="/insurace/ins/InsBaseSet.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/ins/InsBaseSet.jsp" />
+    </definition>
+
+	<definition name="/insurace/BaseInfoIndex.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/BaseInfoIndex.jsp" />
+    </definition>
+	<definition name="/insurace/BaseInfoSet.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/BaseInfoSet.jsp" />
+    </definition>
+    
+    
+    
+    <definition name="/insurace/BaseInfoIndex.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/BaseInfoIndex.jsp" />
+    </definition>
+	<definition name="/insurace/BaseInfoSet.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/BaseInfoSet.jsp" />
+    </definition>
+
+	<definition name="/insurace/InsPayIndex.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/InsPayIndex.jsp" />
+    </definition>
+	<definition name="/insurace/InsPayQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/InsPayQuery.jsp" />
+    </definition>
+	
+	<definition name="/insurace/StandardTable.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/StandardTable.jsp" />
+    </definition>
+
+	<definition name="/insurace/WageSplitIndex.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/WageSplitIndex.jsp" />
+    </definition>
+	<definition name="/insurace/WageSplitQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/insurace/WageSplitQuery.jsp" />
+    </definition>
+</tiles-definitions>

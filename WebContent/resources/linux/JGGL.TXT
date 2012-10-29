@@ -1,0 +1,153 @@
+﻿JGGL-0100|机构管理|機構管理|Organ Manager      
+JGGL-0101|机构信息管理|機構資訊管理|Organ Information Manager
+JGGL-0102|机构新增|機構新增|Create Organ
+JGGL-0103|信息维护|資訊維護|Infomation Maintenance
+JGGL-0104|机构撤销|機構撤銷|Remove Organ
+JGGL-0105|机构合并|機構合併|Unite Organ
+JGGL-0106|主管机构变更|主管機構變更|Director Change
+JGGL-0107|已撤销机构维护|已撤銷機構維護|Removed Organ Manager
+JGGL-0108|查询统计|查詢統計|Query And Count
+JGGL-0109|查询|查詢|Query
+JGGL-0110|统计|統計|Count
+JGGL-0111|机构档案浏览|機構檔案流覽|Organ Archives Browser 
+JGGL-0113|部门隶属关系|部門隸屬關係|Department Connection 
+JGGL-0114|机构排序|機構排序|Organ Compositor  
+JGGL-0115|机构组织图|機構組織圖|Organ Chart
+JGGL-0116|机构数据导入|機構資料導入|Organ Data Import 
+JGGL-0118|隶属关系|隸屬關係|Organ Hypotaxis 
+JGGL-0134|党费信息|黨費信息|Party Fee
+JGGL-0135|确认党费|確認黨費|Confirm Party Fee 
+JGGL-0140|机构模板管理|機構範本管理|Organ Templet 
+JGGL-0141|快速建立分支机构|快速建立分支機搆|Create Branch Organ
+JGGL-0150|机构变更|機構變更|Organ Change
+JGGL-0895|机构隶属设置|機構隸屬設置|Organ Hypotaxis Set
+JGGL-1000|机构基本信息|機構基本資訊|Organ Infomation
+JGGL-1001|机构代码|機構代碼|Organ Code
+JGGL-1002|机构名称|機構名稱|Organ Name
+JGGL-1003|机构类别|機構類別|Organ Type
+JGGL-1004|主管机构|主管機構|Director Organ  
+JGGL-1005|机构设立信息|機構設立資訊|Organ Found Information
+JGGL-1006|机构设立时间|機構設立時間|Organ Found Time
+JGGL-1007|机构设立类别|機構設立類別|Organ Found Type
+JGGL-1008|批准设立文号|批准設立文號|Organ Found Number  
+JGGL-1009|批准设立单位|批准設立單位|Authorization Unit
+JGGL-1010|备注|備註|Remark
+JGGL-1011|被合并机构|被合併機構|Incorporate Organ
+JGGL-1012|合并机构|合併機構|Incorporate Organ
+JGGL-1013|机构合并信息|機構合併資訊|Incorporate Organ Information
+JGGL-1014|变动类别|變動類別|Change Type
+JGGL-1015|变动时间|變動時間|Change Time
+JGGL-1016|变动事项及原因|變動事項及原因|Change Item And Reason 
+JGGL-1017|批准文号|批准文號|Approve Number
+JGGL-1018|批准单位|批准單位|Approve Unit
+JGGL-1019|选择联动简历人员|選擇聯動簡歷人員|Select Linkage Resume
+JGGL-1020|查看选择人员|查看選擇人員|Browser Select Personnel
+JGGL-1024|所属机构|所屬機構|Organ
+JGGL-1025|所属部门|所屬部門|Department
+JGGL-1025|无下级机构|無下級機構|Not Child Organ
+JGGL-1026|移至顶部|移至頂部|Move Top
+JGGL-1027|上移|上移|Up
+JGGL-1028|下移|下移|Down
+JGGL-1029|移至底部|移至底部|Move Bottom
+JGGL-1030|每次移动位数|每次移動位數|Move Step
+JGGL-1031|选择模板|選擇範本|Select Templete
+JGGL-1032|显示虚拟组织|顯示虛擬組織|Dummy Organise
+JGGL-1033|显示虚拟组织下级|顯示虛擬組織下級| Dummy Organise Child
+JGGL-1034|显示级数|顯示級數|Progression
+JGGL-1035|显示模式|顯示模式|Module
+JGGL-1036|是|是|YES
+JGGL-1037|否|否|NO
+JGGL-1038|纵向|縱向|Portrait  
+JGGL-1039|横向|橫向|Horizontal
+JGGL-1040|设置|設置|Set
+JGGL-1041|导出WORD|導出WORD|Export WOrd 
+JGGL-1042|导出PDF|導出PDF| Export PDF 
+JGGL-1043|打印|列印|Print
+JGGL-1044|机构撤销|機構撤銷|Organ Cancel
+JGGL-1045|原机构|原機構|Quondam Organ
+JGGL-1046|机构变动信息|機構變動資訊|Oran Change Information 
+JGGL-1047|原主管机构|原主管機構|Quondam Director Organ  
+JGGL-1048|新的主管机构|新的主管機構|New Director Organ   
+JGGL-1049|增加人员|增加人員|Add User 
+JGGL-1050|变更上级主管后,系统将为以下人员简历子集增加工作变动情况.|變更上級主管後,系統將為以下人員簡歷子集增加工作變動情況.|System will change the resume infromation for the underside person.    
+JGGL-1051|本级部门|本級部門|Respective Level Department 
+JGGL-1052|上级隶属关系部门|上級隸屬關係部門|Superior Department
+JGGL-1053|本级部门所属机构|本級部門所屬機構|Department Of Organ
+JGGL-1055|上级隶属关系部门所属机构|上級隸屬關係部門所屬機構|Superior Department Organ
+JGGL-1056|设置日期|設置日期|Set Date
+JGGL-1057|设置人|設置人|Set Person
+JGGL-1058|名称|名稱|Name
+JGGL-1059|创建人|創建人|Creater
+JGGL-1060|修改|修改|Modify
+JGGL-1061|组织机构基本情况 |組織機構基本情況|Organize Basic Information
+JGGL-1062|关系描述|關係描述|Connection Description
+JGGL-1063|机构负责人|機構負責人|Organ Principal
+JGGL-1064|党组织设置情况|黨組織設置情況|Party Infomation
+JGGL-1065|机构所在地|機構所在地|Organ Address
+JGGL-1066|通信地址|通信地址|Communications Address
+JGGL-1067|邮政编码|郵遞區號|Postalcode
+JGGL-1068|电话号码|電話號碼|Phone Code
+JGGL-1069|业务经营范围|業務經營範圍|Operation Area  
+JGGL-1070|机构变动情况|機構變動情況|Organ Change Information
+JGGL-1071|机构照片|機構照片|Organ Photo
+JGGL-1072|机构代码|機構代碼|Organ Code
+JGGL-1073|机构名称|機構名稱|Organ Name
+JGGL-1074|机构级别|機構級別|Organ Level
+JGGL-1075|没有选择机构或此机构下没有人|沒有選擇機構或此機構下沒有人|Dont select or this organ no person 
+JGGL-1076|模版管理|模版管理|Organ Template
+JGGL-1077|岗位名称|崗位名稱|Post Name
+JGGL-1078|岗位名称|崗位名稱|Post Name
+JGGL-1079|岗位分类|崗位分類|Post Type
+JGGL-1080|更新日期|更新日期|Update Type
+JGGL-1081|岗位编制|崗位編制|Post Authorized
+JGGL-1082|区域隶属关系|區域隸屬關係|Area Subjection Relation
+JGGL-1083|多代码|多代碼|More  Code 
+JGGL-1084|代码|代碼|Code
+JGGL-1085|岗位|崗位|Post
+JGGL-1086|后台多人员|後臺多人員|background Persons
+JGGL-1087|多人员|多人員|Many Person
+JGGL-1088|人员|人員|Item Attrjavascript:void(0)ibute
+JGGL-1089|厦门分行|廈門分行|XiaMen Brach 
+JGGL-1090|机构隶属关系|機構隸屬關係|Organ Subjection Relation
+JGGL-1083|多代码|多代碼|More  Code 
+JGGL-1091|机构类型|機構類型|Organ Attribute
+JGGL-1092|当前机构|當前機構|Current Organ
+JGGL-1093|岗位类型|崗位類型|Post Type
+JGGL-1094|模板名称|範本名稱|Templete Name
+JGGL-1095|数据记录数|資料記錄數|Date Record
+JGGL-1096|数据处理方式|資料處理方式|Date Deal With Method
+JGGL-1097|上传文件数据有错误，点击下载错误数据文件|上傳檔資料有錯誤，點擊下載錯誤資料檔案|Make Error When Upload File, Click Then Down Load The Error File 
+JGGL-1098|上级机构|上級機構|Parent Organ
+JGGL-1099|修改信息项|修改資訊項|Modif Infor
+JGGL-1100|原值|原值|Originally Value
+JGGL-1101|新值|新值|New Value 
+JGGL-1102|无权限|無許可權|No Power
+JGGL-1103|撤销类别|撤銷類別|Cancle Type
+JGGL-1104|撤销时间|撤銷時間|Cancle Date
+JGGL-1105|撤销批准单位|撤銷時間|Cancle Approve Unit
+JGGL-1106|撤销文号|撤銷時間|Cancle Number
+JGGL-1107|机构基本信息 |機構基本資訊|Organ Basic Infor
+JGGL-1108|注册地址 |註冊地址|Injection Address
+JGGL-1109|所属区域 |所屬區域| Area Obtain
+JGGL-1110|单位社保编码 |單位社保編碼|Insurance Code
+JGGL-1111|税务登记号 |稅務登記號|Tariff Register
+JGGL-1112|法人代码 |法人代碼|Fictitious Person Code
+JGGL-1113|登记注册类别 |登記註冊類別|Register Type
+JGGL-1114|行业类别 |行業類別|Vocation Type
+JGGL-1115|会计制度类别 |會計制度類別| Accountant Scheme Type
+JGGL-1116|控股情况 |控股情況|Hldg. Holding  
+JGGL-1117|单位公章|單位公章|Unit Cachet
+JGGL-1118|变动原因|變動原因|Change Reason 
+JGGL-1119|机构唯一标识|機機構唯一標識|Unique Sign
+JGGL-1120|机构代码|機構代碼|Organ Code 
+JGGL-1121|基本信息变更| 基本資訊變更|Basic Infor Change
+JGGL-1126|文件格式说明|文件格式說明|File Format Explain
+JGGL-1127|1.导入文件的格式为CSV文件|1. 對比檔的格式為CSV檔 |File Format Explain
+JGGL-1128|2.上传要导入的文件，选择的指标集和需要的导入的数据指标集一致，且按文件中各项的顺序选择系统数据项，查看数据无误后，执行导入。|2.選擇的指標集和需要的對比的資料指標集一致，且按檔中各項的順序選擇資料項目|324234
+JGGL-1129|3.电子表格的第一行为标题行，数据从第二行开始，电子表格的前二列固定为：机构代码、机构名称。|3.試算表的第一行為標題行，資料從第二行開始，試算表的前兩列固定為：身份證號、姓名.|File Format Explain
+JGGL-1130|4.为保证数据准确，请将电子表格的所有列的数据格式设置为文本格式。|4.試算表的所有列的資料格式設置為文本格式。|File Format Explain
+JGGL-1131|5.导入数据中，不能出现空行，且机构代码不能为空值。|5. 導入資料中，不能出現空行，且機構代碼不能為空值。|File Format Explain
+JGGL-1132|6. 如果是代码项，那么必须是代码值而不是代码名称。|6.如果是代碼項，那麼必須是代碼值而不是代碼名稱。|File Format Explain
+JGGL-1133|7. 如果是6位日期类型数据，数据格式为6位数字，如'200609',如果是8位日期类型数据，数据格式为8位数字，如'20060918'。|6.如果是代碼項，那麼必須是代碼值而不是代碼名稱。|File Format Explain
+
+

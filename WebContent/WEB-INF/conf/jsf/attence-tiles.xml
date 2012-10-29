@@ -1,0 +1,849 @@
+<!DOCTYPE tiles-definitions
+        [
+                <!ELEMENT component-definitions (definition+)>
+                <!ELEMENT tiles-definitions (definition+)>
+                <!ELEMENT definition (put*, putList*)>
+                <!ATTLIST definition
+                        name CDATA #REQUIRED
+                        pages CDATA #IMPLIED
+                        path CDATA #IMPLIED
+                        extends CDATA #IMPLIED
+                        role CDATA #IMPLIED
+                        template CDATA #IMPLIED
+                        controllerClass CDATA #IMPLIED
+                        controllerUrl CDATA #IMPLIED>
+                <!ELEMENT put (#PCDATA)>
+                <!ATTLIST put
+                        name CDATA #REQUIRED
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+                <!ATTLIST putList
+                        name CDATA #REQUIRED>
+                <!ELEMENT putListElements (add | item | bean)>
+                <!ELEMENT add (#PCDATA)>
+                <!ATTLIST add
+                        value CDATA #IMPLIED
+                        type (string | pages | template | definition) #IMPLIED
+                        content CDATA #IMPLIED
+                        direct (true | false) #IMPLIED>
+                <!ELEMENT bean (#PCDATA)>
+                <!ATTLIST bean
+                        classtype CDATA #REQUIRED>
+                <!ELEMENT item (#PCDATA)>
+                <!ATTLIST item
+                        value CDATA #REQUIRED
+                        link CDATA #REQUIRED
+                        classtype CDATA #IMPLIED
+                        icon CDATA #IMPLIED
+                        tooltip CDATA #IMPLIED>
+                ]>
+
+<tiles-definitions>
+    <definition name="/attence/checkFinger.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/attence/fingerPrint/checkFinger.jsp"/>
+    </definition>
+    <definition name="/attence/takeFinger.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/attence/fingerPrint/takeFinger.jsp"/>
+    </definition>
+    <definition name="/attence/takeFingerChild.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/attence/fingerPrint/takeFingerChild.jsp"/>
+    </definition>
+
+    <definition name="/attence/DateList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/DateList.jsp"/>
+    </definition>
+    <definition name="/attence/ComputePersonList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/ComputePersonList.jsp"/>
+    </definition>
+    <definition name="/attence/PowerSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/PowerSet.jsp"/>
+    </definition>
+    <definition name="/attence/PowerSetChild.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/PowerSetChild.jsp"/>
+    </definition>
+    <definition name="/attence/SetInputPower.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/SetInputPower.jsp"/>
+    </definition>
+    <definition name="/attence/AttInputPowerEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/AttInputPowerEdit.jsp"/>
+    </definition>
+    <definition name="/attence/AttDetailView.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/attence/AttDetailView.jsp"/>
+    </definition>
+    <!--liuyunlong-->
+    <definition name="/attence/attMachineMgr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attMachineMgr.jsp"/>
+    </definition>
+    <definition name="/attence/attMachineMgrChild.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attMachineMgrChild.jsp"/>
+    </definition>
+    <definition name="/attence/attmachineEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attmachineEdit.jsp"/>
+    </definition>
+    <definition name="/attence/FeastMgr.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/attence/FeastMgr.jsp"/>
+    </definition>
+    <definition name="/attence/FeastMgrChild.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/FeastMgrChild.jsp"/>
+    </definition>
+    <definition name="/attence/FeastEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/FeastEdit.jsp"/>
+    </definition>
+
+    <definition name="/attence/FeastWorkMgr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/FeastWorkMgr.jsp"/>
+    </definition>
+
+    <definition name="/attence/FeastWorkMgrChild.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/FeastWorkMgrChild.jsp"/>
+    </definition>
+
+    <definition name="/attence/PeriodSet.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/PeriodSet.jsp"/>
+    </definition>
+
+    <definition name="/attence/PeriodSetEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/PeriodSetEdit.jsp"/>
+    </definition>
+
+    <definition name="/attence/attCardMgr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attCardMgr.jsp"/>
+    </definition>
+    <definition name="/attence/attCardMgrChild.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attCardMgrChild.jsp"/>
+    </definition>
+    <definition name="/attence/attCardMgrEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attCardMgrEdit.jsp"/>
+    </definition>
+    <definition name="/attence/attCardMessage.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attCardMessage.jsp"/>
+    </definition>
+    <definition name="/attence/attClassSet.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/attence/attClassSet.jsp"/>
+    </definition>
+    <definition name="/attence/attClassSetChild.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attClassSetChild.jsp"/>
+    </definition>
+    <definition name="/attence/attClassSetEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attClassSetEdit.jsp"/>
+    </definition>
+    <definition name="/attence/attClassDetail.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attClassDetail.jsp"/>
+    </definition>
+    <definition name="/attence/attClassDetailEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attClassDetailEdit.jsp"/>
+    </definition>
+
+    <definition name="/attence/WorkCalendar.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/WorkCalendar.jsp"/>
+    </definition>
+
+    <definition name="/attence/groupMgr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/groupMgr.jsp"/>
+    </definition>
+    <definition name="/attence/groupMgrList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/groupMgrList.jsp"/>
+    </definition>
+    <definition name="/attence/groupMgrEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/groupMgrEdit.jsp"/>
+    </definition>
+    <definition name="/attence/groupMgrListAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/groupMgrListAdd.jsp"/>
+    </definition>
+    <definition name="/attence/groupMgrListAddList.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/groupMgrListAddList.jsp"/>
+    </definition>
+    <definition name="/attence/attRearange.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attRearange.jsp"/>
+    </definition>
+    <definition name="/attence/attRearangeEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attRearangeEdit.jsp"/>
+    </definition>
+
+    <definition name="/attence/importRule.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/importRule.jsp"/>
+    </definition>
+    <definition name="/attence/importRuleAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/importRuleAdd.jsp"/>
+    </definition>
+    <definition name="/attence/importRuleList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/importRuleList.jsp"/>
+    </definition>
+    <definition name="/attence/importRuleListAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/importRuleListAdd.jsp"/>
+    </definition>
+
+    <definition name="/attence/personService.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personService.jsp"/>
+    </definition>
+    <definition name="/attence/punchCardMessage.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/punchCardMessage.jsp"/>
+    </definition>
+    <definition name="/attence/punchCardMessageEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/punchCardMessageEdit.jsp"/>
+    </definition>
+    <definition name="/attence/punchCardDayCollect.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/punchCardDayCollect.jsp"/>
+    </definition>
+    <definition name="/attence/punchCardMonthCollect.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/punchCardMonthCollect.jsp"/>
+    </definition>
+    <definition name="/attence/PeriodSetOpen.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/PeriodSetOpen.jsp"/>
+    </definition>
+    <definition name="/attence/PeriodSetAttCaclInfo.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/PeriodSetAttCaclInfo.jsp"/>
+    </definition>
+    <definition name="/attence/PeriodSetDayCollection.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/PeriodSetDayCollection.jsp"/>
+    </definition>
+    <definition name="/attence/PeriodSetMonthCollection.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/PeriodSetMonthCollection.jsp"/>
+    </definition>
+    <definition name="/attence/personLeave.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeave.jsp"/>
+    </definition>
+    <definition name="/attence/personLeaveMessage.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeaveMessage.jsp"/>
+    </definition>
+    <definition name="/attence/personLeaveMessages.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeaveMessages.jsp"/>
+    </definition>
+    <definition name="/attence/personLeaveMessagesHistory.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeaveMessagesHistory.jsp"/>
+    </definition>
+    <definition name="/attence/personLeaveAudit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeaveAudit.jsp"/>
+    </definition>
+
+    <definition name="/attence/personLeaveAuditEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeaveAuditEdit.jsp"/>
+    </definition>
+    <definition name="/attence/personLeaveAuditEdit1.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeaveAuditEdit1.jsp"/>
+    </definition>
+    <definition name="/attence/personLeaveAuditEdit2.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeaveAuditEdit2.jsp"/>
+    </definition>
+    <definition name="/attence/personLeaveAuditEdit3.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeaveAuditEdit3.jsp"/>
+    </definition>
+    <definition name="/attence/personLeaveAuditEdit4.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeaveAuditEdit4.jsp"/>
+    </definition>
+
+
+    <definition name="/attence/personEvection.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personEvection.jsp"/>
+    </definition>
+    <definition name="/attence/personEvectionMessage.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personEvectionMessage.jsp"/>
+    </definition>
+    <definition name="/attence/personEvectionMessages.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personEvectionMessages.jsp"/>
+    </definition>
+    <definition name="/attence/personEvectionMessageHistory.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personEvectionMessageHistory.jsp"/>
+    </definition>
+    <definition name="/attence/personEvectionAudit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personEvectionAudit.jsp"/>
+    </definition>
+    <definition name="/attence/personEvcctionAuditEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personEvcctionAuditEdit.jsp"/>
+    </definition>
+    <definition name="/attence/personEvcctionAuditEdit1.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personEvcctionAuditEdit1.jsp"/>
+    </definition>
+    <definition name="/attence/personEvcctionAuditEdit2.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personEvcctionAuditEdit2.jsp"/>
+    </definition>
+    <definition name="/attence/personEvcctionAuditEdit3.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personEvcctionAuditEdit3.jsp"/>
+    </definition>
+    <definition name="/attence/personEvcctionAuditEdit4.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personEvcctionAuditEdit4.jsp"/>
+    </definition>
+    <definition name="/attence/personEvectionMessagePersonList.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personEvectionMessagePersonList.jsp"/>
+    </definition>
+    <definition name="/attence/personEvectionMessagePersonListChild.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body"
+             value="/pages/attence/personEvectionMessagePersonListChild.jsp"/>
+    </definition>
+    <definition name="/attence/personEvectionMessageTimeOff.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personEvectionMessageTimeOff.jsp"/>
+    </definition>
+    <definition name="/attence/punshCardManager.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/punshCardManager.jsp"/>
+    </definition>
+    <definition name="/attence/punshCardManagerChild.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/punshCardManagerChild.jsp"/>
+    </definition>
+    <definition name="/attence/AttenceCardDataUpload.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/AttenceCardDataUpload.jsp"/>
+    </definition>
+    <definition name="/attence/AttenceCardDataUploadListBySet.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/AttenceCardDataUploadListBySet.jsp"/>
+    </definition>
+    <definition name="/attence/personLeaveMessageTime.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeaveMessageTime.jsp"/>
+    </definition>
+    <definition name="/attence/showCalenda.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/showCalenda.jsp"/>
+    </definition>
+    <definition name="/attence/groupCalendarEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/groupCalendarEdit2.jsp"/>
+    </definition>
+    <definition name="/attence/showCalendaEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/showCalendaEdit.jsp"/>
+    </definition>
+    <definition name="/attence/showCalendaEditSort.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/showCalendaEditSort.jsp"/>
+    </definition>
+    <definition name="/attence/employeeCalendar.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/employeeCalendar.jsp"/>
+    </definition>
+    <definition name="/attence/personChangeWork.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personChangeWork.jsp"/>
+    </definition>
+    <definition name="/attence/personChangeWorkEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personChangeWorkEdit.jsp"/>
+    </definition>
+    <definition name="/attence/personChangeWorkAudit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personChangeWorkAudit.jsp"/>
+    </definition>
+    <definition name="/attence/personChangeWorkAuditEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personChangeWorkAuditEdit.jsp"/>
+    </definition>
+    <definition name="/attence/personChangeWorkAuditEdit1.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personChangeWorkAuditEdit1.jsp"/>
+    </definition>
+    <definition name="/attence/adjustClass.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/adjustClass.jsp"/>
+    </definition>
+    <definition name="/attence/adjustClassChild.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/adjustClassChild.jsp"/>
+    </definition>
+    <definition name="/attence/adjustClassChildEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/adjustClassChildEdit.jsp"/>
+    </definition>
+    <definition name="/attence/adjustClassChildEditMessage.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/adjustClassChildEditMessage.jsp"/>
+    </definition>
+    <definition name="/attence/annualRule.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/annualRule.jsp"/>
+    </definition>
+    <definition name="/attence/annualRuleAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/annualRuleAdd.jsp"/>
+    </definition>
+    <definition name="/attence/annualRuleList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/annualRuleList.jsp"/>
+    </definition>
+    <definition name="/attence/annualRuleListAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/annualRuleListAdd.jsp"/>
+    </definition>
+    <definition name="/attence/annualMgr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/annualMgr.jsp"/>
+    </definition>
+    <definition name="/attence/annualMgrAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/annualMgrAdd.jsp"/>
+    </definition>
+    <definition name="/attence/annualMgrList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/annualMgrList.jsp"/>
+    </definition>
+    <definition name="/attence/annualMgrListChild.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/annualMgrListChild.jsp"/>
+    </definition>
+    <definition name="/attence/annualMgrListAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/annualMgrListAdd.jsp"/>
+    </definition>
+    <definition name="/attence/importLog.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/importLog.jsp"/>
+    </definition>
+    <definition name="/attence/attcaclrule.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attcaclrule.jsp"/>
+    </definition>
+    <definition name="/attence/QueryCardLog.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/QueryCardLog.jsp"/>
+    </definition>
+    <definition name="/attence/itemSetConfig.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/itemSetConfig.jsp"/>
+    </definition>
+    <definition name="/attence/itemSetConfigAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/itemSetConfigAdd.jsp"/>
+    </definition>
+    <definition name="/attence/seeAttenceTable.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/seeAttenceTable.jsp"/>
+    </definition>
+    <definition name="/attence/seeAttenceMgr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/seeAttenceMgr.jsp"/>
+    </definition>
+    <definition name="/attence/personAddWork.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personAddWork.jsp"/>
+    </definition>
+    <definition name="/attence/personAddWorkMessage.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personAddWorkMessage.jsp"/>
+    </definition>
+    <definition name="/attence/personAddWorkAudit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personAddWorkAudit.jsp"/>
+    </definition>
+    <definition name="/attence/personAddWorkAuditEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personAddWorkAuditEdit.jsp"/>
+    </definition>
+    <definition name="/attence/personAddWorkAuditEdit1.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personAddWorkAuditEdit1.jsp"/>
+    </definition>
+    <definition name="/attence/personAddWorkAuditEdit2.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personAddWorkAuditEdit2.jsp"/>
+    </definition>
+    <definition name="/attence/personAddWorkAuditEdit3.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personAddWorkAuditEdit3.jsp"/>
+    </definition>
+    <definition name="/attence/personAddWorkAuditEdit4.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personAddWorkAuditEdit4.jsp"/>
+    </definition>
+    <definition name="/attence/seePersonAddWorkList.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/seePersonAddWorkList.jsp"/>
+    </definition>
+    <definition name="/attence/seePersonAddWorkMgr.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/seePersonAddWorkMgr.jsp"/>
+    </definition>
+    <definition name="/attence/QueryCardLogList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/QueryCardLogList.jsp"/>
+    </definition>
+    <definition name="/attence/RollbookRegistrationList.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/RollbookRegistrationList.jsp"/>
+    </definition>
+    <definition name="/attence/RollbookRegistrationListChild.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/RollbookRegistrationListChild.jsp"/>
+    </definition>
+    <definition name="/attence/attExecludeRule.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attExecludeRule.jsp"/>
+    </definition>
+    <definition name="/attence/attExecludeRuleAdd.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attExecludeRuleAdd.jsp"/>
+    </definition>
+    <definition name="/attence/attExecludeRuleItem.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attExecludeRuleItem.jsp"/>
+    </definition>
+    <definition name="/attence/attExecludeRuleItemAdd.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attExecludeRuleItemAdd.jsp"/>
+    </definition>
+    <definition name="/attence/annualMgrListExecludeRule.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/annualMgrListExecludeRule.jsp"/>
+    </definition>
+    <definition name="/attence/annualMgrListExecludeRuleList.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/annualMgrListExecludeRuleList.jsp"/>
+    </definition>
+    <definition name="/attence/networkholiday.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/networkholiday.jsp"/>
+    </definition>
+    <definition name="/attence/networkholidayChild.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/networkholidayChild.jsp"/>
+    </definition>
+    <definition name="/attence/networkholidayChildAdd.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/networkholidayChildAdd.jsp"/>
+    </definition>
+    <definition name="/attence/networkholidayChildAddEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/networkholidayChildAddEdit.jsp"/>
+    </definition>
+    <definition name="/attence/networkholidayChildAddAudit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/networkholidayChildAddAudit.jsp"/>
+    </definition>
+    <definition name="/attence/networkholidayChildAddAuditEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/networkholidayChildAddAuditEdit.jsp"/>
+    </definition>
+    <definition name="/attence/networkholidayChildAddAuditEdit1.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/networkholidayChildAddAuditEdit1.jsp"/>
+    </definition>
+    <definition name="/attence/networkholidayChildAddAuditEdit2.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/networkholidayChildAddAuditEdit2.jsp"/>
+    </definition>
+    <definition name="/attence/networkholidayChildAddAuditEdit3.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/networkholidayChildAddAuditEdit3.jsp"/>
+    </definition>
+    <definition name="/attence/networkholidayChildAddAuditEdit4.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/networkholidayChildAddAuditEdit4.jsp"/>
+    </definition>
+    <definition name="/attence/catering/setStandard.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/setStandard.jsp"/>
+    </definition>
+    <definition name="/attence/catering/setStandardAdd.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/setStandardAdd.jsp"/>
+    </definition>
+    <definition name="/attence/catering/setStandardList.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/setStandardList.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoRearrange.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/autoRearrange.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoRearrangeAdd.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/autoRearrangeAdd.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoRearrangeList.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/autoRearrangeList.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoRearrangeListSelectItem.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body"
+             value="/pages/attence/catering/autoRearrangeListSelectItem.jsp"/>
+    </definition>
+    <definition name="/attence/catering/setSum.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/setSum.jsp"/>
+    </definition>
+    <definition name="/attence/catering/setSumAdd.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/setSumAdd.jsp"/>
+    </definition>
+    <definition name="/attence/catering/setSumList.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/setSumList.jsp"/>
+    </definition>
+    <definition name="/attence/catering/setWeekSum.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/setWeekSum.jsp"/>
+    </definition>
+    <definition name="/attence/catering/setWeekSumAdd.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/setWeekSumAdd.jsp"/>
+    </definition>
+    <definition name="/attence/catering/setWeekSumList.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/setWeekSumList.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoRearrangeListExistRest.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/autoRearrangeListExistRest.jsp"/>
+    </definition>
+    <definition name="/attence/personOutWork.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personOutWork.jsp"/>
+    </definition>
+    <definition name="/attence/personOutWorkMessage.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personOutWorkMessage.jsp"/>
+    </definition>
+    <definition name="/attence/personOutWorkMessages.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personOutWorkMessages.jsp"/>
+    </definition>
+    <definition name="/attence/personOutWorkAudit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personOutWorkAudit.jsp"/>
+    </definition>
+    <definition name="/attence/personOutWorkAuditEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personOutWorkAuditEdit.jsp"/>
+    </definition>
+    <definition name="/attence/personOutWorkAuditEdit1.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personOutWorkAuditEdit1.jsp"/>
+    </definition>
+    <definition name="/attence/personOutWorkAuditEdit2.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personOutWorkAuditEdit2.jsp"/>
+    </definition>
+    <definition name="/attence/personOutWorkAuditEdit3.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personOutWorkAuditEdit3.jsp"/>
+    </definition>
+    <definition name="/attence/personOutWorkAuditEdit4.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personOutWorkAuditEdit4.jsp"/>
+    </definition>
+    <definition name="/attence/personOutWorkMessageHistory.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personOutWorkMessageHistory.jsp"/>
+    </definition>
+    <definition name="/attence/personOutWorkMessageTimeOff.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personOutWorkMessageTimeOff.jsp"/>
+    </definition>
+    <definition name="/attence/timeoffrec.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/timeoffrec.jsp"/>
+    </definition>
+    <definition name="/attence/FeastWorkDate.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/FeastWorkDate.jsp"/>
+    </definition>
+    <definition name="/attence/FeastWorkDateEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/FeastWorkDateEdit.jsp"/>
+    </definition>
+
+    <definition name="/attence/examplePages.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/examplePages.jsp"/>
+    </definition>
+    <definition name="/attence/exampleChildPages.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/exampleChildPages.jsp"/>
+    </definition>
+
+    <definition name="/attence/evcctionStateSearch.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/evcctionStateSearch.jsp"/>
+    </definition>
+    <definition name="/attence/evcctionStateSearchList.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/evcctionStateSearchList.jsp"/>
+    </definition>
+    <definition name="/attence/mrNetworkholiday.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/mrNetworkholiday.jsp"/>
+    </definition>
+    <definition name="/attence/mrNetworkholidayMessage.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/mrNetworkholidayMessage.jsp"/>
+    </definition>
+    <definition name="/attence/mrNetWorkHolidayAudit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/mrNetWorkHolidayAudit.jsp"/>
+    </definition>
+    <definition name="/attence/mrNetWorkHolidayAuditEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/mrNetWorkHolidayAuditEdit.jsp"/>
+    </definition>
+    <definition name="/attence/mrNetWorkHolidayAuditEdit1.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/mrNetWorkHolidayAuditEdit1.jsp"/>
+    </definition>
+    <definition name="/attence/mrNetWorkHolidayAuditEdit2.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/mrNetWorkHolidayAuditEdit2.jsp"/>
+    </definition>
+    <definition name="/attence/mrNetWorkHolidayAuditEdit3.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/mrNetWorkHolidayAuditEdit3.jsp"/>
+    </definition>
+    <definition name="/attence/mrNetWorkHolidayAuditEdit4.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/mrNetWorkHolidayAuditEdit4.jsp"/>
+    </definition>
+    <definition name="/attence/mrNetWorkHolidayAuditEdit5.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/mrNetWorkHolidayAuditEdit5.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoClassManager.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/autoClassManager.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoClassManagerAdd.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/autoClassManagerAdd.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoClassManagerRule.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/autoClassManagerRule.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoClassManagerRuleAdd.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/autoClassManagerRuleAdd.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoClassManagerWater.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/autoClassManagerWater.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoClassManagerList.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/autoClassManagerList.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoClassManagerListSelectItem.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/autoClassManagerListSelectItem.jsp"/>
+    </definition>
+    <definition name="/attence/catering/autoClassManagerWaterAdd.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/catering/autoClassManagerWaterAdd.jsp"/>
+    </definition>
+    <definition name="/attence/attTimeOff.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attTimeOff.jsp"/>
+    </definition>
+    <definition name="/attence/attenceWriter.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attenceWriter.jsp"/>
+    </definition>
+    <definition name="/attence/attenceWriterOutWork.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attenceWriterOutWork.jsp"/>
+    </definition>
+    <definition name="/attence/attenceWriterEvcction.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attenceWriterEvcction.jsp"/>
+    </definition>
+    <definition name="/attence/attenceWriterAddWork.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attenceWriterAddWork.jsp"/>
+    </definition>
+    <definition name="/attence/personLeaveNetworkholiday.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeaveNetworkholiday.jsp"/>
+    </definition>
+    <definition name="/attence/modifyTimeOf.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/modifyTimeOf.jsp"/>
+    </definition>
+    <definition name="/attence/modifyTimeOfList.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/modifyTimeOfList.jsp"/>
+    </definition>
+    <definition name="/attence/modifyTimeOfEdit.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/modifyTimeOfEdit.jsp"/>
+    </definition>
+    <definition name="/attence/attenceWriterNewWork.tiles"
+                extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attenceWriterNewWork.jsp"/>
+    </definition>
+    <!--gaohaixing-->
+
+    <definition name="/attence/evcctionStateAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/evcctionStateAdd.jsp"/>
+    </definition>
+    <definition name="/attence/personAddWorkAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personAddWorkAdd.jsp"/>
+    </definition>
+
+    <definition name="/attence/personWorkOutSearch.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/attence/personWorkOutSearch.jsp"/>
+    </definition>
+
+    <definition name="/attence/personWorkOutSearchList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/attence/personWorkOutSearchList.jsp"/>
+    </definition>
+    <definition name="/attence/personWorkOutAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personWorkOutAdd.jsp"/>
+    </definition>
+
+    <definition name="/attence/personLeaveSearch.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/attence/personLeaveSearch.jsp"/>
+    </definition>
+
+    <definition name="/attence/personLeaveSearchList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/attence/personLeaveSearchList.jsp"/>
+    </definition>
+
+    <definition name="/attence/personLeaveDeptSearch.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/attence/personLeaveDeptSearch.jsp"/>
+    </definition>
+
+    <definition name="/attence/personLeaveAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/personLeaveAdd.jsp"/>
+    </definition>
+    <definition name="/attence/annualQuery.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/annualQuery.jsp"/>
+    </definition>
+
+    <definition name="/attence/mrNetWorkHolidaySearch.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/attence/mrNetWorkHolidaySearch.jsp"/>
+    </definition>
+    <definition name="/attence/mrNetWorkHolidaySearchList.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/attence/mrNetWorkHolidaySearchList.jsp"/>
+    </definition>
+    <definition name="/attence/mrNetworkholidayEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/mrNetworkholidayEdit.jsp"/>
+    </definition>
+
+    <definition name="/attence/restChg/restStore.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/attence/restChg/restStore.jsp"/>
+    </definition>
+
+    <definition name="/attence/restChg/restStoreList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/attence/restChg/restStoreList.jsp"/>
+    </definition>
+
+    <definition name="/attence/restChg/restChg.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/attence/restChg/restChg.jsp"/>
+    </definition>
+    
+    
+    <definition name="/attence/AttFrequency.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/AttFrequency.jsp"/>
+    </definition>
+    <definition name="/attence/AttPerson.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/AttPerson.jsp"/>
+    </definition>
+    <definition name="/attence/PersonQuery.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/PersonQuery.jsp"/>
+    </definition>
+    <definition name="/attence/SelMultiPerson.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/SelMultiPerson.jsp"/>
+    </definition>
+    <definition name="/attence/attSignMgr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attSignMgr.jsp"/>
+    </definition>
+    <definition name="/attence/attSignMgrChild.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/attence/attSignMgrChild.jsp"/>
+    </definition>
+    
+</tiles-definitions>

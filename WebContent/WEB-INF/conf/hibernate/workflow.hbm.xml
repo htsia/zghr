@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.hr319wg.sys.pojo.bo.WFErrorLog" table="WF_ERROR_LOG">
+		<id name="logID" type="string" unsaved-value="null">
+			<column name="LOG_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+        <property name="logDate" column="LOG_DATE" />
+        <property name="userID" column="USERID" />
+		<property name="processOrg" column="PROCESSORG" />
+		<property name="wfType" column="WFTYPE" />
+        <property name="operID" column="OPERID" />
+        <property name="linkID" column="LINKID" />
+        <property name="conValue" column="CONVALUE" />
+        <property name="statusValue" column="STATUSVALUE" />
+        <property name="wffunction" column="WFFUNCTION"></property>
+        <property name="errorDes" column="ERRORDES"></property>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.WFDefineExcludeBO" table="wf_define_exclude">
+		<id name="typeID" type="string" unsaved-value="null">
+			<column name="type_id " sql-type="varchar(32)" />
+			<generator class="assigned" />
+		</id>
+		<property name="orguid" column="exclude_org" />
+     </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.WFTypeBO" table="WF_TYPE">
+		<id name="typeID" type="string" unsaved-value="null">
+			<column name="TYPE_ID" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="typeName" column="TYPE_NAME" />
+		<property name="startOper" column="START_OPER" />
+		<property name="endOper" column="END_OPER" />
+        <property name="midOpers" column="MID_OPERS" />
+        <property name="statusValues" column="STATUS_VALUES" />
+        <property name="statusDeses" column="STATUS_DESES" />
+        <property name="conField" column="CONDITION_FIELD" />
+        <property name="statusField" column="STATUS_FIELD" />
+        <property name="modtype" column="MODULE_TYPE"></property>
+        <property name="notuse" column="NOT_USE"></property>
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.WFTransBO" table="WF_DEFINE_TRANS">
+        <id name="transID" type="string" unsaved-value="null">
+            <column name="TRANS_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="nodeID" column="NODE_ID" />
+        <property name="seq" column="SEQ" />
+        <property name="toNode" column="TO_NODE" />
+        <property name="toSEQ" column="TO_SEQ" />
+        <property name="conValue" column="CONDITION_VALUE" />
+        <property name="conOper" column="CONDITION_OPER" />
+        <property name="conValue2" column="CONDITION_VALUE2" />
+        <property name="conOper2" column="CONDITION_OPER2" />
+        <property name="conRelation" column="condition_relation" />
+        <property name="mode" column="TRANS_MODE" />
+        <property name="statusValue" column="STATE_VALUE" />
+        <property name="toMessage" column="TO_MESSAGE" />
+        <property name="initEndMsg" column="initEndMsg" />
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.WFProcessBO" table="WF_PROCESS">
+        <id name="processID" type="string" unsaved-value="null">
+            <column name="PROCESS_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="processStatus" column="PROCESS_STATUS" />
+        <property name="processDate" column="CREATE_DATE" />
+        <property name="processOper" column="CREATER" />
+        <property name="curNode" column="CURRENT_NODE" />
+        <property name="linkID" column="LINK_ID" />
+        <property name="defID" column="DEF_ID" />
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.WFNodeBO" table="WF_DEFINE_NODE">
+        <id name="nodeID" type="string" unsaved-value="null">
+            <column name="NODE_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="defID" column="DEF_ID" />
+        <property name="nodeType" column="NODE_TYPE" />
+        <property name="seq" column="SEQ" />
+        <property name="nodeName" column="NODE_NAME" />
+        <property name="operID" column="OPER_ID" />
+        <property name="toSEQ" column="TO_SEQ" />
+        <property name="message" column="MESSAGE" />
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.WFLogBO" table="WF_PROCESS_LOG">
+        <id name="logID" type="string" unsaved-value="null">
+            <column name="LOG_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="processID" column="PROCESS_ID" />
+        <property name="enterTime" column="ENTER_TIME" />
+        <property name="exitTime" column="EXIT_TIME" />
+        <property name="operID" column="OPERID" />
+        <property name="executor" column="EXECUTOR" />
+        <property name="nodeID" column="NODE_ID" />
+        <property name="conValue" column="CON_VALUE" />
+        <property name="statusValue" column="STATUS_VALUE" />
+    </class>
+
+    <class name="com.hr319wg.sys.pojo.bo.WFDefineBO" table="WF_DEFINE">
+        <id name="defID" type="string" unsaved-value="null">
+            <column name="DEF_ID" sql-type="varchar(32)" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="typeID" column="TYPE_ID" />
+        <property name="defName" column="DEF_NAME" />
+        <property name="orguid" column="ORGUID" />
+        <property name="createOrg" column="CREATE_ORG" />
+        <property name="isuse" column="is_use" />
+        <property name="flowFile" column="flowFile" />
+        <property name="startY" column="startY" /> 
+        <property name="conField" column="CON_FIELD" />
+        <property name="conValue" column="CON_VALUE" />
+        <property name="deptids" column="deptids" />
+        <property name="endMssage" column="endMessage" />
+        <property name="endReceivor" column="endReceive" />
+        <property name="autoToCreate" column="autoToCreate" />
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+    <managed-bean>
+        <managed-bean-name>eLearn_upFileBB</managed-bean-name>
+        <managed-bean-class>com.hr319wg.eLearn.web.UpFileBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+        <property-name>maservice</property-name>
+           <value>#{eLearn_materialservice}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>eLearn_bulletinBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.eLearn.web.bulletinBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+         <property-name>bulletinservice</property-name>
+         <value>#{eLearn_bulletinservice}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>eLearn_testBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.eLearn.web.testBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+         <property-name>testservice</property-name>
+         <value>#{eLearn_testservice}</value>
+        </managed-property>
+        <managed-property>
+         <property-name>paperservice</property-name>
+         <value>#{eLearn_paperservice}</value>
+        </managed-property>
+        <managed-property>
+         <property-name>qusservice</property-name>
+         <value>#{eLearn_libservice}</value>
+        </managed-property>
+		<managed-property>
+         <property-name>outerRecruitUcc</property-name>
+         <value>#{recruit_outterucc}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>eLearn_questionLibBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.eLearn.web.questionLibBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+         <property-name>libservice</property-name>
+         <value>#{eLearn_libservice}</value>
+        </managed-property>
+    </managed-bean>
+    
+     <managed-bean>
+      <managed-bean-name>eLearn_queryQuestionBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.eLearn.web.QueryQuestionsBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+         <property-name>libservice</property-name>
+         <value>#{eLearn_libservice}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>eLearn_paperLibBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.eLearn.web.paperLibBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+         <property-name>libservice</property-name>
+         <value>#{eLearn_paperservice}</value>
+        </managed-property>
+        <managed-property>
+         <property-name>questionService</property-name>
+         <value>#{eLearn_libservice}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>eLearn_studyBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.eLearn.web.StudyBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+         <property-name>dataman</property-name>
+         <value>#{eLearn_datamanager}</value>
+        </managed-property>
+        <managed-property>
+         <property-name>cwucc</property-name>
+         <value>#{train_courceucc}</value>
+        </managed-property>
+
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>eLearn_learnInfoBB</managed-bean-name>
+      <managed-bean-class>com.hr319wg.eLearn.web.LearnInfoBackingBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+         <property-name>addressucc</property-name>
+         <value>#{emp_addressUCC}</value>
+        </managed-property>
+        <managed-property>
+         <property-name>dataman</property-name>
+         <value>#{eLearn_datamanager}</value>
+        </managed-property>
+        <managed-property>
+         <property-name>bulletinservice</property-name>
+         <value>#{eLearn_bulletinservice}</value>
+        </managed-property>
+
+    </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>eLearn_courcebb</managed-bean-name>
+        <managed-bean-class>com.hr319wg.eLearn.web.CourceManageBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>courceUCC</property-name>
+            <value>#{eLearn_learnucc}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>manifest</property-name>
+            <value>#{eLearn_digMani}</value>
+        </managed-property>
+        <managed-property>
+              <property-name>datam</property-name>
+              <value>#{eLearn_datamanager}</value>
+        </managed-property>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/DictEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/doGraderPerson.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/FileEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/libDirEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/QuestionEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/AnswerEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/paperLibDirEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/paperEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/paperItemSetEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/paperItemEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/TestEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/BulletinEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/UpFilePop.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/doTest.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/eLearn/selfClassSign.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

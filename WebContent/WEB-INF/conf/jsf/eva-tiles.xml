@@ -1,0 +1,522 @@
+
+<!DOCTYPE tiles-definitions
+    [
+        <!ELEMENT component-definitions (definition+)>
+        <!ELEMENT tiles-definitions (definition+)>
+        <!ELEMENT definition (put*, putList*)>
+        <!ATTLIST definition
+            name CDATA #REQUIRED
+            pages CDATA #IMPLIED
+            path CDATA #IMPLIED
+            extends CDATA #IMPLIED
+            role CDATA #IMPLIED
+            template CDATA #IMPLIED
+            controllerClass CDATA #IMPLIED
+            controllerUrl CDATA #IMPLIED>
+        <!ELEMENT put (#PCDATA)>
+        <!ATTLIST put
+            name CDATA #REQUIRED
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
+        <!ATTLIST putList
+            name CDATA #REQUIRED>
+        <!ELEMENT putListElements (add | item | bean)>
+        <!ELEMENT add (#PCDATA)>
+        <!ATTLIST add
+            value CDATA #IMPLIED
+            type (string | pages | template | definition) #IMPLIED
+            content CDATA #IMPLIED
+            direct (true | false) #IMPLIED>
+        <!ELEMENT bean (#PCDATA)>
+        <!ATTLIST bean
+            classtype CDATA #REQUIRED>
+        <!ELEMENT item (#PCDATA)>
+        <!ATTLIST item
+            value CDATA #REQUIRED
+            link CDATA #REQUIRED
+            classtype CDATA #IMPLIED
+            icon CDATA #IMPLIED
+            tooltip CDATA #IMPLIED>
+    ]>
+
+<tiles-definitions>
+	<definition name="/eva/ResultAnalyseDeptSelf.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/ResultAnalyseDeptSelf.jsp" />
+    </definition>
+    <definition name="/eva/GradeResultAnalyseSelf.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/GradeResultAnalyseSelf.jsp" />
+    </definition>
+    <definition name="/eva/ShowElecionResultAnalyse.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/ShowElecionResultAnalyse.jsp" />
+    </definition>
+    <definition name="/eva/electionResultAnalyse.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/electionResultAnalyse.jsp" />
+    </definition>
+	<definition name="/eva/addElectionSet.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/addElectionSet.jsp" />
+    </definition>
+    <definition name="/eva/SelfShowDeptResult.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/SelfShowDeptResult.jsp" />
+    </definition>
+    <definition name="/eva/EvaElectionResult.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaElectionResult.jsp" />
+    </definition>
+    <definition name="/eva/ShowTotalEvaResultAnalyse.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/ShowTotalEvaResultAnalyse.jsp" />
+    </definition>
+    <definition name="/eva/totalResultAnalyse.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/totalResultAnalyse.jsp" />
+    </definition>
+	<definition name="/eva/evaSelfObjectSeletion.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/evaSelfObjectSeletion.jsp" />
+    </definition>
+    <definition name="/eva/showVirtualResult.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/showVirtualResult.jsp" />
+    </definition>
+    <definition name="/eva/selfAuditPlanShow.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/selfAuditPlanShow.jsp" />
+    </definition>
+    <definition name="/eva/EvaMasterResult.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaMasterResult.jsp" />
+    </definition>
+    <definition name="/eva/EvaMasterResult2.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaMasterResult2.jsp" />
+    </definition>
+    <definition name="/eva/queryMasterList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/queryMasterList.jsp" />
+    </definition>
+	<definition name="/eva/addMixPlan.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/addMixPlan.jsp" />
+    </definition>
+	<definition name="/eva/virtualEvaPlanList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/virtualEvaPlanList.jsp" />
+    </definition>
+    <definition name="/eva/addVirtralPlan.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/addVirtralPlan.jsp" />
+    </definition>
+	<definition name="/eva/setPlanEleciton.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/setPlanEleciton.jsp" />
+    </definition>
+    <definition name="/eva/workSumShow.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/workSumShow.jsp" />
+    </definition>
+    <definition name="/eva/planElecitonCtorEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/planElecitonCtorEdit.jsp" />
+    </definition>
+	<definition name="/eva/EvaCaculat.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaCaculat.jsp" />
+    </definition>
+    <definition name="/eva/GroupPersonList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/GroupPersonList.jsp" />
+    </definition>
+	<definition name="/eva/selfAuditPlan.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/selfAuditPlan.jsp" />
+    </definition>
+    <definition name="/eva/EvaElectionShow.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaElectionShow.jsp" />
+    </definition>
+    <definition name="/eva/evaObjectSeletion.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/evaObjectSeletion.jsp" />
+    </definition>
+    <definition name="/eva/selEvaGroup.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/selEvaGroup.jsp" />
+    </definition>
+    <definition name="/eva/addGoupPerson.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/addGoupPerson.jsp" />
+    </definition>
+	<definition name="/eva/AuditGroupMgr.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/AuditGroupMgr.jsp" />
+    </definition>
+    <definition name="/eva/evaGroupEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/evaGroupEdit.jsp" />
+    </definition>
+	<definition name="/eva/setPlanGrade.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/setPlanGrade.jsp" />
+    </definition>
+    <definition name="/eva/selEvaTemplate.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/selEvaTemplate.jsp" />
+    </definition>
+    <definition name="/eva/setPlanTemplate.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/setPlanTemplate.jsp" />
+    </definition>
+    <definition name="/eva/planGradeItemEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/planGradeItemEdit.jsp" />
+    </definition>
+    <definition name="/eva/changeGrade.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/changeGrade.jsp" />
+    </definition>
+	<definition name="/eva/evaObjectScoreList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/evaObjectScoreList.jsp" />
+    </definition>
+	<definition name="/eva/selfTemplateSetScore.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/selfTemplateSetScore.jsp" />
+    </definition>
+	<definition name="/eva/modifySelfJobDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/modifySelfJobDetail.jsp" />
+    </definition>
+    <definition name="/eva/EvaPlanList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaPlanList.jsp" />
+    </definition>
+    <definition name="/eva/EvaPlanAdd.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaPlanAdd.jsp" />
+    </definition>
+    <definition name="/eva/EvaPlanAudit.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaPlanAudit.jsp" />
+    </definition>
+    <definition name="/eva/EvaPlanAuditEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaPlanAuditEdit.jsp" />
+    </definition>
+    <definition name="/eva/EvaGrade.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/eva/EvaGrade.jsp" />
+    </definition>
+    <definition name="/eva/EvaGradeChild.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaGradeChild.jsp" />
+    </definition>
+    <definition name="/eva/GradeDictEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/GradeDictEdit.jsp" />
+    </definition>
+    <definition name="/eva/GradeItemEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/GradeItemEdit.jsp" />
+    </definition>
+
+    <definition name="/eva/EvaItemsMgr.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/eva/EvaItemsMgr.jsp" />
+    </definition>
+    <definition name="/eva/EvaItemsMgrChild.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaItemsMgrChild.jsp" />
+    </definition>
+    <definition name="/eva/itemKeySetEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/itemKeySetEdit.jsp" />
+    </definition>
+    <definition name="/eva/itemKeyEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/itemKeyEdit.jsp" />
+    </definition>
+    <definition name="/eva/EvaTemplateMgr.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/eva/EvaTemplateMgr.jsp" />
+    </definition>
+    <definition name="/eva/EvaTemplateMgrChild.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaTemplateMgrChild.jsp" />
+    </definition>
+
+    <definition name="/eva/templateDirEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/templateDirEdit.jsp" />
+    </definition>
+    <definition name="/eva/templateEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/templateEdit.jsp" />
+    </definition>
+    <definition name="/eva/templateDefine.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/templateDefine.jsp" />
+    </definition>
+    <definition name="/eva/templateDefineChild.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/templateDefineChild.jsp" />
+    </definition>
+    <definition name="/eva/templateItemSetEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/templateItemSetEdit.jsp" />
+    </definition>
+    <definition name="/eva/templateItemEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/templateItemEdit.jsp" />
+    </definition>
+    <definition name="/eva/EvaContentSet.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaContentSet.jsp" />
+    </definition>
+    <definition name="/eva/EvaObjectSet.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaObjectSet.jsp" />
+    </definition>
+    <definition name="/eva/EvaObjectsList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaObjectsList.jsp" />
+    </definition>
+    <definition name="/eva/PersonQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/PersonQuery.jsp" />
+    </definition>
+    <definition name="/eva/setMaster.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/setMaster.jsp" />
+    </definition>
+    <definition name="/eva/addMaster.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/addMaster.jsp" />
+    </definition>
+    <definition name="/eva/EvaExecute.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaExecute.jsp" />
+    </definition>
+    <definition name="/eva/EvaScoreSet.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaScoreSet.jsp" />
+    </definition>
+    <definition name="/eva/EvaScoreObjectsList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaScoreObjectsList.jsp" />
+    </definition>
+    <definition name="/eva/InputScore.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/InputScore.jsp" />
+    </definition>
+    <definition name="/eva/TemplateSetScore.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/TemplateSetScore.jsp" />
+    </definition>
+    <definition name="/eva/EvaCalculate.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaCalculate.jsp" />
+    </definition>
+      <!-- wang wei -->
+    <definition name="/eva/SelfEvaSetScore.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/SelfEvaSetScore.jsp" />
+    </definition>
+    <!-- fang xia -->
+    <definition name="/eva/EvaResultAnalyse.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaResultAnalyse.jsp" />
+    </definition>
+    <definition name="/eva/ShowEvaResultAnalyse.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/ShowEvaResultAnalyse.jsp" />
+    </definition>
+    <definition name="/eva/ResultAnalyseTemplate.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/ResultAnalyseTemplate.jsp" />
+    </definition>
+    <definition name="/eva/ResultAnalyse.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/ResultAnalyse.jsp" />
+    </definition>
+    
+    <definition name="/eva/EvaGradeResultAnalyse.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaGradeResultAnalyse.jsp" />
+    </definition>
+    <definition name="/eva/GradeResultAnalyse.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/GradeResultAnalyse.jsp" />
+    </definition>
+    <definition name="/eva/GradeAnalyseResult.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/GradeAnalyseResult.jsp" />
+    </definition>
+    <!-- fang xia 009-->
+     <definition name="/eva/EvaResultAudit.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/eva/EvaResultAudit.jsp" />
+    </definition>
+    <definition name="/eva/EvaResultAuditList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaResultAuditList.jsp" />
+    </definition>
+    <definition name="/eva/EvaResultList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaResultList.jsp" />
+    </definition>
+     <definition name="/eva/showEvaResultList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/showEvaResultList.jsp" />
+    </definition>
+    <definition name="/eva/EvaResultAuditEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaResultAuditEdit.jsp" />
+    </definition>
+    
+    <definition name="/eva/EvaResultpublish.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/eva/EvaResultpublish.jsp" />
+    </definition>
+    <definition name="/eva/EvaResultpublishList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaResultpublishList.jsp" />
+    </definition>
+     <!-- qiaolei009 -->
+     <!-- qiaolei -->
+    <definition name="/eva/SelfJobEstimate.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/eva/SelfJobEstimate.jsp" />
+    </definition>
+    
+    <definition name="/eva/ShowSelfJobDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/ShowSelfJobDetail.jsp" />
+    </definition>
+    
+    <definition name="/eva/ShowLeadJobDetail.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/ShowLeadJobDetail.jsp" />
+    </definition>
+    
+    <definition name="/eva/LeadJobEstimate.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/LeadJobEstimate.jsp" />
+    </definition>
+    
+    <definition name="/eva/EditJobContent.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EditJobContent.jsp" />
+    </definition>
+    
+    <definition name="/eva/ShowJobContent.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/ShowJobContent.jsp" />
+    </definition>
+    
+    <definition name="/eva/ShowPostEvaResultAnalyse.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/eva/ShowPostEvaResultAnalyse.jsp" />
+    </definition>
+    <definition name="/eva/PostResultAnalyse.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/PostResultAnalyse.jsp" />
+    </definition>
+    <definition name="/eva/PosttAnalyseResul.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/PostAnalyseResult.jsp" />
+    </definition>
+    <definition name="/eva/ShowTaskEvaResultAnalyse.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/eva/ShowTaskEvaResultAnalyse.jsp" />
+    </definition>
+     <definition name="/eva/taskResultAnalyse.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/taskResultAnalyse.jsp" />
+    </definition>
+    <!-- 011 -->
+    <definition name="/eva/EvaAimCheckSet.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaAimCheckSet.jsp" />
+    </definition>
+    <definition name="/eva/EvaAimCheckObjectList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaAimCheckObjectList.jsp" />
+    </definition>
+    <definition name="/eva/personQuery2.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/personQuery2.jsp" />
+    </definition>
+    <definition name="/eva/addSelfJobDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/addSelfJobDetail.jsp" />
+    </definition>
+    <definition name="/eva/EvaPlanEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaPlanEdit.jsp" />
+    </definition>
+    <!-- 013 -->
+    <definition name="/eva/KeyItemInfo.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/KeyItemInfo.jsp" />
+    </definition>
+    
+     <!--015-->
+     <definition name="/eva/TemMasterManager.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/TemMasterManager.jsp" />
+    </definition>
+    <definition name="/eva/PersonQuery3.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/PersonQuery3.jsp" />
+    </definition>
+    <definition name="/eva/TempMasterPasswordEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/TempMasterPasswordEdit.jsp" />
+    </definition>
+     <!--016-->
+    <definition name="/eva/ShowSelfJobDetailAduit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/ShowSelfJobDetailAduit.jsp" />
+    </definition>
+    <definition name="/eva/jobEstimateLog.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/jobEstimateLog.jsp" />
+    </definition>
+    <definition name="/eva/taskEstimateLog.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/taskEstimateLog.jsp" />
+    </definition>
+   <definition name="/eva/tempMasterLogin.tiles" extends="layout.busitemplateLogin" >
+        <put name="body" value="/pages/eva/tempMasterLogin.jsp" />
+    </definition>
+    <definition name="/eva/tempMasterMain.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/tempMasterMain.jsp" />
+    </definition>
+    <definition name="/eva/setTempMaster.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/setTempMaster.jsp" />
+    </definition>
+    <definition name="/eva/setPurview.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/setPurview.jsp" />
+    </definition>
+    <!--层次考核-->
+     <definition name="/eva/setLevelPurview.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/setLevelPurview.jsp" />
+    </definition>
+     <definition name="/eva/addLevelPruview.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/addLevelPruview.jsp" />
+    </definition>
+    <definition name="/eva/setDefaultLevelPurview.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/setDefaultLevelPurview.jsp" />
+    </definition>
+     <definition name="/eva/addDefaultLevelPruview.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/addDefaultLevelPruview.jsp" />
+    </definition>
+    
+    <definition name="/eva/EvaTaskSet.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaTaskSet.jsp" />
+    </definition>
+    <definition name="/eva/EvaTaskObjectList.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/EvaTaskObjectList.jsp" />
+    </definition>
+    
+    <definition name="/eva/SelfTaskEstimate.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/SelfTaskEstimate.jsp" />
+    </definition>
+    <definition name="/eva/taskPersonQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/taskPersonQuery.jsp" />
+    </definition>
+    
+    <definition name="/eva/ShowSelfTaskDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/ShowSelfTaskDetail.jsp" />
+    </definition>
+    <definition name="/eva/ShowSelfTaskDetailQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/ShowSelfTaskDetailQuery.jsp" />
+    </definition>
+    <definition name="/eva/addSelfTaskDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/addSelfTaskDetail.jsp" />
+    </definition>
+     <definition name="/eva/modSelfTaskDetail.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/modSelfTaskDetail.jsp" />
+    </definition>
+     <definition name="/eva/SelfTaskDetailQuery.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/SelfTaskDetailQuery.jsp" />
+    </definition>
+    <definition name="/eva/LeadTaskEstimate.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/LeadTaskEstimate.jsp" />
+    </definition>
+    <definition name="/eva/ShowLeadTaskDetail.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/ShowLeadTaskDetail.jsp" />
+    </definition>
+     <definition name="/eva/approveTask.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/approveTask.jsp" />
+    </definition>
+    
+    <definition name="/eva/doApproveTask.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/doApproveTask.jsp" />
+    </definition>
+    <definition name="/eva/taskProcessMgr.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/taskProcessMgr.jsp" />
+    </definition>
+    
+     <definition name="/eva/addTaskProcess.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/addTaskProcess.jsp" />
+    </definition>
+     <definition name="/eva/selfShowEvaResult.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/selfShowEvaResult.jsp" />
+    </definition>
+    <definition name="/eva/showSelfEvaResult.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/showSelfEvaResult.jsp" />
+    </definition>
+    <definition name="/eva/EvaDeptList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaDeptList.jsp" />
+    </definition>
+    <definition name="/eva/setDeptMaster.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/setDeptMaster.jsp" />
+    </definition>
+    <definition name="/eva/EvaDeptListScore.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaDeptListScore.jsp" />
+    </definition>
+    <definition name="/eva/InputDeptScore.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/InputDeptScore.jsp" />
+    </definition>
+    <definition name="/eva/showEvaDeptResultAnalyse.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/showEvaDeptResultAnalyse.jsp" />
+    </definition>
+     <definition name="/eva/addDeptMaster.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/addDeptMaster.jsp" />
+    </definition>
+    <definition name="/eva/showGradeDeptResultAnalyse.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/showGradeDeptResultAnalyse.jsp" />
+    </definition>
+    <definition name="/eva/EvaTeamList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaTeamList.jsp" />
+    </definition>
+    <definition name="/eva/selTeam.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/selTeam.jsp" />
+    </definition>
+    <definition name="/eva/setTeamMaster.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/setTeamMaster.jsp" />
+    </definition>
+    <definition name="/eva/EvaTeamListScore.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaTeamListScore.jsp" />
+    </definition>
+    <definition name="/eva/InputTeamScore.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/InputTeamScore.jsp" />
+    </definition>
+    <definition name="/eva/showEvaTeamResultAnalyse.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/showEvaTeamResultAnalyse.jsp" />
+    </definition>
+    <definition name="/eva/showEvaTeamGradeAnalyse.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/showEvaTeamGradeAnalyse.jsp" />
+    </definition>
+    <definition name="/eva/inputWorkSum.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/eva/inputWorkSum.jsp" />
+    </definition>
+    <definition name="/eva/workSumEdit.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/workSumEdit.jsp" />
+    </definition>
+    <definition name="/eva/EvaCaclModeList.tiles" extends="layout.busitemplateSelf" >
+        <put name="body" value="/pages/eva/EvaCaclModeList.jsp" />
+    </definition>
+</tiles-definitions>

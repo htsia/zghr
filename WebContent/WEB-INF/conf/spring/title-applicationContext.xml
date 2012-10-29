@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="empTitleAppayDao" class="com.hr319wg.title.dao.EmpTitleAppayDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="empTitleApplyService" class="com.hr319wg.title.service.EmpTitleApplyService">
+        <property name="empTitleAppayDao" ref="empTitleAppayDao"/>
+        <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="empTitleApplayUcc" class="com.hr319wg.title.ucc.impl.EmpTitleApplyUcc">
+        <property name="empTitleApplyService" ref="empTitleApplyService"/>
+    </bean>	
+    <bean id="titleContentSetDao" class="com.hr319wg.title.dao.TitleContentSetDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="titleContentSetServcie" class="com.hr319wg.title.service.TitleContentSetService">
+        <property name="titleContentSetDao" ref="titleContentSetDao"/>
+    </bean>
+    <bean id="titleContentSetUcc" class="com.hr319wg.title.ucc.impl.TitleContentSetUCC">
+        <property name="titleContentSetServcie" ref="titleContentSetServcie"/>
+    </bean>	
+</beans>

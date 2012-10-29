@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+  
+  
+        <!--  weitao add start -->
+   <managed-bean>
+		<managed-bean-name>ccp_queryPersonbBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.PartyQueryInfoBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>transferucc</property-name>
+			<value>#{ccp_transferUCC}</value>
+		</managed-property>
+	</managed-bean>
+        
+        
+	<managed-bean>
+		<managed-bean-name>ccp_ManyPersonBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.ManyPersonEditBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>personucc</property-name>
+			<value>#{emp_personUCC}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>ccp_DevlopNumerBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.DevelopPartyNumberBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>personucc</property-name>
+			<value>#{emp_personUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>partymemberucc</property-name>
+			<value>#{ccp_partymemberUCC}</value>
+		</managed-property>
+	</managed-bean>
+    <!--  weitao add end -->
+	<managed-bean>
+		<managed-bean-name>ccp_DataUploadBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.DataUploadBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>infosetucc</property-name>
+			<value>#{sys_infoSetUccImpl}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>datauploaducc</property-name>
+			<value>#{emp_datauploadUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>showitemucc</property-name>
+			<value>#{sys_showitemsUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>ccp_transListBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.TransListBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>transferucc</property-name>
+			<value>#{ccp_transferUCC}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>ccp_transEditBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.TransEditBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>transferucc</property-name>
+			<value>#{ccp_transferUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/ccp/RelationLeave.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/ccp/RelationLeaveEdit.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/RelationLeave.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/RelationLeaveEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/RelationLeave.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/RelationChange.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/ccp/RelationChange.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/RelationChangeList.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>change</from-outcome>
+			<to-view-id>/ccp/RelationInSysChange.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/RelationChangeList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/ccp/RelationChange.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/RelationChangeList.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/RelationReceive.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/ccp/RelationReceive.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/RelationReceiveList.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/RelationReceiveList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/ccp/RelationReceive.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/RelationReceiveList.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/RelationLeaveSystem.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/ccp/RelationLeaveSysEdit.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/RelationLeaveSystem.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/RelationLeaveSysEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/RelationLeaveSystem.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/RelationInSystem.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/ccp/RelationInSysEdit.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/RelationInSystem.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/RelationInSysEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/RelationInSystem.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/RelationInSysChange.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/RelationInSystem.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>back</from-outcome>
+			<to-view-id>/ccp/RelationChange.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<managed-bean>
+		<managed-bean-name>ccp_PartyAddBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.PartyAddBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>partyucc</property-name>
+			<value>#{ccp_partyUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/ccp/PartyAdd.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/ccp/PartyAdd.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<managed-bean>
+		<managed-bean-name>ccp_PartyQueryBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.PartyInfoQueryBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>partyucc</property-name>
+			<value>#{ccp_partyUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>ccp_PartyEditBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.PartyEditBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>partyucc</property-name>
+			<value>#{ccp_partyUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>orgucc</property-name>
+			<value>#{org_orgUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>ccp_PartyFeeListBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.PartyFeeListBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>partyucc</property-name>
+			<value>#{ccp_partyUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>ccp_PartyFeeEditBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.PartyFeeEditBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>partyucc</property-name>
+			<value>#{ccp_partyUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>orgucc</property-name>
+			<value>#{org_orgUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>ccp_PartySortBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.PartySortBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>partyucc</property-name>
+			<value>#{ccp_partyUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/ccp/PartyInfoDetailList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/PartyFeeDetailList.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>info</from-outcome>
+			<to-view-id>/ccp/PartyInfoDetail.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/ccp/PartyInfoDetail.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/PartyInfoDetailList.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/PartyFeeDetailList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/PartyFeeDetailList.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>info</from-outcome>
+			<to-view-id>/ccp/PartyFeeDetail.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/PartyFeeDetail.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/PartyFeeDetailList.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+	<managed-bean>
+		<managed-bean-name>ccp_PartyMemberListBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.PartyMemberListBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>partymemberucc</property-name>
+			<value>#{ccp_partymemberUCC}</value>
+		</managed-property>
+		
+		<managed-property>
+			<property-name>transferucc</property-name>
+			<value>#{ccp_transferUCC}</value>
+		</managed-property>
+		
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>ccp_PartyMemberEditBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.PartyMemberEditBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>partymemberucc</property-name>
+			<value>#{ccp_partymemberUCC}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>orgucc</property-name>
+			<value>#{org_orgUCC}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>ccp_PersonListBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.PersonListBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>partymemberucc</property-name>
+			<value>#{ccp_partymemberUCC}</value>
+		</managed-property>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/ccp/member/InfoDetailList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/member/InfoDetailList.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>info</from-outcome>
+			<to-view-id>/ccp/member/InfoDetail.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/member/InfoDetail.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/member/InfoDetailList.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>info</from-outcome>
+			<to-view-id>/ccp/member/InfoDetail.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/import/PerDataUpload.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/import/PerDataUpload.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>download</from-outcome>
+			<to-view-id>/import/DownloadTemplate.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>perInfoList</from-outcome>
+			<to-view-id>/ccp/import/PerDataUploadList.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/import/PerDataUploadList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>upload</from-outcome>
+			<to-view-id>/ccp/import/PerDataUpload.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/wage/set/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/import/OrgDataUpload.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/ccp/import/OrgDataUpload.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>download</from-outcome>
+			<to-view-id>/import/DownloadTemplate.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>orgInfoList</from-outcome>
+			<to-view-id>/ccp/import/OrgDataUploadList.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ccp/import/OrgDataUploadList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>upload</from-outcome>
+			<to-view-id>/ccp/import/OrgDataUpload.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/wage/set/SuccessClosePop.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>ccp_PartySelPersonBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.ccp.web.PartySelPersonBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>partymemberucc</property-name>
+			<value>#{ccp_partymemberUCC}</value>
+		</managed-property>
+	</managed-bean>
+</faces-config>

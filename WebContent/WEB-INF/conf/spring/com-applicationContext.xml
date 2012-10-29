@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="self_surveyUCC" class="com.hr319wg.sys.ucc.impl.SurveyUCC">
+        <property name="surveyservice" ref="self_surveyservice"/>
+        <property name="api" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="self_surveyservice" class="com.hr319wg.sys.service.SurveyService">
+        <property name="surveydao" ref="self_surveydao"/>
+        <property name="api" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="self_surveydao" class="com.hr319wg.sys.dao.SurveyDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+	
+    <bean id="self_advicesUCC" class="com.hr319wg.sys.ucc.impl.AdvicesUCC">
+        <property name="advservice" ref="self_advservice"/>
+        <property name="orgapi" ref="org_OrgAPI"/>
+    </bean>
+    <bean id="self_advservice" class="com.hr319wg.sys.service.AdvicesService">
+        <property name="advdao" ref="self_advicesdao"/>
+    </bean>
+    <bean id="self_advicesdao" class="com.hr319wg.sys.dao.AdvicesDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+  
+    <bean id="sys_GroupUCC" class="com.hr319wg.sys.ucc.impl.SMGroupUCC">
+        <property name="smservice" ref="sys_groupservice"/>
+    </bean>
+    <bean id="sys_groupservice" class="com.hr319wg.sys.service.SMGroupService">
+        <property name="activeapi" ref="sys_activePageApi"/>
+        <property name="smdao" ref="sys_groupdao"/>
+    </bean>
+
+    <bean id="sys_groupdao" class="com.hr319wg.sys.dao.SMGroupDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="sys_SMDAO"     class="com.hr319wg.sys.dao.ShortMessageDAO">
+        <property name="hibernatetemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="sys_SMService"     class="com.hr319wg.sys.service.ShortMessageService">
+            <property name="smdao">
+                <ref bean="sys_SMDAO" />
+            </property>
+    </bean>
+    <bean id="sys_SMUCC"
+            class="com.hr319wg.sys.ucc.impl.ShortMessageUCC">
+            <property name="smservice">
+                <ref bean="sys_SMService" />
+            </property>
+    </bean>
+    <bean id="sys_forumUCC" class="com.hr319wg.sys.ucc.impl.UseForumUCC">
+        <property name="forumservice" ref="sys_forumservice"/>
+    </bean>
+    <bean id="sys_forumservice" class="com.hr319wg.sys.service.UseForumService">
+        <property name="forumdao" ref="sys_forumdao"/>
+    </bean>
+    <bean id="sys_forumdao" class="com.hr319wg.sys.dao.UseForumDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+     
+    <bean id="self_forumUCC" class="com.hr319wg.sys.ucc.impl.ForumUCC">
+        <property name="forumservice" ref="self_forumservice"/>
+         <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
+    <bean id="self_forumservice" class="com.hr319wg.sys.service.ForumService">
+        <property name="forumdao" ref="self_forumdao"/>
+    </bean>
+    <bean id="self_forumdao" class="com.hr319wg.sys.dao.ForumDAO">
+        <property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    
+</beans>
