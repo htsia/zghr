@@ -8,6 +8,10 @@
 <x:saveState value="#{cont_contPersonBB}"/>
 <h:form id="form1">
     <h:inputHidden id="init_a" value="#{cont_contPersonBB.init_b}"/>
+    <f:verbatim>
+    <table height=100% width=100% align="center">
+        <tr><td height="1">
+    </f:verbatim>
     <h:panelGrid styleClass="td_title" width="100%" border="0" cellpadding="0" cellspacing="6" bgcolor="#FFFFFF" columns="2">
        <h:panelGroup>
         <h:graphicImage value="/images/tips.gif" />
@@ -40,21 +44,12 @@
         </h:panelGrid>
         
      </h:panelGrid>
-
+	<f:verbatim>
+		</td></tr><tr><td><div style='width:100%;height:98%;overflow:auto' id=datatable>
+	</f:verbatim>
     <x:dataTable value="#{cont_contPersonBB.endps}" var="list"  rowIndexVar="index" align="center"
                      headerClass="td_top" id="dateList"
-                     rowClasses="td_middle" styleClass="table03" width="95%" border="1">
-             <h:column>
-                  <c:facet name="header">
-                      <c:verbatim escape="false">
-                      <input type="checkbox" name="chkAll" onclick="selectAll(document.form1.chkAll,document.form1.selected_ids)"/>
-                      </c:verbatim>
-                      </c:facet>
-                  <c:verbatim escape="false"><input type="checkbox" name="selected_ids" value="</c:verbatim>
-                  <h:outputText value="#{list.personId}"/>
-                  <c:verbatim>"></c:verbatim>
-              </h:column>
-
+                     rowClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center" styleClass="table03" width="95%" border="1">
             <h:column>
                 <c:facet name="header"><h:outputText value="ÐòºÅ"/></c:facet>
                 <h:outputText value="#{index+1}"/>
@@ -84,6 +79,9 @@
                 <h:outputText value="#{list.contEndDate}"/>
             </h:column>
 </x:dataTable>
+<f:verbatim>
+			</div></td></tr></table>
+		</f:verbatim>
 </h:form>
 <script type="text/javascript">
    setDataTableOver("form1:dateList");
