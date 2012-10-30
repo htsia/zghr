@@ -4,6 +4,7 @@ public class AttFingerBO {
 	
 	private String ID;
 	private String name;
+	private String sex;
 	private String personCode;
 	private String personTypeName;
 	private String deptName;
@@ -25,6 +26,12 @@ public class AttFingerBO {
 	private String hasFingerDesc;
 	private String isManagerDesc;
 	
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 	public String getSecDeptName() {
 		return secDeptName;
 	}

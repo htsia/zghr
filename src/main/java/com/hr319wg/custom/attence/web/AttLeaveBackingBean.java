@@ -72,7 +72,16 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	private String toLeave="";
 	private String personSex="male";//Ä¬ÈÏÄÐÐÔ
 	private String userId;
+	private boolean selMyAtt;
 	
+	public boolean isSelMyAtt() {
+		return selMyAtt;
+	}
+
+	public void setSelMyAtt(boolean selMyAtt) {
+		this.selMyAtt = selMyAtt;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
@@ -350,6 +359,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 			this.personType = null;
 			this.beginDate = null;
 			this.endDate = null;
+			this.selMyAtt=false;
 			this.selApply = true;
 			this.selAuditing = true;
 			this.selAudited = true;
@@ -571,6 +581,10 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 		this.leaveTypeList = leaveTypeList;
 	}
 
+	public void qryMyAtt(ValueChangeEvent event) {
+		selMyAtt = event.getNewValue().toString().equals("true");
+	}
+	
 	public void qryApply(ValueChangeEvent event) {
 		selApply = event.getNewValue().toString().equals("true");
 	}
@@ -646,9 +660,6 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	public void doQuery() {
 		try {
 			List sList = new ArrayList();
-			if (selApply) {
-				sList.add(AttConstants.STATUS_APPLY);
-			}
 			if (selAuditing) {
 				sList.add(AttConstants.STATUS_AUDIT);
 			}
@@ -676,7 +687,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 				userID = super.getUserInfo().getUserId();
 			}
 			list = attBusiService.getAttLeaveBO(mypage, userID, status,
-					beginDate, endDate, orgID, personType, nameStr, createType, this.inself, this.ismanager, super.getUserInfo().getUserId());
+					beginDate, endDate, orgID, personType, nameStr, createType, this.inself, this.ismanager, super.getUserInfo().getUserId(), this.selMyAtt);
 			if (list != null && list.size() > 0) {
 				for (int i = 0; i < list.size(); i++) {
 					AttLeaveBO bo = (AttLeaveBO) list.get(i);

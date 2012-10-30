@@ -64,7 +64,15 @@ public class AttRestBackingBean extends BaseBackingBean {
 	private String toRest;
 	private String ismanager;	
 	private String userId;
+	private boolean selMyAtt;
 	
+	public boolean isSelMyAtt() {
+		return selMyAtt;
+	}
+
+	public void setSelMyAtt(boolean selMyAtt) {
+		this.selMyAtt = selMyAtt;
+	}
 
 	public String getUserId() {
 		return userId;
@@ -581,9 +589,6 @@ public class AttRestBackingBean extends BaseBackingBean {
 	public void doQuery() {
 		try {
 			List sList = new ArrayList();
-			if (selApply) {
-				sList.add(AttConstants.STATUS_APPLY);
-			}
 			if (selAuditing) {
 				sList.add(AttConstants.STATUS_AUDIT);
 			}
@@ -614,7 +619,7 @@ public class AttRestBackingBean extends BaseBackingBean {
 			if(querySelf){
 				userID = super.getUserInfo().getUserId();
 			}
-			list = attBusiService.getAttRestBO(mypage, userID, status, beginDate, endDate, orgID, personType, nameStr, createType, this.inself, this.ismanager, super.getUserInfo().getUserId());
+			list = attBusiService.getAttRestBO(mypage, userID, status, beginDate, endDate, orgID, personType, nameStr, createType, this.inself, this.ismanager, super.getUserInfo().getUserId(), this.selMyAtt);
 			if(list!=null&&list.size()>0){
 				for(int i=0;i<list.size();i++){
 					AttRestBO bo=(AttRestBO)list.get(i);
@@ -813,6 +818,8 @@ public class AttRestBackingBean extends BaseBackingBean {
 		public void setLogList(List logList) {
 			this.logList = logList;
 		}
-		
+		public void qryMyAtt(ValueChangeEvent event) {
+			selMyAtt = event.getNewValue().toString().equals("true");
+		}
 		
 }

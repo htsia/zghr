@@ -313,40 +313,40 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public List getAttLeaveBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType,
 			String nameStr, String createType, String inself, String isManager,
-			String operUserID) throws SysException {
+			String operUserID, boolean myAtt) throws SysException {
 		return this.attBusiDAO.getAttLeaveBO(pagevo, personId, status,
 				beginDate, endDate, orgID, personType, nameStr, createType,
-				inself, isManager, operUserID);
+				inself, isManager, operUserID, myAtt);
 	}
 
 	@Override
 	public List getAttOutBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType,
-			String nameStr, String createType, String inself, String isManager, String operUserID)
+			String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)
 			throws SysException {
 		return this.attBusiDAO.getAttOutBO(pagevo, personId, status, beginDate,
 				endDate, orgID, personType, nameStr, createType, inself, isManager,
-				operUserID);
+				operUserID, myAtt);
 	}
 
 	@Override
 	public List getAttOvertimeBO(PageVO pagevo, String personId,
 			String[] status, String beginDate, String endDate, String orgID,
 			String personType, String nameStr, String createType,
-			String inself, String isManager, String operUserID) throws SysException {
+			String inself, String isManager, String operUserID, boolean myAtt) throws SysException {
 		return this.attBusiDAO.getAttOvertimeBO(pagevo, personId, status,
 				beginDate, endDate, orgID, personType, nameStr, createType,
-				inself, isManager, operUserID);
+				inself, isManager, operUserID, myAtt);
 	}
 
 	@Override
 	public List getAttRestBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType,
-			String nameStr, String createType, String inself, String isManager, String operUserID)
+			String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)
 			throws SysException {
 		return this.attBusiDAO.getAttRestBO(pagevo, personId, status,
 				beginDate, endDate, orgID, personType, nameStr, createType,
-				inself, isManager, operUserID);
+				inself, isManager, operUserID, myAtt);
 	}
 
 	@Override

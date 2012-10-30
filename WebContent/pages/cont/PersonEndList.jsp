@@ -19,7 +19,7 @@
         </h:panelGroup>
     </h:panelGrid>
 
-    <h:panelGrid  border="0"  align="center" columns="1" width="95%">
+    <h:panelGrid  border="0"  align="center" columns="2" width="95%">
          <h:panelGrid  border="0"  cellspacing="0" align="left" columns="3" >
              <h:outputText value="姓名或员工编号："/>
              <h:inputText styleClass="input" size="20" id="personNameQry" value="#{cont_contPersonBB.personNameQry}"/>
