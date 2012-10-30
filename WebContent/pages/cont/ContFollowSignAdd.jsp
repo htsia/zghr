@@ -153,6 +153,10 @@ function doQueryManyPerson(){
 
 <h:form id="form1">
 <h:inputHidden id="str" value="#{cont_contFollowSignBB.selectPersonIds}"/>
+<c:verbatim>
+       <table height=100% width=100% align="center">
+       <tr><td><div style='width:100%;height:100%;overflow:auto' id=datatable>
+    </c:verbatim>
 <h:panelGrid width="100%" border="0" cellspacing="6" cellpadding="0"  styleClass="td_title">
    <h:panelGroup>
        <h:graphicImage value="/images/tips.gif" />
@@ -336,7 +340,11 @@ function doQueryManyPerson(){
                 <h:commandButton styleClass="button01" value="保存" action="#{cont_contFollowSignBB.save_add}"  onclick="if( checkSubmit(document.forms(0))&&checkAll(document.forms(0)) ){ return confirmSave(document.forms(0));}else{return false;}"/>>
                 <h:commandButton styleClass="button01" value="取消返回" action="#{cont_contFollowSignBB.forwardList}"/>
 </h:panelGrid>
-
+<c:verbatim>
+</div>
+</td></tr>
+</table>
+</c:verbatim>
 </h:form>
 
 <c:verbatim>
