@@ -33,9 +33,6 @@
     <h:panelGrid width="98%" columns="1">
 	    <h:panelGrid align="right" columns="1">
 	       <h:panelGroup>
-	       		 <h:outputText value="我的单据"></h:outputText>
-                 <h:selectBooleanCheckbox value="#{attOutApplyBB.selMyAtt}" onclick="submit();" valueChangeListener="#{attOutApplyBB.qryMyAtt}"></h:selectBooleanCheckbox>
-                 <h:outputText value="  "></h:outputText>
                  <h:outputText value="报批"></h:outputText>
                  <h:selectBooleanCheckbox value="#{attOutApplyBB.selAuditing}" onclick="submit();" valueChangeListener="#{attOutApplyBB.qryAuditing}"></h:selectBooleanCheckbox>
                  <h:outputText value="  "></h:outputText>

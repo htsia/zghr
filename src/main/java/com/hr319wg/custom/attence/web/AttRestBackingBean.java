@@ -64,15 +64,7 @@ public class AttRestBackingBean extends BaseBackingBean {
 	private String toRest;
 	private String ismanager;	
 	private String userId;
-	private boolean selMyAtt;
 	
-	public boolean isSelMyAtt() {
-		return selMyAtt;
-	}
-
-	public void setSelMyAtt(boolean selMyAtt) {
-		this.selMyAtt = selMyAtt;
-	}
 
 	public String getUserId() {
 		return userId;
@@ -420,7 +412,18 @@ public class AttRestBackingBean extends BaseBackingBean {
 	}
 	public void delete(){
 		try{
-			this.attBusiService.deleteRest(id);
+			List logList=this.attBusiService.getAttLogBOById(id);
+			if(logList!=null&&logList.size()>0){
+				for(int i=0;i<logList.size();i++){
+					AttLogBO log=(AttLogBO)logList.get(i);
+					attBusiService.deleteAttLogBO(log.getLogId());
+				}
+			}
+			AttRestBO bo=(AttRestBO)this.attBusiService.findBOById(AttRestBO.class,id);
+			if(bo.getProcessId()!=null){
+				activitiToolService.deleteProcessInstance(bo.getProcessId());				
+			}
+			attBusiService.deleteBO(AttRestBO.class, id);
 			super.showMessageDetail("操作成功！");
 		}catch(Exception e){
 			e.printStackTrace();
@@ -589,6 +592,9 @@ public class AttRestBackingBean extends BaseBackingBean {
 	public void doQuery() {
 		try {
 			List sList = new ArrayList();
+			if (selApply) {
+				sList.add(AttConstants.STATUS_APPLY);
+			}
 			if (selAuditing) {
 				sList.add(AttConstants.STATUS_AUDIT);
 			}
@@ -619,7 +625,7 @@ public class AttRestBackingBean extends BaseBackingBean {
 			if(querySelf){
 				userID = super.getUserInfo().getUserId();
 			}
-			list = attBusiService.getAttRestBO(mypage, userID, status, beginDate, endDate, orgID, personType, nameStr, createType, this.inself, this.ismanager, super.getUserInfo().getUserId(), this.selMyAtt);
+			list = attBusiService.getAttRestBO(mypage, userID, status, beginDate, endDate, orgID, personType, nameStr, createType, this.inself, this.ismanager, super.getUserInfo().getUserId());
 			if(list!=null&&list.size()>0){
 				for(int i=0;i<list.size();i++){
 					AttRestBO bo=(AttRestBO)list.get(i);
@@ -688,17 +694,12 @@ public class AttRestBackingBean extends BaseBackingBean {
 			}
 			attBusiService.saveOrUpdateBO(restBo);
 			this.id=restBo.getId();
-			String result = this.attBusiService.applyRest(super.getUserInfo().getUserId(),this.id);
-			if(result==null){
-				this.toRest="1";//到中间页面后，跳转到
-				return "successleave";				
-			}else{
-				super.showMessageDetail(result);
-			}
+			this.attBusiService.applyRest(super.getUserInfo().getUserId(),this.id);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return null;
+		this.toRest="1";//到中间页面后，跳转到
+		return "successleave";
 	}
 	public String getPersonName() {
 		return personName;
@@ -818,8 +819,6 @@ public class AttRestBackingBean extends BaseBackingBean {
 		public void setLogList(List logList) {
 			this.logList = logList;
 		}
-		public void qryMyAtt(ValueChangeEvent event) {
-			selMyAtt = event.getNewValue().toString().equals("true");
-		}
+		
 		
 }

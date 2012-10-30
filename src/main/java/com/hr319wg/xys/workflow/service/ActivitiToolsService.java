@@ -179,10 +179,7 @@ public class ActivitiToolsService {
 	 * @throws SysException
 	 */
 	public void deleteProcessInstance(String instanceId)throws SysException{
-		ProcessInstance processInstance =(ProcessInstance)runtimeService.createProcessInstanceQuery().processInstanceId(instanceId).singleResult();
-		if(processInstance!=null){
-			this.runtimeService.deleteProcessInstance(instanceId, "审批退回删除流程实例");			
-		}
+		this.runtimeService.deleteProcessInstance(instanceId, "审批退回删除流程实例");
 	}
 	
 	/**

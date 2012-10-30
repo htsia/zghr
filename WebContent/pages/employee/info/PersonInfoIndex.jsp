@@ -6,7 +6,6 @@
 <%
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
     User user = (User)session.getAttribute(Constants.USER_INFO);
-    String rootid = user.getOrgId();
 %>
 <c:verbatim>
     <script type="text/javascript">
@@ -77,7 +76,7 @@
         <tr>
             <td id="showTree" width="210" height="100%" valign="top">
                   <iframe name="tree" height="100%"  frameborder="0"  height="100%" scrolling="auto" width="100%"
-                                    src="/pages/common/ShowOrgTree.jsp?rootId=<%=rootid%>"></iframe>
+                                    src="/pages/common/ShowOrgTree.jsp"></iframe>
             </td>
 
             <td width="10" class="ctrlbar" valign="middle">

@@ -311,40 +311,41 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public List getAttLeaveBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType,
 			String nameStr, String createType, String inself, String isManager,
-			String operUserID, boolean myAtt) throws SysException {
+			String operUserID) throws SysException {
 		return this.attBusiDAO.getAttLeaveBO(pagevo, personId, status,
 				beginDate, endDate, orgID, personType, nameStr, createType,
-				inself, isManager, operUserID, myAtt);
+				inself, isManager, operUserID);
 	}
 
 	@Override
 	public List getAttOutBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType,
-			String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)
-			throws SysException {
+			String nameStr, String createType, String inself, String isManager,
+			String operUserID) throws SysException {
 		return this.attBusiDAO.getAttOutBO(pagevo, personId, status, beginDate,
-				endDate, orgID, personType, nameStr, createType, inself, isManager,
-				operUserID, myAtt);
+				endDate, orgID, personType, nameStr, createType, inself,
+				isManager, operUserID);
 	}
 
 	@Override
 	public List getAttOvertimeBO(PageVO pagevo, String personId,
 			String[] status, String beginDate, String endDate, String orgID,
 			String personType, String nameStr, String createType,
-			String inself, String isManager, String operUserID, boolean myAtt) throws SysException {
+			String inself, String isManager, String operUserID)
+			throws SysException {
 		return this.attBusiDAO.getAttOvertimeBO(pagevo, personId, status,
 				beginDate, endDate, orgID, personType, nameStr, createType,
-				inself, isManager, operUserID, myAtt);
+				inself, isManager, operUserID);
 	}
 
 	@Override
 	public List getAttRestBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType,
-			String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)
-			throws SysException {
+			String nameStr, String createType, String inself, String isManager,
+			String operUserID) throws SysException {
 		return this.attBusiDAO.getAttRestBO(pagevo, personId, status,
 				beginDate, endDate, orgID, personType, nameStr, createType,
-				inself, isManager, operUserID, myAtt);
+				inself, isManager, operUserID);
 	}
 
 	@Override
@@ -409,6 +410,11 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public void saveAttLeaveLogBO(AttLogBO bo) throws SysException {
 		this.attBusiDAO.saveOrUpdateBo(bo);
+	}
+
+	@Override
+	public void deleteAttLogBO(String id) throws SysException {
+		this.attBusiDAO.deleteBo(AttLogBO.class, id);
 	}
 
 	/**
@@ -1146,7 +1152,6 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		}
 	}
 
-	
 	// 更新带薪假存休子集的数据,处理录入单删除的情况
 	public void LeaveDays(String type, String days, String personId) {
 		String sql = "update a236 set ";
@@ -2951,10 +2956,9 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	/**
 	 * 加班流程启动
-	 * @throws SysException 
 	 */
 	@Override
-	public String applyOvertime(String userId, String id) {
+	public void applyOvertime(String userId, String id) {
 		try {
 			String keyId = "";// 流程key
 			String postLevel = this.selPersonTool.getPostLevel(userId);// 岗位级别
@@ -2991,15 +2995,13 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			e.printStackTrace();
 			// super.showMessageDetail("操作失败！"+e.getMessage());
 		}
-		return null;
 	}
 
 	/**
 	 * 调休流程启动
-	 * @throws SysException 
 	 */
 	@Override
-	public String applyRest(String userId, String id) {
+	public void applyRest(String userId, String id) {
 		try {
 			String keyId = "";// 流程key
 			String postLevel = this.selPersonTool.getPostLevel(userId);// 岗位级别
@@ -3036,15 +3038,13 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			e.printStackTrace();
 			// super.showMessageDetail("操作失败！"+e.getMessage());
 		}
-		return null;
 	}
 
 	/**
 	 * 公出流程启动
-	 * @throws SysException 
 	 */
 	@Override
-	public String applyOut(String userId, String id) {
+	public void applyOut(String userId, String id) {
 		try {
 			String keyId = "";// 流程key
 			String postLevel = this.selPersonTool.getPostLevel(userId);// 岗位级别
@@ -3081,85 +3081,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			e.printStackTrace();
 			// super.showMessageDetail("操作失败！"+e.getMessage());
 		}
-		return null;
 	}
-
-	
-	//删除请假单
-		@Override
-		public void deleteLeave(String id) throws SysException {
-			try {
-				List logList = this.attBusiDAO.getAttLogBOById(id);
-				if (logList != null && logList.size() > 0) {
-					for (int i = 0; i < logList.size(); i++) {
-						AttLogBO log = (AttLogBO) logList.get(i);
-						this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
-					}
-				}
-				AttLeaveBO bo = this.findAttLeaveBOById(id);
-				if (bo.getProcessId() != null) {
-					activitiToolService.deleteProcessInstance(bo.getProcessId());
-				}
-				if (bo.getStatus().equals("2")) {
-					// 如果是批准的假条，清除累加的请假天数 如果需要，要恢复带薪假的天数
-					this.rollBackLeave(bo);
-				}
-				this.attBusiDAO.deleteBo(AttLeaveBO.class, id);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		//删除公出
-		@Override
-		public void deleteOut(String id) throws SysException {
-			List logList = this.attBusiDAO.getAttLogBOById(id);
-			if(logList!=null&&logList.size()>0){
-				for(int i=0;i<logList.size();i++){
-					AttLogBO log=(AttLogBO)logList.get(i);
-					this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
-				}
-			}
-			AttOutBO bo=(AttOutBO)this.attBusiDAO.findBoById(AttOutBO.class,id);
-			if(bo.getProcessId()!=null){
-				activitiToolService.deleteProcessInstance(bo.getProcessId());				
-			}
-			this.attBusiDAO.deleteBo(AttOutBO.class, id);
-		}
-
-		//删除请假
-		@Override
-		public void deleteOvertime(String id) throws SysException {
-			List logList = this.attBusiDAO.getAttLogBOById(id);
-			if(logList!=null&&logList.size()>0){
-				for(int i=0;i<logList.size();i++){
-					AttLogBO log=(AttLogBO)logList.get(i);
-					this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
-				}
-			}
-			AttOvertimeBO bo=(AttOvertimeBO)this.attBusiDAO.findBoById(AttOvertimeBO.class,id);
-			if(bo.getProcessId()!=null){
-				activitiToolService.deleteProcessInstance(bo.getProcessId());				
-			}
-			this.attBusiDAO.deleteBo(AttOvertimeBO.class, id);
-		}
-
-		//删除调休
-		@Override
-		public void deleteRest(String id) throws SysException {
-			List logList = this.attBusiDAO.getAttLogBOById(id);
-			if(logList!=null&&logList.size()>0){
-				for(int i=0;i<logList.size();i++){
-					AttLogBO log=(AttLogBO)logList.get(i);
-					this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
-				}
-			}
-			AttRestBO bo=(AttRestBO)this.attBusiDAO.findBoById(AttRestBO.class,id);
-			if(bo.getProcessId()!=null){
-				activitiToolService.deleteProcessInstance(bo.getProcessId());				
-			}
-			this.attBusiDAO.deleteBo(AttRestBO.class, id);
-		}
 	
 	@Override
 	public List getOvertimePayBO(PageVO pageVO, String orgID,

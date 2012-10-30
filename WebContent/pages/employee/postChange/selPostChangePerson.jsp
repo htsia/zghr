@@ -59,7 +59,6 @@
 			   <h:inputTextarea value="#{emppostChangeMgrBB.personNames}" rows="3" cols="50"></h:inputTextarea>
 			   <h:inputHidden id="personIds" value="#{emppostChangeMgrBB.personIds}"></h:inputHidden>
                <h:commandButton styleClass="button01" value="选择" rendered="#{emppostChangeMgrBB.enableSelect}" onclick="return selectPerson()" action="#{emppostChangeMgrBB.selPerson}" />
-               <h:commandButton styleClass="button01" value="清空" onclick="return confirm('确定清空吗')" action="#{emppostChangeMgrBB.clearPerson}" />
 <c:verbatim>
                </td>
             </tr>
@@ -72,7 +71,7 @@
                             readonly="true"    alt="调入部门|1|s|50||"/>
 <c:verbatim>
                     <input type="button" class="button_org" onclick="return selectDept();">
-                    <font color=red><strong>请选择末级部门</strong></font>
+                    <font color=red><strong>请选择最底层部门或班组</strong></font>
                 </td>
             </tr>
 
@@ -135,19 +134,17 @@
 
         </table>
         <br>
-        <table width=95% align=center cellpadding=0 cellspacing=0 >
+        <table width=95% border=0 align=center cellpadding=0 cellspacing=0 >
             <tr>
                 <td align="left">
 </c:verbatim>
                       <h:selectBooleanCheckbox rendered="#{sys_commonInfoBB.enablePostBeginLink}" value="#{emppostChangeMgrBB.enableBegin}"></h:selectBooleanCheckbox>
                       <h:outputText value="同时启动见习管理" rendered="#{sys_commonInfoBB.enablePostBeginLink}"></h:outputText>
-<c:verbatim>
                 </td>
-                 <td align="center">
-</c:verbatim>                 
-                      <h:commandButton id="save" styleClass="button01" value="   保  存    " onclick="return checkData();" action="#{emppostChangeMgrBB.save}" />
-<c:verbatim>
+                 <td align="right">
+                      <h:commandButton id="save" styleClass="button01" value="保存" onclick="return checkData();" action="#{emppostChangeMgrBB.save}" />
                  </td>
+<c:verbatim>
             </tr>
             <tr>
                 <td colspan="2" align="left">

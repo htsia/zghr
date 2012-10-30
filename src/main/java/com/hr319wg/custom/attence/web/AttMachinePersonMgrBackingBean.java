@@ -237,7 +237,6 @@ public class AttMachinePersonMgrBackingBean extends BaseBackingBean {
 				AttFingerBO bo = (AttFingerBO)obj[0];
 				PersonBO p = SysCacheTool.findPersonById(bo.getID());
 				bo.setName(p.getName());
-				bo.setSex(CodeUtil.interpertCode(p.getSex()));
 				bo.setPersonCode(p.getPersonCode());
 				bo.setPersonTypeName(CodeUtil.interpertCode(p.getPersonType()));
 			    bo.setSecDeptName(CodeUtil.interpertCode(obj[1].toString()));
