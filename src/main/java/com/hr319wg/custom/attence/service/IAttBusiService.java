@@ -183,7 +183,7 @@ public interface IAttBusiService {
 	public void updateLeaveBackDate(String id,String date) throws SysException, ParseException;
 	public void updateDimissionDate(String subid,String dimission,String date) throws SysException, ParseException;
 	public void rollBackLeave(AttLeaveBO bo) throws SysException, ParseException;
-	public void updateOvertimePay(String id,String hours) throws SysException, ParseException;
+	public void updateOvertimePay(String id,String hours,String selectMonth) throws SysException, ParseException;
 	//显示一段时间内的考勤
 	public abstract List getAndShowAllAttMonthBO(PageVO pageVO, String orgID,
 			String nameStr, String personType, String beginYearMonth,String endYearMonth, String inself, String operUserID) throws SysException;
@@ -197,6 +197,8 @@ public interface IAttBusiService {
 	public abstract void applyLeave(String userId, String leaveId) throws SysException;
 	public abstract void applyOvertime(String userId, String id);
 	public abstract void applyRest(String userId, String id);
-	public abstract void applyOut(String userId, String id);;
+	public abstract void applyOut(String userId, String id);
+	List getOvertimePayBO(PageVO pageVO, String orgID, String nameStr,
+			String personType,String yearMonth) throws SysException;;
 
 }

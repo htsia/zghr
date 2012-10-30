@@ -409,5 +409,10 @@
     <definition name="/custom/attence/successLeave.tiles" extends="layout.busitemplate">
         <put name="body" value="/pages/custom/attence/successLeave.jsp"/>
     </definition>
-    
+    <definition name="/custom/attence/overtimePay.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/overtimePay.jsp"/>
+    </definition>
+    <definition name="/custom/attence/overtimePayUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/overtimePayUserList.jsp"/>
+    </definition>
 </tiles-definitions>
