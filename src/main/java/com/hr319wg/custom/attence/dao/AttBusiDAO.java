@@ -294,7 +294,6 @@ public class AttBusiDAO extends BaseDAO{
 	}
 	
 	//请假查询
-<<<<<<< HEAD
 		public List getAttLeaveBO(PageVO pagevo, String personId, String[] status, String beginDate, String endDate, String orgID, String personType, String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)throws SysException{
 			String hql="from AttLeaveBO bo,UserBO u where u.userID=bo.personId ";
 			if(personId!=null&&!"".equals(personId)){
@@ -312,45 +311,6 @@ public class AttBusiDAO extends BaseDAO{
 				OrgBO org = SysCacheTool.findOrgById(orgID);
 				hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 			}
-=======
-	public List getAttLeaveBO(PageVO pagevo, String personId, String[] status, String beginDate, String endDate, String orgID, String personType, String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)throws SysException{
-		String hql="from AttLeaveBO bo,UserBO u where u.userID=bo.personId ";
-		if(personId!=null&&!"".equals(personId)){
-			hql+=" and bo.personId='"+personId+"'";
-		}
-		if(status.length>0){
-			hql+=" and "+CommonFuns.splitInSql(status,"bo.status");
-		}else{
-			hql+=" and 1=0 ";			
-		}
-		if(myAtt){
-			hql+=" and bo.personId='"+operUserID+"' ";			
-		}
-		if(orgID!=null && !"".equals(orgID)){
-			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
-		}
-		
-		if(personType!=null && !"".equals(personType)){			
-			String[]types = personType.split(",");
-			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
-		}
-		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
-		}
-		if(beginDate!=null && !"".equals(beginDate)){
-			hql += " and bo.beginTime>='"+beginDate+"'";
-		}
-		if(endDate!=null && !"".equals(endDate)){
-			hql += " and bo.beginTime<'"+DateUtil.getNextDate(endDate)+"'";
-		}
-		if(createType!=null && !"".equals(createType)){
-			hql += " and bo.createType='"+createType+"'";
-		}
-		if("1".equals(inself)){//在自助平台
-			int role = CommonUtil.getRoleCount("5a9ded4739e906c70139f6e9dc170242", operUserID);
-			String postIDs = CommonUtil.getAllSubPostIDs(operUserID);
->>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 			
 			if(personType!=null && !"".equals(personType)){			
 				String[]types = personType.split(",");
@@ -392,36 +352,6 @@ public class AttBusiDAO extends BaseDAO{
 				return this.hibernatetemplate.find(hql);
 			}
 		}
-<<<<<<< HEAD
-=======
-		String countHql="select count(bo) "+hql;
-		hql = "select bo "+hql+" order by bo.applyTime desc,u.secDeptID,u.deptId";
-		if(pagevo!=null){
-			return this.pageQuery(pagevo, countHql,hql);
-		}else{
-			return this.hibernatetemplate.find(hql);
-		}
-	}
-	
-	//公出查询
-	public List getAttOutBO(PageVO pagevo, String personId, String[] status, String beginDate, String endDate, String orgID, String personType, String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)throws SysException{
-		String hql="from AttOutBO bo,UserBO u where u.userID=bo.personId ";
-		if(personId!=null&&!"".equals(personId)){
-			hql+=" and bo.personId='"+personId+"'";
-		}
-		if(status.length>0){
-			hql+=" and "+CommonFuns.splitInSql(status,"bo.status");
-		}else{
-			hql+=" and 1=0 ";			
-		}
-		if(myAtt){
-			hql+=" and bo.personId='"+operUserID+"' ";			
-		}
-		if(orgID!=null && !"".equals(orgID)){
-			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
-		}
->>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 		
 		//公出查询
 		public List getAttOutBO(PageVO pagevo, String personId, String[] status, String beginDate, String endDate, String orgID, String personType, String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)throws SysException{
@@ -482,36 +412,6 @@ public class AttBusiDAO extends BaseDAO{
 				return this.hibernatetemplate.find(hql);
 			}
 		}
-<<<<<<< HEAD
-=======
-		String countHql="select count(bo) "+hql;
-		hql = "select bo "+hql+"order by bo.applyTime desc,u.secDeptID,u.deptId";
-		if(pagevo!=null){
-			return this.pageQuery(pagevo, countHql,hql);
-		}else{
-			return this.hibernatetemplate.find(hql);
-		}
-	}
-	
-	//加班查询
-	public List getAttOvertimeBO(PageVO pagevo, String personId, String[] status, String beginDate, String endDate, String orgID, String personType, String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)throws SysException{
-		String hql="from AttOvertimeBO bo,UserBO u where u.userID=bo.personId ";
-		if(personId!=null&&!personId.equals("")){
-			hql+=" and bo.personId='"+personId+"'";
-		}
-		if(status.length>0){
-			hql+=" and "+CommonFuns.splitInSql(status,"bo.status");
-		}else{
-			hql+=" and 1=0 ";			
-		}
-		if(myAtt){
-			hql+=" and bo.personId='"+operUserID+"' ";			
-		}
-		if(orgID!=null && !"".equals(orgID)){
-			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
-		}
->>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 		
 		//加班查询
 		public List getAttOvertimeBO(PageVO pagevo, String personId, String[] status, String beginDate, String endDate, String orgID, String personType, String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)throws SysException{
@@ -572,36 +472,6 @@ public class AttBusiDAO extends BaseDAO{
 				return this.hibernatetemplate.find(hql);
 			}
 		}
-<<<<<<< HEAD
-=======
-		String countHql="select count(bo) "+hql;
-		hql = "select bo "+hql+"order by bo.applyTime desc,u.secDeptID,u.deptId";
-		if(pagevo!=null){
-			return this.pageQuery(pagevo, countHql,hql);
-		}else{
-			return this.hibernatetemplate.find(hql);
-		}
-	}
-	
-	//调休查询
-	public List getAttRestBO(PageVO pagevo, String personId, String[] status, String beginDate, String endDate, String orgID, String personType, String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)throws SysException{
-		String hql="from AttRestBO bo,UserBO u where u.userID=bo.personId ";
-		if(personId!=null&&!personId.equals("")){
-			hql+=" and bo.personId='"+personId+"'";
-		}
-		if(status.length>0){
-			hql+=" and "+CommonFuns.splitInSql(status,"bo.status");
-		}else{
-			hql+=" and 1=0 ";			
-		}
-		if(myAtt){
-			hql+=" and bo.personId='"+operUserID+"' ";			
-		}
-		if(orgID!=null && !"".equals(orgID)){
-			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
-		}
->>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 		
 		//调休查询
 		public List getAttRestBO(PageVO pagevo, String personId, String[] status, String beginDate, String endDate, String orgID, String personType, String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)throws SysException{

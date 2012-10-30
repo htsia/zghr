@@ -198,16 +198,10 @@ public interface IAttBusiService {
 			throws SysException;
 	public abstract Map<String,Object> getUndoneDays(String personId) throws SysException;
 	public abstract void applyLeave(String userId, String leaveId) throws SysException;
-<<<<<<< HEAD
 	public abstract String applyOvertime(String userId, String id);
 	public abstract String applyRest(String userId, String id);
 	public abstract String applyOut(String userId, String id);
 	List getOvertimePayBO(PageVO pageVO, String orgID, String nameStr,
 			String personType,String yearMonth) throws SysException;;
-=======
-	public abstract String applyOvertime(String userId, String id) throws SysException;
-	public abstract String applyRest(String userId, String id) throws SysException;
-	public abstract String applyOut(String userId, String id) throws SysException;
->>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 
 }
