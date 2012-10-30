@@ -54,7 +54,10 @@ public interface IAttBusiService {
 	public abstract String updateAllKQUsersData(Dispatch myCom, String ip)
 			throws SysException;
 
-	public abstract void deleteAttLogBO(String id) throws SysException;
+	public abstract void deleteLeave(String id) throws SysException;
+	public abstract void deleteOut(String id) throws SysException;
+	public abstract void deleteOvertime(String id) throws SysException;
+	public abstract void deleteRest(String id) throws SysException;
 
 	public abstract void saveAttLeaveLogBO(AttLogBO bo) throws SysException;
 
@@ -89,19 +92,19 @@ public interface IAttBusiService {
 
 	public abstract List getAttRestBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType, String nameStr,
-			String createType, String inself, String isManager, String operUserID) throws SysException;
+			String createType, String inself, String isManager, String operUserID, boolean myAt) throws SysException;
 
 	public abstract List getAttOvertimeBO(PageVO pagevo, String personId,
 			String[] status, String beginDate, String endDate, String orgID, String personType,
-			String nameStr, String createType, String inself, String isManager, String operUserID) throws SysException;
+			String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAt) throws SysException;
 
 	public abstract List getAttOutBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType, String nameStr,
-			String createType, String inself, String isManager, String operUserID) throws SysException;
+			String createType, String inself, String isManager, String operUserID, boolean myAt) throws SysException;
 
 	public abstract List getAttLeaveBO(PageVO pagevo, String personId,
 			String[] status, String beginDate, String endDate, String orgID, String personType,
-			String nameStr, String createType, String inself, String isManager, String operUserID) throws SysException;
+			String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt) throws SysException;
 
 	public abstract void checkin(String userID, String date, String time)
 			throws SysException;
@@ -195,10 +198,16 @@ public interface IAttBusiService {
 			throws SysException;
 	public abstract Map<String,Object> getUndoneDays(String personId) throws SysException;
 	public abstract void applyLeave(String userId, String leaveId) throws SysException;
-	public abstract void applyOvertime(String userId, String id);
-	public abstract void applyRest(String userId, String id);
-	public abstract void applyOut(String userId, String id);
+<<<<<<< HEAD
+	public abstract String applyOvertime(String userId, String id);
+	public abstract String applyRest(String userId, String id);
+	public abstract String applyOut(String userId, String id);
 	List getOvertimePayBO(PageVO pageVO, String orgID, String nameStr,
 			String personType,String yearMonth) throws SysException;;
+=======
+	public abstract String applyOvertime(String userId, String id) throws SysException;
+	public abstract String applyRest(String userId, String id) throws SysException;
+	public abstract String applyOut(String userId, String id) throws SysException;
+>>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 
 }

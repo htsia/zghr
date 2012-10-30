@@ -311,41 +311,40 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public List getAttLeaveBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType,
 			String nameStr, String createType, String inself, String isManager,
-			String operUserID) throws SysException {
+			String operUserID, boolean myAtt) throws SysException {
 		return this.attBusiDAO.getAttLeaveBO(pagevo, personId, status,
 				beginDate, endDate, orgID, personType, nameStr, createType,
-				inself, isManager, operUserID);
+				inself, isManager, operUserID, myAtt);
 	}
 
 	@Override
 	public List getAttOutBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType,
-			String nameStr, String createType, String inself, String isManager,
-			String operUserID) throws SysException {
+			String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)
+			throws SysException {
 		return this.attBusiDAO.getAttOutBO(pagevo, personId, status, beginDate,
-				endDate, orgID, personType, nameStr, createType, inself,
-				isManager, operUserID);
+				endDate, orgID, personType, nameStr, createType, inself, isManager,
+				operUserID, myAtt);
 	}
 
 	@Override
 	public List getAttOvertimeBO(PageVO pagevo, String personId,
 			String[] status, String beginDate, String endDate, String orgID,
 			String personType, String nameStr, String createType,
-			String inself, String isManager, String operUserID)
-			throws SysException {
+			String inself, String isManager, String operUserID, boolean myAtt) throws SysException {
 		return this.attBusiDAO.getAttOvertimeBO(pagevo, personId, status,
 				beginDate, endDate, orgID, personType, nameStr, createType,
-				inself, isManager, operUserID);
+				inself, isManager, operUserID, myAtt);
 	}
 
 	@Override
 	public List getAttRestBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType,
-			String nameStr, String createType, String inself, String isManager,
-			String operUserID) throws SysException {
+			String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)
+			throws SysException {
 		return this.attBusiDAO.getAttRestBO(pagevo, personId, status,
 				beginDate, endDate, orgID, personType, nameStr, createType,
-				inself, isManager, operUserID);
+				inself, isManager, operUserID, myAtt);
 	}
 
 	@Override
@@ -410,11 +409,6 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public void saveAttLeaveLogBO(AttLogBO bo) throws SysException {
 		this.attBusiDAO.saveOrUpdateBo(bo);
-	}
-
-	@Override
-	public void deleteAttLogBO(String id) throws SysException {
-		this.attBusiDAO.deleteBo(AttLogBO.class, id);
 	}
 
 	/**
@@ -1152,6 +1146,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		}
 	}
 
+	
 	// 更新带薪假存休子集的数据,处理录入单删除的情况
 	public void LeaveDays(String type, String days, String personId) {
 		String sql = "update a236 set ";
@@ -2956,8 +2951,10 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	/**
 	 * 加班流程启动
+	 * @throws SysException 
 	 */
 	@Override
+<<<<<<< HEAD
 	public void applyOvertime(String userId, String id) {
 		try {
 			String keyId = "";// 流程key
@@ -2984,23 +2981,61 @@ public class AttBusiServiceImpl implements IAttBusiService {
 					this.saveOrUpdateBO(bo);
 				} else {
 					// super.showMessageDetail("您的岗位等级未设置流程！");
+=======
+	public String applyOvertime(String userId,String id) throws SysException{
+		String postLevel=this.selPersonTool.getPostLevel(userId);//岗位级别
+		if(postLevel!=null&&!postLevel.equals("")){
+			String keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
+			if(keyId!=null&&!keyId.equals("")){
+				//为流程配置参数并启动流程
+				int leaderType;
+				try{
+					leaderType = selPersonTool.getLeaderType(userId);					
+				}catch (SysException e) {
+					return e.getMessage();
+>>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 				}
+<<<<<<< HEAD
 			} else {
 				// super.showMessageDetail("您没有岗位等级，无法进入请假流程！");
+=======
+				AttOvertimeBO bo=(AttOvertimeBO)this.findBOById(AttOvertimeBO.class, id);
+				Map map=new HashMap();
+				map.put("proposerId", userId);
+				map.put("currPersonId", userId);
+				map.put("leaderType", leaderType);
+				map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
+				String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
+				
+				//设置加班申请状态,关联的流程实例ID
+				bo.setStatus(AttConstants.STATUS_AUDIT);
+				bo.setProcessId(instanceId);
+				this.saveOrUpdateBO(bo);
+			}else{
+				return "您的岗位等级未设置流程";
+>>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 			}
+<<<<<<< HEAD
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			// super.showMessageDetail("请假天数必须为>0的数字");
 		} catch (Exception e) {
 			e.printStackTrace();
 			// super.showMessageDetail("操作失败！"+e.getMessage());
+=======
+		}else{
+			return "您没有岗位等级，无法进入请假流程";
+>>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 		}
+		return null;
 	}
 
 	/**
 	 * 调休流程启动
+	 * @throws SysException 
 	 */
 	@Override
+<<<<<<< HEAD
 	public void applyRest(String userId, String id) {
 		try {
 			String keyId = "";// 流程key
@@ -3027,23 +3062,61 @@ public class AttBusiServiceImpl implements IAttBusiService {
 					this.saveOrUpdateBO(bo);
 				} else {
 					// super.showMessageDetail("您的岗位等级未设置流程！");
+=======
+	public String applyRest(String userId,String id) throws SysException{
+		String postLevel=this.selPersonTool.getPostLevel(userId);//岗位级别
+		if(postLevel!=null&&!postLevel.equals("")){
+			String keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
+			if(keyId!=null&&!keyId.equals("")){
+				//为流程配置参数并启动流程
+				int leaderType;
+				try{
+					leaderType = selPersonTool.getLeaderType(userId);					
+				}catch (SysException e) {
+					return e.getMessage();
+>>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 				}
+<<<<<<< HEAD
 			} else {
 				// super.showMessageDetail("您没有岗位等级，无法进入请假流程！");
+=======
+				AttRestBO bo=(AttRestBO)this.findBOById(AttRestBO.class, id);
+				Map map=new HashMap();
+				map.put("proposerId", userId);
+				map.put("currPersonId", userId);
+				map.put("leaderType", leaderType);
+				map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
+				String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
+				
+				//设置请假单状态,关联的流程实例ID
+				bo.setStatus(AttConstants.STATUS_AUDIT);
+				bo.setProcessId(instanceId);
+				this.saveOrUpdateBO(bo);
+			}else{
+				return "您的岗位等级未设置流程";
+>>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 			}
+<<<<<<< HEAD
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			// super.showMessageDetail("请假天数必须为>0的数字");
 		} catch (Exception e) {
 			e.printStackTrace();
 			// super.showMessageDetail("操作失败！"+e.getMessage());
+=======
+		}else{
+			return "您没有岗位等级，无法进入请假流程";
+>>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 		}
+		return null;
 	}
 
 	/**
 	 * 公出流程启动
+	 * @throws SysException 
 	 */
 	@Override
+<<<<<<< HEAD
 	public void applyOut(String userId, String id) {
 		try {
 			String keyId = "";// 流程key
@@ -3070,18 +3143,206 @@ public class AttBusiServiceImpl implements IAttBusiService {
 					this.saveOrUpdateBO(bo);
 				} else {
 					// super.showMessageDetail("您的岗位等级未设置流程！");
+=======
+	public String applyOut(String userId,String id) throws SysException{
+		String postLevel=this.selPersonTool.getPostLevel(userId);//岗位级别
+		if(postLevel!=null&&!postLevel.equals("")){
+			String keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
+			if(keyId!=null&&!keyId.equals("")){
+				//为流程配置参数并启动流程
+				int leaderType;
+				try{
+					leaderType = selPersonTool.getLeaderType(userId);					
+				}catch (SysException e) {
+					return e.getMessage();
+>>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 				}
+<<<<<<< HEAD
 			} else {
 				// super.showMessageDetail("您没有岗位等级，无法进入请假流程！");
+=======
+				AttOutBO bo=(AttOutBO)this.findBOById(AttOutBO.class, id);
+				Map map=new HashMap();
+				map.put("proposerId", userId);
+				map.put("currPersonId", userId);
+				map.put("leaderType", leaderType);
+				map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
+				String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
+				
+				//设置请假单状态,关联的流程实例ID
+				bo.setStatus(AttConstants.STATUS_AUDIT);
+				bo.setProcessId(instanceId);
+				this.saveOrUpdateBO(bo);
+			}else{
+				return "您的岗位等级未设置流程";
+>>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
 			}
+<<<<<<< HEAD
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			// super.showMessageDetail("请假天数必须为>0的数字");
 		} catch (Exception e) {
 			e.printStackTrace();
 			// super.showMessageDetail("操作失败！"+e.getMessage());
+=======
+		}else{
+			return "您没有岗位等级，无法进入请假流程";
+>>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
+		}
+		return null;
+	}
+
+	//删除请假单
+	@Override
+	public void deleteLeave(String id) throws SysException {
+		try {
+			List logList = this.attBusiDAO.getAttLogBOById(id);
+			if (logList != null && logList.size() > 0) {
+				for (int i = 0; i < logList.size(); i++) {
+					AttLogBO log = (AttLogBO) logList.get(i);
+					this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
+				}
+			}
+			AttLeaveBO bo = this.findAttLeaveBOById(id);
+			if (bo.getProcessId() != null) {
+				activitiToolService.deleteProcessInstance(bo.getProcessId());
+			}
+			if (bo.getStatus().equals("2")) {
+				// 如果是批准的假条，清除累加的请假天数 如果需要，要恢复带薪假的天数
+				this.rollBackLeave(bo);
+			}
+			this.attBusiDAO.deleteBo(AttLeaveBO.class, id);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
+
+	//删除公出
+	@Override
+	public void deleteOut(String id) throws SysException {
+		List logList = this.attBusiDAO.getAttLogBOById(id);
+		if(logList!=null&&logList.size()>0){
+			for(int i=0;i<logList.size();i++){
+				AttLogBO log=(AttLogBO)logList.get(i);
+				this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
+			}
+		}
+		AttOutBO bo=(AttOutBO)this.attBusiDAO.findBoById(AttOutBO.class,id);
+		if(bo.getProcessId()!=null){
+			activitiToolService.deleteProcessInstance(bo.getProcessId());				
+		}
+		this.attBusiDAO.deleteBo(AttOutBO.class, id);
+	}
+
+	//删除请假
+	@Override
+	public void deleteOvertime(String id) throws SysException {
+		List logList = this.attBusiDAO.getAttLogBOById(id);
+		if(logList!=null&&logList.size()>0){
+			for(int i=0;i<logList.size();i++){
+				AttLogBO log=(AttLogBO)logList.get(i);
+				this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
+			}
+		}
+		AttOvertimeBO bo=(AttOvertimeBO)this.attBusiDAO.findBoById(AttOvertimeBO.class,id);
+		if(bo.getProcessId()!=null){
+			activitiToolService.deleteProcessInstance(bo.getProcessId());				
+		}
+		this.attBusiDAO.deleteBo(AttOvertimeBO.class, id);
+	}
+
+	//删除调休
+	@Override
+	public void deleteRest(String id) throws SysException {
+		List logList = this.attBusiDAO.getAttLogBOById(id);
+		if(logList!=null&&logList.size()>0){
+			for(int i=0;i<logList.size();i++){
+				AttLogBO log=(AttLogBO)logList.get(i);
+				this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
+			}
+		}
+		AttRestBO bo=(AttRestBO)this.attBusiDAO.findBoById(AttRestBO.class,id);
+		if(bo.getProcessId()!=null){
+			activitiToolService.deleteProcessInstance(bo.getProcessId());				
+		}
+		this.attBusiDAO.deleteBo(AttRestBO.class, id);
+	}
+	
+	//删除请假单
+		@Override
+		public void deleteLeave(String id) throws SysException {
+			try {
+				List logList = this.attBusiDAO.getAttLogBOById(id);
+				if (logList != null && logList.size() > 0) {
+					for (int i = 0; i < logList.size(); i++) {
+						AttLogBO log = (AttLogBO) logList.get(i);
+						this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
+					}
+				}
+				AttLeaveBO bo = this.findAttLeaveBOById(id);
+				if (bo.getProcessId() != null) {
+					activitiToolService.deleteProcessInstance(bo.getProcessId());
+				}
+				if (bo.getStatus().equals("2")) {
+					// 如果是批准的假条，清除累加的请假天数 如果需要，要恢复带薪假的天数
+					this.rollBackLeave(bo);
+				}
+				this.attBusiDAO.deleteBo(AttLeaveBO.class, id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		//删除公出
+		@Override
+		public void deleteOut(String id) throws SysException {
+			List logList = this.attBusiDAO.getAttLogBOById(id);
+			if(logList!=null&&logList.size()>0){
+				for(int i=0;i<logList.size();i++){
+					AttLogBO log=(AttLogBO)logList.get(i);
+					this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
+				}
+			}
+			AttOutBO bo=(AttOutBO)this.attBusiDAO.findBoById(AttOutBO.class,id);
+			if(bo.getProcessId()!=null){
+				activitiToolService.deleteProcessInstance(bo.getProcessId());				
+			}
+			this.attBusiDAO.deleteBo(AttOutBO.class, id);
+		}
+
+		//删除请假
+		@Override
+		public void deleteOvertime(String id) throws SysException {
+			List logList = this.attBusiDAO.getAttLogBOById(id);
+			if(logList!=null&&logList.size()>0){
+				for(int i=0;i<logList.size();i++){
+					AttLogBO log=(AttLogBO)logList.get(i);
+					this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
+				}
+			}
+			AttOvertimeBO bo=(AttOvertimeBO)this.attBusiDAO.findBoById(AttOvertimeBO.class,id);
+			if(bo.getProcessId()!=null){
+				activitiToolService.deleteProcessInstance(bo.getProcessId());				
+			}
+			this.attBusiDAO.deleteBo(AttOvertimeBO.class, id);
+		}
+
+		//删除调休
+		@Override
+		public void deleteRest(String id) throws SysException {
+			List logList = this.attBusiDAO.getAttLogBOById(id);
+			if(logList!=null&&logList.size()>0){
+				for(int i=0;i<logList.size();i++){
+					AttLogBO log=(AttLogBO)logList.get(i);
+					this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
+				}
+			}
+			AttRestBO bo=(AttRestBO)this.attBusiDAO.findBoById(AttRestBO.class,id);
+			if(bo.getProcessId()!=null){
+				activitiToolService.deleteProcessInstance(bo.getProcessId());				
+			}
+			this.attBusiDAO.deleteBo(AttRestBO.class, id);
+		}
 	
 	@Override
 	public List getOvertimePayBO(PageVO pageVO, String orgID,
