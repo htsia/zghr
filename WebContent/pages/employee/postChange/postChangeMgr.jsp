@@ -176,19 +176,16 @@ function showFlowDefine(){
 				<td height=8>
 					<table width="95%">
 						<tr>
-							<td align="right"></f:verbatim> <f:verbatim>
-									<%=LanguageSupport.getResource("XTGL-1243", "时间")%>:
-           	</f:verbatim> <h:inputText value="#{emppostChangeMgrBB.time}" id="time"
-									readonly="true" alt="日期|1|d|50||"></h:inputText> <f:verbatim>
-									<input type="button" class="button_select"
-										onclick="PopUpCalendarDialog('form1:time')">
-								</f:verbatim> <f:verbatim>
-									<%=LanguageSupport.getResource("XTGL-1242", "至")%>:
-           	</f:verbatim> <h:inputText value="#{emppostChangeMgrBB.time2}" id="time2"
-									readonly="true" alt="日期|1|d|50||"></h:inputText> <f:verbatim>
-									<input type="button" class="button_select"
-										onclick="PopUpCalendarDialog('form1:time2')">
-								</f:verbatim> <h:commandButton value="查询" styleClass="button01"  onclick="return disPlayProcessBar();"
+							<td align="right"></f:verbatim> 
+							<h:outputText value="时间从"/>
+							<h:inputText value="#{emppostChangeMgrBB.time}" id="time" styleClass="input Wdate" size="15"
+									readonly="true" alt="日期|1|d|50||" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:time'})"
+									onkeypress ="enterKeyDown('form1:time')"/>
+							<h:outputText value="至"/>
+							<h:inputText value="#{emppostChangeMgrBB.time2}" id="time2" styleClass="input Wdate" size="15"
+									readonly="true" alt="日期|1|d|50||" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:time2'})"
+									onkeypress ="enterKeyDown('form1:time2')"/>
+						    <h:commandButton value="查询" styleClass="button01"  onclick="return disPlayProcessBar();"
 									action="#{emppostChangeMgrBB.queryEmpPostChangeList}"></h:commandButton>
 								<f:verbatim>
 							</td>
@@ -243,7 +240,7 @@ function showFlowDefine(){
 						<h:dataTable value="#{emppostChangeMgrBB.empPostChangeList}"
 							var="list" align="center" id="dateList"
 							headerClass="td_top tr_fixrow"
-							columnClasses="td_middle_center,td_middle,td_middle_center,td_middle,td_middle,td_middle_center"
+							columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle,td_middle,td_middle_center,td_middle,td_middle,td_middle,td_middle_center,td_middle_center"
 							styleClass="table03" width="95%">
 							<h:column>
 								<f:facet name="header">

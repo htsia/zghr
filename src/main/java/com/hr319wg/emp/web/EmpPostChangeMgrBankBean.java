@@ -4,7 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.event.ValueChangeEvent;
 
@@ -64,8 +66,9 @@ public class EmpPostChangeMgrBankBean extends BaseBackingBean
   private boolean enableBegin;
   private EmpPostChangeBO emppostchangbo;
   private String initEdit;
-  private String personNames;
-  private String personIds;
+  private Map selMap = new HashMap();
+  private String personNames="";
+  private String personIds="";
   private String initOrgEdit;
   private OrgPostChangeBO orgchangebo;
   private String infoItem;
@@ -563,19 +566,22 @@ public IWageSetPersonUCC getWagesetpersonucc()
 		}
 	}
 	
-  public String selPerson() {
+  public void selPerson() {
     PersonBO[] pbos = (PersonBO[])(PersonBO[])super.getHttpSession().getAttribute(Constants.SELPERSON_SESSION);
-    String names = "";
-    String ids = "";
-    if ((pbos != null) && (pbos.length > 0)) {
-      for (int i = 0; i < pbos.length; i++) {
-        names = names + pbos[i].getName() + ",";
-        ids = ids + pbos[i].getPersonId() + ",";
-      }
+    if (pbos != null && pbos.length > 0) {
+    	for(PersonBO p : pbos){
+    		if(!selMap.containsKey(p.getPersonId())){
+    			selMap.put(p.getPersonId(), p.getName());
+    			this.personIds+=p.getPersonId()+",";
+    			this.personNames+=p.getName()+",";
+    		}
+    	}
     }
-    this.personNames = names;
-    this.personIds = ids;
-    return "";
+  }
+  public void clearPerson() {
+	  this.selMap=new HashMap();
+	  this.personNames = "";
+	  this.personIds = "";
   }
 
   public boolean isEnableSelect()

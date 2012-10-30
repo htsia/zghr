@@ -110,7 +110,7 @@
        <div style='width:100%;height:100%;overflow:auto' id=datatable>
    </f:verbatim>
        <h:dataTable value="#{attMachinePersonMgrBB.list}" var="list" align="center"  id="dateList"
-                    headerClass="td_top tr_fixrow" columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center"
+                    headerClass="td_top tr_fixrow" columnClasses="td_middle_center,td_middle_center100,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center"
                     styleClass="table03" width="100%" >
            <h:column>
                <c:facet name="header"><h:outputText value="员工编号"/></c:facet>
@@ -119,6 +119,10 @@
            <h:column>
                <c:facet name="header"><h:outputText value="姓名"/></c:facet>
                <h:outputText value="#{list.name}"/>
+           </h:column>
+           <h:column>
+               <c:facet name="header"><h:outputText value="性别"/></c:facet>
+               <h:outputText value="#{list.sex}"/>
            </h:column>
            <h:column>
                <c:facet name="header"><h:outputText value="二级部门"/></c:facet>

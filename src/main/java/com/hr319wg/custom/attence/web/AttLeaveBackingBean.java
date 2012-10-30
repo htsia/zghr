@@ -72,7 +72,16 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	private String toLeave="";
 	private String personSex="male";//默认男性
 	private String userId;
+	private boolean selMyAtt;
 	
+	public boolean isSelMyAtt() {
+		return selMyAtt;
+	}
+
+	public void setSelMyAtt(boolean selMyAtt) {
+		this.selMyAtt = selMyAtt;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
@@ -350,6 +359,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 			this.personType = null;
 			this.beginDate = null;
 			this.endDate = null;
+			this.selMyAtt=false;
 			this.selApply = true;
 			this.selAuditing = true;
 			this.selAudited = true;
@@ -467,23 +477,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 
 	public void deleteLeave() {
 		try {
-			List logList = this.attBusiService.getAttLogBOById(leaveId);
-			if (logList != null && logList.size() > 0) {
-				for (int i = 0; i < logList.size(); i++) {
-					AttLogBO log = (AttLogBO) logList.get(i);
-					attBusiService.deleteAttLogBO(log.getLogId());
-				}
-			}
-			AttLeaveBO bo = this.attBusiService.findAttLeaveBOById(leaveId);
-			if (bo.getProcessId() != null) {
-				activitiToolService.deleteProcessInstance(bo.getProcessId());
-			}
-			if (bo.getStatus().equals("2")) {
-				// 如果是批准的假条，清除累加的请假天数 如果需要，要恢复带薪假的天数
-				this.attBusiService.rollBackLeave(bo);
-			}
-			
-			attBusiService.deleteAttLeaveBO(leaveId);
+			this.attBusiService.deleteLeave(leaveId);
 			super.showMessageDetail("操作成功！");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -587,6 +581,10 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 		this.leaveTypeList = leaveTypeList;
 	}
 
+	public void qryMyAtt(ValueChangeEvent event) {
+		selMyAtt = event.getNewValue().toString().equals("true");
+	}
+	
 	public void qryApply(ValueChangeEvent event) {
 		selApply = event.getNewValue().toString().equals("true");
 	}
@@ -662,9 +660,6 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	public void doQuery() {
 		try {
 			List sList = new ArrayList();
-			if (selApply) {
-				sList.add(AttConstants.STATUS_APPLY);
-			}
 			if (selAuditing) {
 				sList.add(AttConstants.STATUS_AUDIT);
 			}
@@ -692,7 +687,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 				userID = super.getUserInfo().getUserId();
 			}
 			list = attBusiService.getAttLeaveBO(mypage, userID, status,
-					beginDate, endDate, orgID, personType, nameStr, createType, this.inself, this.ismanager, super.getUserInfo().getUserId());
+					beginDate, endDate, orgID, personType, nameStr, createType, this.inself, this.ismanager, super.getUserInfo().getUserId(), this.selMyAtt);
 			if (list != null && list.size() > 0) {
 				for (int i = 0; i < list.size(); i++) {
 					AttLeaveBO bo = (AttLeaveBO) list.get(i);
@@ -766,12 +761,13 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 			attBusiService.saveAttLeaveBO(leaveBo);
 			this.leaveId=leaveBo.getId();
 			this.attBusiService.applyLeave(super.getUserInfo().getUserId(),this.leaveId);
+			this.leaveBo=null;
+			this.toLeave="1";
+			return "successleave";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.leaveBo=null;
-		this.toLeave="1";
-		return "successleave";
+		return null;
 	}
 
 	public String getPersonName() {
