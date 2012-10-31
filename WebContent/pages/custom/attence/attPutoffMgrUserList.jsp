@@ -34,9 +34,14 @@
     
     function reset1(id) {
     	//alert(id);
+    	var selectMonth=document.all("form1:selectMonth").value;
+    	if(selectMonth.length<1){
+    		alert("请首先选择月份，表示加班费计入哪个月份的工资");
+    		return false;
+    	}
     	if(confirm('存休将清空，将转为工资，请确认')){
-    		window.location.href = ("/custom/attence/attPutoffMgrUserList.jsf?subID="+id+"&set='1'");
-            return true;
+    		window.location.href = ("/custom/attence/attPutoffMgrUserList.jsf?selectMonth="+selectMonth+"&subID="+id+"&set='1'");
+            return false;
     	}
         
     }
@@ -64,9 +69,6 @@
     <h:panelGrid width="98%" columns="1">
 	    <h:panelGrid align="left" columns="1">
 	       <h:panelGroup>
-	       	   <h:commandButton value="统计年出勤率" 
-							onclick="return yearAttenceDay()"
-							styleClass="button01"></h:commandButton>
 	       	   <h:commandButton value="重置带薪假天数"
 							onclick="return modify1()"
 							styleClass="button01"></h:commandButton>
@@ -75,7 +77,15 @@
                <h:inputText value="#{attPutoffMgrBB.nameStr}" styleClass="input" size="10"/> 
                <h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{attPutoffMgrBB.doQuery}"/>
                <h:commandButton styleClass="button01" value="查询" action="#{attPutoffMgrBB.doQuery}"/> 
-               <h:outputText value="  "/>
+               <f:verbatim>
+               <span align="right">
+               </f:verbatim>
+               <h:outputText value="选择发放工资的月份"/>
+               <h:inputText id="selectMonth" readonly="true" styleClass="input" onclick="WdatePicker({alwaysUseStartDate:true,dateFmt:'yyyy-MM'})" value="#{attPutoffMgrBB.overtimePayMonth}" />
+               <h:outputText value="  "/><f:verbatim></span></f:verbatim>
+               <f:verbatim>
+               <br/>
+               </f:verbatim>
 	           <h:outputText value="记录数:#{attPutoffMgrBB.mypage.totalRecord}"></h:outputText>
 		       <h:outputText value="  "></h:outputText>
 		       <h:outputText value="页数:#{attPutoffMgrBB.mypage.totalPage}"></h:outputText>
@@ -120,10 +130,6 @@
             <h:outputText value="#{list.putoffDays}"/>
         </h:column>
         <h:column>
-            <c:facet name="header"><h:outputText value="请假天数"/></c:facet>
-            <h:outputText value="#{list.leaveDays}"/>
-        </h:column>
-        <h:column>
             <c:facet name="header"><h:outputText value="病假"/></c:facet>
             <h:outputText value="#{list.bingjia}"/>
         </h:column>
@@ -147,29 +153,14 @@
             <c:facet name="header"><h:outputText value="带薪事假"/></c:facet>
             <h:outputText value="#{list.daixinjia}"/>
         </h:column>
-        <h:column>
-            <c:facet name="header"><h:outputText value="年应出勤天数"/></c:facet>
-            <h:outputText value="#{list.yearAttence}"/>
-        </h:column>
-        <h:column>
-            <c:facet name="header"><h:outputText value="实际出勤天数"/></c:facet>
-            <h:outputText value="#{list.yearRealAttence}"/>
-        </h:column>
-        <h:column>
-            <c:facet name="header"><h:outputText value="出勤率"/></c:facet>
-            <h:outputText value="#{list.attenceRate}"/>
-        </h:column>
-        <h:column>
-            <c:facet name="header"><h:outputText value="加班小时数"/></c:facet>
-            <h:outputText value="#{list.overtimeHours}"/>
-        </h:column>
+        
         <h:column>
             <c:facet name="header"><h:outputText value="操作"/></c:facet>            
             <h:commandButton value="修改" styleClass="button01" onclick="modify('#{list.id}');"></h:commandButton>
         </h:column> 
         <h:column>
             <c:facet name="header"><h:outputText value="操作"/></c:facet>            
-            <h:commandButton value="存休转工资" styleClass="button01" onclick="reset1('#{list.id}');"></h:commandButton>
+            <h:commandButton value="存休转工资" styleClass="button01" onclick="return reset1('#{list.id}');"></h:commandButton>
         </h:column> 
     </h:dataTable>
     <c:verbatim>

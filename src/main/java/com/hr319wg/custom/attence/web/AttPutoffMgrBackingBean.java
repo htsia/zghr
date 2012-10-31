@@ -9,6 +9,7 @@ import javax.faces.model.SelectItem;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
+import com.hr319wg.custom.attence.pojo.bo.AttOvertimePayBO;
 import com.hr319wg.custom.attence.pojo.bo.AttPutoff2BO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
 import com.hr319wg.custom.util.CommonUtil;
@@ -30,6 +31,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 	private String applyYear;
 	private String putoffsum;
 	private List list;
+	private List overtimeList;
 	private UserAPI userapi;
 	private IAttBusiService attBusiService;
 	private String userid;
@@ -54,9 +56,54 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 	private String resetInit;	
     private String beginDate="";
     private String endDate="";
+    private String overtimePayMonth="";
+    private String overtimeInit;
     
 	
-    public String getYinggai() {
+    
+    public List getOvertimeList() {
+		return overtimeList;
+	}
+
+	public void setOvertimeList(List overtimeList) {
+		this.overtimeList = overtimeList;
+	}
+
+	public String getOvertimeInit() {
+    	String act = super.getRequestParameter("act");
+		if("init".equals(act)){
+			this.orgID=null;
+			this.nameStr=null;
+			this.personType=null;
+		}
+		String orgID1 = super.getRequestParameter("orgID");
+		if(orgID1!=null && !"".equals(orgID1)){
+			this.orgID=orgID1;
+		}
+		try {
+			this.putoffsum = this.attBusiService.getPutoffSum();
+		} catch (SysException e) {
+			e.printStackTrace();
+		}	
+		
+		overtimeReset();
+		overtimeDoQuery();
+		return overtimeInit;
+	}
+
+	public void setOvertimeInit(String overtimeInit) {
+		this.overtimeInit = overtimeInit;
+	}
+
+	public String getOvertimePayMonth() {
+		return overtimePayMonth;
+	}
+
+	public void setOvertimePayMonth(String overtimePayMonth) {
+		this.overtimePayMonth = overtimePayMonth;
+	}
+
+	public String getYinggai() {
 		return yinggai;
 	}
 
@@ -527,8 +574,14 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 			}
 			try {
 				String id=bo.getId();
+				//得到存休小时数
+				if(bo.getPutoffDays()==null){
+					bo.setPutoffDays("0");
+				}
 				String hours=String.valueOf(Double.parseDouble(bo.getPutoffDays()));
-				this.attBusiService.updateOvertimePay(id, hours);
+				//更新加班费子集的信息
+				this.overtimePayMonth=super.getRequestParameter("selectMonth");
+				this.attBusiService.updateOvertimePay(id, hours,this.overtimePayMonth);
 				return "success";
 			} catch (SysException e) {
 				super.showMessageDetail("修改失败");
@@ -564,4 +617,86 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 		}
 		return "success";
 	}
+	public String overtimeReset(){
+		String subID = super.getRequestParameter("subID");
+		String set = super.getRequestParameter("set");
+		if(set!=null){
+			try {
+				PersonBO p=SysCacheTool.findPersonByCode(subID);
+				this.bo =(AttPutoff2BO)this.attBusiService.findBOById(AttPutoff2BO.class, p.getPersonId());
+				
+				this.bo.setName(p.getName());
+				this.bo.setDeptName(p.getDeptName());
+			} catch (SysException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				String id=bo.getId();
+				//得到存休小时数
+				if(bo.getPutoffDays()==null){
+					bo.setPutoffDays("0");
+				}
+				String hours=String.valueOf(Double.parseDouble(bo.getPutoffDays()));
+				//更新加班费子集的信息
+				this.overtimePayMonth=super.getRequestParameter("selectMonth");
+				this.attBusiService.updateOvertimePay(id, hours,this.overtimePayMonth);
+				return "success";
+			} catch (SysException e) {
+				super.showMessageDetail("修改失败");
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return null;
+	}
+	
+	public void overtimeDoQuery() {
+		try {
+			if(mypage.getCurrentPage()==0){
+				mypage.setCurrentPage(1);
+			}
+			if(this.personType==null || "".equals(this.personType)){
+				try {
+					this.personType=CommonUtil.getAllPersonTypes(super.getUserInfo());
+				} catch (SysException e) {
+					e.printStackTrace();
+				}
+			}
+			List list1 = this.attBusiService.getOvertimePayBO(mypage, orgID, nameStr, personType,this.overtimePayMonth);
+			if(list1==null){
+				list1 = new ArrayList();
+			}
+			this.overtimeList = new ArrayList<AttOvertimePayBO>();
+			for(int i=0;i<list1.size();i++){
+				Object[]obj = (Object[])list1.get(i);
+				AttOvertimePayBO bo=(AttOvertimePayBO)obj[0];
+				bo.setSecDeptName(CodeUtil.interpertCode(obj[1].toString()));
+				PersonBO p=SysCacheTool.findPersonById(bo.getId());
+				try{
+					bo.setId(p.getPersonCode());
+				}catch(Exception e) {
+					bo.setId("无");
+				}
+				
+				try{
+					bo.setName(p.getName());
+				}catch(Exception e) {
+					bo.setName("无");
+				}
+				try{
+					bo.setDeptName(CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId()));
+				}catch(Exception e) {
+					bo.setDeptName("无");
+				}
+				this.overtimeList.add(bo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

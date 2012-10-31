@@ -19,7 +19,7 @@
 			<h:commandButton value="确定"  action="#{attPutoffMgrBB.resetData}" styleClass="button01" />
 		</h:panelGrid>
 		<h:panelGrid align="right">
-			<h:outputText value="提示信息:每学期开始，操作一次，将相关人员的带薪病假，婚假，丧假，产假，难产产假，带薪事假置为5,3,3,98,15,3
+			<h:outputText value="提示信息:每学期开始，操作一次，将相关人员的带薪病假，婚假，丧假，产假，难产产假，带薪事假置为5天,3天,3天,98天,15天,3天
 			(其中产假和难产产假女员工才有) "/>
 		</h:panelGrid>
 </h:form>

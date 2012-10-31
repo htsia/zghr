@@ -572,5 +572,28 @@ public class AttBusiDAO extends BaseDAO{
 		String hql="select bo from AttLogBO bo where bo.leaveId='"+leaveId+"'";
 		return this.hibernatetemplate.find(hql);
 	}
-	
+	//获取加班费子集的数据
+	public List getOvertimePayBO(PageVO pageVO, String orgID, String nameStr, String personType,String yearMonth) throws SysException{
+		//String hql = " from a236 ";
+		String hql = " from AttOvertimePayBO bo,UserBO u where u.userID=bo.id ";
+		if(orgID!=null && !"".equals(orgID)){
+			OrgBO org = SysCacheTool.findOrgById(orgID);
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
+		}
+		
+		if(personType!=null && !"".equals(personType)){			
+			String[]types = personType.split(",");
+			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
+		}
+		if(nameStr!=null && !"".equals(nameStr)){
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+		}
+		if(yearMonth!=null&&!"".equals(yearMonth)){
+			hql+=" and bo.yearMonth ='"+yearMonth+"'";
+		}
+		//String boHql = "select * "+hql +" order by id";
+		String boHql = "select bo,u.secDeptID "+hql +" order by u.secDeptID,u.deptId";
+		String countHql = "select count(*) "+hql;
+		return this.pageQuery(pageVO, countHql, boHql);
+	}
 }
