@@ -803,6 +803,7 @@ public class AttRestBackingBean extends BaseBackingBean {
 //			}
 		}
 		public String getInitLog() {
+			this.currApproverList=new ArrayList();
 			if(super.getRequestParameter("id")!=null){
 				id=super.getRequestParameter("id");
 			}
