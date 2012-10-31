@@ -49,7 +49,7 @@ import com.hr319wg.xys.workflow.service.SelPersonsToolService;
 import com.jacob.activeX.ActiveXComponent;
 import com.jacob.com.Dispatch;
 import com.jacob.com.Variant;
-        
+
 public class AttBusiServiceImpl implements IAttBusiService {
 
 	private AttDurationDAO attDurationDAO;
@@ -320,18 +320,19 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public List getAttOutBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType,
-			String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)
-			throws SysException {
+			String nameStr, String createType, String inself, String isManager,
+			String operUserID, boolean myAtt) throws SysException {
 		return this.attBusiDAO.getAttOutBO(pagevo, personId, status, beginDate,
-				endDate, orgID, personType, nameStr, createType, inself, isManager,
-				operUserID, myAtt);
+				endDate, orgID, personType, nameStr, createType, inself,
+				isManager, operUserID, myAtt);
 	}
 
 	@Override
 	public List getAttOvertimeBO(PageVO pagevo, String personId,
 			String[] status, String beginDate, String endDate, String orgID,
 			String personType, String nameStr, String createType,
-			String inself, String isManager, String operUserID, boolean myAtt) throws SysException {
+			String inself, String isManager, String operUserID, boolean myAtt)
+			throws SysException {
 		return this.attBusiDAO.getAttOvertimeBO(pagevo, personId, status,
 				beginDate, endDate, orgID, personType, nameStr, createType,
 				inself, isManager, operUserID, myAtt);
@@ -340,8 +341,8 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public List getAttRestBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType,
-			String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)
-			throws SysException {
+			String nameStr, String createType, String inself, String isManager,
+			String operUserID, boolean myAtt) throws SysException {
 		return this.attBusiDAO.getAttRestBO(pagevo, personId, status,
 				beginDate, endDate, orgID, personType, nameStr, createType,
 				inself, isManager, operUserID, myAtt);
@@ -1928,6 +1929,10 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		sql = "update a810 a set a810708=(select a240233+a240234+a240235+nvl(a240239,0) from a240 b where a.id=b.id and b.a240200='"
 				+ yearMonth + "') where a.a810700='" + yearMonth + "'";
 		this.activeapi.executeSql(sql);
+		// 更新当月实际工作日
+		sql = "update a810 a set a810701=(select a240240 from a240 b where a.id=b.id and b.a240200='"
+				+ yearMonth + "') where a.a810700='" + yearMonth + "'";
+		this.activeapi.executeSql(sql);
 
 		return null;
 
@@ -2497,56 +2502,46 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	}
 
 	/**
-	 * /* 生成所有人某段时期内的应出勤天数,实际出勤天数，出勤
+	 * /* 生成所有人某段时期内的应出勤天数,实际出勤天数，出勤 一般用于计算年出勤率
 	 */
 	@Override
-	public int getYearAttence(String beginDate, String endDate)
+	public void getYearAttence(String beginDate, String endDate)
 			throws SysException, ParseException {
 		// TODO Auto-generated method stub
-
-		// 统计期间内每个人的应出勤天数 填写到带薪假存休管理里面
-
-		String sql = "update a236 set a236210=(select sum(a.a240236) as totalday from a240 a where to_date(a240200,'yyyy-mm')>=to_date('"
-				+ beginDate
-				+ "','yyyy-mm-dd') "
-				+ "and to_date(a240200,'yyyy-mm')<=to_date('"
-				+ endDate
-				+ "','yyyy-mm-dd') and a236.id=a.id group by id)";
-		this.activeapi.executeSql(sql);
-		// ///////----------------计算实际出勤
-		// 公式:实际出勤=应出勤-请假天数-旷工天数
-		// 请假天数+矿工天数=月汇总表里面的各个月病假+事假+旷工之和
-		String kouchuSql = "select id,sum(a.a810706)+sum(a.a810707) as kouchu from a810 a where to_date(a.a810700,'yyyy-mm')>=to_date('"
-				+ beginDate.substring(0, 7)
-				+ "','yyyy-mm')"
-				+ " and to_date(a.a810700,'yyyy-mm')<=to_date('"
-				+ endDate.substring(0, 7) + "','yyyy-mm') group by id";
-		sql = "update a236 a set a.a236211=a.a236210-(select kouchu from("
-				+ kouchuSql + ") b where b.id=a.id)";
-		this.activeapi.executeSql(sql);
-		// //////----------------计算出勤率和出勤奖金
-		// 公式:出勤率=实际出勤/应该出勤
-		// 公式:出勤奖金=出勤率*基本工资
-		String jiben = "(select a223206  from a223 b where a.id=b.id and b.a223000='00901')";// 基本工资
-		sql = "update a236 a set a.a236212=trunc(a.a236211/a.a236210,2),a.a236213=trunc(+a.a236211/a.a236210"
-				+ "*" + jiben + " ,2)";
-		this.activeapi.executeSql(sql);
-		// ////-----将数据存放到年考勤数据子集中
-		// 先删除已经存在的记录
+		// 年份按照结束日期的年份来
 		String year = endDate.substring(0, 4);
-		sql = "delete from a241 a where a.a241200='" + endDate.substring(0, 4)
-				+ "'";
+		// 首先删除该年份的所有数据
+		String sql = "delete from a241 a where a.a241200='" + year + "'";
 		this.activeapi.executeSql(sql);
-		// //先将其他记录设置为非首选(设置为a241000设置为00900)
-		sql = "update a241 a set a.a241000='00900'";
+		// 将其他年份的数据置为非首选(00900)
+		sql = "update a241 a set a241000='00900'";
 		this.activeapi.executeSql(sql);
-		// 插入年度考勤数据子集表
-		sql = "insert into a241 (subid,id,a241000,a241200,a241201,a241202,a241203,a241204,a241205,a241206) "
-				+ "select a.id||rownum,a.id,'00901','"
-				+ endDate.substring(0, 4)
-				+ "',a.a236210,a.a236211,a.a236212,a.a236213,a.a236214,a.a236215 from a236 a";
+		// 插入该年的数据
+		sql = "insert into a241 a "
+				+ "select id||"
+				+ year
+				+ ",id,'00901','"
+				+ year
+				+ "',sum(a810701),sum(a810706)+sum(a810707) from a810 where to_date(a810700,'yyyy-MM')>="
+				+ "to_date('" + beginDate
+				+ "','yyyy-MM') and to_date(a810700,'yyyy-MM')<=to_date('"
+				+ endDate + "','yyyy-MM')  group by id ";
+
 		this.activeapi.executeSql(sql);
-		return 1;
+		//将应出勤减去旷工和请假的酸楚实际出勤
+		sql="update a241 a set a241202=a241201-a241202 ";
+		this.activeapi.executeSql(sql);
+		//将应出勤天数为0的置为null(除以null是合法的，除以0是不合法的)
+		sql="update a241 a set a241201=null where a241201=0";
+		this.activeapi.executeSql(sql);
+		//填入出勤率
+		sql="update a241 set a241203=trunc(a241202/a241201,2) where a241200='"+year+"'";
+		this.activeapi.executeSql(sql);
+
+		//填入考勤奖金
+		String jiben = "(select a223206  from a223 b where a.id=b.id and b.a223000='00901')";// 基本工资
+        sql="update a241 a set a241204=trunc(a241203*("+jiben+",2) where a241200='"+year+"'";
+        this.activeapi.executeSql(sql);	
 	}
 
 	@Override
@@ -2641,20 +2636,23 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public void updateOvertimePay(String id, String hours, String selectMonth)
 			throws SysException, ParseException {
 		// TODO Auto-generated method stub
-		//首先清空带薪假子集的存休
-		String sql="update a236 a set a236200=0 where id='"+id+"'";
+		// 首先清空带薪假子集的存休
+		String sql = "update a236 a set a236200=0 where id='" + id + "'";
 		this.activeapi.executeSql(sql);
-		//将加班费表中此人的记录全部置为非当前（00900）
-		sql="update a243 set a243000='00900' where id='"+ id + "'";
+		// 将加班费表中此人的记录全部置为非当前（00900）
+		sql = "update a243 set a243000='00900' where id='" + id + "'";
 		this.activeapi.executeSql(sql);
-		
-		//如果有此人该月信息，先删除
-		sql = "delete from a243 where id='"
-				+ id + "' and a243200='"+selectMonth+"'";
+
+		// 如果有此人该月信息，先删除
+		sql = "delete from a243 where id='" + id + "' and a243200='"
+				+ selectMonth + "'";
 		this.activeapi.executeSql(sql);
-		//String jiben = "(select a223206  from a223 b where b.id='"+id+"')";// 基本工资
-		//插入信息
-		sql = "insert into a243 select "+id+"||rownum||'"+selectMonth+"',"+id+",'00901','"+selectMonth+"',"+hours+","+hours+"*20 from dual";
+		// String jiben = "(select a223206  from a223 b where b.id='"+id+"')";//
+		// 基本工资
+		// 插入信息
+		sql = "insert into a243 select " + id + "||rownum||'" + selectMonth
+				+ "'," + id + ",'00901','" + selectMonth + "'," + hours + ","
+				+ hours + "*20 from dual";
 		this.activeapi.executeSql(sql);
 	}
 
@@ -2906,7 +2904,8 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	/**
 	 * 请假流程启动
-	 * @return 
+	 * 
+	 * @return
 	 */
 	@Override
 	public String applyLeave(String userId, String leaveId) {
@@ -2952,37 +2951,40 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	/**
 	 * 加班流程启动
-	 * @throws SysException 
+	 * 
+	 * @throws SysException
 	 */
 	@Override
-	public String applyOvertime(String userId,String id) throws SysException{
-		String postLevel=this.selPersonTool.getPostLevel(userId);//岗位级别
-		if(postLevel!=null&&!postLevel.equals("")){
-			String keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
-			if(keyId!=null&&!keyId.equals("")){
-				//为流程配置参数并启动流程
+	public String applyOvertime(String userId, String id) throws SysException {
+		String postLevel = this.selPersonTool.getPostLevel(userId);// 岗位级别
+		if (postLevel != null && !postLevel.equals("")) {
+			String keyId = AttConstants.getAttFlowKey(postLevel);// 流程KEY
+			if (keyId != null && !keyId.equals("")) {
+				// 为流程配置参数并启动流程
 				int leaderType;
-				try{
-					leaderType = selPersonTool.getLeaderType(userId);					
-				}catch (SysException e) {
+				try {
+					leaderType = selPersonTool.getLeaderType(userId);
+				} catch (SysException e) {
 					return e.getMessage();
 				}
-				AttOvertimeBO bo=(AttOvertimeBO)this.findBOById(AttOvertimeBO.class, id);
-				Map map=new HashMap();
+				AttOvertimeBO bo = (AttOvertimeBO) this.findBOById(
+						AttOvertimeBO.class, id);
+				Map map = new HashMap();
 				map.put("proposerId", userId);
 				map.put("currPersonId", userId);
 				map.put("leaderType", leaderType);
 				map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
-				String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
-				
-				//设置加班申请状态,关联的流程实例ID
+				String instanceId = this.activitiToolService
+						.startProcessInstance(keyId, id, map);
+
+				// 设置加班申请状态,关联的流程实例ID
 				bo.setStatus(AttConstants.STATUS_AUDIT);
 				bo.setProcessId(instanceId);
 				this.saveOrUpdateBO(bo);
-			}else{
+			} else {
 				return "您的岗位等级未设置流程";
 			}
-		}else{
+		} else {
 			return "您没有岗位等级，无法进入请假流程";
 		}
 		return null;
@@ -2990,37 +2992,39 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	/**
 	 * 调休流程启动
-	 * @throws SysException 
+	 * 
+	 * @throws SysException
 	 */
 	@Override
-	public String applyRest(String userId,String id) throws SysException{
-		String postLevel=this.selPersonTool.getPostLevel(userId);//岗位级别
-		if(postLevel!=null&&!postLevel.equals("")){
-			String keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
-			if(keyId!=null&&!keyId.equals("")){
-				//为流程配置参数并启动流程
+	public String applyRest(String userId, String id) throws SysException {
+		String postLevel = this.selPersonTool.getPostLevel(userId);// 岗位级别
+		if (postLevel != null && !postLevel.equals("")) {
+			String keyId = AttConstants.getAttFlowKey(postLevel);// 流程KEY
+			if (keyId != null && !keyId.equals("")) {
+				// 为流程配置参数并启动流程
 				int leaderType;
-				try{
-					leaderType = selPersonTool.getLeaderType(userId);					
-				}catch (SysException e) {
+				try {
+					leaderType = selPersonTool.getLeaderType(userId);
+				} catch (SysException e) {
 					return e.getMessage();
 				}
-				AttRestBO bo=(AttRestBO)this.findBOById(AttRestBO.class, id);
-				Map map=new HashMap();
+				AttRestBO bo = (AttRestBO) this.findBOById(AttRestBO.class, id);
+				Map map = new HashMap();
 				map.put("proposerId", userId);
 				map.put("currPersonId", userId);
 				map.put("leaderType", leaderType);
 				map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
-				String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
-				
-				//设置请假单状态,关联的流程实例ID
+				String instanceId = this.activitiToolService
+						.startProcessInstance(keyId, id, map);
+
+				// 设置请假单状态,关联的流程实例ID
 				bo.setStatus(AttConstants.STATUS_AUDIT);
 				bo.setProcessId(instanceId);
 				this.saveOrUpdateBO(bo);
-			}else{
+			} else {
 				return "您的岗位等级未设置流程";
 			}
-		}else{
+		} else {
 			return "您没有岗位等级，无法进入请假流程";
 		}
 		return null;
@@ -3028,43 +3032,45 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	/**
 	 * 公出流程启动
-	 * @throws SysException 
+	 * 
+	 * @throws SysException
 	 */
 	@Override
-	public String applyOut(String userId,String id) throws SysException{
-		String postLevel=this.selPersonTool.getPostLevel(userId);//岗位级别
-		if(postLevel!=null&&!postLevel.equals("")){
-			String keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
-			if(keyId!=null&&!keyId.equals("")){
-				//为流程配置参数并启动流程
+	public String applyOut(String userId, String id) throws SysException {
+		String postLevel = this.selPersonTool.getPostLevel(userId);// 岗位级别
+		if (postLevel != null && !postLevel.equals("")) {
+			String keyId = AttConstants.getAttFlowKey(postLevel);// 流程KEY
+			if (keyId != null && !keyId.equals("")) {
+				// 为流程配置参数并启动流程
 				int leaderType;
-				try{
-					leaderType = selPersonTool.getLeaderType(userId);					
-				}catch (SysException e) {
+				try {
+					leaderType = selPersonTool.getLeaderType(userId);
+				} catch (SysException e) {
 					return e.getMessage();
 				}
-				AttOutBO bo=(AttOutBO)this.findBOById(AttOutBO.class, id);
-				Map map=new HashMap();
+				AttOutBO bo = (AttOutBO) this.findBOById(AttOutBO.class, id);
+				Map map = new HashMap();
 				map.put("proposerId", userId);
 				map.put("currPersonId", userId);
 				map.put("leaderType", leaderType);
 				map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
-				String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
-				
-				//设置请假单状态,关联的流程实例ID
+				String instanceId = this.activitiToolService
+						.startProcessInstance(keyId, id, map);
+
+				// 设置请假单状态,关联的流程实例ID
 				bo.setStatus(AttConstants.STATUS_AUDIT);
 				bo.setProcessId(instanceId);
 				this.saveOrUpdateBO(bo);
-			}else{
+			} else {
 				return "您的岗位等级未设置流程";
 			}
-		}else{
+		} else {
 			return "您没有岗位等级，无法进入请假流程";
 		}
 		return null;
 	}
 
-	//删除请假单
+	// 删除请假单
 	@Override
 	public void deleteLeave(String id) throws SysException {
 		try {
@@ -3089,62 +3095,64 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		}
 	}
 
-	//删除公出
+	// 删除公出
 	@Override
 	public void deleteOut(String id) throws SysException {
 		List logList = this.attBusiDAO.getAttLogBOById(id);
-		if(logList!=null&&logList.size()>0){
-			for(int i=0;i<logList.size();i++){
-				AttLogBO log=(AttLogBO)logList.get(i);
+		if (logList != null && logList.size() > 0) {
+			for (int i = 0; i < logList.size(); i++) {
+				AttLogBO log = (AttLogBO) logList.get(i);
 				this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
 			}
 		}
-		AttOutBO bo=(AttOutBO)this.attBusiDAO.findBoById(AttOutBO.class,id);
-		if(bo.getProcessId()!=null){
-			activitiToolService.deleteProcessInstance(bo.getProcessId());				
+		AttOutBO bo = (AttOutBO) this.attBusiDAO.findBoById(AttOutBO.class, id);
+		if (bo.getProcessId() != null) {
+			activitiToolService.deleteProcessInstance(bo.getProcessId());
 		}
 		this.attBusiDAO.deleteBo(AttOutBO.class, id);
 	}
 
-	//删除请假
+	// 删除请假
 	@Override
 	public void deleteOvertime(String id) throws SysException {
 		List logList = this.attBusiDAO.getAttLogBOById(id);
-		if(logList!=null&&logList.size()>0){
-			for(int i=0;i<logList.size();i++){
-				AttLogBO log=(AttLogBO)logList.get(i);
+		if (logList != null && logList.size() > 0) {
+			for (int i = 0; i < logList.size(); i++) {
+				AttLogBO log = (AttLogBO) logList.get(i);
 				this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
 			}
 		}
-		AttOvertimeBO bo=(AttOvertimeBO)this.attBusiDAO.findBoById(AttOvertimeBO.class,id);
-		if(bo.getProcessId()!=null){
-			activitiToolService.deleteProcessInstance(bo.getProcessId());				
+		AttOvertimeBO bo = (AttOvertimeBO) this.attBusiDAO.findBoById(
+				AttOvertimeBO.class, id);
+		if (bo.getProcessId() != null) {
+			activitiToolService.deleteProcessInstance(bo.getProcessId());
 		}
 		this.attBusiDAO.deleteBo(AttOvertimeBO.class, id);
 	}
 
-	//删除调休
+	// 删除调休
 	@Override
 	public void deleteRest(String id) throws SysException {
 		List logList = this.attBusiDAO.getAttLogBOById(id);
-		if(logList!=null&&logList.size()>0){
-			for(int i=0;i<logList.size();i++){
-				AttLogBO log=(AttLogBO)logList.get(i);
+		if (logList != null && logList.size() > 0) {
+			for (int i = 0; i < logList.size(); i++) {
+				AttLogBO log = (AttLogBO) logList.get(i);
 				this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
 			}
 		}
-		AttRestBO bo=(AttRestBO)this.attBusiDAO.findBoById(AttRestBO.class,id);
-		if(bo.getProcessId()!=null){
-			activitiToolService.deleteProcessInstance(bo.getProcessId());				
+		AttRestBO bo = (AttRestBO) this.attBusiDAO.findBoById(AttRestBO.class,
+				id);
+		if (bo.getProcessId() != null) {
+			activitiToolService.deleteProcessInstance(bo.getProcessId());
 		}
 		this.attBusiDAO.deleteBo(AttRestBO.class, id);
 	}
-	
+
 	@Override
-	public List getOvertimePayBO(PageVO pageVO, String orgID,
-			String nameStr, String personType,String yearMonth) throws SysException {
+	public List getOvertimePayBO(PageVO pageVO, String orgID, String nameStr,
+			String personType, String yearMonth) throws SysException {
 		// return this.jdbcTemplate.queryForList("select * from a236");
 		return this.attBusiDAO.getOvertimePayBO(pageVO, orgID, nameStr,
-				personType,yearMonth);
+				personType, yearMonth);
 	}
 }

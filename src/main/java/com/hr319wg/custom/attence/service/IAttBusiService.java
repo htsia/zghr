@@ -181,7 +181,7 @@ public interface IAttBusiService {
 	public abstract void cleanData2() throws SysException, ParseException;
 	public abstract void modifyData(String userid) throws SysException, ParseException;
 	//计算一年的应出勤天数
-	public abstract int getYearAttence(String beginDate,String endDate) throws SysException, ParseException;
+	public abstract void getYearAttence(String beginDate,String endDate) throws SysException, ParseException;
 	public void updateResetData(String orgid) throws SysException, ParseException;
 	public void updateLeaveBackDate(String id,String date) throws SysException, ParseException;
 	public void updateDimissionDate(String subid,String dimission,String date) throws SysException, ParseException;
