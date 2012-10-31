@@ -202,6 +202,8 @@ public interface IAttBusiService {
 	public abstract String applyRest(String userId, String id) throws SysException;
 	public abstract String applyOut(String userId, String id) throws SysException;
 	List getOvertimePayBO(PageVO pageVO, String orgID, String nameStr,
-			String personType,String yearMonth) throws SysException;;
+			String personType,String yearMonth) throws SysException;
+	List getYearBO(PageVO pageVO, String orgID, String nameStr,
+			String personType) throws SysException;;
 
 }

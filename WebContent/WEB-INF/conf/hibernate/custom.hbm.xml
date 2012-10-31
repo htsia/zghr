@@ -562,4 +562,16 @@
         <property name="overtimeHours" column="a243201"/>
         <property name="overtimePay" column="a243202"/>
     </class>
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttYearBO" table="a241">
+        <id name="id" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="year" column="a241200"/>
+        <property name="shouldDays" column="a241201"/>
+        <property name="realDays" column="a241202"/>
+        <property name="attRate" column="a241203"/>
+        <property name="attBonus" column="a241204"/>
+        <property name="flag" column="a241000"/>
+    </class>
 </hibernate-mapping>

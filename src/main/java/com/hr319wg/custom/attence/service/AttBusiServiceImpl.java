@@ -2522,7 +2522,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				+ year
 				+ ",id,'00901','"
 				+ year
-				+ "',sum(a810701),sum(a810706)+sum(a810707) from a810 where to_date(a810700,'yyyy-MM')>="
+				+ "',sum(a810701),sum(a810706)+sum(a810707),'','','','' from a810 where to_date(a810700,'yyyy-MM')>="
 				+ "to_date('" + beginDate
 				+ "','yyyy-MM') and to_date(a810700,'yyyy-MM')<=to_date('"
 				+ endDate + "','yyyy-MM')  group by id ";
@@ -2540,7 +2540,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 		//填入考勤奖金
 		String jiben = "(select a223206  from a223 b where a.id=b.id and b.a223000='00901')";// 基本工资
-        sql="update a241 a set a241204=trunc(a241203*("+jiben+",2) where a241200='"+year+"'";
+        sql="update a241 a set a241204=trunc(a241203*"+jiben+",2) where a241200='"+year+"'";
         this.activeapi.executeSql(sql);	
 	}
 
@@ -3154,5 +3154,12 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		// return this.jdbcTemplate.queryForList("select * from a236");
 		return this.attBusiDAO.getOvertimePayBO(pageVO, orgID, nameStr,
 				personType, yearMonth);
+	}
+	@Override
+	public List getYearBO(PageVO pageVO, String orgID, String nameStr,
+			String personType) throws SysException {
+		// return this.jdbcTemplate.queryForList("select * from a236");
+		return this.attBusiDAO.getYearBO(pageVO, orgID, nameStr,
+				personType);
 	}
 }

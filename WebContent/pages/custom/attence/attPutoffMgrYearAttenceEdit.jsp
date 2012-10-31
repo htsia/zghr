@@ -8,7 +8,7 @@
 
 		var time = document.all('form1:' + applyobj).value;
 
-		PopUpCalendarDialog('form1:applytime');
+		PopUpCalendar_OnlyMonth('form1:applytime');
 		var ymd = document.all('form1:applytime').value;
 		if (ymd == null) {
 			document.all('form1:' + applyobj).value = "";
