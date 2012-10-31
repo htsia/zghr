@@ -11,6 +11,7 @@ import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.attence.pojo.bo.AttOvertimePayBO;
 import com.hr319wg.custom.attence.pojo.bo.AttPutoff2BO;
+import com.hr319wg.custom.attence.pojo.bo.AttYearBO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
 import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.emp.pojo.bo.PersonBO;
@@ -32,6 +33,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 	private String putoffsum;
 	private List list;
 	private List overtimeList;
+	private List yearList;
 	private UserAPI userapi;
 	private IAttBusiService attBusiService;
 	private String userid;
@@ -58,10 +60,43 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
     private String endDate="";
     private String overtimePayMonth="";
     private String overtimeInit;
+    private String attYearInit;
     
 	
-    
-    public List getOvertimeList() {
+
+	public List getYearList() {
+		return yearList;
+	}
+
+	public void setYearList(List yearList) {
+		this.yearList = yearList;
+	}
+    public String getAttYearInit() {
+    	String act = super.getRequestParameter("act");
+		if("init".equals(act)){
+			this.orgID=null;
+			this.nameStr=null;
+			this.personType=null;
+		}
+		String orgID1 = super.getRequestParameter("orgID");
+		if(orgID1!=null && !"".equals(orgID1)){
+			this.orgID=orgID1;
+		}
+		try {
+			this.putoffsum = this.attBusiService.getPutoffSum();
+		} catch (SysException e) {
+			e.printStackTrace();
+		}	
+		
+		attYearDoQuery();
+		return attYearInit;
+	}
+
+	public void setAttYearInit(String attYearInit) {
+		this.attYearInit = attYearInit;
+	}
+
+	public List getOvertimeList() {
 		return overtimeList;
 	}
 
@@ -698,5 +733,51 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 			e.printStackTrace();
 		}
 	}
+	
+	public void attYearDoQuery() {
+		try {
+			if(mypage.getCurrentPage()==0){
+				mypage.setCurrentPage(1);
+			}
+			if(this.personType==null || "".equals(this.personType)){
+				try {
+					this.personType=CommonUtil.getAllPersonTypes(super.getUserInfo());
+				} catch (SysException e) {
+					e.printStackTrace();
+				}
+			}
+			List list1 = this.attBusiService.getYearBO(mypage, orgID, nameStr, personType);
+			if(list1==null){
+				list1 = new ArrayList();
+			}
+			this.yearList = new ArrayList<AttYearBO>();
+			for(int i=0;i<list1.size();i++){
+				Object[]obj = (Object[])list1.get(i);
+				AttYearBO bo=(AttYearBO)obj[0];
+				bo.setSecDeptName(CodeUtil.interpertCode(obj[1].toString()));
+				PersonBO p=SysCacheTool.findPersonById(bo.getId());
+				try{
+					bo.setId(p.getPersonCode());
+				}catch(Exception e) {
+					bo.setId("нч");
+				}
+				
+				try{
+					bo.setName(p.getName());
+				}catch(Exception e) {
+					bo.setName("нч");
+				}
+				try{
+					bo.setDeptName(CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId()));
+				}catch(Exception e) {
+					bo.setDeptName("нч");
+				}
+				this.yearList.add(bo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 }

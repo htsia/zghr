@@ -415,4 +415,10 @@
     <definition name="/custom/attence/overtimePayUserList.tiles" extends="layout.busitemplate">
         <put name="body" value="/pages/custom/attence/overtimePayUserList.jsp"/>
     </definition>
+    <definition name="/custom/attence/attYearUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attYearUserList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attYear.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attYear.jsp"/>
+    </definition>
 </tiles-definitions>
