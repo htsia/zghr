@@ -884,6 +884,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	}
 
 	public String getInitLog() {
+		this.currApproverList=new ArrayList();
 		if (super.getRequestParameter("leaveId") != null) {
 			leaveId = super.getRequestParameter("leaveId");
 		}
