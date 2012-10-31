@@ -22,7 +22,7 @@ import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.custom.wage.pojo.bo.WageOthersDataSetBO;
 import com.hr319wg.custom.wage.pojo.bo.WageOthersDataSetUserBO;
-import com.hr319wg.custom.wage.service.WageDataService;
+import com.hr319wg.custom.wage.service.IWageDataService;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CodeUtil;
@@ -47,7 +47,7 @@ public class WageDataOthersBackingBean extends BaseBackingBean {
 	private List<WageOthersDataSetUserBO> userList;
 	private WageOthersDataSetBO item;
 	private WageOthersDataSetUserBO userBo;
-	private WageDataService wageDataService;
+	private IWageDataService wageDataService;
 	private List itemList;
 	private String targetdata;
 	private boolean notReview=true;
@@ -195,11 +195,11 @@ public class WageDataOthersBackingBean extends BaseBackingBean {
 		this.userBo = userBo;
 	}
 
-	public WageDataService getWageDataService() {
+	public IWageDataService getWageDataService() {
 		return wageDataService;
 	}
 
-	public void setWageDataService(WageDataService wageDataService) {
+	public void setWageDataService(IWageDataService wageDataService) {
 		this.wageDataService = wageDataService;
 	}
 

@@ -28,12 +28,12 @@
 	<h:panelGrid columns="1" width="95%" align="center">
 		<h:panelGrid columns="2" align="center" columnClasses="td_form01,td_form02" styleClass="table03">
 			<h:outputText value="金额"/>
-			<h:inputText id="money" value="#{wage_dataOtherBB.userBo.money}" size="30" styleClass="input"/>
+			<h:inputText id="money" value="#{wage_dataOtherBB.userBo.money}" size="30" styleClass="input" onkeypress ="enterKeyDown('form1:save')"/>
 			<h:outputText value="备注"/>
-			<h:inputTextarea value="#{wage_dataOtherBB.userBo.remark}" cols="30" rows="5"/>
+			<h:inputTextarea value="#{wage_dataOtherBB.userBo.remark}" cols="30" rows="5" onkeypress ="enterKeyDown('form1:save')"/>
 		</h:panelGrid>
 		<h:panelGrid columns="1" align="right">
-			<h:commandButton styleClass="button01" value="保存" onclick="return forsave();" action="#{wage_dataOtherBB.modifyUser}"/>
+			<h:commandButton id="save" styleClass="button01" value="保存" onclick="return forsave();" action="#{wage_dataOtherBB.modifyUser}"/>
 		</h:panelGrid>
 	</h:panelGrid>
 </h:form>

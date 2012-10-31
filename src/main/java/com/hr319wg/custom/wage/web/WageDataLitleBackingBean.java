@@ -18,7 +18,7 @@ import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.wage.pojo.bo.WageDataSetUserBO;
 import com.hr319wg.custom.wage.pojo.bo.WageLitleBaseBO;
-import com.hr319wg.custom.wage.service.WageDataService;
+import com.hr319wg.custom.wage.service.IWageDataService;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CodeUtil;
@@ -59,13 +59,13 @@ public class WageDataLitleBackingBean extends BaseBackingBean {
 		this.operMoney = operMoney;
 	}
 
-	private WageDataService wageDataService;
+	private IWageDataService wageDataService;
 
-	public WageDataService getWageDataService() {
+	public IWageDataService getWageDataService() {
 		return wageDataService;
 	}
 
-	public void setWageDataService(WageDataService wageDataService) {
+	public void setWageDataService(IWageDataService wageDataService) {
 		this.wageDataService = wageDataService;
 	}
 

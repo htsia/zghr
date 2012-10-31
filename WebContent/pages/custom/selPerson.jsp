@@ -19,7 +19,7 @@ String rootid = user.getOrgId();
             document.getElementById("main").style.height = "" + mainHeight + "px";
         }
     </script>
-<f:view> 
+<f:view>
 <h:form id="form1">
     <c:verbatim>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">

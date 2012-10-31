@@ -7,7 +7,7 @@
 <%@page import="com.hr319wg.custom.wage.pojo.bo.WageDataRecordBO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.hr319wg.common.web.SysContext"%>
-<%@page import="com.hr319wg.custom.wage.service.WageDataService"%>
+<%@page import="com.hr319wg.custom.wage.service.WageDataServiceImpl"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -32,7 +32,7 @@
 	table{margin:5px 0 0 20px;width: 600px;}
 </style>
 <%
-	WageDataService service = (WageDataService)SysContext.getBean("wage_dataservice");
+	WageDataServiceImpl service = (WageDataServiceImpl)SysContext.getBean("wage_dataservice");
 %>
 </head>
 <body>

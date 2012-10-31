@@ -2,7 +2,7 @@
 <%@page import="java.io.File"%>
 <%@page import="jxl.Workbook"%>
 <%@page import="com.hr319wg.custom.pojo.bo.UserBO"%>
-<%@page import="com.hr319wg.custom.wage.service.WageDataService"%>
+<%@page import="com.hr319wg.custom.wage.service.WageDataServiceImpl"%>
 <%@page import="com.hr319wg.util.CodeUtil"%>
 <%@page import="com.hr319wg.sys.cache.SysCacheTool"%>
 <%@page import="com.hr319wg.emp.pojo.bo.PersonBO"%>
@@ -23,77 +23,77 @@
 %>
 				
 <%
-	String path = request.getRealPath("/");
-	WritableWorkbook book = Workbook.createWorkbook(new File(path+"file\\export\\result.xls"));
-	WritableSheet sheet = book.createSheet("绩效工资", 0);
-	
-	String[]heads={"员工编号", "身份证号", "姓名", "二级部门", "所在部门", "人员类别", "职称等级", "超课时数", "应发超课时工资", "代扣税", "实发超课时工资", "银行账号"};
-	for(int i=0;i<heads.length;i++){
-		Label label = new Label(i, 0, heads[i]);
-		sheet.addCell(label);
-	}
-	WageDataService wage = (WageDataService)SysContext.getBean("wage_dataservice");
-	List list = wage.getAllClassWageBO();
-	if(list!=null && list.size()>0){
-		for(int i=0;i<list.size();i++){
-			Map m = (Map)list.get(i);
-			Label labelcode = new Label(0, i+1, m.get("personcode").toString());
-			sheet.addCell(labelcode);
-			
-			if(m.get("card")!=null){
-				Label labelcard = new Label(1, i+1, m.get("card").toString());
-				sheet.addCell(labelcard);
-			}
-			
-			Label labelname = new Label(2, i+1, m.get("name").toString());
-			sheet.addCell(labelname);
+					String path = request.getRealPath("/");
+					WritableWorkbook book = Workbook.createWorkbook(new File(path+"file\\export\\result.xls"));
+					WritableSheet sheet = book.createSheet("绩效工资", 0);
+					
+					String[]heads={"员工编号", "身份证号", "姓名", "二级部门", "所在部门", "人员类别", "职称等级", "超课时数", "应发超课时工资", "代扣税", "实发超课时工资", "银行账号"};
+					for(int i=0;i<heads.length;i++){
+						Label label = new Label(i, 0, heads[i]);
+						sheet.addCell(label);
+					}
+					WageDataServiceImpl wage = (WageDataServiceImpl)SysContext.getBean("wage_dataservice");
+					List list = wage.getAllClassWageBO();
+					if(list!=null && list.size()>0){
+						for(int i=0;i<list.size();i++){
+					Map m = (Map)list.get(i);
+					Label labelcode = new Label(0, i+1, m.get("personcode").toString());
+					sheet.addCell(labelcode);
+					
+					if(m.get("card")!=null){
+						Label labelcard = new Label(1, i+1, m.get("card").toString());
+						sheet.addCell(labelcard);
+					}
+					
+					Label labelname = new Label(2, i+1, m.get("name").toString());
+					sheet.addCell(labelname);
 
-			Label labelsecdept = new Label(3, i+1, CodeUtil.interpertCode(m.get("secdept").toString()));
-			sheet.addCell(labelsecdept);
-			
-			Label labeldept = new Label(4, i+1, CodeUtil.interpertCode(CodeUtil.TYPE_ORG, m.get("dept").toString()));
-			sheet.addCell(labeldept);
-			
-			Label labeltype = new Label(5, i+1, CodeUtil.interpertCode(m.get("persontype").toString()));
-			sheet.addCell(labeltype);
-			
-			if(m.get("zclevel")!=null){
-				Label labellevel = new Label(6, i+1, CodeUtil.interpertCode(m.get("zclevel").toString()));
-				sheet.addCell(labellevel);
-			}
-			
-			Label labelnum = new Label(7, i+1, m.get("classnum").toString());
-			sheet.addCell(labelnum);
-			
-			Label labelwage = new Label(8, i+1, m.get("wage").toString());
-			sheet.addCell(labelwage);
-			
-			Label labelreduce = new Label(9, i+1, m.get("reduce").toString());
-			sheet.addCell(labelreduce);
-			
-			Label labelrealwage = new Label(10, i+1, m.get("realwage").toString());
-			sheet.addCell(labelrealwage);
-			
-			if(m.get("bank")!=null){
-				Label labelbank = new Label(11, i+1, m.get("bank").toString());
-				sheet.addCell(labelbank);
-			}
-		}
-	}
-	
-	book.write();
-	book.close();
-	
-	out.clear();    
-	out = pageContext.pushBody();  
-	FileInputStream in = new FileInputStream(path+"file\\export\\result.xls");
-	OutputStream os = response.getOutputStream();
-	byte[] b = new byte[1024];    
-	int i = 0;    
-	while((i = in.read(b)) > 0)    
-	{    
-		os.write(b, 0, i);    
-	}    
-	os.flush();    
-%>
+					Label labelsecdept = new Label(3, i+1, CodeUtil.interpertCode(m.get("secdept").toString()));
+					sheet.addCell(labelsecdept);
+					
+					Label labeldept = new Label(4, i+1, CodeUtil.interpertCode(CodeUtil.TYPE_ORG, m.get("dept").toString()));
+					sheet.addCell(labeldept);
+					
+					Label labeltype = new Label(5, i+1, CodeUtil.interpertCode(m.get("persontype").toString()));
+					sheet.addCell(labeltype);
+					
+					if(m.get("zclevel")!=null){
+						Label labellevel = new Label(6, i+1, CodeUtil.interpertCode(m.get("zclevel").toString()));
+						sheet.addCell(labellevel);
+					}
+					
+					Label labelnum = new Label(7, i+1, m.get("classnum").toString());
+					sheet.addCell(labelnum);
+					
+					Label labelwage = new Label(8, i+1, m.get("wage").toString());
+					sheet.addCell(labelwage);
+					
+					Label labelreduce = new Label(9, i+1, m.get("reduce").toString());
+					sheet.addCell(labelreduce);
+					
+					Label labelrealwage = new Label(10, i+1, m.get("realwage").toString());
+					sheet.addCell(labelrealwage);
+					
+					if(m.get("bank")!=null){
+						Label labelbank = new Label(11, i+1, m.get("bank").toString());
+						sheet.addCell(labelbank);
+					}
+						}
+					}
+					
+					book.write();
+					book.close();
+					
+					out.clear();    
+					out = pageContext.pushBody();  
+					FileInputStream in = new FileInputStream(path+"file\\export\\result.xls");
+					OutputStream os = response.getOutputStream();
+					byte[] b = new byte[1024];    
+					int i = 0;    
+					while((i = in.read(b)) > 0)    
+					{    
+						os.write(b, 0, i);    
+					}    
+					os.flush();
+				%>
 

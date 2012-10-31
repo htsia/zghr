@@ -22,7 +22,7 @@ import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CommonFuns;
 
-public class WageDataService {
+public class WageDataServiceImpl implements IWageDataService{
 
 	private WageDataDAO wageDataSetDAO;
 	private ActivePageAPI activeapi;
@@ -54,6 +54,11 @@ public class WageDataService {
 	
 	public void saveOrUpdateObject(Object obj) throws SysException{
 		this.wageDataSetDAO.saveOrUpdateBo(obj);
+	}
+	
+	public void setTotalMoney(String itemID) throws SysException{
+		String sql = "update wage_dataset ds set ds.totalmoney= (select nvl(sum(du.money),0) from wage_dataset_user du where du.setid=ds.id) where ds.id='"+itemID+"'";
+		this.activeapi.executeSql(sql);
 	}
 	
 	public Object findBOById(Class c, String id) throws SysException{

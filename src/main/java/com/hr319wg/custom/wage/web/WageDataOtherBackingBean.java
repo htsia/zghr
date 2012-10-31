@@ -1,6 +1,7 @@
 package com.hr319wg.custom.wage.web;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,7 +26,8 @@ import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.custom.wage.pojo.bo.WageDataSetBO;
 import com.hr319wg.custom.wage.pojo.bo.WageDataSetUserBO;
-import com.hr319wg.custom.wage.service.WageDataService;
+import com.hr319wg.custom.wage.service.IWageDataService;
+import com.hr319wg.custom.wage.service.WageDataServiceImpl;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CodeUtil;
@@ -64,10 +66,18 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 	private List<Map> dataList;
 	private WageDataSetBO item;
 	private WageDataSetUserBO userBo;
-	private WageDataService wageDataService;
+	private IWageDataService wageDataService;
 	private UploadedFile excelFile;
-
+	private String totalMoney = "0";
 	
+	public String getTotalMoney() {
+		return totalMoney;
+	}
+
+	public void setTotalMoney(String totalMoney) {
+		this.totalMoney = totalMoney;
+	}
+
 	public UploadedFile getExcelFile() {
 		return excelFile;
 	}
@@ -212,11 +222,11 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 		this.itemType = itemType;
 	}
 
-	public WageDataService getWageDataService() {
+	public IWageDataService getWageDataService() {
 		return wageDataService;
 	}
 
-	public void setWageDataService(WageDataService wageDataService) {
+	public void setWageDataService(IWageDataService wageDataService) {
 		this.wageDataService = wageDataService;
 	}
 
@@ -376,7 +386,9 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 			e.printStackTrace();
 		}
 		if(setList!=null){
+			double m=0;
 			for(WageDataSetBO bo : setList ){
+				m+=bo.getTotalmoney();
 				PersonBO p = SysCacheTool.findPersonById(bo.getCreateUserID());
 				bo.setCreateUserName(p.getName());
 				if(!"1".equals(bo.getItemType()) && !"2".equals(bo.getItemType())){
@@ -406,6 +418,9 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 					}
 				}
 			}
+			BigDecimal bg = new BigDecimal(m);
+			double f1 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+			this.totalMoney=f1+"";
 		}else{
 			setList = new ArrayList();				
 		}
@@ -485,6 +500,12 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 			} catch (SysException e) {
 				e.printStackTrace();
 			}
+		}else{
+			try {
+				item = (WageDataSetBO)this.wageDataService.getObjectByID(WageDataSetBO.class, item.getID());
+			} catch (SysException e) {
+				e.printStackTrace();
+			}							
 		}
 		if(item!=null){
 			queryUser();			
@@ -508,8 +529,10 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 		String setID = super.getRequestParameter("setID");
 		
 		try {
-			this.item= (WageDataSetBO)this.wageDataService.getObjectByID(WageDataSetBO.class, setID);
-			this.userBo  = (WageDataSetUserBO)this.wageDataService.getObjectByID(WageDataSetUserBO.class, id);
+			if(id!=null && !"".equals(id)){
+				this.item= (WageDataSetBO)this.wageDataService.getObjectByID(WageDataSetBO.class, setID);
+				this.userBo  = (WageDataSetUserBO)this.wageDataService.getObjectByID(WageDataSetUserBO.class, id);				
+			}
 		} catch (SysException e) {
 			e.printStackTrace();
 		}
@@ -522,16 +545,16 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 		try {
 			if(item.getID()==null){
 				item.setCreateUserID(user.getUserId());
-				item.setStatus("0");
 				item.setCreateDate(CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss"));
 				item.setItemType(this.itemType);
+				item.setStatus("1");
 			}
 			if("3".equals(this.itemType) || "5".equals(this.itemType)){
 				item.setEndDate(item.getBeginDate());
 			}
-			if("1".equals(inself) && ("2".equals(item.getItemType()) || "3".equals(item.getItemType()))){
-				item.setSelfstatus("1");//自助平台
-			}
+//			if("1".equals(inself) && ("2".equals(item.getItemType()) || "3".equals(item.getItemType()))){
+//				item.setSelfstatus("1");//自助平台
+//			}
 			this.wageDataService.saveOrUpdateObject(item);
 			return "success";
 		} catch (SysException e) {
@@ -589,7 +612,8 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 				e.printStackTrace();
 			}
 		}
-		queryUser();
+		setTotalMoney();
+//		queryUser();
 		super.showMessageDetail("添加完成");
 	}
 	
@@ -599,7 +623,8 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 			for(WageDataSetUserBO bo : userList){
 				if(bo.getID().equals(this.operUserID)){
 					this.wageDataService.deleteWageDataSetUserBOByID(this.operUserID);
-					queryUser();
+					setTotalMoney();
+//					queryUser();
 					super.showMessageDetail("删除完成");									
 					break;
 				}
@@ -613,12 +638,21 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 	public String modifyUser(){
 		try {
 			this.wageDataService.saveOrUpdateObject(this.userBo);
+			setTotalMoney();
 			return "success";
 		} catch (SysException e) {
 			super.showMessageDetail("保存失败");
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	private void setTotalMoney(){
+		try {
+			this.wageDataService.setTotalMoney(this.item.getID());
+		} catch (SysException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//查询人员设置人员
@@ -862,6 +896,7 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 					e.printStackTrace();
 				}
 			}
+			setTotalMoney();
 		}
 	}
 	

@@ -4,7 +4,7 @@
 <%@page import="com.hr319wg.common.pojo.vo.User"%>
 <%@page import="java.util.List"%>
 <%@page import="com.hr319wg.common.web.SysContext"%>
-<%@page import="com.hr319wg.custom.wage.service.WageDataService"%>
+<%@page import="com.hr319wg.custom.wage.service.WageDataServiceImpl"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -50,7 +50,7 @@
 			String date = request.getParameter("date");
 			date = date==null?CommonFuns.getSysDate("yyyy-MM"):date;
 			User user = (User)session.getAttribute(Constants.USER_INFO);
-			WageDataService service = (WageDataService)SysContext.getBean("wage_dataservice");
+			WageDataServiceImpl service = (WageDataServiceImpl)SysContext.getBean("wage_dataservice");
 		%>
 		
 		</select>

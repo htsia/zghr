@@ -109,6 +109,14 @@
             <td height="1" class="td_title"><img src="/images/tips.gif">
 			</f:verbatim>
 				<h:outputText value="#{wage_dataOtherBB.itemName}"/>
+				<f:verbatim>
+					<span style="color:red;font-weight:bold;padding-left:20px;">总金额:
+					</f:verbatim>
+					<h:outputText value="#{wage_dataOtherBB.totalMoney}"/>
+					<f:verbatim>
+					元
+					</span>
+				</f:verbatim>
 			<f:verbatim>  
             </td>
         </tr>
@@ -119,16 +127,7 @@
 			<h:panelGroup>
 				<h:commandButton value="增加" styleClass="button01" onclick="doAddItem();"/>
 				<h:outputText value="  "/>
-				<f:verbatim><!--其他1、扣其他1、扣其他2 --></f:verbatim>
-				<h:commandButton value="数据归档" styleClass="button01" onclick="return selMonth();" action="#{wage_dataOtherBB.updateWageOther1}"
-					rendered="#{wage_dataOtherBB.inself!='1' && (wage_dataOtherBB.itemType=='1' || wage_dataOtherBB.itemType=='4')}"/>
-				
-				<f:verbatim><!-- 捐款、其他2 --></f:verbatim>
-				<h:commandButton value="数据审核" styleClass="button01" onclick="return verifydata('#{wage_dataOtherBB.itemType}')"
-					rendered="#{wage_dataOtherBB.inself!='1' && (wage_dataOtherBB.itemType=='2' || wage_dataOtherBB.itemType=='3' || wage_dataOtherBB.itemType=='5')}"/>
-				<h:commandButton value="数据归档" styleClass="button01" onclick="return checkdate();" action="#{wage_dataOtherBB.updateWageOther}"
-					rendered="#{wage_dataOtherBB.inself!='1' && (wage_dataOtherBB.itemType=='2' || wage_dataOtherBB.itemType=='3' || wage_dataOtherBB.itemType=='5')}"/>
-				<h:outputText value="  "/>
+				<h:commandButton value="数据归档" styleClass="button01" onclick="return selMonth();" action="#{wage_dataOtherBB.updateWageOther1}"/>
 				
 				<h:outputText value="编辑中" ></h:outputText>
                 <h:selectBooleanCheckbox value="#{wage_dataOtherBB.editting}" onclick="submit();" valueChangeListener="#{wage_dataOtherBB.setEditting}"/>					

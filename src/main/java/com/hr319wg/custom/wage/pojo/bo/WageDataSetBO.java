@@ -5,7 +5,7 @@ public class WageDataSetBO {
 	private String name;
 	private String createDate;
 	private String itemType;
-	private float totalmoney;
+	private float totalmoney=0;
 	private String beginDate;
 	private String endDate;
 	private String applyDate;
