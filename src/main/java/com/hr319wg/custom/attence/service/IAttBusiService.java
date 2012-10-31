@@ -204,6 +204,11 @@ public interface IAttBusiService {
 	List getOvertimePayBO(PageVO pageVO, String orgID, String nameStr,
 			String personType,String yearMonth) throws SysException;
 	List getYearBO(PageVO pageVO, String orgID, String nameStr,
-			String personType) throws SysException;;
+			String personType) throws SysException;
+	public void rollbackLeaveDays(String string, String applyDays,
+			String personId);
+	public void deleteInputLeave(String operItemID)throws SysException;
+	void deleteInputOvertime(String operItemID) throws SysException;
+	void deleteInputRest(String operItemID) throws SysException;
 
 }

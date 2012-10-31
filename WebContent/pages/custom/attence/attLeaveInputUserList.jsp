@@ -126,7 +126,7 @@
         <h:column>
             <c:facet name="header"><h:outputText value="²Ù×÷"/></c:facet>
             <h:commandButton value="É¾³ý"  styleClass="button01" onclick="return confirm('È·¶¨É¾³ýÂð');" action="#{attLeaveApplyBB.deleteInput}">
-            	<x:updateActionListener value="#{list.leaveId}" property="#{attLeaveApplyBB.operItemID}"></x:updateActionListener>
+            	<x:updateActionListener value="#{list.id}" property="#{attLeaveApplyBB.operItemID}"></x:updateActionListener>
             </h:commandButton>
         </h:column>
     </h:dataTable>

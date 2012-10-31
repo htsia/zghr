@@ -231,7 +231,7 @@ public class AttOvertimeBackingBean extends BaseBackingBean {
 	
 	public void deleteInput(){
 		try {
-			this.attBusiService.deleteBO(AttOvertimeBO.class, this.operItemID);
+			this.attBusiService.deleteInputOvertime(operItemID);
 		} catch (SysException e) {
 			super.showMessageDetail("É¾³ýÊ§°Ü");
 			e.printStackTrace();
