@@ -1100,7 +1100,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		// 处理请假的七种类型
 		if (type.equals("1")) {
 			// 正常事假
-			sql += "a236201=a236201+" + Double.parseDouble(days);
+			sql += "a236201=nvl(a236201,0)+" + Double.parseDouble(days);
 		} else if (type.equals("2")) {
 			/*
 			 * // 病假 病假要处理5天的带薪病假和其他的 // 算法:统计病假，先用假条天数减去剩余的带薪病假得到数字day
@@ -1120,25 +1120,25 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			 */
 		} else if (type.equals("3")) {
 			// 婚假
-			sql += "a236203=a236203-" + Double.parseDouble(days);
+			sql += "a236203=nvl(a236203,0)-" + Double.parseDouble(days);
 		} else if (type.equals("4")) {
 			// 丧假
-			sql += "a236204=a236204-" + Double.parseDouble(days);
+			sql += "a236204=nvl(a236204,0)-" + Double.parseDouble(days);
 		} else if (type.equals("5")) {
 			// 产假
-			sql += "a236205=a236205-" + Double.parseDouble(days);
+			sql += "a236205=nvl(a236205,0)-" + Double.parseDouble(days);
 		} else if (type.equals("6")) {
 			// 难产产假
-			sql += "a236206=a236206-" + Double.parseDouble(days);
+			sql += "a236206=nvl(a236206,0)-" + Double.parseDouble(days);
 		} else if (type.equals("7")) {
 			// 带薪事假
-			sql += "a236207=a236207-" + Double.parseDouble(days);
+			sql += "a236207=nvl(a236207,0)-" + Double.parseDouble(days);
 		}
 		// 处理加班和调休
 		else if (type.equals("0")) {
-			sql += "a236200=a236200+" + Double.parseDouble(days) * 8;
+			sql += "a236200=nvl(a236200,0)+" + Double.parseDouble(days) * 8;
 		} else if (type.equals("-1")) {
-			sql += "a236200=a236200-" + Double.parseDouble(days) * 8;
+			sql += "a236200=nvl(a236200,0)-" + Double.parseDouble(days) * 8;
 
 		}
 		if (!type.equals("2")) {
@@ -1148,12 +1148,12 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	}
 
 	// 更新带薪假存休子集的数据,处理录入单删除的情况
-	public void LeaveDays(String type, String days, String personId) {
+	public void rollbackLeaveDays(String type, String days, String personId) {
 		String sql = "update a236 set ";
 		// 处理请假的七种类型
 		if (type.equals("1")) {
 			// 正常事假
-			sql += "a236201=a236201-" + Double.parseDouble(days);
+			sql += "a236201=nvl(a236201,0)+" + Double.parseDouble(days);
 		} else if (type.equals("2")) {
 			/*
 			 * // 病假 病假要处理5天的带薪病假和其他的 // 算法:统计病假，先用假条天数减去剩余的带薪病假得到数字day
@@ -1173,25 +1173,25 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			 */
 		} else if (type.equals("3")) {
 			// 婚假
-			sql += "a236203=a236203-" + Double.parseDouble(days);
+			sql += "a236203=nvl(a236203,0)+" + Double.parseDouble(days);
 		} else if (type.equals("4")) {
 			// 丧假
-			sql += "a236204=a236204-" + Double.parseDouble(days);
+			sql += "a236204=nvl(a236204,0)+" + Double.parseDouble(days);
 		} else if (type.equals("5")) {
 			// 产假
-			sql += "a236205=a236205-" + Double.parseDouble(days);
+			sql += "a236205=nvl(a236205,0)+" + Double.parseDouble(days);
 		} else if (type.equals("6")) {
 			// 难产产假
-			sql += "a236206=a236206-" + Double.parseDouble(days);
+			sql += "a236206=nvl(a236206,0)+" + Double.parseDouble(days);
 		} else if (type.equals("7")) {
 			// 带薪事假
-			sql += "a236207=a236207-" + Double.parseDouble(days);
+			sql += "a236207=nvl(a236207,0)+" + Double.parseDouble(days);
 		}
 		// 处理加班和调休
 		else if (type.equals("0")) {
-			sql += "a236200=a236200+" + Double.parseDouble(days) * 8;
+			sql += "a236200=nvl(a236200,0)-" + Double.parseDouble(days) * 8;
 		} else if (type.equals("-1")) {
-			sql += "a236200=a236200-" + Double.parseDouble(days) * 8;
+			sql += "a236200=nvl(a236200,0)+" + Double.parseDouble(days) * 8;
 
 		}
 		if (!type.equals("2")) {
@@ -3161,5 +3161,23 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		// return this.jdbcTemplate.queryForList("select * from a236");
 		return this.attBusiDAO.getYearBO(pageVO, orgID, nameStr,
 				personType);
+	}
+	@Override
+	public void deleteInputLeave(String operItemID) throws SysException {
+		AttLeaveBO leave=(AttLeaveBO)this.findBOById(AttLeaveBO.class, operItemID);
+		this.rollbackLeaveDays(leave.getLeaveType(),String.valueOf(leave.getApplyDays()),leave.getPersonId());
+		this.deleteBO(AttLeaveBO.class, operItemID);
+	}
+	@Override
+	public void deleteInputOvertime(String operItemID) throws SysException {
+		AttOvertimeBO overtime=(AttOvertimeBO)this.findBOById(AttOvertimeBO.class, operItemID);
+		this.rollbackLeaveDays("0",overtime.getApplyDays(),overtime.getPersonId());
+		this.deleteBO(AttOvertimeBO.class, operItemID);
+	}
+	@Override
+	public void deleteInputRest(String operItemID) throws SysException {
+		AttRestBO rest=(AttRestBO)this.findBOById(AttRestBO.class, operItemID);
+		this.rollbackLeaveDays("-1",rest.getApplyDays(),rest.getPersonId());
+		this.deleteBO(AttRestBO.class, operItemID);
 	}
 }
