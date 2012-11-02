@@ -1,7 +1,7 @@
+<%@page import="com.hr319wg.custom.wage.service.IWageDataService"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.hr319wg.common.Constants"%>
 <%@page import="com.hr319wg.common.web.SysContext"%>
-<%@page import="com.hr319wg.custom.wage.service.WageDataServiceImpl"%>
 <%@page import="com.hr319wg.common.pojo.vo.User"%>
 <%@page import="com.hr319wg.custom.util.CommonUtil"%>
 <%@page import="java.util.List"%>
@@ -43,7 +43,7 @@
 		<select id="setId">
 			<%
 				User user = (User)session.getAttribute(Constants.USER_INFO);
-					WageDataServiceImpl service = (WageDataServiceImpl)SysContext.getBean("wage_dataservice");
+					IWageDataService service = (IWageDataService)SysContext.getBean("wage_dataservice");
 					List<Map> wageset = service.getWageSet(user.getUserId());
 					if(wageset!=null){
 						for(Map m : wageset){

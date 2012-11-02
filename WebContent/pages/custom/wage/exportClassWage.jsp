@@ -1,8 +1,8 @@
+<%@page import="com.hr319wg.custom.wage.service.IWageDataService"%>
 <%@page import="jxl.write.Label"%>
 <%@page import="java.io.File"%>
 <%@page import="jxl.Workbook"%>
 <%@page import="com.hr319wg.custom.pojo.bo.UserBO"%>
-<%@page import="com.hr319wg.custom.wage.service.WageDataServiceImpl"%>
 <%@page import="com.hr319wg.util.CodeUtil"%>
 <%@page import="com.hr319wg.sys.cache.SysCacheTool"%>
 <%@page import="com.hr319wg.emp.pojo.bo.PersonBO"%>
@@ -32,7 +32,7 @@
 						Label label = new Label(i, 0, heads[i]);
 						sheet.addCell(label);
 					}
-					WageDataServiceImpl wage = (WageDataServiceImpl)SysContext.getBean("wage_dataservice");
+					IWageDataService wage = (IWageDataService)SysContext.getBean("wage_dataservice");
 					List list = wage.getAllClassWageBO();
 					if(list!=null && list.size()>0){
 						for(int i=0;i<list.size();i++){

@@ -96,21 +96,10 @@ public interface IWageDataService {
 	public void updateWageData(String yearMonth, String userID, String orgID ,String itemType, String setID, String operType) throws SysException;
 	
 	/**
-	 * 更新其他1、扣其他1数据
+	 * 更新其他1、扣其他1,捐款、其他2、扣其他2
 	 * @throws SysException 
 	 */
 	public void updateWageDataOther1(String itemType, String yearMonth, String selectedItemIDs, String operUserID) throws SysException;
-	
-	/**
-	 * 更新(捐款、其他2、扣其他2)
-	 * @throws SysException 
-	 */
-	public void updateWageDataOther(String yearMonth, String selectedItemIDs, String itemType, String operUserID) throws SysException;
-	/**
-	 * 生成历史记录
-	 * @throws SysException
-	 */
-	public void updateWageOtherRecord(String yearMonth, String selectedItemIDs, String itemType, String operUserID) throws SysException;
 	
 	/**
 	 * 同步扣房租房补暖气费数据
