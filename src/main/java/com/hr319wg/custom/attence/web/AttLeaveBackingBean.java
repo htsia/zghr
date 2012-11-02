@@ -15,6 +15,7 @@ import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.attence.pojo.bo.AttLeaveBO;
 import com.hr319wg.custom.attence.pojo.bo.AttLogBO;
+import com.hr319wg.custom.attence.pojo.bo.AttOvertimeBO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
 import com.hr319wg.custom.attence.util.AttConstants;
 import com.hr319wg.custom.pojo.bo.UserBO;
@@ -73,7 +74,61 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	private String personSex="male";//默认男性
 	private String userId;
 	private boolean selMyAtt;
+	private String inputPopEditInit;
+	private String selectPersonId;
 	
+	public void setInputPopEditInit(String inputPopEditInit) {
+		this.inputPopEditInit = inputPopEditInit;
+	}
+	public String getInputPopEditInit() {
+		try {
+			if (super.getRequestParameter("new") != null) {
+				leaveBo = new AttLeaveBO();
+			} else if (super.getRequestParameter("leaveId") != null) {
+				leaveId = super.getRequestParameter("leaveId");
+				leaveBo = this.attBusiService.findAttLeaveBOById(leaveId);
+			}
+			if(leaveBo==null){
+				leaveBo = new AttLeaveBO();
+			}
+			
+			if (leaveBo.getPersonId() != null
+					&& !leaveBo.getPersonId().equals("")) {
+				personId = leaveBo.getPersonId();
+				personName = SysCacheTool.findPersonById(leaveBo.getPersonId())
+						.getName();
+			} else {
+				personId = super.getUserInfo().getUserId();
+				personName = super.getUserInfo().getName();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// 获得带薪假存休子集的数据
+		try {
+			if(selectedUserIds!=null&&!"".equals(selectedUserIds)){
+				selectPersonId=selectedUserIds.split(",")[0];
+			}			
+			if(selectPersonId==null||"".equals(selectPersonId)){
+				selectPersonId=super.getUserInfo().getUserId();
+			}
+			List list = this.attBusiService.getDays(selectPersonId);
+			this.undoneDays=this.attBusiService.getUndoneDays(selectPersonId);
+			this.personSex=SysCacheTool.findPersonById(selectPersonId).getSex();//获得员工性别
+			if("01001".equals(this.personSex)){
+				this.personSex="male";//男员工
+			}
+			if("01002".equals(this.personSex)){
+				this.personSex="female";//女员工
+			}
+			Map<String, Object> map = (Map<String, Object>) list.get(0);
+			this.days = map;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return inputPopEditInit;
+	}
 	public boolean isSelMyAtt() {
 		return selMyAtt;
 	}
@@ -314,7 +369,8 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	
 	public void deleteInput() {
 		try {
-			this.attBusiService.deleteBO(AttLeaveBO.class, this.operItemID);
+			this.attBusiService.deleteInputLeave(this.operItemID);
+			
 		} catch (SysException e) {
 			super.showMessageDetail("删除失败");
 			e.printStackTrace();
@@ -918,5 +974,11 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 		super.showMessageDetail("操作成功");
 		return "success";
 	}
-
+	public String getSelectPersonId() {
+		return selectPersonId;
+	}
+	public void setSelectPersonId(String selectPersonId) {
+		this.selectPersonId = selectPersonId;
+	}
+	
 }

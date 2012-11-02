@@ -18,7 +18,7 @@
          <f:verbatim>
              <%=LanguageSupport.getResource("YXGL-1002","系统名称")%>  
          </f:verbatim>
-         <h:outputText  value="郑州大学西亚斯国际学院人力资源管理信息系统V4.1" />
+         <h:outputText  value="紫光新锐人力资源管理信息系统V4.1" />
 
          <f:verbatim>
              <%=LanguageSupport.getResource("YXGL-1003","系统发布号")%>  

@@ -13,6 +13,7 @@ import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.attence.pojo.bo.AttLogBO;
+import com.hr319wg.custom.attence.pojo.bo.AttOvertimeBO;
 import com.hr319wg.custom.attence.pojo.bo.AttRestBO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
 import com.hr319wg.custom.attence.util.AttConstants;
@@ -242,7 +243,7 @@ public class AttRestBackingBean extends BaseBackingBean {
 	
 	public void deleteInput(){
 		try {
-			this.attBusiService.deleteBO(AttRestBO.class, this.operItemID);
+			this.attBusiService.deleteInputRest(operItemID);
 		} catch (SysException e) {
 			super.showMessageDetail("É¾³ýÊ§°Ü");
 			e.printStackTrace();
