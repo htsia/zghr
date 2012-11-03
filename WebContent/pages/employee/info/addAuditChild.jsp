@@ -40,10 +40,12 @@
                 var url="/employee/info/ProcessAduit.jsf?perIds="+perID;
 
                 window.showModalDialog(url, null, "dialogWidth:500px; dialogHeight:340px;center:center;resizable:no;status:no;scroll:yes;");
+                return true;
             } else {
                 alert("请选择人员");
+                return false;
             }
-           return false;
+           return true;
         }
     </script>
 
@@ -81,8 +83,7 @@
               <h:commandButton type="button" styleClass="button_date" onclick="PopUpCalendarDlg_OnlyMonth('form1:processDate');"></h:commandButton>
               <h:commandButton value="查询" id="query" action="#{emp_personListBB.doQueryCheckAuditPerson}" onclick="return disPlayProcessBar();" styleClass="button01" />
 
-
-             <h:commandButton styleClass="button01" onclick="audit();" value="审批"></h:commandButton>
+             <h:commandButton styleClass="button01" onclick="return audit();" action="#{emp_personListBB.doQueryCheckAuditPerson}" value="审批"></h:commandButton>
              <h:commandButton styleClass="button01" type="button" onclick="doExport();" value="导出"></h:commandButton>
              <h:commandButton value="查看流程" id="showFlow" type="button" onclick="return showWF();" styleClass="button01" rendered="#{emp_personListBB.workFlow=='1'}"></h:commandButton>
 <f:verbatim>

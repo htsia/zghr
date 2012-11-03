@@ -31,7 +31,7 @@
                 } else
                     str = form1.selectItem.value.replace("#","~");
                 window.showModalDialog("/employee/info/doBatchReduceAudit.jsf?pIDs="+str, null, "dialogWidth:600px; dialogHeight:500px;center:center;resizable:yes;status:no;scroll:yes;");
-                return false;
+                return true;
             }
             else{
                 alert("请选择要审批的人员!");
@@ -84,7 +84,7 @@
                   <h:commandButton type="button" styleClass="button_select" onclick="PopUpCalendarDlg_OnlyMonth('form1:processDate')"/>
                   <h:commandButton value="查询" id="doauditQuery" styleClass="button01" action="#{emp_personListBB.doauditQuery}"></h:commandButton>
                   <h:commandButton value="全部" styleClass="button01" onclick="document.all('form1:processDate').value='';" ></h:commandButton>
-                  <h:commandButton value="批量审批" styleClass="button01"  onclick="return batchAudit();"></h:commandButton>
+                  <h:commandButton value="批量审批" styleClass="button01" onclick="return batchAudit();" action="#{emp_personListBB.doauditQuery}"></h:commandButton>
                   <h:commandButton value="导出Excel" rendered="#{emp_personListBB.reducebos!=null}" action="#{emp_personListBB.downloadFile}" styleClass="button01"/>
               </h:panelGroup>
           <c:verbatim>
@@ -139,7 +139,7 @@
 
                       <f:verbatim escape="false">
                           <input type="checkbox" name="selectItem" value="</f:verbatim>
-                          <h:outputText value="#{list.persID}"/>
+                          <h:outputText value="#{list.itemID}"/>
                           <f:verbatim escape="false">"/>
                       </f:verbatim>
                   </h:column>

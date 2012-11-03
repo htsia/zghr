@@ -279,7 +279,7 @@ public class WageDataServiceImpl implements IWageDataService{
 			set = "a228";//科研费			
 		}
 		String sql = "update "+set+" set "+set+"200 ='"+money+"',"+set+"202 ='1' where "+CommonFuns.splitInSql(selectedUserIDs.split(","), "id");
-		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 	}
 	//删除加班费、车公里补贴人员
@@ -296,7 +296,7 @@ public class WageDataServiceImpl implements IWageDataService{
 		if("0".equals(operType)){//删除单个
 			sql += " and id='"+userID+"'";
 		}
-		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 	}
 	//更新加班费、车公里补贴人员
@@ -329,7 +329,7 @@ public class WageDataServiceImpl implements IWageDataService{
 			set = "a228";//科研费			
 		}
 		String sql = "update "+set+" set "+set+"201 ='"+yearMonth+"',"+set+"202 ='2' where "+set+"202 ='1'";
-		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 	}
 	
@@ -384,20 +384,22 @@ public class WageDataServiceImpl implements IWageDataService{
 		}else if("5".equals(itemType)){
 			set = "a230";//扣其他2
 		}
-		String sql ="update "+set+" set "+set+"201=null where id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+		String sql ="update "+set+" set "+set+"201=null";
+//				" where id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 		sql = "update "+set+" a set "+set+"201='"+yearMonth+"',"+set+"200=(select m from (select userid,sum(money) m from Wage_Dataset_User du where du.setid in " +
 				"(select id from WAGE_DATASET where (exclude_date is null or exclude_date not like '%"+yearMonth+"%') and begin_date <='"+yearMonth+"' and end_date >='"+yearMonth+"' " +
 						"and status in (1,2) and item_type='"+itemType+"' and "+CommonFuns.splitInSql(selectedItemIDs.split(","), "id")+") group by userid) b where a.id=b.userid)";
-		sql += " where id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " where id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 		//生成历史记录
-		sql ="delete from wage_data_record where yearmonth='"+yearMonth+"' and "+CommonFuns.splitInSql(selectedItemIDs.split(","), "setId")+" and userid in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+		sql ="delete from wage_data_record where yearmonth='"+yearMonth+"' and "+CommonFuns.splitInSql(selectedItemIDs.split(","), "setId");
+//				" and userid in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 		sql = "insert into wage_data_record select id || '"+yearMonth+"',setid,userid,money,usercode,username,orgname,deptname,remark,'"+yearMonth+"' from wage_dataset_user " +
 				"where setid in (select id from WAGE_DATASET where (exclude_date is null or exclude_date not like '%"+yearMonth+"%') " +
 						"and begin_date <='"+yearMonth+"' and end_date >='"+yearMonth+"' and status in (1,2) and item_type='"+itemType+"' and "+CommonFuns.splitInSql(selectedItemIDs.split(","), "id")+")";
-		sql += " and userid in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " and userid in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 		//更新项目状态
 		List<WageDataSetBO> setList = this.getAllWageDataSetBO(yearMonth, selectedItemIDs, itemType);
@@ -450,7 +452,7 @@ public class WageDataServiceImpl implements IWageDataService{
 		if(userID!=null && !"".equals(userID)){
 			sql+=" and id='"+userID+"'";
 		}
-		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 	}
 	//清空sigle数据
@@ -467,7 +469,7 @@ public class WageDataServiceImpl implements IWageDataService{
 		if(userID!=null && !"".equals(userID)){
 			 sql+=" and id='"+userID+"'";
 		}
-		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 	}
 	
