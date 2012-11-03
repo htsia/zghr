@@ -42,6 +42,6 @@
 		//获取需要处理的请假申请个数
 		int leaveNumber = attBusiService.queryLeaveAuditTask(user.getUserId()).size();
 		out.println(leaveNumber+",");
-
+		out.println(user.getName());
 %>
 

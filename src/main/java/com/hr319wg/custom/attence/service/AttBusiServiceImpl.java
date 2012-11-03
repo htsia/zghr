@@ -2652,7 +2652,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		// ≤Â»Î–≈œ¢
 		sql = "insert into a243 select " + id + "||rownum||'" + selectMonth
 				+ "'," + id + ",'00901','" + selectMonth + "'," + hours + ","
-				+ hours + "*20 from dual";
+				+ hours + "*20/8.0 from dual";
 		this.activeapi.executeSql(sql);
 	}
 
