@@ -54,12 +54,22 @@
     <bean id="wage_datadao" class="com.hr319wg.custom.wage.dao.WageDataDAO">
 		<property name="hibernatetemplate" ref="hibernateTemplate"/>
     </bean>
-    <bean id="wage_dataservice" class="com.hr319wg.custom.wage.service.WageDataService">
+    <bean id="wage_dataserviceImpl" class="com.hr319wg.custom.wage.service.WageDataServiceImpl">
            <property name="wageDataSetDAO" ref="wage_datadao" />
            <property name="activeapi" ref="sys_activePageApi" />
            <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     
+    <bean id="wage_dataservice" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.custom.wage.service.IWageDataService</value>
+                </list>
+            </property>
+            <property name="target" ref="wage_dataserviceImpl"/>
+            <property name="transactionManager" ref="transactionManager"/>
+            <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
     
     
     <!-- 考勤管理 -->

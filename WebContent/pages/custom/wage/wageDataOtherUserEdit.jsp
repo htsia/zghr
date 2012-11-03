@@ -93,6 +93,14 @@
 		</h:panelGroup>
 		<h:panelGrid align="right">
 			<h:panelGroup>
+				<f:verbatim>
+					<span style="color:red;font-weight:bold;padding-right:20px;">总金额:
+					</f:verbatim>
+					<h:outputText value="#{wage_dataOtherBB.item.totalmoney}"/>
+					<f:verbatim>
+					元
+					</span>
+				</f:verbatim>
 				<h:outputText
 					value="记录数:#{wage_dataOtherBB.mypage.totalRecord}"></h:outputText>
 				<h:outputText value="  "></h:outputText>

@@ -1,3 +1,4 @@
+<%@page import="com.hr319wg.custom.wage.service.IWageDataService"%>
 <%@page import="com.hr319wg.custom.wage.pojo.bo.WageLitleBaseBO"%>
 <%@page import="com.hr319wg.util.CodeUtil"%>
 <%@page import="com.hr319wg.sys.cache.SysCacheTool"%>
@@ -7,7 +8,6 @@
 <%@page import="com.hr319wg.custom.wage.pojo.bo.WageDataRecordBO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.hr319wg.common.web.SysContext"%>
-<%@page import="com.hr319wg.custom.wage.service.WageDataService"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -32,7 +32,7 @@
 	table{margin:5px 0 0 20px;width: 600px;}
 </style>
 <%
-	WageDataService service = (WageDataService)SysContext.getBean("wage_dataservice");
+	IWageDataService service = (IWageDataService)SysContext.getBean("wage_dataservice");
 %>
 </head>
 <body>
@@ -217,30 +217,6 @@
 				}
 			}
 		%>
-<!-- 		车公里补助 -->
-		<div class="big1">六、车公里补助(共<%=service.getWageLitleItemSum("2", wageDate, wageSetID) %>元)</div>
-		<table class="table03" border="<%=!"1".equals(p1)?"1":"0"%>">
-			<tr>
-				<th class="td_top">人员编号</th><th class="td_top">姓名</th><th class="td_top">所在部门</th><th class="td_top">金额</th>
-			</tr>
-			<%
-				List<WageLitleBaseBO> recList3 = service.getWageLitleItemDetail("2", wageDate, null, wageSetID);
-				
-				if(recList3!=null){
-					for(WageLitleBaseBO bo : recList3){
-						PersonBO p = SysCacheTool.findPersonById(bo.getID());
-						%>
-						<tr>
-							<td class="td_middle_center"><%=p.getPersonCode() %></td>
-							<td class="td_middle_center"><%=p.getName() %></td>
-							<td class="td_middle_center"><%=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId()) %></td>
-							<td class="td_middle_center"><%=bo.getMoney() %></td>
-						</tr>
-						<%
-					}
-				}
-			%>
-		</table>
 	</div>
 </body>
 </html>

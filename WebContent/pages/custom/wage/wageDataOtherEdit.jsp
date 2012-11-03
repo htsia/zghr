@@ -10,9 +10,6 @@
 		var itemType = document.all("form1:itemType").value;
 		var beginDate = document.all("form1:beginDate").value;
 		var endDate;
-		var totalmoney = document.all("form1:totalmoney").value;
-		totalmoney=$.trim(totalmoney);
-		document.all("form1:totalmoney").value=totalmoney;
 		var excludeDate;
 		if(itemType==1 || itemType==2){
 			endDate = document.all("form1:endDate").value;
@@ -20,9 +17,6 @@
 		}
 		if($.trim(document.all("form1:name").value).length==0){
 			alert("请填写项目名称");
-			return false;
-		}else if(totalmoney==null || totalmoney.length==0 || isNaN(totalmoney)){
-			alert("总金额为数字");
 			return false;
 		}else if((beginDate==null || beginDate=="") && (itemType==1 || itemType==2)){
 			alert("请选择开始日期");
@@ -51,10 +45,6 @@
 		}
 		return false;
 	}
-	var itemType1 = document.all("form1:itemType").value;
-	if(itemType1!=1 && itemType1!=2 && itemType1!=4){
-		document.all('selend').style.display="none";
-	}
 </script>
 <x:saveState value="#{wage_dataOtherBB}" />
 <h:inputHidden value="#{wage_dataOtherBB.editInit}"/>
@@ -73,26 +63,15 @@
 			align="center" styleClass="table03">
 			
 			<h:outputText value="项目名称"></h:outputText>
-			<h:inputText id="name" value="#{wage_dataOtherBB.item.name}" styleClass="input" size="30"></h:inputText>
-			
-			<h:outputText value="总金额"></h:outputText>
-			<h:panelGroup>
-				<h:inputText id="totalmoney" size="30" styleClass="input" value="#{wage_dataOtherBB.item.totalmoney}"></h:inputText>
-			</h:panelGroup>
-			
+			<h:inputText id="name" value="#{wage_dataOtherBB.item.name}" styleClass="input" size="45"></h:inputText>
 			<h:outputText value="适用日期"/>
 			<h:panelGroup>
 				<h:outputText value="开始日期:" rendered="#{wage_dataOtherBB.itemType=='1' || wage_dataOtherBB.itemType=='2' || wage_dataOtherBB.itemType=='4'}"/>
-				<h:inputText id="beginDate" value="#{wage_dataOtherBB.item.beginDate}" styleClass="input" readonly="true"/>
-				<c:verbatim>
-				    <img onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM',alwaysUseStartDate:true,el:'form1:beginDate'})" src="../../images/search.gif" class="button_select" width="16" height="22" align="absmiddle">
-                </c:verbatim>
+				<h:inputText id="beginDate" value="#{wage_dataOtherBB.item.beginDate}" styleClass="input Wdate" readonly="true" onclick="WdatePicker({startDate:'%y-%M',dateFmt:'yyyy-MM',alwaysUseStartDate:true,el:'form1:beginDate'})"/>
 				<c:verbatim><br/></c:verbatim>
 				<h:outputText value="结束日期:" rendered="#{wage_dataOtherBB.itemType=='1' || wage_dataOtherBB.itemType=='2' || wage_dataOtherBB.itemType=='4'}"/>
-				<h:inputText id="endDate" value="#{wage_dataOtherBB.item.endDate}" styleClass="input" readonly="true" rendered="#{wage_dataOtherBB.itemType=='1' || wage_dataOtherBB.itemType=='2' || wage_dataOtherBB.itemType=='4'}"/>
-				<c:verbatim>
-				    <img id="selend" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM',alwaysUseStartDate:true,el:'form1:endDate'})" src="../../images/search.gif" class="button_select" width="16" height="22" align="absmiddle">
-                </c:verbatim>
+				<h:inputText id="endDate" value="#{wage_dataOtherBB.item.endDate}" styleClass="input Wdate" readonly="true" rendered="#{wage_dataOtherBB.itemType=='1' || wage_dataOtherBB.itemType=='2' || wage_dataOtherBB.itemType=='4'}" 
+					onclick="WdatePicker({startDate:'%y-%M',dateFmt:'yyyy-MM',alwaysUseStartDate:true,el:'form1:endDate'})"/>
 				<c:verbatim><br/></c:verbatim>
 				<h:outputText value="排除日期:" rendered="#{wage_dataOtherBB.itemType=='1' || wage_dataOtherBB.itemType=='2' || wage_dataOtherBB.itemType=='4'}"/>
 				<h:inputTextarea id="excludeDate" readonly="true" value="#{wage_dataOtherBB.item.excludeDate}" cols="30" rows="2" rendered="#{wage_dataOtherBB.itemType=='1' || wage_dataOtherBB.itemType=='2' || wage_dataOtherBB.itemType=='4'}"/>

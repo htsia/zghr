@@ -84,7 +84,6 @@ public class NewsManageService {
 	public void updateNewsContent(NewsContentBO bo)
 			throws RollbackableException {
 		try {
-			bo.setNewContent(null);
 			this.newscontentdao.saveOrUpdateBo(bo);
 		} catch (Exception e) {
 			throw new RollbackableException("E1502004", "更新新闻正文信息失败！", e,

@@ -1,7 +1,7 @@
+<%@page import="com.hr319wg.custom.wage.service.IWageDataService"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.hr319wg.common.Constants"%>
 <%@page import="com.hr319wg.common.web.SysContext"%>
-<%@page import="com.hr319wg.custom.wage.service.WageDataService"%>
 <%@page import="com.hr319wg.common.pojo.vo.User"%>
 <%@page import="com.hr319wg.custom.util.CommonUtil"%>
 <%@page import="java.util.List"%>
@@ -43,17 +43,17 @@
 		<select id="setId">
 			<%
 				User user = (User)session.getAttribute(Constants.USER_INFO);
-				WageDataService service = (WageDataService)SysContext.getBean("wage_dataservice");
-				List<Map> wageset = service.getWageSet(user.getUserId());
-				if(wageset!=null){
-					for(Map m : wageset){
-						String sel="";
-						if(setId!=null){
-							if(setId.indexOf(m.get("set_id").toString())!=-1){
-								sel="selected";
+					IWageDataService service = (IWageDataService)SysContext.getBean("wage_dataservice");
+					List<Map> wageset = service.getWageSet(user.getUserId());
+					if(wageset!=null){
+						for(Map m : wageset){
+							String sel="";
+							if(setId!=null){
+								if(setId.indexOf(m.get("set_id").toString())!=-1){
+									sel="selected";
+								}
 							}
-						}
-						%>						
+			%>						
 						<option <%=sel %> value="<%=m.get("set_id")%>"><%=m.get("set_name")%></option>
 						<%
 					}

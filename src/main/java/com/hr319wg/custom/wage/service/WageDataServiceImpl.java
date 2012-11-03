@@ -1,6 +1,10 @@
 package com.hr319wg.custom.wage.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +26,7 @@ import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CommonFuns;
 
-public class WageDataService {
+public class WageDataServiceImpl implements IWageDataService{
 
 	private WageDataDAO wageDataSetDAO;
 	private ActivePageAPI activeapi;
@@ -56,6 +60,11 @@ public class WageDataService {
 		this.wageDataSetDAO.saveOrUpdateBo(obj);
 	}
 	
+	public void setTotalMoney(String itemID) throws SysException{
+		String sql = "update wage_dataset ds set ds.totalmoney= (select nvl(sum(du.money),0) from wage_dataset_user du where du.setid=ds.id) where ds.id='"+itemID+"'";
+		this.activeapi.executeSql(sql);
+	}
+	
 	public Object findBOById(Class c, String id) throws SysException{
 		return this.wageDataSetDAO.findBoById(c, id);
 	}
@@ -67,7 +76,7 @@ public class WageDataService {
 	//获取导出超课时
 	public List getAllClassWageBO() throws SysException{
 		String sql = "select A001735 personcode,A001077 card,a001001 name,A001239 secdept,A001705 dept,A001054 persontype,A001243 zclevel,classNum,wage,reduce,realwage,A001242 bank from " +
-				"a001 a, (select id,sum(a242200) classNum, sum(a242201) wage,sum(a242202) reduce,sum(a242203) realwage from a242 where a242205='"+CommonFuns.getSysDate("yyyy")+"' and a242200 is not null and a242200<>'0' group by id) b " +
+				"a001 a, (select id,sum(a242200) classNum, sum(a242201) wage,sum(a242202) reduce,sum(a242203) realwage from a242 where a242205='"+CommonFuns.getSysDate("yyyy")+"' and a242203 is not null group by id) b " +
 				"where a.id=b.id";
 		return this.jdbcTemplate.queryForList(sql);
 	}
@@ -270,7 +279,7 @@ public class WageDataService {
 			set = "a228";//科研费			
 		}
 		String sql = "update "+set+" set "+set+"200 ='"+money+"',"+set+"202 ='1' where "+CommonFuns.splitInSql(selectedUserIDs.split(","), "id");
-		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 	}
 	//删除加班费、车公里补贴人员
@@ -287,7 +296,7 @@ public class WageDataService {
 		if("0".equals(operType)){//删除单个
 			sql += " and id='"+userID+"'";
 		}
-		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 	}
 	//更新加班费、车公里补贴人员
@@ -320,7 +329,7 @@ public class WageDataService {
 			set = "a228";//科研费			
 		}
 		String sql = "update "+set+" set "+set+"201 ='"+yearMonth+"',"+set+"202 ='2' where "+set+"202 ='1'";
-		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 	}
 	
@@ -358,58 +367,72 @@ public class WageDataService {
 	}
 	
 	/**
-	 * 更新其他1、扣其他1数据
+	 * 更新其他1、扣其他1,捐款、其他2、扣其他2
 	 * @throws SysException 
 	 */
 	public void updateWageDataOther1(String itemType, String yearMonth, String selectedItemIDs, String operUserID) throws SysException{
 		String set = null;
+
 		if("1".equals(itemType)){
 			set = "a205"; //其他1
-		}else if("4".equals(itemType)){
-			set = "a207"; //扣其他1
-		}
-		String sql ="update "+set+" set "+set+"201=null where id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
-		this.activeapi.executeSql(sql);
-		sql = "update "+set+" a set "+set+"201='"+yearMonth+"',"+set+"200=(select m from (select userid,sum(money) m from Wage_Dataset_User du where du.setid in " +
-				"(select id from WAGE_DATASET where (exclude_date is null or exclude_date not like '%"+yearMonth+"%') and begin_date <='"+yearMonth+"' and end_date >='"+yearMonth+"' " +
-						"and status in (1,2) and item_type=1 and "+CommonFuns.splitInSql(selectedItemIDs.split(","), "id")+") group by userid) b where a.id=b.userid)";
-		sql += " where id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
-		this.activeapi.executeSql(sql);
-	}
-	
-	/**
-	 * 更新(捐款、其他2、扣其他2)
-	 * @throws SysException 
-	 */
-	public void updateWageDataOther(String yearMonth, String selectedItemIDs, String itemType, String operUserID) throws SysException{
-		String set = null;
-		if("2".equals(itemType)){
+		}else if("2".equals(itemType)){
 			set = "a206"; //捐款
 		}else if("3".equals(itemType)){
 			set = "a207"; //其他2		
+		}else if("4".equals(itemType)){
+			set = "a237"; //扣其他1
 		}else if("5".equals(itemType)){
-			set = "a237";//扣其他2
+			set = "a230";//扣其他2
 		}
-		String sql ="update "+set+" set "+set+"201=null where id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+		String sql ="update "+set+" set "+set+"201=null";
+//				" where id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
-		sql = "update "+set+" a set "+set+"201='"+yearMonth+"',"+set+"200=(select m from (select userid,sum(money) m from wage_dataset_user du,wage_dataset_verify dv where du.id=dv.dataset_user_id and du.setid in " +
-				"(select id from WAGE_DATASET where (exclude_date is null or exclude_date not like '%"+yearMonth+"%') and begin_date <='"+yearMonth+"' and end_date >='"+yearMonth+"' and status in (1,2) and item_type='"+itemType+"' " +
-						"and "+CommonFuns.splitInSql(selectedItemIDs.split(","), "id")+") group by userid) b where a.id=b.userid)";
-		sql += " where id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+		sql = "update "+set+" a set "+set+"201='"+yearMonth+"',"+set+"200=(select m from (select userid,sum(money) m from Wage_Dataset_User du where du.setid in " +
+				"(select id from WAGE_DATASET where (exclude_date is null or exclude_date not like '%"+yearMonth+"%') and begin_date <='"+yearMonth+"' and end_date >='"+yearMonth+"' " +
+						"and status in (1,2) and item_type='"+itemType+"' and "+CommonFuns.splitInSql(selectedItemIDs.split(","), "id")+") group by userid) b where a.id=b.userid)";
+//		sql += " where id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
-	}
-	/**
-	 * 生成历史记录
-	 * @throws SysException
-	 */
-	public void updateWageOtherRecord(String yearMonth, String selectedItemIDs, String itemType, String operUserID) throws SysException{
-		String sql ="delete from wage_data_record where yearmonth='"+yearMonth+"' and "+CommonFuns.splitInSql(selectedItemIDs.split(","), "setId")+" and userid in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+		//生成历史记录
+		sql ="delete from wage_data_record where yearmonth='"+yearMonth+"' and "+CommonFuns.splitInSql(selectedItemIDs.split(","), "setId");
+//				" and userid in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 		sql = "insert into wage_data_record select id || '"+yearMonth+"',setid,userid,money,usercode,username,orgname,deptname,remark,'"+yearMonth+"' from wage_dataset_user " +
 				"where setid in (select id from WAGE_DATASET where (exclude_date is null or exclude_date not like '%"+yearMonth+"%') " +
 						"and begin_date <='"+yearMonth+"' and end_date >='"+yearMonth+"' and status in (1,2) and item_type='"+itemType+"' and "+CommonFuns.splitInSql(selectedItemIDs.split(","), "id")+")";
-		sql += " and userid in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " and userid in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
+		//更新项目状态
+		List<WageDataSetBO> setList = this.getAllWageDataSetBO(yearMonth, selectedItemIDs, itemType);
+		for(WageDataSetBO bo : setList){
+			
+			boolean isEnd=false;
+			DateFormat df = new SimpleDateFormat("MM-dd");
+			try {
+				Date endMonth = df.parse(bo.getEndDate());
+				Date operMonth = df.parse(yearMonth);
+	            Calendar c1 = Calendar.getInstance();
+	            Calendar c2 = Calendar.getInstance();
+	            c1.setTime(endMonth);
+	            c2.setTime(operMonth);
+	            if(c1.getTimeInMillis()<=c2.getTimeInMillis()){
+	            	isEnd=true;
+	            }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			if(bo.getUsedMonth()!=null && bo.getUsedMonth().indexOf(yearMonth)==-1){
+				bo.setUsedMonth(bo.getUsedMonth()+","+yearMonth);
+			}else if(bo.getUsedMonth()==null){
+				bo.setUsedMonth(yearMonth);
+			}
+			String usedMoney = this.getWageDataOther1SumByID(bo.getID());
+			bo.setUsedMoney(usedMoney);
+			if(isEnd){
+				bo.setStatus("2");
+			}
+			this.wageDataSetDAO.saveOrUpdateBo(bo);
+		}
 	}
 	
 	/**
@@ -429,7 +452,7 @@ public class WageDataService {
 		if(userID!=null && !"".equals(userID)){
 			sql+=" and id='"+userID+"'";
 		}
-		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 	}
 	//清空sigle数据
@@ -446,7 +469,7 @@ public class WageDataService {
 		if(userID!=null && !"".equals(userID)){
 			 sql+=" and id='"+userID+"'";
 		}
-		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
+//		sql += " and id in ("+ CommonUtil.getSQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		this.activeapi.executeSql(sql);
 	}
 	

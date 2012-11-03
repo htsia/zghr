@@ -70,24 +70,23 @@
 <h:form id="BulletinEditForm" enctype="multipart/form-data">
 	<h:inputHidden value="#{sys_NewsEditBackingBean.initPage}" />
 	<h:panelGrid styleClass="td_title" width="100%" border="0"
-		cellpadding="0" cellspacing="6" bgcolor="#FFFFFF" columns="1">
+		cellpadding="0" bgcolor="#FFFFFF" columns="1">
 		<h:panelGroup>
 			<h:graphicImage value="/images/tips.gif" />
 			<f:verbatim>
 				<%=LanguageSupport.getResource("XTGL-0900",
 									"系统管理 ")%>->
                   </f:verbatim>
-			<h:outputText value="#{sys_NewsListBackingBean.pageTitle} -> 发布" />
+			<h:outputText value="#{sys_NewsListBackingBean.pageTitle} -> " />
 			<f:verbatim>
-				<%=LanguageSupport.getResource("XTGL-1295",
-									"发布")%>
+				<%=LanguageSupport.getResource("XTGL-1295","发布")%>
 			</f:verbatim>
 		</h:panelGroup>
 	</h:panelGrid>
-
 	<f:verbatim>
-		<br>
-	</f:verbatim>
+    	<table height=98% width=100% align="center">
+        <tr><td><div style='width:100%;height:98%;overflow:auto' id=datatable>
+        </f:verbatim>
 	<c:verbatim>
 		<table border="0" align="center" cellspacing="2" cellpadding="10"
 			columnClasses="td_form01,td_form02" styleClass="table03">
@@ -284,6 +283,9 @@
 		<h:commandButton value="返回" action="sys_newslist"
 			styleClass="button01" />
 	</h:panelGrid>
+	<f:verbatim>
+		</div></td></tr></table>
+	</f:verbatim>
 </h:form>
 
 

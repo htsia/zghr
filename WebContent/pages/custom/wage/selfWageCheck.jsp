@@ -1,10 +1,10 @@
+<%@page import="com.hr319wg.custom.wage.service.IWageDataService"%>
 <%@page import="com.hr319wg.util.CommonFuns"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.hr319wg.common.Constants"%>
 <%@page import="com.hr319wg.common.pojo.vo.User"%>
 <%@page import="java.util.List"%>
 <%@page import="com.hr319wg.common.web.SysContext"%>
-<%@page import="com.hr319wg.custom.wage.service.WageDataService"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -50,7 +50,7 @@
 			String date = request.getParameter("date");
 			date = date==null?CommonFuns.getSysDate("yyyy-MM"):date;
 			User user = (User)session.getAttribute(Constants.USER_INFO);
-			WageDataService service = (WageDataService)SysContext.getBean("wage_dataservice");
+			IWageDataService service = (IWageDataService)SysContext.getBean("wage_dataservice");
 		%>
 		
 		</select>
@@ -88,7 +88,7 @@
 				<th class="td_top">项目</th><th class="td_top">金额</th><th class="td_top">备注</th>
 			</tr>
 			<%
-				List recList2 = service.getSelfWageOtherItemDetail("2", wageDate, user.getUserId());
+				List recList2 = service.getSelfWageOtherItemDetail("3", wageDate, user.getUserId());
 				if(recList!=null){
 					for(int i=0;i<recList2.size();i++){
 						Map m = (Map)recList2.get(i);

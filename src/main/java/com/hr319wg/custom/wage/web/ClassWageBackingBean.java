@@ -16,7 +16,7 @@ import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.custom.wage.pojo.bo.ClassWageBO;
-import com.hr319wg.custom.wage.service.WageDataService;
+import com.hr319wg.custom.wage.service.IWageDataService;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.api.UserAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
@@ -36,7 +36,7 @@ public class ClassWageBackingBean extends BaseBackingBean {
 	private UploadedFile excelFile;
 	private String selectedUserIDs;
 	private UserAPI api;
-	private WageDataService wageDataService;
+	private IWageDataService wageDataService;
 	private List<ClassWageBO> list;
 	private String operUserID;
 	
@@ -80,11 +80,11 @@ public class ClassWageBackingBean extends BaseBackingBean {
 		this.inself = inself;
 	}
 
-	public WageDataService getWageDataService() {
+	public IWageDataService getWageDataService() {
 		return wageDataService;
 	}
 
-	public void setWageDataService(WageDataService wageDataService) {
+	public void setWageDataService(IWageDataService wageDataService) {
 		this.wageDataService = wageDataService;
 	}
 

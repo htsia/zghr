@@ -9,7 +9,7 @@
 
 <x:saveState value="#{sys_NewsListBackingBean}"/>
 <h:form id="form1">
-       <h:panelGrid styleClass="td_title" width="100%" border="0" cellpadding="0" cellspacing="6" bgcolor="#FFFFFF" columns="2">
+       <h:panelGrid styleClass="td_title" width="100%" border="0" cellpadding="0" bgcolor="#FFFFFF" columns="2">
             <h:panelGroup>
               <h:graphicImage value="/images/tips.gif" />
                 <f:verbatim>
@@ -24,11 +24,11 @@
                   <h:commandButton value="É¾³ý" action="#{sys_NewsListBackingBean.delete}" styleClass="button01" />
                  </h:panelGroup>
             </h:panelGrid>
-       </h:panelGrid>
-
+        </h:panelGrid>
         <f:verbatim>
-			<br>
-		</f:verbatim>
+    	<table height=98% width=100% align="center">
+        <tr><td><div style='width:100%;height:98%;overflow:auto' id=datatable>
+        </f:verbatim>
 		<h:dataTable value="#{sys_NewsListBackingBean.newsList}" var="list" width="95%"
                      headerClass="td_top" id="dateList"
                      styleClass="table03" columnClasses="td_middle_center,td_middle,td_middle_center,td_middle,td_middle,td_middle_left" align="center">
@@ -102,8 +102,10 @@
 				</f:facet>
 				<h:outputText value="#{list.organScope}" />
 			</h:column>
-
         </h:dataTable>
+        <f:verbatim>
+			</div></td></tr></table>
+		</f:verbatim>
 	</h:form>
 <script type="text/javascript">
    setDataTableOver("form1:dateList");
