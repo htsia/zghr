@@ -841,7 +841,6 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 					if(p!=null){
 						int count = this.wageDataService.getWageDataSetUserCount(item.getID(), p.getPersonId());
 						if(count>0){
-							fail++;
 							continue;
 						}
 						String money = st.getCell(2, i).getContents();
@@ -870,8 +869,10 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 			}
 			if(fail==0){
 				this.orgID=null;
+				setTotalMoney();
 				super.showMessageDetail("成功"+success+"个");				
 			}else{
+				setTotalMoney();
 				String err="成功"+success+"个失败"+fail+"个";
 				if(errperson.length()!=0){
 					err+=",其中人员编号"+errperson+"的人员不存在";

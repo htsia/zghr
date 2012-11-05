@@ -7,8 +7,7 @@
 	response.setDateHeader("Expires", 0);
 %>
 <%=request.getContextPath()%>
-<script src="<%=request.getContextPath()%>/js/jquery.js"
-	type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(function() {
 		function hidden() {

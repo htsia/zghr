@@ -26,7 +26,7 @@ public class WageDataDAO extends BaseDAO{
 		}
 		
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		if("1".equals(inself)){
 			hql += " and bo.createUserID='"+operUserID+"'";
@@ -55,7 +55,7 @@ public class WageDataDAO extends BaseDAO{
 		}
 		
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		if(!(hasWage && noWage)){
 			if(hasWage){
@@ -83,7 +83,7 @@ public class WageDataDAO extends BaseDAO{
 		}
 		
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		if(!(hasWage && noWage)){
 			if(hasWage){
@@ -186,7 +186,7 @@ public class WageDataDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 //		hql += " and bo.ID in ("+CommonUtil.getHQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		
@@ -246,7 +246,7 @@ public class WageDataDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 
 		String boHql = "select bo,u.secDeptID "+hql +" order by u.secDeptID,u.deptId";
@@ -268,7 +268,7 @@ public class WageDataDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		hql += " and bo.userID in ("+CommonUtil.getHQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		
@@ -312,7 +312,7 @@ public class WageDataDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		//业务平台只能看到所管辖帐套人员
 		if(!"1".equals(inself)){
@@ -354,7 +354,7 @@ public class WageDataDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		hql += " and bo.userID in ("+CommonUtil.getHQLAllWageSetPersonIDsByOperUserID(operUserID)+")";
 		
@@ -376,7 +376,7 @@ public class WageDataDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		String boHql = "select bo,s.name "+hql + " order by s.createDate,u.deptId";
 		String countHql = "select count(bo) "+hql;

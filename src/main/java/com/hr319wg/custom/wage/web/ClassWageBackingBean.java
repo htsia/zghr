@@ -39,7 +39,16 @@ public class ClassWageBackingBean extends BaseBackingBean {
 	private IWageDataService wageDataService;
 	private List<ClassWageBO> list;
 	private String operUserID;
+	private String currUserName;
 	
+	public String getCurrUserName() {
+		return currUserName;
+	}
+
+	public void setCurrUserName(String currUserName) {
+		this.currUserName = currUserName;
+	}
+
 	public String getOperUserID() {
 		return operUserID;
 	}
@@ -292,6 +301,8 @@ public class ClassWageBackingBean extends BaseBackingBean {
 		String subID = super.getRequestParameter("subID");
 		try {
 			this.classWageBO=(ClassWageBO)this.wageDataService.findBOById(ClassWageBO.class, subID);
+			PersonBO p = SysCacheTool.findPersonById(this.classWageBO.getUserID());
+			this.currUserName=p.getName();
 		} catch (SysException e) {
 			e.printStackTrace();
 		}

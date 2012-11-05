@@ -25,6 +25,8 @@
 						"dialogWidth:1100px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
 	}
 </script>
+<x:saveState value="#{att_class_set_childBB}" />
+<h:inputHidden value="#{att_class_set_childBB.initPerson}"/>
 <c:verbatim>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <tr>
@@ -36,8 +38,6 @@
         </tr>
     </table>
 </c:verbatim>
-<x:saveState value="#{att_class_set_childBB}" />
-<h:inputHidden value="#{att_class_set_childBB.initPerson}"/>
 <h:form id="form1">
 	<h:inputHidden id="raletype" value="#{att_class_set_childBB.attClassBO.raleType}"/>
 	<h:panelGrid columns="1" width="100%" align="center">

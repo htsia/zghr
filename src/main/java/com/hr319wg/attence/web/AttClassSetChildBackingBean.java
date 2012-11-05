@@ -470,24 +470,6 @@ public class AttClassSetChildBackingBean extends BaseBackingBean {
 				attClassBO = attenceSetUCC.findAttClassBObyId(classID);
 				attClassBO.setSectionCounts(attClassBO.getSectionCount());
 				if (attClassBO != null) {
-					if ("-1".equals(attClassBO.getOrgID())) {
-						attClassBO.setOrgName("全集团");
-						superID = oid;
-					} else {
-						OrgBO b = SysCacheTool.findOrgById(attClassBO
-								.getOrgID());
-						attClassBO.setOrgName(b.getName());
-						superID = attClassBO.getOrgID();
-					}
-
-					String isUse2 = attClassBO.getIsUse();
-					if ("0".equals(isUse2)) {
-						attClassBO.setIsUseName("禁用");
-						setStatus = "0";
-					} else if ("1".equals(isUse2)) {
-						attClassBO.setIsUseName("启用");
-						setStatus = "1";
-					}
 					String isUse3 = attClassBO.getDaySpan();
 					if ("1".equals(isUse3)) {
 						setStatuss = "1";

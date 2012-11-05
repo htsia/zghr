@@ -46,7 +46,7 @@
 		window.showModalDialog(
 			"/custom/wage/classWageUserEdit.jsf?subID="+id,
 			null,
-			"dialogWidth:350px; dialogHeight:200px;center:center;resizable:yes;status:no;scroll:yes;");
+			"dialogWidth:400px; dialogHeight:250px;center:center;resizable:yes;status:no;scroll:yes;");
 	}
 	function exportExcel(){
     	window.open("/pages/custom/wage/exportClassWage.jsp");

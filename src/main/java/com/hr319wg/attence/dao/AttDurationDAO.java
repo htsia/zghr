@@ -165,8 +165,8 @@ public class AttDurationDAO extends BaseDAO {
 
     public List getAllAttClassBO(PageVO pagevo, String orgid)
             throws SysException {
-        String hsql = "select bo from AttClassBO bo where bo.orgID='" + orgid + "' or bo.orgID='-1'";
-        String countsql = "select count(bo) from AttClassBO bo where bo.orgID='" + orgid + "' or bo.orgID='-1'";
+        String hsql = "select bo from AttClassBO bo";
+        String countsql = "select count(bo) from AttClassBO bo";
         return this.pageQuery(pagevo, countsql, hsql);
 
     }

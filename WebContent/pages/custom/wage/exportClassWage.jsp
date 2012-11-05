@@ -32,8 +32,11 @@
 					String[]heads={"员工编号", "身份证号", "姓名", "二级部门", "所在部门", "人员类别", "职称等级", "超课时数", "应发超课时工资", "代扣税", "实发超课时工资", "银行账号"};
 					for(int i=0;i<heads.length;i++){
 						Label label = new Label(i, 0, heads[i]);
-						Label label2 = new Label(i, 0, heads[i]);
 						sheet.addCell(label);
+					}
+					String[]heads1={"员工编号", "身份证号", "姓名", "二级部门", "所在部门", "人员类别", "职称等级", "缺课时数", "应扣缺课时工资", "银行账号"};
+					for(int i=0;i<heads1.length;i++){
+						Label label2 = new Label(i, 0, heads1[i]);
 						sheet1.addCell(label2);
 					}
 					String[]heads2={"人员编号", "姓名", "金额", "备注"};
@@ -51,7 +54,7 @@
 							double realwage = Double.valueOf(String.valueOf(m.get("realwage")));
 							if(realwage>0){
 								list1.add(list.get(i));
-							}else{
+							}else if(realwage<0){
 								list2.add(list.get(i));								
 							}
 						}
@@ -83,8 +86,10 @@
 							sheet.addCell(labellevel);
 						}
 						
-						Label labelnum = new Label(7, i+1, m.get("classnum").toString());
-						sheet.addCell(labelnum);
+						if(m.get("classnum")!=null){
+							Label labelnum = new Label(7, i+1, m.get("classnum").toString());
+							sheet.addCell(labelnum);
+						}
 						
 						Label labelwage = new Label(8, i+1, m.get("wage").toString());
 						sheet.addCell(labelwage);
@@ -130,25 +135,22 @@
 							Label labellevel = new Label(6, i+1, CodeUtil.interpertCode(m.get("zclevel").toString()));
 							sheet1.addCell(labellevel);
 						}
+						if(m.get("classnum")!=null){
+							Label labelnum = new Label(7, i+1,  String.valueOf(Math.abs(Double.valueOf(m.get("classnum").toString()))));
+							sheet1.addCell(labelnum);
+						}
 						
-						Label labelnum = new Label(7, i+1, m.get("classnum").toString());
-						sheet1.addCell(labelnum);
-						
-						Label labelwage = new Label(8, i+1, m.get("wage").toString());
+						Label labelwage = new Label(8, i+1, String.valueOf(Math.abs(Double.valueOf(m.get("wage").toString()))));
 						sheet1.addCell(labelwage);
 						
-						Label labelreduce = new Label(9, i+1, m.get("reduce").toString());
-						sheet1.addCell(labelreduce);
-						
-						Label labelrealwage = new Label(10, i+1, m.get("realwage").toString());
-						sheet1.addCell(labelrealwage);
-						Label labelrealwage2 = new Label(2, i+1, m.get("realwage").toString());
+						Label labelrealwage2 = new Label(2, i+1, String.valueOf(Math.abs(Double.valueOf(m.get("wage").toString()))));
 						sheet2.addCell(labelrealwage2);
+						
 						Label remark = new Label(3, i+1, "缺课时扣除");
 						sheet2.addCell(remark);
 						
 						if(m.get("bank")!=null){
-							Label labelbank = new Label(11, i+1, m.get("bank").toString());
+							Label labelbank = new Label(9, i+1, m.get("bank").toString());
 							sheet1.addCell(labelbank);
 						}
 					}

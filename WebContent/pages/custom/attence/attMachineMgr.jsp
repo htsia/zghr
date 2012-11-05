@@ -78,6 +78,7 @@
 		if(selIP()){
 			process();			
 		}
+		return false;
 	}
 	function forDownloadLog(){
 		if(selIP()){
