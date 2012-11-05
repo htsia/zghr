@@ -29,9 +29,9 @@
 
     </title>
     <link href="/css/styleDesktop.css" rel="stylesheet" type="text/css"/>
+    <script src="<%=request.getContextPath()%>/js/jquery.js" type="text/javascript"></script>
     <script type="text/javascript" language="javascript" src="/js/Appclient.js"></script>
     <script type="text/javascript" language="javascript" src="/js/check.js"></script>
-    <script language="javascript" src="/pages/common/DatePicker/WdatePicker.js"></script>
     <script type="text/javascript">
         //document.oncontextmenu=function(e){return false;}
     </script>
@@ -40,6 +40,7 @@
 
 <body BGCOLOR=<%=Constants.BGCOLOR%>>
    <tiles:insert attribute="body" flush="true"/>
+   <script language="javascript" src="/pages/common/DatePicker/WdatePicker.js"></script>
 </body>
 </c:view>
 </html>

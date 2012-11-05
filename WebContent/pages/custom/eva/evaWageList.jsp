@@ -4,7 +4,6 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ include file="../../include/taglib.jsp"%>
-<script src="<%=request.getContextPath()%>/js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
 	function adduser(){
 		var ids= window.showModalDialog(

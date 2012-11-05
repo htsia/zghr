@@ -7,7 +7,6 @@
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
     String rightFlag = CommonFuns.filterNull(request.getParameter("rightFlag"));
 %>
-<<script type="text/javascript" src="/js/jquery.js"></script>
 
     <script type="text/javascript">
         function forSel() {

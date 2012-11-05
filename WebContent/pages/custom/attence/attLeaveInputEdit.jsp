@@ -6,8 +6,6 @@
 	response.setHeader("Cache-Control", "no-cache");
 	response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
-	<script src="<%=request.getContextPath()%>/js/jquery.js"
-	type="text/javascript"></script>
 	
 <script language="javascript">
 function getApplyDays() {

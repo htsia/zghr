@@ -9,7 +9,6 @@
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" language="javascript" src="/js/Appclient.js"></script>
     <script type="text/javascript" language="javascript" src="/js/check.js"></script>
-    <script language="javascript" src="/pages/common/DatePicker/WdatePicker.js"></script>
     <%
         response.setContentType("application/msword;charset=GBK");
         session.setAttribute("inWord","true");

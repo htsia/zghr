@@ -13,7 +13,7 @@ var daysInMonth = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 var days = new Array("日","一", "二", "三", "四", "五", "六");
 var today;
 
-document.writeln("<div id='Calendar' style='position:absolute; z-index:1; visibility: hidden; filter:\"progid:DXImageTransform.Microsoft.Shadow(direction=135,color=#999999,strength=3)\"'></div>");
+document.writeln("<div id='Calendar' style='z-index:1; visibility: hidden; filter:\"progid:DXImageTransform.Microsoft.Shadow(direction=135,color=#999999,strength=3)\"'></div>");
 
 function getDays(month, year) {
     if (1 == month)
@@ -129,8 +129,8 @@ function ShowCalendar(InputBox) {
 //        x+=o.offsetLeft;
 //        y+=o.offsetTop;
 //    }
-    document.all.Calendar.style.left=0;
-    document.all.Calendar.style.top=0;
+//     document.all.Calendar.style.left=0;
+//     document.all.Calendar.style.top=0;
     document.all.Calendar.style.visibility="visible";
 
     //下面开始输出日历表格(border-color:#9DBAF7)
