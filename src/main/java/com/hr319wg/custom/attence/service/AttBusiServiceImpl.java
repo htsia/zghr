@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.activiti.engine.task.Task;
+import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.attence.dao.AttDurationDAO;
@@ -49,6 +50,7 @@ import com.hr319wg.xys.workflow.service.SelPersonsToolService;
 import com.jacob.activeX.ActiveXComponent;
 import com.jacob.com.Dispatch;
 import com.jacob.com.Variant;
+import com.sun.xml.internal.bind.CycleRecoverable.Context;
 
 public class AttBusiServiceImpl implements IAttBusiService {
 
@@ -1422,407 +1424,17 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			String endDate, String year, String month, String dId)
 			throws SysException, ParseException {
 		// TODO Auto-generated method stub
-		// ///////////////////步骤1:构建临时表att_sign_detail,填充人员id，日期，8个时刻，班次类型和班次id,班次打卡类型///////////////////////
-		String err = "";
-		String yearMonth = year + "-" + month;
-		// 依据orgId获取所有符合条件班次 orgId空为所有（无实际意义）
-		List<AttClassBO> classList = this.attDurationDAO
-				.getAllClassBOByDate(orgId);
-		// dayMap有两层含义,一选择符合本次计算的班次，二显示每个班次需要打卡的日子
-		// 内容：key为班次id value为班次需要打卡的日子(是个list)
-		Map<String, List> dayMap = new HashMap<String, List>();
-		List weekDays = new ArrayList();
-		for (AttClassBO bo : classList) {
-			List dayList = new ArrayList();
-			if ("0".equals(bo.getFrequencyType())
-					|| "2".equals(bo.getFrequencyType())) {// 周期班次
-				String zhouqiBeginDate = bo.getApplyBeginDate();
-				String zhouqiEndDate = bo.getApplyEndDate();
-				// 处理跨年周期班次 比如从十月一号到第二年的四月三十号
-				if (bo.getApplyBeginDate().compareTo(bo.getApplyEndDate()) > 0) {
-					// 如果在头一年的末尾
-					String temp = beginDate.substring(5);
-					if (bo.getApplyBeginDate().compareTo(temp) <= 0) {
-						zhouqiEndDate = "12-31";
-					}
-					// 如果在第二年的开头
-					temp = endDate.substring(5);
-					if (bo.getApplyEndDate().compareTo(temp) >= 0) {
-						zhouqiBeginDate = "01-01";
-					}
-				}
-				// 以下获得本次计算的天数，规格如下:全勤班次取所有天数(比如后勤冬令时) classtype=2
-				// 周期性班次 非全勤型 取当月理论打卡日(比如大校的冬令时考勤 取所有的星期三)
-				if ("0".equals(bo.getFrequencyType())) {
-					dayList = DateUtil.getDayByWeek(bo.getFrequencyTxt(),
-							beginDate, endDate, zhouqiBeginDate, zhouqiEndDate);
-
-				} else if ("2".equals(bo.getFrequencyType())) {
-					// 全勤班
-					// 排除掉不符合要求的全勤班次
-					if (zhouqiBeginDate.compareTo(beginDate.substring(5)) <= 0
-							&& zhouqiEndDate.compareTo(endDate.substring(5)) >= 0) {
-						dayList = DateUtil.getAllBetweenDates(beginDate,
-								endDate);
-					}
-
-				}
-
-			} else if ("1".equals(bo.getFrequencyType())) {// 非周期班次
-				// 非周期班次，会议型取会议的天数(比如新教师培训) classtype=1
-				dayList = DateUtil.getDayByDayTxt(bo.getFrequencyTxt(),
-						beginDate, endDate);
-			}
-			if (dayList.size() > 0) {
-				dayMap.put(bo.getClassID(), dayList);
-			}
-		}
-		if (dayMap.size() == 0) {
-			return "没有符合条件的班次";
-		}
-		Map<String, List<AttClassDetailBO>> detailMap = new HashMap<String, List<AttClassDetailBO>>();
-
-		// 先清空记录
-		String sql = "delete from att_sign_detail ";
-		try {
-			this.activeapi.executeSql(sql);
-		} catch (SysException e) {
-			e.printStackTrace();
-		}
-
-		// 设置人员签到关联信息_begin
-		for (AttClassBO bo : classList) {
-			// userList是本次计算涉及到的人
-			List userList = null;
-			if (dayMap.containsKey(bo.getClassID())) {
-				List dayList = dayMap.get(bo.getClassID());
-				if ("0".equals(bo.getRaleType())) {
-					String qryID = null;
-					if ("-1".equals(bo.getRaleQry()) || bo.getRaleQry() == null) {
-						err += bo.getClassName() + "没有关联查询方案,";
-						continue;
-					} else {
-						qryID = bo.getRaleQry();
-					}
-
-					Hashtable hash = this.queryapi.getQuerySqlHash(null, qryID);
-					userList = this.jdbcTemplate.queryForList((String) hash
-							.get("SQL_FULL"));
-				} else {
-					sql = "select userid ID from att_class_user where classid='"
-							+ bo.getClassID() + "'";
-					userList = this.jdbcTemplate.queryForList(sql);
-				}
-				if (userList == null || userList.size() == 0) {
-					err += bo.getClassName() + "没有设置人员,";
-					continue;
-				}
-				// 班次详情
-
-				List<AttClassDetailBO> dateilList = this.attDurationDAO
-						.getAllAttClassDetailBO1(bo.getClassID());
-				// 判断打卡类型,以早上开始打卡时间,早上上班时间和下午开始打卡时间，下午上班时间是否为空为基准 1表示早上打卡
-				// 2表示打卡两次下午打卡 3表示全天打卡
-				int recordtype = 0;
-				String time0 = dateilList.get(0).getItemTime();
-				String time1 = dateilList.get(1).getItemTime();
-				String time4 = dateilList.get(4).getItemTime();
-				String time5 = dateilList.get(5).getItemTime();
-				if (time0 != null && !time0.equals("") && time1 != null
-						&& !time1.equals("")) {
-					recordtype += 1;
-				}
-				if (time4 != null && !time4.equals("") && time5 != null
-						&& !time5.equals("")) {
-					recordtype += 2;
-				}
-				detailMap.put(bo.getClassID(), dateilList);
-				// 以下通过select生成临时表需要以下数据:班次人员userList，日期dayList，detailList的8个数据，
-				// 班次id，班次类型，班次打卡类型
-				// 首先构建人员和日期的临时表a
-				// 创建人员表
-				String createUserSql = "";
-				for (int i = 0; i < userList.size(); i++) {
-					Map m = (Map) userList.get(i);
-					// 用户id
-					String userID = String.valueOf(m.get("ID"));
-					if (i == 0) {
-						createUserSql = "select '" + userID
-								+ "' as userid from dual ";
-					} else {
-						createUserSql += "union select '" + userID
-								+ "' from dual ";
-					}
-
-				}
-				createUserSql = "(" + createUserSql + ") a";
-				// 创建日期表
-				String createDaySql = "";
-				for (int i = 0; i < dayList.size(); i++) {
-					if (i == 0) {
-						createDaySql = "select '" + dayList.get(i).toString()
-								+ "' as day1 from dual ";
-					} else {
-						createDaySql += "union select '"
-								+ dayList.get(i).toString() + "' from dual ";
-					}
-
-				}
-				createDaySql = "(" + createDaySql + ") b";
-				// 构建临时视图
-				// 首先把一个班次的八个时刻组织起来
-				String timeSql = " ";
-				for (int i = 0; i < dateilList.size(); i++) {
-					timeSql += "'" + dateilList.get(i).getItemTime() + "',";
-				}
-				String createSql = "select (b.day1||a.userid||rownum),a.userid,b.day1,"
-						+ timeSql
-						+ " '0','0','0','0','0','0','0','0','0','"
-						+ bo.getClassID() + "',";
-				createSql += "'" + bo.getFrequencyType() + "','" + recordtype
-						+ "','0','0','0' from " + createUserSql + ","
-						+ createDaySql;
-				// 插入临时表
-				sql = "insert into att_sign_detail(id,userid,day,time0,time1,time2,time3,time4,time5,time6,time7,normal1,later1,away1,normal2,later2,away2,normal,later,away,classid,classtype,recordtype,ignore,yinggai,shiji) "
-						+ createSql;
-				this.activeapi.executeSql(sql);
-
-			}
-		}
-
-		// /////////////步骤2:比对打卡信息，填充normal1 2等6个字段
-		// 统计早上按时打卡的
-		sql = "update att_sign_detail s set normal1=normal1+1 where exists ( select 1 from a808 a where a.id = s.userid and ";
-		sql += "to_date(a.a808700,'yyyy-mm-dd') = to_date(s.day,'yyyy-mm-dd') and a.a808701>=s.time0 and a.a808701<=s.time1)";
-		this.activeapi.executeSql(sql);
-		// 统计下午按时打卡的
-		sql = "update att_sign_detail s set normal2=normal2+1 where exists ( select 1 from a808 a where a.id = s.userid and ";
-		sql += "to_date(a.a808700,'yyyy-mm-dd') = to_date(s.day,'yyyy-mm-dd') and a.a808701>=s.time4 and a.a808701<=s.time5)";
-		this.activeapi.executeSql(sql);
-		// 统计早上迟到的
-		sql = "update att_sign_detail s set later1=later1+1 where exists ( select 1 from a808 a where a.id = s.userid and ";
-		sql += "to_date(a.a808700,'yyyy-mm-dd') = to_date(s.day,'yyyy-mm-dd') and a.a808701>=s.time1 and a.a808701<=s.time2)";
-		this.activeapi.executeSql(sql);
-		// 统计下午迟到的
-		sql = "update att_sign_detail s set later2=later2+1 where exists ( select 1 from a808 a where a.id = s.userid and ";
-		sql += "to_date(a.a808700,'yyyy-mm-dd') = to_date(s.day,'yyyy-mm-dd') and a.a808701>=s.time5 and a.a808701<=s.time6)";
-		this.activeapi.executeSql(sql);
-		// 统计早上旷工半天的
-		sql = "update att_sign_detail s set away1=away1+0.5 where exists ( select 1 from a808 a where a.id = s.userid and ";
-		sql += "to_date(a.a808700,'yyyy-mm-dd') = to_date(s.day,'yyyy-mm-dd') and a.a808701>=s.time2 and a.a808701<=s.time3)";
-		this.activeapi.executeSql(sql);
-		// 统计下午旷工半天的
-		sql = "update att_sign_detail s set away2=away2+0.5 where exists ( select 1 from a808 a where a.id = s.userid and ";
-		sql += "to_date(a.a808700,'yyyy-mm-dd') = to_date(s.day,'yyyy-mm-dd') and a.a808701>=s.time6 and a.a808701<=s.time7)";
-		this.activeapi.executeSql(sql);
-
-		// /////////////步骤3:填充normal等三个字段
-		// 首先整理统计结果，主要清除重复打卡的记录
-		// 打卡打过正常的，迟到和旷工的清除
-		// 清除早上的
-		sql = "update att_sign_detail s set later1='0',away1='0' where normal1='1'";
-		this.activeapi.executeSql(sql);
-		sql = "update att_sign_detail s set away1='0' where later1='1'";
-		this.activeapi.executeSql(sql);
-		// 清除下午的
-		sql = "update att_sign_detail s set later2='0',away2='0' where normal2='1'";
-		this.activeapi.executeSql(sql);
-		sql = "update att_sign_detail s set away2='0' where later2='1'";
-		this.activeapi.executeSql(sql);
-		// ////////////////////填充应该打卡次数和实际打卡次数
-		// 应该打卡次数(又叫应该出勤次数)
-		sql = "update att_sign_detail s set yinggai='2' where recordtype='3'";
-		this.activeapi.executeSql(sql);
-		sql = "update att_sign_detail s set yinggai='1' where recordtype='1' or recordtype='2'";
-		this.activeapi.executeSql(sql);
-		// 实际打卡次数
-		sql = "update att_sign_detail s set shiji=shiji+1 where normal1+later1+away1>0";
-		this.activeapi.executeSql(sql);
-		sql = "update att_sign_detail s set shiji=shiji+1 where normal2+later2+away2>0";
-		this.activeapi.executeSql(sql);
-		// 处理根本没打卡的情况
-		// 处理上午勤，如果没当天记录，记为为旷工一天
-		sql = "update att_sign_detail s set away1=away1+1 where normal='0' and later1='0' and away1='0' and (recordtype='1')";
-		this.activeapi.executeSql(sql);
-		// 处理下午勤，如果没当天记录，记为为旷工一天
-		sql = "update att_sign_detail s set away2=away2+1 where normal2='0' and later2='0' and away2='0' and (recordtype='2')";
-		this.activeapi.executeSql(sql);
-		// 处理全天两次勤
-		// 上午无记录，记为旷工半天
-		sql = "update att_sign_detail s set away1=away1+0.5 where normal1='0' and later1='0' and away1='0' and recordtype='3'";
-		this.activeapi.executeSql(sql);
-		// 下午无记录记为旷工半天
-		sql = "update att_sign_detail s set away2=away2+0.5 where normal2='0' and later2='0' and away2='0' and recordtype='3'";
-		this.activeapi.executeSql(sql);
-
-		// 合并上下午记录,得出打卡记录里面正常,迟到,旷工的次数
-		// /-----以下代码处理不同打卡类型的情况
-		// 全天勤的合并
-		sql = "update att_sign_detail s set normal=normal1+normal2,later=later1+later2,away=away1+away2 where recordtype='3'";
-		this.activeapi.executeSql(sql);
-		// 早上勤
-		sql = "update att_sign_detail s set normal=normal1,later=later1,away=away1 where recordtype='1'";
-		this.activeapi.executeSql(sql);
-		// 下午勤
-		sql = "update att_sign_detail s set normal=normal2,later=later2,away=away2 where recordtype='2'";
-		this.activeapi.executeSql(sql);
-
-		// 处理会议和正常勤冲突，去掉正常勤的记录，留下会议勤的记录
-		sql = "update att_sign_detail a set a.ignore='1' where exists (select 1 from (select  userid,day "
-				+ "from att_sign_detail where classtype='1' ) n  where a.userid = n.userid and a.day = n.day) and (classtype='0' or classtype='2') ";
-		this.activeapi.executeSql(sql);
-		// 步骤4:处理节假日 请假，公出等信息 修正normal等三个字段
-		// /////////////////处理请假，公出，调休
-		// 处理请假情况
-		sql = "update att_sign_detail s set ignore='1' where exists ( select 1 from att_leave a where s.userid=a.person_id and ";
-		sql += " to_date(s.day,'yyyy-mm-dd hh24-mi-ss') >= to_date(a.begin_time,'yyyy-mm-dd hh24-mi-ss') and  to_date(s.day,'yyyy-mm-dd hh24-mi-ss')<= to_date(a.end_time,'yyyy-mm-dd hh24-mi-ss')"
-				+ " and a.status='2')";
-		this.activeapi.executeSql(sql);
-		// 处理公出情况
-		sql = "update att_sign_detail s set ignore='1' where exists ( select 1 from att_out a where s.userid=a.person_id and ";
-		sql += " to_date(s.day,'yyyy-mm-dd hh24-mi-ss') >= to_date(a.begin_time,'yyyy-mm-dd hh24-mi-ss') and  to_date(s.day,'yyyy-mm-dd hh24-mi-ss')<= to_date(a.end_time,'yyyy-mm-dd hh24-mi-ss')"
-				+ " and a.status='2')";
-		this.activeapi.executeSql(sql);
-		// 处理调休情况
-		sql = "update att_sign_detail s set ignore='1' where exists ( select 1 from att_rest a where s.userid=a.person_id and ";
-		sql += " to_date(s.day,'yyyy-mm-dd hh24-mi-ss') >= to_date(a.begin_time,'yyyy-mm-dd hh24-mi-ss') and  to_date(s.day,'yyyy-mm-dd hh24-mi-ss')<= to_date(a.end_time,'yyyy-mm-dd hh24-mi-ss')"
-				+ " and a.status='2')";
-		this.activeapi.executeSql(sql);
-
-		// 步骤五////////考虑公休日 ,节假日(不同人节假日不同)和单位调休日
-		// 首先获得时间段内的公休日 先算默认周六周日休息的
-		List<AttRestOfWeekBO> restOfWeekBOList = this.attrestweekDAO
-				.findAll("AttRestOfWeekBO");
-		String dayofweek = "";
-		if (restOfWeekBOList.size() > 0) {
-			AttRestOfWeekBO rwb = (AttRestOfWeekBO) restOfWeekBOList.get(0);
-			if ("1".equals(rwb.getMon())) {
-				dayofweek += "1,";
-			}
-			if ("1".equals(rwb.getTues())) {
-				dayofweek += "2,";
-			}
-			if ("1".equals(rwb.getWed())) {
-				dayofweek += "3,";
-			}
-			if ("1".equals(rwb.getThur())) {
-				dayofweek += "4,";
-			}
-			if ("1".equals(rwb.getFri())) {
-				dayofweek += "5,";
-			}
-			if ("1".equals(rwb.getSat())) {
-				dayofweek += "6,";
-			}
-			if ("1".equals(rwb.getSun())) {
-				dayofweek += "7,";
-			}
-		}
-		List days = DateUtil.getAllBetweenDates(beginDate, endDate);
-		weekDays = DateUtil.getDayByWeek(dayofweek, beginDate, endDate,
-				"01-01", "12-30");
-		days.removeAll(weekDays);// 所有天减去工作的周一到周五
-		// 构造条件函数
-		String inSql = "";
-		if (days.size() > 0) {
-			for (int i = 0; i < days.size(); i++) {
-				if (i == 0) {
-					inSql = " in( '" + days.get(i) + "'";
-				} else {
-					inSql += ",'" + days.get(i) + "'";
-
-				}
-				if (i == days.size() - 1) {
-					inSql += ") ";
-				}
-			}
-		}
-		sql = "update att_sign_detail s set ignore='1' where (classtype='0' or classtype='2') and  day "
-				+ inSql;
-		this.activeapi.executeSql(sql);
-		// //处理节假日
-		// 注意 不同岗位人员放假时间不一样
-		List leaveList = this.attfeastDAO.getAllAttFeast(orgId);
-		// 处理每个放假对象
-		for (int i = 0; i < leaveList.size(); i++) {
-			AttFeastBO feast = (AttFeastBO) leaveList.get(i);
-			if (feast.getPostLeiXing() == null
-					|| "".equals(feast.getPostLeiXing())) {
-				sql = "update att_sign_detail a set ignore = '1' where exists(select 1 from ATT_FEAST t"
-						+ " where (a.day>=t.begindate and a.day<=t.enddate and yeartype='0') "
-						+ " or (substr(a.day,6)>=t.begindate and substr(a.day,6)<=t.enddate and yeartype='-1') and (classtype='0' or classtype='2') and t.feast_id='"
-						+ feast.getFeastID() + "') ";
-				this.activeapi.executeSql(sql);
-			} else {
-				// 先构建假期对应岗位的列表
-				String[] postList = feast.getPostLeiXing().split(",");
-				inSql = "";
-				if (postList.length > 0) {
-					for (int j = 0; j < postList.length; j++) {
-						if (j == 0) {
-							inSql = " in( '" + postList[j] + "'";
-						} else {
-							inSql += ",'" + postList[j] + "'";
-
-						}
-						if (j == postList.length - 1) {
-							inSql += ") ";
-						}
-
-					}
-				}
-				sql = "update att_sign_detail a set ignore = '1' where exists(select 1 from ATT_FEAST t,a001 s "
-						+ " where (a.day>=t.begindate and a.day<=t.enddate and yeartype='0') "
-						+ " or (substr(a.day,6)>=t.begindate and substr(a.day,6)<=t.enddate and yeartype='-1')"
-						+ " and (classtype='0' or classtype='2') and t.feast_id='"
-						+ feast.getFeastID()
-						+ "' and s.id=a.userid"
-						+ " and s.A001218 " + inSql + ")";
-				this.activeapi.executeSql(sql);
-			}
-
-		}
-		this.activeapi.executeSql(sql);
-		// //处理公休日调休日
-		List workDaysList = this.getAttfeastDAO().getAllAttWorkDate(orgId);
-		inSql = "";
-		if (workDaysList.size() > 0) {
-			for (int j = 0; j < workDaysList.size(); j++) {
-				if (j == 0) {
-					inSql = " in( '"
-							+ ((AttWorkDateBO) workDaysList.get(j))
-									.getWorkDate() + "'";
-				} else {
-					inSql += ",'"
-							+ ((AttWorkDateBO) workDaysList.get(j))
-									.getWorkDate() + "'";
-
-				}
-				if (j == workDaysList.size() - 1) {
-					inSql += ") ";
-				}
-
-			}
-			sql = "update att_sign_detail a set ignore = '0' where a.classtype='1' or a.classtype='2' and a.day "
-					+ inSql;
-			this.activeapi.executeSql(sql);
-		}
-		// ///步骤六 根据员工入校时间和离职时间去掉已经离职的人员或者更新本月入职，离职的人员信息
-		// 将入校前的信息设为无效
-		sql = "update att_sign_detail a set ignore = '1' where exists (select 1 from a001 b where a.userid=b.id "
-				+ "and to_date(a.day,'yyyy-mm-dd')<to_date(b.a001044,'yyyy-mm-dd'))";
-		this.activeapi.executeSql(sql);
-		// 将离职以后的信息设为无效
-		sql = "update att_sign_detail a set ignore = '1' where exists (select 1 from a001 b where a.userid=b.id "
-				+ "and to_date(a.day,'yyyy-mm-dd')>=to_date(b.a001246,'yyyy-mm-dd'))";
-		this.activeapi.executeSql(sql);
+		// 生成临时数据
+		updateCalcAttTempData(orgId, beginDate, endDate);
 
 		// ///////////////////////将迟到和旷工的记录更新到月汇总表///////////////////////////
 		// 首先清除本次计算涉及到的人
 		// 查出本次查询涉及人员的语句:
+		String err = "";
+		String yearMonth = year + "-" + month;
 		Hashtable hash = this.queryapi.getQuerySqlHash(null, dId);
 		String renyuansql = (String) hash.get("SQL_FULL");
-		sql = "delete from a810 a where a810700 ='" + yearMonth
+		String sql = "delete from a810 a where a810700 ='" + yearMonth
 				+ "' and exists(select 1 from (" + renyuansql
 				+ ") b where a.id=b.id) ";
 		this.activeapi.executeSql(sql);
@@ -1864,6 +1476,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				+ " and to_date(b.begin_time,'yyyy-mm-dd hh24:mi')>=to_date('2012-09-01','yyyy-mm-dd')   and to_date(b.begin_time,'yyyy-mm-dd hh24:mi')<=to_date('2012-09-30','yyyy-mm-dd') )";
 		this.activeapi.executeSql(sql);
 		// 调用生成考勤扣款函数 传递orgId，公休日列表，人员获取sql和年月
+		List days = DateUtil.getAllBetweenDates(beginDate, endDate);
 		attDeduction(orgId, days, renyuansql, yearMonth);
 		// 汇总考勤扣款(分为迟到扣款(日工资*0.2*迟到天数))
 		// 旷工扣款(日工资*旷工天数)
@@ -2528,20 +2141,22 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				+ endDate + "','yyyy-MM')  group by id ";
 
 		this.activeapi.executeSql(sql);
-		//将应出勤减去旷工和请假的酸楚实际出勤
-		sql="update a241 a set a241202=a241201-a241202 ";
+		// 将应出勤减去旷工和请假的酸楚实际出勤
+		sql = "update a241 a set a241202=a241201-a241202 ";
 		this.activeapi.executeSql(sql);
-		//将应出勤天数为0的置为null(除以null是合法的，除以0是不合法的)
-		sql="update a241 a set a241201=null where a241201=0";
+		// 将应出勤天数为0的置为null(除以null是合法的，除以0是不合法的)
+		sql = "update a241 a set a241201=null where a241201=0";
 		this.activeapi.executeSql(sql);
-		//填入出勤率
-		sql="update a241 set a241203=trunc(a241202/a241201,2) where a241200='"+year+"'";
+		// 填入出勤率
+		sql = "update a241 set a241203=trunc(a241202/a241201,2) where a241200='"
+				+ year + "'";
 		this.activeapi.executeSql(sql);
 
-		//填入考勤奖金
+		// 填入考勤奖金
 		String jiben = "(select a223206  from a223 b where a.id=b.id and b.a223000='00901')";// 基本工资
-        sql="update a241 a set a241204=trunc(a241203*"+jiben+",2) where a241200='"+year+"'";
-        this.activeapi.executeSql(sql);	
+		sql = "update a241 a set a241204=trunc(a241203*" + jiben
+				+ ",2) where a241200='" + year + "'";
+		this.activeapi.executeSql(sql);
 	}
 
 	@Override
@@ -3155,29 +2770,482 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		return this.attBusiDAO.getOvertimePayBO(pageVO, orgID, nameStr,
 				personType, yearMonth);
 	}
+
 	@Override
 	public List getYearBO(PageVO pageVO, String orgID, String nameStr,
 			String personType) throws SysException {
 		// return this.jdbcTemplate.queryForList("select * from a236");
-		return this.attBusiDAO.getYearBO(pageVO, orgID, nameStr,
-				personType);
+		return this.attBusiDAO.getYearBO(pageVO, orgID, nameStr, personType);
 	}
+
 	@Override
 	public void deleteInputLeave(String operItemID) throws SysException {
-		AttLeaveBO leave=(AttLeaveBO)this.findBOById(AttLeaveBO.class, operItemID);
-		this.rollbackLeaveDays(leave.getLeaveType(),String.valueOf(leave.getApplyDays()),leave.getPersonId());
+		AttLeaveBO leave = (AttLeaveBO) this.findBOById(AttLeaveBO.class,
+				operItemID);
+		this.rollbackLeaveDays(leave.getLeaveType(),
+				String.valueOf(leave.getApplyDays()), leave.getPersonId());
 		this.deleteBO(AttLeaveBO.class, operItemID);
 	}
+
 	@Override
 	public void deleteInputOvertime(String operItemID) throws SysException {
-		AttOvertimeBO overtime=(AttOvertimeBO)this.findBOById(AttOvertimeBO.class, operItemID);
-		this.rollbackLeaveDays("0",overtime.getApplyDays(),overtime.getPersonId());
+		AttOvertimeBO overtime = (AttOvertimeBO) this.findBOById(
+				AttOvertimeBO.class, operItemID);
+		this.rollbackLeaveDays("0", overtime.getApplyDays(),
+				overtime.getPersonId());
 		this.deleteBO(AttOvertimeBO.class, operItemID);
 	}
+
 	@Override
 	public void deleteInputRest(String operItemID) throws SysException {
-		AttRestBO rest=(AttRestBO)this.findBOById(AttRestBO.class, operItemID);
-		this.rollbackLeaveDays("-1",rest.getApplyDays(),rest.getPersonId());
+		AttRestBO rest = (AttRestBO) this.findBOById(AttRestBO.class,
+				operItemID);
+		this.rollbackLeaveDays("-1", rest.getApplyDays(), rest.getPersonId());
 		this.deleteBO(AttRestBO.class, operItemID);
 	}
+
+	// 提取出来的考勤统计临时表生成函数
+	@Override
+	public String updateCalcAttTempData(String orgId, String beginDate,
+			String endDate) throws SysException, ParseException {
+		// TODO Auto-generated method stub
+		// ///////////////////步骤1:构建临时表att_sign_detail,填充人员id，日期，8个时刻，班次类型和班次id,班次打卡类型///////////////////////
+		String err = "";
+		// 依据orgId获取所有符合条件班次 orgId空为所有（无实际意义）
+		List<AttClassBO> classList = this.attDurationDAO
+				.getAllClassBOByDate(orgId);
+		// dayMap有两层含义,一选择符合本次计算的班次，二显示每个班次需要打卡的日子
+		// 内容：key为班次id value为班次需要打卡的日子(是个list)
+		Map<String, List> dayMap = new HashMap<String, List>();
+		List weekDays = new ArrayList();
+		for (AttClassBO bo : classList) {
+			List dayList = new ArrayList();
+			if ("0".equals(bo.getFrequencyType())
+					|| "2".equals(bo.getFrequencyType())) {// 周期班次
+				String zhouqiBeginDate = bo.getApplyBeginDate();
+				String zhouqiEndDate = bo.getApplyEndDate();
+				// 处理跨年周期班次 比如从十月一号到第二年的四月三十号
+				if (bo.getApplyBeginDate().compareTo(bo.getApplyEndDate()) > 0) {
+					// 如果在头一年的末尾
+					String temp = beginDate.substring(5);
+					if (bo.getApplyBeginDate().compareTo(temp) <= 0) {
+						zhouqiEndDate = "12-31";
+					}
+					// 如果在第二年的开头
+					temp = endDate.substring(5);
+					if (bo.getApplyEndDate().compareTo(temp) >= 0) {
+						zhouqiBeginDate = "01-01";
+					}
+				}
+				// 以下获得本次计算的天数，规格如下:全勤班次取所有天数(比如后勤冬令时) classtype=2
+				// 周期性班次 非全勤型 取当月理论打卡日(比如大校的冬令时考勤 取所有的星期三)
+				if ("0".equals(bo.getFrequencyType())) {
+					dayList = DateUtil.getDayByWeek(bo.getFrequencyTxt(),
+							beginDate, endDate, zhouqiBeginDate, zhouqiEndDate);
+
+				} else if ("2".equals(bo.getFrequencyType())) {
+					// 全勤班
+					// 排除掉不符合要求的全勤班次
+					if (zhouqiBeginDate.compareTo(beginDate.substring(5)) <= 0
+							&& zhouqiEndDate.compareTo(endDate.substring(5)) >= 0) {
+						dayList = DateUtil.getAllBetweenDates(beginDate,
+								endDate);
+					}
+
+				}
+
+			} else if ("1".equals(bo.getFrequencyType())) {// 非周期班次
+				// 非周期班次，会议型取会议的天数(比如新教师培训) classtype=1
+				dayList = DateUtil.getDayByDayTxt(bo.getFrequencyTxt(),
+						beginDate, endDate);
+			}
+			if (dayList.size() > 0) {
+				dayMap.put(bo.getClassID(), dayList);
+			}
+		}
+		if (dayMap.size() == 0) {
+			return "没有符合条件的班次";
+		}
+		Map<String, List<AttClassDetailBO>> detailMap = new HashMap<String, List<AttClassDetailBO>>();
+
+		// 先清空记录
+		String sql = "delete from att_sign_detail ";
+		try {
+			this.activeapi.executeSql(sql);
+		} catch (SysException e) {
+			e.printStackTrace();
+		}
+
+		// 设置人员签到关联信息_begin
+		for (AttClassBO bo : classList) {
+			// userList是本次计算涉及到的人
+			List userList = null;
+			if (dayMap.containsKey(bo.getClassID())) {
+				List dayList = dayMap.get(bo.getClassID());
+				if ("0".equals(bo.getRaleType())) {
+					String qryID = null;
+					if ("-1".equals(bo.getRaleQry()) || bo.getRaleQry() == null) {
+						err += bo.getClassName() + "没有关联查询方案,";
+						continue;
+					} else {
+						qryID = bo.getRaleQry();
+					}
+
+					Hashtable hash = this.queryapi.getQuerySqlHash(null, qryID);
+					userList = this.jdbcTemplate.queryForList((String) hash
+							.get("SQL_FULL"));
+				} else {
+					sql = "select userid ID from att_class_user where classid='"
+							+ bo.getClassID() + "'";
+					userList = this.jdbcTemplate.queryForList(sql);
+				}
+				if (userList == null || userList.size() == 0) {
+					err += bo.getClassName() + "没有设置人员,";
+					continue;
+				}
+				// 班次详情
+
+				List<AttClassDetailBO> dateilList = this.attDurationDAO
+						.getAllAttClassDetailBO1(bo.getClassID());
+				// 判断打卡类型,以早上开始打卡时间,早上上班时间和下午开始打卡时间，下午上班时间是否为空为基准 1表示早上打卡
+				// 2表示打卡两次下午打卡 3表示全天打卡
+				int recordtype = 0;
+				String time0 = dateilList.get(0).getItemTime();
+				String time1 = dateilList.get(1).getItemTime();
+				String time4 = dateilList.get(4).getItemTime();
+				String time5 = dateilList.get(5).getItemTime();
+				if (time0 != null && !time0.equals("") && time1 != null
+						&& !time1.equals("")) {
+					recordtype += 1;
+				}
+				if (time4 != null && !time4.equals("") && time5 != null
+						&& !time5.equals("")) {
+					recordtype += 2;
+				}
+				detailMap.put(bo.getClassID(), dateilList);
+				// 以下通过select生成临时表需要以下数据:班次人员userList，日期dayList，detailList的8个数据，
+				// 班次id，班次类型，班次打卡类型
+				// 首先构建人员和日期的临时表a
+				// 创建人员表
+				String createUserSql = "";
+				for (int i = 0; i < userList.size(); i++) {
+					Map m = (Map) userList.get(i);
+					// 用户id
+					String userID = String.valueOf(m.get("ID"));
+					if (i == 0) {
+						createUserSql = "select '" + userID
+								+ "' as userid from dual ";
+					} else {
+						createUserSql += "union select '" + userID
+								+ "' from dual ";
+					}
+
+				}
+				createUserSql = "(" + createUserSql + ") a";
+				// 创建日期表
+				String createDaySql = "";
+				for (int i = 0; i < dayList.size(); i++) {
+					if (i == 0) {
+						createDaySql = "select '" + dayList.get(i).toString()
+								+ "' as day1 from dual ";
+					} else {
+						createDaySql += "union select '"
+								+ dayList.get(i).toString() + "' from dual ";
+					}
+
+				}
+				createDaySql = "(" + createDaySql + ") b";
+				// 构建临时视图
+				// 首先把一个班次的八个时刻组织起来
+				String timeSql = " ";
+				for (int i = 0; i < dateilList.size(); i++) {
+					timeSql += "'" + dateilList.get(i).getItemTime() + "',";
+				}
+				String createSql = "select (b.day1||a.userid||rownum),a.userid,b.day1,"
+						+ timeSql
+						+ " '0','0','0','0','0','0','0','0','0','"
+						+ bo.getClassID() + "',";
+				createSql += "'" + bo.getFrequencyType() + "','" + recordtype
+						+ "','0','0','0' from " + createUserSql + ","
+						+ createDaySql;
+				// 插入临时表
+				sql = "insert into att_sign_detail(id,userid,day,time0,time1,time2,time3,time4,time5,time6,time7,normal1,later1,away1,normal2,later2,away2,normal,later,away,classid,classtype,recordtype,ignore,yinggai,shiji) "
+						+ createSql;
+				this.activeapi.executeSql(sql);
+
+			}
+		}
+		// /////////////步骤2:比对打卡信息，填充normal1 2等6个字段
+		// 统计早上按时打卡的
+		sql = "update att_sign_detail s set normal1=normal1+1 where exists ( select 1 from a808 a where a.id = s.userid and ";
+		sql += "to_date(a.a808700,'yyyy-mm-dd') = to_date(s.day,'yyyy-mm-dd') and a.a808701>=s.time0 and a.a808701<=s.time1)";
+		this.activeapi.executeSql(sql);
+		// 统计下午按时打卡的
+		sql = "update att_sign_detail s set normal2=normal2+1 where exists ( select 1 from a808 a where a.id = s.userid and ";
+		sql += "to_date(a.a808700,'yyyy-mm-dd') = to_date(s.day,'yyyy-mm-dd') and a.a808701>=s.time4 and a.a808701<=s.time5)";
+		this.activeapi.executeSql(sql);
+		// 统计早上迟到的
+		sql = "update att_sign_detail s set later1=later1+1 where exists ( select 1 from a808 a where a.id = s.userid and ";
+		sql += "to_date(a.a808700,'yyyy-mm-dd') = to_date(s.day,'yyyy-mm-dd') and a.a808701>=s.time1 and a.a808701<=s.time2)";
+		this.activeapi.executeSql(sql);
+		// 统计下午迟到的
+		sql = "update att_sign_detail s set later2=later2+1 where exists ( select 1 from a808 a where a.id = s.userid and ";
+		sql += "to_date(a.a808700,'yyyy-mm-dd') = to_date(s.day,'yyyy-mm-dd') and a.a808701>=s.time5 and a.a808701<=s.time6)";
+		this.activeapi.executeSql(sql);
+		// 统计早上旷工半天的
+		sql = "update att_sign_detail s set away1=away1+0.5 where exists ( select 1 from a808 a where a.id = s.userid and ";
+		sql += "to_date(a.a808700,'yyyy-mm-dd') = to_date(s.day,'yyyy-mm-dd') and a.a808701>=s.time2 and a.a808701<=s.time3)";
+		this.activeapi.executeSql(sql);
+		// 统计下午旷工半天的
+		sql = "update att_sign_detail s set away2=away2+0.5 where exists ( select 1 from a808 a where a.id = s.userid and ";
+		sql += "to_date(a.a808700,'yyyy-mm-dd') = to_date(s.day,'yyyy-mm-dd') and a.a808701>=s.time6 and a.a808701<=s.time7)";
+		this.activeapi.executeSql(sql);
+
+		// /////////////步骤3:填充normal等三个字段
+		// 首先整理统计结果，主要清除重复打卡的记录
+		// 打卡打过正常的，迟到和旷工的清除
+		// 清除早上的
+		sql = "update att_sign_detail s set later1='0',away1='0' where normal1='1'";
+		this.activeapi.executeSql(sql);
+		sql = "update att_sign_detail s set away1='0' where later1='1'";
+		this.activeapi.executeSql(sql);
+		// 清除下午的
+		sql = "update att_sign_detail s set later2='0',away2='0' where normal2='1'";
+		this.activeapi.executeSql(sql);
+		sql = "update att_sign_detail s set away2='0' where later2='1'";
+		this.activeapi.executeSql(sql);
+		// ////////////////////填充应该打卡次数和实际打卡次数
+		// 应该打卡次数(又叫应该出勤次数)
+		sql = "update att_sign_detail s set yinggai='2' where recordtype='3'";
+		this.activeapi.executeSql(sql);
+		sql = "update att_sign_detail s set yinggai='1' where recordtype='1' or recordtype='2'";
+		this.activeapi.executeSql(sql);
+		// 实际打卡次数
+		sql = "update att_sign_detail s set shiji=shiji+1 where normal1+later1+away1>0";
+		this.activeapi.executeSql(sql);
+		sql = "update att_sign_detail s set shiji=shiji+1 where normal2+later2+away2>0";
+		this.activeapi.executeSql(sql);
+		// 处理根本没打卡的情况
+		// 处理上午勤，如果没当天记录，记为为旷工一天
+		sql = "update att_sign_detail s set away1=away1+1 where normal='0' and later1='0' and away1='0' and (recordtype='1')";
+		this.activeapi.executeSql(sql);
+		// 处理下午勤，如果没当天记录，记为为旷工一天
+		sql = "update att_sign_detail s set away2=away2+1 where normal2='0' and later2='0' and away2='0' and (recordtype='2')";
+		this.activeapi.executeSql(sql);
+		// 处理全天两次勤
+		// 上午无记录，记为旷工半天
+		sql = "update att_sign_detail s set away1=away1+0.5 where normal1='0' and later1='0' and away1='0' and recordtype='3'";
+		this.activeapi.executeSql(sql);
+		// 下午无记录记为旷工半天
+		sql = "update att_sign_detail s set away2=away2+0.5 where normal2='0' and later2='0' and away2='0' and recordtype='3'";
+		this.activeapi.executeSql(sql);
+
+		// 合并上下午记录,得出打卡记录里面正常,迟到,旷工的次数
+		// /-----以下代码处理不同打卡类型的情况
+		// 全天勤的合并
+		sql = "update att_sign_detail s set normal=normal1+normal2,later=later1+later2,away=away1+away2 where recordtype='3'";
+		this.activeapi.executeSql(sql);
+		// 早上勤
+		sql = "update att_sign_detail s set normal=normal1,later=later1,away=away1 where recordtype='1'";
+		this.activeapi.executeSql(sql);
+		// 下午勤
+		sql = "update att_sign_detail s set normal=normal2,later=later2,away=away2 where recordtype='2'";
+		this.activeapi.executeSql(sql);
+
+		// 处理会议和正常勤冲突，去掉正常勤的记录，留下会议勤的记录
+		sql = "update att_sign_detail a set a.ignore='1' where exists (select 1 from (select  userid,day "
+				+ "from att_sign_detail where classtype='1' ) n  where a.userid = n.userid and a.day = n.day) and (classtype='0' or classtype='2') ";
+		this.activeapi.executeSql(sql);
+		// 步骤4:处理节假日 请假，公出等信息 修正normal等三个字段
+		// /////////////////处理请假，公出，调休
+		// 处理请假情况
+		sql = "update att_sign_detail s set ignore='1' where exists ( select 1 from att_leave a where s.userid=a.person_id and ";
+		sql += " to_date(s.day,'yyyy-mm-dd hh24-mi-ss') >= to_date(a.begin_time,'yyyy-mm-dd hh24-mi-ss') and  to_date(s.day,'yyyy-mm-dd hh24-mi-ss')<= to_date(a.end_time,'yyyy-mm-dd hh24-mi-ss')"
+				+ " and a.status='2')";
+		this.activeapi.executeSql(sql);
+		// 处理公出情况
+		sql = "update att_sign_detail s set ignore='1' where exists ( select 1 from att_out a where s.userid=a.person_id and ";
+		sql += " to_date(s.day,'yyyy-mm-dd hh24-mi-ss') >= to_date(a.begin_time,'yyyy-mm-dd hh24-mi-ss') and  to_date(s.day,'yyyy-mm-dd hh24-mi-ss')<= to_date(a.end_time,'yyyy-mm-dd hh24-mi-ss')"
+				+ " and a.status='2')";
+		this.activeapi.executeSql(sql);
+		// 处理调休情况
+		sql = "update att_sign_detail s set ignore='1' where exists ( select 1 from att_rest a where s.userid=a.person_id and ";
+		sql += " to_date(s.day,'yyyy-mm-dd hh24-mi-ss') >= to_date(a.begin_time,'yyyy-mm-dd hh24-mi-ss') and  to_date(s.day,'yyyy-mm-dd hh24-mi-ss')<= to_date(a.end_time,'yyyy-mm-dd hh24-mi-ss')"
+				+ " and a.status='2')";
+		this.activeapi.executeSql(sql);
+
+		// 步骤五////////考虑公休日 ,节假日(不同人节假日不同)和单位调休日
+		// 首先获得时间段内的公休日 先算默认周六周日休息的
+		List<AttRestOfWeekBO> restOfWeekBOList = this.attrestweekDAO
+				.findAll("AttRestOfWeekBO");
+		String dayofweek = "";
+		if (restOfWeekBOList.size() > 0) {
+			AttRestOfWeekBO rwb = (AttRestOfWeekBO) restOfWeekBOList.get(0);
+			if ("1".equals(rwb.getMon())) {
+				dayofweek += "1,";
+			}
+			if ("1".equals(rwb.getTues())) {
+				dayofweek += "2,";
+			}
+			if ("1".equals(rwb.getWed())) {
+				dayofweek += "3,";
+			}
+			if ("1".equals(rwb.getThur())) {
+				dayofweek += "4,";
+			}
+			if ("1".equals(rwb.getFri())) {
+				dayofweek += "5,";
+			}
+			if ("1".equals(rwb.getSat())) {
+				dayofweek += "6,";
+			}
+			if ("1".equals(rwb.getSun())) {
+				dayofweek += "7,";
+			}
+		}
+		List days = DateUtil.getAllBetweenDates(beginDate, endDate);
+		weekDays = DateUtil.getDayByWeek(dayofweek, beginDate, endDate,
+				"01-01", "12-30");
+		days.removeAll(weekDays);// 所有天减去工作的周一到周五
+		// 构造条件函数
+		String inSql = "";
+		if (days.size() > 0) {
+			for (int i = 0; i < days.size(); i++) {
+				if (i == 0) {
+					inSql = " in( '" + days.get(i) + "'";
+				} else {
+					inSql += ",'" + days.get(i) + "'";
+
+				}
+				if (i == days.size() - 1) {
+					inSql += ") ";
+				}
+			}
+		}else{
+			inSql=" in ('') ";
+		}
+		
+		sql = "update att_sign_detail s set ignore='1' where (classtype='0' or classtype='2') and  day "
+				+ inSql;
+		this.activeapi.executeSql(sql);
+		// //处理节假日
+		// 注意 不同岗位人员放假时间不一样
+		List leaveList = this.attfeastDAO.getAllAttFeast(orgId);
+		// 处理每个放假对象
+		for (int i = 0; i < leaveList.size(); i++) {
+			AttFeastBO feast = (AttFeastBO) leaveList.get(i);
+			if (feast.getPostLeiXing() == null
+					|| "".equals(feast.getPostLeiXing())) {
+				sql = "update att_sign_detail a set ignore = '1' where exists(select 1 from ATT_FEAST t"
+						+ " where (a.day>=t.begindate and a.day<=t.enddate and yeartype='0') "
+						+ " or (substr(a.day,6)>=t.begindate and substr(a.day,6)<=t.enddate and yeartype='-1') and (classtype='0' or classtype='2') and t.feast_id='"
+						+ feast.getFeastID() + "') ";
+				this.activeapi.executeSql(sql);
+			} else {
+				// 先构建假期对应岗位的列表
+				String[] postList = feast.getPostLeiXing().split(",");
+				inSql = "";
+				if (postList.length > 0) {
+					for (int j = 0; j < postList.length; j++) {
+						if (j == 0) {
+							inSql = " in( '" + postList[j] + "'";
+						} else {
+							inSql += ",'" + postList[j] + "'";
+
+						}
+						if (j == postList.length - 1) {
+							inSql += ") ";
+						}
+
+					}
+				}
+				sql = "update att_sign_detail a set ignore = '1' where exists(select 1 from ATT_FEAST t,a001 s "
+						+ " where (a.day>=t.begindate and a.day<=t.enddate and yeartype='0') "
+						+ " or (substr(a.day,6)>=t.begindate and substr(a.day,6)<=t.enddate and yeartype='-1')"
+						+ " and (classtype='0' or classtype='2') and t.feast_id='"
+						+ feast.getFeastID()
+						+ "' and s.id=a.userid"
+						+ " and s.A001218 " + inSql + ")";
+				this.activeapi.executeSql(sql);
+			}
+
+		}
+		this.activeapi.executeSql(sql);
+		// //处理公休日调休日
+		List workDaysList = this.getAttfeastDAO().getAllAttWorkDate(orgId);
+		inSql = "";
+		if (workDaysList.size() > 0) {
+			for (int j = 0; j < workDaysList.size(); j++) {
+				if (j == 0) {
+					inSql = " in( '"
+							+ ((AttWorkDateBO) workDaysList.get(j))
+									.getWorkDate() + "'";
+				} else {
+					inSql += ",'"
+							+ ((AttWorkDateBO) workDaysList.get(j))
+									.getWorkDate() + "'";
+
+				}
+				if (j == workDaysList.size() - 1) {
+					inSql += ") ";
+				}
+
+			}
+			sql = "update att_sign_detail a set ignore = '0' where a.classtype='1' or a.classtype='2' and a.day "
+					+ inSql;
+			this.activeapi.executeSql(sql);
+		}
+		// ///步骤六 根据员工入校时间和离职时间去掉已经离职的人员或者更新本月入职，离职的人员信息
+		// 将入校前的信息设为无效
+		sql = "update att_sign_detail a set ignore = '1' where exists (select 1 from a001 b where a.userid=b.id "
+				+ "and to_date(a.day,'yyyy-mm-dd')<to_date(b.a001044,'yyyy-mm-dd'))";
+		this.activeapi.executeSql(sql);
+		// 将离职以后的信息设为无效
+		sql = "update att_sign_detail a set ignore = '1' where exists (select 1 from a001 b where a.userid=b.id "
+				+ "and to_date(a.day,'yyyy-mm-dd')>=to_date(b.a001246,'yyyy-mm-dd'))";
+		this.activeapi.executeSql(sql);
+
+		return null;
+	}
+    @Override
+	// 根据考勤临时统计表的数据，编制发给每个人的信息内容
+	public void updateAttTempDate(String tempBeginDate, String tempEndDate)
+			throws SysException {
+		// 先清空提示信息
+		String sql = "update att_sign_detail a set a.note=''";
+		this.activeapi.executeSql(sql);
+		// 先统计每个人每天的信息
+		// 先统计全天班的情况(1早上迟到1次 2 下午迟到一次 3早上旷工半天 4下午旷工半天)
+		sql = "update att_sign_detail a set a.note=(nvl(a.note,'')||','||a.day||'早上:'||'旷工') where a.away1>0 and a.classtype=2 and ignore='0'";
+		this.activeapi.executeSql(sql);
+		sql = "update att_sign_detail a set a.note=(nvl(a.note,'')||','||a.day||'下午:'||'旷工') where a.away2>0 and a.classtype=2 and ignore='0'";
+		this.activeapi.executeSql(sql);
+		
+		sql = "update att_sign_detail a set a.note=(nvl(a.note,'')||','||a.day||'早上:'||'迟到') where a.later1>0 and a.classtype=2 and ignore='0'";
+		this.activeapi.executeSql(sql);
+		sql = "update att_sign_detail a set a.note=(nvl(a.note,'')||','||a.day||'下午:'||'迟到') where a.later2>0 and a.classtype=2 and ignore='0'";
+		this.activeapi.executeSql(sql);
+		// 再统计半天班(迟到 旷工半天/1天)
+		sql = "update att_sign_detail a set a.note=(nvl(a.note,'')||','||a.day||':'||'迟到') where a.later>0 and a.classtype!=2 and ignore='0'";
+		this.activeapi.executeSql(sql);
+		sql = "update att_sign_detail a set a.note=(nvl(a.note,'')||','||a.day||':'||'旷工'||to_number(a.away)||'天') where a.away>0 and a.classtype!=2 and ignore='0'";
+		this.activeapi.executeSql(sql);
+		//统计结果，将结果放入员工考勤临时信息表
+		//首先清空上次统计的数据
+		sql="delete from a244 a"; 
+		this.activeapi.executeSql(sql);
+		//插入新数据
+		sql="insert into a244 select  t.userid||sum(rownum),t.userid,'00901','"+tempBeginDate+"','"+tempEndDate+"',wmsys.wm_concat(t.note) from att_sign_detail t group by t.userid";
+		this.activeapi.executeSql(sql);
+		//清空没有迟到和旷工记录的员工
+		sql="delete from a244 a where length(trim(a244202)) is null";
+		this.activeapi.executeSql(sql);
+	}
+    
+    @Override
+    public List getAttTempDataBO(PageVO pageVO, String orgID, String nameStr,
+    		String personType) throws SysException {
+    	// return this.jdbcTemplate.queryForList("select * from a236");
+    	return this.attBusiDAO.getAttTempDataBO(pageVO, orgID, nameStr, personType);
+    }
 }

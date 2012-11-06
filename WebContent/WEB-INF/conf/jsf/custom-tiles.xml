@@ -421,4 +421,10 @@
     <definition name="/custom/attence/attYear.tiles" extends="layout.busitemplate">
         <put name="body" value="/pages/custom/attence/attYear.jsp"/>
     </definition>
+    <definition name="/custom/attence/attTempDataUserList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attTempDataUserList.jsp"/>
+    </definition>
+    <definition name="/custom/attence/attTempData.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/attence/attTempData.jsp"/>
+    </definition>
 </tiles-definitions>

@@ -618,4 +618,26 @@ public class AttBusiDAO extends BaseDAO{
 		String countHql = "select count(*) "+hql;
 		return this.pageQuery(pageVO, countHql, boHql);
 	}
+	//获取年出勤数据
+	public List getAttTempDataBO(PageVO pageVO, String orgID, String nameStr, String personType) throws SysException{
+		//String hql = " from a236 ";
+		String hql = " from AttTempDataBO bo,UserBO u where u.userID=bo.id ";
+		if(orgID!=null && !"".equals(orgID)){
+			OrgBO org = SysCacheTool.findOrgById(orgID);
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
+		}
+		
+		if(personType!=null && !"".equals(personType)){			
+			String[]types = personType.split(",");
+			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
+		}
+		if(nameStr!=null && !"".equals(nameStr)){
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+		}
+		hql+=" and bo.flag='00901' ";
+		//String boHql = "select * "+hql +" order by id";
+		String boHql = "select bo,u.secDeptID "+hql +" order by u.secDeptID,u.deptId";
+		String countHql = "select count(*) "+hql;
+		return this.pageQuery(pageVO, countHql, boHql);
+	}
 }
