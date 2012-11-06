@@ -3,7 +3,6 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ include file="../include/taglib.jsp"%>
-<script language="javascript" src="/js/jquery.js"></script>
 <script type="text/javascript">
 	function doAddItem() {
 		// 		var gangwei=document.all('form1:gangwei');

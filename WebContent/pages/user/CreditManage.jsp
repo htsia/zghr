@@ -101,11 +101,11 @@
                         <tr align="center">
                             <td width="100" height="25" class="activeTab" onclick="secBoard(0)"><img src="/images/common/handtip.gif">&nbsp;业务操作</td>
                             <td width="110" height="25" class="tab" onclick="secBoard(1)"><img src="/images/common/handtip.gif">&nbsp;自助业务操作</td>
-                            <td width="100" height="25" class="tab" onclick="secBoard(2)"><img src="/images/common/handtip.gif">&nbsp;自助操作</td>
+<!--                             <td width="100" height="25" class="tab" onclick="secBoard(2)"><img src="/images/common/handtip.gif">&nbsp;自助操作</td> -->
                             <td width="100" class="tab" onclick="secBoard(3)"><img src="/images/common/handtip.gif">&nbsp;信息项</td>
                             <td width="100" class="tab" onclick="secBoard(4)"><img src="/images/common/handtip.gif">&nbsp;机构查询</td>
                             <td width="100" class="tab" onclick="secBoard(5)"><img src="/images/common/handtip.gif">&nbsp;机构维护</td>
-                            <td width="100" class="tab" onclick="secBoard(6)"><img src="/images/common/handtip.gif">&nbsp;党组织范围</td>
+<!--                             <td width="100" class="tab" onclick="secBoard(6)"><img src="/images/common/handtip.gif">&nbsp;党组织范围</td> -->
                             <td width="100" class="tab" onclick="secBoard(7)"><img src="/images/common/handtip.gif">&nbsp;人员范围</td>
                             <td width="100" class="tab" onclick="secBoard(8)"><img src="/images/common/handtip.gif">&nbsp;岗位分类</td>
                         </tr>

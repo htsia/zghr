@@ -4,7 +4,6 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ include file="../../include/taglib.jsp"%>
-<script src="<%=request.getContextPath()%>/js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
 	function adduser(){
 		var ids = window.showModalDialog(
@@ -46,7 +45,7 @@
 		window.showModalDialog(
 			"/custom/wage/classWageUserEdit.jsf?subID="+id,
 			null,
-			"dialogWidth:350px; dialogHeight:200px;center:center;resizable:yes;status:no;scroll:yes;");
+			"dialogWidth:400px; dialogHeight:250px;center:center;resizable:yes;status:no;scroll:yes;");
 	}
 	function exportExcel(){
     	window.open("/pages/custom/wage/exportClassWage.jsp");

@@ -42,7 +42,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		//String boHql = "select * "+hql +" order by id";
 		String boHql = "select bo,u.secDeptID "+hql +" order by u.secDeptID,u.deptId";
@@ -62,7 +62,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		String boHql = "select bo "+hql +" order by u.secDeptID,u.deptId";
 		String countHql = "select count(*) "+hql;
@@ -113,7 +113,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		String boHql = "select bo "+hql +" order by u.secDeptID,u.deptId";
 		String countHql = "select count(*) "+hql;
@@ -140,7 +140,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		if("1".equals(inself)){
 			hql += " and u.deptSort like '"+CommonUtil.getSecDeptTreeId(operUserID)+"%'";
@@ -172,7 +172,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		String boHql = "select bo "+hql +" order by u.secDeptID,u.deptId";
 		String countHql = "select count(*) "+hql;
@@ -189,7 +189,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		if("1".equals(inself)){
 			hql += " and u.deptSort like '"+CommonUtil.getSecDeptTreeId(operUserID)+"%'";
@@ -211,7 +211,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		if(!(collected && uncollected)){
 			if(collected){
@@ -277,7 +277,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		if(createType!=null && !"".equals(createType)){
 			hql += " and log.registerCard=1";
@@ -317,7 +317,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		if(beginDate!=null && !"".equals(beginDate)){
 			hql += " and bo.beginTime>='"+beginDate+"'";
@@ -377,7 +377,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		if(beginDate!=null && !"".equals(beginDate)){
 			hql += " and bo.beginTime>='"+beginDate+"'";
@@ -437,7 +437,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		if(beginDate!=null && !"".equals(beginDate)){
 			hql += " and bo.beginTime>='"+beginDate+"'";
@@ -497,7 +497,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		if(beginDate!=null && !"".equals(beginDate)){
 			hql += " and bo.beginTime>='"+beginDate+"'";
@@ -586,7 +586,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		if(yearMonth!=null&&!"".equals(yearMonth)){
 			hql+=" and bo.yearMonth ='"+yearMonth+"'";
@@ -610,7 +610,7 @@ public class AttBusiDAO extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		hql+=" and bo.flag='00901' ";
 		//String boHql = "select * "+hql +" order by id";

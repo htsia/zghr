@@ -6,29 +6,28 @@
 	response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
 <script type="text/javascript">
-	function doAddItem() {
-		var classID = document.all('form1:classID').value;
-		window
-				.showModalDialog(
-						"/attence/attClassDetailEdit.jsf?classID=" + classID,
-						null,
-						"dialogWidth:300px; dialogHeight:150px;center:center;resizable:yes;status:no;scroll:yes;");
-		return true;
-	}
-	function doModifyCource(id) {
-		window
-				.showModalDialog(
-						"/attence/attClassDetailEdit.jsf?itemID=" + id,
-						null,
-						"dialogWidth:300px; dialogHeight:150px;center:center;resizable:yes;status:no;scroll:yes;");
-		return true;
+	function forsave(){
+		var date = $("input[code]");
+		var am1=date[0];
+		var am2=date[1];
+		var am3=date[2];
+		var am4=date[3];
+		var pm1=date[4];
+		var pm2=date[5];
+		var pm3=date[6];
+		var pm4=date[7];
+		if(am1==null && am2==null && am3==null && am4==null && pm1==null && pm2==null && pm3==null && pm4==null){
+			alert("请填写打卡时间");
+			return false;
+		}else if(pm4<pm3 || pm3<pm2 || pm2<pm1 || pm1 < am4 || am4<am3 || am3 < am2 || am2<am1 ){
+			alert("请填写上午上班时间");
+			return false;
+		}
 	}
 </script>
-<x:saveState value="#{att_class_detailBB}"></x:saveState>
+<x:saveState value="#{att_class_detailBB}"/>
+<h:inputHidden value="#{att_class_detailBB.pageInit}"/>
 <h:form id="form1">
-	<h:inputHidden value="#{att_class_detailBB.pageInit}"></h:inputHidden>
-	<h:inputHidden id="classID" value="#{att_class_detailBB.classID}"></h:inputHidden>
-	<h:inputHidden id="createOrg" value="#{att_class_detailBB.createOrg}"></h:inputHidden>
 	<h:panelGrid columns="1" styleClass="td_title" width="98%"
 		align="center">
 		<h:panelGroup>
@@ -42,7 +41,7 @@
 				<td>
 				<div style='width: 100%; height: 100%; overflow: auto'
 					id="datatable" align="center"></c:verbatim>
-					<x:dataTable value="#{att_class_detailBB.attmachineList}" var="list" 
+					<x:dataTable value="#{att_class_detailBB.detailList}" var="list" 
 					rowIndexVar="index" id="dateList" headerClass="td_top tr_fixrow"
 					columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center"
 					styleClass="table03" width="90%" border="0">
@@ -64,19 +63,15 @@
 						<c:facet name="header">
 							<h:outputText value="时间"  />
 						</c:facet>
-						<h:outputText  value="#{list.itemTime}"  />
+						<h:inputText code="#{list.itemID}" value="#{list.itemTime}" readonly="true" size="10" styleClass="input" onclick="WdatePicker({startDate:'%H:%m',dateFmt:'HH:mm'})"/>
 					</h:column>
-
-					<h:column>
-						<c:facet name="header">
-							<h:outputText value="操作" />
-						</c:facet>
-						<h:commandButton title="0" value="设置"  rendered="#{att_class_detailBB.createOrg==att_class_detailBB.superID}"
-							onclick="return doModifyCource('#{list.itemID}');"
-							styleClass="button01">
-						</h:commandButton>
-					</h:column>
-				</x:dataTable> <c:verbatim></div>
+				</x:dataTable> 
+				<h:panelGrid>
+					<h:commandButton onclick="return forsave()" value="保存" action="#{att_class_detailBB.saveClassDetail}"/>
+				</h:panelGrid>
+				<c:verbatim>
+				<input type="button" onclick="forsave();"/>
+				</div>
 				</td>
 			</tr>
 		</table>

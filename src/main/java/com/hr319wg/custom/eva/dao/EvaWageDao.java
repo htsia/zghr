@@ -27,7 +27,7 @@ public class EvaWageDao extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		
 		String boHql = "select bo,u.secDeptID "+hql +" order by u.secDeptID,u.deptId";
@@ -46,7 +46,7 @@ public class EvaWageDao extends BaseDAO{
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '"+nameStr+"')";
+			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		
 		String boHql = "select u "+hql +" order by u.secDeptID,u.deptId";

@@ -57,12 +57,17 @@
 		     <h:outputText value=""/>           
 		     <h:outputText value=""/>           
              <h:outputText value="开始时间"/>
-             <h:inputText styleClass="input Wdate" id="beginTime" value="#{attOvertimeApplyBB.overtimeBo.beginTime}"
-                             readonly="true" alt="开始日期|0|d|50||" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',el:'form1:beginTime'})"/>
-
+             <h:panelGroup>
+             <h:inputText styleClass="input" id="beginTime" value="#{attOvertimeApplyBB.overtimeBo.beginTime}"
+                             readonly="true" alt="开始日期|0|d|50||"/>
+			<f:verbatim><input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:beginTime');"></f:verbatim>
+			</h:panelGroup>
             <h:outputText value="结束时间"/>
-            <h:inputText styleClass="input Wdate" id="endTime" value="#{attOvertimeApplyBB.overtimeBo.endTime}"
-                             readonly="true" alt="结束日期|0|d|50||" onclick="WdatePicker({startDate:'%y-%M-%d 23:59:59',dateFmt:'yyyy-MM-dd HH:mm',el:'form1:endTime'})"/>
+            <h:panelGroup>
+            <h:inputText styleClass="input" id="endTime" value="#{attOvertimeApplyBB.overtimeBo.endTime}"
+                             readonly="true" alt="结束日期|0|d|50||"/>
+            <f:verbatim><input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:endTime');"></f:verbatim>
+            </h:panelGroup>
             <h:outputText value="加班时间/时"/>
             <h:inputText id="applyHours" value="#{attOvertimeApplyBB.overtimeBo.applyDays}" styleClass="input"/>
             </h:panelGrid>

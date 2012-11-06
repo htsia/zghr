@@ -196,8 +196,11 @@ function confirmSave(form1){
 <h:form id="form1">
     <h:inputHidden id="str" value="#{cont_contNewSignBB.selectNewPersonIds}"/>
     <h:inputHidden id="init_b" value="#{cont_contNewSignBB.init_b}"/>
-
-    <h:panelGrid width="100%" border="0" styleClass="td_title" cellspacing="6" cellpadding="0" >
+	<f:verbatim>
+    <table height=100% width=100% align="center">
+        <tr><td><div style='width:100%;height:98%;overflow:auto' id=datatable>
+    </f:verbatim>
+    <h:panelGrid width="100%" border="0" styleClass="td_title" cellpadding="0" >
        <h:panelGroup>
            <h:graphicImage value="/images/tips.gif" />
            <h:outputText value="合同新签" ></h:outputText>
@@ -458,6 +461,9 @@ function confirmSave(form1){
                 <h:commandButton styleClass="button01" value="保存" action="#{cont_contNewSignBB.save_add}"  onclick="if( checkSubmit(document.forms(0))&&checkAll(document.forms(0)) ){ return confirmSave(document.forms(0));}else{return false;}"/>
                 <h:commandButton styleClass="button01" value="取消返回" action="#{cont_contNewSignBB.forwardList}"/>
      </h:panelGrid>
+     <f:verbatim>
+		</div></td></tr></table>
+	</f:verbatim>
 </h:form>
 
 <script type="text/javascript" language="javascript">

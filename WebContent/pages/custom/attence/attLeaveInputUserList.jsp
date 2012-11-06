@@ -5,8 +5,6 @@
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
-	<script src="<%=request.getContextPath()%>/js/jquery.js"
-	type="text/javascript"></script>
     <script type="text/javascript" contenteditable="inherit">
     	function add() {
             window.showModalDialog("/custom/attence/attLeaveInputEdit.jsf?act=init", null, "dialogWidth:"+screen.width*0.5+"px;dialogHeight:"+screen.height*0.5+"px;center:center;resizable:no;status:no;scroll:yes;");

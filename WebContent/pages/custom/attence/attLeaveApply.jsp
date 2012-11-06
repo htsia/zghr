@@ -6,7 +6,6 @@
 	response.setHeader("Cache-Control", "no-cache");
 	response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
-<script src="<%=request.getContextPath()%>/js/jquery.js" type="text/javascript"></script>
 
 <script language="javascript">
 	function getApplyDays() {
@@ -306,10 +305,11 @@
 			</h:selectOneMenu>
 			<h:outputText value="开始时间" />
 			<h:panelGroup>
-				<h:inputText styleClass="input Wdate" id="beginTime"
+				<h:inputText styleClass="input" id="beginTime"
 					value="#{attLeaveApplyBB.leaveBo.beginTime}" readonly="true"
-					alt="开始日期|0|d|50||" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:beginTime',onpicked:getApplyDays})"/>
+					alt="开始日期|0|d|50||"/>
 				<c:verbatim>
+				<input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:beginTime');getApplyDays();">
 					<select id="beginHour" onchange="getApplyDays();">
 						<option value="00:00">早上</option>
 						<option value="12:00">中午</option>
@@ -319,10 +319,11 @@
 
 			<h:outputText value="结束时间" />
 			<h:panelGroup>
-				<h:inputText styleClass="input Wdate" id="endTime"
+				<h:inputText styleClass="input" id="endTime"
 					value="#{attLeaveApplyBB.leaveBo.endTime}" readonly="true"
 					alt="结束日期|0|d|50||" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:endTime',onpicked:getApplyDays})"/>
 				<c:verbatim>
+				<input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:endTime');getApplyDays();">
 					<select id="endHour" onchange="getApplyDays();">
 						<option value="23:59">晚上</option>
 						<option value="12:00">中午</option>
