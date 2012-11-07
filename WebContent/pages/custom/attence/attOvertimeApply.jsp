@@ -10,29 +10,35 @@
   <script type="text/javascript">
   	function forsave(){
   		var beginDate= document.all("form1:beginTime").value;
-  		var endDate= document.all("form1:endTime").value;
   		var applydays= document.all("form1:applyHours").value/8.0;//小时转为天(8小时对应一天)
-  		
+
+        var date = new Date(); 
+  		var d=date.getDate();
+  		var m=date.getMonth()+1;
+  		if(d<10){
+  			d="0"+d;
+  		}
+  		if(m<10){
+  			m="0"+m;
+  		}
+  		var str = date.getFullYear()+"-"+m+"-"+d;
   		if(beginDate==null || beginDate==""){
-  			alert("请选择开始日期");
+  			alert("请选择加班日期");
   			return false;
-  		}else if(endDate==null || endDate==""){
-  			alert("请选择结束日期");
-  			return false;
-  		}else if(beginDate>endDate){
-  			alert("结束日期大于开始日期");
+  		}else if(beginDate<str){
+  			alert("申请加班日期过早，根据考勤制度，只能申请当天以后的加班。如果您要补录单子，请联系人力资源处。");
   			return false;
   		}else if(applydays==null || applydays==""){
   			alert("加班时间不能为空");
   			return false;
-  		}else if(isNaN(applydays) || applydays<=0){
-  			alert("加班时间为大于0的数字");
+  		}else if(isNaN(applydays) || applydays*8<4){
+  			alert("根据考勤制度，小于4小时不能申请加班。");
   			return false;
   		}
   	//判断原因是否过长
 		var reason = document.all("form1:reason").value;
 		if (reason.length > 100) {
-			alert("原因不能超过100字。");
+			alert("申请原因不能超过100字。");
 			return false;
 		}
   		document.all("form1:applyHours").value=applydays;
@@ -56,18 +62,12 @@
              <h:outputText value="#{attOvertimeApplyBB.personName}"/>
 		     <h:outputText value=""/>           
 		     <h:outputText value=""/>           
-             <h:outputText value="开始时间"/>
+             <h:outputText value="加班日期"/>
              <h:panelGroup>
              <h:inputText styleClass="input" id="beginTime" value="#{attOvertimeApplyBB.overtimeBo.beginTime}"
-                             readonly="true" alt="开始日期|0|d|50||"/>
+                             readonly="true" alt="加班日期|0|d|50||"/>
 			<f:verbatim><input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:beginTime');"></f:verbatim>
 			</h:panelGroup>
-            <h:outputText value="结束时间"/>
-            <h:panelGroup>
-            <h:inputText styleClass="input" id="endTime" value="#{attOvertimeApplyBB.overtimeBo.endTime}"
-                             readonly="true" alt="结束日期|0|d|50||"/>
-            <f:verbatim><input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:endTime');"></f:verbatim>
-            </h:panelGroup>
             <h:outputText value="加班时间/时"/>
             <h:inputText id="applyHours" value="#{attOvertimeApplyBB.overtimeBo.applyDays}" styleClass="input"/>
             </h:panelGrid>

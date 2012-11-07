@@ -220,7 +220,16 @@ public class AttOvertimeBackingBean extends BaseBackingBean {
 				bo.setCreateType("1");
 				try {
 					this.attBusiService.saveOrUpdateBO(bo);
-					this.attBusiService.updateLeaveDays("0", String.valueOf(Double.parseDouble(this.inputEditApplyDays)/8.0), userIDs[i]);
+					String day = bo.getBeginTime();
+					String days=bo.getApplyDays();
+	                if(this.attBusiService.isFeast(day, userIDs[i])){
+	                	if(Double.parseDouble(days)<1){
+	                		days="1.0";
+	                	}else{
+	                		days="2.0";
+	                	}
+	                }
+					this.attBusiService.updateLeaveDays("0", days, userIDs[i]);
 				} catch (SysException e) {
 					e.printStackTrace();
 				}

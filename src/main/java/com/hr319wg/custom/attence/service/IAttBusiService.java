@@ -216,5 +216,6 @@ public interface IAttBusiService {
 			throws SysException;
 	List getAttTempDataBO(PageVO pageVO, String orgID, String nameStr,
 			String personType) throws SysException;
+	public boolean isFeast(String day, String personId) throws SysException;
 
 }

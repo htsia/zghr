@@ -94,12 +94,8 @@
             <h:outputText value="#{list.deptName}"/>
         </h:column>     
         <h:column>
-            <c:facet name="header"><h:outputText value="开始时间"/></c:facet>
+            <c:facet name="header"><h:outputText value="加班日期"/></c:facet>
             <h:outputText value="#{list.beginTime}"/>
-        </h:column>
-        <h:column>
-            <c:facet name="header"><h:outputText value="结束时间"/></c:facet>
-            <h:outputText value="#{list.endTime}"/>
         </h:column>
 
         <h:column>
