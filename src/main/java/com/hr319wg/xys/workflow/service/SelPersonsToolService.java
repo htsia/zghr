@@ -197,7 +197,7 @@ public class SelPersonsToolService {
 	/**
 	 * 获得上级领导类别，用于一般人员考勤流程审批
 	 * @param personId 用户标识
-	 * @return 1：上级为室主任，2：上级为系主任，3：上级为处级，4：上级为校级,999：其他
+	 * @return 1：上级为室主任或上级为实验中心主任，2：上级为系主任，3：上级为处级，4：上级为校级,999：其他
 	 * @throws SysException
 	 */
 	public int getLeaderType(String personId)throws SysException{
