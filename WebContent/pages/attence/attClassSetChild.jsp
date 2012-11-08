@@ -36,7 +36,7 @@
 		window.showModalDialog(
 						"/attence/attClassDetail.jsf?classID=" + id,
 						null,
-						"dialogWidth:500px; dialogHeight:350px;center:center;resizable:yes;status:no;scroll:yes;");
+						"dialogWidth:550px; dialogHeight:370px;center:center;resizable:yes;status:no;scroll:yes;");
 		return true;
 	}
 	function doFrequency(id) {

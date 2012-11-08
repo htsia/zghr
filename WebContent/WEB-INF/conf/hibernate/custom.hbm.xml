@@ -224,6 +224,7 @@
         <property name="a001730" column="A001730"/>
         <property name="a001753" column="A001753"/>
         <property name="leixing" column="a001218"/>
+        <property name="hasCashStr" column="A001201"/>
     </class>
 	
     <!-- 考勤管理 -->

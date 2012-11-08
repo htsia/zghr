@@ -76,7 +76,8 @@
 	}
 	function forDetail(){
 		if(selIP()){
-			process();			
+			process();
+			return true;
 		}
 		return false;
 	}

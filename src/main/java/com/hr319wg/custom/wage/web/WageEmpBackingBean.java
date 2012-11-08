@@ -1,16 +1,12 @@
 package com.hr319wg.custom.wage.web;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 
 import jxl.Sheet;
 import jxl.Workbook;
@@ -28,7 +24,6 @@ import com.hr319wg.custom.wage.service.IWageDataService;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CodeUtil;
-import com.hr319wg.util.FileUtil;
 import com.hr319wg.wage.pojo.bo.WageSetBO;
 
 public class WageEmpBackingBean extends BaseBackingBean {
@@ -45,6 +40,8 @@ public class WageEmpBackingBean extends BaseBackingBean {
 	private String wage;
 	private boolean hasWage=true;
 	private boolean noWage=true;
+	private boolean hasCash=true;
+	private boolean hasNoCash=true;
 	private String inself;
 	private String rightType; //0后勤 1非后勤
 	private UploadedFile excelFile;
@@ -52,6 +49,22 @@ public class WageEmpBackingBean extends BaseBackingBean {
 	private List<Map> list;
 	private IWageDataService wageDataService;
 	private UserBO user = new UserBO();
+
+	public boolean isHasCash() {
+		return hasCash;
+	}
+
+	public void setHasCash(boolean hasCash) {
+		this.hasCash = hasCash;
+	}
+
+	public boolean isHasNoCash() {
+		return hasNoCash;
+	}
+
+	public void setHasNoCash(boolean hasNoCash) {
+		this.hasNoCash = hasNoCash;
+	}
 
 	public String getRightType() {
 		return rightType;
@@ -225,6 +238,14 @@ public class WageEmpBackingBean extends BaseBackingBean {
 		this.noWage = event.getNewValue().toString().equals("true");
 	}
 	
+	public void setHasCash(ValueChangeEvent event) {
+		this.hasCash = event.getNewValue().toString().equals("true");
+	}
+	
+	public void setHasNoCash(ValueChangeEvent event) {
+		this.hasNoCash = event.getNewValue().toString().equals("true");
+	}
+	
 	//页面初始化
 	public String getPageInit() {		
 		String act = super.getRequestParameter("act");
@@ -268,7 +289,7 @@ public class WageEmpBackingBean extends BaseBackingBean {
 		}
 		try {
 			this.list = new ArrayList();
-			List<UserBO> list1 = this.wageDataService.getAllWageEmpUserBO(mypage, hasWage, noWage, orgID, personType, nameStr, rightType, inself, super.getUserInfo().getUserId());
+			List<UserBO> list1 = this.wageDataService.getAllWageEmpUserBO(mypage, hasWage, noWage, hasCash, hasNoCash, orgID, personType, nameStr, rightType, inself, super.getUserInfo().getUserId());
 			if(list1!=null){
 				for(UserBO bo : list1){
 					Map m = new HashMap();
@@ -295,6 +316,9 @@ public class WageEmpBackingBean extends BaseBackingBean {
 					}
 					if(bo.getZhichengXulie()!=null){
 						m.put("zhichengXulieDesc", CodeUtil.interpertCode(bo.getZhichengXulie()));					
+					}
+					if("1".equals(bo.getHasCashStr())){
+						m.put("hasCash", "是");
 					}
 					JdbcTemplate jdbc = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
 					String sql = "select A239200,A239201,A239202 from A239 where id='"+bo.getUserID()+"'";
@@ -415,91 +439,5 @@ public class WageEmpBackingBean extends BaseBackingBean {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-	}
-	
-	//导出execl
-	public void exportExcel(){
-		ServletContext context = (ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext();
-	    String path = context.getRealPath("/") + File.separator + "file" + File.separator + "custom" + File.separator + "download";
-	    List list = new ArrayList();
-	    String[] header = new String[15];
-	      
-	    header[0] = "姓名";
-	    header[1] = "员工编号";
-	    header[2] = "人员类别";
-	    header[3] = "二级部门";
-	    header[4] = "所在部门";
-	    header[5] = "身份证号";
-	    header[6] = "银行卡号";
-	    header[7] = "最高学历";
-	    header[8] = "最高学位";
-	    header[9] = "最高职称";
-	    header[10] = "最高职称等级";
-	    header[11] = "最高职称序列";
-	    header[12] = "工资";
-	    header[13] = "工资月份";
-	    header[14] = "状态";
-	    try {
-	      HttpSession session = super.getHttpSession();
-	      List<UserBO> list1 = this.wageDataService.getAllWageEmpUserBO(hasWage, noWage, orgID, personType, nameStr);
-	      if(list1==null){
-	    	  list1=new ArrayList<UserBO>();
-	      }
-	      for(UserBO bo : list1){
-	    	  String[] content = new String[15];
-	    	  content[0]=bo.getName();
-	    	  content[1]=bo.getPersonSeq();
-	    	  content[2]=CodeUtil.interpertCode(bo.getPersonType());
-	    	  content[3]=CodeUtil.interpertCode(bo.getSecDeptID());
-	    	  content[4]=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, bo.getDeptId());
-	    	  content[5]=bo.getCardNO();
-	    	  content[6]=bo.getBankNO();
-	    	  content[7]="";
-	    	  if(bo.getXueli()!=null){
-	    		  content[7]=CodeUtil.interpertCode(bo.getXueli());
-	    	  }
-	    	  content[8]="";
-	    	  if(bo.getXuewei()!=null){
-	    		  content[8]=CodeUtil.interpertCode(bo.getXuewei());
-	    	  }
-	    	  content[9]="";
-	    	  if(bo.getZhicheng()!=null){
-	    		  content[9]=CodeUtil.interpertCode(bo.getZhicheng());
-	    	  }
-	    	  content[10]="";
-	    	  if(bo.getZhichengLevel()!=null){
-	    		  content[10]=CodeUtil.interpertCode(bo.getZhichengLevel());
-	    	  }
-	    	  content[11]="";
-	    	  if(bo.getZhichengXulie()!=null){
-	    		  content[11]=CodeUtil.interpertCode(bo.getZhichengXulie());
-	    	  }
-			  JdbcTemplate jdbc = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
-			  String sql = "select A239200,A239201,A239202 from A239 where id='"+bo.getUserID()+"'";
-			  List wagelist = jdbc.queryForList(sql);
-			  if(wagelist!=null){
-					Map m1 = (Map)wagelist.get(0);
-					content[12]=String.valueOf(m1.get("A239200"));
-					Object A239201 = m1.get("A239201");
-					content[13]="";
-					if(A239201!=null){
-						content[13]= String.valueOf(A239201);
-					}
-					String A239202 = String.valueOf(m1.get("A239202"));
-					content[14]="";
-					if("1".equals(A239202)){
-						content[14]="审核通过";
-					}else if("0".equals(A239202)){
-						content[14]="审核中";
-					}
-			  }
-			  list.add(content);
-	      }
-	      String fileName = FileUtil.exportFile(path, header, null, list, false);
-
-	      String url = super.getServletRequest().getContextPath() + "/file/custom/download/" + fileName;
-	      this.filename=url;
-	    } catch (Exception e) {
-	    }
 	}
 }

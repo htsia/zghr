@@ -54,8 +54,7 @@ public interface IWageDataService {
 	public void deleteWageDataSetUserBOByID(String ID) throws SysException;
 	
 	public Object getObjectByID(Class c ,String ID) throws SysException;
-	public List getAllWageEmpUserBO(PageVO pageVo, boolean hasWage, boolean noWage, String orgID, String personType, String nameStr, String rightType, String inself, String operUserID) throws SysException;
-	public List getAllWageEmpUserBO(boolean hasWage, boolean noWage, String orgID, String personType, String nameStr) throws SysException;
+	public List getAllWageEmpUserBO(PageVO pageVo, boolean hasWage, boolean noWage, boolean hasCash, boolean hasNoCash, String orgID, String personType, String nameStr, String rightType, String inself, String operUserID) throws SysException;
 	
 	public List getAllWageDataSetBO(String yearMonth, String selectedItemIDs, String itemType) throws SysException;
 	

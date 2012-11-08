@@ -160,7 +160,6 @@ public class AttLogMgrBackingBean extends BaseBackingBean {
 		this.userapi = userapi;
 	}
 	
-	
 	public String getCheckinInit(){
 		String act = super.getRequestParameter("act");
 		if("init".equals(act)){

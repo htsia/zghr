@@ -7,27 +7,61 @@
 %>
 <script type="text/javascript">
 	function forsave(){
+		var pass=false;
 		var date = $("input[code]");
-		var am1=date[0];
-		var am2=date[1];
-		var am3=date[2];
-		var am4=date[3];
-		var pm1=date[4];
-		var pm2=date[5];
-		var pm3=date[6];
-		var pm4=date[7];
-		if(am1==null && am2==null && am3==null && am4==null && pm1==null && pm2==null && pm3==null && pm4==null){
-			alert("请填写打卡时间");
-			return false;
-		}else if(pm4<pm3 || pm3<pm2 || pm2<pm1 || pm1 < am4 || am4<am3 || am3 < am2 || am2<am1 ){
-			alert("请填写上午上班时间");
-			return false;
+		var am1=date.eq(0).val();
+		var am2=date.eq(1).val();
+		var am3=date.eq(2).val();
+		var am4=date.eq(3).val();
+		var pm1=date.eq(4).val();
+		var pm2=date.eq(5).val();
+		var pm3=date.eq(6).val();
+		var pm4=date.eq(7).val();
+		var hasam=(am1!='' || am2!='' || am3!='' || am4!='');
+		var haspm=(pm1!='' || pm2!='' || pm3!='' || pm4!='');
+		if(hasam && haspm){//全天打卡
+			if(pm4<=pm3 || pm3<=pm2 || pm2<=pm1 || pm1<=am4 || am4<=am3 || am3<=am2 || am2<=am1 ||
+					am1=='' || am2=='' || am3=='' || am4=='' || pm1=='' || pm2=='' || pm3=='' || pm4==''){
+				alert("全天班时间填写有误");
+				pass= false;
+			}else{
+				pass= true;
+			}
+		}else if(hasam){//上午打卡
+			if(am4<=am3 || am3<=am2 || am2<=am1 || am1=='' || am2=='' || am3=='' || am4==''){
+				alert("上午班时间填写有误");
+				pass= false;
+			}else{
+				pass= true;
+			}
+		}else if(haspm){//下午打卡
+			if(pm4<=pm3 || pm3<=pm2 || pm2<=pm1 || pm1=='' || pm2=='' || pm3=='' || pm4==''){
+				alert("下午班时间填写有误");
+				pass= false;
+			}else{
+				pass= true;
+			}
+		}else{
+			alert("请填写时间");
+			pass= false;
 		}
+		if(pass){
+			var detail="";
+			date.each(function(e){
+				var d=$(this).val();
+				if(d!=''){
+					detail+=$(this).attr("code")+"-"+d+",";
+				}
+			});
+			document.all("form1:detailStr").value=detail;
+		}
+		return pass;
 	}
 </script>
 <x:saveState value="#{att_class_detailBB}"/>
 <h:inputHidden value="#{att_class_detailBB.pageInit}"/>
 <h:form id="form1">
+<h:inputHidden id="detailStr" value="#{att_class_detailBB.detailStr}"/>
 	<h:panelGrid columns="1" styleClass="td_title" width="98%"
 		align="center">
 		<h:panelGroup>
@@ -67,10 +101,10 @@
 					</h:column>
 				</x:dataTable> 
 				<h:panelGrid>
-					<h:commandButton onclick="return forsave()" value="保存" action="#{att_class_detailBB.saveClassDetail}"/>
+				<f:verbatim><br/></f:verbatim>
+					<h:commandButton onclick="return forsave()" value="  保  存  " action="#{att_class_detailBB.saveClassDetail}"/>
 				</h:panelGrid>
 				<c:verbatim>
-				<input type="button" onclick="forsave();"/>
 				</div>
 				</td>
 			</tr>

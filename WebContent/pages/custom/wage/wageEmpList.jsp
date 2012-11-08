@@ -120,6 +120,10 @@
                 <h:selectBooleanCheckbox value="#{wage_empBB.hasWage}" onclick="submit();" valueChangeListener="#{wage_empBB.setHasWage}"/>
 				<h:outputText value="无工资"/>
                 <h:selectBooleanCheckbox value="#{wage_empBB.noWage}" onclick="submit();" valueChangeListener="#{wage_empBB.setNoWage}"/>
+				<h:outputText value="发现金"/>
+                <h:selectBooleanCheckbox value="#{wage_empBB.hasCash}" onclick="submit();" valueChangeListener="#{wage_empBB.setHasCash}"/>
+				<h:outputText value="不发现金"/>
+                <h:selectBooleanCheckbox value="#{wage_empBB.hasNoCash}" onclick="submit();" valueChangeListener="#{wage_empBB.setHasNoCash}"/>
 				<h:outputText value="编号或姓名"/>
 				<h:inputText value="#{wage_empBB.nameStr}" styleClass="input" size="10"/>
 				<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{wage_empBB.doQuery}"/>
@@ -132,8 +136,6 @@
 	            <h:commandButton styleClass="button01" value="导入工资" action="#{wage_empBB.uploadFile}" onclick="return checkSubmit();"/>
 				<h:inputText value="#{wage_empBB.wage}" styleClass="input" size="5"/>
 				<h:commandButton styleClass="button01" value="设定工资" onclick="return selPerson();" action="#{wage_empBB.setWage}"/>
-				<h:outputText value=" "/>
-				<h:commandButton styleClass="button01" value="导出为excel" action="#{wage_empBB.exportExcel}"/>
 				<h:outputText value=" "/>
 				<h:commandButton styleClass="button01" value="提交" onclick="return submitWage();" rendered="#{wage_empBB.inself==1}" action="#{wage_empBB.submitWage}"/>
 				<h:commandButton styleClass="button01" value="审核" onclick="return passWage();" rendered="#{wage_empBB.inself!=1}" action="#{wage_empBB.passWage}"/>

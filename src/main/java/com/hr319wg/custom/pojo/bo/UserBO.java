@@ -26,7 +26,24 @@ public class UserBO {
 	private String a001730="00900";
 	private String a001753="00900";
 	private String leixing;
+	private String hasCashStr;
+	private boolean hasCash;
 	
+	public String getHasCashStr() {
+		return hasCashStr;
+	}
+	public void setHasCashStr(String hasCashStr) {
+		this.hasCashStr = hasCashStr;
+	}
+	public boolean isHasCash() {
+		if("1".equals(hasCashStr)){
+			return true;
+		}
+		return false;
+	}
+	public void setHasCash(boolean hasCash) {
+		this.hasCash = hasCash;
+	}
 	public String getLeixing() {
 		return leixing;
 	}

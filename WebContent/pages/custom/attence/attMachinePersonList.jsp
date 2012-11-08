@@ -54,6 +54,10 @@
 		  }
 		  return false;
 	  }
+	  function selmany(){
+		  window.showModalDialog("/custom/attence/attIssueMany.jsf?act=init", "", "dialogWidth:450px; dialogHeight:200px; status:0;resizable:yes");
+		  return false;
+	  }
 </script>
 <x:saveState value="#{attMachinePersonMgrBB}"/>
 <h:inputHidden value="#{attMachinePersonMgrBB.pageInit}"/>
@@ -67,8 +71,10 @@
      <tr><td height=8>
      </f:verbatim>
      <h:outputText escape="false" value="<strong>批量操作：</strong>" ></h:outputText>
-     <h:commandButton value="采集指纹" onclick="return collect();" styleClass="button01"  action="#{attMachinePersonMgrBB.collect}"/>
-     <h:commandButton value="分发" styleClass="button01" onclick="return selIP();" action="#{attMachinePersonMgrBB.issue}"/>
+     <h:commandButton value="采集全部指纹" onclick="return collect();" styleClass="button01"  action="#{attMachinePersonMgrBB.collect}"/>
+     <h:commandButton value="全部分发" styleClass="button01" onclick="return selIP();" action="#{attMachinePersonMgrBB.issue}"/>
+     <h:outputText value="  "/>
+     <h:commandButton value="多人分发" styleClass="button01" onclick="return selmany();"/>     
      <f:verbatim>
      </td>
      <td align="right">

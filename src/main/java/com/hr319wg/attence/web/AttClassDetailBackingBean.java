@@ -18,7 +18,16 @@ public class AttClassDetailBackingBean extends BaseBackingBean {
 	private String operItemID;
 	private PageVO mypage = new PageVO();
 	private String className;
+	private String detailStr;
     private IAttBusiService attBusiService;
+
+	public String getDetailStr() {
+		return detailStr;
+	}
+
+	public void setDetailStr(String detailStr) {
+		this.detailStr = detailStr;
+	}
 
 	public String getOperItemID() {
 		return operItemID;
@@ -53,6 +62,7 @@ public class AttClassDetailBackingBean extends BaseBackingBean {
 	}
 
 	public String getPageInit() {
+		this.detailStr=null;
 		String classID1=super.getRequestParameter("classID");
 		if(classID1 != null && !"".equals(classID1)){
 			this.classID=classID1;
@@ -109,5 +119,16 @@ public class AttClassDetailBackingBean extends BaseBackingBean {
 
 	public void setDetailList(List detailList) {
 		this.detailList = detailList;
+	}
+	
+	public void saveClassDetail(){
+		String[]details=this.detailStr.split(",");
+		try {
+			this.attBusiService.saveClassDetail(detailList, details);
+			super.showMessageDetail("保存完成");
+		} catch (SysException e) {
+			super.showMessageDetail("保存失败");
+			e.printStackTrace();
+		}
 	}
 }

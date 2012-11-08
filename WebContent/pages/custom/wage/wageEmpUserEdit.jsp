@@ -42,7 +42,6 @@
 			<h:outputText value="人员类别"/>
 			<h:selectOneMenu value="#{wage_empBB.user.personType}">
 	        	<c:selectItem itemLabel="项目工" itemValue="0135700572"/>
-	        	<c:selectItem itemLabel="学生工" itemValue="0135700573"/>
 	        	<c:selectItem itemLabel="兼职教师" itemValue="0135700574"/>
 	        </h:selectOneMenu>
         	<h:outputText value="身份证号"/>
@@ -88,6 +87,8 @@
 	                     alt="职称序列|0|s|50||"/>
 	        	<h:commandButton type="button" styleClass="button_select" onclick="PopUpCodeDlgOneControl('form1:zhichengXulie')"/>
         	</h:panelGroup>
+        	<h:outputText value="是否发现金"/>
+        	<h:selectBooleanCheckbox value="#{wage_empBB.user.hasCash}"/>
 		</h:panelGrid>
 		
 		<h:panelGrid align="right">
