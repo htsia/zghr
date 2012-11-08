@@ -327,6 +327,9 @@
     <definition name="/custom/attence/attMachinePersonList.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/attence/attMachinePersonList.jsp"/>
     </definition>
+    <definition name="/custom/attence/attIssueMany.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attIssueMany.jsp"/>
+    </definition>
     <definition name="/custom/attence/attCalcMgr.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/attence/attCalcMgr.jsp"/>
     </definition>

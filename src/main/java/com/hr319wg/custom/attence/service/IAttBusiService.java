@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
+import com.hr319wg.attence.pojo.bo.AttClassDetailBO;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.attence.pojo.bo.AttLeaveBO;
@@ -16,7 +17,9 @@ import com.hr319wg.custom.pojo.bo.UserBO;
 import com.jacob.com.Dispatch;
 
 public interface IAttBusiService {
-
+	
+	public void saveClassDetail(List<AttClassDetailBO> list, String[]details) throws SysException;
+	
 	public String getPutoffSum() throws SysException;
 	public void updatePutoff(String yearMonth) throws SysException;
 	
@@ -34,8 +37,8 @@ public interface IAttBusiService {
 	public abstract String downloadLog(String orgID, List<AttMachineBO> mList)
 			throws SysException;
 
-	public abstract String uploadInfoToZKEMByPersonCode(List<AttMachineBO> mList,
-			String personCode);
+	public abstract String uploadInfoToZKEM(List<AttMachineBO> mList,
+			String userIDs);
 
 	public abstract String downloadInfoFromZKEMByPersonCode(String IPStr,
 			String personCode) throws SysException;
@@ -45,8 +48,8 @@ public interface IAttBusiService {
 	public abstract List batchDownloadInfoDetailFromZKEM(String ip)
 			throws Exception;
 
-	public abstract String uploadInfoBypersonCode(Dispatch myCom, AttMachineBO bo,
-			String personCode);
+	public abstract String uploadInfo(Dispatch myCom, AttMachineBO bo,
+			List<Map> infolist);
 
 	public abstract String getAndWriteKQUsersDataBypersonCode(Dispatch myCom,
 			String ip, String personCode) throws SysException;

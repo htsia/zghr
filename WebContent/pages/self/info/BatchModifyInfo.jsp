@@ -115,6 +115,11 @@
                     out.println("<td class='td_middle'>"+selfmodi.getOldValue()+"</td>");
                     out.println("<td class='td_middle'><input name='"+item.getItemId()+"_new' id='"+item.getItemId()+"_new' type='text' readonly dict=\"yes\" dict_num='"+item.getItemCodeSet()+"'><input type='button' class='button_date' onclick=\"PopUpCalendarDlg_OnlyMonth('"+item.getItemId()+"_new')\"></td>");
                 }
+                else if (InfoItemBO.DATA_TYPE_ORG.equals(item.getItemDataType())){
+                    out.println("<td class='td_middle'>"+CodeUtil.interpertCode(CodeUtil.TYPE_ORG, selfmodi.getOldValue())+"</td>");
+                    out.println("<td class='td_middle'><input name='"+item.getItemId()+"_new' id='"+item.getItemId()+"_new' type='text' dict=\"yes\" dict_num='OU' code='"+selfmodi.getOldValue()+"' value='' readonly>"+
+                    	"<input type=\"button\" class=\"button_select\" onclick=\"PopUpOrgDlg('" + item.getItemId()+"_new" + "',1,'')\"></td>");
+                }
                 else{
                     out.println("<td class='td_middle'>"+selfmodi.getOldValue()+"</td>");
                     out.println("<td class='td_middle'><input type='text' name='"+item.getItemId()+"_new' id='"+item.getItemId()+"_new'></td>");

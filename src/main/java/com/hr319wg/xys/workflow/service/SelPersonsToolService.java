@@ -212,7 +212,7 @@ public class SelPersonsToolService {
 		String postLevel = postInfo[0];//上级岗位级别
 		String postName = postInfo[1];//上级岗位名称
 		
-		if(postName != null && postName.contains("教研室主任")){
+		if(postName != null && (postName.contains("教研室主任") || postName.contains("实验中心主任"))){
 			return 1;
 		}
 		if(postName != null && postName.contains("系主任")){

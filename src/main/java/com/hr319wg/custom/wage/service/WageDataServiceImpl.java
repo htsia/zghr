@@ -8,10 +8,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.htmlparser.filters.HasChildFilter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.PageVO;
+import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.custom.wage.dao.WageDataDAO;
@@ -154,7 +157,9 @@ public class WageDataServiceImpl implements IWageDataService{
 		user.setDeptSort(org.getTreeId());
 		user.setMainDeptSort(superOrg.getTreeId());
 		user.setOrgId(superOrg.getOrgId());
-		this.saveOrUpdateObject(user);
+		HibernateTemplate temp = (HibernateTemplate)SysContext.getBean("hibernateTemplate");
+		temp.saveOrUpdate(user);
+		temp.flush();
 		if(isnew){
 			String sql="insert into sys_user_info s (s.person_id,s.login_name,login_pwd,s.is_use) values ('"+user.getUserID()+"','"+user.getName()+"','98f6bcd4621d373cade4e832627b4f6',0)";
 			this.jdbcTemplate.execute(sql);
@@ -195,11 +200,8 @@ public class WageDataServiceImpl implements IWageDataService{
 	public Object getObjectByID(Class c ,String ID) throws SysException{
 		return this.wageDataSetDAO.findBoById(c, ID);
 	}
-	public List getAllWageEmpUserBO(PageVO pageVo, boolean hasWage, boolean noWage, String orgID, String personType, String nameStr, String rightType, String inself, String operUserID) throws SysException{
-		return this.wageDataSetDAO.getAllWageEmpUserBO(pageVo, hasWage, noWage, orgID, personType, nameStr, rightType, inself, operUserID);
-	}
-	public List getAllWageEmpUserBO(boolean hasWage, boolean noWage, String orgID, String personType, String nameStr) throws SysException{
-		return this.wageDataSetDAO.getAllWageEmpUserBO(hasWage, noWage, orgID, personType, nameStr);
+	public List getAllWageEmpUserBO(PageVO pageVo, boolean hasWage, boolean noWage, boolean hasCash, boolean hasNoCash, String orgID, String personType, String nameStr, String rightType, String inself, String operUserID) throws SysException{
+		return this.wageDataSetDAO.getAllWageEmpUserBO(pageVo, hasWage, noWage, hasCash, hasNoCash, orgID, personType, nameStr, rightType, inself, operUserID);
 	}
 	
 	public List getAllWageDataSetBO(String yearMonth, String selectedItemIDs, String itemType) throws SysException{

@@ -1,8 +1,6 @@
 package com.hr319wg.custom.attence.web;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +13,6 @@ import com.hr319wg.custom.attence.pojo.bo.AttFingerBO;
 import com.hr319wg.custom.attence.pojo.bo.AttMachineBO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
 import com.hr319wg.custom.util.CommonUtil;
-import com.hr319wg.custom.util.ZKEMService;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.api.UserAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
@@ -24,9 +21,11 @@ import com.hr319wg.util.CodeUtil;
 public class AttMachinePersonMgrBackingBean extends BaseBackingBean {
 	private PageVO pagevo = new PageVO();
 	private String pageInit;
+	private String pageManyInit;
 	private String EditInit;
 	private String setPwdInit;
 	private String operUserID;
+	private String selectPersonNames;
 	private String orgID;
 	private String IPStr;
 	private String pwd;
@@ -41,6 +40,24 @@ public class AttMachinePersonMgrBackingBean extends BaseBackingBean {
 	private IAttBusiService attBusiService;
 	private UserAPI userapi;
 	
+	public String getPageManyInit() {
+		String act=super.getRequestParameter("act");
+		if("init".equals(act)){
+			this.operUserID=null;
+			this.selectPersonNames=null;
+			this.IPStr=null;			
+		}
+		return pageManyInit;
+	}
+
+	public String getSelectPersonNames() {
+		return selectPersonNames;
+	}
+
+	public void setSelectPersonNames(String selectPersonNames) {
+		this.selectPersonNames = selectPersonNames;
+	}
+
 	public boolean isHasPwd() {
 		return hasPwd;
 	}
@@ -193,6 +210,7 @@ public class AttMachinePersonMgrBackingBean extends BaseBackingBean {
 			this.uncollected=true;
 			this.hasPwd=true;
 			this.notHasPwd=true;
+			this.operUserID=null;
 		}
 		String orgID1 = super.getRequestParameter("orgID");
 		if(orgID1!=null && !"".equals(orgID1)){
@@ -287,8 +305,7 @@ public class AttMachinePersonMgrBackingBean extends BaseBackingBean {
 			if(this.operUserID!=null){
 				List<AttMachineBO> mList = this.attBusiService.getMasterMachine();
 				if(mList.size()==1){
-					PersonBO p = SysCacheTool.findPersonById(this.operUserID);
-					String err = this.attBusiService.uploadInfoToZKEMByPersonCode(mList, p.getPersonCode());
+					String err = this.attBusiService.uploadInfoToZKEM(mList, this.operUserID);
 					if(err!=null && err.length()>0){
 						super.showMessageDetail(err);
 					}else{
@@ -335,139 +352,155 @@ public class AttMachinePersonMgrBackingBean extends BaseBackingBean {
 		}
 	}
 	
-	//分发用户信息包括指纹
+//	分发用户信息包括指纹
 	public String issue(){
 		try {
-			if(this.operUserID==null){//分发所有用户信息
-				List<AttMachineBO> mList = this.attBusiService.getAllMachineBOByIPs(this.IPStr);
-				if(mList!=null){
-					try {
-						ZKEMService.setOperUserID(null);
-						String msg1 = ZKEMService.init();
-						if(msg1!=null){
-							super.showMessageDetail(msg1);
-						}else{
-							List<ZKEMService> list = new ArrayList<ZKEMService>();
-							//创建线程
-							for(AttMachineBO bo : mList){
-								ZKEMService z = new ZKEMService();
-								z.setIP(bo.getMachineIP());
-								z.setMachineName(bo.getMachineName());
-								list.add(z);
-							}
-							//启动线程
-							for(ZKEMService z : list){
-								z.start();
-							}
-							//跟踪线程
-							Map msgMap = new HashMap();
-							boolean isEnd=false;
-							while(!isEnd){
-								int i=0;
-								for(ZKEMService z : list){
-									boolean alive = z.isAlive();
-									if(!alive){
-										if(!"".equals(z.getErrMsg()) || !"".equals(z.getErrUser())){
-											if(!msgMap.containsKey(z)){
-												msgMap.put(z, z.getErrMsg());																
-											}
-										}
-										i++;
-										if(i==list.size()){
-											isEnd=true;
-										}
-									}
-								}
-							}
-							if(msg!=null && msgMap.size()>0){
-								String msg2 ="以下考勤机：";
-								Iterator it = msgMap.keySet().iterator();
-								while(it.hasNext()){
-									msg2 += msgMap.get(it.next());
-									if(it.hasNext()){
-										msg2+=",";
-									}
-								}
-								msg2+="连接失败";
-								super.showMessageDetail(msg2);
-							}else{
-								super.showMessageDetail("分发完成");
-							}
-							//else-end
-						}
-					} catch (SysException e) {
-						e.printStackTrace();
-					}
-				}
-			}else{//分发单个用户信息
-				PersonBO p = SysCacheTool.findPersonById(this.operUserID);
-				@SuppressWarnings("unchecked")
-				List<AttMachineBO> mList = this.attBusiService.getAllMachineBOByIPs(this.IPStr);
-				if(mList!=null){
-					try {
-						ZKEMService.setOperUserID(this.operUserID);
-						String msg1 = ZKEMService.init();
-						if(msg1!=null){
-							super.showMessageDetail(msg1);
-						}else{
-							List<ZKEMService> list = new ArrayList<ZKEMService>();
-							//创建线程
-							for(AttMachineBO bo : mList){
-								ZKEMService z = new ZKEMService();
-								z.setIP(bo.getMachineIP());
-								z.setMachineName(bo.getMachineName());
-								list.add(z);
-							}
-							//启动线程
-							for(ZKEMService z : list){
-								z.start();
-							}
-							//跟踪线程
-							Map msgMap = new HashMap();
-							boolean isEnd=false;
-							while(!isEnd){
-								int i=0;
-								for(ZKEMService z : list){
-									boolean alive = z.isAlive();
-									if(!alive){
-										if(!"".equals(z.getErrMsg()) || !"".equals(z.getErrUser())){
-											msgMap.put(z, z.getErrMsg());				
-										}
-										i++;
-										if(i==list.size()){
-											isEnd=true;
-										}
-									}
-								}
-							}
-							if(msg!=null && msgMap.size()>0){
-								String msg2 ="以下考勤机：";
-								Iterator it = msgMap.keySet().iterator();
-								while(it.hasNext()){
-									msg2 += msgMap.get(it.next());
-									if(it.hasNext()){
-										msg2+=",";
-									}
-								}
-								msg2+="连接失败";
-								super.showMessageDetail(msg2);
-							}else{
-								super.showMessageDetail("分发完成");
-							}
-							//else-end
-						}
-					} catch (SysException e) {
-						e.printStackTrace();
-					}
-				}
-				ZKEMService.setOperUserID(null);
-				this.operUserID=null;
+			List<AttMachineBO> mList = this.attBusiService.getAllMachineBOByIPs(this.IPStr);
+			String err = this.attBusiService.uploadInfoToZKEM(mList, operUserID);
+			if(!"".equals(err)){
+				super.showMessageDetail(err);
+			}else{
+				super.showMessageDetail("分发完成");
 			}
 		} catch (SysException e) {
+			super.showMessageDetail("分发失败");
 			e.printStackTrace();
 		}
 		return null;
 	}
+//	//分发用户信息包括指纹
+//	public String issue(){
+//		try {
+//			if(this.operUserID==null){//分发所有用户信息
+//				List<AttMachineBO> mList = this.attBusiService.getAllMachineBOByIPs(this.IPStr);
+//				if(mList!=null){
+//					try {
+//						ZKEMService.setOperUserID(null);
+//						String msg1 = ZKEMService.init();
+//						if(msg1!=null){
+//							super.showMessageDetail(msg1);
+//						}else{
+//							List<ZKEMService> list = new ArrayList<ZKEMService>();
+//							//创建线程
+//							for(AttMachineBO bo : mList){
+//								ZKEMService z = new ZKEMService();
+//								z.setIP(bo.getMachineIP());
+//								z.setMachineName(bo.getMachineName());
+//								list.add(z);
+//							}
+//							//启动线程
+//							for(ZKEMService z : list){
+//								z.start();
+//							}
+//							//跟踪线程
+//							Map msgMap = new HashMap();
+//							boolean isEnd=false;
+//							while(!isEnd){
+//								int i=0;
+//								for(ZKEMService z : list){
+//									boolean alive = z.isAlive();
+//									if(!alive){
+//										if(!"".equals(z.getErrMsg()) || !"".equals(z.getErrUser())){
+//											if(!msgMap.containsKey(z)){
+//												msgMap.put(z, z.getErrMsg());																
+//											}
+//										}
+//										i++;
+//										if(i==list.size()){
+//											isEnd=true;
+//										}
+//									}
+//								}
+//							}
+//							if(msg!=null && msgMap.size()>0){
+//								String msg2 ="以下考勤机：";
+//								Iterator it = msgMap.keySet().iterator();
+//								while(it.hasNext()){
+//									msg2 += msgMap.get(it.next());
+//									if(it.hasNext()){
+//										msg2+=",";
+//									}
+//								}
+//								msg2+="连接失败";
+//								super.showMessageDetail(msg2);
+//							}else{
+//								super.showMessageDetail("分发完成");
+//							}
+//							//else-end
+//						}
+//					} catch (SysException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			}else{//分发单个用户信息
+//				PersonBO p = SysCacheTool.findPersonById(this.operUserID);
+//				@SuppressWarnings("unchecked")
+//				List<AttMachineBO> mList = this.attBusiService.getAllMachineBOByIPs(this.IPStr);
+//				if(mList!=null){
+//					try {
+//						ZKEMService.setOperUserID(this.operUserID);
+//						String msg1 = ZKEMService.init();
+//						if(msg1!=null){
+//							super.showMessageDetail(msg1);
+//						}else{
+//							List<ZKEMService> list = new ArrayList<ZKEMService>();
+//							//创建线程
+//							for(AttMachineBO bo : mList){
+//								ZKEMService z = new ZKEMService();
+//								z.setIP(bo.getMachineIP());
+//								z.setMachineName(bo.getMachineName());
+//								list.add(z);
+//							}
+//							//启动线程
+//							for(ZKEMService z : list){
+//								z.start();
+//							}
+//							//跟踪线程
+//							Map msgMap = new HashMap();
+//							boolean isEnd=false;
+//							while(!isEnd){
+//								int i=0;
+//								for(ZKEMService z : list){
+//									boolean alive = z.isAlive();
+//									if(!alive){
+//										if(!"".equals(z.getErrMsg()) || !"".equals(z.getErrUser())){
+//											msgMap.put(z, z.getErrMsg());				
+//										}
+//										i++;
+//										if(i==list.size()){
+//											isEnd=true;
+//										}
+//									}
+//								}
+//							}
+//							if(msg!=null && msgMap.size()>0){
+//								String msg2 ="以下考勤机：";
+//								Iterator it = msgMap.keySet().iterator();
+//								while(it.hasNext()){
+//									msg2 += msgMap.get(it.next());
+//									if(it.hasNext()){
+//										msg2+=",";
+//									}
+//								}
+//								msg2+="连接失败";
+//								super.showMessageDetail(msg2);
+//							}else{
+//								super.showMessageDetail("分发完成");
+//							}
+//							//else-end
+//						}
+//					} catch (SysException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//				ZKEMService.setOperUserID(null);
+//				this.operUserID=null;
+//			}
+//		} catch (SysException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 	
 	//设置管理员
 	public void setManger(){
@@ -504,5 +537,17 @@ public class AttMachinePersonMgrBackingBean extends BaseBackingBean {
 			e.printStackTrace();
 		}
 		return EditInit;
+	}
+	public void selPerson(){
+		if(this.operUserID!=null && !"".equals(this.operUserID)){
+			String[]userIDs=this.operUserID.split(",");
+			for(int i=0;i<userIDs.length;i++){
+				PersonBO p = SysCacheTool.findPersonById(userIDs[i]);
+				this.selectPersonNames+=p.getName();
+				if(i!=userIDs.length){
+					this.selectPersonNames+=",";
+				}
+			}
+		}
 	}
 }

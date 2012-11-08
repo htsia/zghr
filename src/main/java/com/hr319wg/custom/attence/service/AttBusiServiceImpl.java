@@ -609,75 +609,66 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	 *            员工编号
 	 */
 	@Override
-	public String uploadInfoBypersonCode(Dispatch myCom, AttMachineBO bo,
-			String personCode) {
+	public String uploadInfo(Dispatch myCom, AttMachineBO bo,
+			List<Map> infolist) {
+		String err="";
 		Variant dwMachineNumber = new Variant(0, true);// 机器号
 		Variant dwEnrollNumber = new Variant("", true);// 用户号
 		Variant Name = new Variant("", true);// 用户姓名
 		Variant Password = new Variant("", true);// 用户密码
 		Variant Privilege = new Variant(0, true);// 用户权限，3为管理员，0为普通用户
-		Variant Enabled = new Variant(Boolean.valueOf(String.valueOf(0)), true);// 用户启用标志，1为启用，0为禁用
+		Variant Enabled = new Variant(Boolean.valueOf(String.valueOf(0)),
+				true);// 用户启用标志，1为启用，0为禁用
 		Variant dwFingerIndex = new Variant(0, true);// 手指索引
 		Variant TmpData = new Variant("", true);// string 指纹信息
 		Variant TmpLength = new Variant(0, true);// TmpLength
-		String err = "";
+		
+		ActiveXComponent objArchSend = new ActiveXComponent("zkemkeeper.ZKEM.1");
+		Dispatch myCon = (Dispatch) objArchSend.getObject();
 		// 连接
-		Boolean isConnected = Dispatch.call(myCom, "Connect_Net",
-				bo.getMachineIP(), port).getBoolean();
+		Boolean isConnected = Dispatch.call(myCon, "Connect_Net", bo.getMachineIP(), 4370).getBoolean();
 		// 判断连接结果
 		if (isConnected == true) {
-			Dispatch.call(myCom, "EnableDevice", iMachineNumber, false);// 使机器处于不可用状态
-			// 从数据库中查询用户数据 上传到考勤机中
-			String sql = "select a.a001735, a.a001001 ,b.A232210 ,b.A232211 , "
-					+ "b.A232200,b.A232201,b.A232202,b.A232203,b.A232204,b.A232205,b.A232206,b.A232207,b.A232208,b.A232209 "
-					+ "from a001 a,a232 b where a.ID = b.ID and a.a001735 = '"
-					+ personCode + "'";
-			try {
-				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();// new
-																						// ArrayList<Map>();
-				list = jdbcTemplate.queryForList(sql);
-				if (list != null) {
-					dwEnrollNumber = new Variant(personCode);
-					Name = new Variant(list.get(0).get("a001001"));
-					if (!"".equals(list.get(0).get("A232210"))
-							&& null != list.get(0).get("A232210")) {
-						Privilege = new Variant(list.get(0).get("A232210"));
-					} else {
-						Privilege = new Variant(0);
-					}
-					if (!"".equals(list.get(0).get("A232211"))
-							&& null != list.get(0).get("A232211")) {
-						Password = new Variant(list.get(0).get("A232211"));
-					} else {
-						Password = new Variant("");
-					}
-					Enabled = new Variant(1);
-					// 先把特定的用户添加上去
-					if (Dispatch.call(myCom, "SSR_SetUserInfo",
-							dwMachineNumber, dwEnrollNumber, Name, Password,
-							Privilege, Enabled).getBoolean()) {
-						// 把新增用户的指纹信息上传上去
-						// 此处开始判断, 逐个判断十个手指的指纹信息，如果有指纹信息就执行一次上传指纹信息的方法
-						for (int i = 0; i < 10; i++) {
-							if (!"".equals(list.get(0).get("A23220" + i))
-									&& null != list.get(0).get("A23220" + i)) {
-								TmpData = new Variant(list.get(0).get(
-										"A23220" + i));
-								Dispatch.call(myCom, "SetUserTmpExStr",
-										dwMachineNumber, dwEnrollNumber,
-										new Variant(i), 1, TmpData)
-										.getBoolean();
-							}
+			Dispatch.call(myCon, "EnableDevice", 1, false);// 使机器处于不可用状态
+			Dispatch.call(myCon, "BeginBatchUpdate", 1, 1);
+			for (Map m : infolist) {
+				dwEnrollNumber = new Variant(m.get("a001735"));
+				Name = new Variant(m.get("a001001"));
+				if (m.get("A232210") != null
+						&& !"".equals(m.get("A232210"))) {
+					Privilege = new Variant(m.get("A232210"));
+				} else {
+					Privilege = new Variant(0);
+				}
+				if (m.get("A232211") != null
+						&& !"".equals(m.get("A232211"))) {
+					Password = new Variant(m.get("A232211"));
+				} else {
+					Password = new Variant("");
+				}
+				Enabled = new Variant(1);
+				// 先把用户添加上去
+				if (Dispatch.call(myCon, "SSR_SetUserInfo",
+						dwMachineNumber, dwEnrollNumber, Name, Password,
+						Privilege, Enabled).getBoolean()) {
+					for (int j = 0; j < 10; j++) {
+						if (m.get("A23220" + j) != null
+								&& !"".equals(m.get("A23220" + j))) {
+							TmpData = new Variant(m.get("A23220" + j));
+							Dispatch.call(myCon, "SetUserTmpExStr",
+									dwMachineNumber, dwEnrollNumber,
+									new Variant(j), 1, TmpData)
+									.getBoolean();
 						}
 					}
 				}
-			} catch (Exception e) {
 			}
-			Dispatch.call(myCom, "EnableDevice", iMachineNumber, true);// enable
-																		// the
-																		// device
-		} else {
-			err += "考勤机" + bo.getMachineName() + "连接失败,";
+			//for-end
+			Dispatch.call(myCon, "BatchUpdate", 1);
+			Dispatch.call(myCon, "RefreshData", 1);
+			Dispatch.call(myCon, "EnableDevice", 1, true);
+		}else{
+			err+=bo.getMachineName()+",";
 		}
 		return err;
 	}
@@ -828,14 +819,14 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	}
 
 	/**
-	 * 把HR表中的特定用户数据上传到 哪些IP考勤机中
+	 * 把HR表中的用户数据上传到 哪些IP考勤机中
 	 * 
 	 * @param IPStr
 	 * @param personCode
 	 */
 	@Override
-	public String uploadInfoToZKEMByPersonCode(List<AttMachineBO> mList,
-			String personCode) {
+	public String uploadInfoToZKEM(List<AttMachineBO> mList,
+			String operUserIDs) {
 		String err = "";
 		ActiveXComponent objArchSend = null;
 		Dispatch myCom = null;
@@ -845,8 +836,22 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		} catch (Exception e) {
 			return "考勤机驱动注册失败";
 		}
-		for (AttMachineBO bo : mList) {
-			err += uploadInfoBypersonCode(myCom, bo, personCode);
+		String sql = "select a.a001735, a.a001001 ,b.A232210 ,b.A232211 , "
+				+ "b.A232200,b.A232201,b.A232202,b.A232203,b.A232204,b.A232205,b.A232206,b.A232207,b.A232208,b.A232209 "
+				+ "from a001 a,a232 b where a.ID = b.ID and a.A001054 not in ('013520','013521','013522','013523','013524','013525')";
+		if(operUserIDs!=null){//多人分发
+			sql = "select a.a001735, a.a001001 ,b.A232210 ,b.A232211 , "
+					+ "b.A232200,b.A232201,b.A232202,b.A232203,b.A232204,b.A232205,b.A232206,b.A232207,b.A232208,b.A232209 "
+					+ "from a001 a,a232 b where a.ID = b.ID and "+CommonFuns.splitInSql(operUserIDs.split(","), "a.ID");
+		}
+		List infolist = this.jdbcTemplate.queryForList(sql);
+		if(infolist!=null){
+			for (AttMachineBO bo : mList) {
+				err += uploadInfo(myCom, bo, infolist);
+			}
+			if(!"".equals(err)){
+				err="以下考勤机："+err+"连接失败";
+			}
 		}
 		return err;
 	}
@@ -3180,4 +3185,22 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		this.rollbackLeaveDays("-1",rest.getApplyDays(),rest.getPersonId());
 		this.deleteBO(AttRestBO.class, operItemID);
 	}
+
+	@Override
+	public void saveClassDetail(List<AttClassDetailBO> list, String[]details) throws SysException {
+		Map m = new HashMap();
+		for(int i=0;i<details.length;i++){
+			String[]d=details[i].split("-");
+			m.put(d[0], d[1]);
+		}
+		for(AttClassDetailBO bo : list){
+			if(m.containsKey(bo.getItemID())){
+				bo.setItemTime(m.get(bo.getItemID()).toString());
+			}else{
+				bo.setItemTime(null);
+			}
+			this.attBusiDAO.saveOrUpdateBo(bo);
+		}
+	}
+
 }

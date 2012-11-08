@@ -13,7 +13,7 @@
             return false;
         }
         function BatchModiInfo(setid,kid){
-            window.showModalDialog("/self/info/BatchModifyInfo.jsf?setId="+setid+"&keyId="+kid, null, "dialogWidth:600px; dialogHeight:300px;center:center;resizable:yes;status:no;scroll:auto;");
+            window.showModalDialog("/self/info/BatchModifyInfo.jsf?setId="+setid+"&keyId="+kid, null, "dialogWidth:800px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:auto;");
             return false;
         }
         function showChkList(fk){

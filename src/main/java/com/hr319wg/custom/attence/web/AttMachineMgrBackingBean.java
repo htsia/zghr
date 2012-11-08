@@ -434,9 +434,7 @@ public class AttMachineMgrBackingBean extends BaseBackingBean {
 					for(ZKEMDetailService z : list){
 						boolean alive = z.isAlive();
 						if(!alive){
-							if(!this.detailMap.containsKey(z.getIP())){
-								this.detailMap.put(z.getIP(), z.getMap());
-							}
+							this.detailMap.put(z.getIP(), z.getMap());
 							i++;
 							if(i==list.size()){
 								isEnd=true;

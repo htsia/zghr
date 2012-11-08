@@ -43,9 +43,10 @@ public class WageDataDAO extends BaseDAO{
 		return this.hibernatetemplate.find(sql);
 	}
 	
-	//所有短期工
-	public List getAllWageEmpUserBO(boolean hasWage, boolean noWage, String orgID, String personType, String nameStr) throws SysException{
-		String hql = " from UserBO u where u.personType in ('0135700570','0135700571','0135700572') ";
+	
+	//短期工
+	public List getAllWageEmpUserBO(PageVO pageVo, boolean hasWage, boolean noWage, boolean hasCash, boolean hasNoCash, String orgID, String personType, String nameStr, String rightType, String inself, String operUserID) throws SysException{
+		String hql = " from UserBO u where u.personType in ('0135700572','0135700573','0135700574') ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
 			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
@@ -68,32 +69,15 @@ public class WageDataDAO extends BaseDAO{
 		if(!hasWage && !noWage){
 			hql+=" and 1=0 ";
 		}
-		String boHql = "select u "+hql +" order by u.secDeptID,u.deptId";
-		return this.hibernatetemplate.find(boHql);
-	}
-	//短期工
-	public List getAllWageEmpUserBO(PageVO pageVo, boolean hasWage, boolean noWage, String orgID, String personType, String nameStr, String rightType, String inself, String operUserID) throws SysException{
-		String hql = " from UserBO u where u.personType in ('0135700572','0135700573','0135700574') ";
-		if(orgID!=null && !"".equals(orgID)){
-			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
-		}
-		if(personType!=null && !"".equals(personType)){
-			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
-		}
-		
-		if(nameStr!=null && !"".equals(nameStr)){
-			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
-		}
-		if(!(hasWage && noWage)){
-			if(hasWage){
-				hql+=" and u.userID in (select w.ID from WageEmpBO w where w.wage is not null)";
+		if(!(hasCash && hasNoCash)){
+			if(hasCash){
+				hql+=" and u.hasCash='1'";
 			}
 			if(noWage){
-				hql+=" and u.userID in (select w.ID from WageEmpBO w where w.wage is null)";
+				hql+=" and u.hasCash is null";
 			}
 		}
-		if(!hasWage && !noWage){
+		if(!hasCash && !hasNoCash){
 			hql+=" and 1=0 ";
 		}
 		

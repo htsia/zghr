@@ -6,7 +6,7 @@ public class WageEmpBO {
 	private String wage;
 	private String yearMonth;
 	private String status;
-	
+
 	public String getID() {
 		return ID;
 	}

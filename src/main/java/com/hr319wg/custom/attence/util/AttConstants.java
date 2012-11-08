@@ -1,15 +1,12 @@
 package com.hr319wg.custom.attence.util;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import javax.faces.model.SelectItem;
-
-import com.hr319wg.util.CommonFuns;
 
 public class AttConstants {
 	
