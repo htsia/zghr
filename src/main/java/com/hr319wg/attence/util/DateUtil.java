@@ -258,6 +258,10 @@ public class DateUtil {
 	 */
 	public static List getAllBetweenDates(String begin, String end) {
 		List result = new ArrayList();
+		if(begin.compareTo(end)==0){
+			result.add(begin);
+			return result;
+		}
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			Date beginDate = df.parse(begin);

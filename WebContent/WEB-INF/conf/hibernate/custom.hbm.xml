@@ -575,4 +575,15 @@
         <property name="attBonus" column="a241204"/>
         <property name="flag" column="a241000"/>
     </class>
+    <class name="com.hr319wg.custom.attence.pojo.bo.AttTempDataBO" table="a244">
+        <id name="id" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        
+        <property name="flag" column="a244000"/>
+        <property name="tempBeginDate" column="a244200"/>
+        <property name="tempEndDate" column="a244201"/>
+        <property name="attDetail" column="a244202"/>
+    </class>
 </hibernate-mapping>

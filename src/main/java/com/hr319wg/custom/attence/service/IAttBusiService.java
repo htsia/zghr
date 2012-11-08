@@ -213,5 +213,11 @@ public interface IAttBusiService {
 	public void deleteInputLeave(String operItemID)throws SysException;
 	void deleteInputOvertime(String operItemID) throws SysException;
 	void deleteInputRest(String operItemID) throws SysException;
+	String updateCalcAttTempData(String orgId, String beginDate, String endDate)
+			throws SysException, ParseException;
+	void updateAttTempDate(String tempBeginDate, String tempEndDate)
+			throws SysException;
+	List getAttTempDataBO(PageVO pageVO, String orgID, String nameStr,
+			String personType) throws SysException;
 
 }

@@ -11,6 +11,7 @@ import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.attence.pojo.bo.AttOvertimePayBO;
 import com.hr319wg.custom.attence.pojo.bo.AttPutoff2BO;
+import com.hr319wg.custom.attence.pojo.bo.AttTempDataBO;
 import com.hr319wg.custom.attence.pojo.bo.AttYearBO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
 import com.hr319wg.custom.util.CommonUtil;
@@ -61,8 +62,60 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
     private String overtimePayMonth="";
     private String overtimeInit;
     private String attYearInit;
-    
+    private String tempBeginDate;
+    private String tempEndDate;
+	private List attTempDataList;
+	private String attTempDataInit;
 	
+	public String getAttTempDataInit() {
+		String act = super.getRequestParameter("act");
+		if("init".equals(act)){
+			this.orgID=null;
+			this.nameStr=null;
+			this.personType=null;
+		}
+		String orgID1 = super.getRequestParameter("orgID");
+		if(orgID1!=null && !"".equals(orgID1)){
+			this.orgID=orgID1;
+		}
+		try {
+			this.putoffsum = this.attBusiService.getPutoffSum();
+		} catch (SysException e) {
+			e.printStackTrace();
+		}	
+		
+		attTempDataDoQuery();
+		return attTempDataInit;
+	}
+
+	public void setAttTempDataInit(String attTempDataInit) {
+		this.attTempDataInit = attTempDataInit;
+	}
+
+	
+	public List getAttTempDataList() {
+		return attTempDataList;
+	}
+
+	public void setAttTempDataList(List attTempDataList) {
+		this.attTempDataList = attTempDataList;
+	}
+
+	public String getTempBeginDate() {
+		return tempBeginDate;
+	}
+
+	public void setTempBeginDate(String tempBeginDate) {
+		this.tempBeginDate = tempBeginDate;
+	}
+
+	public String getTempEndDate() {
+		return tempEndDate;
+	}
+
+	public void setTempEndDate(String tempEndDate) {
+		this.tempEndDate = tempEndDate;
+	}
 
 	public List getYearList() {
 		return yearList;
@@ -778,6 +831,64 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 			e.printStackTrace();
 		}
 	}
-
+	//计算临时考勤
+	public String updateCalcAttTempData(){
+		try {
+			this.attBusiService.updateCalcAttTempData("1651", this.tempBeginDate, this.tempEndDate);
+			this.attBusiService.updateAttTempDate(this.tempBeginDate, this.tempEndDate);
+			super.showMessageDetail("计算完成");
+		} catch (SysException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block 
+			e.printStackTrace();
+		} 
+		return null;
+	}
+	public void attTempDataDoQuery() {
+		try {
+			if(mypage.getCurrentPage()==0){
+				mypage.setCurrentPage(1);
+			}
+			if(this.personType==null || "".equals(this.personType)){
+				try {
+					this.personType=CommonUtil.getAllPersonTypes(super.getUserInfo());
+				} catch (SysException e) {
+					e.printStackTrace();
+				}
+			}
+			List list1 = this.attBusiService.getAttTempDataBO(mypage, orgID, nameStr, personType);
+			if(list1==null){
+				list1 = new ArrayList();
+			}
+			this.attTempDataList = new ArrayList<AttTempDataBO>();
+			for(int i=0;i<list1.size();i++){
+				Object[]obj = (Object[])list1.get(i);
+				AttTempDataBO bo=(AttTempDataBO)obj[0];
+				bo.setSecDeptName(CodeUtil.interpertCode(obj[1].toString()));
+				PersonBO p=SysCacheTool.findPersonById(bo.getId());
+				try{
+					bo.setId(p.getPersonCode());
+				}catch(Exception e) {
+					bo.setId("无");
+				}
+				
+				try{
+					bo.setName(p.getName());
+				}catch(Exception e) {
+					bo.setName("无");
+				}
+				try{
+					bo.setDeptName(CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId()));
+				}catch(Exception e) {
+					bo.setDeptName("无");
+				}
+				this.attTempDataList.add(bo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }
