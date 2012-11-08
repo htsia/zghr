@@ -3319,9 +3319,52 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		}
 	}
 
-	@Override
-	public boolean isFeast(String day, String personId) throws SysException {
-		// TODO Auto-generated method stub
-		return false;
-	}
+ // 判断某人某天是不是法定假日(人员分教师，辅导员，其他等，假期不同)
+ 	@Override
+ 	public boolean isFeast(String date, String personId) throws SysException {
+ 		boolean b=false;
+ 		List leaveList = this.attfeastDAO.getAllAttFeast("1651");
+ 		//获取人员类型
+ 		String sql="select a.a001218 as postType from a001 a where a.id='"+personId+"'";
+ 		Map map=this.jdbcTemplate.queryForMap(sql);
+ 		String type=map.get("postType").toString();
+ 		for (int i = 0; i < leaveList.size(); i++) {
+ 			// 所有节假日
+ 			AttFeastBO feast = (AttFeastBO) leaveList.get(i);
+ 			String beginDate = feast.getBeginDate();
+ 			String endDate = feast.getEndDate();
+ 			//如果这个人在假期对应的人员类型里面
+ 			String types=feast.getPostLeiXing();
+ 			if(type==null){
+ 				type="";
+ 			}
+ 			if(types==null){
+ 				types="";
+ 			}
+ 			if(types.indexOf(type)>=0){
+ 				if (feast.getYearType().equals("-1")) {
+ 					// 开始和结束时间不带带年份的节假日，比如暑假，寒假等每年都放的假日
+ 					// 先将开始结束时间加上年份
+ 					// 获得本年份
+ 					String y = date.substring(0, 4);
+ 					// 获得下一年份
+ 					String nexty = String.valueOf((Integer.parseInt(y) + 1));
+ 					if (feast.getBeginDate().compareTo(feast.getEndDate()) <= 0) {
+ 						// 非跨年假期
+ 						beginDate = y + "-" + feast.getBeginDate();
+ 						endDate = y + "-" + feast.getEndDate();
+ 					} else {
+ 						// 跨年假期
+ 						beginDate = y + "-" + feast.getBeginDate();
+ 						endDate = nexty + "-" + feast.getEndDate();// 结束时间年份+1
+ 					}
+ 				}
+ 				//判断日期是不是在这个假期内
+ 				if(date.compareTo(beginDate)>=0&&date.compareTo(endDate)<=0){
+ 					b=true;
+ 				}
+ 			}
+ 		}
+ 		return b;
+ 	}
 }
