@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=GBK" language="java"%>
 <%@ include file="../../include/taglib.jsp"%>
-
+ <script type="text/javascript" src="../../js/getnowdate.js"></script>
 <%
 	response.setHeader("progma", "no-cache");
 	response.setHeader("Cache-Control", "no-cache");
 	response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
 
-<script language="javascript">
+<script type="text/javascript">
 	function getApplyDays() {
 		document.all("form1:saveleave").disabled = "disabled";
 		document.all("form1:applydays").value = "";
@@ -61,11 +61,16 @@
 		var realBeginTime = beginDate + " " + beginHour;
 		var realEndTime = endDate + " " + endHour;
 		var alldays = dateDiff(realBeginTime, realEndTime);
-
+		
+  		var str = getNowDate();
+  		
 		if (beginDate == null || beginDate == "") {
 			alert("请选择开始日期");
 			return false;
-		} else if (endDate == null || endDate == "") {
+		}else if(beginDate<str){
+  			alert("开始时间小于当天");
+  			return false;
+  		} else if (endDate == null || endDate == "") {
 			alert("请选择结束日期");
 			return false;
 		} else if (realBeginTime >= realEndTime) {
@@ -256,12 +261,12 @@
 			document.all("form1:totalDays").style.display = "block";
 			document.all("form1:nochan").style.display = "none";
 			document.all("form1:applydays").style.display = "none";
-		} else {
+		} else if(type==1|| type == 2|| type == 3|| type == 4|| type == 7) {
 			document.all("form1:chan").style.display = "none";
 			document.all("form1:totalDays").style.display = "none";
 			document.all("form1:nochan").style.display = "block";
 			document.all("form1:applydays").style.display = "block";
-
+			
 		}
 	}
 </script>
@@ -332,10 +337,11 @@
 			</h:panelGroup>
 			<h:panelGroup>
 				<h:outputText id="nochan" value="请假时间/工作日天数" />
-				<h:outputText id="chan" style="display:none" value="产假/难产产假天数" />
+				<h:outputText id="chan" style="display:none" value="产  假/难产产假天数" />
 			</h:panelGroup>
 			<h:panelGroup>
-				<h:inputText styleClass="input1"  id="applydays"
+				<h:inputText style="display:block" styleClass="input1"
+					readonly="true" id="applydays"
 					value="#{attLeaveApplyBB.leaveBo.applyDays}"></h:inputText>
 				<h:inputText style="display:none" styleClass="input1"
 					readonly="true" id="totalDays"

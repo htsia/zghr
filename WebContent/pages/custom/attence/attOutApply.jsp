@@ -1,28 +1,18 @@
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ include file="../../include/taglib.jsp" %>
-
 <%
     response.setHeader("progma", "no-cache");
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
-  
+  <script type="text/javascript" src="../../js/getnowdate.js"></script>
   <script type="text/javascript">
   	function forsave(){
   		var beginDate= document.all("form1:beginTime").value;
   		var endDate= document.all("form1:endTime").value;
   		var applydays= document.all("form1:applydays").value;
   		
-  		var date = new Date(); 
-  		var d=date.getDate();
-  		var m=date.getMonth()+1;
-  		if(d<10){
-  			d="0"+d;
-  		}
-  		if(m<10){
-  			m="0"+m;
-  		}
-  		var str = date.getFullYear()+"-"+m+"-"+d;
+  		var str = getNowDate();
   		if(beginDate==null || beginDate==""){
   			alert("请选择开始日期");
   			return false;
