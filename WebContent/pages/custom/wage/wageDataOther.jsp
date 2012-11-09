@@ -80,7 +80,7 @@
 			<h:panelGroup>
 				<h:commandButton value="增加" styleClass="button01" onclick="doAddItem();"/>
 				<h:outputText value=" 归档日期"/>
-				<h:inputText id="operYearMonth" readonly="true" size="10" styleClass="input Wdate"  value="#{wage_dataOtherBB.operYearMonth}" onclick="WdatePicker({startDate:'%y-%M',dateFmt:'yyyy-MM',el:'form1:operYearMonth'})"/>
+				<h:inputText id="operYearMonth" readonly="true" size="10" styleClass="input Wdate" value="#{wage_dataOtherBB.operYearMonth}" onclick="WdatePicker({startDate:'%y-%M',dateFmt:'yyyy-MM',el:'form1:operYearMonth'})"/>
 				<h:commandButton value="数据归档" styleClass="button01" onclick="return selMonth();" action="#{wage_dataOtherBB.updateWageOther1}"/>
 				<h:outputText value="  " />				
 				<h:outputText value="编辑中" />

@@ -1,6 +1,7 @@
 package com.hr319wg.custom.wage.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.PageVO;
@@ -28,18 +29,15 @@ public interface IWageDataService {
 	//计算
 	public void calcClassWage() throws SysException;
 	
-	//设置短期工工资
-	public void setEmpWage(String wage, String selectedUserIds, String inself, String operUserID) throws SysException;
-	
-	//提交审核短期工工资
-	public void submitWage(String yearMonth, String selectedUserIDs, String operUserID) throws SysException;
-	//审核通过短期工工资
-	public void passWage(String yearMonth, String selectedUserIDs, String operUserID) throws SysException;
 	//加入到帐套
-	public void addToWageset(String rightType) throws SysException;
+	public void addToWageset() throws SysException;
 	
 	//保存短期工人员
-	public void saveWageEmpPerson(UserBO user) throws SysException;
+	public void saveWageEmpPerson(UserBO user, String wage, String other) throws SysException;
+	//保存短期工人员
+	public void batchSaveWageEmpPerson(List<Map> list) throws SysException;
+	//删除短期工人员
+	public void deleteWageEmpPerson(String userID) throws SysException;
 	
 	//是否添加过人员1已经添加  0未添加
 	public int getWageDataSetUserCount(String setID, String userID) throws SysException;
@@ -54,7 +52,7 @@ public interface IWageDataService {
 	public void deleteWageDataSetUserBOByID(String ID) throws SysException;
 	
 	public Object getObjectByID(Class c ,String ID) throws SysException;
-	public List getAllWageEmpUserBO(PageVO pageVo, boolean hasWage, boolean noWage, boolean hasCash, boolean hasNoCash, String orgID, String personType, String nameStr, String rightType, String inself, String operUserID) throws SysException;
+	public List getAllWageEmpUserBO(PageVO pageVo, boolean hasWage, boolean noWage, boolean hasCash, boolean hasNoCash, String orgID, String personType, String nameStr) throws SysException;
 	
 	public List getAllWageDataSetBO(String yearMonth, String selectedItemIDs, String itemType) throws SysException;
 	

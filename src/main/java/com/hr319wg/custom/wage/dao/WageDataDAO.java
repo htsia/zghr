@@ -45,8 +45,8 @@ public class WageDataDAO extends BaseDAO{
 	
 	
 	//¶ÌÆÚ¹¤
-	public List getAllWageEmpUserBO(PageVO pageVo, boolean hasWage, boolean noWage, boolean hasCash, boolean hasNoCash, String orgID, String personType, String nameStr, String rightType, String inself, String operUserID) throws SysException{
-		String hql = " from UserBO u where u.personType in ('0135700572','0135700573','0135700574') ";
+	public List getAllWageEmpUserBO(PageVO pageVo, boolean hasWage, boolean noWage, boolean hasCash, boolean hasNoCash, String orgID, String personType, String nameStr) throws SysException{
+		String hql = " from UserBO u,WageEmpBO w where u.userID=w.ID and u.personType in ('0135700572','0135700574') ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
 			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
@@ -60,10 +60,10 @@ public class WageDataDAO extends BaseDAO{
 		}
 		if(!(hasWage && noWage)){
 			if(hasWage){
-				hql+=" and u.userID in (select w.ID from WageEmpBO w where w.wage is not null)";
+				hql+=" and (w.wage is not null or w.other is not null)";
 			}
 			if(noWage){
-				hql+=" and u.userID in (select w.ID from WageEmpBO w where w.wage is null)";
+				hql+=" and w.wage is null and w.other is null";
 			}
 		}
 		if(!hasWage && !noWage){
@@ -71,24 +71,16 @@ public class WageDataDAO extends BaseDAO{
 		}
 		if(!(hasCash && hasNoCash)){
 			if(hasCash){
-				hql+=" and u.hasCash='1'";
+				hql+=" and u.hasCashStr='1'";
 			}
 			if(noWage){
-				hql+=" and u.hasCash is null";
+				hql+=" and u.hasCashStr is null";
 			}
 		}
 		if(!hasCash && !hasNoCash){
 			hql+=" and 1=0 ";
 		}
-		
-		if("1".equals(rightType)){
-			hql += " and u.deptSort not like '001002011%'";			
-		}else if("0".equals(rightType)){
-			hql += " and u.deptSort like '001002011%'";						
-		}else if("1".equals(inself)){
-			hql += " and u.deptSort like '"+CommonUtil.getSecDeptTreeId(operUserID)+"%'";
-		}
-		String boHql = "select u "+hql +" order by u.secDeptID,u.deptId";
+		String boHql = "select u,w "+hql +" order by u.secDeptID,u.deptId";
 		String countHql = "select count(u) "+hql;
 		
 		return this.pageQuery(pageVo, countHql, boHql);

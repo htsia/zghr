@@ -192,8 +192,7 @@
             <generator class="uuid.hex"/>
         </id>
         <property name="wage" column="A239200"/>
-        <property name="yearMonth" column="A239201"/>
-        <property name="status" column="A239202"/>
+        <property name="other" column="A239201"/>
     </class>
     
 	<class name="com.hr319wg.custom.pojo.bo.UserBO" table="A001">

@@ -20,35 +20,48 @@ import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.pojo.bo.UserBO;
+import com.hr319wg.custom.wage.pojo.bo.WageEmpBO;
 import com.hr319wg.custom.wage.service.IWageDataService;
-import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CodeUtil;
-import com.hr319wg.wage.pojo.bo.WageSetBO;
 
 public class WageEmpBackingBean extends BaseBackingBean {
 	private PageVO mypage = new PageVO();
 	private String pageInit;
 	private String editInit;
-	private String editWageInit;
 
 	private String orgID;
 	private String nameStr;
-	private String personType="0135700572,0135700573,0135700574";
+	private String personType="0135700572,0135700574";
 	private String operYearMonth;
-	private String selectedUserIds;
+	private String operUserID;
 	private String wage;
+	private String other;
 	private boolean hasWage=true;
 	private boolean noWage=true;
 	private boolean hasCash=true;
 	private boolean hasNoCash=true;
-	private String inself;
-	private String rightType; //0后勤 1非后勤
 	private UploadedFile excelFile;
 	private String filename;
 	private List<Map> list;
 	private IWageDataService wageDataService;
 	private UserBO user = new UserBO();
+
+	public String getOperUserID() {
+		return operUserID;
+	}
+
+	public void setOperUserID(String operUserID) {
+		this.operUserID = operUserID;
+	}
+
+	public String getOther() {
+		return other;
+	}
+
+	public void setOther(String other) {
+		this.other = other;
+	}
 
 	public boolean isHasCash() {
 		return hasCash;
@@ -65,15 +78,7 @@ public class WageEmpBackingBean extends BaseBackingBean {
 	public void setHasNoCash(boolean hasNoCash) {
 		this.hasNoCash = hasNoCash;
 	}
-
-	public String getRightType() {
-		return rightType;
-	}
-
-	public void setRightType(String rightType) {
-		this.rightType = rightType;
-	}
-
+	
 	public String getOperYearMonth() {
 		return operYearMonth;
 	}
@@ -131,10 +136,15 @@ public class WageEmpBackingBean extends BaseBackingBean {
 	}
 
 	public String getEditInit() {
+		this.wage=null;
+		this.other=null;
 		String userID = super.getRequestParameter("userID");
 		if(userID!=null && !"".equals(userID)){
 			try {
 				this.user = (UserBO) this.wageDataService.findBOById(UserBO.class, userID);
+				WageEmpBO wbo = (WageEmpBO) this.wageDataService.findBOById(WageEmpBO.class, userID);
+				this.wage=wbo.getWage();
+				this.other=wbo.getOther();
 			} catch (SysException e) {
 				e.printStackTrace();
 			}
@@ -143,18 +153,6 @@ public class WageEmpBackingBean extends BaseBackingBean {
 			this.user=new UserBO();
 		}
 		return editInit;
-	}
-
-	public String getEditWageInit() {
-		return editWageInit;
-	}
-
-	public String getInself() {
-		return inself;
-	}
-
-	public void setInself(String inself) {
-		this.inself = inself;
 	}
 
 	public String getNameStr() {
@@ -196,38 +194,29 @@ public class WageEmpBackingBean extends BaseBackingBean {
 	public void setWageDataService(IWageDataService wageDataService) {
 		this.wageDataService = wageDataService;
 	}
-
-	public String getSelectedUserIds() {
-		return selectedUserIds;
-	}
-
-	public void setSelectedUserIds(String selectedUserIds) {
-		this.selectedUserIds = selectedUserIds;
-	}
-
 	
 	public String first() {
 		mypage.setCurrentPage(1);
-		return "";
+		return null;
 	}
 
 	public String pre() {
 		if (mypage.getCurrentPage() > 1) {
 			mypage.setCurrentPage(mypage.getCurrentPage() - 1);
 		}
-		return "";
+		return null;
 	}
 
 	public String next() {
 		if (mypage.getCurrentPage() < mypage.getTotalPage()) {
 			mypage.setCurrentPage(mypage.getCurrentPage() + 1);
 		}
-		return "";
+		return null;
 	}
 
 	public String last() {
 		mypage.setCurrentPage(mypage.getTotalPage());
-		return "";
+		return null;
 	}
 
 	public void setHasWage(ValueChangeEvent event) {
@@ -251,33 +240,12 @@ public class WageEmpBackingBean extends BaseBackingBean {
 		String act = super.getRequestParameter("act");
 		if("init".equals(act)){
 			this.mypage = new PageVO();
+			this.orgID=null;
+			this.nameStr=null;
 		}
-		
-		String inself1 = super.getRequestParameter("inself");
-		if(!"".equals(inself1)){
-			this.inself=inself1;
-		}
-		try {
-//			10220	大校兼职教师帐套
-//			10221	大校项目工帐套
-//			10219	后勤学生工项目工帐套
-
-			//所有管辖的帐套
-			List<WageSetBO> list = this.wageDataService.getAllWagesetBOByUserID(super.getUserInfo().getUserId());
-			if(list!=null){
-				for(WageSetBO bo : list){
-					if("10220".equals(bo.getSetId()) || "10221".equals(bo.getSetId())){
-						this.rightType="1";
-						break;
-					}
-					if("10219".equals(bo.getSetId())){
-						this.rightType="0";
-						break;
-					}					
-				}
-			}
-		} catch (SysException e) {
-			e.printStackTrace();
+		String orgID1 = super.getRequestParameter("orgID");
+		if(orgID1!=null && !"".equals(orgID1)){
+			this.orgID=orgID1;
 		}
 		doQuery();
 		return null;
@@ -289,9 +257,12 @@ public class WageEmpBackingBean extends BaseBackingBean {
 		}
 		try {
 			this.list = new ArrayList();
-			List<UserBO> list1 = this.wageDataService.getAllWageEmpUserBO(mypage, hasWage, noWage, hasCash, hasNoCash, orgID, personType, nameStr, rightType, inself, super.getUserInfo().getUserId());
+			List list1 = this.wageDataService.getAllWageEmpUserBO(mypage, hasWage, noWage, hasCash, hasNoCash, orgID, personType, nameStr);
 			if(list1!=null){
-				for(UserBO bo : list1){
+				for(int i=0;i<list1.size();i++){
+					Object[]obj=(Object[])list1.get(i);
+					UserBO bo = (UserBO)obj[0];
+					WageEmpBO wbo = (WageEmpBO)obj[1];
 					Map m = new HashMap();
 					m.put("ID", bo.getUserID());
 					m.put("name", bo.getName());
@@ -302,41 +273,11 @@ public class WageEmpBackingBean extends BaseBackingBean {
 					m.put("orgName", CodeUtil.interpertCode(CodeUtil.TYPE_ORG, bo.getOrgId()));
 					m.put("deptName", CodeUtil.interpertCode(CodeUtil.TYPE_ORG, bo.getDeptId()));
 					m.put("secDeptName", CodeUtil.interpertCode(bo.getSecDeptID()));
-					if(bo.getXueli()!=null){
-						m.put("xueliDesc", CodeUtil.interpertCode(bo.getXueli()));					
-					}
-					if(bo.getXuewei()!=null){
-						m.put("xueweiDesc", CodeUtil.interpertCode(bo.getXuewei()));					
-					}
-					if(bo.getZhicheng()!=null){
-						m.put("zhichengDesc", CodeUtil.interpertCode(bo.getZhicheng()));					
-					}
-					if(bo.getZhichengLevel()!=null){
-						m.put("zhichengLevelDesc", CodeUtil.interpertCode(bo.getZhichengLevel()));					
-					}
-					if(bo.getZhichengXulie()!=null){
-						m.put("zhichengXulieDesc", CodeUtil.interpertCode(bo.getZhichengXulie()));					
-					}
 					if("1".equals(bo.getHasCashStr())){
 						m.put("hasCash", "是");
 					}
-					JdbcTemplate jdbc = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
-					String sql = "select A239200,A239201,A239202 from A239 where id='"+bo.getUserID()+"'";
-					List wagelist = jdbc.queryForList(sql);
-					if(wagelist!=null){
-						Map m1 = (Map)wagelist.get(0);
-						m.put("wage", m1.get("A239200"));
-						Object A239201 = m1.get("A239201");
-						if(A239201!=null){
-							m.put("yearMonth", A239201);
-						}
-						String A239202 = String.valueOf(m1.get("A239202"));
-						if("1".equals(A239202)){
-							m.put("status", "审核通过");
-						}else if("0".equals(A239202)){
-							m.put("status", "审核中");						
-						}
-					}
+					m.put("wage", wbo.getWage());
+					m.put("other", wbo.getOther());
 					this.list.add(m);
 				}
 			}
@@ -344,41 +285,11 @@ public class WageEmpBackingBean extends BaseBackingBean {
 			e.printStackTrace();
 		}
 	}
-	
-	public void setWage(){
-		try {
-			this.wageDataService.setEmpWage(this.wage, this.selectedUserIds, this.inself, super.getUserInfo().getUserId());
-			super.showMessageDetail("设定完成");
-		} catch (SysException e) {
-			super.showMessageDetail("设定失败");
-			e.printStackTrace();
-		}
-	}
-	
-	//提交
-	public void submitWage(){
-		try {
-			this.wageDataService.submitWage(this.operYearMonth, this.selectedUserIds, super.getUserInfo().getUserId());
-			super.showMessageDetail("提交完成");
-		} catch (SysException e) {
-			super.showMessageDetail("提交失败");
-			e.printStackTrace();
-		}
-	}
-	//审核
-	public void passWage(){
-		try {
-			this.wageDataService.passWage(this.operYearMonth, this.selectedUserIds, super.getUserInfo().getUserId());
-			super.showMessageDetail("审核完成");
-		} catch (SysException e) {
-			super.showMessageDetail("审核失败");
-			e.printStackTrace();
-		}
-	}
+
 	//加入帐套
 	public void addToWageset(){
 		try {
-			this.wageDataService.addToWageset(this.rightType);
+			this.wageDataService.addToWageset();
 			super.showMessageDetail("添加完成");
 		} catch (SysException e) {
 			super.showMessageDetail("添加失败");
@@ -389,13 +300,23 @@ public class WageEmpBackingBean extends BaseBackingBean {
 	//修改人员
 	public String savePerson(){
 		try {
-			this.wageDataService.saveWageEmpPerson(user);
+			this.wageDataService.saveWageEmpPerson(user, wage, other);
 			return "success";
 		} catch (SysException e) {
 			super.showMessageDetail("保存失败");
 			e.printStackTrace();
 		}
 		return null;
+	}
+	//删除人员
+	public void delete(){
+		try {
+			this.wageDataService.deleteWageEmpPerson(this.operUserID);
+			super.showMessageDetail("删除完成");
+		} catch (SysException e) {
+			super.showMessageDetail("删除失败");
+			e.printStackTrace();
+		}
 	}
 	
 	//导入人员
@@ -404,40 +325,72 @@ public class WageEmpBackingBean extends BaseBackingBean {
 			Workbook wb = Workbook.getWorkbook(this.excelFile.getInputStream());
 			Sheet st=wb.getSheet(0);
 			int stRow=st.getRows();
-			int success=0;
-			int fail=0;
-			String err ="其中人员编号为：";
+			List<Map> listEmp = new ArrayList<Map>();
+			JdbcTemplate jdbc = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
+			String sql=null; 
 			for(int i=1;i<stRow;i++){
-				String pCode = st.getCell(0, i).getContents();
-				if(pCode==null || "".equals(pCode)){
+				Map m = new HashMap();
+				String name = st.getCell(0, i).getContents();
+				if(name==null || "".equals(name)){
 					break;
-				}else{
-					PersonBO p = SysCacheTool.findPersonByCode(pCode.trim());
-					if(p!=null){
-						try{
-							double money = Double.valueOf(st.getCell(2, i).getContents());
-							this.wageDataService.setEmpWage(money+"", null, p.getPersonId(), super.getUserInfo().getUserId());
-							success++;
-						}catch (Exception e) {
-							fail++;
-						}
-					}else{
-						fail++;
-						err+=pCode+",";
+				}
+				m.put("name", name);
+				String dept = st.getCell(1, i).getContents();
+				sql="select orguid from b001 where b001005='"+dept+"' and b001730='00901'";
+				List deptList = jdbc.queryForList(sql);
+				if(deptList==null || deptList.size()==0){
+					super.showMessageDetail("第"+i+"行姓名为"+name+"的所在部门"+dept+"不存在");
+					break;
+				}
+				m.put("deptID", ((Map)list.get(0)).get("orguid"));
+				String personType = st.getCell(2, i).getContents();
+				if(!"项目工".equals(personType) && !"兼职教师".equals(personType)){
+					super.showMessageDetail("第"+i+"行姓名为"+name+"的人员类别"+personType+"不存在");
+					break;					
+				}
+				if("项目工".equals(personType)){
+					m.put("personType", "0135700572");
+				}else if("兼职教师".equals(personType)){
+					m.put("personType", "0135700574");					
+				}
+				String wage1 = st.getCell(3, i).getContents();
+				if(wage1!=null && wage1.length()>0){
+					wage1=wage1.trim();
+					try {
+						Double.valueOf(wage1);						
+					} catch (NumberFormatException e) {
+						super.showMessageDetail("第"+i+"行姓名为"+name+"的基础工资格式有误");
+						break;
 					}
 				}
+				m.put("wage", wage1.trim());
+				String other1 = st.getCell(4, i).getContents();
+				if(other1!=null && other1.length()>0){
+					other1=other1.trim();
+					try {
+						Double.valueOf(other1);						
+					} catch (NumberFormatException e) {
+						super.showMessageDetail("第"+i+"行姓名为"+name+"的其他补贴格式有误");
+						break;
+					}
+				}
+				m.put("other", other1.trim());
+				String hasCash = st.getCell(5, i).getContents();
+				if("是".equals(hasCash)){
+					m.put("hasCash", "1");					
+				}else{
+					m.put("hasCash", "0");										
+				}
+				listEmp.add(m);
 			}
-			if(fail==0){
-				this.orgID=null;
-				super.showMessageDetail("成功"+success+"个");				
-			}else{
-				err=err.substring(0, err.length()-1);
-				super.showMessageDetail("成功"+success+"个失败"+fail+"个,"+err+"的人员不存在");								
-			}
+			
 		} catch (BiffException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
+		} catch (SysException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

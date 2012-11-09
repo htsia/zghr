@@ -288,7 +288,7 @@ public class AttBusiDAO extends BaseDAO{
 		if(endDate!=null && !"".equals(endDate)){
 			hql += " and (to_date(log.cardDate,'yyyy-mm-dd')<=to_date('"+endDate+"','yyyy-mm-dd') ) ";
 		}
-		String boHql = "select log,u.secDeptID "+hql +" order by u.secDeptID,u.deptId,u.userID,log.cardDate,log.cardTime";
+		String boHql = "select log,u.secDeptID "+hql +" order by log.cardDate desc,log.cardTime desc,u.secDeptID,u.deptId,u.userID";
 		String countHql = "select count(u) "+hql;
 		return this.pageQuery(pageVo, countHql, boHql);
 	}

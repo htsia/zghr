@@ -4,9 +4,15 @@ package com.hr319wg.custom.wage.pojo.bo;
 public class WageEmpBO {
 	private String ID;
 	private String wage;
+	private String other;
 	private String yearMonth;
-	private String status;
 
+	public String getOther() {
+		return other;
+	}
+	public void setOther(String other) {
+		this.other = other;
+	}
 	public String getID() {
 		return ID;
 	}
@@ -24,12 +30,6 @@ public class WageEmpBO {
 	}
 	public void setYearMonth(String yearMonth) {
 		this.yearMonth = yearMonth;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 	
 }

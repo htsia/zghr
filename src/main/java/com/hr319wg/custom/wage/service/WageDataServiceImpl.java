@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.htmlparser.filters.HasChildFilter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
@@ -103,48 +102,21 @@ public class WageDataServiceImpl implements IWageDataService{
 	public void calcClassWage() throws SysException{
 		this.activeapi.executeSql("BEGIN proc_calc_classwage(); END;");
 	}
-	
-	//设置短期工工资
-	public void setEmpWage(String wage, String selectedUserIds, String inself, String operUserID) throws SysException{
-		String sql = "update a239 set a239200='"+wage+"' where "+CommonFuns.splitInSql(selectedUserIds.split(","), "id");
-		if("1".equals(inself)){
-			sql = "update a239 set a239200='"+wage+"',a239202=case when a239202 is null then null else '0' end where "+CommonFuns.splitInSql(selectedUserIds.split(","), "id");			
-		}
-		this.jdbcTemplate.execute(sql);
-	}
-	
-	//提交审核短期工工资
-	public void submitWage(String yearMonth, String selectedUserIDs, String operUserID) throws SysException{
-		String sql = "update a239 set a239202=0 where "+CommonFuns.splitInSql(selectedUserIDs.split(","), "id");
-		this.activeapi.executeSql(sql);
-	}
-	//审核通过短期工工资
-	public void passWage(String yearMonth, String selectedUserIDs, String operUserID) throws SysException{
-		String sql = "update a239 set a239201='"+yearMonth+"',a239202=1 where a239202=0 and ("+CommonFuns.splitInSql(selectedUserIDs.split(","), "id")+")";
-		this.activeapi.executeSql(sql);
-	}
+
 	//加入到帐套
-	public void addToWageset(String rightType) throws SysException{
-		String sql = null;
-		if("0".equals(rightType)){//后勤
-			sql = "delete from wage_set_pers_r where a815700='10219'";
-			this.activeapi.executeSql(sql);
-			sql = "insert into wage_set_pers_r (id,subid,a815000,a815700) select id,'0','00901','10219' from a001 where a001054 in ('0135700572','0135700573') and  a001738 like '001002011%' and id in (select id from a239 where a239202='1')";
-			this.activeapi.executeSql(sql);
-		}else if("1".equals(rightType)){
-			sql = "delete from wage_set_pers_r where a815700 in ('10220','10221')";
-			this.activeapi.executeSql(sql);
-			//兼职教师
-			sql = "insert into wage_set_pers_r (id,subid,a815000,a815700) select id,'0','00901','10220' from a001 where a001054 in ('0135700574') and  a001738 not like '001002011%' and id in (select id from a239 where a239202='1')";
-			this.activeapi.executeSql(sql);			
-			//项目工
-			sql = "insert into wage_set_pers_r (id,subid,a815000,a815700) select id,'0','00901','10221' from a001 where a001054 in ('0135700572') and  a001738 not like '001002011%' and id in (select id from a239 where a239202='1')";
-			this.activeapi.executeSql(sql);
-		}
+	public void addToWageset() throws SysException{
+		String sql = "delete from wage_set_pers_r where a815700 in ('10220','10221')";
+		this.activeapi.executeSql(sql);
+		//兼职教师
+		sql = "insert into wage_set_pers_r (id,subid,a815000,a815700) select id,'0','00901','10220' from a001 where a001054 in ('0135700574') and  a001738 not like '001002011%' and id in (select id from a239 where a239202='1')";
+		this.activeapi.executeSql(sql);			
+		//项目工
+		sql = "insert into wage_set_pers_r (id,subid,a815000,a815700) select id,'0','00901','10221' from a001 where a001054 in ('0135700572') and  a001738 not like '001002011%' and id in (select id from a239 where a239202='1')";
+		this.activeapi.executeSql(sql);
 	}
 	
 	//保存短期工人员
-	public void saveWageEmpPerson(UserBO user) throws SysException{
+	public void saveWageEmpPerson(UserBO user, String wage, String other) throws SysException{
 		boolean isnew =user.getUserID()==null?true:false;
 		if(isnew){
 			String sql ="select max(cast(a001735 as int))+1 from a001 where a001735 not like '@%'";
@@ -157,6 +129,11 @@ public class WageDataServiceImpl implements IWageDataService{
 		user.setDeptSort(org.getTreeId());
 		user.setMainDeptSort(superOrg.getTreeId());
 		user.setOrgId(superOrg.getOrgId());
+		if(user.isHasCash()){
+			user.setHasCashStr("1");
+		}else{
+			user.setHasCashStr(null);			
+		}
 		HibernateTemplate temp = (HibernateTemplate)SysContext.getBean("hibernateTemplate");
 		temp.saveOrUpdate(user);
 		temp.flush();
@@ -164,13 +141,26 @@ public class WageDataServiceImpl implements IWageDataService{
 			String sql="insert into sys_user_info s (s.person_id,s.login_name,login_pwd,s.is_use) values ('"+user.getUserID()+"','"+user.getName()+"','98f6bcd4621d373cade4e832627b4f6',0)";
 			this.jdbcTemplate.execute(sql);
 			String wageOrgId=superOrg.getOrgId();
-			sql="insert into a795 (id,a795701,a795705,a795708,a795710,a795718,a795720,a795725) values ('"+user.getUserID()+"','"+wageOrgId+"','"+wageOrgId+"','"+wageOrgId+"','"+wageOrgId+"','"+wageOrgId+"','"+wageOrgId+"','"+wageOrgId+"')";
+			sql="insert into a795 (id,a795701,a795705,a795708,a795710,a795718,a795720,a795725) values ('"+user.getUserID()+"','"+user.getOrgId()+"','"+user.getOrgId()+"','"+user.getOrgId()+"','"+user.getOrgId()+"','"+user.getOrgId()+"','"+user.getOrgId()+"','"+user.getOrgId()+"')";
 			this.jdbcTemplate.execute(sql);
-			sql="insert into a239 (id) values ('"+user.getUserID()+"')";
+			sql="insert into a239 (id,a239200,a239201) values ('"+user.getUserID()+"','"+wage+"','"+other+"')";
 			this.jdbcTemplate.execute(sql);
+		}else{
+			String sql="update a239 set a239200='"+wage+"',a239201='"+other+"' where id='"+user.getUserID()+"'";
+			this.jdbcTemplate.execute(sql);	
 		}
 	}
-	
+	@Override
+	public void batchSaveWageEmpPerson(List<Map> list) throws SysException {
+		for(Map m : list){
+			UserBO bo = new UserBO();
+			bo.setName(m.get("name").toString());
+			bo.setDeptId(m.get("deptID").toString());
+			bo.setPersonType(m.get("personType").toString());
+			bo.setHasCashStr(m.get("hasCash").toString());
+			saveWageEmpPerson(bo, String.valueOf(m.get("wage")), String.valueOf(m.get("other")));
+		}
+	}
 	//是否添加过人员1已经添加  0未添加
 	public int getWageDataSetUserCount(String setID, String userID) throws SysException{
 		String sql = "select count(*) from wage_dataset_user u where u.setid='"+setID+"' and u.userid='"+userID+"'";
@@ -200,8 +190,8 @@ public class WageDataServiceImpl implements IWageDataService{
 	public Object getObjectByID(Class c ,String ID) throws SysException{
 		return this.wageDataSetDAO.findBoById(c, ID);
 	}
-	public List getAllWageEmpUserBO(PageVO pageVo, boolean hasWage, boolean noWage, boolean hasCash, boolean hasNoCash, String orgID, String personType, String nameStr, String rightType, String inself, String operUserID) throws SysException{
-		return this.wageDataSetDAO.getAllWageEmpUserBO(pageVo, hasWage, noWage, hasCash, hasNoCash, orgID, personType, nameStr, rightType, inself, operUserID);
+	public List getAllWageEmpUserBO(PageVO pageVo, boolean hasWage, boolean noWage, boolean hasCash, boolean hasNoCash, String orgID, String personType, String nameStr) throws SysException{
+		return this.wageDataSetDAO.getAllWageEmpUserBO(pageVo, hasWage, noWage, hasCash, hasNoCash, orgID, personType, nameStr);
 	}
 	
 	public List getAllWageDataSetBO(String yearMonth, String selectedItemIDs, String itemType) throws SysException{
@@ -706,4 +696,13 @@ public class WageDataServiceImpl implements IWageDataService{
 		}
 	}
 
+	@Override
+	public void deleteWageEmpPerson(String userID) throws SysException {
+		String sql="delete from a239 where id='"+userID+"'";
+		this.jdbcTemplate.execute(sql);
+		sql="delete from a795 where id='"+userID+"'";
+		this.jdbcTemplate.execute(sql);
+		sql="delete from a001 where id='"+userID+"'";
+		this.jdbcTemplate.execute(sql);
+	}
 }

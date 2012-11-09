@@ -105,26 +105,26 @@ public class AttLogMgrBackingBean extends BaseBackingBean {
 
 	public String first() {
 		mypage.setCurrentPage(1);
-		return "";
+		return null;
 	}
 
 	public String pre() {
 		if (mypage.getCurrentPage() > 1) {
 			mypage.setCurrentPage(mypage.getCurrentPage() - 1);
 		}
-		return "";
+		return null;
 	}
 
 	public String next() {
 		if (mypage.getCurrentPage() < mypage.getTotalPage()) {
 			mypage.setCurrentPage(mypage.getCurrentPage() + 1);
 		}
-		return "";
+		return null;
 	}
 
 	public String last() {
 		mypage.setCurrentPage(mypage.getTotalPage());
-		return "";
+		return null;
 	}
 	public void setPageInit(String pageInit) {
 		this.pageInit = pageInit;

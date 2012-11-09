@@ -16,12 +16,19 @@
 			alert("请选择部门");
 			return false;
 		}
+		var wage = document.all("form1:wage").value;
+		wage=$.trim(wage);
+		if(wage!='' && wage!=null && isNaN(wage)){
+			alert("基础工资应为数字");
+			return false;
+		}
+		var other = document.all("form1:other").value;
+		other=$.trim(other);
+		if(other!='' && other!=null && isNaN(other)){
+			alert("其他工资应为数字");
+			return false;
+		}
 		document.all("form1:A001705").value=document.all("form1:A001705").code;
-		document.all("form1:xueli").value=document.all("form1:xueli").code;
-		document.all("form1:xuewei").value=document.all("form1:xuewei").code;
-		document.all("form1:zhicheng").value=document.all("form1:zhicheng").code;
-		document.all("form1:zhichengLevel").value=document.all("form1:zhichengLevel").code;
-		document.all("form1:zhichengXulie").value=document.all("form1:zhichengXulie").code;
 		return true;
 	}
 </script>
@@ -57,36 +64,10 @@
 	        		<input type="button" class="button_org" onclick="PopUpOrgDlgShowGroup('form1:A001705',2)">
 	        	</f:verbatim>
         	</h:panelGroup>
-        	<h:outputText value="学历"/>
-        	<h:panelGroup>
-				<h:inputText styleClass="input" id="xueli" code="" dict="yes" dict_num="0365" value="#{wage_empBB.user.xueli}"
-	                     alt="学历|0|s|50||"/>
-	        	<h:commandButton type="button" styleClass="button_select" onclick="PopUpCodeDlgOneControl('form1:xueli')"/>
-        	</h:panelGroup>
-        	<h:outputText value="学位"/>
-        	<h:panelGroup>
-				<h:inputText styleClass="input" id="xuewei" code="" dict="yes" dict_num="0380" value="#{wage_empBB.user.xuewei}"
-	                     alt="学位|0|s|50||"/>
-	        	<h:commandButton type="button" styleClass="button_select" onclick="PopUpCodeDlgOneControl('form1:xuewei')"/>
-        	</h:panelGroup>
-        	<h:outputText value="职称"/>
-        	<h:panelGroup>
-				<h:inputText styleClass="input" id="zhicheng" code="" dict="yes" dict_num="0355" value="#{wage_empBB.user.zhicheng}"
-	                     alt="职称|0|s|50||"/>
-	        	<h:commandButton type="button" styleClass="button_select" onclick="PopUpCodeDlgOneControl('form1:zhicheng')"/>
-        	</h:panelGroup>
-        	<h:outputText value="职称等级"/>
-        	<h:panelGroup>
-				<h:inputText styleClass="input" id="zhichengLevel" code="" dict="yes" dict_num="0170" value="#{wage_empBB.user.zhichengLevel}"
-	                     alt="职称等级|0|s|50||"/>
-	        	<h:commandButton type="button" styleClass="button_select" onclick="PopUpCodeDlgOneControl('form1:zhichengLevel')"/>
-        	</h:panelGroup>
-        	<h:outputText value="职称序列"/>
-        	<h:panelGroup>
-				<h:inputText styleClass="input" id="zhichengXulie" code="" dict="yes" dict_num="3029" value="#{wage_empBB.user.zhichengXulie}"
-	                     alt="职称序列|0|s|50||"/>
-	        	<h:commandButton type="button" styleClass="button_select" onclick="PopUpCodeDlgOneControl('form1:zhichengXulie')"/>
-        	</h:panelGroup>
+        	<h:outputText value="基础工资"/>
+			<h:inputText id="wage" value="#{wage_empBB.wage}" styleClass="input"/>
+        	<h:outputText value="其他工资"/>
+			<h:inputText id="other" value="#{wage_empBB.other}" styleClass="input"/>
         	<h:outputText value="是否发现金"/>
         	<h:selectBooleanCheckbox value="#{wage_empBB.user.hasCash}"/>
 		</h:panelGrid>

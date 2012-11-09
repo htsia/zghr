@@ -321,7 +321,7 @@
 			<h:panelGroup>
 				<h:inputText styleClass="input" id="endTime"
 					value="#{attLeaveApplyBB.leaveBo.endTime}" readonly="true"
-					alt="结束日期|0|d|50||" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:endTime',onpicked:getApplyDays})"/>
+					alt="结束日期|0|d|50||"/>
 				<c:verbatim>
 				<input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:endTime');getApplyDays();">
 					<select id="endHour" onchange="getApplyDays();">
