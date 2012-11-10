@@ -26,6 +26,8 @@ public class AttLeaveBO implements Comparable<AttLeaveBO>{
 	private String leaveBackDate;//销假日期B
 	private String totalDays;//请假单跨越的日子数
 	private boolean isAppro;// 是否有审批
+	private String beginMonthDays; //第一个月带薪假天数
+	private String nextMonthDays;  //第二个月带薪假天数
 	
 	public String getId() {
 		return Id;
@@ -167,6 +169,18 @@ public class AttLeaveBO implements Comparable<AttLeaveBO>{
 	@Override
 	public int compareTo(AttLeaveBO o) {
 		return o.getApplyTime().compareTo(this.applyTime);
+	}
+	public String getNextMonthDays() {
+		return nextMonthDays;
+	}
+	public void setNextMonthDays(String endMonthDays) {
+		this.nextMonthDays = endMonthDays;
+	}
+	public String getBeginMonthDays() {
+		return beginMonthDays;
+	}
+	public void setBeginMonthDays(String beginMonthDays) {
+		this.beginMonthDays = beginMonthDays;
 	}
 	
 }

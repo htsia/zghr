@@ -356,8 +356,11 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 					bo.setCreateType("1");
 					bo.setLeaveType(leaveBo.getLeaveType());
 					attBusiService.saveAttLeaveBO(bo);
-					
-					this.attBusiService.updateLeaveDays(leaveBo.getLeaveType(), String.valueOf(leaveBo.getApplyDays()), userIDs[i]);
+					if("2".equals(bo.getLeaveType())){
+						this.attBusiService.saveBingjia(bo);
+					}else{
+						this.attBusiService.updateLeaveDays(leaveBo.getLeaveType(), String.valueOf(leaveBo.getApplyDays()), userIDs[i]);
+					}
 				} catch (SysException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

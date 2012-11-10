@@ -188,7 +188,7 @@ public class DateUtil {
 				.format(c.getTime());
 		return dayAfter;
 	}
-
+//统计当月最后一共几天
 	public static String getEndDayByMonth(String datevalue) {
 		int year = Integer.parseInt(datevalue.substring(0, 4));
 		String month = datevalue.substring(5, 7);
