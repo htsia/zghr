@@ -6,7 +6,7 @@
 	response.setHeader("Cache-Control", "no-cache");
 	response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
-		<script src="<%=request.getContextPath()%>/js/jquery.js"
+	<script src="<%=request.getContextPath()%>/js/jquery.js"
 	type="text/javascript"></script>
 	
 <script language="javascript">
@@ -275,7 +275,6 @@ function checkDays() {
 			document.all("form1:totalDays").style.display = "none";
 			document.all("form1:nochan").style.display = "block";
 			document.all("form1:applydays").style.display = "block";
-			
 		}
 	}
   </script>
@@ -305,7 +304,7 @@ function checkDays() {
 		align="center">
 		<h:panelGroup>
 			<h:graphicImage value="/images/tips.gif" />
-			<h:outputText value=" ¿¼ÇÚ¹ÜÀí ->Çë¼ÙÂ¼Èë" />
+			<h:outputText value=" ¿¼ÇÚ¹ÜÀí ->Çë¼ÙÉêÇë" />
 		</h:panelGroup>
 	</h:panelGrid>
 	<h:panelGrid columns="1" width="98%" align="center">
@@ -371,7 +370,7 @@ function checkDays() {
 			columnClasses="td_form01,td_form02" align="center"
 			styleClass="table03">
 			<h:outputText value="Çë¼ÙÔ­Òò" />
-			<h:inputTextarea cols="60" rows="5" 
+			<h:inputTextarea id="reason" cols="60" rows="5" 
 				value="#{attLeaveApplyBB.leaveBo.reason}"></h:inputTextarea>
 		</h:panelGrid>
 		<h:panelGrid columns="2" width="100%"

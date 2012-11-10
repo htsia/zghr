@@ -449,4 +449,27 @@ public class DateUtil {
 		}
 		return list;
 	}
+	/**
+	 * @param thisMonth ∏Ò Ω «XXXX-XX
+	 * @return
+	 */
+	public String getNextMonth(String thisMonth){
+		String nextYear="";
+		String nextMonth="";
+		int year=Integer.parseInt(thisMonth.substring(0,4));
+		int month=Integer.parseInt(thisMonth.substring(5,7));
+	    if(month==12){
+	    	nextYear=String.valueOf(year+1);
+	    	nextMonth="01";
+	    }else{
+	    	nextYear=String.valueOf(year);
+	    	month++;
+	    	if(month<10){
+	    		nextMonth="0"+month;
+	    	}else{
+	    		nextMonth=""+month;
+	    	}
+	    }
+		return nextMonth;
+	}
 }
