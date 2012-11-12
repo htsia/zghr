@@ -23,26 +23,19 @@
   	function forsave(){
   		var userIds= document.all("form1:userIds").value;
   		var beginDate= document.all("form1:beginTime").value;
-  		var endDate= document.all("form1:endTime").value;
   		var applydays= document.all("form1:applydays").value;
   		
   		if(userIds==null || userIds==""){
   			alert("请选择人员");
   			return false;
   		}else if(beginDate==null || beginDate==""){
-  			alert("请选择开始日期");
-  			return false;
-  		}else if(endDate==null || endDate==""){
-  			alert("请选择结束日期");
-  			return false;
-  		}else if(beginDate>endDate){
-  			alert("结束日期大于开始日期");
+  			alert("请选择加班日期");
   			return false;
   		}else if(applydays==null || applydays==""){
   			alert("加班时间不能为空");
   			return false;
-  		}else if(isNaN(applydays) || applydays<=0){
-  			alert("家不能时间为大于0的数字");
+  		}else if(isNaN(applydays) || applydays<4){
+  			alert("根据考勤制度，小于4小时不能申请加班。");
   			return false;
   		}
   		return true;
@@ -72,18 +65,9 @@
             <h:outputText value="开始时间"/>
             <h:panelGroup>
                 <h:inputText styleClass="input" id="beginTime" value="#{attOvertimeApplyBB.inputEditBeginDate}"
-                             readonly="true" alt="开始日期|0|d|50||"/>
+                             readonly="true" alt="加班日期|0|d|50||"/>
                 <c:verbatim>
-				    <img onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',el:'form1:beginTime'})" src="../../images/search.gif" class="button_select" width="16" height="22" align="absmiddle">
-                </c:verbatim>
-            </h:panelGroup>
-
-            <h:outputText value="结束时间"/>
-            <h:panelGroup>
-                <h:inputText styleClass="input" id="endTime" value="#{attOvertimeApplyBB.inputEditEndDate}"
-                             readonly="true" alt="结束日期|0|d|50||"/>
-                <c:verbatim>
-				    <img onclick="WdatePicker({startDate:'%y-%M-%d 23:59:59',dateFmt:'yyyy-MM-dd HH:mm',el:'form1:endTime'})" src="../../images/search.gif" class="button_select" width="16" height="22" align="absmiddle">
+				    <img onclick="WdatePicker({dateFmt:'yyyy-MM-dd',el:'form1:beginTime'})" src="../../images/search.gif" class="button_select" width="16" height="22" align="absmiddle">
                 </c:verbatim>
             </h:panelGroup>
             <h:outputText value="加班时间/时"/>

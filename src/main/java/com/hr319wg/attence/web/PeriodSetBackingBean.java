@@ -909,6 +909,8 @@ public class PeriodSetBackingBean extends BaseBackingBean {
 			this.bo = (AttDurationBO)this.attBusiService.findBOById(AttDurationBO.class, this.duraID);
 			this.bo.setStatus("2");
 			this.attBusiService.saveOrUpdateBO(bo);
+			//将月汇总的数据导入月汇总显示子集
+			//this.attBusiService.updateToShow();
 			super.showMessageDetail("操作完成");
 		} catch (SysException e) {
 			e.printStackTrace();

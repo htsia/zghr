@@ -246,6 +246,8 @@
         <property name="isBack" column="is_back"/>
         <property name="leaveBackDate" column="back_date"/>
         <property name="totalDays" column="total_days"/>
+        <property name="beginMonthDays" column="BEGINMONTHDAYS"/>
+        <property name="nextMonthDays" column="NEXTMONTHDAYS"/>
     </class>
     <class name="com.hr319wg.custom.attence.pojo.bo.AttOutBO" table="att_out">
         <id name="Id" type="string" unsaved-value="null">

@@ -50,8 +50,21 @@ import com.hr319wg.xys.workflow.service.SelPersonsToolService;
 import com.jacob.activeX.ActiveXComponent;
 import com.jacob.com.Dispatch;
 import com.jacob.com.Variant;
+import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
 import com.sun.xml.internal.bind.CycleRecoverable.Context;
 
+/**
+ * @author Administrator
+ *
+ */
+/**
+ * @author Administrator
+ *
+ */
+/**
+ * @author Administrator
+ *
+ */
 public class AttBusiServiceImpl implements IAttBusiService {
 
 	private AttDurationDAO attDurationDAO;
@@ -611,24 +624,23 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	 *            员工编号
 	 */
 	@Override
-	public String uploadInfo(Dispatch myCom, AttMachineBO bo,
-			List<Map> infolist) {
-		String err="";
+	public String uploadInfo(Dispatch myCom, AttMachineBO bo, List<Map> infolist) {
+		String err = "";
 		Variant dwMachineNumber = new Variant(0, true);// 机器号
 		Variant dwEnrollNumber = new Variant("", true);// 用户号
 		Variant Name = new Variant("", true);// 用户姓名
 		Variant Password = new Variant("", true);// 用户密码
 		Variant Privilege = new Variant(0, true);// 用户权限，3为管理员，0为普通用户
-		Variant Enabled = new Variant(Boolean.valueOf(String.valueOf(0)),
-				true);// 用户启用标志，1为启用，0为禁用
+		Variant Enabled = new Variant(Boolean.valueOf(String.valueOf(0)), true);// 用户启用标志，1为启用，0为禁用
 		Variant dwFingerIndex = new Variant(0, true);// 手指索引
 		Variant TmpData = new Variant("", true);// string 指纹信息
 		Variant TmpLength = new Variant(0, true);// TmpLength
-		
+
 		ActiveXComponent objArchSend = new ActiveXComponent("zkemkeeper.ZKEM.1");
 		Dispatch myCon = (Dispatch) objArchSend.getObject();
 		// 连接
-		Boolean isConnected = Dispatch.call(myCon, "Connect_Net", bo.getMachineIP(), 4370).getBoolean();
+		Boolean isConnected = Dispatch.call(myCon, "Connect_Net",
+				bo.getMachineIP(), 4370).getBoolean();
 		// 判断连接结果
 		if (isConnected == true) {
 			Dispatch.call(myCon, "EnableDevice", 1, false);// 使机器处于不可用状态
@@ -636,41 +648,38 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			for (Map m : infolist) {
 				dwEnrollNumber = new Variant(m.get("a001735"));
 				Name = new Variant(m.get("a001001"));
-				if (m.get("A232210") != null
-						&& !"".equals(m.get("A232210"))) {
+				if (m.get("A232210") != null && !"".equals(m.get("A232210"))) {
 					Privilege = new Variant(m.get("A232210"));
 				} else {
 					Privilege = new Variant(0);
 				}
-				if (m.get("A232211") != null
-						&& !"".equals(m.get("A232211"))) {
+				if (m.get("A232211") != null && !"".equals(m.get("A232211"))) {
 					Password = new Variant(m.get("A232211"));
 				} else {
 					Password = new Variant("");
 				}
 				Enabled = new Variant(1);
 				// 先把用户添加上去
-				if (Dispatch.call(myCon, "SSR_SetUserInfo",
-						dwMachineNumber, dwEnrollNumber, Name, Password,
-						Privilege, Enabled).getBoolean()) {
+				if (Dispatch.call(myCon, "SSR_SetUserInfo", dwMachineNumber,
+						dwEnrollNumber, Name, Password, Privilege, Enabled)
+						.getBoolean()) {
 					for (int j = 0; j < 10; j++) {
 						if (m.get("A23220" + j) != null
 								&& !"".equals(m.get("A23220" + j))) {
 							TmpData = new Variant(m.get("A23220" + j));
 							Dispatch.call(myCon, "SetUserTmpExStr",
 									dwMachineNumber, dwEnrollNumber,
-									new Variant(j), 1, TmpData)
-									.getBoolean();
+									new Variant(j), 1, TmpData).getBoolean();
 						}
 					}
 				}
 			}
-			//for-end
+			// for-end
 			Dispatch.call(myCon, "BatchUpdate", 1);
 			Dispatch.call(myCon, "RefreshData", 1);
 			Dispatch.call(myCon, "EnableDevice", 1, true);
-		}else{
-			err+=bo.getMachineName()+",";
+		} else {
+			err += bo.getMachineName() + ",";
 		}
 		return err;
 	}
@@ -827,8 +836,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	 * @param personCode
 	 */
 	@Override
-	public String uploadInfoToZKEM(List<AttMachineBO> mList,
-			String operUserIDs) {
+	public String uploadInfoToZKEM(List<AttMachineBO> mList, String operUserIDs) {
 		String err = "";
 		ActiveXComponent objArchSend = null;
 		Dispatch myCom = null;
@@ -841,18 +849,19 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		String sql = "select a.a001735, a.a001001 ,b.A232210 ,b.A232211 , "
 				+ "b.A232200,b.A232201,b.A232202,b.A232203,b.A232204,b.A232205,b.A232206,b.A232207,b.A232208,b.A232209 "
 				+ "from a001 a,a232 b where a.ID = b.ID and a.A001054 not in ('013520','013521','013522','013523','013524','013525')";
-		if(operUserIDs!=null){//多人分发
+		if (operUserIDs != null) {// 多人分发
 			sql = "select a.a001735, a.a001001 ,b.A232210 ,b.A232211 , "
 					+ "b.A232200,b.A232201,b.A232202,b.A232203,b.A232204,b.A232205,b.A232206,b.A232207,b.A232208,b.A232209 "
-					+ "from a001 a,a232 b where a.ID = b.ID and "+CommonFuns.splitInSql(operUserIDs.split(","), "a.ID");
+					+ "from a001 a,a232 b where a.ID = b.ID and "
+					+ CommonFuns.splitInSql(operUserIDs.split(","), "a.ID");
 		}
 		List infolist = this.jdbcTemplate.queryForList(sql);
-		if(infolist!=null){
+		if (infolist != null) {
 			for (AttMachineBO bo : mList) {
 				err += uploadInfo(myCom, bo, infolist);
 			}
-			if(!"".equals(err)){
-				err="以下考勤机："+err+"连接失败";
+			if (!"".equals(err)) {
+				err = "以下考勤机：" + err + "连接失败";
 			}
 		}
 		return err;
@@ -1109,22 +1118,8 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			// 正常事假
 			sql += "a236201=nvl(a236201,0)+" + Double.parseDouble(days);
 		} else if (type.equals("2")) {
-			/*
-			 * // 病假 病假要处理5天的带薪病假和其他的 // 算法:统计病假，先用假条天数减去剩余的带薪病假得到数字day
-			 * 有两种可能，结果大于等于0，或者小于0 //
-			 * 算法:day大于等于0的话，说明这次请假过后，有day天需要扣钱；day小于0的话，说明这次请假过后， //
-			 * 还剩余-day的带薪病假 sql += "a236202=" + Double.parseDouble(days) +
-			 * "-a236202 where id='" + personId + "'";
-			 * this.jdbcTemplate.execute(sql); // ////day大于等于0的情况 // 将出去带薪病假的
-			 * 病假天数累加到年请假天数 sql =
-			 * "update a236 set a236201=a236201+a236202 where id='" + personId +
-			 * "' and a236202>=0"; this.jdbcTemplate.execute(sql); // 将带薪病假清0
-			 * sql = "update a236 set a236202=0 where id='" + personId +
-			 * "' and a236202>=0"; this.jdbcTemplate.execute(sql); //
-			 * ////day小于0的情况 sql =
-			 * "update a236 set a236202=0-a236202 where id='" + personId +
-			 * "' and a236202<0"; this.jdbcTemplate.execute(sql);
-			 */
+			// 病假
+			sql += "a236202=nvl(a236202,0)-" + Double.parseDouble(days);
 		} else if (type.equals("3")) {
 			// 婚假
 			sql += "a236203=nvl(a236203,0)-" + Double.parseDouble(days);
@@ -1143,15 +1138,24 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		}
 		// 处理加班和调休
 		else if (type.equals("0")) {
-			sql += "a236200=nvl(a236200,0)+" + Double.parseDouble(days) * 8;
+			// 处理加班时间
+			double doubleDays = Double.parseDouble(days);
+			if (doubleDays < 1) {
+				doubleDays = 0.5;
+			} else if (doubleDays < 1.5) {
+				doubleDays = 1.0;
+			} else if (doubleDays < 2) {
+				doubleDays = 1.5;
+			} else {
+				doubleDays = 2.0;
+			}
+			sql += "a236200=nvl(a236200,0)+" + doubleDays * 8;
 		} else if (type.equals("-1")) {
 			sql += "a236200=nvl(a236200,0)-" + Double.parseDouble(days) * 8;
 
 		}
-		if (!type.equals("2")) {
 			sql += " where id='" + personId + "'";
 			this.jdbcTemplate.execute(sql);
-		}
 	}
 
 	// 更新带薪假存休子集的数据,处理录入单删除的情况
@@ -1162,22 +1166,8 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			// 正常事假
 			sql += "a236201=nvl(a236201,0)+" + Double.parseDouble(days);
 		} else if (type.equals("2")) {
-			/*
-			 * // 病假 病假要处理5天的带薪病假和其他的 // 算法:统计病假，先用假条天数减去剩余的带薪病假得到数字day
-			 * 有两种可能，结果大于等于0，或者小于0 //
-			 * 算法:day大于等于0的话，说明这次请假过后，有day天需要扣钱；day小于0的话，说明这次请假过后， //
-			 * 还剩余-day的带薪病假 sql += "a236202=" + Double.parseDouble(days) +
-			 * "-a236202 where id='" + personId + "'";
-			 * this.jdbcTemplate.execute(sql); // ////day大于等于0的情况 // 将出去带薪病假的
-			 * 病假天数累加到年请假天数 sql =
-			 * "update a236 set a236201=a236201+a236202 where id='" + personId +
-			 * "' and a236202>=0"; this.jdbcTemplate.execute(sql); // 将带薪病假清0
-			 * sql = "update a236 set a236202=0 where id='" + personId +
-			 * "' and a236202>=0"; this.jdbcTemplate.execute(sql); //
-			 * ////day小于0的情况 sql =
-			 * "update a236 set a236202=0-a236202 where id='" + personId +
-			 * "' and a236202<0"; this.jdbcTemplate.execute(sql);
-			 */
+			// 病假
+			sql += "a236202=nvl(a236202,0)+" + Double.parseDouble(days);
 		} else if (type.equals("3")) {
 			// 婚假
 			sql += "a236203=nvl(a236203,0)+" + Double.parseDouble(days);
@@ -1196,15 +1186,25 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		}
 		// 处理加班和调休
 		else if (type.equals("0")) {
-			sql += "a236200=nvl(a236200,0)-" + Double.parseDouble(days) * 8;
+			// 处理加班
+			// 处理加班时间
+			double doubleDays = Double.parseDouble(days);
+			if (doubleDays < 1) {
+				doubleDays = 0.5;
+			} else if (doubleDays < 1.5) {
+				doubleDays = 1.0;
+			} else if (doubleDays < 2) {
+				doubleDays = 1.5;
+			} else {
+				doubleDays = 2.0;
+			}
+			sql += "a236200=nvl(a236200,0)-" + doubleDays * 8;
 		} else if (type.equals("-1")) {
 			sql += "a236200=nvl(a236200,0)+" + Double.parseDouble(days) * 8;
 
 		}
-		if (!type.equals("2")) {
 			sql += " where id='" + personId + "'";
 			this.jdbcTemplate.execute(sql);
-		}
 	}
 
 	/*
@@ -1276,17 +1276,21 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				leave.setStatus(AttConstants.STATUS_AUDIT_SUCCES);
 				// ////流程结束,请假单获得批准
 				// 将请假单的信息更新到--带薪假存休子集的记录
+
 				String days = String.valueOf(leave.getApplyDays());// 请假天数
 				String type = leave.getLeaveType();// 请假类型
 				String personId = leave.getPersonId();// 请假人ID
-				this.updateLeaveDays(type, days, personId);
+				if ("2".equals(type)) {
+					saveBingjia(leave);
+				} else {
+					this.updateLeaveDays(type, days, personId);
+					this.saveAttLeaveBO(leave);
+				}
 				// 如果流程未结束，添加或者更新待办事宜
 				// TODO 待补充
 			} else {
 				// insertTask(leave,taskId,currentUserId);
 			}
-			this.saveAttLeaveBO(leave);
-
 			bo.setAuditTime(CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss"));
 			bo.setLeaveId(leave.getId());
 			bo.setPersonId(currentUserId);
@@ -1361,6 +1365,16 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				String days = overtime.getApplyDays();// 加班天数
 				String type = "0";// 加班类型设置为0
 				String personId = overtime.getPersonId();// 请假人ID
+				// 处理加班时间，4-7小时作为0.5天 8-11小时算作1天 12-15小时1.5天 16-算2天。
+				// 法定节假日按照双倍
+				String day = overtime.getBeginTime();
+				if (isFeast(day, personId)) {
+					if (Double.parseDouble(days) < 1) {
+						days = "1.0";
+					} else {
+						days = "2.0";
+					}
+				}
 				this.updateLeaveDays(type, days, personId);
 
 			}
@@ -1482,6 +1496,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		this.activeapi.executeSql(sql);
 		// 调用生成考勤扣款函数 传递orgId，公休日列表，人员获取sql和年月
 		List days = DateUtil.getAllBetweenDates(beginDate, endDate);
+		days=getCommonDays(beginDate, endDate);
 		attDeduction(orgId, days, renyuansql, yearMonth);
 		// 汇总考勤扣款(分为迟到扣款(日工资*0.2*迟到天数))
 		// 旷工扣款(日工资*旷工天数)
@@ -1697,7 +1712,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			}
 			if (bo.getLeaveType().equals("5")) {
 				// 如果是产假，将临时天数存入产假列，然后将临时天数清零
-				sql = "update a240 set a240237=a240236 where a240.id='"
+				sql = "update a240 set a240237=nvl(a240237,0)+a240236 where a240.id='"
 						+ bo.getPersonId() + "'  and a240200='" + yearMonth
 						+ "'";
 				this.activeapi.executeSql(sql);
@@ -1708,7 +1723,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			}
 			if (bo.getLeaveType().equals("6")) {
 				// 如果是难产产假，将临时天数存入难产产假列，然后将临时天数清零
-				sql = "update a240 set a240238=a240236 where a240.id='"
+				sql = "update a240 set a240238=nvl(a240238,0)+a240236 where a240.id='"
 						+ bo.getPersonId() + "'  and a240200='" + yearMonth
 						+ "'";
 				this.activeapi.executeSql(sql);
@@ -1719,7 +1734,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			}
 			if (bo.getLeaveType().equals("1")) {
 				// 如果是事假，将临时天数存入事假列，然后将临时天数清零
-				sql = "update a240 set a240232=a240236 where a240.id='"
+				sql = "update a240 set a240232=nvl(a240232,0)+a240236 where a240.id='"
 						+ bo.getPersonId() + "'  and a240200='" + yearMonth
 						+ "'";
 				this.activeapi.executeSql(sql);
@@ -1730,100 +1745,50 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			}
 
 			if (bo.getLeaveType().equals("2")) {
-				// ////如果是病假，先看下天数是否大于剩余的带薪病假，是就先将带薪病假减去，然后处理剩余的天数，否就直接减去剩余天数
-				// 将临时天数字段更新为 它减去剩余带薪病假的值
-				sql = "update a240 a set a.a240236=a.a240236-( select b.a236202 from a236 b where a.id=b.id) where a.id='"
-						+ bo.getPersonId()
-						+ "'  and a.a240200='"
-						+ yearMonth
-						+ "'";
+				  //病假本分第一个月和第二个月，因为这里面可能包含带薪病假
+				String beginMonth=bo.getBeginTime().substring(0,7);
+				String nextMonth=DateUtil.getNextMonth(beginMonth);
+				if(beginMonth.compareTo(yearMonth)==0){
+					sql = "update a240 a set a.a240236=a.a240236-"+bo.getBeginMonthDays()+" where a.id='"
+							+ bo.getPersonId()
+							+ "'  and a.a240200='"
+							+ yearMonth
+							+ "'";
+				}else if(nextMonth.compareTo(yearMonth)==0){
+					sql = "update a240 a set a.a240236=a.a240236-"+bo.getNextMonthDays()+" where a.id='"
+							+ bo.getPersonId()
+							+ "'  and a.a240200='"
+							+ yearMonth
+							+ "'";
+				}
 				this.activeapi.executeSql(sql);
-				// 策略:如果现在临时天数 大于等于0 那么，带薪病假清0，然后将将临时天数放到相应的病假天数
-				// 否则，将临时天数相反数存入带薪病假
-				if (dayList.size() <= 15) {
-					// 临时天数大于0 将减去带薪病假的病假天数存入扣除30%工资的列内
+			if (dayList.size() <= 15) {
+					// 病假天数存入扣除30%工资的列内
 					sql = "update a240 a set a.a240233=a.a240236 where a.a240236>=0 and a.id='"
 							+ bo.getPersonId()
 							+ "'  and a.a240200='"
 							+ yearMonth + "'";
 					this.activeapi.executeSql(sql);
-					// 临时天数大于0 将带薪病假清零
-					sql = "update a236 b set b.a236202=0 where exists(select 1 from a240 a where a.id=b.id and a.a240236>=0 and a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth + "')";
-					this.activeapi.executeSql(sql);
-					// 临时天数小于0 将带薪病假置位临时天数的相反数
-					sql = "update a236 b set b.a236202=0-( select a.a240236 from a240 a where a.id=b.id and a.a240200='"
-							+ yearMonth
-							+ "') where exists(select 1 from a240 a where a.id=b.id and a.a240236<0 and a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth + "')";
-					this.activeapi.executeSql(sql);
-
 				} else if (dayList.size() <= 30) {
 					// 将减去带薪病假的病假天数存入扣除50%工资的列内
-					// 临时天数大于0
 					sql = "update a240 a set a.a240234=a.a240236 where a.a240236>=0 and a.id='"
 							+ bo.getPersonId()
 							+ "'  and a.a240200='"
 							+ yearMonth + "'";
 					this.activeapi.executeSql(sql);
-					sql = "update a236 b set b.a236202=0 where exists(select 1 from a240 a where a.id=b.id and a.a240236>=0 and a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth + "')";
-					this.activeapi.executeSql(sql);
-					// 临时天数小于0 将带薪病假置位临时天数的相反数
-					sql = "update a236 b set b.a236202=0-( select a.a240236 from a240 a where a.id=b.id and a.a240200='"
-							+ yearMonth
-							+ "') where exists(select 1 from a240 a where a.id=b.id and a.a240236<0 and a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth + "')";
-					this.activeapi.executeSql(sql);
 				} else if (dayList.size() <= 60) {
 					// 将减去带薪病假的病假天数存入扣除80%工资的列内
-					// 临时天数大于0
 					sql = "update a240 a set a.a240235=a.a240236 where a.a240236>=0 and a.id='"
 							+ bo.getPersonId()
 							+ "'  and a.a240200='"
 							+ yearMonth + "'";
 					this.activeapi.executeSql(sql);
-					sql = "update a236 b set b.a236202=0 where exists(select 1 from a240 a where a.id=b.id and a.a240236>=0 and a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth + "')";
-					this.activeapi.executeSql(sql);
-					// 临时天数小于0 将带薪病假置位临时天数的相反数
-					sql = "update a236 b set b.a236202=0-( select a.a240236 from a240 a where a.id=b.id and a.a240200='"
-							+ yearMonth
-							+ "') where exists(select 1 from a240 a where a.id=b.id and a.a240236<0 and a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth + "')";
-					this.activeapi.executeSql(sql);
 				} else {
 					// 大于60天的病假，停发工资，扣除100%工资
-					// 临时天数大于0
 					sql = "update a240 a set a.a240239=a.a240236 where a.a240236>=0 and a.id='"
 							+ bo.getPersonId()
 							+ "'  and a.a240200='"
 							+ yearMonth + "'";
-					this.activeapi.executeSql(sql);
-					sql = "update a236 b set b.a236202=0 where exists(select 1 from a240 a where a.id=b.id and a.a240236>=0 and a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth + "')";
-					this.activeapi.executeSql(sql);
-					// 临时天数小于0 将带薪病假置位临时天数的相反数
-					sql = "update a236 b set b.a236202=0-( select a.a240236 from a240 a where a.id=b.id and a.a240200='"
-							+ yearMonth
-							+ "') where exists(select 1 from a240 a where a.id=b.id and a.a240236<0 and a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth + "')";
 					this.activeapi.executeSql(sql);
 				}
 				sql = "update a240 set a240236=0 where a240.id='"
@@ -2434,7 +2399,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public double getRealDays(String userId, String beginTime, String endTime)
 			throws SysException {
 		// 获得请假条的开始和结束时间的小时数
-		if (beginTime.compareTo(endTime) >= 0) {
+		if (beginTime.compareTo(endTime) > 0) {
 			return 0;
 		}
 		String beginDayHh = "";
@@ -2701,13 +2666,17 @@ public class AttBusiServiceImpl implements IAttBusiService {
 					this.attBusiDAO.deleteBo(AttLogBO.class, log.getLogId());
 				}
 			}
-			AttLeaveBO bo = this.findAttLeaveBOById(id);
-			if (bo.getProcessId() != null) {
-				activitiToolService.deleteProcessInstance(bo.getProcessId());
+			AttLeaveBO leave = this.findAttLeaveBOById(id);
+			if (leave.getProcessId() != null) {
+				activitiToolService.deleteProcessInstance(leave.getProcessId());
 			}
-			if (bo.getStatus().equals("2")) {
-				// 如果是批准的假条，清除累加的请假天数 如果需要，要恢复带薪假的天数
-				this.rollBackLeave(bo);
+			if("2".equals(leave.getLeaveType())){
+				String days=String.valueOf(Double.parseDouble(leave.getBeginMonthDays())+Double.parseDouble(leave.getNextMonthDays()));
+				this.rollbackLeaveDays(leave.getLeaveType(),
+						days, leave.getPersonId());
+			}else{
+				this.rollbackLeaveDays(leave.getLeaveType(),
+						String.valueOf(leave.getApplyDays()), leave.getPersonId());
 			}
 			this.attBusiDAO.deleteBo(AttLeaveBO.class, id);
 		} catch (Exception e) {
@@ -2787,8 +2756,14 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public void deleteInputLeave(String operItemID) throws SysException {
 		AttLeaveBO leave = (AttLeaveBO) this.findBOById(AttLeaveBO.class,
 				operItemID);
-		this.rollbackLeaveDays(leave.getLeaveType(),
-				String.valueOf(leave.getApplyDays()), leave.getPersonId());
+		if("2".equals(leave.getLeaveType())){
+			String days=String.valueOf(Double.parseDouble(leave.getBeginMonthDays())+Double.parseDouble(leave.getNextMonthDays()));
+			this.rollbackLeaveDays(leave.getLeaveType(),
+					days, leave.getPersonId());
+		}else{
+			this.rollbackLeaveDays(leave.getLeaveType(),
+					String.valueOf(leave.getApplyDays()), leave.getPersonId());
+		}
 		this.deleteBO(AttLeaveBO.class, operItemID);
 	}
 
@@ -2796,8 +2771,17 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public void deleteInputOvertime(String operItemID) throws SysException {
 		AttOvertimeBO overtime = (AttOvertimeBO) this.findBOById(
 				AttOvertimeBO.class, operItemID);
-		this.rollbackLeaveDays("0", overtime.getApplyDays(),
-				overtime.getPersonId());
+		String days = overtime.getApplyDays();
+		// 是节假日就加班翻倍。4-7小时按照1天算，8小时以上按照2天
+		if (isFeast(overtime.getBeginTime(), overtime.getPersonId())) {
+			if (Double.parseDouble(days) < 1) {
+				days = "1.0";
+			}
+		} else {
+			days = "2.0";
+		}
+		this.rollbackLeaveDays("0", days, overtime.getPersonId());
+
 		this.deleteBO(AttOvertimeBO.class, operItemID);
 	}
 
@@ -3081,37 +3065,8 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 		// 步骤五////////考虑公休日 ,节假日(不同人节假日不同)和单位调休日
 		// 首先获得时间段内的公休日 先算默认周六周日休息的
-		List<AttRestOfWeekBO> restOfWeekBOList = this.attrestweekDAO
-				.findAll("AttRestOfWeekBO");
-		String dayofweek = "";
-		if (restOfWeekBOList.size() > 0) {
-			AttRestOfWeekBO rwb = (AttRestOfWeekBO) restOfWeekBOList.get(0);
-			if ("1".equals(rwb.getMon())) {
-				dayofweek += "1,";
-			}
-			if ("1".equals(rwb.getTues())) {
-				dayofweek += "2,";
-			}
-			if ("1".equals(rwb.getWed())) {
-				dayofweek += "3,";
-			}
-			if ("1".equals(rwb.getThur())) {
-				dayofweek += "4,";
-			}
-			if ("1".equals(rwb.getFri())) {
-				dayofweek += "5,";
-			}
-			if ("1".equals(rwb.getSat())) {
-				dayofweek += "6,";
-			}
-			if ("1".equals(rwb.getSun())) {
-				dayofweek += "7,";
-			}
-		}
-		List days = DateUtil.getAllBetweenDates(beginDate, endDate);
-		weekDays = DateUtil.getDayByWeek(dayofweek, beginDate, endDate,
-				"01-01", "12-30");
-		days.removeAll(weekDays);// 所有天减去工作的周一到周五
+		
+		List days=getCommonDays(beginDate, endDate);
 		// 构造条件函数
 		String inSql = "";
 		if (days.size() > 0) {
@@ -3126,10 +3081,10 @@ public class AttBusiServiceImpl implements IAttBusiService {
 					inSql += ") ";
 				}
 			}
-		}else{
-			inSql=" in ('') ";
+		} else {
+			inSql = " in ('') ";
 		}
-		
+
 		sql = "update att_sign_detail s set ignore='1' where (classtype='0' or classtype='2') and  day "
 				+ inSql;
 		this.activeapi.executeSql(sql);
@@ -3212,7 +3167,8 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 		return null;
 	}
-    @Override
+
+	@Override
 	// 根据考勤临时统计表的数据，编制发给每个人的信息内容
 	public void updateAttTempDate(String tempBeginDate, String tempEndDate)
 			throws SysException {
@@ -3225,7 +3181,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		this.activeapi.executeSql(sql);
 		sql = "update att_sign_detail a set a.note=(nvl(a.note,'')||','||a.day||'下午:'||'旷工') where a.away2>0 and a.classtype=2 and ignore='0'";
 		this.activeapi.executeSql(sql);
-		
+
 		sql = "update att_sign_detail a set a.note=(nvl(a.note,'')||','||a.day||'早上:'||'迟到') where a.later1>0 and a.classtype=2 and ignore='0'";
 		this.activeapi.executeSql(sql);
 		sql = "update att_sign_detail a set a.note=(nvl(a.note,'')||','||a.day||'下午:'||'迟到') where a.later2>0 and a.classtype=2 and ignore='0'";
@@ -3235,39 +3191,177 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		this.activeapi.executeSql(sql);
 		sql = "update att_sign_detail a set a.note=(nvl(a.note,'')||','||a.day||':'||'旷工'||to_number(a.away)||'天') where a.away>0 and a.classtype!=2 and ignore='0'";
 		this.activeapi.executeSql(sql);
-		//统计结果，将结果放入员工考勤临时信息表
-		//首先清空上次统计的数据
-		sql="delete from a244 a"; 
+		// 统计结果，将结果放入员工考勤临时信息表
+		// 首先清空上次统计的数据
+		sql = "delete from a244 a";
 		this.activeapi.executeSql(sql);
-		//插入新数据
-		sql="insert into a244 select  t.userid||sum(rownum),t.userid,'00901','"+tempBeginDate+"','"+tempEndDate+"',wmsys.wm_concat(t.note) from att_sign_detail t group by t.userid";
+		// 插入新数据
+		sql = "insert into a244 select  t.userid||sum(rownum),t.userid,'00901','"
+				+ tempBeginDate
+				+ "','"
+				+ tempEndDate
+				+ "',wmsys.wm_concat(t.note) from att_sign_detail t group by t.userid";
 		this.activeapi.executeSql(sql);
-		//清空没有迟到和旷工记录的员工
-		sql="delete from a244 a where length(trim(a244202)) is null";
+		// 清空没有迟到和旷工记录的员工
+		sql = "delete from a244 a where length(trim(a244202)) is null";
 		this.activeapi.executeSql(sql);
 	}
-    
-    @Override
-    public List getAttTempDataBO(PageVO pageVO, String orgID, String nameStr,
-    		String personType) throws SysException {
-    	// return this.jdbcTemplate.queryForList("select * from a236");
-    	return this.attBusiDAO.getAttTempDataBO(pageVO, orgID, nameStr, personType);
-    }
 
-    @Override
-	public void saveClassDetail(List<AttClassDetailBO> list, String[]details) throws SysException {
+	@Override
+	public List getAttTempDataBO(PageVO pageVO, String orgID, String nameStr,
+			String personType) throws SysException {
+		// return this.jdbcTemplate.queryForList("select * from a236");
+		return this.attBusiDAO.getAttTempDataBO(pageVO, orgID, nameStr,
+				personType);
+	}
+
+	@Override
+	public void saveClassDetail(List<AttClassDetailBO> list, String[] details)
+			throws SysException {
 		Map m = new HashMap();
-		for(int i=0;i<details.length;i++){
-			String[]d=details[i].split("-");
+		for (int i = 0; i < details.length; i++) {
+			String[] d = details[i].split("-");
 			m.put(d[0], d[1]);
 		}
-		for(AttClassDetailBO bo : list){
-			if(m.containsKey(bo.getItemID())){
+		for (AttClassDetailBO bo : list) {
+			if (m.containsKey(bo.getItemID())) {
 				bo.setItemTime(m.get(bo.getItemID()).toString());
-			}else{
+			} else {
 				bo.setItemTime(null);
 			}
 			this.attBusiDAO.saveOrUpdateBo(bo);
 		}
+	}
+
+	// 判断某人某天是不是法定假日(人员分教师，辅导员，其他等，假期不同)
+	@Override
+	public boolean isFeast(String date, String personId) throws SysException {
+		boolean b = false;
+		List leaveList = this.attfeastDAO.getAllAttFeast("1651");
+		// 获取人员类型
+		String sql = "select a.a001218 as postType from a001 a where a.id='"
+				+ personId + "'";
+		Map map = this.jdbcTemplate.queryForMap(sql);
+		String type = map.get("postType").toString();
+		for (int i = 0; i < leaveList.size(); i++) {
+			// 所有节假日
+			AttFeastBO feast = (AttFeastBO) leaveList.get(i);
+			String beginDate = feast.getBeginDate();
+			String endDate = feast.getEndDate();
+			// 如果这个人在假期对应的人员类型里面
+			String types = feast.getPostLeiXing();
+			if (type == null) {
+				type = "";
+			}
+			if (types == null) {
+				types = "";
+			}
+			if (types.indexOf(type) >= 0) {
+				if (feast.getYearType().equals("-1")) {
+					// 开始和结束时间不带带年份的节假日，比如暑假，寒假等每年都放的假日
+					// 先将开始结束时间加上年份
+					// 获得本年份
+					String y = date.substring(0, 4);
+					// 获得下一年份
+					String nexty = String.valueOf((Integer.parseInt(y) + 1));
+					if (feast.getBeginDate().compareTo(feast.getEndDate()) <= 0) {
+						// 非跨年假期
+						beginDate = y + "-" + feast.getBeginDate();
+						endDate = y + "-" + feast.getEndDate();
+					} else {
+						// 跨年假期
+						beginDate = y + "-" + feast.getBeginDate();
+						endDate = nexty + "-" + feast.getEndDate();// 结束时间年份+1
+					}
+				}
+				// 判断日期是不是在这个假期内
+				if (date.compareTo(beginDate) >= 0
+						&& date.compareTo(endDate) <= 0) {
+					b = true;
+				}
+			}
+		}
+		return b;
+	}
+	@Override
+	public void saveBingjia(AttLeaveBO leave) throws SysException{
+		// ////处理病假
+		String days = String.valueOf(leave.getApplyDays());// 请假天数
+		String type = leave.getLeaveType();// 请假类型
+		String personId = leave.getPersonId();// 请假人ID
+		// 获取假条申请人剩余的带薪病假天数
+		List list = getDays(personId);
+		Map dayMap = (Map) list.get(0);
+		String leftDays = (String) dayMap.get("a236202");
+		if (Double.parseDouble(leftDays) > 0) {
+			// 剩余天数不小于假条天数
+			if (Double.parseDouble(leftDays) >= Double
+					.parseDouble(days)) {
+				this.updateLeaveDays(type, days, personId);
+				leave.setBeginMonthDays(days);
+			} else { // 剩余天数小于假条天数
+				this.updateLeaveDays(type, leftDays, personId);
+				leave.setBeginMonthDays(leftDays);
+			}
+			// ///处理病假跨月的情况
+			if ((leave.getBeginTime().substring(0, 7))
+					.compareTo(leave.getEndTime().substring(0, 7)) != 0) {
+				days = leave.getBeginMonthDays();
+				String lastDay = DateUtil.getEndDayByMonth(leave
+						.getBeginTime().substring(0, 7));
+				double beginDays = getRealDays(personId,
+						leave.getBeginTime(), leave.getBeginTime()
+								.substring(0, 7) + "-" + lastDay+" 23:59");
+
+				if(beginDays<Double.parseDouble(days)){
+					leave.setBeginMonthDays(String.valueOf(beginDays));
+					leave.setNextMonthDays(String.valueOf(Double
+							.parseDouble(days) - beginDays));
+				}else{
+					leave.setNextMonthDays("0");
+				}
+			}else{
+				leave.setNextMonthDays("0");
+			}
+		}else{
+			leave.setBeginMonthDays("0");
+			leave.setNextMonthDays("0");
+		}
+     this.attBusiDAO.saveOrUpdateBo(leave);
+	}
+	//获得一段时间内的公休日
+	public List getCommonDays(String beginDate,String endDate){
+		List<AttRestOfWeekBO> restOfWeekBOList = this.attrestweekDAO
+				.findAll("AttRestOfWeekBO");
+		String dayofweek = "";
+		if (restOfWeekBOList.size() > 0) {
+			AttRestOfWeekBO rwb = (AttRestOfWeekBO) restOfWeekBOList.get(0);
+			if ("1".equals(rwb.getMon())) {
+				dayofweek += "1,";
+			}
+			if ("1".equals(rwb.getTues())) {
+				dayofweek += "2,";
+			}
+			if ("1".equals(rwb.getWed())) {
+				dayofweek += "3,";
+			}
+			if ("1".equals(rwb.getThur())) {
+				dayofweek += "4,";
+			}
+			if ("1".equals(rwb.getFri())) {
+				dayofweek += "5,";
+			}
+			if ("1".equals(rwb.getSat())) {
+				dayofweek += "6,";
+			}
+			if ("1".equals(rwb.getSun())) {
+				dayofweek += "7,";
+			}
+		}
+		List days = DateUtil.getAllBetweenDates(beginDate, endDate);
+		List weekDays = DateUtil.getDayByWeek(dayofweek, beginDate, endDate,
+				"01-01", "12-30");
+		days.removeAll(weekDays);// 所有天减去工作的周一到周五
+		return days;
 	}
 }
