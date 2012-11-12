@@ -1,23 +1,23 @@
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ include file="../../include/taglib.jsp" %>
-
 <%
     response.setHeader("progma", "no-cache");
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
-  
+  <script type="text/javascript" src="../../js/getnowdate.js"></script>
   <script type="text/javascript">
   	function forsave(){
   		var beginDate= document.all("form1:beginTime").value;
   		var endDate= document.all("form1:endTime").value;
   		var applydays= document.all("form1:applydays").value;
   		
+  		var str = getNowDate();
   		if(beginDate==null || beginDate==""){
   			alert("请选择开始日期");
   			return false;
-  		}else if(endDate==null || endDate==""){
-  			alert("请选择结束日期");
+  		}else if(beginDate<str){
+  			alert("开始时间小于当天，根据考勤制度，只能申请当天以后的。如果您要补录单子，请联系人力资源处。");
   			return false;
   		}else if(beginDate>endDate){
   			alert("结束日期大于开始日期");

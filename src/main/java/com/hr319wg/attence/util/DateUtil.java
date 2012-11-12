@@ -188,7 +188,7 @@ public class DateUtil {
 				.format(c.getTime());
 		return dayAfter;
 	}
-
+//统计当月最后一共几天
 	public static String getEndDayByMonth(String datevalue) {
 		int year = Integer.parseInt(datevalue.substring(0, 4));
 		String month = datevalue.substring(5, 7);
@@ -448,5 +448,28 @@ public class DateUtil {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	/**
+	 * @param thisMonth 格式是XXXX-XX
+	 * @return
+	 */
+	public static String getNextMonth(String thisMonth){
+		String nextYear="";
+		String nextMonth="";
+		int year=Integer.parseInt(thisMonth.substring(0,4));
+		int month=Integer.parseInt(thisMonth.substring(5,7));
+	    if(month==12){
+	    	nextYear=String.valueOf(year+1);
+	    	nextMonth="01";
+	    }else{
+	    	nextYear=String.valueOf(year);
+	    	month++;
+	    	if(month<10){
+	    		nextMonth="0"+month;
+	    	}else{
+	    		nextMonth=""+month;
+	    	}
+	    }
+		return nextMonth;
 	}
 }

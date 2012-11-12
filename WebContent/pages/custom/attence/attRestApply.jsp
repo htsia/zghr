@@ -13,11 +13,21 @@
   		var endDate= document.all("form1:endTime").value;
   		var applydays= document.all("form1:applydays").value;
   		var restdays=document.all("form1:leaveday0").value
+  		var date = new Date(); 
+  		var d=date.getDate();
+  		var m=date.getMonth()+1;
+  		if(d<10){
+  			d="0"+d;
+  		}
+  		if(m<10){
+  			m="0"+m;
+  		}
+  		var str = date.getFullYear()+"-"+m+"-"+d;
   		if(beginDate==null || beginDate==""){
   			alert("请选择开始日期");
   			return false;
-  		}else if(endDate==null || endDate==""){
-  			alert("请选择结束日期");
+  		}else if(beginDate<str){
+  			alert("开始时间小于当天，根据考勤制度，只能申请当天以后的。如果您要补录单子，请联系人力资源处。");
   			return false;
   		}else if(beginDate>endDate){
   			alert("结束日期大于开始日期");

@@ -204,20 +204,23 @@ public interface IAttBusiService {
 	public abstract String applyOvertime(String userId, String id) throws SysException;
 	public abstract String applyRest(String userId, String id) throws SysException;
 	public abstract String applyOut(String userId, String id) throws SysException;
-	List getOvertimePayBO(PageVO pageVO, String orgID, String nameStr,
+	public List getOvertimePayBO(PageVO pageVO, String orgID, String nameStr,
 			String personType,String yearMonth) throws SysException;
-	List getYearBO(PageVO pageVO, String orgID, String nameStr,
+	public List getYearBO(PageVO pageVO, String orgID, String nameStr,
 			String personType) throws SysException;
 	public void rollbackLeaveDays(String string, String applyDays,
 			String personId);
 	public void deleteInputLeave(String operItemID)throws SysException;
-	void deleteInputOvertime(String operItemID) throws SysException;
-	void deleteInputRest(String operItemID) throws SysException;
-	String updateCalcAttTempData(String orgId, String beginDate, String endDate)
+	public void deleteInputOvertime(String operItemID) throws SysException;
+	public void deleteInputRest(String operItemID) throws SysException;
+	public String updateCalcAttTempData(String orgId, String beginDate, String endDate)
 			throws SysException, ParseException;
-	void updateAttTempDate(String tempBeginDate, String tempEndDate)
+	public void updateAttTempDate(String tempBeginDate, String tempEndDate)
 			throws SysException;
-	List getAttTempDataBO(PageVO pageVO, String orgID, String nameStr,
+	public List getAttTempDataBO(PageVO pageVO, String orgID, String nameStr,
 			String personType) throws SysException;
+	public boolean isFeast(String day, String personId) throws SysException;
+
+	public void saveBingjia(AttLeaveBO leave) throws SysException;
 
 }

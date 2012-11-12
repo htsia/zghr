@@ -28,8 +28,8 @@ String inself = request.getParameter("inself");
             <td class="td_title"><img src="/images/tips.gif">øº«⁄π‹¿Ì ->«ÎºŸ≤È—Ø</td>
         </tr>
     </table>
-    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-        <tr>
+    <table width="100%" height="100%"  border="0" cellpadding="0" cellspacing="0" >
+        <tr height="100%" >
             <td id="showTree" width="210">
 	            <iframe name="tree" height="100%"  frameborder="0" framespacing="0" scrolling="auto" width="100%"
 	                   src="/pages/common/ShowOrgTree.jsp?rootId=<%=rootid%>"></iframe>

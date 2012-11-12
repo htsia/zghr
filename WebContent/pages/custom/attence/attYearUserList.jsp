@@ -93,10 +93,6 @@
             <c:facet name="header"><h:outputText value="出勤率"/></c:facet>
             <h:outputText value="#{list.attRate}"/>
         </h:column>
-        <h:column>
-            <c:facet name="header"><h:outputText value="出勤奖金"/></c:facet>
-            <h:outputText value="#{list.attBonus}"/>
-        </h:column>
     </h:dataTable>
     <c:verbatim>
 	</div>
