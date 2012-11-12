@@ -453,7 +453,7 @@ public class DateUtil {
 	 * @param thisMonth ∏Ò Ω «XXXX-XX
 	 * @return
 	 */
-	public String getNextMonth(String thisMonth){
+	public static String getNextMonth(String thisMonth){
 		String nextYear="";
 		String nextMonth="";
 		int year=Integer.parseInt(thisMonth.substring(0,4));

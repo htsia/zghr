@@ -68,7 +68,7 @@
 			alert("请选择开始日期");
 			return false;
 		}else if(beginDate<str){
-  			alert("开始时间小于当天");
+  			alert("开始时间不能小于当天");
   			return false;
   		} else if (endDate == null || endDate == "") {
 			alert("请选择结束日期");

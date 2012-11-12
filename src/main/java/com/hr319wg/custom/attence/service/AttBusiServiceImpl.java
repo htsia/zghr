@@ -1747,7 +1747,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			if (bo.getLeaveType().equals("2")) {
 				  //病假本分第一个月和第二个月，因为这里面可能包含带薪病假
 				String beginMonth=bo.getBeginTime().substring(0,7);
-				String nextMonth=DateUtil.getNextDate(beginMonth);
+				String nextMonth=DateUtil.getNextMonth(beginMonth);
 				if(beginMonth.compareTo(yearMonth)==0){
 					sql = "update a240 a set a.a240236=a.a240236-"+bo.getBeginMonthDays()+" where a.id='"
 							+ bo.getPersonId()
@@ -3313,10 +3313,13 @@ public class AttBusiServiceImpl implements IAttBusiService {
 						leave.getBeginTime(), leave.getBeginTime()
 								.substring(0, 7) + "-" + lastDay+" 23:59");
 
-				leave.setBeginMonthDays(String.valueOf(beginDays));
-				leave.setNextMonthDays(String.valueOf(Double
-						.parseDouble(days) - beginDays));
-
+				if(beginDays<Double.parseDouble(days)){
+					leave.setBeginMonthDays(String.valueOf(beginDays));
+					leave.setNextMonthDays(String.valueOf(Double
+							.parseDouble(days) - beginDays));
+				}else{
+					leave.setNextMonthDays("0");
+				}
 			}else{
 				leave.setNextMonthDays("0");
 			}
