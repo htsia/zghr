@@ -26,7 +26,7 @@
 <table width="98%" border="0" cellpadding="0" cellspacing="0" align="center">
     <tr>
         <td  id="showTree" width="25%">
-                    <iframe name="tree" height="100%"  frameborder="0"  scrolling="auto" width="100%"
+                    <iframe name="tree" height="400"  frameborder="0"  scrolling="auto" width="100%"
                              src="/pages/lead/personview/DeptPersonTree.jsp?filterSQL=p.personType in ('<%=Constants.IN_SERVICE_TYPE.replaceAll(",","','")%>')"></iframe>
         </td>
 

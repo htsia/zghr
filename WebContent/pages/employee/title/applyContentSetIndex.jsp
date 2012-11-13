@@ -75,7 +75,7 @@
                     <tr><td height="8px"></td></tr>
 
                     <tr> <td valign="top">
-                            <iframe name="tree" height="100%"  frameborder="1"  scrolling="auto" width="100%"
+                            <iframe name="tree" height="400"  frameborder="1"  scrolling="auto" width="100%"
                                     src="/pages/employee/title/applyContentDir.jsp"></iframe>
                     </td></tr>
                 </table>

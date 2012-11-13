@@ -95,7 +95,7 @@
                 <table width="100%" border=0 cellpadding="0" cellspacing="0" valign="top">
                     <tr>
                         <td>
-                            <iframe name="tree" height="100%"  frameborder="0"  scrolling="yes" width="100%"
+                            <iframe name="tree" height="400"  frameborder="0"  scrolling="yes" width="100%"
                                     src="/pages/insurace/base/PersonWageInfoSetTree.jsp"></iframe>
                         </td>
                     </tr>

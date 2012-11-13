@@ -66,7 +66,7 @@
 	        	</tr>
                 <tr>
                     <td valign="top">
-                        <iframe name="tree" height="100%"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
+                        <iframe name="tree" height="400"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
                                  height="465" src="/pages/doc/SysPersonTreeLeader.jsp?filterSQL=p.personCancel='00900'%20and%20p.partyCancel='00900'%20and p.retireCancel='00900'%20and%20<%=str%>">
                                  "></iframe>
                     </td>

@@ -75,7 +75,7 @@
                         String tempId = (String)session.getAttribute("tempId");
                     %>
                     <tr> <td valign="top">
-                            <iframe name="tree" height="100%"  frameborder="1" framespacing="0" scrolling="yes" width="100%"
+                            <iframe name="tree" height="400"  frameborder="1" framespacing="0" scrolling="yes" width="100%"
                                     src="/pages/xys/eva/Set360TempSetTree.jsp?tempId=<%=tempId%>"></iframe>
                     </td></tr>
                 </table>

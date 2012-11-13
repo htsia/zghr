@@ -11,12 +11,14 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
-import com.hr319wg.custom.mailServices.web.EhrMailServicesBackingBean;
+import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.emp.pojo.bo.EmpChangeTypeConfigBO;
 import com.hr319wg.emp.pojo.bo.EmpReduceBO;
@@ -413,6 +415,9 @@ public class PersonListBackingBean extends BaseBackingBean
             rb.setA016010des(CodeUtil.interpertCode("0200", rb.getA016010()));
           }
           this.reduceList.add(rb);
+          String sql = "insert into emp_audit_info (id,changedate,changetype) values('"+pids[i]+"','"+CommonFuns.getSysDate("yyyy-MM-dd")+"','2')";
+          JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
+          jdbcTemplate.execute(sql);
         }
       }
     }
@@ -673,7 +678,6 @@ public class PersonListBackingBean extends BaseBackingBean
 
       String[] personids = this.reducebo.getPersID().split(",");
       this.name = "";
-      EhrMailServicesBackingBean backingBean = new EhrMailServicesBackingBean();
       for (int i = 0; i < personids.length; i++) {
         WFTransaction trans = new WFTransaction();
         trans.setUser(super.getUserInfo());
@@ -692,8 +696,9 @@ public class PersonListBackingBean extends BaseBackingBean
         trans.getParaHash().put("NAME", pb.getName());
         trans.getParaHash().put("RESULT", "Í¨¹ýÉóÅú");
         this.wfservice.processTrans(trans);
-        
-    	backingBean.userLeaveOffice(personids[i]);
+        String sql = "insert into emp_audit_info (id,changedate,changetype) values('"+personids[i]+"','"+CommonFuns.getSysDate("yyyy-MM-dd")+"','2')";
+        JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
+        jdbcTemplate.execute(sql);
       }
 
       if (this.autoMessage) {
@@ -1644,7 +1649,6 @@ public class PersonListBackingBean extends BaseBackingBean
   }
 
   public String saveAudit() {
-	EhrMailServicesBackingBean backingBean = new EhrMailServicesBackingBean();
     try {
       String name = "";
       String[] ids = getServletRequest().getParameter("pids").split(",");
@@ -1662,7 +1666,9 @@ public class PersonListBackingBean extends BaseBackingBean
               this.wagesetpersonucc.batchAdd(super.getUserInfo().getUserId(), set, pids);
             }
           }
-          backingBean.userAdd(ids[i]);
+          String sql = "insert into emp_audit_info (id,changedate,changetype) values('"+ids[i]+"','"+CommonFuns.getSysDate("yyyy-MM-dd")+"','1')";
+          JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
+          jdbcTemplate.execute(sql);
         }
         SysCache.setPerson(ids[i], 2);
         PersonBO pb = SysCacheTool.findPersonById(ids[i]);

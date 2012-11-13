@@ -147,26 +147,26 @@ public class ClassWageBackingBean extends BaseBackingBean {
 
 	public String first() {
 		mypage.setCurrentPage(1);
-		return "";
+		return null;
 	}
 
 	public String pre() {
 		if (mypage.getCurrentPage() > 1) {
 			mypage.setCurrentPage(mypage.getCurrentPage() - 1);
 		}
-		return "";
+		return null;
 	}
 
 	public String next() {
 		if (mypage.getCurrentPage() < mypage.getTotalPage()) {
 			mypage.setCurrentPage(mypage.getCurrentPage() + 1);
 		}
-		return "";
+		return null;
 	}
 
 	public String last() {
 		mypage.setCurrentPage(mypage.getTotalPage());
-		return "";
+		return null;
 	}
 	//Ò³Ãæ³õÊ¼»¯
 	public String getPageInit() {		
@@ -250,6 +250,7 @@ public class ClassWageBackingBean extends BaseBackingBean {
 							bo.setUserID(p.getPersonId());
 							bo.setClassNum(String.valueOf(classNum));
 							bo.setYear(CommonFuns.getSysDate("yyyy"));
+							bo.setCreateDate(CommonFuns.getSysDate("yyyy-MM-dd"));
 							this.wageDataService.saveOrUpdateObject(bo);
 							success++;
 						}catch (Exception e) {

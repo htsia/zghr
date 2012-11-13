@@ -55,7 +55,7 @@ response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 
 	</tr>
             <tr>
-				<td valign="top"><iframe name="tree" height="100%"  frameborder="0"
+				<td valign="top"><iframe name="tree" height="400"  frameborder="0"
 					framespacing="0" scrolling="yes" width="100%" height="465"
 					src="/pages/doc/DeptLeaderTree.jsp?filterSQL=<%=request.getParameter("filterSQL")%>
                                  "></iframe>

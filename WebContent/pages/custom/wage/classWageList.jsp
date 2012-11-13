@@ -104,7 +104,7 @@
 		 <x:dataTable value="#{classWageBB.list}"
 			headerClass="td_top" rowIndexVar="index" var="list" id="dateList"
 			styleClass="table03" border="1" width="98%"
-			columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center">
+			columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center80,td_middle_center">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="姓名" />
@@ -182,6 +182,12 @@
 					<h:outputText value="录入人" />
 				</f:facet>
 				<h:outputText value="#{list.createUserID}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="录入时间" />
+				</f:facet>
+				<h:outputText value="#{list.createDate}"></h:outputText>
 			</h:column>
 			<h:column>
 				<f:facet name="header">

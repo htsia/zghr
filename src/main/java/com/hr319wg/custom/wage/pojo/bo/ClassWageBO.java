@@ -5,6 +5,7 @@ public class ClassWageBO {
 	private String subID;
 	private String userID;
 	private String createUserID;
+	private String createDate;
 	private String classNum;
 	private String wage;
 	private String reduce;
@@ -21,6 +22,12 @@ public class ClassWageBO {
 	private String xueli;
 	private String level2;
 	
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
 	public String getLevel2() {
 		return level2;
 	}

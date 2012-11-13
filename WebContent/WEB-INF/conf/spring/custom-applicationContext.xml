@@ -7,11 +7,11 @@
 <!--     每天晚11点定时计算年龄校龄 -->
     <bean name="myjob" class="org.springframework.scheduling.quartz.JobDetailBean">
 	    <property name="jobClass">
-	         <value>com.hr319wg.attence.util.CommonDataUtil</value>
+	         <value>com.hr319wg.custom.util.QuartzUtil</value>
 	    </property>
 	    <property name="jobDataAsMap">
 	         <map>
-	             <entry key="activePageAPI" value-ref="sys_activePageApi"/>
+	             <entry key="jdbcTemplate" value-ref="jdbcTemplate"/>
 	         </map>
 	    </property>
 	</bean>

@@ -35,7 +35,7 @@
 		<td class="table01" id="showTree" width="170">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
-				<td width="200" height="410" valign="top"><iframe name="tree" height="100%" 
+				<td width="200" height="410" valign="top"><iframe name="tree" height="400" 
 					frameborder="0" framespacing="0" scrolling="no" width="100%"
 					height="420" src="/pages/crm/customer/CustomerFunction.jsp"></iframe>
 				</td>

@@ -24,7 +24,7 @@
 <table width="100%" border="0" cellpadding="2" cellspacing="0" class="table03">
     <tr>
         <td class="table01" id="showTree" width="200">
-                    <iframe name="tree" height="100%"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
+                    <iframe name="tree" height="400"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
                             height="465" src="/pages/common/ShowOrgTree.jsp?rootId=<%=rootId%>"></iframe>
         </td>
 

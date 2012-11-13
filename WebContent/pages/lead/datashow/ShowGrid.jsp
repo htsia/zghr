@@ -47,7 +47,7 @@
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td align="center" valign="top" class="explorer" id="showTree" width="210">
-                        <iframe name="tree" height="100%"  frameborder="0"  scrolling="yes" width="100%"
+                        <iframe name="tree" height="400"  frameborder="0"  scrolling="yes" width="100%"
                                             src="/pages/lead/datashow/GridResourceTree.jsp"></iframe>
                     </td>
 

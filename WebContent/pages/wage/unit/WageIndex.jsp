@@ -82,7 +82,7 @@
 <table width="100%" id="mainTable" height="98%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td align="center" valign="top" class="explorer" id="showTree" width="250">
-             <iframe name="tree" height="100%"  frameborder="0"  scrolling="auto" width="100%"     src="/pages/wage/unit/UnitTree.jsp">
+             <iframe name="tree" height="400"  frameborder="0"  scrolling="auto" width="100%"     src="/pages/wage/unit/UnitTree.jsp">
              </iframe>
         </td>
 

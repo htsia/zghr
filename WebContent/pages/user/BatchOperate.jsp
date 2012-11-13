@@ -20,7 +20,7 @@
    <table width="100%" border="0" cellspacing="2" cellpadding="0">
     <tr>
         <td width="300">
-            <iframe name="tree" height="100%"  frameborder="0"  scrolling="auto" width="100%"
+            <iframe name="tree" height="400"  frameborder="0"  scrolling="auto" width="100%"
                               src="/pages/user/BatchOperateTree.jsp"></iframe>
         </td>
 

@@ -194,7 +194,7 @@
                  <input value="²éÑ¯" class="button01" onclick="doQuery();" type="button">
                  <input value="ä¯ÀÀ" class="button01" onclick="doNavigate();" type="button">
                  <br>
-                 <iframe name="tree" height="100%"  style="height:100%;width:100%" src="/pages/ShowSelfOperateTree.jsp"></iframe>
+                 <iframe name="tree" height="400"  style="height:100%;width:100%" src="/pages/ShowSelfOperateTree.jsp"></iframe>
             </td>
             <td width="10" class="ctrlbar" valign="middle">
                 <img id=ctrlBnt src="/images/button_1.gif" onclick="ctrlbar();">

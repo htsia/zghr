@@ -138,7 +138,7 @@
           <tr>
               <%if (!"0301".equals(moduleId)){%>
               <td id="showTree" align="left" width=200>
-                         <iframe name="tree" height="100%"  style="height:100%;width:100%" src="/pages/ShowSelfOperateTree.jsp?Root=JGJLZZ"></iframe>
+                         <iframe name="tree" height="400"  style="height:100%;width:100%" src="/pages/ShowSelfOperateTree.jsp?Root=JGJLZZ"></iframe>
                     </td>
                     <td width="10" class="ctrlbar" valign="middle">
                         <img id=ctrlBnt src="/images/button_1.gif" onclick="ctrlbar();">

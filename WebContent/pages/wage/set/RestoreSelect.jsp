@@ -43,9 +43,9 @@
 
 <h:form id="form1" >
     <c:verbatim>
-    <table width="100%" border="0" cellpadding="0" cellspacing="6" bgcolor="#FFFFFF">
+    <table width="98%" align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <tr>
-            <td class="td_title"><img src="/images/tips.gif" alt="">恢复发工资</td>
+            <td class="td_title"><img src="/images/tips.gif" alt="">恢复工资发放</td>
             <td class="td_title" align="right">
 </c:verbatim>
                 <h:commandButton value="确定" onclick="doOK();" type="button" styleClass="button01"></h:commandButton>
@@ -60,8 +60,8 @@
                 <tr>
                     <td >
 </c:verbatim>
-                        <h:dataTable width="100%" value="#{wage_computeBB.personList}" var="list" border="1"
-                                     align="center"  headerClass="td_top" rowClasses="td_middle" styleClass="table03">
+                        <x:dataTable width="100%" value="#{wage_computeBB.personList}" var="list" border="1"
+                                     align="center" rowIndexVar="index" headerClass="td_top" rowClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center" styleClass="table03">
                             <h:column>
                                  <c:facet name="header">
                                      <c:verbatim escape="false">
@@ -72,7 +72,12 @@
                                  <h:outputText value="#{list.personId}"/>
                                 <c:verbatim>"></c:verbatim>
                              </h:column>
-
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="序号" />
+								</f:facet>
+								<h:outputText value="#{index+1}"></h:outputText>
+							</h:column>
                             <h:column>
                                 <c:facet name="header"><h:outputText value="员工编号"/></c:facet>
                                 <h:outputText value="#{list.personCode}"/>
@@ -82,18 +87,10 @@
                                 <h:outputText value="#{list.name}"/>
                             </h:column>
                             <h:column>
-                                <c:facet name="header"><h:outputText value="性别"/></c:facet>
-                                <h:outputText value="#{list.sex}"/>
-                            </h:column>
-                            <h:column>
-                                <c:facet name="header"><h:outputText value="出生日期"/></c:facet>
-                                <h:outputText value="#{list.birth}"/>
-                            </h:column>
-                            <h:column>
                                 <c:facet name="header"><h:outputText value="薪资部门"/></c:facet>
                                 <h:outputText value="#{list.deptSort}"/>
                             </h:column>
-                        </h:dataTable>
+                        </x:dataTable>
 <c:verbatim>
                     </td>
                 </tr>

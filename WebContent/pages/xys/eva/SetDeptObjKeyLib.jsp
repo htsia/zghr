@@ -87,7 +87,7 @@
                         String objId=(String)session.getAttribute("objId");
                     %>
                     <tr> <td valign="top">
-                            <iframe name="tree" height="100%"  frameborder="1" framespacing="0" scrolling="yes" width="100%"
+                            <iframe name="tree" height="400"  frameborder="1" framespacing="0" scrolling="yes" width="100%"
                                     src="/pages/xys/eva/SetDeptObjLibTree.jsp?objId=<%=objId%>"></iframe>
                     </td></tr>
                 </table>

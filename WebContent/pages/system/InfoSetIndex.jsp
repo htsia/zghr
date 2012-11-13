@@ -47,7 +47,7 @@
 
        <tr>
            <td width="200" align="center" valign="top" class="explorer" id="showTree">
-                 <iframe name="tree" height="100%"  scrolling="auto" frameborder="0"  width="100%"  height="100%" src="/system/InfoSetTypeTree.jsf?onlyUse=true" ></iframe>
+                 <iframe name="tree" height="400"  scrolling="auto" frameborder="0"  width="100%"  height="100%" src="/system/InfoSetTypeTree.jsf?onlyUse=true" ></iframe>
            </td>
 
            <td width="10" class="ctrlbar" valign="middle">

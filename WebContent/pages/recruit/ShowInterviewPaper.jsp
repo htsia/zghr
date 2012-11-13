@@ -92,7 +92,7 @@
                     				request.getSession().setAttribute("ModuleID",moduleID);
                     			}
                     	 %>
-                            <iframe name="tree" height="100%"  frameborder="1" framespacing="0" scrolling="auto" width="100%"
+                            <iframe name="tree" height="400"  frameborder="1" framespacing="0" scrolling="auto" width="100%"
                                     src="/system/survey/ShowSurveyPaper.jsf?ModuleID=<%=moduleID%>"></iframe>
                     </td></tr>
                 </table>

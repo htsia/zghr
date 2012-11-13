@@ -35,7 +35,7 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table03">
         <tr>
             <td width="210" align="center" valign="top" id=showTree>
-                <iframe name="tree" height="100%"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
+                <iframe name="tree" height="400"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
                         src="/pages/post/template/PostClassTree.jsp?dict_num=0110"></iframe>
             </td>
             <td width="10" class="ctrlbar" valign="middle">

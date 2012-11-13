@@ -32,7 +32,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td id="showTree" width="210">
-                        <iframe name="tree" height="100%"  frameborder="0" framespacing="0" scrolling="auto" width="100%"
+                        <iframe name="tree" height="400"  frameborder="0" framespacing="0" scrolling="auto" width="100%"
                                src="/pages/common/ShowOnlyOrgTree.jsp"></iframe>
             </td>
             <td width="10" class="ctrlbar" valign="middle">

@@ -34,7 +34,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="260" height="465" valign="top">
-                    <iframe name="tree" height="100%"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
+                    <iframe name="tree" height="400"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
                             height="465" src="/pages/common/ShowOrgTree.jsp?rightFlag=2"></iframe>
                 </td>
             </tr>

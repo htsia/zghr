@@ -67,7 +67,7 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table03">
     <tr>
         <td width="200" align="center" valign="top" id=showTree>
-               <iframe name="tree" height="100%"  frameborder="0"  width="100%"
+               <iframe name="tree" height="400"  frameborder="0"  width="100%"
                                 scrolling="auto" src="/pages/common/InfoItemTree.jsp?setType=C"></iframe>
         </td>
 

@@ -90,6 +90,7 @@ public class WageDataServiceImpl implements IWageDataService{
 			bo.setCreateUserID(operUserID);
 			bo.setUserID(selectedUserIDs[i]);
 			bo.setYear(CommonFuns.getSysDate("yyyy"));
+			bo.setCreateDate(CommonFuns.getSysDate("yyyy-MM-dd"));
 			this.wageDataSetDAO.saveOrUpdateBo(bo);
 		}
 	}

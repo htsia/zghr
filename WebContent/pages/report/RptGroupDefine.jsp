@@ -83,7 +83,7 @@ with (window) onload = onresize = function(){
 					</tr>
 
 					<tr>
-						<td valign="top"><iframe name="tree" height="100%"  frameborder="1"
+						<td valign="top"><iframe name="tree" height="400"  frameborder="1"
 							framespacing="0" scrolling="auto" height=600 width="100%"
 							src="/pages/report/ShowRptGroupDefineCodeList.jsp"></iframe></td>
 					</tr>

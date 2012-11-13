@@ -16,6 +16,7 @@
         <property name="createUserID" column="A242204"/>
         <property name="year" column="A242205"/>
         <property name="level2" column="A242206"/>
+        <property name="createDate" column="A242207"/>
     </class>
     <class name="com.hr319wg.custom.eva.pojo.bo.EvaWageBO" table="a746">
         <id name="subID" type="string" unsaved-value="null">

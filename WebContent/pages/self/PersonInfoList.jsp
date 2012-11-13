@@ -32,7 +32,7 @@
 
           <tr>
               <td id="showTree" width=250px>
-                  <iframe name="tree" height="100%"  frameborder="0" height="100%" scrolling="auto" width="100%"  src="/pages/common/ShowOrgTree.jsp?rightFlag=1"></iframe>
+                  <iframe name="tree" height="400"  frameborder="0" height="100%" scrolling="auto" width="100%"  src="/pages/common/ShowOrgTree.jsp?rightFlag=1"></iframe>
               </td>
               <td width="10" class="ctrlbar" valign="middle">
                   <img id=ctrlBnt src="/images/button_1.gif" onclick="ctrlbar();">

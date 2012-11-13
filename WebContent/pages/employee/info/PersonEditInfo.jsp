@@ -99,7 +99,7 @@
 <table width="100%" id="mainTable" border="0" height="100%" cellpadding="0" cellspacing="0" class="table03">
     <tr>
         <td width="180" align="center" valign="top" id=showTree>
-            <iframe name="tree" height="100%"  frameborder="0"  height="100%"  width="100%" scrolling="auto" src="<%=url%>"></iframe>
+            <iframe name="tree" height="400"  frameborder="0"  height="100%"  width="100%" scrolling="auto" src="<%=url%>"></iframe>
         </td>
 
         <td width="10" class="ctrlbar" valign="middle">

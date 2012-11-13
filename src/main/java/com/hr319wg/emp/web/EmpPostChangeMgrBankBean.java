@@ -14,7 +14,6 @@ import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
-import com.hr319wg.custom.mailServices.web.EhrMailServicesBackingBean;
 import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.emp.pojo.bo.EmpBeginnerBO;
 import com.hr319wg.emp.pojo.bo.EmpPostChangeBO;
@@ -973,7 +972,6 @@ public IWageSetPersonUCC getWagesetpersonucc()
 
   public String shengxiao() {
     try {
-      EhrMailServicesBackingBean backingBean = new EhrMailServicesBackingBean();
       if ((this.personIds != null) && (!"".equals(this.personIds))) {
         String[] ids = this.personIds.split(",");
         for (int i = 0; i < ids.length; i++)
@@ -992,7 +990,6 @@ public IWageSetPersonUCC getWagesetpersonucc()
               this.wagesetpersonucc.adjustWageDept(super.getUserInfo(), bo);
             }
             notice(CodeUtil.interpertCode(CodeUtil.TYPE_PERSON, bo.getPersonId()));
-            backingBean.userChangeOrgTitle(bo.getPersonId());
           }
       }
     }

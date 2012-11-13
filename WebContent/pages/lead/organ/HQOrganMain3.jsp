@@ -122,7 +122,7 @@
                   </td></tr>
 
                   <tr><td>
-                      <iframe name="tree" height="100%"  style="height:100%;width:100%" src="/pages/ShowDTOperateTree.jsp"></iframe>
+                      <iframe name="tree" height="400"  style="height:100%;width:100%" src="/pages/ShowDTOperateTree.jsp"></iframe>
                   </td></tr>
                   </table>
             </td>

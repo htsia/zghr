@@ -44,7 +44,7 @@
 
         <tr>
             <td id="showTree" width=230 valign="top">
-                  <iframe name="tree" height="100%"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
+                  <iframe name="tree" height="400"  frameborder="0" framespacing="0" scrolling="yes" width="100%"
                                     src="/pages/employee/chg/OrgTree.jsp"></iframe>
             </td>
 
