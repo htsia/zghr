@@ -55,16 +55,16 @@
 			var password = document.all("password").value;
 			if(username == ""){
 				alert("ÇëÊäÈëµÇÂ¼Ãû");
- 			}else if(password == ""){
- 				alert("ÇëÊäÈëÃÜÂë");
+			}else if(password == ""){
+				alert("ÇëÊäÈëÃÜÂë");
 			}else{
- 				$.post("/pages/uum/valLogin9.jsp?para="+$("#password").val(),function(data){
- 					if(data!=1){
- 						alert("ÃÜÂë´íÎó");
- 					}else{
+				$.post("/pages/uum/valLogin9.jsp?para="+$("#password").val(),function(data){
+					if(data!=1){
+						alert("ÃÜÂë´íÎó");
+					}else{
 						var url = "/pages/uum/Login_ehr.jsp?username="+username;
 						window.location=url;
- 					}
+					}
 				});
 			}
 		}

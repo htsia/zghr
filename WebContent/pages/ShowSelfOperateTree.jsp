@@ -179,6 +179,17 @@
     }
     if("<%=operURL%>"!=''){
     	var url = "<%=operURL%>";
+    	<%
+    		String approtype=String.valueOf(session.getAttribute("approtype"));
+    	    session.removeAttribute("approtype");
+    		if(approtype!=null && !"".equals(approtype) && !"null".equals(approtype)){
+    			String[]auditUrls={"attLeaveAudit","attOutAudit","attOvertimeAudit","attRestAudit"};
+    			int index=Integer.valueOf(approtype);
+    			%>
+    			url="/custom/attence/<%=auditUrls[index]%>.jsf";
+    			<%
+    		}
+    	%>
        	if(url.indexOf("?")!=-1 && url.indexOf("/custom/")!=-1){
        		url+="&inself=1";
        	}else if(url.indexOf("/custom/")!=-1){

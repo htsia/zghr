@@ -48,14 +48,23 @@
     if (moduleId == null || "".equals(moduleId)) {
         moduleId = (String) session.getAttribute("selfModuleId");
     }
-    session.setAttribute("selfModuleId", moduleId);
     
+    session.setAttribute("selfModuleId", moduleId);
     String moduleOperID = request.getParameter("moduleOperID");
     String subfolder1 = request.getParameter("subfolder");
     String bylevel1 = request.getParameter("bylevel");
     session.setAttribute("moduleOperID", moduleOperID); 
     session.setAttribute("subfolder", subfolder1); 
     session.setAttribute("bylevel", bylevel1); 
+    
+    Object approtype=session.getAttribute("approtype");
+    if(approtype!=null){
+    	moduleId="KQGL";
+	    session.setAttribute("selfModuleId", "KQGL");
+	    session.setAttribute("moduleOperID", "0500"); 
+	    session.setAttribute("subfolder", "1"); 
+	    session.setAttribute("bylevel", null); 
+    }
     
     url = request.getParameter("url");
     if (url == null || "".equals(url)) {
