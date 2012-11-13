@@ -16,6 +16,10 @@
 	//登陆成功的话，user会成功创建，否则，抛出异常
 		String loginName = request.getParameter("name");
 		String password = request.getParameter("password");
+		if(password==null||"".equals(password)){
+			out.println("登陆失败，请检查用户名和密码!");
+			return;
+		}else{
 		try {
 			IUserManageUCC userucc = (IUserManageUCC) SysContext
 					.getBean("user_userManageUccImpl");
@@ -26,6 +30,8 @@
 		} catch (SysException e) {
 			out.println("登陆失败，请检查用户名和密码!");
 			return;
+		}
+			
 		}
 		response.sendRedirect("/Logininterface.jsf");
 %>
