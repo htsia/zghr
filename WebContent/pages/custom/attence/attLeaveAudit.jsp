@@ -65,7 +65,7 @@
         </h:column>
 
         <h:column>
-            <c:facet name="header"><h:outputText value="请假时间"/></c:facet>
+            <c:facet name="header"><h:outputText value="请假时间/天"/></c:facet>
             <h:outputText value="#{list.applyDays}"/>
         </h:column>
         <h:column>
