@@ -27,12 +27,13 @@
 					request);
 			session.setAttribute("loginName",loginName);
 			session.setAttribute("USER_INFO",user);
+			
 		} catch (SysException e) {
 			out.println("µÇÂ½Ê§°Ü£¬Çë¼ì²éÓÃ»§ÃûºÍÃÜÂë!");
 			return;
 		}
 			
 		}
-		response.sendRedirect("/Logininterface.jsf");
+		response.sendRedirect("/Logininterface.jsf?approtype="+request.getParameter(""));
 %>
 

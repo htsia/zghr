@@ -4,7 +4,8 @@
 <%@ page import="com.hr319wg.common.Constants" %>
 <%@ page import="com.hr319wg.portal.hshz.portalClient" %>
 <%@ page import="com.hr319wg.portal.hshz.LoginUserInfo" %>
-
+<%@ page import="com.hr319wg.user.ucc.IUserManageUCC"%>
+<%@ page import="com.hr319wg.common.pojo.vo.User"%>
 
 <%
 	String username = request.getParameter("name");
@@ -22,7 +23,7 @@ if(count1==1){
 		return;
 	}else{
 		session.setAttribute("loginName",username);
-		response.sendRedirect("/Logininterface.jsf");
+		response.sendRedirect("/Logininterface.jsf?approtype="+request.getParameter(""));
 	}
 }else{
 	out.println("µÇÂ½Ê§°Ü£¬Çë¼ì²éÓÃ»§ÃûºÍÃÜÂë!");

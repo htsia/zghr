@@ -39,6 +39,7 @@ import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.api.QueryAPI;
+import com.hr319wg.sys.cache.SysCache;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.SysInProcessBO;
 import com.hr319wg.sys.ucc.ISysInProcessUCC;
@@ -79,6 +80,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	public SelPersonsToolService getSelPersonTool() {
 		return selPersonTool;
+		
 	}
 
 	public void setSelPersonTool(SelPersonsToolService selPersonTool) {
