@@ -1,6 +1,10 @@
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ include file="./include/taglib.jsp" %>
 
+<%
+	String approtype=request.getParameter("approtype");
+	session.setAttribute("approtype", approtype);
+%>
 <h:form id="form1">
    <c:verbatim>
    <table height=98% width=98%>
