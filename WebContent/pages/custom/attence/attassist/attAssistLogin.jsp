@@ -34,6 +34,6 @@
 		}
 			
 		}
-		response.sendRedirect("/Logininterface.jsf?approtype="+request.getParameter(""));
+		response.sendRedirect("/Logininterface.jsf?approtype="+request.getParameter("approtype"));
 %>
 
