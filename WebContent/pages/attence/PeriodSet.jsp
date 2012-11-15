@@ -154,7 +154,7 @@ function verify(ym){
 							onclick="return modify('#{list.duraID}','#{period_setBB.superId}')"
 							styleClass="button01"
 							rendered="#{list.status=='0' || list.status=='1'}"></h:commandButton>
-						<h:commandButton value="删除" onclick="return confirm('确定要删除吗?');"
+						<h:commandButton value="删除" onclick="return confirm('确定要删除吗?删除以后，本次计算的结果也将一并删除');"
 							action="#{period_setBB.delete}" styleClass="button01"
 							rendered="#{list.status=='0' || list.status=='1'}">
 							<x:updateActionListener property="#{period_setBB.duraID}"

@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.activiti.engine.task.Task;
-import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.attence.dao.AttDurationDAO;
@@ -19,6 +18,7 @@ import com.hr319wg.attence.dao.AttFeastDAO;
 import com.hr319wg.attence.dao.AttRestWeekDAO;
 import com.hr319wg.attence.pojo.bo.AttClassBO;
 import com.hr319wg.attence.pojo.bo.AttClassDetailBO;
+import com.hr319wg.attence.pojo.bo.AttDurationBO;
 import com.hr319wg.attence.pojo.bo.AttFeastBO;
 import com.hr319wg.attence.pojo.bo.AttRestOfWeekBO;
 import com.hr319wg.attence.pojo.bo.AttWorkDateBO;
@@ -39,7 +39,6 @@ import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.api.QueryAPI;
-import com.hr319wg.sys.cache.SysCache;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.SysInProcessBO;
 import com.hr319wg.sys.ucc.ISysInProcessUCC;
@@ -51,8 +50,6 @@ import com.hr319wg.xys.workflow.service.SelPersonsToolService;
 import com.jacob.activeX.ActiveXComponent;
 import com.jacob.com.Dispatch;
 import com.jacob.com.Variant;
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
-import com.sun.xml.internal.bind.CycleRecoverable.Context;
 
 /**
  * @author Administrator
@@ -3376,6 +3373,28 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				"01-01", "12-30");
 		days.removeAll(weekDays);// 所有天减去工作的周一到周五
 		return days;
+	}
+
+	@Override
+	public void updateToShow(String duraID) throws SysException {
+		// TODO Auto-generated method stub
+		AttDurationBO bo=attBusiDAO.getAttDurationBOById(duraID);
+		String yearMonth="";
+		if(bo!=null){
+			yearMonth=bo.getDuraYear()+"-"+bo.getDuraMonth();
+		}
+		//先删除月汇总显示自己的本月数据
+		String sql="delete from a245 a where a.a245200='"+yearMonth+"'";
+		this.activeapi.executeSql(sql);
+		//插入新的本月数据
+		sql="insert into a245 select a.subid||rownum,a.id,'00900',a.a810700,a.a810701,a.a810215,a.a810216,a.a810219" +
+				",a.a810220,a.a810213,a.a810214,a.a810704,a.a810706,a.a810707,a.a810708,a.a810221,a.a810709,a.a810710,a.a810714 from a810 a where a.a810700='"+yearMonth+"'";
+		this.activeapi.executeSql(sql);
+		//更新主键，以免下次插入冲突
+		sql="update a245 a set a.subid='111'||substring(a.subid,8,20)||rownum where a.a245200='"+yearMonth+"'";
+		this.activeapi.executeSql(sql);
+		
+		
 	}
 
 }

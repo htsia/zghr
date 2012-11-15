@@ -16,7 +16,7 @@ import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CommonFuns;
-
+import com.hr319wg.attence.pojo.bo.AttDurationBO;
 public class AttBusiDAO extends BaseDAO{
 
 	public int isAttIssue(String dualID, String yearMonth){
@@ -643,5 +643,17 @@ public class AttBusiDAO extends BaseDAO{
 		String boHql = "select bo,u.secDeptID "+hql +" order by u.secDeptID,u.deptId";
 		String countHql = "select count(*) "+hql;
 		return this.pageQuery(pageVO, countHql, boHql);
+	}
+
+	public AttDurationBO getAttDurationBOById(String id) {
+		// TODO Auto-generated method stub
+		String hql="from AttDurationBO bo where bo.duraID='"+id+"'";
+		List list=this.hibernatetemplate.find(hql);
+		if(list.size()>0){
+			return (AttDurationBO) list.get(0);
+		}else{
+			return null;
+		}
+		
 	}
 }

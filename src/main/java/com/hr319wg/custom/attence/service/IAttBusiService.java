@@ -222,5 +222,6 @@ public interface IAttBusiService {
 	public boolean isFeast(String day, String personId) throws SysException;
 
 	public void saveBingjia(AttLeaveBO leave) throws SysException;
+	public void updateToShow(String duraID) throws SysException;
 
 }
