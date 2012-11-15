@@ -82,7 +82,7 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${selPersonTool.getLeaderType(currPersonId) == 4}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow41" name="上级为处级" sourceRef="exclusivegateway10" targetRef="exclusivegateway1">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${selPersonTool.getLeaderType(currPersonId) == 3}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${selPersonTool.getLeaderType(currPersonId) != 4}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow42" name="" sourceRef="usertask7" targetRef="exclusivegateway10"></sequenceFlow>
   </process>
@@ -244,7 +244,7 @@
         <omgdi:waypoint x="161" y="237"></omgdi:waypoint>
         <omgdi:waypoint x="220" y="237"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14" width="100" x="-15" y="-20"></omgdc:Bounds>
+          <omgdc:Bounds height="14" width="100" x="-20" y="-28"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow30" id="BPMNEdge_flow30">
@@ -267,7 +267,7 @@
         <omgdi:waypoint x="385" y="236"></omgdi:waypoint>
         <omgdi:waypoint x="415" y="237"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14" width="100" x="-14" y="-19"></omgdc:Bounds>
+          <omgdc:Bounds height="14" width="100" x="-14" y="-27"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow33" id="BPMNEdge_flow33">
