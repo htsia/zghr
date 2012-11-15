@@ -1603,6 +1603,9 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			// 请假结束当天，如果在14点之前，算半天；如果在14点之后，算1天。
 			// 先算出假条开始时间的小时数 和结束时间的小时数
 			String beginDayHh = "";
+			if("nihaoa".equals(bo.getReason())){
+				int k=0;
+			}
 			String endDayHh = "";
 			if (bo.getBeginTime().length() > 14
 					&& bo.getEndTime().length() > 14) {
@@ -2219,7 +2222,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	@Override
 	// 存休转为加班费
-	public void updateOvertimePay(String id, String hours, String selectMonth)
+	public void updateOvertimePay(String id, String hours, String selectMonth,String overtimePay)
 			throws SysException, ParseException {
 		// TODO Auto-generated method stub
 		// 首先清空带薪假子集的存休
@@ -2236,9 +2239,12 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		// String jiben = "(select a223206  from a223 b where b.id='"+id+"')";//
 		// 基本工资
 		// 插入信息
+		if(overtimePay==null||"".equals(overtimePay)){
+			overtimePay="20";
+		}
 		sql = "insert into a243 select " + id + "||rownum||'" + selectMonth
 				+ "'," + id + ",'00901','" + selectMonth + "'," + hours + ","
-				+ hours + "*20/8.0 from dual";
+				+ hours + "*"+overtimePay+"/8.0 from dual";
 		this.activeapi.executeSql(sql);
 	}
 
@@ -2748,9 +2754,9 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	@Override
 	public List getYearBO(PageVO pageVO, String orgID, String nameStr,
-			String personType) throws SysException {
+			String personType,String yearStr) throws SysException {
 		// return this.jdbcTemplate.queryForList("select * from a236");
-		return this.attBusiDAO.getYearBO(pageVO, orgID, nameStr, personType);
+		return this.attBusiDAO.getYearBO(pageVO, orgID, nameStr, personType,yearStr);
 	}
 
 	@Override
@@ -3328,6 +3334,12 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			leave.setBeginMonthDays("0");
 			leave.setNextMonthDays("0");
 		}
+		if(leave.getNextMonthDays()==null||"".equals(leave.getNextMonthDays())){
+			leave.setNextMonthDays("0");
+		}
+		if(leave.getBeginMonthDays()==null||"".equals(leave.getBeginMonthDays())){
+			leave.setBeginMonthDays("0");
+		}
      this.attBusiDAO.saveOrUpdateBo(leave);
 	}
 	//获得一段时间内的公休日
@@ -3365,4 +3377,5 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		days.removeAll(weekDays);// 所有天减去工作的周一到周五
 		return days;
 	}
+
 }

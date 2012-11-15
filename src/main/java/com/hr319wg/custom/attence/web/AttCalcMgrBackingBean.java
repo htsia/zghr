@@ -63,7 +63,116 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
     private String endYearMonth="";
     private String pageInit1;
     
+    private String later; //迟到
+    private String away;  //旷工
+    private String normalLeave; //事假
+    private String illLeave;   //病假
+    private String chanjiaLeave;   //产假
+    private String nanchanjiaLeave;   //难产产假
+    private String laterDeduction; //迟到扣款
+    private String awayDeduction;  //旷工扣款
+    private String normalLeaveDeduction; //事假扣款
+    private String illLeaveDeduction;   //病假扣款
+    private String chanjiaLeaveDeduction;   //产假扣款
+    private String nanchanjiaLeaveDeduction;   //难产产假扣款
+    private String masterModifyInit;
     
+	public String getLater() {
+		return later;
+	}
+
+	public void setLater(String later) {
+		this.later = later;
+	}
+
+	public String getAway() {
+		return away;
+	}
+
+	public void setAway(String away) {
+		this.away = away;
+	}
+
+	public String getNormalLeave() {
+		return normalLeave;
+	}
+
+	public void setNormalLeave(String normalLeave) {
+		this.normalLeave = normalLeave;
+	}
+
+	public String getIllLeave() {
+		return illLeave;
+	}
+
+	public void setIllLeave(String illLeave) {
+		this.illLeave = illLeave;
+	}
+
+	public String getChanjiaLeave() {
+		return chanjiaLeave;
+	}
+
+	public void setChanjiaLeave(String chanjiaLeave) {
+		this.chanjiaLeave = chanjiaLeave;
+	}
+
+	public String getNanchanjiaLeave() {
+		return nanchanjiaLeave;
+	}
+
+	public void setNanchanjiaLeave(String nanchanjiaLeave) {
+		this.nanchanjiaLeave = nanchanjiaLeave;
+	}
+
+	public String getLaterDeduction() {
+		return laterDeduction;
+	}
+
+	public void setLaterDeduction(String laterDeduction) {
+		this.laterDeduction = laterDeduction;
+	}
+
+	public String getAwayDeduction() {
+		return awayDeduction;
+	}
+
+	public void setAwayDeduction(String awayDeduction) {
+		this.awayDeduction = awayDeduction;
+	}
+
+	public String getNormalLeaveDeduction() {
+		return normalLeaveDeduction;
+	}
+
+	public void setNormalLeaveDeduction(String normalLeaveDeduction) {
+		this.normalLeaveDeduction = normalLeaveDeduction;
+	}
+
+	public String getIllLeaveDeduction() {
+		return illLeaveDeduction;
+	}
+
+	public void setIllLeaveDeduction(String illLeaveDeduction) {
+		this.illLeaveDeduction = illLeaveDeduction;
+	}
+
+	public String getChanjiaLeaveDeduction() {
+		return chanjiaLeaveDeduction;
+	}
+
+	public void setChanjiaLeaveDeduction(String chanjiaLeaveDeduction) {
+		this.chanjiaLeaveDeduction = chanjiaLeaveDeduction;
+	}
+
+	public String getNanchanjiaLeaveDeduction() {
+		return nanchanjiaLeaveDeduction;
+	}
+
+	public void setNanchanjiaLeaveDeduction(String nanchanjiaLeaveDeduction) {
+		this.nanchanjiaLeaveDeduction = nanchanjiaLeaveDeduction;
+	}
+
 	public String getPageInit1() {
 		String act = super.getRequestParameter("act");
 		if("init".equals(act)){
@@ -920,5 +1029,53 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 			e.printStackTrace();
 		}
 		return "success";
+	}
+	public String masterSave(){
+		try {
+			this.bo.setLateTime(this.later);
+			this.bo.setAwayTime(this.away);
+			this.bo.setLeaveReasons(this.normalLeave);
+			this.bo.setLeaveSick(illLeave);
+			this.bo.setLeaveMaternity(this.chanjiaLeave);
+			this.bo.setLeaveNanchanjia(this.nanchanjiaLeave);
+			this.bo.setLaterDeduction(laterDeduction);
+			this.bo.setAwayDeduction(awayDeduction);
+			this.bo.setNormalLeaveDeduction(normalLeaveDeduction);
+			this.bo.setIllLeaveDeduction(illLeaveDeduction);
+			this.bo.setChanjiaLeaveDeduction(chanjiaLeaveDeduction);
+			this.bo.setNanchanjiaLeaveDeduction(nanchanjiaLeaveDeduction);
+			
+		    this.attBusiService.saveOrUpdateBO(this.bo);
+			
+			return "success";
+		} catch (SysException e) {
+			super.showMessageDetail("修改失败");
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public String getMasterModifyInit() {
+		try {
+			String subID = super.getRequestParameter("subID");
+			this.bo =(AttMonthBO)this.attBusiService.findBOById(AttMonthBO.class, subID);
+			setValue(this.bo);
+			
+			this.later=bo.getLateTime();
+			this.away=bo.getAwayTime();
+			this.normalLeave=bo.getLeaveReasons();
+		    this.illLeave=bo.getLeaveSick();
+		    this.chanjiaLeave=bo.getLeaveMaternity();
+		    this.nanchanjiaLeave=bo.getLeaveWedding();
+		    
+		    this.laterDeduction=bo.getLaterDeduction();
+		    this.awayDeduction=bo.getAwayDeduction();
+		    this.normalLeaveDeduction=bo.getNormalLeaveDeduction();
+		    this.illLeaveDeduction=bo.getIllLeaveDeduction();
+		    this.chanjiaLeaveDeduction=bo.getChanjiaLeaveDeduction();
+		    this.nanchanjiaLeaveDeduction=bo.getNanchanjiaLeaveDeduction();
+		} catch (SysException e) {
+			e.printStackTrace();
+		}
+		return masterModifyInit;
 	}
 }

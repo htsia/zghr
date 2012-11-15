@@ -66,7 +66,25 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
     private String tempEndDate;
 	private List attTempDataList;
 	private String attTempDataInit;
+	private String yearStr;
+	private String overtimePay="20";
 	
+	public String getOvertimePay() {
+		return overtimePay;
+	}
+
+	public void setOvertimePay(String overtimePay) {
+		this.overtimePay = overtimePay;
+	}
+
+	public String getYearStr() {
+		return yearStr;
+	}
+
+	public void setYearStr(String yearStr) {
+		this.yearStr = yearStr;
+	}
+
 	public String getAttTempDataInit() {
 		String act = super.getRequestParameter("act");
 		if("init".equals(act)){
@@ -668,8 +686,9 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 				}
 				String hours=String.valueOf(Double.parseDouble(bo.getPutoffDays()));
 				//更新加班费子集的信息
+				this.overtimePay=super.getRequestParameter("overtimePay");
 				this.overtimePayMonth=super.getRequestParameter("selectMonth");
-				this.attBusiService.updateOvertimePay(id, hours,this.overtimePayMonth);
+				this.attBusiService.updateOvertimePay(id, hours,this.overtimePayMonth,overtimePay);
 				return "success";
 			} catch (SysException e) {
 				super.showMessageDetail("修改失败");
@@ -728,7 +747,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 				String hours=String.valueOf(Double.parseDouble(bo.getPutoffDays()));
 				//更新加班费子集的信息
 				this.overtimePayMonth=super.getRequestParameter("selectMonth");
-				this.attBusiService.updateOvertimePay(id, hours,this.overtimePayMonth);
+				this.attBusiService.updateOvertimePay(id, hours,this.overtimePayMonth,overtimePay);
 				return "success";
 			} catch (SysException e) {
 				super.showMessageDetail("修改失败");
@@ -799,7 +818,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 					e.printStackTrace();
 				}
 			}
-			List list1 = this.attBusiService.getYearBO(mypage, orgID, nameStr, personType);
+			List list1 = this.attBusiService.getYearBO(mypage, orgID, nameStr, personType,yearStr);
 			if(list1==null){
 				list1 = new ArrayList();
 			}

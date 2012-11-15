@@ -402,7 +402,7 @@
         <property name="dimissionDate" column="A810218"/>
                 <property name="laterDeduction" column="A810213"/>
         <property name="awayDeduction" column="A810214"/>
-        <property name="nomalLeaveDeduction" column="A810215"/>
+        <property name="normalLeaveDeduction" column="A810215"/>
         <property name="illLeaveDeduction" column="A810216"/>
         <property name="chanjiaLeaveDeduction" column="A810219"/>
         <property name="nanchanjiaLeaveDeduction" column="A810220"/>

@@ -54,7 +54,7 @@ public class AttMonthBO {
     private String dimissionDate;//离职时间
     private String laterDeduction; //迟到扣款
     private String awayDeduction;  //旷工扣款
-    private String nomalLeaveDeduction; //事假扣款
+    private String normalLeaveDeduction; //事假扣款
     private String illLeaveDeduction;   //病假扣款
     private String chanjiaLeaveDeduction;   //产假扣款
     private String nanchanjiaLeaveDeduction;   //难产产假扣款
@@ -109,12 +109,12 @@ public class AttMonthBO {
 		this.awayDeduction = awayDeduction;
 	}
 
-	public String getNomalLeaveDeduction() {
-		return nomalLeaveDeduction;
+	public String getNormalLeaveDeduction() {
+		return normalLeaveDeduction;
 	}
 
-	public void setNomalLeaveDeduction(String nomalLeaveDeduction) {
-		this.nomalLeaveDeduction = nomalLeaveDeduction;
+	public void setNormalLeaveDeduction(String normalLeaveDeduction) {
+		this.normalLeaveDeduction = normalLeaveDeduction;
 	}
 
 	public String getIllLeaveDeduction() {

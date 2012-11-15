@@ -355,6 +355,9 @@
     <definition name="/custom/attence/attCalcResultEdit.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/attence/attCalcResultEdit.jsp"/>
     </definition>
+    <definition name="/custom/attence/attCalcResultMasterEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/attCalcResultMasterEdit.jsp"/>
+    </definition>
     <definition name="/custom/attence/attClassUser.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/attence/attClassUser.jsp"/>
     </definition>
