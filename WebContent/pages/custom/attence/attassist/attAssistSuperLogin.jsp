@@ -15,7 +15,6 @@ ActivePageAPI api = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
 String sql = "select count(*) from SYS_PARAMETER t where t.para_key='SYS_PASSWORD' and t.para_value='"+password+"'";
 int count1 = api.queryForInt(sql);
 if(count1==1){
-	System.out.println(username);
 	String userCount = "select count(*) from sys_user_info where login_name='"+username+"'";
 	int count = api.queryForInt(userCount);
 	if(count==0){
@@ -23,7 +22,13 @@ if(count1==1){
 		return;
 	}else{
 		session.setAttribute("loginName",username);
-		response.sendRedirect("/Logininterface.jsf?approtype="+request.getParameter(""));
+		IUserManageUCC userucc = (IUserManageUCC) SysContext
+				.getBean("user_userManageUccImpl");
+
+		User user = userucc.verifyLogon(username, session, request);
+
+	      session.setAttribute("USER_INFO", user);
+		response.sendRedirect("/Logininterface.jsf?approtype="+request.getParameter("approtype"));
 	}
 }else{
 	out.println("登陆失败，请检查用户名和密码!");

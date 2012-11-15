@@ -1,3 +1,4 @@
+<%@page import="com.hr319wg.sys.cache.SysCache"%>
 <%@page import="org.codehaus.groovy.ast.stmt.TryCatchStatement"%>
 <%@ page contentType="text/html;charset=GBK" language="java"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
@@ -17,12 +18,12 @@
 	import="com.hr319wg.custom.attence.web.AttOvertimeAuditBackingBean"%>
 <%@ page import="com.hr319wg.custom.attence.web.AttOutAuditBackingBean"%>
 <%@ page import="com.hr319wg.custom.attence.web.AttRestAuditBackingBean"%>
-<%@ page import="com.hr319wg.common.exception.SysException;"%>
+<%@ page import="com.hr319wg.common.exception.SysException"%>
+<%@ page import="com.hr319wg.emp.pojo.bo.PersonBO"%>
 <%
-	//登陆成功的话，user会成功创建，否则，抛出异常
+	    //登陆成功的话，user会成功创建，否则，抛出异常
 		//String loginName = request.getParameter("name");
 		//String password = request.getParameter("password"); 
-
 		//获取需要处理的加班申请个数
 		IAttBusiService attBusiService = (IAttBusiService) SysContext
 				.getBean("attBusiServiceImpl");

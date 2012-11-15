@@ -80,7 +80,6 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	public SelPersonsToolService getSelPersonTool() {
 		return selPersonTool;
-		
 	}
 
 	public void setSelPersonTool(SelPersonsToolService selPersonTool) {
