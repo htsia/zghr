@@ -10,7 +10,6 @@ import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.BaseBackingBean;
-import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.emp.pojo.bo.PersonAddAuditBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
@@ -23,7 +22,6 @@ import com.hr319wg.org.pojo.bo.OrgEnterBO;
 import com.hr319wg.org.pojo.bo.OrgProbationBO;
 import com.hr319wg.org.ucc.IOrgProbationUcc;
 import com.hr319wg.org.util.OrgTool;
-import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.api.WageAPI;
 import com.hr319wg.sys.cache.SysCache;
 import com.hr319wg.sys.cache.SysCacheTool;
@@ -565,6 +563,7 @@ public String getClassId()
 				}
 			}
 
+			//增加工资变动记录
 			CommonUtil.addWageChange(personId, this.personvo.getStatus());
 			importData(personId);
 //			ActivePageAPI api = (ActivePageAPI)SysContext.getBean("sys_activePageApi");

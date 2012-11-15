@@ -139,20 +139,16 @@ function showTable(changId){
               				<%=LanguageSupport.getResource("RYGL-2132", "试用")%>
                         </f:verbatim>
                         <h:selectBooleanCheckbox value="#{empprobastionmgrBB.newProbation}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryNewProbation}" />
-                        <h:outputText value=" " rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
 
                         <h:outputText value="报批" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
                         <h:selectBooleanCheckbox value="#{empprobastionmgrBB.apprving}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryApprving}" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
-                        <h:outputText value=" " rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
 
                         <h:outputText value="批准" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
                         <h:selectBooleanCheckbox value="#{empprobastionmgrBB.apprived}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryApprived}" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
-                        <h:outputText value=" "/>
                          <f:verbatim>
               				<%=LanguageSupport.getResource("RYGL-2431", "生效")%>
                         </f:verbatim>
                         <h:selectBooleanCheckbox value="#{empprobastionmgrBB.efficent}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryEfficent}" />
-                        <h:outputText value=" " rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
 
                         <h:outputText value="辞退" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
                         <h:selectBooleanCheckbox value="#{empprobastionmgrBB.refuse}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryRefuse}" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
