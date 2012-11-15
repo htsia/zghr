@@ -983,8 +983,7 @@ public IWageSetPersonUCC getWagesetpersonucc()
             this.emppostchangeucc.personMessageChange(super.getUserInfo(), bo);
             bo.setStatus(EmpPostChangeBO.HUMANEFFICIRNT);
             this.emppostchangeucc.saveEmpPostChangeBO(bo);
-            WageAdjustBO adjust = this.adjustucc
-					.getWageAdjustBOByLinkID(bo.getPostChangeId());
+            WageAdjustBO adjust = this.adjustucc.getWageAdjustBOByLinkID(bo.getPostChangeId());
             adjust.setApproStatus("1");
             this.adjustucc.saveWageAdjustBO(adjust);
             if ("1".equals(bo.getLinkBeginMgr())) {

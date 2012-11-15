@@ -54,7 +54,7 @@
         	alert("请选择人员");
         	return false;
         }
-        window.showModalDialog("/wage/adjust/batchValidateAdjust.jsf?IDs="+itemIDs+"-"+userIDs, null, "dialogWidth:600px; dialogHeight:500px;center:center;resizable:no;status:no;scroll:yes;");
+        window.showModalDialog("/custom/wage/batchValidateAdjust.jsf?act=init&IDs="+itemIDs+"-"+userIDs, null, "dialogWidth:600px; dialogHeight:500px;center:center;resizable:no;status:no;scroll:yes;");
         return false;
     }
     function selperson3(){
@@ -74,7 +74,7 @@
         	alert("请选择人员");
         	return false;
         }
-        if(confirm('确定全部撤销吗')){
+        if(confirm('确定全部删除吗')){
 	        document.all("form1:selectedItemIDs").value=selId;
 	        return true;
         }
@@ -104,7 +104,7 @@
                         <h:selectBooleanCheckbox value="#{wage_commonAdjustBB.notAppro}" onclick="submit();" valueChangeListener="#{wage_commonAdjustBB.setIsNotAppro}" />
                         <h:outputText value="  "/>
                         <h:commandButton onclick="return selperson2();" action="#{wage_commonAdjustBB.doOK}" styleClass="button01" value="全部生效"/>
-                        <h:commandButton onclick="return selperson3();" action="#{wage_commonAdjustBB.doDelete}" styleClass="button01" value="全部撤销"/>
+                        <h:commandButton onclick="return selperson3();" action="#{wage_commonAdjustBB.doDelete}" styleClass="button01" value="全部删除"/>
       			<c:verbatim>
                </td>
             </tr>
@@ -173,11 +173,10 @@
                     <c:facet name="header"><h:outputText value="状态"/></c:facet>
                     <h:outputText value="#{list.adjustbo.statusDes}"/>
                 </h:column>
-
         <h:column >
             <c:facet name="header" ><h:outputText value="操作" style="width:120px"/></c:facet>
                 <h:commandButton value="拟定" styleClass="button01" onclick="return setItem('#{list.adjustbo.itemID}');"  rendered="#{list.adjustbo.status=='0'}"/>
-                <h:commandButton value="撤销" styleClass="button01" action="#{wage_commonAdjustBB.doDelete}" rendered="#{list.adjustbo.status=='0'}">
+                <h:commandButton value="删除" onclick="return confirm('确定删除吗');" styleClass="button01" action="#{wage_commonAdjustBB.doDelete}">
                     <x:updateActionListener property="#{wage_commonAdjustBB.itemID}" value="#{list.adjustbo.itemID}"/>
                  </h:commandButton>
                 <h:commandButton value="报批" styleClass="button01"  action="#{wage_commonAdjustBB.doApply}" rendered="#{list.adjustbo.status=='0' && sys_commonInfoBB.wage_adjust_mode!='1'}">
@@ -185,7 +184,6 @@
                  </h:commandButton>
                 <h:commandButton value="查看流程" styleClass="button01"  type="button" rendered="#{sys_commonInfoBB.wage_adjust_mode!='1'}" onclick="showWorkFlowLogByLinkID('#{list.adjustbo.itemID}');"/>
                 <h:commandButton value="生效" styleClass="button01" onclick="return doOK('#{list.adjustbo.itemID}');" rendered="#{list.adjustbo.status=='2' || (list.adjustbo.status=='0' && sys_commonInfoBB.wage_adjust_mode=='1')}"/>
-
         </h:column>
 
     </h:dataTable>

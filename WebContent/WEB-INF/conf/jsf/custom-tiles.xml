@@ -156,6 +156,9 @@
     <definition name="/custom/wage/classWageUserEdit.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/wage/classWageUserEdit.jsp"/>
     </definition>
+    <definition name="/custom/wage/batchValidateAdjust.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/wage/batchValidateAdjust.jsp"/>
+    </definition>
     
     <!-- 考勤相关 -->
     <definition name="/custom/attence/attLogMgr.tiles" extends="layout.busitemplateSelf">
