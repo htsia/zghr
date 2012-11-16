@@ -406,7 +406,15 @@
         <property name="illLeaveDeduction" column="A810216"/>
         <property name="chanjiaLeaveDeduction" column="A810219"/>
         <property name="nanchanjiaLeaveDeduction" column="A810220"/>
-        <property name="leaveNanchanjia" column="A810221"/>
+        <property name="nanchanjiaLeave" column="A810221"/>
+        <property name="nanchanjiaLeaveModify" column="A810222"/>
+        
+                <property name="laterDeductionModify" column="A810223"/>
+        <property name="awayDeductionModify" column="A810224"/>
+        <property name="normalLeaveDeductionModify" column="A810225"/>
+        <property name="illLeaveDeductionModify" column="A810226"/>
+        <property name="chanjiaLeaveDeductionModify" column="A810227"/>
+        <property name="nanchanjiaLeaveDeductionModify" column="A810228"/>
         
     </class>
     <class name="com.hr319wg.attence.pojo.bo.AttClassBO" table="ATT_CLASS">

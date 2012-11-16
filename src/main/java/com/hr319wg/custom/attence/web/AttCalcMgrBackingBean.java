@@ -75,8 +75,73 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
     private String illLeaveDeduction;   //病假扣款
     private String chanjiaLeaveDeduction;   //产假扣款
     private String nanchanjiaLeaveDeduction;   //难产产假扣款
+    private String nanchanjiaLeaveModify;//难产产假修改
+    private String laterDeductionModify; //迟到扣款修改
+    private String awayDeductionModify;  //旷工扣款修改
+    private String normalLeaveDeductionModify; //事假扣款修改
+    private String illLeaveDeductionModify;   //病假扣款修改
+    private String chanjiaLeaveDeductionModify;   //产假扣款修改
+    private String nanchanjiaLeaveDeductionModify;   //难产产假扣款修改
     private String masterModifyInit;
     
+    
+	public String getLaterDeductionModify() {
+		return laterDeductionModify;
+	}
+
+	public void setLaterDeductionModify(String laterDeductionModify) {
+		this.laterDeductionModify = laterDeductionModify;
+	}
+
+	public String getAwayDeductionModify() {
+		return awayDeductionModify;
+	}
+
+	public void setAwayDeductionModify(String awayDeductionModify) {
+		this.awayDeductionModify = awayDeductionModify;
+	}
+
+	public String getNormalLeaveDeductionModify() {
+		return normalLeaveDeductionModify;
+	}
+
+	public void setNormalLeaveDeductionModify(String normalLeaveDeductionModify) {
+		this.normalLeaveDeductionModify = normalLeaveDeductionModify;
+	}
+
+	public String getIllLeaveDeductionModify() {
+		return illLeaveDeductionModify;
+	}
+
+	public void setIllLeaveDeductionModify(String illLeaveDeductionModify) {
+		this.illLeaveDeductionModify = illLeaveDeductionModify;
+	}
+
+	public String getChanjiaLeaveDeductionModify() {
+		return chanjiaLeaveDeductionModify;
+	}
+
+	public void setChanjiaLeaveDeductionModify(String chanjiaLeaveDeductionModify) {
+		this.chanjiaLeaveDeductionModify = chanjiaLeaveDeductionModify;
+	}
+
+	public String getNanchanjiaLeaveDeductionModify() {
+		return nanchanjiaLeaveDeductionModify;
+	}
+
+	public void setNanchanjiaLeaveDeductionModify(
+			String nanchanjiaLeaveDeductionModify) {
+		this.nanchanjiaLeaveDeductionModify = nanchanjiaLeaveDeductionModify;
+	}
+
+	public void setAttDurationBO(AttDurationBO attDurationBO) {
+		this.attDurationBO = attDurationBO;
+	}
+
+	public void setMasterModifyInit(String masterModifyInit) {
+		this.masterModifyInit = masterModifyInit;
+	}
+
 	public String getLater() {
 		return later;
 	}
@@ -495,12 +560,15 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 			this.leaveReasonsModify=bo.getLeaveReasons();
 		    this.sickModify=bo.getLeaveSick();
 		    this.maternityModify=bo.getLeaveMaternity();
-		    this.weddingModify=bo.getLeaveWedding();
-		    this.homeModify=bo.getLeaveHome();
-		    this.industrialInjuryModify=bo.getLeaveIndustrialInjury();
-		    this.arrangingFuneralModify=bo.getLeaveArrangingFuneral();
-		    this.outModify=bo.getOutWorkValue();
-		    this.overtimeModify=bo.getWorkAddValue();
+		    this.nanchanjiaLeaveModify=bo.getNanchanjiaLeave();
+		    
+		    this.laterDeductionModify=bo.getLaterDeduction();
+		    this.awayDeductionModify=bo.getAwayDeduction();
+		    this.normalLeaveDeductionModify=bo.getNormalLeaveDeduction();
+		    this.illLeaveDeductionModify=bo.getIllLeaveDeduction();
+		    this.chanjiaLeaveDeductionModify=bo.getChanjiaLeaveDeduction();
+		    this.nanchanjiaLeaveDeductionModify=bo.getNanchanjiaLeaveDeduction();
+		    		
 		    if(bo.getLateModify()!=null && !"".equals(bo.getLateModify())){
 		    	this.lateModify=bo.getLateModify();
 		    }
@@ -516,23 +584,28 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 		    if(bo.getMaternityModify()!=null && !"".equals(bo.getMaternityModify())){
 		    	this.maternityModify=bo.getMaternityModify();
 		    }
-		    if(bo.getWeddingModify()!=null && !"".equals(bo.getWeddingModify())){
-		    	this.weddingModify=bo.getWeddingModify();
+		    if(bo.getNanchanjiaLeaveModify()!=null && !"".equals(bo.getNanchanjiaLeaveModify())){
+		    	this.nanchanjiaLeaveModify=bo.getNanchanjiaLeaveModify();
 		    }
-		    if(bo.getHomeModify()!=null && !"".equals(bo.getHomeModify())){
-		    	this.homeModify=bo.getHomeModify();
+		    
+		    
+		    if(bo.getLaterDeductionModify()!=null && !"".equals(bo.getLaterDeductionModify())){
+		    	this.laterDeductionModify=bo.getLaterDeductionModify();
 		    }
-		    if(bo.getIndustrialInjuryModify()!=null && !"".equals(bo.getIndustrialInjuryModify())){
-		    	this.industrialInjuryModify=bo.getIndustrialInjuryModify();
+		    if(bo.getAwayDeductionModify()!=null && !"".equals(bo.getAwayDeductionModify())){
+		    	this.awayDeductionModify=bo.getAwayDeductionModify();
 		    }
-		    if(bo.getArrangingFuneralModify()!=null && !"".equals(bo.getArrangingFuneralModify())){
-		    	this.arrangingFuneralModify=bo.getArrangingFuneralModify();
+		    if(bo.getNormalLeaveDeductionModify()!=null && !"".equals(bo.getNormalLeaveDeductionModify())){
+		    	this.normalLeaveDeductionModify=bo.getNormalLeaveDeductionModify();
 		    }
-		    if(bo.getOutModify()!=null && !"".equals(bo.getOutModify())){
-		    	this.outModify=bo.getOutModify();
+		    if(bo.getIllLeaveDeductionModify()!=null && !"".equals(bo.getIllLeaveDeductionModify())){
+		    	this.illLeaveDeductionModify=bo.getIllLeaveDeductionModify();
 		    }
-		    if(bo.getOvertimeModify()!=null && !"".equals(bo.getOvertimeModify())){
-		    	this.overtimeModify=bo.getOvertimeModify();
+		    if(bo.getChanjiaLeaveDeductionModify()!=null && !"".equals(bo.getChanjiaLeaveDeductionModify())){
+		    	this.chanjiaLeaveDeductionModify=bo.getChanjiaLeaveDeductionModify();
+		    }
+		    if(bo.getNanchanjiaLeaveDeductionModify()!=null && !"".equals(bo.getNanchanjiaLeaveDeductionModify())){
+		    	this.nanchanjiaLeaveDeductionModify=bo.getNanchanjiaLeaveDeductionModify();
 		    }
 		} catch (SysException e) {
 			e.printStackTrace();
@@ -862,24 +935,30 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 			    if(bo.getMaternityModify()!=null && !"".equals(bo.getMaternityModify())){
 			    	bo.setLeaveMaternity(bo.getMaternityModify());
 			    }
-			    if(bo.getWeddingModify()!=null && !"".equals(bo.getWeddingModify())){
-			    	bo.setLeaveWedding(bo.getWeddingModify());
+			    if(bo.getNanchanjiaLeaveModify()!=null && !"".equals(bo.getNanchanjiaLeaveModify())){
+			    	bo.setNanchanjiaLeave(bo.getNanchanjiaLeaveModify());
 			    }
-			    if(bo.getHomeModify()!=null && !"".equals(bo.getHomeModify())){
-			    	bo.setLeaveHome(bo.getHomeModify());
+			    
+			    
+			    if(bo.getLaterDeductionModify()!=null && !"".equals(bo.getLaterDeductionModify())){
+			    	bo.setLaterDeduction(bo.getLaterDeductionModify());
 			    }
-			    if(bo.getIndustrialInjuryModify()!=null && !"".equals(bo.getIndustrialInjuryModify())){
-			    	bo.setLeaveIndustrialInjury(bo.getIndustrialInjuryModify());
+			    if(bo.getAwayDeductionModify()!=null && !"".equals(bo.getAwayDeductionModify())){
+			    	bo.setAwayDeduction(bo.getAwayDeductionModify());
 			    }
-			    if(bo.getArrangingFuneralModify()!=null && !"".equals(bo.getArrangingFuneralModify())){
-			    	bo.setLeaveArrangingFuneral(bo.getArrangingFuneralModify());
+			    if(bo.getNormalLeaveDeductionModify()!=null && !"".equals(bo.getNormalLeaveDeductionModify())){
+			    	bo.setNormalLeaveDeduction(bo.getNormalLeaveDeductionModify());
 			    }
-			    if(bo.getOutModify()!=null && !"".equals(bo.getOutModify())){
-			    	bo.setOutWorkValue(bo.getOutModify());
+			    if(bo.getIllLeaveDeductionModify()!=null && !"".equals(bo.getIllLeaveDeductionModify())){
+			    	bo.setIllLeaveDeduction(bo.getIllLeaveDeductionModify());
 			    }
-			    if(bo.getOvertimeModify()!=null && !"".equals(bo.getOvertimeModify())){
-			    	bo.setWorkAddValue(bo.getOvertimeModify());
+			    if(bo.getChanjiaLeaveDeductionModify()!=null && !"".equals(bo.getChanjiaLeaveDeductionModify())){
+			    	bo.setChanjiaLeaveDeduction(bo.getChanjiaLeaveDeductionModify());
 			    }
+			    if(bo.getNanchanjiaLeaveDeductionModify()!=null && !"".equals(bo.getNanchanjiaLeaveDeductionModify())){
+			    	bo.setNanchanjiaLeaveDeduction(bo.getNanchanjiaLeaveDeductionModify());
+			    }
+			    
 			}
 		} catch (SysException e) {
 			e.printStackTrace();
@@ -909,12 +988,16 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 			this.bo.setLeaveReasonsModify(this.leaveReasonsModify);
 		    this.bo.setSickModify(this.sickModify);
 		    this.bo.setMaternityModify(this.maternityModify);
-		    this.bo.setWeddingModify(this.weddingModify);
-		    this.bo.setHomeModify(this.homeModify);
-		    this.bo.setIndustrialInjuryModify(this.industrialInjuryModify);
-		    this.bo.setArrangingFuneralModify(this.arrangingFuneralModify);
-		    this.bo.setOutModify(this.outModify);
-		    this.bo.setOvertimeModify(this.overtimeModify);
+		    this.bo.setNanchanjiaLeaveModify(this.nanchanjiaLeaveModify);
+		    
+		    this.bo.setLaterDeductionModify(this.laterDeductionModify);
+		    this.bo.setAwayDeductionModify(this.awayDeductionModify);
+		    this.bo.setNormalLeaveDeductionModify(this.normalLeaveDeductionModify);
+		    this.bo.setIllLeaveDeductionModify(this.illLeaveDeductionModify);
+		    this.bo.setChanjiaLeaveDeductionModify(this.chanjiaLeaveDeductionModify);
+		    this.bo.setNanchanjiaLeaveDeductionModify(this.nanchanjiaLeaveDeductionModify);
+		    
+		    this.bo.setStatus("0");
 		    this.attBusiService.saveOrUpdateBO(this.bo);
 			
 			return "success";
@@ -931,13 +1014,15 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 			this.bo.setLeaveReasons(this.leaveReasonsModify);
 			this.bo.setLeaveSick(this.sickModify);
 			this.bo.setLeaveMaternity(this.maternityModify);
-			this.bo.setLeaveWedding(this.weddingModify);
-			this.bo.setLeaveHome(this.homeModify);
-			this.bo.setLeaveIndustrialInjury(this.industrialInjuryModify);
-			this.bo.setLeaveArrangingFuneral(this.arrangingFuneralModify);
-			this.bo.setOutWorkValue(this.outModify);
-			this.bo.setOutWorkValue(this.overtimeModify);
-			this.bo.setStatus("1");
+			this.bo.setNanchanjiaLeave(this.nanchanjiaLeaveModify);
+			
+			this.bo.setLaterDeduction(this.laterDeductionModify);
+			this.bo.setAwayDeduction(this.awayDeductionModify);
+			this.bo.setNormalLeaveDeduction(this.normalLeaveDeductionModify);
+			this.bo.setIllLeaveDeduction(this.illLeaveDeductionModify);
+			this.bo.setChanjiaLeaveDeduction(this.chanjiaLeaveDeductionModify);
+			this.bo.setNanchanjiaLeaveDeduction(this.nanchanjiaLeaveDeductionModify);
+			
 			this.attBusiService.saveOrUpdateBO(this.bo);
 			
 			return "success";
@@ -980,12 +1065,15 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 		bo1.setLeaveReasons(bo1.getLeaveReasonsModify());
 		bo1.setLeaveSick(bo1.getSickModify());
 		bo1.setLeaveMaternity(bo1.getMaternityModify());
-		bo1.setLeaveWedding(bo1.getWeddingModify());
-		bo1.setLeaveHome(bo1.getHomeModify());
-		bo1.setLeaveIndustrialInjury(bo1.getIndustrialInjuryModify());
-		bo1.setLeaveArrangingFuneral(bo1.getArrangingFuneralModify());
-		bo1.setOutWorkValue(bo1.getOutModify());
-		bo1.setOutWorkValue(bo1.getOvertimeModify());
+		bo1.setNanchanjiaLeave(bo1.getNanchanjiaLeaveModify());
+		
+		bo1.setLaterDeduction(bo1.getLaterDeductionModify());
+		bo1.setAwayDeduction(bo1.getAwayDeductionModify());
+		bo1.setNormalLeaveDeduction(bo1.getNormalLeaveDeductionModify());
+		bo1.setIllLeaveDeduction(bo1.getIllLeaveDeductionModify());
+		bo1.setChanjiaLeaveDeduction(bo1.getChanjiaLeaveDeductionModify());
+		bo1.setNanchanjiaLeaveDeduction(bo1.getNanchanjiaLeaveDeductionModify());
+		
 		bo1.setStatus("1");
 	}
 	
@@ -1037,7 +1125,7 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 			this.bo.setLeaveReasons(this.normalLeave);
 			this.bo.setLeaveSick(illLeave);
 			this.bo.setLeaveMaternity(this.chanjiaLeave);
-			this.bo.setLeaveNanchanjia(this.nanchanjiaLeave);
+			this.bo.setNanchanjiaLeave(this.nanchanjiaLeave);
 			this.bo.setLaterDeduction(laterDeduction);
 			this.bo.setAwayDeduction(awayDeduction);
 			this.bo.setNormalLeaveDeduction(normalLeaveDeduction);
@@ -1077,5 +1165,13 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 			e.printStackTrace();
 		}
 		return masterModifyInit;
+	}
+
+	public String getNanchanjiaLeaveModify() {
+		return nanchanjiaLeaveModify;
+	}
+
+	public void setNanchanjiaLeaveModify(String nanchanjiaLeaveModify) {
+		this.nanchanjiaLeaveModify = nanchanjiaLeaveModify;
 	}
 }

@@ -4,8 +4,18 @@
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ include file="../../include/taglib.jsp"%>
 <script type="text/javascript">
-	function forsave(){		
-	}
+function check(){
+	var v = "";
+	var b=true;
+	$("input[code='shuzi']").each(function(){
+		v = this.value;
+		if(isNaN(v)){
+			alert("非法字符,应该为数字");
+			b=false;
+		}
+	});	
+	return b;
+}
 </script>
 <x:saveState value="#{attCalcMgrBB}" />
 <h:inputHidden value="#{attCalcMgrBB.masterModifyInit}"/>
@@ -26,44 +36,44 @@
 			<h:outputText value="#{attCalcMgrBB.bo.personName}"/>
 			
 			<h:outputText value="迟到" />
-			<h:inputText value="#{attCalcMgrBB.later}"/>
+			<h:inputText  code="shuzi" value="#{attCalcMgrBB.later}"/>
 
 			<h:outputText value="旷工" />
-			<h:inputText value="#{attCalcMgrBB.away}"/>
+			<h:inputText  code="shuzi" value="#{attCalcMgrBB.away}"/>
 			
 			<h:outputText value="事假" />
-			<h:inputText value="#{attCalcMgrBB.normalLeave}"/>
+			<h:inputText code="shuzi"  value="#{attCalcMgrBB.normalLeave}"/>
 			
 			<h:outputText value="病假" />
-			<h:inputText value="#{attCalcMgrBB.illLeave}"/>
+			<h:inputText code="shuzi"  value="#{attCalcMgrBB.illLeave}"/>
 			
 			<h:outputText value="产假" />
-			<h:inputText value="#{attCalcMgrBB.chanjiaLeave}"/>
+			<h:inputText  code="shuzi" value="#{attCalcMgrBB.chanjiaLeave}"/>
 			
 			<h:outputText value="难产产假" />
-			<h:inputText value="#{attCalcMgrBB.nanchanjiaLeave}"/>
+			<h:inputText code="shuzi"  value="#{attCalcMgrBB.nanchanjiaLeave}"/>
 			
 			<h:outputText value="迟到扣款" />
-			<h:inputText value="#{attCalcMgrBB.laterDeduction}"/>
+			<h:inputText  code="shuzi" value="#{attCalcMgrBB.laterDeduction}"/>
 			
 			<h:outputText value="旷工扣款" />
-			<h:inputText value="#{attCalcMgrBB.awayDeduction}"/>
+			<h:inputText  code="shuzi" value="#{attCalcMgrBB.awayDeduction}"/>
 			
-			<h:outputText value="事假扣款" />
-			<h:inputText value="#{attCalcMgrBB.normalLeaveDeduction}"/>
+			<h:outputText   value="事假扣款" />
+			<h:inputText code="shuzi" value="#{attCalcMgrBB.normalLeaveDeduction}"/>
 			
 			<h:outputText value="病假扣款" />
-			<h:inputText value="#{attCalcMgrBB.illLeaveDeduction}"/>
+			<h:inputText code="shuzi"  value="#{attCalcMgrBB.illLeaveDeduction}"/>
 			
 			<h:outputText value="产假扣款" />
-			<h:inputText value="#{attCalcMgrBB.chanjiaLeaveDeduction}"/>
+			<h:inputText code="shuzi"  value="#{attCalcMgrBB.chanjiaLeaveDeduction}"/>
 			
 			<h:outputText value="难产产假扣款" />
-			<h:inputText value="#{attCalcMgrBB.nanchanjiaLeaveDeduction}"/>
+			<h:inputText code="shuzi"  value="#{attCalcMgrBB.nanchanjiaLeaveDeduction}"/>
 			
 		</h:panelGrid>
 		<h:panelGrid align="right">
-			<h:commandButton value="保存" onclick="return forsave();"  action="#{attCalcMgrBB.masterSave}" styleClass="button01" />
+			<h:commandButton value="保存" onclick="return check();"  action="#{attCalcMgrBB.masterSave}" styleClass="button01" />
 		</h:panelGrid>
 	</h:panelGrid>
 </h:form>

@@ -58,9 +58,81 @@ public class AttMonthBO {
     private String illLeaveDeduction;   //病假扣款
     private String chanjiaLeaveDeduction;   //产假扣款
     private String nanchanjiaLeaveDeduction;   //难产产假扣款
-    private String leaveNanchanjia;   //难产产假
+    private String nanchanjiaLeave;   //难产产假
+    private String nanchanjiaLeaveModify;//难产产假修改
+    private String laterDeductionModify; //迟到扣款修改
+    private String awayDeductionModify;  //旷工扣款修改
+    private String normalLeaveDeductionModify; //事假扣款修改
+    private String illLeaveDeductionModify;   //病假扣款修改
+    private String chanjiaLeaveDeductionModify;   //产假扣款修改
+    private String nanchanjiaLeaveDeductionModify;   //难产产假扣款修改
     
     
+	public String getNanchanjiaLeave() {
+		return nanchanjiaLeave;
+	}
+
+	public void setNanchanjiaLeave(String nanchanjiaLeave) {
+		this.nanchanjiaLeave = nanchanjiaLeave;
+	}
+
+	public String getNanchanjiaLeaveModify() {
+		return nanchanjiaLeaveModify;
+	}
+
+	public void setNanchanjiaLeaveModify(String nanchanjiaLeaveModify) {
+		this.nanchanjiaLeaveModify = nanchanjiaLeaveModify;
+	}
+
+	public String getLaterDeductionModify() {
+		return laterDeductionModify;
+	}
+
+	public void setLaterDeductionModify(String laterDeductionModify) {
+		this.laterDeductionModify = laterDeductionModify;
+	}
+
+	public String getAwayDeductionModify() {
+		return awayDeductionModify;
+	}
+
+	public void setAwayDeductionModify(String awayDeductionModify) {
+		this.awayDeductionModify = awayDeductionModify;
+	}
+
+	public String getNormalLeaveDeductionModify() {
+		return normalLeaveDeductionModify;
+	}
+
+	public void setNormalLeaveDeductionModify(String normalLeaveDeductionModify) {
+		this.normalLeaveDeductionModify = normalLeaveDeductionModify;
+	}
+
+	public String getIllLeaveDeductionModify() {
+		return illLeaveDeductionModify;
+	}
+
+	public void setIllLeaveDeductionModify(String illLeaveDeductionModify) {
+		this.illLeaveDeductionModify = illLeaveDeductionModify;
+	}
+
+	public String getChanjiaLeaveDeductionModify() {
+		return chanjiaLeaveDeductionModify;
+	}
+
+	public void setChanjiaLeaveDeductionModify(String chanjiaLeaveDeductionModify) {
+		this.chanjiaLeaveDeductionModify = chanjiaLeaveDeductionModify;
+	}
+
+	public String getNanchanjiaLeaveDeductionModify() {
+		return nanchanjiaLeaveDeductionModify;
+	}
+
+	public void setNanchanjiaLeaveDeductionModify(
+			String nanchanjiaLeaveDeductionModify) {
+		this.nanchanjiaLeaveDeductionModify = nanchanjiaLeaveDeductionModify;
+	}
+
 	public String getSecDeptName() {
 		return secDeptName;
 	}
@@ -83,14 +155,6 @@ public class AttMonthBO {
 
 	public void setNanchanjiaLeaveDeduction(String nanchanjiaLeaveDeduction) {
 		this.nanchanjiaLeaveDeduction = nanchanjiaLeaveDeduction;
-	}
-
-	public String getLeaveNanchanjia() {
-		return leaveNanchanjia;
-	}
-
-	public void setLeaveNanchanjia(String leaveNanchanjia) {
-		this.leaveNanchanjia = leaveNanchanjia;
 	}
 
 	public String getLaterDeduction() {
