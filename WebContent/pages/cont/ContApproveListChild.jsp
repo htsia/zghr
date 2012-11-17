@@ -140,12 +140,11 @@
 
                              <h:column>
                                  <c:facet name="header"><h:outputText value="操作" style="width:60px"/></c:facet>
-                                 <h:commandLink id="bnt1" value="人员信息" onclick="forView('#{list.contPersonBO.personId}')">
-                                 </h:commandLink>
+                                 <h:commandLink id="bnt1" value="人员信息" onclick="forView('#{list.contPersonBO.personId}')"/>
 
-                                 <c:verbatim escape="false"><br><A  onclick="doShowCont('</c:verbatim><h:outputText value="#{list.attachmentId}"/><c:verbatim escape="false">')" taget="_blank" ></c:verbatim>
+                                 <c:verbatim escape="false"><br><a onclick="doShowCont('</c:verbatim><h:outputText value="#{list.attachmentId}"/><c:verbatim escape="false">')" taget="_blank" ></c:verbatim>
                                  <h:outputText value="合同查看" />
-                                 <c:verbatim escape="false"></A></c:verbatim>
+                                 <c:verbatim escape="false"></a></c:verbatim>
                              </h:column>
 
                              <h:column>

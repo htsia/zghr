@@ -1,12 +1,13 @@
 package com.hr319wg.cont.ucc;
 
+import java.util.List;
+
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.cont.pojo.bo.ContBO;
 import com.hr319wg.cont.pojo.bo.ContSignBO;
 import com.hr319wg.sys.pojo.vo.TableVO;
-import java.util.List;
 
 public abstract interface IContUCC {
 	public abstract void batchAddFollowCont(List<ContSignBO> list)
@@ -59,4 +60,6 @@ public abstract interface IContUCC {
 
 	public abstract void changeContMaster(String paramString)
 			throws SysException;
+
+	public void updateContPerson(String ID) throws SysException;
 }
