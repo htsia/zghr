@@ -28,7 +28,6 @@ public class WageAdjustDAO extends BaseDAO {
 				.find("select bo from WageAdjustDetailBO bo where bo.itemID='"
 						+ itemID + "'");
 	}
-
 	public List getAdjustList(PageVO pagevo, boolean isAppro, boolean isNotAppro, User user) throws SysException {
 		String sql = " from WageAdjustBO bo,UserBO u where bo.personID=u.userID and bo.approStatus='1' and bo.adjustType in ('岗位调整','转正')";
 		if (RoleInfoBO.ORGTYPE_OWN.equals(user.getprocessUnit())) {
