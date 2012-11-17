@@ -359,6 +359,7 @@ public ISysInProcessUCC getLinkucc()
         for (int i = 0; i < ids.length; i++) {
           String[] temp = CommonFuns.getStringArray(ids[i], ",");
           this.ucc.deleteCont(temp[0]);
+          this.contucc.updateContPerson(temp[1]);
           if (temp.length == 3)
             this.ucc_attachment.deleteAttachment(temp[2]);
         }
@@ -1026,14 +1027,16 @@ public ISysInProcessUCC getLinkucc()
 						pass=false;	
 						break;
 					}
-					bo.setContStartDate(start.replaceAll("/", "-"));
+					String[]starts=start.split("/");
+					bo.setContStartDate(starts[2]+"-"+starts[1]+"-"+starts[0]);
 					String end = st.getCell(4, i).getContents();
 					if(end==null || "".equals(end)){
 						super.showMessageDetail("第"+i+"行合同起始时间不能为空");
 						pass=false;	
 						break;
 					}
-					bo.setContEndDate(end.replaceAll("/", "-"));
+					String[]ends=end.split("/");
+					bo.setContEndDate(ends[2]+"-"+ends[1]+"-"+ends[0]);
 					ContSignBO bo1=(ContSignBO)m.get(p.getPersonId());
 					bo.setContCode(bo1.getContCode());
 					bo.setPersonName(p.getName());

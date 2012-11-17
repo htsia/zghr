@@ -280,4 +280,9 @@ public class ContUCC implements IContUCC {
 	public void batchAddFollowCont(List<ContSignBO> list) throws SysException {
 		this.contservice.batchAddFollowCont(list);
 	}
+	
+	public void updateContPerson(String ID) throws SysException{
+		String sql = "update cont_person c set c.cont_class='022001' where c.person_id='"+ID+"'";
+		this.sysactivepageapi.executeSql(sql);
+	}
 }

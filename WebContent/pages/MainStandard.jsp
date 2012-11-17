@@ -406,12 +406,10 @@
                         //0930	日志查看
                         funid="0894";
                     }  else if (moduleId.equals(OperateBO.SYSMODULEID)){
-                       //宋汉望修改开始
 						//0905	指标管理
 						//funid="0905";
 						//0915	导航图
                         funid="0915";
-						//宋汉望修改结束
                     }  else if (moduleId.equals(OperateBO.EVAMODULEID)){
                         funid="1514";
                     }
