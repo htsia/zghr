@@ -22,7 +22,7 @@
             alert("请选择人员!");
             return false;
         }
-        document.all('form1:ids').value=getAllSelectValue(form1.chk,"|");
+        document.all("form1:ids").value=getAllSelectValue(form1.chk,"|");
     }
     function doViewPerson(){
         var ID=getFirstSelectValue(form1.chk);
@@ -60,7 +60,6 @@
             <h:inputHidden id="ids" value="#{wage_exitPersonSetBB.ids}"/>
             <h:commandButton value="移出账套" styleClass="button01" action="#{wage_exitPersonSetBB.removeFromSet}" onclick="doRemove();"></h:commandButton>
             <h:commandButton value="导出" styleClass="button01" type="button" onclick="doExport();"></h:commandButton>
-            <h:commandButton value="查看流程" id="showFlow" type="button" onclick="return showWF();" styleClass="button01" rendered="#{emp_personListBB.reduceWorkFlow=='1'}"></h:commandButton>
 <f:verbatim>
         </td>
     </tr>

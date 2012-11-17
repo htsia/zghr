@@ -50,8 +50,7 @@ function selectPerson(){
     }
 }
 function selectPerson3(){
-	if(confirm("确定要生效吗？")){
-		  var str=" |";
+	  var str=" |";
 	  chk=document.forms(0).selectItem;
 	  if (checkMutilSelect(chk)){
 	      var size = chk.length;
@@ -72,13 +71,18 @@ function selectPerson3(){
 	          }
 	      }
 	     if(str != null && str!=""){
-	    	 var vars=str.split("|");
-	    	 document.all("form1:personStr").value = vars[1];
+	    	if(confirm("确定要生效吗")){
+		    	var vars=str.split("|");
+		    	document.all("form1:personStr").value = vars[1];
+		    	return true;
+	    	}else{
+	    		return false;
+	    	}
 	    }
+	  }else{
+		  alert("请选择人员");
+		  return false;
 	  }
-	}else{
-		return false;
-	}
 }
 function selectPerson2(perid){
     window.showModalDialog("/employee/probation/probationWageEdit.jsf?personId="+perid, null, "dialogWidth:600px; dialogHeight:500px;center:center;resizable:no;status:no;scroll:yes;");
@@ -118,10 +122,10 @@ function showTable(changId){
                </td>
                <td align="left" class=td_title>
               </f:verbatim> 
-               		 <f:verbatim>
-              				<%=LanguageSupport.getResource("RYGL-2430", "转正月数")%>:
-                     </f:verbatim>
-					<h:outputText value="#{empprobastionmgrBB.passMonth}"></h:outputText>
+               		<h:outputText value="试用期转正月数:"/>
+					<h:outputText value="#{empprobastionmgrBB.passMonth}"/>
+               		<h:outputText value="见习期转正月数:"/>
+					<h:outputText value="#{empprobastionmgrBB.passMonth2}"/>
 					<h:outputText value="  "></h:outputText>
 					<h:commandButton value="设置"  styleClass="button01" onclick="return SetProbation()"/>
                 	<h:outputText value="  "></h:outputText>
@@ -136,20 +140,17 @@ function showTable(changId){
                     %>
                </td>
                <td align="right" class=td_title >
-              				<%=LanguageSupport.getResource("RYGL-2132", "试用")%>
-                        </f:verbatim>
+               </f:verbatim>
+              			<h:outputText value="试用"/>
                         <h:selectBooleanCheckbox value="#{empprobastionmgrBB.newProbation}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryNewProbation}" />
-
+              			<h:outputText value="见习"/>
+                        <h:selectBooleanCheckbox value="#{empprobastionmgrBB.newProbation2}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryNewProbation2}" />
                         <h:outputText value="报批" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
                         <h:selectBooleanCheckbox value="#{empprobastionmgrBB.apprving}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryApprving}" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
-
                         <h:outputText value="批准" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
                         <h:selectBooleanCheckbox value="#{empprobastionmgrBB.apprived}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryApprived}" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
-                         <f:verbatim>
-              				<%=LanguageSupport.getResource("RYGL-2431", "生效")%>
-                        </f:verbatim>
+                        <h:outputText value="生效"/>
                         <h:selectBooleanCheckbox value="#{empprobastionmgrBB.efficent}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryEfficent}" />
-
                         <h:outputText value="辞退" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
                         <h:selectBooleanCheckbox value="#{empprobastionmgrBB.refuse}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryRefuse}" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
       			<f:verbatim>
@@ -288,14 +289,13 @@ function showTable(changId){
             <h:column>
                 <c:facet name="header"><h:outputText value="操作"/></c:facet>
                 <h:panelGrid columns="3">
-                <h:commandButton value="删除信息" onclick="return confirm('确定要删除吗?');" action="#{empprobastionmgrBB.delete}" styleClass="button01" rendered="#{list.status=='0'}">
+                <h:commandButton value="删除信息" onclick="return confirm('确定要删除吗?');" action="#{empprobastionmgrBB.delete}" styleClass="button01" rendered="#{list.status=='0' || list.status=='5'}">
                 	<x:updateActionListener value="#{list.personId}" property="#{empprobastionmgrBB.personId}"></x:updateActionListener>
                 </h:commandButton>
                 <h:commandButton value="调整时间" onclick="return modifyDate('#{list.personId}')" styleClass="button01" rendered="#{list.status!='3'&&list.status!='4'}"></h:commandButton>
                 <h:commandButton value="查看流程" onclick="return showWorkFlowLogByLinkID('#{list.personId}')" styleClass="button01" rendered="#{empprobastionmgrBB.mustApprov=='0'}"></h:commandButton>
 
-                <h:commandButton value="拟定薪资" styleClass="button01" onclick="return selectPerson2('#{list.personId}');" rendered="#{list.status=='0'}"/>
-                <h:commandButton value="查看薪资" styleClass="button01" onclick="return selectPerson4('#{list.personId}');" rendered="#{list.status!='0'}"/>
+                <h:commandButton value="拟定薪资" styleClass="button01" onclick="return selectPerson2('#{list.personId}');" rendered="#{list.status=='0' || list.status=='5'}"/>
                 <h:commandButton value="显示表格" styleClass="button01" onclick="return showTable('#{list.personId}');"/>
                 </h:panelGrid>
             </h:column>
