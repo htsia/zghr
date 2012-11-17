@@ -66,7 +66,6 @@ public class WageAdjustService
   public void setAdjustdao(WageAdjustDAO adjustdao) {
     this.adjustdao = adjustdao;
   }
-
   public List getAdjustList(PageVO pagevo, boolean isAppro, boolean isNotAppro, User user) throws SysException {
     return this.adjustdao.getAdjustList(pagevo, isAppro, isNotAppro, user);
   }

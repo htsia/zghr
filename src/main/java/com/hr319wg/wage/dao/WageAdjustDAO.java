@@ -28,13 +28,10 @@ public class WageAdjustDAO extends BaseDAO {
 				.find("select bo from WageAdjustDetailBO bo where bo.itemID='"
 						+ itemID + "'");
 	}
-
-	public List getAdjustList(PageVO pagevo, User user) throws SysException {
-		String countSql = "select count(bo) from WageAdjustBO bo ";
-		String Sql = "select bo from WageAdjustBO bo ";
+	public List getAdjustList(PageVO pagevo, boolean isAppro, boolean isNotAppro, User user) throws SysException {
+		String sql = " from WageAdjustBO bo,UserBO u where bo.personID=u.userID and bo.approStatus='1' and bo.adjustType in ('岗位调整','转正')";
 		if (RoleInfoBO.ORGTYPE_OWN.equals(user.getprocessUnit())) {
-			Sql = Sql + " where bo.orgID='" + user.getOrgId() + "'";
-			countSql = countSql + " where bo.orgID='" + user.getOrgId() + "'";
+			sql += " and bo.orgID='" + user.getOrgId() + "'";
 		} else if (RoleInfoBO.ORGTYPE_USD.equals(user.getprocessUnit())) {
 			List list = user.getHaveOperateOrgScale();
 			String where = "";
@@ -43,14 +40,23 @@ public class WageAdjustDAO extends BaseDAO {
 				if ("".equals(where)) {
 					where = "bo.orgID='" + b.getOrgId() + "'";
 				} else {
-					where = where + " or bo.orgID='" + b.getOrgId() + "'";
+					where += " or bo.orgID='" + b.getOrgId() + "'";
 				}
 			}
-			Sql = Sql + " where (" + where + ")";
-			countSql = countSql + " where (" + where + ")";
+			sql += " and ("+where+")";
 		}
-		Sql += " order by bo.applyDate desc";
-		List list = pageQuery(pagevo, countSql, Sql);
+		if(isAppro && isNotAppro){
+			sql += " and bo.status in ('0','4')";
+		}else if(isAppro){
+			sql += " and bo.status ='4'";			
+		}else if(isNotAppro){
+			sql += " and bo.status ='0'";			
+		}else{
+			sql += " and 1=0";
+		}
+		String boSql = "select bo "+sql+" order by bo.applyDate desc,u.secDeptID,u.deptId";
+		String countSql="select count(bo) "+sql;
+		List list = pageQuery(pagevo, countSql, boSql);
 		List result = new ArrayList();
 		for (int i = 0; i < list.size(); i++) {
 			WageAdjustBO wb = (WageAdjustBO) list.get(i);
