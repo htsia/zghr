@@ -18,6 +18,7 @@ import com.hr319wg.attence.dao.AttFeastDAO;
 import com.hr319wg.attence.dao.AttRestWeekDAO;
 import com.hr319wg.attence.pojo.bo.AttClassBO;
 import com.hr319wg.attence.pojo.bo.AttClassDetailBO;
+import com.hr319wg.attence.pojo.bo.AttDurationBO;
 import com.hr319wg.attence.pojo.bo.AttFeastBO;
 import com.hr319wg.attence.pojo.bo.AttRestOfWeekBO;
 import com.hr319wg.attence.pojo.bo.AttWorkDateBO;
@@ -38,7 +39,6 @@ import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.api.QueryAPI;
-import com.hr319wg.sys.cache.SysCache;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.SysInProcessBO;
 import com.hr319wg.sys.ucc.ISysInProcessUCC;
@@ -881,6 +881,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			return "考勤机驱动注册失败";
 		}
 		String msg = "";
+		String noExsit = "";
 		int success = 0;
 		for (AttMachineBO bo : mList) {
 			Boolean isConnected = Dispatch.call(myCom, "Connect_Net",
@@ -966,6 +967,8 @@ public class AttBusiServiceImpl implements IAttBusiService {
 										+ "') ";// 时间(A808701) 日期(A808700)
 								this.activeapi.executeSql(sql);
 								success++;
+							} else {
+								noExsit += sdwEnrollNumber.toString() + ",";
 							}
 						}
 					}
@@ -979,6 +982,9 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			} else {
 				msg += "考勤机" + bo.getMachineName() + "连接失败,";
 			}
+		}
+		if (!"".equals(noExsit)) {
+			msg += "以下编号员工" + noExsit + "不存在。";
 		}
 		msg = "新增考勤记录" + success + "条。" + msg;
 		return msg;
@@ -1594,6 +1600,9 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			// 请假结束当天，如果在14点之前，算半天；如果在14点之后，算1天。
 			// 先算出假条开始时间的小时数 和结束时间的小时数
 			String beginDayHh = "";
+			if("nihaoa".equals(bo.getReason())){
+				int k=0;
+			}
 			String endDayHh = "";
 			if (bo.getBeginTime().length() > 14
 					&& bo.getEndTime().length() > 14) {
@@ -2210,7 +2219,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	@Override
 	// 存休转为加班费
-	public void updateOvertimePay(String id, String hours, String selectMonth)
+	public void updateOvertimePay(String id, String hours, String selectMonth,String overtimePay)
 			throws SysException, ParseException {
 		// TODO Auto-generated method stub
 		// 首先清空带薪假子集的存休
@@ -2227,9 +2236,12 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		// String jiben = "(select a223206  from a223 b where b.id='"+id+"')";//
 		// 基本工资
 		// 插入信息
+		if(overtimePay==null||"".equals(overtimePay)){
+			overtimePay="20";
+		}
 		sql = "insert into a243 select " + id + "||rownum||'" + selectMonth
 				+ "'," + id + ",'00901','" + selectMonth + "'," + hours + ","
-				+ hours + "*20/8.0 from dual";
+				+ hours + "*"+overtimePay+"/8.0 from dual";
 		this.activeapi.executeSql(sql);
 	}
 
@@ -2347,6 +2359,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public List<AttLeaveBO> queryLeaveAuditTask(String userId)
 			throws SysException {
+		// TODO Auto-generated method stub
 		List<AttLeaveBO> leaveList = new ArrayList();
 		List list = activitiToolService.getTaskAssgineeByPersonId(userId);
 		if (list != null && list.size() > 0) {
@@ -2738,9 +2751,9 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	@Override
 	public List getYearBO(PageVO pageVO, String orgID, String nameStr,
-			String personType) throws SysException {
+			String personType,String yearStr) throws SysException {
 		// return this.jdbcTemplate.queryForList("select * from a236");
-		return this.attBusiDAO.getYearBO(pageVO, orgID, nameStr, personType);
+		return this.attBusiDAO.getYearBO(pageVO, orgID, nameStr, personType,yearStr);
 	}
 
 	@Override
@@ -3318,6 +3331,12 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			leave.setBeginMonthDays("0");
 			leave.setNextMonthDays("0");
 		}
+		if(leave.getNextMonthDays()==null||"".equals(leave.getNextMonthDays())){
+			leave.setNextMonthDays("0");
+		}
+		if(leave.getBeginMonthDays()==null||"".equals(leave.getBeginMonthDays())){
+			leave.setBeginMonthDays("0");
+		}
      this.attBusiDAO.saveOrUpdateBo(leave);
 	}
 	//获得一段时间内的公休日
@@ -3355,4 +3374,27 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		days.removeAll(weekDays);// 所有天减去工作的周一到周五
 		return days;
 	}
+
+	@Override
+	public void updateToShow(String duraID) throws SysException {
+		// TODO Auto-generated method stub
+		AttDurationBO bo=attBusiDAO.getAttDurationBOById(duraID);
+		String yearMonth="";
+		if(bo!=null){
+			yearMonth=bo.getDuraYear()+"-"+bo.getDuraMonth();
+		}
+		//先删除月汇总显示自己的本月数据
+		String sql="delete from a245 a where a.a245200='"+yearMonth+"'";
+		this.activeapi.executeSql(sql);
+		//插入新的本月数据
+		sql="insert into a245 select a.subid||rownum,a.id,'00900',a.a810700,a.a810701,a.a810215,a.a810216,a.a810219" +
+				",a.a810220,a.a810213,a.a810214,a.a810704,a.a810706,a.a810707,a.a810708,a.a810221,a.a810709,a.a810710,a.a810714 from a810 a where a.a810700='"+yearMonth+"'";
+		this.activeapi.executeSql(sql);
+		//更新主键，以免下次插入冲突
+		sql="update a245 a set a.subid='111'||substring(a.subid,8,20)||rownum where a.a245200='"+yearMonth+"'";
+		this.activeapi.executeSql(sql);
+		
+		
+	}
+
 }

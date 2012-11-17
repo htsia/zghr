@@ -597,7 +597,7 @@ public class AttBusiDAO extends BaseDAO{
 		return this.pageQuery(pageVO, countHql, boHql);
 	}
 	//获取年出勤数据
-	public List getYearBO(PageVO pageVO, String orgID, String nameStr, String personType) throws SysException{
+	public List getYearBO(PageVO pageVO, String orgID, String nameStr, String personType, String yearStr) throws SysException{
 		//String hql = " from a236 ";
 		String hql = " from AttYearBO bo,UserBO u where u.userID=bo.id ";
 		if(orgID!=null && !"".equals(orgID)){
