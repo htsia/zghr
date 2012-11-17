@@ -489,6 +489,7 @@ public IWageSetPersonUCC getWagesetpersonucc()
     this.personIds = personIds;
   }
 
+  //保存岗位调整
 	public String save() {
 		try {
 			String[] ids = this.personIds.split(",");
@@ -982,6 +983,9 @@ public IWageSetPersonUCC getWagesetpersonucc()
             this.emppostchangeucc.personMessageChange(super.getUserInfo(), bo);
             bo.setStatus(EmpPostChangeBO.HUMANEFFICIRNT);
             this.emppostchangeucc.saveEmpPostChangeBO(bo);
+            WageAdjustBO adjust = this.adjustucc.getWageAdjustBOByLinkID(bo.getPostChangeId());
+            adjust.setApproStatus("1");
+            this.adjustucc.saveWageAdjustBO(adjust);
             if ("1".equals(bo.getLinkBeginMgr())) {
               linkAddBegin(bo);
             }

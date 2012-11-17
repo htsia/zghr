@@ -29,7 +29,7 @@
             <generator class="assigned"/>
         </id>
         <property name="probation"	   column="probation"/>
-		<property name="normailType"     column="normail_type"/>
+		<property name="jianxi"     column="normail_type"/>
 		<property name="wageItems"     column="wage_item"/>
     </class>
 
