@@ -654,6 +654,5 @@ public class AttBusiDAO extends BaseDAO{
 		}else{
 			return null;
 		}
-		
 	}
 }
