@@ -124,9 +124,9 @@ public class AttDurationDAO extends BaseDAO {
     public List getAllAttenceSet(PageVO pagevo,  User user)
             throws SysException {
         String hsql = "select bo from AttDurationBO bo where bo.orgID='"
-                + user.getOrgId() + "'";
+                + user.getOrgId() + "' and bo.createUserID='"+user.getUserId()+"'";
         String countsql = "select count(bo) from AttDurationBO bo where bo.orgID='"
-        		+ user.getOrgId() + "'";
+        		+ user.getOrgId() + "' and bo.createUserID='"+user.getUserId()+"'";
         return this.pageQuery(pagevo, countsql, hsql);
 
     }

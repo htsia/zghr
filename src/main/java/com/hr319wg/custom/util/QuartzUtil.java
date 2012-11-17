@@ -43,7 +43,7 @@ public class QuartzUtil extends QuartzJobBean{
 		String sql = "select a.a001735 员工编号,a.a001001 姓名,yb.b001005 原部门,xb.b001005 现部门,yc.c001005 原岗位,xc.c001005 现岗位,g.a017015 变动时间 from a017 g,a001 a,b001 yb,b001 xb,c001 yc,c001 xc where g.id=a.id and g.a017705=yb.orguid and g.a017710=xb.orguid and g.a017801=yc.postid and g.a017702=xc.postid and A017200 is null and g.a017000 ='00901'";
 		List list = this.jdbcTemplate.queryForList(sql);
 		StringBuffer content=new StringBuffer();
-		if(list!=null){
+		if(list!=null && list.size()>0){
 			String[]titles={"员工编号","姓名","原部门","现部门","原岗位","现岗位","变动时间"};
 			setEmailContent(titles, list, content ,2);
 			sql = "update a017 set A017200='00901'";
@@ -51,7 +51,7 @@ public class QuartzUtil extends QuartzJobBean{
 		}
 		sql = "select a.a001735 员工编号,a.a001001 姓名,b.b001005 所在部门,c.c001005 岗位,e.changedate 审批时间 from a001 a,b001 b,c001 c,emp_audit_info e where a.a001705=b.orguid and a.A001715 =c.postid and a.id=e.id and e.status is null and changetype=1";
 		list = this.jdbcTemplate.queryForList(sql);
-		if(list!=null){
+		if(list!=null && list.size()>0){
 			String[]titles={"员工编号","姓名","所在部门","岗位","审批时间"};
 			setEmailContent(titles, list, content, 0);
 			sql = "update emp_audit_info set status=1 where changetype=1";
@@ -59,14 +59,13 @@ public class QuartzUtil extends QuartzJobBean{
 		}
 		sql = "select a.a001735 员工编号,a.a001001 姓名,b.b001005 所在部门,c.c001005 岗位,e.changedate 审批时间 from a001 a,b001 b,c001 c,emp_audit_info e where a.a001705=b.orguid and a.A001715 =c.postid and a.id=e.id and e.status is null and changetype=2";
 		list = this.jdbcTemplate.queryForList(sql);
-		if(list!=null){
+		if(list!=null && list.size()>0){
 			String[]titles={"员工编号","姓名","所在部门","岗位","审批时间"};
 			setEmailContent(titles, list, content, 1);
 			sql = "update emp_audit_info set status=1 where changetype=2";
 			this.jdbcTemplate.execute(sql);
 		}
-		System.out.println(content);
-		if(content.length()>0){
+		if(content.toString()!=null && !"".equals(content.toString())){
 			Service service = new Service();
 	    	 try{
 	             Call call=(Call)service.createCall();            
@@ -83,7 +82,7 @@ public class QuartzUtil extends QuartzJobBean{
 	             
 	             call.setUseSOAPAction(true);
 	             call.setSOAPActionURI(soapaction + "addPortalMailInfoByUserID");
-//	             String result = (String) call.invoke(new Object[]{"人员变动信息",content.toString(),MailSenderID,MailAccepterID,CheckStr});//调用方法并传递参数
+	             String result = (String) call.invoke(new Object[]{"人员变动信息",content.toString(),MailSenderID,MailAccepterID,CheckStr});//调用方法并传递参数
 	         }catch(Exception ex){
 	        	 ex.printStackTrace();
 	         } 

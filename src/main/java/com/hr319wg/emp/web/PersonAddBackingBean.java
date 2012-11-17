@@ -1,6 +1,9 @@
 package com.hr319wg.emp.web;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -565,10 +568,31 @@ public String getClassId()
 				}
 			}
 
+			//增加工资变动记录
 			CommonUtil.addWageChange(personId, this.personvo.getStatus());
 			importData(personId);
-//			ActivePageAPI api = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
 //			api.executeSql("insert into sys_role_user_r (role_person_id ,role_id,person_id) values ((select nvl(max(cast(r.role_id as int)),0)+1 from sys_role_user_r r where len(r.role_person_id)<4),'08','"+personId+"')");
+			ActivePageAPI api = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
+			String sql = "select A001725 from a001 where id='"+personId+"'";
+			String curr=api.queryForString(sql);
+			if(!"014511".equals(curr) && !"014512".equals(curr)){
+				sql = "delete from emp_probation where person_id='"+personId+"'";
+				api.executeSql(sql);
+			}
+			if("014512".equals(curr)){
+				sql = "select normail_type from org_probation where orguid='"+super.getUserInfo().getOrgId()+"'";
+				String jianxi = api.queryForString(sql);
+				if(jianxi==null || "".equals(jianxi)){
+					jianxi = Constants.DEFAULT_PROBATION;
+				}
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	            Calendar cd = new GregorianCalendar();
+	            cd.setTime(sdf.parse(this.personvo.getUnitTime()));
+	            cd.add(2, Integer.parseInt(jianxi));
+	            String planDate =sdf.format(cd.getTime());
+				sql = "update emp_probation set status='5',plan_passdate='"+planDate+"' where person_id='"+personId+"'";
+				api.executeSql(sql);
+			}
 			showMessageDetail("增加人员成功!");
 			return "edit";
 		} catch (Exception e) {

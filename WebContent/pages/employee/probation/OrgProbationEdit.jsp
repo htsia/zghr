@@ -9,21 +9,22 @@
 %>
 <script type="text/javascript">
 function checkform() {
-	if(document.all("form1:A001054").value==""||document.all("form1:A001054").value==null){
-		alert("转正后人员类别不能为空！");
-		return false;
-	}
-    if(document.all("form1:probation").value==""){
-        alert("试用期不能为空！");
+	var probation=document.all("form1:probation").value;
+	probation=$.trim(probation);
+    if(probation=="" || isNaN(probation)){
+        alert("试用期只能是数字");
         return false;
+    }else{
+    	document.all("form1:probation").value=probation;
     }
-    if(document.all("form1:probation").value==""){
-        alert("试用期不能为空！");
+    
+    var jianxi=document.all("form1:jianxi").value;
+    jianxi=$.trim(jianxi);
+    if(jianxi=="" || isNaN(jianxi)){
+        alert("见习期只能是数字");
         return false;
-    }
-    if(isNaN(document.all("form1:probation").value)){
-        alert("试用期只能是数字！");
-        return false;
+    }else{
+    	document.all("form1:jianxi").value=jianxi;
     }
 
     return forsubmit(document.forms(0));
@@ -58,7 +59,7 @@ function forCopyPersonItem(){
   
   <x:saveState value="#{empprobastionmgrBB}" />
   <h:form id="form1">
-      <h:inputHidden id="initEdit" value="#{empprobastionmgrBB.initEdit}"></h:inputHidden>
+      <h:inputHidden id="initEdit" value="#{empprobastionmgrBB.initEdit}"/>
       <h:inputHidden value="#{empprobastionmgrBB.copySet}" id="copySet"/>
       <h:inputHidden value="#{empprobastionmgrBB.unitId}" id="unitId"/>
     <h:inputHidden value="#{empprobastionmgrBB.setId}" id="setId"/>
@@ -77,22 +78,15 @@ function forCopyPersonItem(){
                <f:verbatim>
                 <%=LanguageSupport.getResource("JGGL-1073", "机构名称")%>
                </f:verbatim>
-               <h:inputText value="#{empprobastionmgrBB.orgprobationbo.orgName}" readonly="true"></h:inputText>
+               <h:inputText value="#{empprobastionmgrBB.orgprobationbo.orgName}" readonly="true"/>
 			   <f:verbatim>
                 <%=LanguageSupport.getResource("RYGL-2426", "试用期(月)")%>
                </f:verbatim>
-               <h:inputText id="probation" value="#{empprobastionmgrBB.probation}"></h:inputText>
+               <h:inputText id="probation" value="#{empprobastionmgrBB.probation}"/>
+               <h:outputText value="见习期(月)"/>
+               <h:inputText id="jianxi" value="#{empprobastionmgrBB.jianxi}"/>
                <f:verbatim>
-                <%=LanguageSupport.getResource("RYGL-2220", "转正后人员类别")%>
-               </f:verbatim>
-			   <h:panelGroup>
-               <h:inputText styleClass="input" id="A001054" code="" dict="yes" dict_num="0135"
-                     readonly="true" value="#{empprobastionmgrBB.normailType}"
-                     alt="员工类别|0|s|50||"/>
-               <h:commandButton styleClass="button_select" type="button" onclick="PopUpCodeDlgOneControl('form1:A001054')"></h:commandButton>
-               </h:panelGroup>
-                <f:verbatim>
-                <%=LanguageSupport.getResource("RYGL-2143", "薪资变动相关指标项")%>
+               <%=LanguageSupport.getResource("RYGL-2143", "薪资变动相关指标项")%>
                </f:verbatim>
 			        <h:panelGrid width="98%" align="center">
 			        <h:panelGrid width="98%" align="right">

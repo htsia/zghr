@@ -249,20 +249,7 @@ public class AttenceSetService {
     }
 
     public void deleteAttenceSetBO(String id) throws SysException {
-        
-      //清除本次计算的结果
-      		AttDurationBO bo=(AttDurationBO)this.attenceSetDAO.findBoById(AttDurationBO.class, id);
-      		String yearMonth="";
-      		if(bo!=null){
-      			yearMonth=bo.getDuraYear()+"-"+bo.getDuraMonth();
-      			if(("2".equals(bo.getStatus())||"1".equals(bo.getStatus()))){
-          			String sql="delete from a245 a where a.a245200='"+yearMonth+"'";
-          			this.activeapi.executeSql(sql);
-          			sql="delete from a810 a where a.a810700='"+yearMonth+"'";
-          			this.activeapi.executeSql(sql);
-          		}
-      		}
-      		attenceSetDAO.deleteBo(AttDurationBO.class, id);
+        attenceSetDAO.deleteBo(AttDurationBO.class, id);
     }
 
     public List getAllAttDurationBO(User user) throws SysException {

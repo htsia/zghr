@@ -356,19 +356,29 @@ function confirmSave(form1){
             <h:inputText id="contEndDate" styleClass="input" size="10" value="#{cont_contNewSignBB.bo.contEndDate}" readonly="true" />
             <c:verbatim><input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:contEndDate')"> </c:verbatim>
          </h:panelGroup>
+         
+         <h:outputText value="合同试用期开始时间" />
+         <h:panelGroup>
+             <h:inputText id="serviceStartDate" styleClass="input" size="10" value="#{cont_contNewSignBB.bo.serviceStartDate}" readonly="true"/>
+             <c:verbatim><input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:serviceStartDate')"> </c:verbatim>
+         </h:panelGroup>
 
+		 <h:outputText value="合同试用期终止时间" />
+         <h:panelGroup>
+             <h:inputText id="probationEndDate" styleClass="input" size="10" value="#{cont_contNewSignBB.bo.probationEndDate}" readonly="true" />
+             <c:verbatim><input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:probationEndDate')"></c:verbatim>
+         </h:panelGroup>
+         
+         <h:outputText  value="合同见习期开始时间" />
+         <h:panelGroup>
+            <h:inputText id="serviceEndDate" styleClass="input" size="10" value="#{cont_contNewSignBB.bo.serviceEndDate}" readonly="true" />
+            <c:verbatim><input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:serviceEndDate')"> </c:verbatim>
+         </h:panelGroup>
          <h:outputText value="合同见习期终止时间" />
          <h:panelGroup>
             <h:inputText id="praxisEndDate" styleClass="input" size="10" value="#{cont_contNewSignBB.bo.praxisEndDate}" readonly="true"/>
             <c:verbatim><input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:praxisEndDate')"></c:verbatim>
          </h:panelGroup>
-
-         <h:outputText value="合同试用期终止时间" />
-         <h:panelGroup>
-             <h:inputText id="probationEndDate" styleClass="input" size="10" value="#{cont_contNewSignBB.bo.probationEndDate}" readonly="true" />
-             <c:verbatim><input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:probationEndDate')"></c:verbatim>
-         </h:panelGroup>
-
          <h:outputText  value="合同约定工作地点" />
          <h:inputTextarea id="workPlace" rows="2" cols="28" value="#{cont_contNewSignBB.bo.workPlace}"/>
 
@@ -385,18 +395,6 @@ function confirmSave(form1){
          <h:panelGroup>
              <h:inputText styleClass="input" value="#{cont_contNewSignBB.bo.workTimeSet}" id="workTimeSet"  code="" dict="yes" dict_num="2024" readonly="true" />
              <c:verbatim><input type="button"  value="" onclick="PopUpCodeDlgOneControl('form1:workTimeSet')" class="button_select"></c:verbatim>
-         </h:panelGroup>
-
-         <h:outputText value="服务期起始时间" />
-         <h:panelGroup>
-             <h:inputText id="serviceStartDate" styleClass="input" size="10" value="#{cont_contNewSignBB.bo.serviceStartDate}" readonly="true"/>
-             <c:verbatim><input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:serviceStartDate')"> </c:verbatim>
-         </h:panelGroup>
-
-         <h:outputText  value="服务期终止时间" />
-         <h:panelGroup>
-            <h:inputText id="serviceEndDate" styleClass="input" size="10" value="#{cont_contNewSignBB.bo.serviceEndDate}" readonly="true" />
-            <c:verbatim><input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:serviceEndDate')"> </c:verbatim>
          </h:panelGroup>
 
          <h:outputText value="合同约定劳动报酬形式" />

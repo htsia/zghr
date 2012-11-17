@@ -171,7 +171,7 @@
 					<f:facet name="header">
 						<h:outputText value="ÄÑ²ú²ú¼Ù" />
 					</f:facet>
-					<h:outputText value="#{list.nanchanjiaLeave}"></h:outputText>
+					<h:outputText value="#{list.leaveNanchanjia}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">

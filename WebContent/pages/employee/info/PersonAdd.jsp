@@ -5,10 +5,10 @@
 <%@ page import="com.hr319wg.common.Constants" %> 
 <%@ page import="com.hr319wg.sys.pojo.bo.InfoItemBO" %>
 <%@ page import="com.hr319wg.sys.cache.SysCacheTool" %>
-<%@ include file="../../include/taglib.jsp" %>
 <%@ page import="com.hr319wg.sys.configuration.LanguageSupport"%>
 <%@ page import="com.hr319wg.sys.pojo.bo.WFTypeBO" %>
 <%@ page import="com.hr319wg.org.pojo.bo.OrgEnterBO" %>
+<%@ include file="../../include/taglib.jsp" %>
 
 <%
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
@@ -324,7 +324,7 @@ function selAddTime() {
         <input type="button" class="button_date" onclick="selUnitTime();"></td> -->
 <!--修改2结束-->
 
-<td class=td_form01> <%=LanguageSupport.getResource("JGGL-1078", "岗位名称")%></td>
+<td class="td_form01 td_form_required"> <%=LanguageSupport.getResource("JGGL-1078", "岗位名称")%></td>
     <td class=td_form02>
 </f:verbatim>
         <h:inputText styleClass="input" id="A001715" code="" dict="yes" dict_num="PO"

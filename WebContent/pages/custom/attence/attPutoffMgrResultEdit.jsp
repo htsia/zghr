@@ -65,6 +65,12 @@
 
 			<h:outputText value="带薪事假" />
 			<h:inputText code="shuzi" value="#{attPutoffMgrBB.daixinjia}" />
+			<h:outputText value="应出勤天数" />
+			<h:inputText value="#{attPutoffMgrBB.yinggai}" />
+			<h:outputText value="实际出勤天数" />
+			<h:inputText value="#{attPutoffMgrBB.shiji}" />
+			<h:outputText value="出勤率" />
+			<h:inputText value="#{attPutoffMgrBB.rate}" />
 
 		</h:panelGrid>
 		<h:panelGrid align="right">

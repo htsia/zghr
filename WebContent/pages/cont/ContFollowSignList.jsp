@@ -74,9 +74,22 @@ function downloadBatch(form1){
     document.form1.action = old_action;
     document.form1.target = '_self';
 }
+function checkSubmit() {
+    var filename = form1.all("form1:excelFile").value;
+    if (filename.substr(filename.length - 3).toLowerCase() != 'xls') {
+        alert("请选择xls文件！");
+        return false;
+    } 
+    x = document.body.clientWidth / 2 - 150;
+	y = document.body.clientHeight / 2;
+	document.all('processbar').style.top = y;
+	document.all('processbar').style.left = x;
+	document.all('processbar').style.display = "";
+	return true;
+}
 </script>
 
-<h:form id="form1">
+<h:form id="form1" enctype="multipart/form-data">
     <h:inputHidden id="init_a" value="#{cont_contFollowSignBB.init_a}"/>
     <h:inputHidden id="str" value="#{cont_contFollowSignBB.validDate}"/>
     <h:panelGrid width="100%" border="0" styleClass="td_title" cellspacing="0" cellpadding="0" columns="2">
@@ -88,14 +101,21 @@ function downloadBatch(form1){
             <h:outputText value="合同已到期共有：#{cont_contFollowSignBB.newCount}"></h:outputText>
             <h:commandButton styleClass="button01" value="合同已到期员工列表" action="contEnd_PersonList_jsf"/>
         </h:panelGrid>
-
     </h:panelGrid>
 
     <h:panelGrid  border="0"  align="center" columns="1" width="95%">
      <h:panelGrid  border="0"  cellspacing="0" align="left" columns="13" >
          <h:outputText value="姓名"/>
-         <h:inputText styleClass="input" size="15" id="personNameQry" value="#{cont_contFollowSignBB.personNameQry}"/>
+         <h:inputText styleClass="input" size="10" id="personNameQry" value="#{cont_contFollowSignBB.personNameQry}"/>
         <h:commandButton styleClass="button01" value=" 查询 " action="#{cont_contFollowSignBB.queryAll}"/>
+        <h:panelGroup>
+			<h:outputLink value="/pages/cont/import.xls" target="_new">
+				<h:outputText value="下载模板  " />
+			</h:outputLink>
+            <x:inputFileUpload id="excelFile" styleClass="input" value="#{cont_contFollowSignBB.excelFile}" storage="file" size="10"/>
+            <h:commandButton styleClass="button01" value="上传" action="#{cont_contFollowSignBB.uploadFile}"
+                             onclick="return checkSubmit();"/>
+        </h:panelGroup>
         <h:commandLink id="doQuery" action="#{cont_contFollowSignBB.queryAll}"></h:commandLink>
         <h:commandButton styleClass="button01" value="续签合同" action="#{cont_contFollowSignBB.forwardAdd}" />
          <h:commandButton styleClass="button01" value="报审" action="#{cont_contFollowSignBB.toApprove}" onclick="if(checkBatchDo('selected_ids')) { return true } else {return false;}"/>
@@ -202,8 +222,21 @@ function downloadBatch(form1){
                 
             </h:column>
 </x:dataTable>
-
 </h:form>
+<marquee id="processbar" style="position:absolute;display:none; border:1px solid #000000" direction="right" width="300"
+         scrollamount="5" scrolldelay="10"
+         bgcolor="#ECF2FF">
+    <table cellspacing="1" cellpadding="0">
+        <tr height=8>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+        </tr>
+    </table>
+</marquee>
 <script type="text/javascript">
    setDataTableOver("form1:data");
 </script>

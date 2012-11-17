@@ -470,6 +470,6 @@ public class DateUtil {
 	    		nextMonth=""+month;
 	    	}
 	    }
-		return nextYear+"-"+nextMonth;
+		return nextMonth;
 	}
 }

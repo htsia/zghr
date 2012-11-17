@@ -129,45 +129,45 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="难产产假" />
+						<h:outputText value="婚假" />
 					</f:facet>
-					<h:outputText value="#{editList.nanchanjiaLeave}"></h:outputText>
+					<h:outputText value="#{editList.leaveWedding}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="迟到扣款" />
+						<h:outputText value="探亲假" />
 					</f:facet>
-					<h:outputText value="#{editList.laterDeduction}"></h:outputText>
+					<h:outputText value="#{editList.leaveHome}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="旷工扣款" />
+						<h:outputText value="工伤假" />
 					</f:facet>
-					<h:outputText value="#{editList.awayDeduction}"></h:outputText>
+					<h:outputText value="#{editList.leaveIndustrialInjury}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="事假扣款" />
+						<h:outputText value="丧假" />
 					</f:facet>
-					<h:outputText value="#{editList.normalLeaveDeduction}"></h:outputText>
+					<h:outputText value="#{editList.leaveArrangingFuneral}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="病假扣款" />
+						<h:outputText value="公出" />
 					</f:facet>
-					<h:outputText value="#{editList.illLeaveDeduction}"></h:outputText>
+					<h:outputText value="#{editList.outWorkValue}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="产假扣款" />
+						<h:outputText value="加班" />
 					</f:facet>
-					<h:outputText value="#{editList.chanjiaLeaveDeduction}"></h:outputText>
+					<h:outputText value="#{editList.workAddValue}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="难产假扣款" />
+						<h:outputText value="离职" />
 					</f:facet>
-					<h:outputText value="#{editList.nanchanjiaLeaveDeduction}"></h:outputText>
+					<h:outputText value="#{editList.dimissionDesc}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">

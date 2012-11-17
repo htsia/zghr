@@ -20,10 +20,7 @@
 		document.all('processbar').style.left = x;
 		document.all('processbar').style.display = "";
 	}
-	function modify(id) {
-        window.showModalDialog("/custom/attence/attCalcResultMasterEdit.jsf?subID="+id, null, "dialogWidth:400px;dialogHeight:500px;center:center;resizable:no;status:no;scroll:yes;");
-        return true;
-    }
+
 	</script>
 <x:saveState value="#{attCalcMgrBB}" />
 <h:inputHidden value="#{attCalcMgrBB.pageInit}" />
@@ -102,7 +99,7 @@
 					<f:facet name="header">
 						<h:outputText value="事假扣款" />
 					</f:facet>
-					<h:outputText value="#{list.normalLeaveDeduction}"></h:outputText>
+					<h:outputText value="#{list.nomalLeaveDeduction}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">
@@ -170,7 +167,7 @@
 					<f:facet name="header">
 						<h:outputText value="难产产假" />
 					</f:facet>
-					<h:outputText value="#{list.nanchanjiaLeave}"></h:outputText>
+					<h:outputText value="#{list.leaveNanchanjia}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">
@@ -183,12 +180,6 @@
 						<h:outputText value="丧假" />
 					</f:facet>
 					<h:outputText value="#{list.leaveArrangingFuneral}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="操作" />
-					</f:facet>
-					<h:commandButton value="修改" onclick="modify('#{list.subID}');" styleClass="button01" />
 				</h:column>
 			</x:dataTable>
 		</h:panelGrid>
