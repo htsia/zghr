@@ -117,26 +117,26 @@ public class AttMachineMgrBackingBean extends BaseBackingBean {
 
 	public String first() {
 		mypage.setCurrentPage(1);
-		return null;
+		return "";
 	}
 
 	public String pre() {
 		if (mypage.getCurrentPage() > 1) {
 			mypage.setCurrentPage(mypage.getCurrentPage() - 1);
 		}
-		return null;
+		return "";
 	}
 
 	public String next() {
 		if (mypage.getCurrentPage() < mypage.getTotalPage()) {
 			mypage.setCurrentPage(mypage.getCurrentPage() + 1);
 		}
-		return null;
+		return "";
 	}
 
 	public String last() {
 		mypage.setCurrentPage(mypage.getTotalPage());
-		return null;
+		return "";
 	}
 	public PageVO getMypage() {
 		return mypage;

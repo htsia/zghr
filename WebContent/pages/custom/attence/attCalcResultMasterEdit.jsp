@@ -4,21 +4,21 @@
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ include file="../../include/taglib.jsp"%>
 <script type="text/javascript">
-function check() {
+function check(){
 	var v = "";
-	var b = true;
-	$("input[code='shuzi']").each(function() {
+	var b=true;
+	$("input[code='shuzi']").each(function(){
 		v = this.value;
-		if (isNaN(v)) {
+		if(isNaN(v)){
 			alert("非法字符,应该为数字");
-			b = false;
+			b=false;
 		}
-	});
+	});	
 	return b;
 }
 </script>
 <x:saveState value="#{attCalcMgrBB}" />
-<h:inputHidden value="#{attCalcMgrBB.modifyInit}"/>
+<h:inputHidden value="#{attCalcMgrBB.masterModifyInit}"/>
 <h:form id="form1">
 	<h:panelGrid columns="1" styleClass="td_title" width="98%"
 		align="center">
@@ -36,44 +36,44 @@ function check() {
 			<h:outputText value="#{attCalcMgrBB.bo.personName}"/>
 			
 			<h:outputText value="迟到" />
-			<h:inputText code="shuzi" value="#{attCalcMgrBB.lateModify}" />
+			<h:inputText  code="shuzi" value="#{attCalcMgrBB.later}"/>
 
 			<h:outputText value="旷工" />
-			<h:inputText code="shuzi" value="#{attCalcMgrBB.awayModify}" />
-
+			<h:inputText  code="shuzi" value="#{attCalcMgrBB.away}"/>
+			
 			<h:outputText value="事假" />
-			<h:inputText code="shuzi" value="#{attCalcMgrBB.leaveReasonsModify}" />
-
+			<h:inputText code="shuzi"  value="#{attCalcMgrBB.normalLeave}"/>
+			
 			<h:outputText value="病假" />
-			<h:inputText code="shuzi" value="#{attCalcMgrBB.sickModify}" />
-
+			<h:inputText code="shuzi"  value="#{attCalcMgrBB.illLeave}"/>
+			
 			<h:outputText value="产假" />
-			<h:inputText code="shuzi" value="#{attCalcMgrBB.maternityModify}" />
+			<h:inputText  code="shuzi" value="#{attCalcMgrBB.chanjiaLeave}"/>
 			
 			<h:outputText value="难产产假" />
-			<h:inputText code="shuzi" value="#{attCalcMgrBB.nanchanjiaLeaveModify}" />
-				
+			<h:inputText code="shuzi"  value="#{attCalcMgrBB.nanchanjiaLeave}"/>
+			
 			<h:outputText value="迟到扣款" />
-			<h:inputText code="shuzi"  value="#{attCalcMgrBB.laterDeductionModify}"/>
+			<h:inputText  code="shuzi" value="#{attCalcMgrBB.laterDeduction}"/>
 			
 			<h:outputText value="旷工扣款" />
-			<h:inputText  code="shuzi" value="#{attCalcMgrBB.awayDeductionModify}"/>
+			<h:inputText  code="shuzi" value="#{attCalcMgrBB.awayDeduction}"/>
 			
-			<h:outputText value="事假扣款" />
-			<h:inputText  code="shuzi" value="#{attCalcMgrBB.normalLeaveDeductionModify}"/>
+			<h:outputText   value="事假扣款" />
+			<h:inputText code="shuzi" value="#{attCalcMgrBB.normalLeaveDeduction}"/>
 			
 			<h:outputText value="病假扣款" />
-			<h:inputText  code="shuzi" value="#{attCalcMgrBB.illLeaveDeductionModify}"/>
+			<h:inputText code="shuzi"  value="#{attCalcMgrBB.illLeaveDeduction}"/>
 			
 			<h:outputText value="产假扣款" />
-			<h:inputText  code="shuzi" value="#{attCalcMgrBB.chanjiaLeaveDeductionModify}"/>
+			<h:inputText code="shuzi"  value="#{attCalcMgrBB.chanjiaLeaveDeduction}"/>
 			
-			<h:outputText value="难产假扣款" />
-			<h:inputText  code="shuzi" value="#{attCalcMgrBB.nanchanjiaLeaveDeductionModify}"/>
+			<h:outputText value="难产产假扣款" />
+			<h:inputText code="shuzi"  value="#{attCalcMgrBB.nanchanjiaLeaveDeduction}"/>
 			
 		</h:panelGrid>
 		<h:panelGrid align="right">
-			<h:commandButton value="保存" onclick="return check();"  action="#{attCalcMgrBB.verifySave}" styleClass="button01" />
+			<h:commandButton value="保存" onclick="return check();"  action="#{attCalcMgrBB.masterSave}" styleClass="button01" />
 		</h:panelGrid>
 	</h:panelGrid>
 </h:form>

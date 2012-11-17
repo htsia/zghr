@@ -3,7 +3,6 @@ package com.hr319wg.custom.attence.dao;
 
 import java.util.List;
 
-import com.hr319wg.attence.pojo.bo.AttDurationBO;
 import com.hr319wg.attence.util.DateUtil;
 import com.hr319wg.common.dao.BaseDAO;
 import com.hr319wg.common.exception.SysException;
@@ -17,7 +16,7 @@ import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CommonFuns;
-
+import com.hr319wg.attence.pojo.bo.AttDurationBO;
 public class AttBusiDAO extends BaseDAO{
 
 	public int isAttIssue(String dualID, String yearMonth){
@@ -598,7 +597,7 @@ public class AttBusiDAO extends BaseDAO{
 		return this.pageQuery(pageVO, countHql, boHql);
 	}
 	//获取年出勤数据
-	public List getYearBO(PageVO pageVO, String orgID, String nameStr, String personType, String yearStr) throws SysException{
+	public List getYearBO(PageVO pageVO, String orgID, String nameStr, String personType,String yearStr) throws SysException{
 		//String hql = " from a236 ";
 		String hql = " from AttYearBO bo,UserBO u where u.userID=bo.id ";
 		if(orgID!=null && !"".equals(orgID)){
@@ -612,6 +611,10 @@ public class AttBusiDAO extends BaseDAO{
 		}
 		if(nameStr!=null && !"".equals(nameStr)){
 			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
+		}
+
+		if(yearStr!=null&&!"".equals(yearStr)){
+			hql+= " and bo.year='"+yearStr+"'";
 		}
 		hql+=" and bo.flag='00901' ";
 		//String boHql = "select * "+hql +" order by id";
@@ -651,5 +654,6 @@ public class AttBusiDAO extends BaseDAO{
 		}else{
 			return null;
 		}
+		
 	}
 }

@@ -6,6 +6,7 @@ public class OrgProbationBO {
 	private String jianxi;
 	private String orgName;
 	private String wageItems;
+	private String normailType;
 
 	public String getJianxi() {
 		return jianxi;
@@ -45,5 +46,13 @@ public class OrgProbationBO {
 
 	public void setProbation(String probation) {
 		this.probation = probation;
+	}
+
+	public String getNormailType() {
+		return normailType;
+	}
+
+	public void setNormailType(String normailType) {
+		this.normailType = normailType;
 	}
 }

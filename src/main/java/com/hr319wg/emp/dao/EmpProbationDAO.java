@@ -7,7 +7,6 @@ import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.sys.cache.SysCacheTool;
-import com.hr319wg.util.CommonFuns;
 
 public class EmpProbationDAO extends BaseDAO
 {
@@ -93,7 +92,7 @@ public class EmpProbationDAO extends BaseDAO
     return pageQuery(pagevo, counthql, hql);
   }
   public List getAllProbationStatusPerson(String orgId, String status) throws SysException {
-    String hql = "select bo from EmpProbationBO bo where "+CommonFuns.splitInSql(status.split(","), "bo.status")+" and bo.personId in(select vo.personId from PersonBO vo where vo.orgId='" + orgId + "')";
+    String hql = "select bo from EmpProbationBO bo where bo.status='" + status + "' and bo.personId in(select vo.personId from PersonBO vo where vo.orgId='" + orgId + "')";
     return this.hibernatetemplate.find(hql);
   }
   public List getAllProbationPersonForPageByStatus(PageVO mypage, String orgId, String status) throws SysException {

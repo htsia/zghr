@@ -19,7 +19,6 @@
         <property name="personID" column="PERSON_ID"/>
         <property name="adjustDate" column="ADJUST_DATE"/>
         <property name="status" column="status"/>
-        <property name="approStatus" column="APPROSTATUS"/>
         <property name="applyDate" column="APPLY_DATE"/>
         <property name="orgID" column="Org_ID"/>
         <property name="linkID" column="LINK_ID"/>

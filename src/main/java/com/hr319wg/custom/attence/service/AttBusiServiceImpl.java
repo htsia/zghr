@@ -3382,14 +3382,17 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		String yearMonth="";
 		if(bo!=null){
 			yearMonth=bo.getDuraYear()+"-"+bo.getDuraMonth();
-			//先删除月汇总显示自己的本月数据
-			String sql="delete from a245 a where a.a245200='"+yearMonth+"'";
-			this.activeapi.executeSql(sql);
-			//插入新的本月数据
-			sql="insert into a245 select (select nvl(max(cast(subid as int)),0) from a245)+rownum,a.id,'00900',a.a810700,a.a810701,a.a810215,a.a810216,a.a810219" +
-					",a.a810220,a.a810213,a.a810214,a.a810704,a.a810706,a.a810707,a.a810708,a.a810221,a.a810709,a.a810710,a.a810714 from a810 a where a.a810700='"+yearMonth+"'";
-			this.activeapi.executeSql(sql);
 		}
+		//先删除月汇总显示自己的本月数据
+		String sql="delete from a245 a where a.a245200='"+yearMonth+"'";
+		this.activeapi.executeSql(sql);
+		//插入新的本月数据
+		sql="insert into a245 select a.subid||rownum,a.id,'00900',a.a810700,a.a810701,a.a810215,a.a810216,a.a810219" +
+				",a.a810220,a.a810213,a.a810214,a.a810704,a.a810706,a.a810707,a.a810708,a.a810221,a.a810709,a.a810710,a.a810714 from a810 a where a.a810700='"+yearMonth+"'";
+		this.activeapi.executeSql(sql);
+		//更新主键，以免下次插入冲突
+		sql="update a245 a set a.subid='111'||substring(a.subid,8,20)||rownum where a.a245200='"+yearMonth+"'";
+		this.activeapi.executeSql(sql);
 		
 		
 	}

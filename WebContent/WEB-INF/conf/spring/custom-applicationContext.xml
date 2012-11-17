@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-    <bean id="custom_uumanager" class="com.hr319wg.custom.impl.UUCustomManager">
-    	<property name="commonDAO" ref="commondao"/>
-    	<property name="jdbcTemplate" ref="jdbcTemplate" />
-    	<property name="activeapi" ref="sys_activePageApi" />
-    </bean>
+    <bean id="custom_uumanager" class="com.hr319wg.custom.impl.UUCustomManager"/>
     <bean id="busiProcess" class="com.hr319wg.emp.web.IBusiProcessImpl"/>
     
 <!--     每天晚11点定时计算年龄校龄 -->
@@ -48,7 +44,7 @@
     <bean id="evawageservice" class="com.hr319wg.custom.eva.service.EvaWageService">
            <property name="evaWageDao" ref="evawagedao" />
            <property name="activeapi" ref="sys_activePageApi" />
-           <property name="jdbcTemplate" ref="jdbcTemplate" />
+            <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     <!-- 薪酬管理 -->
     <bean id="wageAdjustService" class="com.hr319wg.custom.emp.service.WageAdjustService">

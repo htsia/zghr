@@ -42,7 +42,6 @@ function getApplyDays() {
 							userlist += "第" + i + "审批人：" + info[i]
 									+ "<br/>";
 						}
-						$("#applist").html(userlist);
 					}
 				}
 			});
@@ -304,7 +303,7 @@ function checkDays() {
 		align="center">
 		<h:panelGroup>
 			<h:graphicImage value="/images/tips.gif" />
-			<h:outputText value=" 考勤管理 ->请假申请" />
+			<h:outputText value=" 考勤管理 ->请假录入" />
 		</h:panelGroup>
 	</h:panelGrid>
 	<h:panelGrid columns="1" width="98%" align="center">

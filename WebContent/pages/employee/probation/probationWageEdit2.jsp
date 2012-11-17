@@ -85,7 +85,7 @@
 								    <%=LanguageSupport.getResource("RYGL-2041", "Ö¸±êÏî")%>
 								</f:verbatim>
             </c:facet>
-            <h:outputText value="#{list.fieldID}"/>
+            <h:outputText value="#{list.fieldId}"/>
         </h:column>
 
         <h:column>

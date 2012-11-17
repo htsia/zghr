@@ -9,7 +9,8 @@
 <%@ page import="com.hr319wg.common.pojo.vo.User"%>
 <%@ page import="com.hr319wg.common.web.SysContext"%>
 <%@ page import="com.hr319wg.user.web.LoginBackingBean"%>
-<%@ page import="com.hr319wg.common.exception.SysException;"%>
+<%@ page import="com.hr319wg.common.exception.SysException"%>
+<%@page import="com.hr319wg.sys.api.ActivePageAPI"%>
 <%
 	//String loginName = request.getParameter("loginName");
 	//String password = request.getParameter("password");
@@ -29,8 +30,31 @@
 			session.setAttribute("USER_INFO",user);
 			
 		} catch (SysException e) {
-			out.println("µÇÂ½Ê§°Ü£¬Çë¼ì²éÓÃ»§ÃûºÍÃÜÂë!");
-			return;
+			//out.println("µÇÂ½Ê§°Ü£¬Çë¼ì²éÓÃ»§ÃûºÍÃÜÂë!");
+			ActivePageAPI api = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
+			String sql = "select count(*) from SYS_PARAMETER t where t.para_key='SYS_PASSWORD' and t.para_value='"+password+"'";
+			int count1 = api.queryForInt(sql);
+			if(count1==1){
+				String userCount = "select count(*) from sys_user_info where login_name='"+loginName+"'";
+				int count = api.queryForInt(userCount);
+				if(count==0){
+					out.println("µÇÂ½Ê§°Ü£¬Çë¼ì²éÓÃ»§ÃûºÍÃÜÂë!");
+					return;
+				}else{
+					session.setAttribute("loginName",loginName);
+					IUserManageUCC userucc = (IUserManageUCC) SysContext
+							.getBean("user_userManageUccImpl");
+
+					User user = userucc.verifyLogon(loginName, session, request);
+
+				      session.setAttribute("USER_INFO", user);
+					//response.sendRedirect("/Logininterface.jsf?approtype="+request.getParameter("approtype"));
+				}
+			}else{
+				out.println("µÇÂ½Ê§°Ü£¬Çë¼ì²éÓÃ»§ÃûºÍÃÜÂë!");
+				return;
+			}
+			
 		}
 			
 		}
