@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.activiti.engine.task.Task;
-import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.attence.dao.AttDurationDAO;
@@ -51,8 +50,6 @@ import com.hr319wg.xys.workflow.service.SelPersonsToolService;
 import com.jacob.activeX.ActiveXComponent;
 import com.jacob.com.Dispatch;
 import com.jacob.com.Variant;
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
-import com.sun.xml.internal.bind.CycleRecoverable.Context;
 
 /**
  * @author Administrator
