@@ -30,8 +30,7 @@
 <h:form id="form1">
 	<h:inputHidden id="personType" value="#{attCalcMgrBB.personType}" />
 	<h:inputHidden id="personTypeValue"
-		value="#{attCalcMgrBB.personTypeValue}" />		
-
+		value="#{attCalcMgrBB.personTypeValue}" />	
 	<h:panelGrid columns="1" width="100%" align="left">
 		<h:panelGroup>
 			<h:commandButton styleClass="button01" value="计算"
@@ -188,7 +187,7 @@
 					<f:facet name="header">
 						<h:outputText value="操作" />
 					</f:facet>
-					<h:commandButton value="修改" onclick="modify('#{list.subID}');" styleClass="button01" />
+					<h:commandButton value="修改" onclick="modify('#{list.subID}');" styleClass="button01" rendered="#{attCalcMgrBB.isView!='1'}" />
 				</h:column>
 			</x:dataTable>
 		</h:panelGrid>

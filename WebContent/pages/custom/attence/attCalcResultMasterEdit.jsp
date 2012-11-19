@@ -3,6 +3,9 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ include file="../../include/taglib.jsp"%>
+<%
+int i=0;
+%>
 <script type="text/javascript">
 function check(){
 	var v = "";
