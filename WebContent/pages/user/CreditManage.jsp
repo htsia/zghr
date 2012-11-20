@@ -32,24 +32,18 @@
                     document.infoiframe.location = "/user/CreditSelfBusiPower.jsf?"+pram;
                     break;
                 case 2:
-                    document.infoiframe.location = "/user/CreditSelfPower.jsf?"+pram;
-                    break;
-                case 3:
                     document.infoiframe.location = "/user/CreditDataIndex.jsf?" + pram;
                     break;
-                case 4:
+                case 3:
                     document.infoiframe.location = "/user/CreditOrgScale.jsf?"+pram+"&scaleflag=0";
                     break;
-                case 5:
+                case 4:
                     document.infoiframe.location = "/user/CreditOrgScale.jsf?"+pram+"&scaleflag=1";
                     break;
-                case 6:
-                    document.infoiframe.location = "/user/CreditPartyScale.jsf?"+pram;
-                    break;
-                case 7:
+                case 5:
                     document.infoiframe.location = "/user/CreditCode.jsf?"+pram;
                     break;
-                case 8:
+                case 6:
                     document.infoiframe.location = "/user/CreditPostCode.jsf?"+pram;
                     break;
                 default:
@@ -102,12 +96,12 @@
                             <td width="100" height="25" class="activeTab" onclick="secBoard(0)"><img src="/images/common/handtip.gif">&nbsp;业务操作</td>
                             <td width="110" height="25" class="tab" onclick="secBoard(1)"><img src="/images/common/handtip.gif">&nbsp;自助业务操作</td>
 <!--                             <td width="100" height="25" class="tab" onclick="secBoard(2)"><img src="/images/common/handtip.gif">&nbsp;自助操作</td> -->
-                            <td width="100" class="tab" onclick="secBoard(3)"><img src="/images/common/handtip.gif">&nbsp;信息项</td>
-                            <td width="100" class="tab" onclick="secBoard(4)"><img src="/images/common/handtip.gif">&nbsp;机构查询</td>
-                            <td width="100" class="tab" onclick="secBoard(5)"><img src="/images/common/handtip.gif">&nbsp;机构维护</td>
+                            <td width="100" class="tab" onclick="secBoard(2)"><img src="/images/common/handtip.gif">&nbsp;信息项</td>
+                            <td width="100" class="tab" onclick="secBoard(3)"><img src="/images/common/handtip.gif">&nbsp;机构查询</td>
+                            <td width="100" class="tab" onclick="secBoard(4)"><img src="/images/common/handtip.gif">&nbsp;机构维护</td>
 <!--                             <td width="100" class="tab" onclick="secBoard(6)"><img src="/images/common/handtip.gif">&nbsp;党组织范围</td> -->
-                            <td width="100" class="tab" onclick="secBoard(7)"><img src="/images/common/handtip.gif">&nbsp;人员范围</td>
-                            <td width="100" class="tab" onclick="secBoard(8)"><img src="/images/common/handtip.gif">&nbsp;岗位分类</td>
+                            <td width="100" class="tab" onclick="secBoard(5)"><img src="/images/common/handtip.gif">&nbsp;人员范围</td>
+                            <td width="100" class="tab" onclick="secBoard(6)"><img src="/images/common/handtip.gif">&nbsp;岗位分类</td>
                         </tr>
                     </table>
                 </td>

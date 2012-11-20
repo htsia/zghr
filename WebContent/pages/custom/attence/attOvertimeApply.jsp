@@ -26,7 +26,7 @@
   			alert("请选择加班日期");
   			return false;
   		}else if(beginDate<str){
-  			alert("申请加班日期过早，根据考勤制度，只能申请当天以后的加班。如果您要补录单子，请联系人力资源处。");
+  			alert("根据考勤制度，只能申请当天以后的加班。如果您需要补录，请联系人力资源处。");
   			return false;
   		}else if(applydays==null || applydays==""){
   			alert("加班时间不能为空");

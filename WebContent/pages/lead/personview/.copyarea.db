@@ -1,8 +1,0 @@
-ClearCase CopyAreaDB|4
-HRD_App\WebContent\pages\lead\personview
-2
-4
-10:DeptTreeData.jsp|1|10fbcf36f78|24bf|3ff2baf1|7ce014ca0a35483ca9a07f5f307e3ede|0
-e:OrgDocView.jsp|1|10f70618356|2a3f|b648acde|e81e55b2fb9b4b0bb3aeaacff965e351|0
-f:DeptDocView.jsp|1|10fbcf36e3f|31a0|595ab6c6|fe4003fa06e94e199170b28a5dcc8ee2|0
-12:DeptPersonTree.jsp|1|10fbcf36efb|1583|26875d9f|b2437c7816684a8f93969f571a0968ee|0

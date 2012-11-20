@@ -706,4 +706,11 @@ public class WageDataServiceImpl implements IWageDataService{
 		sql="delete from a001 where id='"+userID+"'";
 		this.jdbcTemplate.execute(sql);
 	}
+
+	@Override
+	public void setOAEmail(String userID1, String userID2, String userID3)
+			throws SysException {
+		String sql = "update sys_oa_email set userid1='"+userID1+"',userid2='"+userID2+"',userid3='"+userID3+"'";
+		this.jdbcTemplate.execute(sql);
+	}
 }

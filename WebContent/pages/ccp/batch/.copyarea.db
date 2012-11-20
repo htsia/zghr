@@ -1,9 +1,0 @@
-ClearCase CopyAreaDB|4
-HRD_App\WebContent\pages\ccp\batch
-2
-5
-18:BatchUpdateEditIndex.jsp|1|10d53c2b1c5|afa|c1665cb6|864e82909bcb474da03b274b7bd9a8d9|0
-11:BatchAddQuery.jsp|1|10f7ff0e88a|150d|267629f9|c7cb2a130b974cdda466f4a45746a5ae|0
-15:BatchAddEditIndex.jsp|1|10d53c2b119|aed|187c5802|c0f970dfea05401d8374e541c5b8cd4c|0
-14:BatchUpdateQuery.jsp|1|10f7ff0e8f8|1434|48f7e7bf|bf1f499b56714889914ccc332bc5de17|0
-f:InfoSetTree.jsp|1|10e315b0467|14b1|38dc2329|69979f15d2b24aa98d7164c52a384907|0
