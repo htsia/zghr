@@ -159,6 +159,9 @@
     <definition name="/custom/wage/batchValidateAdjust.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/wage/batchValidateAdjust.jsp"/>
     </definition>
+    <definition name="/custom/oaemail.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/setOAEmail.jsp"/>
+    </definition>
     
     <!-- 考勤相关 -->
     <definition name="/custom/attence/attLogMgr.tiles" extends="layout.busitemplateSelf">

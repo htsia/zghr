@@ -54,11 +54,6 @@
             <h:outputText value="#{list.beginTime}"/>
         </h:column>
         <h:column>
-            <c:facet name="header"><h:outputText value="结束时间"/></c:facet>
-            <h:outputText value="#{list.endTime}"/>
-        </h:column>
-
-        <h:column>
             <c:facet name="header"><h:outputText value="加班时间/时"/></c:facet>
             <h:outputText value="#{list.applyDays*8}"/>
         </h:column>

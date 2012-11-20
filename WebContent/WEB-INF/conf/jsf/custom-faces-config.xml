@@ -335,5 +335,17 @@
 			<value>#{user_pmsAPI}</value>
 		</managed-property>
 	</managed-bean>
+    <managed-bean>
+		<managed-bean-name>oaemailBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.common.web.OAEmailBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>dataService</property-name>
+			<value>#{wage_dataservice}</value>
+		</managed-property>
+		<managed-property>
+             <property-name>jdbcTemplate</property-name>
+             <value>#{jdbcTemplate}</value>
+        </managed-property>	</managed-bean>
     
 </faces-config>

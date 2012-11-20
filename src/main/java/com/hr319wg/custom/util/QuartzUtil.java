@@ -16,9 +16,6 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 public class QuartzUtil extends QuartzJobBean{
 	private static String url = "http://portal.sias.edu.cn:7777/addMailInfo.asmx";// 提供接口的地址
 	private static String soapaction = "http://tempuri.org/"; // 域名，这是在server定义的
- 	private static String MailSenderID = "1289";
-	private static String MailAccepterID = "1494";
-	private static String CheckStr = "11204";
 	private JdbcTemplate jdbcTemplate;
 
 	public JdbcTemplate getJdbcTemplate() {
@@ -66,26 +63,32 @@ public class QuartzUtil extends QuartzJobBean{
 			this.jdbcTemplate.execute(sql);
 		}
 		if(content.toString()!=null && !"".equals(content.toString())){
-			Service service = new Service();
-	    	 try{
-	             Call call=(Call)service.createCall();            
-	             call.setTargetEndpointAddress(url);       
-	             call.setOperationName(new QName(soapaction,"addPortalMailInfoByUserID")); //设置要调用哪个方法
-
-	             call.addParameter(new QName(soapaction, "MailTitle"),  org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);// 设置要传递的参数
-	 			 call.addParameter(new QName(soapaction, "MailContent"), org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
-	 			 call.addParameter(new QName(soapaction, "MailSenderID"), org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
-	 			 call.addParameter(new QName(soapaction, "MailAccepterID"), org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
-	 			 call.addParameter(new QName(soapaction, "CheckStr"), org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
-	             call.setReturnType(new QName(soapaction,"addPortalMailInfoByUserID"),Vector.class); //要返回的数据类型（自定义类型）
-	             call.setReturnType(org.apache.axis.encoding.XMLType.XSD_STRING);//（标准的类型）
-	             
-	             call.setUseSOAPAction(true);
-	             call.setSOAPActionURI(soapaction + "addPortalMailInfoByUserID");
-	             String result = (String) call.invoke(new Object[]{"人员变动信息",content.toString(),MailSenderID,MailAccepterID,CheckStr});//调用方法并传递参数
-	         }catch(Exception ex){
-	        	 ex.printStackTrace();
-	         } 
+			sql = "select a2.a001230 oa1,a3.a001230 oa2 from sys_oa_email m left join a001 a2 on m.userid2=a2.id left join a001 a3 on m.userid3=a3.id";
+			List userids1=this.jdbcTemplate.queryForList(sql);
+			if(userids1!=null){
+				Map m = (Map)userids1.get(0);
+				Service service = new Service();
+				try{
+					Call call=(Call)service.createCall();            
+					call.setTargetEndpointAddress(url);
+					call.setOperationName(new QName(soapaction,"addPortalMailInfoByUserName")); //设置要调用哪个方法
+					
+					call.addParameter(new QName(soapaction, "MailTitle"),  org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);// 设置要传递的参数
+					call.addParameter(new QName(soapaction, "MailContent"), org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
+					call.addParameter(new QName(soapaction, "MailSender"), org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
+					call.addParameter(new QName(soapaction, "MailAccepter"), org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
+					call.addParameter(new QName(soapaction, "CheckStr"), org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
+					call.setReturnType(new QName(soapaction,"addPortalMailInfoByUserName"),Vector.class); //要返回的数据类型（自定义类型）
+					call.setReturnType(org.apache.axis.encoding.XMLType.XSD_STRING);//（标准的类型）
+					
+					call.setUseSOAPAction(true);
+					call.setSOAPActionURI(soapaction + "addPortalMailInfoByUserName");
+					String result = (String) call.invoke(new Object[]{"人员变动信息",content.toString(),m.get("oa1"),m.get("oa2"),"11204"});//调用方法并传递参数
+					System.out.println(result);
+				}catch(Exception ex){
+					ex.printStackTrace();
+				} 
+			}
 		}
 	}
 	

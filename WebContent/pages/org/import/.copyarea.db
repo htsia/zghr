@@ -1,9 +1,0 @@
-ClearCase CopyAreaDB|4
-HRD_App\WebContent\pages\ccp\import
-2
-5
-14:DownloadTemplate.jsp|1|10cd20cac04|12f|b9e45d0b|214bebe55b214b1ba0a92726c23ef247|0
-15:OrgDataUploadList.jsp|1|10cd20caee2|e62|cb1e2912|455cc76170d346748f993a3853368d4d|0
-11:PerDataUpload.jsp|1|1114a235ca1|2281|bb850fb1|a58827d609274993be3368eeac01014b|0
-11:OrgDataUpload.jsp|1|1114a23361e|21dd|ac19eab3|a7c8cd1de75d46d39393e8a23580e37e|0
-15:PerDataUploadList.jsp|1|10cfc9dd3c5|f6a|94247e6f|3a31e279973743d1a7644b382f92b85b|0
