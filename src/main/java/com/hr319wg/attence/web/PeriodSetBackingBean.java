@@ -3,6 +3,7 @@ package com.hr319wg.attence.web;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.event.ValueChangeEvent;
@@ -19,6 +20,7 @@ import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.user.pojo.vo.UserQryVO;
 import com.hr319wg.user.ucc.IUserQryUCC;
 import com.hr319wg.util.CommonFuns;
+import com.hr319wg.attence.util.DateUtil;
 
 public class PeriodSetBackingBean extends BaseBackingBean {
 	private List lists;
@@ -576,7 +578,7 @@ public class PeriodSetBackingBean extends BaseBackingBean {
 		nowyearvalue = nowyear;
 		String nowmonth = new SimpleDateFormat("MM")
 				.format(new java.util.Date());
-		atttype = nowmonth;
+		//atttype = nowmonth;
 		int m = Integer.parseInt(nowyear);
 		for (int i = 4; i > 0; i--) {
 			String num = (m - i) + "";
@@ -685,6 +687,31 @@ public class PeriodSetBackingBean extends BaseBackingBean {
 	 */
 	public String initValues(String superId1) {
 		try {
+			Date date=new Date();
+			SimpleDateFormat datePattern=new SimpleDateFormat("yyyy-MM-dd");
+			String now=datePattern.format(date);
+			String year=now.substring(0,4);
+			String month=now.substring(5,7);
+			String day=now.substring(8,10);
+			//获得现在年月
+			String yearMonth=now.substring(0,7);
+			//1号到10号，新建计算起止时间为上月始末，否则为本月始末
+			if(Integer.parseInt(day)<=10){
+				String lastYearMonth=DateUtil.getLastMonth(yearMonth);
+				String endDay=DateUtil.getEndDayByMonth(lastYearMonth);
+				bo.setDuraBegin(lastYearMonth+"-01");
+				bo.setDuraEnd(lastYearMonth+"-"+endDay);
+				this.atttype =lastYearMonth.substring(5,7);
+			}else{
+				String endDay=DateUtil.getEndDayByMonth(yearMonth);
+				bo.setDuraBegin(yearMonth+"-01");
+				bo.setDuraEnd(yearMonth+"-"+endDay);
+				this.atttype =yearMonth.substring(5,7);
+			}
+			bo.setDuraID(null);
+			bo.setOrgID(superId);
+			bo.setDuraYear("");
+			/*
 			lists = attenceSetUCC.getAllAttDurationBO(super.getUserInfo());
 			if (lists != null && lists.size() > 0) {
 				AttDurationBO attdurationbo = (AttDurationBO) lists.get(lists
@@ -877,7 +904,7 @@ public class PeriodSetBackingBean extends BaseBackingBean {
 				bo.setDuraBegin(ymd1);
 				bo.setDuraEnd(ymd2);
 				bo.setDuraYear("");   
-			}
+			}*/
 
 		} catch (Exception e) {
 

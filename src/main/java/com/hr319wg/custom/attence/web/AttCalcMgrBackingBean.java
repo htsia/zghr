@@ -2,16 +2,19 @@ package com.hr319wg.custom.attence.web;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.hr319wg.attence.com.hr319wg.attence.util.DateUtil;
 import com.hr319wg.attence.pojo.bo.AttDurationBO;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
+import com.hr319wg.custom.attence.pojo.bo.AttLeaveBO;
 import com.hr319wg.custom.attence.pojo.bo.AttMonthBO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
 import com.hr319wg.custom.util.CommonUtil;
@@ -83,8 +86,95 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
     private String chanjiaLeaveDeductionModify;   //产假扣款修改
     private String nanchanjiaLeaveDeductionModify;   //难产产假扣款修改
     private String masterModifyInit;
+    private String attDetailInit;
+    private String personId;
+    private String yearMonth;
+    private List leavesList;
+    private String attDetail;
+    private String personName;
     
     
+	public String getPersonName() {
+		return personName;
+	}
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
+	}
+
+	public String getAttDetail() {
+		return attDetail;
+	}
+
+	public void setAttDetail(String attDetail) {
+		this.attDetail = attDetail;
+	}
+
+	public List getLeavesList() {
+		return leavesList;
+	}
+
+	public void setLeavesList(List leavesList) {
+		this.leavesList = leavesList;
+	}
+
+	public String getYearMonth() {
+		return yearMonth;
+	}
+
+	public void setYearMonth(String yearMonth) {
+		this.yearMonth = yearMonth;
+	}
+
+
+	public String getAttDetailInit() {
+		//获取某个人某段时期的考勤详情
+		this.yearMonth=super.getRequestParameter("yearMonth");
+		this.personId=super.getRequestParameter("personId");
+		PersonBO person=SysCacheTool.findPersonById(this.personId);
+		this.personName=person.getName();
+		try {
+			Map map=this.attBusiService.getAttDetailForSomebody(this.personId,this.yearMonth);
+			this.attDetail=(String)map.get("result");
+			if(attDetail.length()<=0){
+				attDetail="没有迟到和旷工记录";
+			}
+			List list=(List)map.get("list");
+			leavesList=null;
+			if(list.size()>0){
+				leavesList=new ArrayList();
+				for (int i=0;i<list.size();i++){
+					AttLeaveBO leave=(AttLeaveBO)list.get(i);
+					Map temp=new HashMap();
+					temp.put("beginTime", leave.getBeginTime());
+					temp.put("endTime", leave.getEndTime());
+					temp.put("personName", person.getName());
+					if("1".equals(leave.getLeaveType())){
+						temp.put("leaveType", "正常事假");
+						leavesList.add(temp);
+					}else if("2".equals(leave.getLeaveType())){
+						temp.put("leaveType", "病假");
+						leavesList.add(temp);
+					}else if("5".equals(leave.getLeaveType())){
+						temp.put("leaveType", "产假");
+						leavesList.add(temp);
+					}else if("6".equals(leave.getLeaveType())){
+						temp.put("leaveType", "难产产假");
+						leavesList.add(temp);
+					}
+				}
+			}
+		} catch (SysException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return attDetailInit;
+	}
+
+	public void setAttDetailInit(String attDetailInit) {
+		this.attDetailInit = attDetailInit;
+	}
+
 	public String getLaterDeductionModify() {
 		return laterDeductionModify;
 	}
@@ -1173,5 +1263,13 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 
 	public void setNanchanjiaLeaveModify(String nanchanjiaLeaveModify) {
 		this.nanchanjiaLeaveModify = nanchanjiaLeaveModify;
+	}
+
+	public String getPersonId() {
+		return personId;
+	}
+
+	public void setPersonId(String personId) {
+		this.personId = personId;
 	}
 }

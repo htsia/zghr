@@ -24,6 +24,9 @@
         window.showModalDialog("/custom/attence/attCalcResultMasterEdit.jsf?subID="+id, null, "dialogWidth:400px;dialogHeight:500px;center:center;resizable:no;status:no;scroll:yes;");
         return true;
     }
+	function showAttDetail(personId,yearMonth){
+		window.showModalDialog("/custom/attence/attDetailForSomeBody.jsf?personId="+personId+"&yearMonth="+yearMonth, null, "dialogWidth:400px;dialogHeight:300px;center:center;resizable:no;status:no;scroll:yes;");
+	}
 	</script>
 <x:saveState value="#{attCalcMgrBB}" />
 <h:inputHidden value="#{attCalcMgrBB.pageInit}" />
@@ -188,6 +191,7 @@
 						<h:outputText value="操作" />
 					</f:facet>
 					<h:commandButton value="修改" onclick="modify('#{list.subID}');" styleClass="button01" rendered="#{attCalcMgrBB.isView!='1'}" />
+				    <h:commandButton value="查看详情" styleClass="button01" onclick="showAttDetail('#{list.personId }','#{list.attenceDate }')" />
 				</h:column>
 			</x:dataTable>
 		</h:panelGrid>

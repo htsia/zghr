@@ -104,7 +104,7 @@
 					<f:facet name="header">
 						<h:outputText value="ÊÂ¼Ù¿Û¿î" />
 					</f:facet>
-					<h:outputText value="#{list.nomalLeaveDeduction}"></h:outputText>
+					<h:outputText value="#{list.normalLeaveDeduction}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">

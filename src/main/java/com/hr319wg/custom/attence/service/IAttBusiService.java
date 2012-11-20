@@ -224,4 +224,6 @@ public interface IAttBusiService {
 	public void saveBingjia(AttLeaveBO leave) throws SysException;
 	public void updateToShow(String duraID) throws SysException;
 
+	public Map getAttDetailForSomebody(String personId, String yearMonth)  throws SysException;
+
 }

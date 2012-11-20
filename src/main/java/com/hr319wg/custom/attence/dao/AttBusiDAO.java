@@ -654,6 +654,13 @@ public class AttBusiDAO extends BaseDAO{
 		}else{
 			return null;
 		}
-		
+	}
+	//获取某人某月的请假列表
+	public List<AttLeaveBO> getAttDetailForSomebody(String personId,String yearMonth){
+		String beginDate= yearMonth+"-"+"01";
+		String endDate= yearMonth+"-"+DateUtil.getEndDayByMonth(yearMonth);
+		String hql="select bo from AttLeaveBO bo,UserBO u where u.userID=bo.personId and bo.personId='"+personId+"' " +
+				"and bo.beginTime<'"+endDate+"' and bo.endTime>'"+beginDate+"' ";
+		return (List<AttLeaveBO>)this.hibernatetemplate.find(hql);
 	}
 }
