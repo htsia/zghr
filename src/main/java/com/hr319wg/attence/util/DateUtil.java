@@ -449,7 +449,7 @@ public class DateUtil {
 		}
 		return list;
 	}
-	/**
+	/**根据本月得到下月
 	 * @param thisMonth 格式是XXXX-XX
 	 * @return
 	 */
@@ -471,5 +471,28 @@ public class DateUtil {
 	    	}
 	    }
 		return nextYear+"-"+nextMonth;
+	}
+	/**根据本月得到上月
+	 * @param thisMonth 格式是XXXX-XX
+	 * @return
+	 */
+	public static String getLastMonth(String thisMonth){
+		String lastYear="";
+		String lastMonth="";
+		int year=Integer.parseInt(thisMonth.substring(0,4));
+		int month=Integer.parseInt(thisMonth.substring(5,7));
+		if(month==1){
+			lastYear=String.valueOf(year-1);
+			lastMonth="12";
+		}else{
+			lastYear=String.valueOf(year);
+			month--;
+			if(month<10){
+				lastMonth="0"+month;
+			}else{
+				lastMonth=""+month;
+			}
+		}
+		return lastYear+"-"+lastMonth;
 	}
 }

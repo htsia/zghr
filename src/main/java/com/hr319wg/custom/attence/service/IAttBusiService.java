@@ -310,4 +310,6 @@ public interface IAttBusiService {
 
 	public void updateToShow(String duraID) throws SysException;
 
+	public Map getAttDetailForSomebody(String personId, String yearMonth)  throws SysException;
+
 }

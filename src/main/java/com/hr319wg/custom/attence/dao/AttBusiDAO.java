@@ -604,6 +604,7 @@ public class AttBusiDAO extends BaseDAO{
 			OrgBO org = SysCacheTool.findOrgById(orgID);
 			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
+		
 		if(personType!=null && !"".equals(personType)){			
 			String[]types = personType.split(",");
 			hql += " and "+CommonFuns.splitInSql(types, "u.personType");
@@ -669,6 +670,13 @@ public class AttBusiDAO extends BaseDAO{
 		}else{
 			return null;
 		}
-		
+	}
+	//获取某人某月的请假列表
+	public List<AttLeaveBO> getAttDetailForSomebody(String personId,String yearMonth){
+		String beginDate= yearMonth+"-"+"01";
+		String endDate= yearMonth+"-"+DateUtil.getEndDayByMonth(yearMonth);
+		String hql="select bo from AttLeaveBO bo,UserBO u where u.userID=bo.personId and bo.personId='"+personId+"' " +
+				"and bo.beginTime<'"+endDate+"' and bo.endTime>'"+beginDate+"' ";
+		return (List<AttLeaveBO>)this.hibernatetemplate.find(hql);
 	}
 }

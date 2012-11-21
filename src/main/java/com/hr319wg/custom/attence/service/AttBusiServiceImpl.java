@@ -3389,7 +3389,6 @@ public class AttBusiServiceImpl implements IAttBusiService {
 					",a.a810220,a.a810213,a.a810214,a.a810704,a.a810706,a.a810707,a.a810708,a.a810221,a.a810709,a.a810710,a.a810714 from a810 a where a.a810700='"+yearMonth+"'";
 			this.activeapi.executeSql(sql);
 		}
-		
 	}
 
 	@Override
@@ -3412,5 +3411,28 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			}
 		}
 	}
-
+	@Override
+	public Map getAttDetailForSomebody(String personId,String yearMonth){
+		String beginDate= yearMonth+"-"+"01";
+		String endDate= yearMonth+"-"+DateUtil.getEndDayByMonth(yearMonth);
+		List<AttLeaveBO> list= this.attBusiDAO.getAttDetailForSomebody(personId,yearMonth);
+		String  result="";
+		try {
+			this.updateCalcAttTempData("1651", beginDate, endDate);
+			this.updateAttTempDate(beginDate, endDate);
+			String sql="select a244202 as detail from a244 where id='"+personId+"'";
+			result=this.activeapi.queryForString(sql);
+		} catch (SysException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//组装结果，某人那些天迟到旷工，哪些天请假
+		Map map=new HashMap<String,Object>();
+		map.put("result", result);
+		map.put("list", list);
+		return map;
+	}
 }
