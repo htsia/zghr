@@ -7,8 +7,6 @@ import java.util.Map;
 
 import javax.faces.event.ValueChangeEvent;
 
-import org.activiti.engine.task.Task;
-
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
@@ -431,50 +429,11 @@ public class AttOvertimeBackingBean extends BaseBackingBean {
 		}
 	}
 	
-	/**
-	 * 加班流程启动
-	 */
-	/*public void applyOvertime(String userId,String id){
-		try{
-			String keyId="";//流程key
-			String postLevel=this.selPersonsTool.getPostLevel(super.getUserInfo().getUserId());//岗位级别
-			if(postLevel!=null&&!postLevel.equals("")){
-				keyId=AttConstants.getAttFlowKey(postLevel);//流程KEY
-				if(keyId!=null&&!keyId.equals("")){
-					
-					//为流程配置参数并启动流程
-					int leaderType = selPersonsTool.getLeaderType(super.getUserInfo().getUserId());
-					AttOvertimeBO bo=(AttOvertimeBO)this.attBusiService.findBOById(AttOvertimeBO.class, id);
-					Map map=new HashMap();
-					map.put("proposerId", super.getUserInfo().getUserId());
-					map.put("currPersonId", super.getUserInfo().getUserId());
-					map.put("leaderType", leaderType);
-					map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
-					String instanceId=this.activitiToolService.startProcessInstance(keyId, id,map);
-					
-					//设置请假单状态,关联的流程实例ID
-					bo.setStatus(AttConstants.STATUS_AUDIT);
-					bo.setProcessId(instanceId);
-					attBusiService.saveOrUpdateBO(bo);
-				}else{
-					super.showMessageDetail("您的岗位等级未设置流程！");
-				}
-			}else{
-				super.showMessageDetail("您没有岗位等级，无法进入请假流程！");
-			}
-		}catch(NumberFormatException e){
-			e.printStackTrace();
-			super.showMessageDetail("请假天数必须为>0的数字");
-		}catch(Exception e){
-			e.printStackTrace();
-			super.showMessageDetail("操作失败！"+e.getMessage());
-		}
-	}*/
-
 	//重新报批
 	public void applyAgain(){
 		try {
 			AttOvertimeBO bo = (AttOvertimeBO)this.attBusiService.findBOById(AttOvertimeBO.class, id);
+			this.attBusiService.deleteBO(AttOvertimeBO.class, bo.getId());
 			String postLevel = this.selPersonsTool.getPostLevel(bo.getPersonId());// 岗位级别
 			if (postLevel != null && !postLevel.equals("")) {
 				String keyId = AttConstants.getAttFlowKey(postLevel);// 流程KEY
@@ -486,36 +445,24 @@ public class AttOvertimeBackingBean extends BaseBackingBean {
 					map.put("currPersonId", bo.getPersonId());
 					map.put("leaderType", leaderType);
 					map.put("leaveDays", Double.valueOf(bo.getApplyDays()));
-					String instanceId = this.activitiToolService.startProcessInstance(keyId, id, map);
-					
-					// 设置加班申请状态,关联的流程实例ID
+					bo.setId(null);
 					bo.setStatus(AttConstants.STATUS_AUDIT);
-					bo.setProcessId(instanceId);
 					this.attBusiService.saveOrUpdateBO(bo);
+					
+					String instanceId = this.activitiToolService.startProcessInstance(keyId, bo.getId(), map);
+					bo.setProcessId(instanceId);
+					this.attBusiService.saveOrUpdateBO(bo);					
 				} else {
-					super.showMessageDetail("您的岗位等级未设置流程");
+					super.showMessageDetail("岗位等级未设置流程");
 				}
 			} else {
-				super.showMessageDetail("您没有岗位等级，无法进入请假流程");
+				super.showMessageDetail("没有岗位等级，无法进入请假流程");
 			}
 		} catch (Exception e) {
 			super.showMessageDetail("重新报批失败");
 			e.printStackTrace();
 		}
 		super.showMessageDetail("重新报批完成");
-	}
-	
-	public void cancelApply(){
-		try{
-			AttOvertimeBO bo=(AttOvertimeBO)this.attBusiService.findBOById(AttOvertimeBO.class, id);
-			Task task=this.activitiToolService.getTaskByInstanceId(bo.getProcessId());
-			Map map=new HashMap();
-			map.put("reApplay", new Boolean(true));
-			activitiToolService.completeTask(task.getId(), map);
-		}catch(Exception e){
-			e.printStackTrace();
-			super.showMessageDetail("操作失败！");
-		}
 	}
 
 	public void qryApply(ValueChangeEvent event) {

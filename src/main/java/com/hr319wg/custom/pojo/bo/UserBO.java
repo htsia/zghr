@@ -27,8 +27,15 @@ public class UserBO {
 	private String a001753="00900";
 	private String leixing;
 	private String hasCashStr;
+	private String OAName;
 	private boolean hasCash;
 	
+	public String getOAName() {
+		return OAName;
+	}
+	public void setOAName(String oAName) {
+		OAName = oAName;
+	}
 	public String getHasCashStr() {
 		return hasCashStr;
 	}

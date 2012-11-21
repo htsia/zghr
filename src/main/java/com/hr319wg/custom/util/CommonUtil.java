@@ -4,7 +4,12 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
+import javax.xml.namespace.QName;
+
+import org.apache.axis.client.Call;
+import org.apache.axis.client.Service;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.common.Constants;
@@ -21,7 +26,6 @@ import com.hr319wg.user.pojo.bo.OperateBO;
 import com.hr319wg.util.CommonFuns;
 import com.hr319wg.util.SequenceGenerator;
 import com.hr319wg.wage.pojo.bo.WageAdjustDetailBO;
-
 public class CommonUtil {
 	private CommonDAO commonDAO;
 	
@@ -254,5 +258,35 @@ public class CommonUtil {
 	 */
 	public static String getHQLAllAttLog(String attBO, String operUserID) throws SysException{
 		return "select bo.personId from "+attBO+" bo,AttLogBO l where bo.Id=l.leaveId and l.personId= '"+operUserID+"'";
+	}
+	
+	/**
+	 * 发送邮件
+	 * @param title
+	 * @param content
+	 * @param fromOA
+	 * @param toOA
+	 */
+	public static void sendEmail(String url, String soapaction, String title, String content, Object fromOA, Object toOA){
+		Service service = new Service();
+		try{
+			Call call=(Call)service.createCall();            
+			call.setTargetEndpointAddress(url);
+			call.setOperationName(new QName(soapaction,"addPortalMailInfoByUserName")); //设置要调用哪个方法
+			
+			call.addParameter(new QName(soapaction, "MailTitle"),  org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);// 设置要传递的参数
+			call.addParameter(new QName(soapaction, "MailContent"), org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
+			call.addParameter(new QName(soapaction, "MailSender"), org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
+			call.addParameter(new QName(soapaction, "MailAccepter"), org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
+			call.addParameter(new QName(soapaction, "CheckStr"), org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
+			call.setReturnType(new QName(soapaction,"addPortalMailInfoByUserName"),Vector.class); //要返回的数据类型（自定义类型）
+			call.setReturnType(org.apache.axis.encoding.XMLType.XSD_STRING);//（标准的类型）
+			
+			call.setUseSOAPAction(true);
+			call.setSOAPActionURI(soapaction + "addPortalMailInfoByUserName");
+			String result = (String) call.invoke(new Object[]{title, content, fromOA, toOA, "11204"});//调用方法并传递参数
+		}catch(Exception ex){
+			ex.printStackTrace();
+		} 
 	}
 }

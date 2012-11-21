@@ -8,14 +8,11 @@ import java.util.Map;
 
 import javax.faces.event.ValueChangeEvent;
 
-import org.activiti.engine.task.Task;
-
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.attence.pojo.bo.AttLeaveBO;
 import com.hr319wg.custom.attence.pojo.bo.AttLogBO;
-import com.hr319wg.custom.attence.pojo.bo.AttOvertimeBO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
 import com.hr319wg.custom.attence.util.AttConstants;
 import com.hr319wg.custom.pojo.bo.UserBO;
@@ -546,83 +543,45 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	}
 
 	/**
-	 * 请假流程启动
+	 * 重新报批
 	 */
 	public void applyLeave() {
 		try {
+			AttLeaveBO bo = this.attBusiService.findAttLeaveBOById(this.leaveId);
+			this.attBusiService.deleteBO(AttLeaveBO.class, bo.getId());
 			String keyId = "";// 流程key
-			String postLevel = this.selPersonsTool.getPostLevel(super
-					.getUserInfo().getUserId());// 岗位级别
+			String postLevel = this.selPersonsTool.getPostLevel(bo.getPersonId());// 岗位级别
 			if (postLevel != null && !postLevel.equals("")) {
 				keyId = AttConstants.getAttFlowKey(postLevel);// 流程KEY
 				if (keyId != null && !keyId.equals("")) {
 
 					// 为流程配置参数
-					int leaderType = selPersonsTool.getLeaderType(super
-							.getUserInfo().getUserId());
-					AttLeaveBO bo = this.attBusiService
-							.findAttLeaveBOById(leaveId);
+					int leaderType = this.selPersonsTool.getLeaderType(bo.getPersonId());
 					Map map = new HashMap();
-					map.put("proposerId", super.getUserInfo().getUserId());
-					map.put("currPersonId", super.getUserInfo().getUserId());
+					map.put("proposerId", bo.getPersonId());
+					map.put("currPersonId", bo.getPersonId());
 					map.put("leaderType", leaderType);
 					map.put("leaveDays", bo.getApplyDays());
-					
-					
-					//启动流程
-					String instanceId = this.activitiToolService
-							.startProcessInstance(keyId, leaveId, map);
-					// 设置请假单状态,关联的流程实例ID
 					bo.setStatus(AttConstants.STATUS_AUDIT);
+					bo.setId(null);
+					this.attBusiService.saveOrUpdateBO(bo);
+					// 启动流程
+					String instanceId = this.activitiToolService.startProcessInstance(keyId, bo.getId(), map);
 					bo.setProcessId(instanceId);
-					attBusiService.saveAttLeaveBO(bo);
+					this.attBusiService.saveAttLeaveBO(bo);
 				} else {
-					super.showMessageDetail("您的岗位等级未设置流程！");
+					super.showMessageDetail("岗位等级未设置流程！");
 				}
 			} else {
-				super.showMessageDetail("您没有岗位等级，无法进入请假流程！");
+				   super.showMessageDetail("没有岗位等级，无法进入请假流程！");
 			}
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			super.showMessageDetail("请假天数必须为>0的数字");
 		} catch (Exception e) {
 			e.printStackTrace();
-			super.showMessageDetail("操作失败！" + e.getMessage());
+			super.showMessageDetail("操作失败" + e.getMessage());
 		}
-		//return "successleave";
-	}
-
-	/**
-	 * 重新报批，重点更改流程状态
-	 */
-	public void applyLeaveAgin() {
-		try {
-			AttLeaveBO bo = this.attBusiService.findAttLeaveBOById(leaveId);
-			Task task = this.activitiToolService.getTaskByInstanceId(bo
-					.getProcessId());
-			Map map = new HashMap();
-			map.put("currPersonId", super.getUserInfo().getUserId());
-			activitiToolService.completeTask(task.getId(), map);
-			bo.setStatus(AttConstants.STATUS_AUDIT);
-			attBusiService.saveAttLeaveBO(bo);
-		} catch (Exception e) {
-			e.printStackTrace();
-			super.showMessageDetail("操作失败！");
-		}
-	}
-
-	public void cancelApply() {
-		try {
-			AttLeaveBO bo = this.attBusiService.findAttLeaveBOById(leaveId);
-			Task task = this.activitiToolService.getTaskByInstanceId(bo
-					.getProcessId());
-			Map map = new HashMap();
-			map.put("reApplay", new Boolean(true));
-			activitiToolService.completeTask(task.getId(), map);
-		} catch (Exception e) {
-			e.printStackTrace();
-			super.showMessageDetail("操作失败！");
-		}
+		super.showMessageDetail("重新报批完成");
 	}
 
 	public String getLeaveId() {

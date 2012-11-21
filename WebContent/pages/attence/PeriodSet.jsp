@@ -42,7 +42,7 @@ function verify(ym){
 		<table width="100%" border="0" cellpadding="0" cellspacing="0"
 			bgcolor="#FFFFFF">
 			<tr>
-				<td class="td_title"><img src="/images/tips.gif">考勤计算</td>
+				<td class="td_title"><img src="/images/tips.gif">考勤管理 -> 考勤计算</td>
 			</tr>
 		</table>
 		<table height=98% width=98% align="center">

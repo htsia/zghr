@@ -120,7 +120,7 @@
 	             	rendered="#{attOvertimeApplyBB.ismanager=='1'||(list.personId==attOvertimeApplyBB.userId&&list.statusDes=='退回') || !list.appro}">
 	             	<x:updateActionListener property="#{attOvertimeApplyBB.id}" value="#{list.id}"/>
 	        </h:commandButton>
-	        <h:commandButton value="重新报批" styleClass="button01" action="#{attOvertimeApplyBB.applyAgain}" rendered="#{attOvertimeApplyBB.ismanager=='1'}">
+	        <h:commandButton value="重新报批" styleClass="button01" onclick="return confirm('确定要重新报批吗？');" action="#{attOvertimeApplyBB.applyAgain}" rendered="#{attOvertimeApplyBB.ismanager=='1'}">
 	        	<x:updateActionListener property="#{attOvertimeApplyBB.id}" value="#{list.id}"/>
 	        </h:commandButton>
 	        <h:commandButton value="查看流程" onclick="showFlow('#{list.id}')" styleClass="button01" rendered="#{list.createType=='0'}"/>

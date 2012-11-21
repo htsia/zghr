@@ -124,6 +124,10 @@
              	rendered="#{attRestApplyBB.ismanager=='1'||(list.personId==attRestApplyBB.userId&&list.statusDes=='退回') || !list.appro}">
              	<x:updateActionListener property="#{attRestApplyBB.id}" value="#{list.id}"/>
             </h:commandButton>
+        	<h:commandButton value="重新报批"  action="#{attRestApplyBB.applyAgain}" onclick="return confirm('确定要重新报批吗？');" styleClass="button01" 
+             	rendered="#{attRestApplyBB.ismanager=='1'}">
+             	<x:updateActionListener property="#{attRestApplyBB.id}" value="#{list.id}"/>
+            </h:commandButton>
             <h:commandButton value="查看流程" onclick="showFlow('#{list.id}')" styleClass="button01" rendered="#{list.createType=='0'}"></h:commandButton>
          </h:column>
         </h:dataTable>

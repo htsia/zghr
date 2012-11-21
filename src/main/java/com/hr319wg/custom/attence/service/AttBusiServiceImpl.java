@@ -36,6 +36,7 @@ import com.hr319wg.custom.attence.pojo.bo.AttOvertimeBO;
 import com.hr319wg.custom.attence.pojo.bo.AttRestBO;
 import com.hr319wg.custom.attence.util.AttConstants;
 import com.hr319wg.custom.pojo.bo.UserBO;
+import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.api.QueryAPI;
@@ -2515,8 +2516,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 					map.put("leaveDays", bo.getApplyDays());
 
 					// 启动流程
-					String instanceId = this.activitiToolService
-							.startProcessInstance(keyId, leaveId, map);
+					String instanceId = this.activitiToolService.startProcessInstance(keyId, leaveId, map);
 					// 设置请假单状态,关联的流程实例ID
 					bo.setStatus(AttConstants.STATUS_AUDIT);
 					bo.setProcessId(instanceId);
@@ -3214,7 +3214,6 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public List getAttTempDataBO(PageVO pageVO, String orgID, String nameStr,
 			String personType) throws SysException {
-		// return this.jdbcTemplate.queryForList("select * from a236");
 		return this.attBusiDAO.getAttTempDataBO(pageVO, orgID, nameStr,
 				personType);
 	}
@@ -3391,7 +3390,27 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			this.activeapi.executeSql(sql);
 		}
 		
-		
+	}
+
+	@Override
+	public List getAttTempDataBO(String orgID, String nameStr, String personType, String selectedUserIDs)
+			throws SysException {
+		return this.attBusiDAO.getAttTempDataBO(orgID, nameStr, personType, selectedUserIDs);
+	}
+
+	@Override
+	public void batchSendEmail(List<Map> list) throws SysException {
+		String sql = "select url,soa,a001230 oaname from a001 a,sys_oa_email s where a.id=s.userid1";
+		List list1 = this.jdbcTemplate.queryForList(sql);
+		if(list1!=null && list1.size()>0){
+			Map m1 = (Map)list1.get(0);
+			String url=String.valueOf(m1.get("url"));
+			String soa=String.valueOf(m1.get("soa"));
+			String OAName=String.valueOf(m1.get("oaname"));
+			for(Map m : list){
+				CommonUtil.sendEmail(url, soa, "考勤情况明细", m.get("detail")==null?"":String.valueOf(m.get("detail")), OAName, m.get("toOA"));
+			}
+		}
 	}
 
 }
