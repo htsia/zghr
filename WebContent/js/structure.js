@@ -682,8 +682,6 @@ function NodeCreateViewNodeT(oid){
     return aDiv;
 }
 
-
-
 function NodeCreateViewNodeV(oid){
     var idUnitItem = "unititem" + oid;
     var idItem = "item" + oid;

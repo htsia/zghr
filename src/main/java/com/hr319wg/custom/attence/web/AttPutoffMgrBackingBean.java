@@ -2,7 +2,9 @@ package com.hr319wg.custom.attence.web;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.model.SelectItem;
 
@@ -28,6 +30,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 	private String nameStr;
 	private String personType;
 	private String personTypeValue;
+	private String selectedUserIDs;
 	private String orgID;
 	private String operUserID;
 	private String applyYear;
@@ -42,6 +45,13 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 	private AttPutoff2BO bo;
 	private String modifyInit;    
 	
+	public String getSelectedUserIDs() {
+		return selectedUserIDs;
+	}
+
+	public void setSelectedUserIDs(String selectedUserIDs) {
+		this.selectedUserIDs = selectedUserIDs;
+	}
 	private String putoffDays;
 	private String leaveDays;
 	private String bingjia;
@@ -64,7 +74,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
     private String attYearInit;
     private String tempBeginDate;
     private String tempEndDate;
-	private List attTempDataList;
+	private List<AttTempDataBO> attTempDataList;
 	private String attTempDataInit;
 	private String yearStr;
 	private String overtimePay="20";
@@ -86,6 +96,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 	}
 
 	public String getAttTempDataInit() {
+		this.selectedUserIDs=null;
 		String act = super.getRequestParameter("act");
 		if("init".equals(act)){
 			this.orgID=null;
@@ -909,5 +920,27 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public void sendEmail(){
+		List<Map> list = new ArrayList<Map>();
+		try {
+			List detailList = this.attBusiService.getAttTempDataBO(orgID, nameStr, personType, selectedUserIDs);
+			this.selectedUserIDs=null;
+			if(detailList==null){
+				detailList=new ArrayList();
+			}
+			for(int i=0;i<detailList.size();i++){
+				Object[]obj = (Object[])detailList.get(i);
+				Map m = new HashMap();
+				m.put("OAName", obj[0]);
+				m.put("detail", obj[1]);
+				list.add(m);
+			}
+			if(list.size()>0){
+				this.attBusiService.batchSendEmail(list);
+			}
+		} catch (SysException e) {
+			e.printStackTrace();
+		}
+	}
 }
