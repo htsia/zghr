@@ -94,6 +94,7 @@ function NodeCreateAllNodesT(inParentIndex,parentChildCount,level,isLast,emptyPr
     //create all the prex image
     var i,curCell,curImage;
     for(i=0;i<level;i++){
+    	
         for(var j=0;j<emptyPrexCount[i];j++){
             curCell = curRow.insertCell();
             curCell.width = "1";
@@ -1095,9 +1096,9 @@ function hideActionbar(){
 
 function doOpen(viewNode){
    if( mode=="chart" )
-      doOpenH(viewNode)
+      doOpenH(viewNode);
    else
-      doOpenT(viewNode)
+      doOpenT(viewNode);
 
    adaptPosition();   
    hideActionbar();

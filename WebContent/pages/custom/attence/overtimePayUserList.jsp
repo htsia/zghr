@@ -39,7 +39,7 @@
                <h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{attPutoffMgrBB.doQuery}"/>
                <h:outputText value="选择月份"/>
                <h:inputText id="selectMonth" readonly="true" styleClass="input" onclick="WdatePicker({alwaysUseStartDate:true,dateFmt:'yyyy-MM'})" value="#{attPutoffMgrBB.overtimePayMonth}" />
-               <h:commandButton styleClass="button01" value="查询" action="#{attPutoffMgrBB.doQuery}"/> 
+               <h:commandButton styleClass="button01" value="查询" action="#{attPutoffMgrBB.overtimeDoQuery}"/> 
                
 
                <h:outputText value="  "/>
@@ -68,7 +68,7 @@
                  styleClass="table03" width="98%" >
         <h:column>
             <c:facet name="header"><h:outputText value="员工编号"/></c:facet>
-            <h:outputText value="#{list.id}"/>
+            <h:outputText value="#{list.personCode}"/>
         </h:column>
         <h:column>
             <c:facet name="header"><h:outputText value="姓名"/></c:facet>
