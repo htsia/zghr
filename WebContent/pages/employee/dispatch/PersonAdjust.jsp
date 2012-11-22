@@ -64,21 +64,6 @@
                <input type="button" class="button_select" onclick="selPost()">
            </td>
        </tr>
-
-           <tr nowrap id="postLevel">
-              <td class=td_form01 id="td_A001715" >新岗位级别</td>
-              <td class=td_form02 colspan="3">
-          </c:verbatim>
-        <h:inputText styleClass="input" id="A001716" code="" dict="yes" dict_num="2238"
-                     readonly="true" value="#{emp_PersonDismissBB.postLevel}"
-                     alt="岗位级别|1|s|50||"/>
-
-          <c:verbatim>
-                  <input type="button" class="button_post" onclick="PopUpCodeDlgOneControl('form1:A001716')">
-              </td>
-          </tr>
-
-
        </table>
         <br>
         <table width=95% border=0 align=center cellpadding=0 cellspacing=0 >
