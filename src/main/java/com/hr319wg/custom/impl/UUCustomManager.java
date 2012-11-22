@@ -53,12 +53,15 @@ public class UUCustomManager implements IUUManager{
 	
 	public void organizationRemove(String arg0, String arg1, String arg2)
 			throws SysException {
-
+		//刷新代码集
+		SysCache.loadCodeSetMap();
+        SysCache.loadCodeItemMap();
 	}
 	
 	public void organizationSort(String arg0) throws SysException {
-		// TODO Auto-generated method stub
-		
+		//刷新代码集
+		SysCache.loadCodeSetMap();
+        SysCache.loadCodeItemMap();
 	}
 	
 	//添加人员后
