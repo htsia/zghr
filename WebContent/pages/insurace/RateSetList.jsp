@@ -19,6 +19,11 @@
             for(i=0;i<td.length;i++) td[i].style.display="none";
         }
         function doCheck(){
+            //debugger;
+            if (document.all('form1:name').innerText=="单位名称:"){
+                alert("没有选择单位!");
+                return false;
+            }
 
             if (document.all('form1:precise_end').value==""){
                 alert("没有选择养老保险计算精度!");
@@ -26,6 +31,10 @@
             }
             if (document.all('form1:precise_med').value==""){
                 alert("没有选择医疗保险计算精度!");
+                return false;
+            }
+            if (document.all('form1:precise_unemployment').value==""){
+                alert("没有选择失业保险计算精度!");
                 return false;
             }
             if (document.all('form1:precise_procreate').value==""){
@@ -58,6 +67,7 @@
                 return false;
             }
 
+
             if (document.all('form1:medicare_unit').value==""){
                 alert("没有录入医疗保险单位交费比例!");
                 return false;
@@ -72,6 +82,24 @@
             }
             if (document.all('form1:medicare_min').value==""){
                 alert("没有录入医疗保险下限!");
+                return false;
+            }
+
+
+            if (document.all('form1:unemployment_unit').value==""){
+                alert("没有录入失业保险单位交费比例!");
+                return false;
+            }
+            if (document.all('form1:unemployment_person').value==""){
+                alert("没有录入失业保险单位个人交费比例!");
+                return false;
+            }
+            if (document.all('form1:unemp_max').value==""){
+                alert("没有录入失业保险上限!");
+                return false;
+            }
+            if (document.all('form1:unemp_min').value==""){
+                alert("没有录入失业保险下限!");
                 return false;
             }
 
@@ -122,14 +150,14 @@
 <h:form id="form1">
     <h:inputHidden  value="#{wage_unitBB.rateSet}"/>
     <f:verbatim>
-    <table width="98%" align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-    <tr>
-        <td class="td_title"><img src="/images/tips.gif">缴费比例设定</td>
-    </tr>
-    <tr align="center">
+    <table  width=98%>
+      <tr>
+        <td align="left" height=30 valign="middle">
     </f:verbatim>
+            <h:outputText id="name"  escape="false" value="<strong>单位名称:</strong>#{wage_unitBB.unit.name}" />
      <f:verbatim>
-        <td  class="td_title" align="right"  height=30 valign="middle">
+        </td>
+        <td align="right"  height=30 valign="middle">
       </f:verbatim>
            <h:commandButton styleClass="button01" value="保存" action="#{wage_unitBB.saveRate}"
                          onclick="return doCheck();"/>
@@ -138,8 +166,8 @@
         </td>
       </tr>
   </table>
-  <table class="table03" align="center" width="98%">
-            <tr align="center">
+  <table class="table03">
+            <tr>
                 <td  rowspan="2" class="td_top" width="100" align="center"><strong>项目</strong></td>
                 <td  rowspan="2" align="center" width="100" class="td_top"><strong>计算精度</strong></td>
                 <%
@@ -149,7 +177,7 @@
                 %>
             </tr>
 
-            <tr align="center">
+            <tr>
                 <td id='c02020001' width="100" align="center" class="td_top">单位交费比例(%)</td>
                 <td id='c02020001' width="100" align="center" class="td_top">个人交费比例(%)</td>
                 <td id='c02020001' width="100" align="center" class="td_top">上限<br>(元)</td>
@@ -166,9 +194,9 @@
                 <td align="center" width="100" id='c02020003' class="td_top">下限<br>(元)</td>
            </tr>
 
-            <tr align="center">
+            <tr>
                 <td width="90px" class="td_top" align="center">养老保险</td>
-                <td align="center">
+                <td width="80px">
             </f:verbatim>
                     <h:selectOneMenu id="precise_end"  value="#{wage_unitBB.unit.precise_end}">
                         <c:selectItem itemValue="" itemLabel="--请选择--"></c:selectItem>
@@ -179,7 +207,7 @@
 <f:verbatim>
                 </td>
 
-                <td id='c02020001'>
+                <td id='c02020001' >
 </f:verbatim>
                     <h:inputText id="endowment_unit"  style="width:60px" value="#{wage_unitBB.unit.endowment_unit}" />
 <f:verbatim>
@@ -241,7 +269,7 @@
                 </td>
            </tr>
 
-            <tr align="center">
+            <tr>
                 <td width=90px class="td_top" align="center">医疗保险</td>
                 <td>
 </f:verbatim>
@@ -315,7 +343,82 @@
 <f:verbatim>
                 </td>
            </tr>
-            <tr align="center">
+
+            <tr>
+                <td width=90px class="td_top" align="center">失业保险</td>
+                <td>
+</f:verbatim>
+                    <h:selectOneMenu id="precise_unemployment"  value="#{wage_unitBB.unit.precise_unemployment}">
+                        <c:selectItem itemValue="" itemLabel="--请选择--"></c:selectItem>
+                        <c:selectItem itemValue="0" itemLabel="元"></c:selectItem>
+                        <c:selectItem itemValue="1" itemLabel="角"></c:selectItem>
+                        <c:selectItem itemValue="2" itemLabel="分"></c:selectItem>
+                    </h:selectOneMenu>
+<f:verbatim>
+                </td>
+                <td id='c02020001' >
+</f:verbatim>
+                    <h:inputText id="unemployment_unit" style="width:60px"  value="#{wage_unitBB.unit.unemployment_unit}" />
+    <f:verbatim>
+                    </td>
+                    <td id='c02020001' >
+    </f:verbatim>
+                    <h:inputText id="unemployment_person" style="width:60px"  value="#{wage_unitBB.unit.unemployment_person}" />
+        <f:verbatim>
+                        </td>
+                        <td id='c02020001' >
+        </f:verbatim>
+                    <h:inputText id="unemp_max" style="width:60px"  value="#{wage_unitBB.unit.maxRate_unemp}" />
+            <f:verbatim>
+                            </td>
+                            <td id='c02020001' >
+            </f:verbatim>
+                    <h:inputText id="unemp_min" style="width:60px"  value="#{wage_unitBB.unit.minRate_unemp}" />
+<f:verbatim>
+                </td>
+                <td id='c02020002' >
+</f:verbatim>
+                    <h:inputText id="unemployment_unit_rl" style="width:60px"  value="#{wage_unitBB.unit.unemployment_unit_rl}" />
+    <f:verbatim>
+                    </td>
+                    <td id='c02020002' >
+    </f:verbatim>
+                    <h:inputText id="unemployment_person_rl" style="width:60px"  value="#{wage_unitBB.unit.unemployment_person_rl}" />
+        <f:verbatim>
+                        </td>
+                        <td id='c02020002' >
+        </f:verbatim>
+                    <h:inputText id="unemp_max_rl" style="width:60px"  value="#{wage_unitBB.unit.maxRate_unemp_rl}" />
+            <f:verbatim>
+                            </td>
+                            <td id='c02020002' >
+            </f:verbatim>
+                    <h:inputText id="unemp_min_rl" style="width:60px"  value="#{wage_unitBB.unit.minRate_unemp_rl}" />
+                <f:verbatim>
+                                </td>
+                                <td id='c02020003'>
+                </f:verbatim>
+                    <h:inputText id="unemployment_unit_al" style="width:60px"  value="#{wage_unitBB.unit.unemployment_unit_al}" />
+<f:verbatim>
+            </td>
+            <td id='c02020003'>
+</f:verbatim>
+                    <h:inputText id="unemployment_person_al" style="width:60px"  value="#{wage_unitBB.unit.unemployment_person_al}" />
+    <f:verbatim>
+                </td>
+                <td  id='c02020003'>
+    </f:verbatim>
+                    <h:inputText id="unemp_max_al" style="width:60px"  value="#{wage_unitBB.unit.maxRate_unemp_al}" />
+        <f:verbatim>
+                    </td>
+                    <td id='c02020003'>
+        </f:verbatim>
+                    <h:inputText id="unemp_min_al" style="width:60px"  value="#{wage_unitBB.unit.minRate_unemp_al}" />
+ <f:verbatim>
+                </td>
+           </tr>
+
+            <tr>
                 <td width=90px class="td_top" align="center">生育保险</td>
                 <td>
  </f:verbatim>
@@ -383,7 +486,7 @@
                 </td>
            </tr>
 
-            <tr align="center">
+            <tr>
                 <td width=90px class="td_top" align="center">工伤保险</td>
                 <td>
 </f:verbatim>
@@ -451,7 +554,7 @@
                 </td>
            </tr>
 
-            <tr align="center">
+            <tr>
                 <td width=90px class="td_top" align="center">住房公积金</td>
                 <td>
 </f:verbatim>
@@ -526,6 +629,8 @@
            </tr>
 
         </table>
+
+
 </f:verbatim>
 </h:form>
 <script type="text/javascript">
@@ -534,4 +639,6 @@
        if (c02020002==null || "0".equals(c02020002.getItemStatus())) out.println("hide('c02020002');");
        if (c02020003==null || "0".equals(c02020003.getItemStatus())) out.println("hide('c02020003');");
     %>
+
+
 </script>
