@@ -634,7 +634,7 @@
         <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
     </bean>
     
-    <bean id="wage_PersonQueryService" class="com.hr319wg.wage.service.WagePersonQueryService">
+    <bean id="wage_PersonQueryService" class="com.hr319wg.custom.extend.service.WagePersonQueryServiceByExtend">
         <property name="wageapi">
             <ref bean="wage_api"/>
         </property>

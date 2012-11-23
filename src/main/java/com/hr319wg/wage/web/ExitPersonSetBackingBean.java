@@ -5,8 +5,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.hr319wg.common.Constants;
+import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
+import com.hr319wg.common.web.SysContext;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.ucc.IPersonUCC;
 import com.hr319wg.qry.pojo.vo.QueryVO;
@@ -73,39 +77,58 @@ public class ExitPersonSetBackingBean extends BaseBackingBean
   public void setUnitName(String unitName) {
     this.unitName = unitName;
   }
-  public String removeFromSet() {
-    try {
-      String[] array = this.ids.split("\\|");
-      for (int i = 0; i < array.length; i++) {
-        String[] vars = array[i].split(",");
-        if (vars.length == 2) {
-          String[] sel = new String[1];
-          sel[0] = vars[0];
-          this.wagesetpersonucc.batchRemovePerson(vars[1], sel);
-          this.wagesetpersonucc.batchMinus(super.getUserInfo().getUserId(), vars[1], sel);
+  public void removeFromSet() {
+	    try {
+	      String[] array = this.ids.split(",");
+	      for (int i = 0; i < array.length; i++) {
+	        String[] vars = array[i].split("-");
+	        if (vars.length == 3) {
+	          this.wagesetpersonucc.batchRemovePerson(vars[0], vars[1].split(","));
+	          this.wagesetpersonucc.batchMinus(super.getUserInfo().getUserId(), vars[0], vars[1].split(","));
 
-          WFTransaction trans = new WFTransaction();
-          trans.setUser(super.getUserInfo());
-          PersonBO pb = SysCacheTool.findPersonById(vars[0]);
-          if ((pb.getDegree() != null) && (Constants.EMP_CADRESCODE.indexOf(pb.getDegree() + ",") >= 0)) {
-            trans.setWfType(WFTypeBO.RYGL_CAR_EXIT);
-          }
-          else {
-            trans.setWfType(WFTypeBO.RYGL_WORK_EXIT);
-          }
+	          WFTransaction trans = new WFTransaction();
+	          trans.setUser(super.getUserInfo());
+	          PersonBO pb = SysCacheTool.findPersonById(vars[1]);
+	          if ((pb.getDegree() != null) && (Constants.EMP_CADRESCODE.indexOf(pb.getDegree() + ",") >= 0)) {
+	            trans.setWfType(WFTypeBO.RYGL_CAR_EXIT);
+	          }
+	          else {
+	            trans.setWfType(WFTypeBO.RYGL_WORK_EXIT);
+	          }
 
-          trans.setOperID("0673");
-          trans.setLinkID(vars[0]);
-          this.wfservice.processTrans(trans);
-        }
-      }
-    }
-    catch (Exception e)
-    {
-    }
-    return "";
-  }
+	          trans.setOperID("0673");
+	          trans.setLinkID(vars[1]);
+	          this.wfservice.processTrans(trans);
+	        }
+	      }
+	    }
+	    catch (Exception e)
+	    {
+	    	super.showMessageDetail("ÒÆ³öÕÊÌ×Ê§°Ü");
+	    	e.printStackTrace();
+	    }
+	    super.showMessageDetail("³É¹¦ÒÆ³öÕÊÌ×");
+	  }
 
+	public void delete() {
+		String[] selectedIDs = this.ids.split(",");
+		String[] subIDs = new String[selectedIDs.length];
+		for (int i = 0; i < selectedIDs.length; i++) {
+			subIDs[i] = selectedIDs[i].split("-")[2];
+		}
+		String sql = "update b730 set B730200='00901' where " + CommonFuns.splitInSql(subIDs, "subid");
+		try {
+			JdbcTemplate jdbc = (JdbcTemplate) SysContext.getBean("jdbcTemplate");
+			this.ids = null;
+			super.showMessageDetail("É¾³ýÍê³É");
+			jdbc.execute(sql);
+		} catch (SysException e) {
+			this.ids = null;
+			super.showMessageDetail("É¾³ýÊ§°Ü");
+			e.printStackTrace();
+		}
+	}
+  
   public void queryExit()
   {
     try {
@@ -178,8 +201,9 @@ public class ExitPersonSetBackingBean extends BaseBackingBean
   }
 
   public String getListExitPerson() {
-    queryExit();
-    return this.listExitPerson;
+	  this.ids=null;
+      queryExit();
+      return null;
   }
   public void setListExitPerson(String listExitPerson) {
     this.listExitPerson = listExitPerson;
