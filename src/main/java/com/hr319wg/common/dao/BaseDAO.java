@@ -382,7 +382,6 @@ public class BaseDAO {
             Query q = s.createQuery(queryHql);
             q.setFirstResult((vo.getCurrentPage() - 1) * runtimePageSize);
             q.setMaxResults(runtimePageSize);
-
             return q.list();
         } catch (Exception e) {
             String msg="countHql;"+countHql+"\r\n +queryHql:"+queryHql;

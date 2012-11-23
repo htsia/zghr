@@ -48,7 +48,7 @@
             <props>
                 <!-- OracleDialect SQLServerDialect OracleDialect-->
                 <prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
-                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.show_sql">true</prop>
                 <prop key="use_sql_comments">false</prop>
                 <prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>
             </props>

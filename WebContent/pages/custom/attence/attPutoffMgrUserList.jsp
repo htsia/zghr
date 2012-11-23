@@ -7,6 +7,15 @@
 	response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
 <script type="text/javascript" contenteditable="inherit">
+function checkSubmit() {
+    var filename = form1.all("form1:excelFile").value;
+    if (filename.substr(filename.length - 3).toLowerCase() != 'xls') {
+        alert("请选择xls文件！");
+        return false;
+    } 
+    process();
+	return true;
+}
 	function forSel() {
 		PopUpMutilCodeDlgNoLayerForSubmit('form1:personType',
 				'form1:personTypeValue', "0135", '');
@@ -58,13 +67,13 @@
 				alert("加班费要大于0");
 				return false;
 			}
-		}else{
+		} else {
 			alert("加班费不能为空!");
 			return false;
 		}
 		if (confirm('存休将清空，将转为工资，请确认。')) {
 			window.location.href = ("/custom/attence/attPutoffMgrUserList.jsf?selectMonth="
-					+ selectMonth + "&subID=" + id + "&set='1'&overtimePay="+overtimePay);
+					+ selectMonth + "&subID=" + id + "&set='1'&overtimePay=" + overtimePay);
 			return false;
 		}
 
@@ -88,7 +97,7 @@
 
 <x:saveState value="#{attPutoffMgrBB}"></x:saveState>
 <h:inputHidden value="#{attPutoffMgrBB.pageInit}"></h:inputHidden>
-<h:form id="form1">
+<h:form id="form1"  enctype="multipart/form-data">
 	<h:inputHidden id="year" value="#{attPutoffMgrBB.applyYear}" />
 	<h:inputHidden id="putoffsum" value="#{attPutoffMgrBB.putoffsum}" />
 	<h:inputHidden id="personType" value="#{attPutoffMgrBB.personType}" />
@@ -129,6 +138,19 @@
 								<f:verbatim>
 									<br />
 								</f:verbatim>
+								<h:panelGroup>
+									<h:outputLink value="/pages/custom/attence/importOvertimeNotToWagePerson.xls"
+										target="_new">
+										<h:outputText value="下载模板  " />
+									</h:outputLink>
+									<h:outputText value="  上传文件" />
+									<x:inputFileUpload id="excelFile" styleClass="input"
+										value="#{attPutoffMgrBB.excelFile}" storage="file" size="10" />
+									<h:commandButton styleClass="button01" value="上传加班保留人员"
+										action="#{attPutoffMgrBB.uploadFile}"
+										onclick="return checkSubmit();" >
+										</h:commandButton>
+								</h:panelGroup>
 								<h:outputText value="记录数:#{attPutoffMgrBB.mypage.totalRecord}"></h:outputText>
 								<h:outputText value="  "></h:outputText>
 								<h:outputText value="页数:#{attPutoffMgrBB.mypage.totalPage}"></h:outputText>

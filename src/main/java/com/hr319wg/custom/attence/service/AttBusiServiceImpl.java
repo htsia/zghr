@@ -957,7 +957,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 									.findPersonByCode(sdwEnrollNumber
 											.toString());
 							if (p != null) {
-								sql = "insert into A808(ID,SUBID,A808000,A808700,A808701) values('"
+								sql = "insert into A808(ID,SUBID,A808000,A808700,A808701,A808702) values('"
 										+ p.getPersonId()
 										+ "', '"
 										+ key
@@ -965,7 +965,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 										+ date
 										+ "','"
 										+ time
-										+ "') ";// 时间(A808701) 日期(A808700)
+										+ "','"+bo.getMachineName()+"') ";// 时间(A808701) 日期(A808700)
 								this.activeapi.executeSql(sql);
 								success++;
 							} else {
@@ -2223,6 +2223,9 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public void updateOvertimePay(String id, String hours, String selectMonth,String overtimePay)
 			throws SysException, ParseException {
 		// TODO Auto-generated method stub
+		if(Double.parseDouble(hours)==0){
+			return;
+		}
 		// 首先清空带薪假子集的存休
 		String sql = "update a236 a set a236200=0 where id='" + id + "'";
 		this.activeapi.executeSql(sql);
@@ -2241,7 +2244,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			overtimePay="20";
 		}
 		sql = "insert into a243 select " + id + "||rownum||'" + selectMonth
-				+ "'," + id + ",'00901','" + selectMonth + "'," + hours + ","
+				+ "','" + id + "','00901','" + selectMonth + "'," + hours + ","
 				+ hours + "*"+overtimePay+"/8.0 from dual";
 		this.activeapi.executeSql(sql);
 	}

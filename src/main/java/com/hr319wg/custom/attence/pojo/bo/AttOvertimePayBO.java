@@ -1,6 +1,8 @@
 package com.hr319wg.custom.attence.pojo.bo;
 
 public class AttOvertimePayBO {
+	private String subid;
+	private String personCode;//人员编号
 	private String id; //人员id
 	private String yearMonth; //年月;
 	private String overtimeHours; //加班小时数
@@ -51,6 +53,18 @@ public class AttOvertimePayBO {
 	}
 	public void setSecDeptName(String secDeptName) {
 		this.secDeptName = secDeptName;
+	}
+	public String getPersonCode() {
+		return personCode;
+	}
+	public void setPersonCode(String personCode) {
+		this.personCode = personCode;
+	}
+	public String getSubid() {
+		return subid;
+	}
+	public void setSubid(String subid) {
+		this.subid = subid;
 	}
 	
 	

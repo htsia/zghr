@@ -1,5 +1,6 @@
 package com.hr319wg.custom.attence.web;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.model.SelectItem;
+
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
+import org.apache.myfaces.custom.fileupload.UploadedFile;
 
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
@@ -17,6 +24,7 @@ import com.hr319wg.custom.attence.pojo.bo.AttTempDataBO;
 import com.hr319wg.custom.attence.pojo.bo.AttYearBO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
 import com.hr319wg.custom.util.CommonUtil;
+import com.hr319wg.custom.wage.pojo.bo.WageDataSetUserBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.api.UserAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
@@ -70,7 +78,16 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 	private String attTempDataInit;
 	private String yearStr;
 	private String overtimePay="20";
+	private UploadedFile excelFile;
 	
+	public UploadedFile getExcelFile() {
+		return excelFile;
+	}
+
+	public void setExcelFile(UploadedFile excelFile) {
+		this.excelFile = excelFile;
+	}
+
 	
 	public String getSelectedUserIDs() {
 		return selectedUserIDs;
@@ -795,7 +812,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 				bo.setSecDeptName(CodeUtil.interpertCode(obj[1].toString()));
 				PersonBO p=SysCacheTool.findPersonById(bo.getId());
 				try{
-					bo.setId(p.getPersonCode());
+					bo.setPersonCode(p.getPersonCode());
 				}catch(Exception e) {
 					bo.setId("无");
 				}
@@ -916,7 +933,56 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 			e.printStackTrace();
 		}
 	}
-
+	public void uploadFile(){
+		System.out.println(this.overtimePay+"\n"+this.overtimePayMonth);
+		try {
+			Workbook wb = Workbook.getWorkbook(this.excelFile.getInputStream());
+			Sheet st=wb.getSheet(0);
+			int stRow=st.getRows();
+			int success=0;
+			int fail=0;
+			String errperson="";
+			
+			for(int i=1;i<stRow;i++){
+				String pCode = st.getCell(0, i).getContents();
+				if(pCode==null || "".equals(pCode)){
+					break;
+				}else{
+					PersonBO p = SysCacheTool.findPersonByCode(pCode.trim());
+					if(p!=null){
+						try {
+							this.bo =(AttPutoff2BO)this.attBusiService.findBOById(AttPutoff2BO.class, p.getPersonId());
+							this.attBusiService.updateOvertimePay(p.getPersonId(), bo.getPutoffDays(),this.overtimePayMonth,overtimePay);
+							success++;
+						} catch (SysException e) {
+							fail++;
+							e.printStackTrace();
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}else{
+						fail++;
+						errperson+=pCode+",";
+					}
+				}
+			}
+			if(fail==0){
+				this.orgID=null;
+				super.showMessageDetail("成功"+success+"个");				
+			}else{
+				String err="成功"+success+"个失败"+fail+"个";
+				if(errperson.length()!=0){
+					err+=",其中人员编号"+errperson+"的人员不存在";
+				}
+				super.showMessageDetail(err);								
+			}
+		} catch (BiffException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}}
+		
 	public void sendEmail(){
 		List<Map> list = new ArrayList<Map>();
 		try {
