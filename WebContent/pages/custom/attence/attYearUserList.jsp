@@ -84,7 +84,7 @@
 								<c:facet name="header">
 									<h:outputText value="Ô±¹¤±àºÅ" />
 								</c:facet>
-								<h:outputText value="#{list.id}" />
+								<h:outputText value="#{list.personCode}" />
 							</h:column>
 							<h:column>
 								<c:facet name="header">

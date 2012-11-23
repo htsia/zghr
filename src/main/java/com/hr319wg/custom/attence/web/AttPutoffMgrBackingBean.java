@@ -855,11 +855,11 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 				Object[]obj = (Object[])list1.get(i);
 				AttYearBO bo=(AttYearBO)obj[0];
 				bo.setSecDeptName(CodeUtil.interpertCode(obj[1].toString()));
-				PersonBO p=SysCacheTool.findPersonById(bo.getId());
+				PersonBO p=SysCacheTool.findPersonById(bo.getPersonId());
 				try{
-					bo.setId(p.getPersonCode());
+					bo.setPersonCode(p.getPersonCode());
 				}catch(Exception e) {
-					bo.setId("нч");
+					bo.setPersonId("нч");
 				}
 				
 				try{

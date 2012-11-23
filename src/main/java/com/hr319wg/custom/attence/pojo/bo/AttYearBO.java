@@ -1,7 +1,9 @@
 package com.hr319wg.custom.attence.pojo.bo;
 
 public class AttYearBO {
-	private String id; //人员id
+	private String subid;
+	private String personId; //人员id
+	private String personCode;
 	private String flag;//是否主显示
 	private String year; //年;
 	private String shouldDays; //应出勤
@@ -12,12 +14,6 @@ public class AttYearBO {
 	private String name;//姓名
 	private String deptName;//部门名称
 	private String secDeptName;
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getYear() {
 		return year;
 	}
@@ -71,5 +67,23 @@ public class AttYearBO {
 	}
 	public void setFlag(String flag) {
 		this.flag = flag;
+	}
+	public String getSubid() {
+		return subid;
+	}
+	public void setSubid(String subid) {
+		this.subid = subid;
+	}
+	public String getPersonId() {
+		return personId;
+	}
+	public void setPersonId(String personId) {
+		this.personId = personId;
+	}
+	public String getPersonCode() {
+		return personCode;
+	}
+	public void setPersonCode(String personCode) {
+		this.personCode = personCode;
 	}
 }
