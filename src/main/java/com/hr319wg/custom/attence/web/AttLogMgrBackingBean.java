@@ -248,6 +248,7 @@ public class AttLogMgrBackingBean extends BaseBackingBean {
 					m.put("deptName", CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId()));
 					m.put("date", log.getCardDate());
 					m.put("time", log.getCardTime());
+					m.put("machineName", log.getMachineName());
 					logList.add(m);
 				}
 			}

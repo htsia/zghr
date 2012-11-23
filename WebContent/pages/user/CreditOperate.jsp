@@ -6,7 +6,6 @@
 <c:verbatim>
 <script language="javascript" src="<%=request.getContextPath()%>/js/tree.js"></script>
 <script language="javascript" src="<%=request.getContextPath()%>/js/tree_check.js"></script>
-
 <script type="text/javascript">
         function selectSub(obj, obj2) {
             var chk = document.all(obj2);

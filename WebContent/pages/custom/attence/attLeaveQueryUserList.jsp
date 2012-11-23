@@ -91,6 +91,16 @@
                  headerClass="td_top" columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center80,td_middle_center80,td_middle_center,td_middle_center80,td_middle_center100,td_middle_center,td_middle_center"
                  styleClass="table03" width="98%" >
         <h:column>
+	       <f:facet name="header">
+	           <f:verbatim escape="false">
+	               <input type="checkbox" name="all"
+	                      onclick="selectAll(document.forms(0).all,document.forms(0).selectItem)"/>
+	           </f:verbatim>
+	       </f:facet>
+	       <f:verbatim escape="false">
+	           <div align="center"> <input type="checkbox" name="selectItem" value="</f:verbatim><h:outputText value="#{list.machineIP}"/><f:verbatim escape="false">"/></div></f:verbatim>
+	   </h:column>
+        <h:column>
             <c:facet name="header"><h:outputText value="员工编号"/></c:facet>
             <h:outputText value="#{list.personCode}"/>
         </h:column>
@@ -143,6 +153,9 @@
             <c:facet name="header"><h:outputText value="操作"/></c:facet>
              <h:commandButton value="删除"  action="#{attLeaveApplyBB.deleteLeave}" onclick="return confirm('确定要删除吗？');" styleClass="button01" 
              	rendered="#{attLeaveApplyBB.ismanager=='1' || (list.personId==attLeaveApplyBB.userId&&list.statusDes=='退回') || !list.appro}">
+             	<x:updateActionListener property="#{attLeaveApplyBB.leaveId}" value="#{list.id}"/>
+             </h:commandButton>
+             <h:commandButton value="重新报批"  action="#{attLeaveApplyBB.applyLeave}" onclick="return confirm('确定要重新报批吗？');" styleClass="button01" rendered="#{attLeaveApplyBB.ismanager=='1'}">
              	<x:updateActionListener property="#{attLeaveApplyBB.leaveId}" value="#{list.id}"/>
              </h:commandButton>
              <h:commandButton value="查看流程" onclick="showFlow('#{list.id}')" styleClass="button01" rendered="#{list.createType=='0'}"></h:commandButton>

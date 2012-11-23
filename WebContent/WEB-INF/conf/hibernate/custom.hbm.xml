@@ -225,6 +225,7 @@
         <property name="a001753" column="A001753"/>
         <property name="leixing" column="a001218"/>
         <property name="hasCashStr" column="A001201"/>
+        <property name="OAName" column="A001230"/>
     </class>
 	
     <!-- 考勤管理 -->
@@ -591,8 +592,6 @@
             <column name="ID" sql-type="nvarchar(32)"/>
             <generator class="uuid.hex"/>
         </id>
-        
-        <property name="flag" column="a244000"/>
         <property name="tempBeginDate" column="a244200"/>
         <property name="tempEndDate" column="a244201"/>
         <property name="attDetail" column="a244202"/>

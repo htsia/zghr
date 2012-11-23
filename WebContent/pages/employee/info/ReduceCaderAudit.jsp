@@ -20,7 +20,7 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
             <td class="td_title"><img src="/images/tips.gif"> 
-               <%=LanguageSupport.getResource("RYGL-2386","干部减少审批") %>
+               <%=LanguageSupport.getResource("RYGL-2386","人员减少审批") %>
              </td>
         </tr>
     </table>

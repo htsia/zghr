@@ -123,7 +123,11 @@
 	        <h:commandButton value="删除"  action="#{attOutApplyBB.delete}" onclick="return confirm('确定要删除吗？');" styleClass="button01" 
 	             	rendered="#{attOutApplyBB.ismanager=='1'||(list.personId==attOutApplyBB.userId&&list.statusDes=='退回') || !list.appro}">
 	             	<x:updateActionListener property="#{attOutApplyBB.id}" value="#{list.id}"/>
-	             </h:commandButton>
+	        </h:commandButton>
+	        <h:commandButton value="重新报批" action="#{attOutApplyBB.applyAgain}" onclick="return confirm('确定要重新报批吗？');" styleClass="button01" 
+	             	rendered="#{attOutApplyBB.ismanager=='1'}">
+	             	<x:updateActionListener property="#{attOutApplyBB.id}" value="#{list.id}"/>
+	        </h:commandButton>
 	        <h:commandButton value="查看流程" onclick="showFlow('#{list.id}')" styleClass="button01" rendered="#{list.createType=='0'}"></h:commandButton>
         </h:column>
     </h:dataTable>

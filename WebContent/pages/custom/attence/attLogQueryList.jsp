@@ -33,20 +33,18 @@
 	<h:panelGrid columns="1" width="100%" align="left">
 		<h:panelGrid align="left">
 		<h:panelGroup>
+			<h:outputText value="编号或姓名"/>
+			<h:inputText value="#{att_logMrgBB.nameStr}" styleClass="input" size="7"/>
+			<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{att_logMrgBB.queryLog}"/>
+			<h:commandButton styleClass="button01" value="查询" action="#{att_logMrgBB.queryLog}"/>
+			<h:outputText value="  "/>		
 			<h:outputText value="打卡时间从" />
 			<h:inputText id="begintime"  readonly="true"  value="#{att_logMrgBB.beginDate}"
-				styleClass="input Wdate" size="15" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:begintime'})"/>
+				styleClass="input Wdate" size="12" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:begintime'})"/>
 			<h:outputText value="至" />
 			<h:inputText id="endtime"  readonly="true" value="#{att_logMrgBB.endDate}"
-				styleClass="input Wdate" size="15" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:endtime'})"/>
-			<h:outputText value="编号或姓名"/>
-			<h:inputText value="#{att_logMrgBB.nameStr}" styleClass="input" size="10"/>
-			<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{att_logMrgBB.queryLog}"/>
-			<h:commandButton styleClass="button01" value="查询" action="#{att_logMrgBB.queryLog}"/>		
-		</h:panelGroup>
-		</h:panelGrid>
-		<h:panelGrid align="right">
-		<h:panelGroup>
+				styleClass="input Wdate" size="12" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:endtime'})"/>
+			<h:outputText value="  "/>
 			<h:outputText value="记录数:#{att_logMrgBB.mypage.totalRecord}"/>
 			<h:outputText value="  "/>
 			<h:outputText value="页数:#{att_logMrgBB.mypage.totalPage}"/>
@@ -111,6 +109,12 @@
 						<h:outputText value="时间" />
 					</f:facet>
 					<h:outputText value="#{log.time}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="数据来源" />
+					</f:facet>
+					<h:outputText value="#{log.machineName}"/>
 				</h:column>
 			</x:dataTable>
 		</h:panelGrid>
