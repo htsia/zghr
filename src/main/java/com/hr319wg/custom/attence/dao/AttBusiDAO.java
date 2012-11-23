@@ -575,7 +575,7 @@ public class AttBusiDAO extends BaseDAO{
 	//获取加班费子集的数据
 	public List getOvertimePayBO(PageVO pageVO, String orgID, String nameStr, String personType,String yearMonth) throws SysException{
 		//String hql = " from a243 ";
-		String hql = " from AttOvertimePayBO bo,UserBO u where u.userID=bo.id ";
+		String hql = " from AttOvertimePayBO bo,UserBO u where u.userID=bo.userID ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
 			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";

@@ -3,7 +3,7 @@ package com.hr319wg.custom.attence.pojo.bo;
 public class AttOvertimePayBO {
 	private String subid;
 	private String personCode;//人员编号
-	private String id; //人员id
+	private String userID; //人员id
 	private String yearMonth; //年月;
 	private String overtimeHours; //加班小时数
 	private String overtimePay;  //加班费
@@ -11,12 +11,12 @@ public class AttOvertimePayBO {
 	private String deptName;//部门名称
 	private String secDeptName;
 	
-	
-	public String getId() {
-		return id;
+
+	public String getUserID() {
+		return userID;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 	public String getOvertimePay() {
 		return overtimePay;

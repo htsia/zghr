@@ -570,7 +570,7 @@
             <column name="SUBID" sql-type="nvarchar(32)"/>
             <generator class="assigned"/>
         </id>
-        <property name="id" column="ID"/>
+        <property name="userID" column="id"/>
         <property name="yearMonth" column="a243200"/>
         <property name="overtimeHours" column="a243201"/>
         <property name="overtimePay" column="a243202"/>
