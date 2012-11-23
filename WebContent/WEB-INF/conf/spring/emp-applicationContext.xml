@@ -131,7 +131,7 @@
         <property name="orgenterdao" ref="orgenterdao"></property>
     </bean>
 
-    <bean id="emp_personUCCImpl" class="com.hr319wg.emp.ucc.impl.PersonUCC">
+    <bean id="emp_personUCCImpl" class="com.hr319wg.custom.extend.ucc.PersonUCCByExtend">
         <property name="personservice" ref="emp_personService"></property>
         <property name="activepageservice" ref="sys_activePageService"></property>
         <property name="sysapi" ref="sys_SysAPI"></property>
