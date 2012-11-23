@@ -567,7 +567,7 @@
     
     <class name="com.hr319wg.custom.attence.pojo.bo.AttOvertimePayBO" table="a243">
         <id name="subid" type="string" unsaved-value="null">
-            <column name="subid" sql-type="nvarchar(32)"/>
+            <column name="SUBID" sql-type="nvarchar(32)"/>
             <generator class="assigned"/>
         </id>
         <property name="userID" column="id"/>
@@ -576,10 +576,11 @@
         <property name="overtimePay" column="a243202"/>
     </class>
     <class name="com.hr319wg.custom.attence.pojo.bo.AttYearBO" table="a241">
-        <id name="id" type="string" unsaved-value="null">
-            <column name="ID" sql-type="nvarchar(32)"/>
+        <id name="subid" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(32)"/>
             <generator class="uuid.hex"/>
         </id>
+        <property name="personId" column="ID"/>
         <property name="year" column="a241200"/>
         <property name="shouldDays" column="a241201"/>
         <property name="realDays" column="a241202"/>
