@@ -24,7 +24,6 @@ import com.hr319wg.custom.attence.pojo.bo.AttTempDataBO;
 import com.hr319wg.custom.attence.pojo.bo.AttYearBO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
 import com.hr319wg.custom.util.CommonUtil;
-import com.hr319wg.custom.wage.pojo.bo.WageDataSetUserBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.api.UserAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
@@ -810,13 +809,8 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 				Object[]obj = (Object[])list1.get(i);
 				AttOvertimePayBO bo=(AttOvertimePayBO)obj[0];
 				bo.setSecDeptName(CodeUtil.interpertCode(obj[1].toString()));
-				PersonBO p=SysCacheTool.findPersonById(bo.getId());
-				try{
-					bo.setPersonCode(p.getPersonCode());
-				}catch(Exception e) {
-					bo.setId("нч");
-				}
-				
+				PersonBO p=SysCacheTool.findPersonById(bo.getUserID());
+				bo.setPersonCode(p.getPersonCode());
 				try{
 					bo.setName(p.getName());
 				}catch(Exception e) {
