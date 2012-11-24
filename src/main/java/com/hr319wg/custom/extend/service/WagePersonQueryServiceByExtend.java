@@ -13,7 +13,7 @@ public class WagePersonQueryServiceByExtend extends WagePersonQueryService{
 
 	public String getChangeInfo(TableVO table, List showItems, String unitId, String filter)
 	  {
-	    String fields = " ws.set_id||'-'||A001.ID||'-'||B730.subid AS ID,A001735,A001705 ";
+	    String fields = "ws.set_id||'-'||A001.ID||'-'||B730.subid AS ID,A001735,A001705";
 	    CellVO[] cvs = new CellVO[showItems.size() + 4];
 	    cvs[0] = new CellVO();
 	    CommonFuns.copyProperties(cvs[0], SysCacheTool.findInfoItem("A001", "ID"));
@@ -37,12 +37,7 @@ public class WagePersonQueryServiceByExtend extends WagePersonQueryService{
 	    cvs[(showItems.size() + 3)].setItemName("Ð½×ÊÕËÌ×");
 	    fields = fields + ",set_name";
 	    table.setHeader(cvs);
-
-	    String sql = "select " + fields + " from B730, A001,wage_set_pers_r w, wage_set ws where B730.B730700=A001.ID and B730.B730200 is null and A001.id=w.id and w.A815700=ws.set_id and no_use<>'1' and orguid='" + unitId + "' ";
-	    if ((filter != null) && (!"".equals(filter))) {
-	      sql += " and " + filter;
-	    }
-	    sql = sql + " order by B730701 desc";
+	    String sql = "select " + fields + " from B730 left join A001 on B730.B730700=A001.ID left join wage_set_pers_r w on A001.id=w.id left join wage_set ws on w.A815700=ws.set_id where no_use<>'1' and orguid='" + unitId + "' and "+filter+" order by B730701 desc";
 	    return sql;
 	  }
 }

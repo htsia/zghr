@@ -42,7 +42,7 @@
     function doViewPerson(){
         var ID=getFirstSelectValue(form1.chk);
         if (ID!=null && ID!=""){
-           forModifyPersonDetail(ID.split(",")[0]);
+           forModifyPersonDetail(ID.split("-")[1]);
         }
         else{
             alert("请选择人员!");
@@ -67,11 +67,11 @@
         
         <td class="td_title" align="right"  height=8>
 </f:verbatim>
-            <h:outputText value="输入查询时间"></h:outputText>
-            <h:inputText  id="inputDate" readonly="true" value="#{wage_exitPersonSetBB.inputDate}"></h:inputText>
-            <h:commandButton type="button" styleClass="button_select" onclick="PopUpCalendarDlg_OnlyMonth('form1:inputDate')"/>
+            <h:outputText value="处理日期:"/>
+            <h:inputText  id="inputDate" readonly="true" size="15" value="#{wage_exitPersonSetBB.inputDate}" styleClass="input Wdate" onclick="WdatePicker({startDate:'%y-%M',dateFmt:'yyyy-MM',el:'form1:inputDate'})" onkeypress ="enterKeyDown('form1:queryPerson')"/>
+            <h:commandButton id="queryPerson" value="查询" styleClass="button01" action="#{wage_exitPersonSetBB.queryExit}"/>
+            <h:outputText value="  "/>
             <h:commandButton value="查看人员信息" styleClass="button01" type="button" onclick="doViewPerson();"/>
-            <h:commandButton value="查询" styleClass="button01" action="#{wage_exitPersonSetBB.queryExit}"/>
             <h:outputText value="  "/>
             <h:inputHidden id="ids" value="#{wage_exitPersonSetBB.ids}"/>
             <h:commandButton value="移出账套" styleClass="button01" action="#{wage_exitPersonSetBB.removeFromSet}" onclick="return doRemove();"/>

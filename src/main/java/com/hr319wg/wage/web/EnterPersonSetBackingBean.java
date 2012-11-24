@@ -1,8 +1,10 @@
 package com.hr319wg.wage.web;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import javax.faces.event.ValueChangeEvent;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,32 +24,89 @@ import com.hr319wg.sys.pojo.vo.CellVO;
 import com.hr319wg.sys.pojo.vo.TableVO;
 import com.hr319wg.sys.pojo.vo.WFTransaction;
 import com.hr319wg.sys.service.WorkFlowService;
+import com.hr319wg.user.pojo.vo.UserRptVO;
+import com.hr319wg.user.ucc.IUserReportUCC;
 import com.hr319wg.util.CommonFuns;
 import com.hr319wg.wage.ucc.IWagePersonQueryUCC;
 import com.hr319wg.wage.ucc.IWageSetPersonUCC;
 import com.hr319wg.wage.ucc.IWageSetUCC;
 
-public class ExitPersonSetBackingBean extends BaseBackingBean
+public class EnterPersonSetBackingBean extends BaseBackingBean
 {
   private String setId;
   private String setName;
   private String unitId;
   private String name;
+  private String selectedUserIDs;
+  private boolean done;
+  private boolean noDone = true;
   private boolean operRight = true;
   private IWageSetPersonUCC wagesetpersonucc;
   private IWagePersonQueryUCC wagepersonqueryucc;
   private IQueryUCC queryucc;
   private IWageSetUCC wagesetucc;
   private IPersonUCC personucc;
+  private List regTableList;
+  private IUserReportUCC userreportucc;
   private WorkFlowService wfservice;
-  private String listExitPerson;
+  private String listEnterPerson;
   private String manyPerson;
   private String unitName;
   private String inputDate;
   private String ids;
 
-  public WorkFlowService getWfservice()
+  public String getSelectedUserIDs() {
+	return selectedUserIDs;
+}
+
+public void setSelectedUserIDs(String selectedUserIDs) {
+	this.selectedUserIDs = selectedUserIDs;
+}
+
+public boolean isDone() {
+	return done;
+}
+
+public void setDone(boolean done) {
+	this.done = done;
+}
+
+public boolean isNoDone() {
+	return noDone;
+}
+
+public void setNoDone(boolean noDone) {
+	this.noDone = noDone;
+}
+
+public List getRegTableList()
   {
+    try
+    {
+      this.regTableList = this.userreportucc.queryUserRptToWeb(super.getUserInfo().getUserId(), "0674", UserRptVO.TYPE_REG);
+      if (this.regTableList == null)
+        this.regTableList = new ArrayList();
+    }
+    catch (Exception e)
+    {
+      this.regTableList = new ArrayList();
+    }
+    return this.regTableList;
+  }
+
+  public void setRegTableList(List regTableList) {
+    this.regTableList = regTableList;
+  }
+
+  public IUserReportUCC getUserreportucc() {
+    return this.userreportucc;
+  }
+
+  public void setUserreportucc(IUserReportUCC userreportucc) {
+    this.userreportucc = userreportucc;
+  }
+
+  public WorkFlowService getWfservice() {
     return this.wfservice;
   }
 
@@ -77,46 +136,46 @@ public class ExitPersonSetBackingBean extends BaseBackingBean
   public void setUnitName(String unitName) {
     this.unitName = unitName;
   }
-  public void removeFromSet() {
-	    try {
-	      String[] array = this.ids.split(",");
-	      for (int i = 0; i < array.length; i++) {
-	        String[] vars = array[i].split("-");
-	        if (vars.length == 3) {
-	          this.wagesetpersonucc.batchRemovePerson(vars[0], vars[1].split(","));
-	          this.wagesetpersonucc.batchMinus(super.getUserInfo().getUserId(), vars[0], vars[1].split(","));
+  public String removeFromSet() {
+    try {
+      String[] array = this.ids.split("\\|");
+      for (int i = 0; i < array.length; i++) {
+        String[] vars = array[i].split(",");
+        if (vars.length == 2) {
+          String[] sel = new String[1];
+          sel[0] = vars[0];
+          this.wagesetpersonucc.batchRemovePerson(vars[1], sel);
+          this.wagesetpersonucc.batchMinus(super.getUserInfo().getUserId(), vars[1], sel);
 
-	          WFTransaction trans = new WFTransaction();
-	          trans.setUser(super.getUserInfo());
-	          PersonBO pb = SysCacheTool.findPersonById(vars[1]);
-	          if ((pb.getDegree() != null) && (Constants.EMP_CADRESCODE.indexOf(pb.getDegree() + ",") >= 0)) {
-	            trans.setWfType(WFTypeBO.RYGL_CAR_EXIT);
-	          }
-	          else {
-	            trans.setWfType(WFTypeBO.RYGL_WORK_EXIT);
-	          }
+          WFTransaction trans = new WFTransaction();
+          trans.setUser(super.getUserInfo());
+          PersonBO pb = SysCacheTool.findPersonById(vars[0]);
+          if ((pb.getDegree() != null) && (Constants.EMP_CADRESCODE.indexOf(pb.getDegree() + ",") >= 0)) {
+            trans.setWfType(WFTypeBO.RYGL_CAR_EXIT);
+          }
+          else {
+            trans.setWfType(WFTypeBO.RYGL_WORK_EXIT);
+          }
 
-	          trans.setOperID("0673");
-	          trans.setLinkID(vars[1]);
-	          this.wfservice.processTrans(trans);
-	        }
-	      }
-	    }
-	    catch (Exception e)
-	    {
-	    	super.showMessageDetail("移出帐套失败");
-	    	e.printStackTrace();
-	    }
-	    super.showMessageDetail("成功移出帐套");
-	  }
-
-	public void delete() {
+          trans.setOperID("0673");
+          trans.setLinkID(vars[0]);
+          this.wfservice.processTrans(trans);
+        }
+      }
+    }
+    catch (Exception e)
+    {
+    }
+    return null;
+  }
+  public void delete() {
 		String[] selectedIDs = this.ids.split(",");
+		this.ids=null;
 		String[] subIDs = new String[selectedIDs.length];
 		for (int i = 0; i < selectedIDs.length; i++) {
 			subIDs[i] = selectedIDs[i].split("-")[2];
 		}
-		String sql = "update b730 set B730200='00901' where " + CommonFuns.splitInSql(subIDs, "subid");
+		String sql = "update b730 set B730201='00901' where " + CommonFuns.splitInSql(subIDs, "subid");
 		try {
 			JdbcTemplate jdbc = (JdbcTemplate) SysContext.getBean("jdbcTemplate");
 			this.ids = null;
@@ -128,9 +187,13 @@ public class ExitPersonSetBackingBean extends BaseBackingBean
 			e.printStackTrace();
 		}
 	}
-  
-  public void queryExit()
-  {
+  public void setDone(ValueChangeEvent event) {
+	  this.done = event.getNewValue().toString().equals("true");
+  }
+  public void setNoDone(ValueChangeEvent event) {
+	  this.noDone = event.getNewValue().toString().equals("true");
+  }
+  public String queryEnter() {
     try {
       super.getHttpSession().removeAttribute("OBJECT");
       super.getHttpSession().removeAttribute("activeSql");
@@ -138,14 +201,22 @@ public class ExitPersonSetBackingBean extends BaseBackingBean
       super.getHttpSession().removeAttribute("rowNum");
 
       TableVO table = new TableVO();
-      String filter = "dbo.typeof(B730702,'0200','0200120001')='1' ";
+      String filter = "dbo.typeof(B730702,'0200','0200110001')='1' ";
       if ("ORACLE".equals(Constants.DB_TYPE)) {
-        filter = " typeof(B730702,'0200','0200120001')='1' ";
+        filter = " typeof(B730702,'0200','0200110001')='1' ";
       }
       if ((this.inputDate != null) && (!"".equals(this.inputDate))) {
         filter += " and B730701 like '" + this.inputDate + "%'";
       }
-      filter+= " and B730.B730200 is null and set_name is not null";
+      if(noDone && done){
+    	  filter+= " and 1=1 ";
+      }else if(done){
+    	  filter+= " and B730.B730201 = '00901' ";    	  
+      }else if(noDone){
+    	  filter+= " and B730.B730201 is null ";    	  
+      }else{
+    	  filter+=" and 1<>1";
+      }
       List list = SysCacheTool.queryInfoItemBySetId("B730");
       for (int i = 0; i < list.size(); i++) {
         InfoItemBO in = (InfoItemBO)list.get(i);
@@ -157,8 +228,11 @@ public class ExitPersonSetBackingBean extends BaseBackingBean
           list.remove(i);
           i--;
         }
+        if ("B730704".equals(in.getItemId())) {
+          list.remove(i);
+          i--;
+        }
       }
-
       String sql = this.wagepersonqueryucc.getChangeInfo(table, list, super.getUserInfo().getOrgId(), filter);
       int pageNum = 1;
       if (super.getRequestParameter("pageNum") != null) {
@@ -168,9 +242,11 @@ public class ExitPersonSetBackingBean extends BaseBackingBean
     } catch (Exception e) {
       super.showMessageDetail("错误：" + e.getMessage());
     }
+    return "";
   }
 
-  public String turnPageQuery(TableVO table, String sql, int pageNum, int rowNum) {
+  public String turnPageQuery(TableVO table, String sql, int pageNum, int rowNum)
+  {
     try {
       if (pageNum == 0)
         pageNum = Integer.parseInt(CommonFuns.filterNullToZero(super.getRequestParameter("pageNum")));
@@ -201,17 +277,15 @@ public class ExitPersonSetBackingBean extends BaseBackingBean
     return null;
   }
 
-  public String getListExitPerson() {
-	  this.ids=null;
-      queryExit();
-      return null;
+  public String getListEnterPerson() {
+    queryEnter();
+    return this.listEnterPerson;
   }
-  public void setListExitPerson(String listExitPerson) {
-    this.listExitPerson = listExitPerson;
+  public void setListEnterPerson(String listAllPerson) {
+    this.listEnterPerson = listAllPerson;
   }
 
-  public String getSetId()
-  {
+  public String getSetId() {
     return this.setId;
   }
   public void setSetId(String setId) {
@@ -374,6 +448,41 @@ public class ExitPersonSetBackingBean extends BaseBackingBean
       super.showMessageDetail("错误:" + e.getMessage());
     }
     return "personList";
+  }
+
+  public String saveEnter() {
+    try {
+      if ((this.ids != null) && (!"".equals(this.ids.trim()))) {
+    	  String[] selectedIDs = this.ids.split(",");
+    	  this.ids=null;
+  		String[] personId = new String[selectedIDs.length];
+  		for (int i = 0; i < selectedIDs.length; i++) {
+  			personId[i] = selectedIDs[i].split("-")[1];
+  		}
+        this.wagesetpersonucc.batchAddPerson(this.setId, personId);
+        this.wagesetpersonucc.batchAdd(super.getUserInfo().getUserId(), this.setId, personId);
+        for (int i = 0; i < personId.length; i++)
+        {
+          WFTransaction trans = new WFTransaction();
+          trans.setUser(super.getUserInfo());
+          PersonBO pb = SysCacheTool.findPersonById(personId[i]);
+          if ((pb.getDegree() != null) && (Constants.EMP_CADRESCODE.indexOf(pb.getDegree() + ",") >= 0)) {
+            trans.setWfType(WFTypeBO.RYGL_CAR_ENTER);
+          }
+          else {
+            trans.setWfType(WFTypeBO.RYGL_WORK_ENTER);
+          }
+          trans.setOperID("0674");
+          trans.setLinkID(personId[i]);
+          trans.setStatusValue("00901");
+          this.wfservice.processTrans(trans);
+        }
+        super.showMessageDetail("人员已成功加入账套");
+      }
+    } catch (Exception e) {
+      super.showMessageDetail("错误：" + e.getMessage());
+    }
+    return queryEnter();
   }
 
   public String trunPageQuery(TableVO table, String sql, int pageNum, int rowNum)
