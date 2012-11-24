@@ -882,7 +882,6 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			return "考勤机驱动注册失败";
 		}
 		String msg = "";
-		String noExsit = "";
 		int success = 0;
 		for (AttMachineBO bo : mList) {
 			Boolean isConnected = Dispatch.call(myCom, "Connect_Net",
@@ -968,8 +967,6 @@ public class AttBusiServiceImpl implements IAttBusiService {
 										+ "','"+bo.getMachineName()+"') ";// 时间(A808701) 日期(A808700)
 								this.activeapi.executeSql(sql);
 								success++;
-							} else {
-								noExsit += sdwEnrollNumber.toString() + ",";
 							}
 						}
 					}
@@ -983,9 +980,6 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			} else {
 				msg += "考勤机" + bo.getMachineName() + "连接失败,";
 			}
-		}
-		if (!"".equals(noExsit)) {
-			msg += "以下编号员工" + noExsit + "不存在。";
 		}
 		msg = "新增考勤记录" + success + "条。" + msg;
 		return msg;
