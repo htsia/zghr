@@ -162,7 +162,7 @@ public class OAEmailBackingBean extends BaseBackingBean{
 		if(list!=null && list.size()>0){
 			Map m = (Map)list.get(0);
 			String name = String.valueOf(m.get("a001001"));
-			String oa = String.valueOf(m.get("a001230"));
+			String oa = m.get("a001230")==null?"":String.valueOf(m.get("a001230"));
 			if("1".equals(index)){
 				this.userID1=userID;
 				this.name1=name;

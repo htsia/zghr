@@ -29,7 +29,7 @@ public class QuartzUtil extends QuartzJobBean{
 		this.jdbcTemplate.execute("BEGIN proc_calc_age(); END;");
 		
 		//·¢ËÍÓÊ¼ş
-		String sql = "select url,soa,a2.a001230 oa1,a3.a001230 oa2 from sys_oa_email m left join a001 a2 on m.userid2=a2.id left join a001 a3 on m.userid3=a3.id";
+		String sql = "select onoff,url,soa,a2.a001230 oa1,a3.a001230 oa2 from sys_oa_email m left join a001 a2 on m.userid2=a2.id left join a001 a3 on m.userid3=a3.id";
 		List list = this.jdbcTemplate.queryForList(sql);
 		if(list!=null && list.size()>0){
 			Map m = (Map)list.get(0);

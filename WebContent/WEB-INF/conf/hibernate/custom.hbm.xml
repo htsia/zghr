@@ -591,8 +591,6 @@
             <column name="ID" sql-type="nvarchar(32)"/>
             <generator class="uuid.hex"/>
         </id>
-        
-        <property name="flag" column="a244000"/>
         <property name="tempBeginDate" column="a244200"/>
         <property name="tempEndDate" column="a244201"/>
         <property name="attDetail" column="a244202"/>

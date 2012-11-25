@@ -112,6 +112,12 @@
 					</f:facet>
 					<h:outputText value="#{log.time}"/>
 				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="数据来源" />
+					</f:facet>
+					<h:outputText value="#{log.machineName}"/>
+				</h:column>
 			</x:dataTable>
 		</h:panelGrid>
 	</h:panelGrid>

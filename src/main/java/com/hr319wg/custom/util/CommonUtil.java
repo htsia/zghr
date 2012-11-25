@@ -284,7 +284,7 @@ public class CommonUtil {
 			
 			call.setUseSOAPAction(true);
 			call.setSOAPActionURI(soapaction + "addPortalMailInfoByUserName");
-			String result = (String) call.invoke(new Object[]{title, content, fromOA, toOA, "11204"});//调用方法并传递参数
+			call.invoke(new Object[]{title, content, fromOA, toOA, "11204"});//调用方法并传递参数
 		}catch(Exception ex){
 			ex.printStackTrace();
 		} 

@@ -1,8 +1,8 @@
 package com.hr319wg.custom.attence.pojo.bo;
 
 public class AttTempDataBO{
-	private String id; //人员id
-	private String flag;//是否主显示
+	private String id;
+	private String personCode;
 	private String name;//姓名
 	private String deptName;//部门名称
 	private String secDeptName;
@@ -11,6 +11,12 @@ public class AttTempDataBO{
 	private String attDetail;//考勤详情
 	
 	
+	public String getPersonCode() {
+		return personCode;
+	}
+	public void setPersonCode(String personCode) {
+		this.personCode = personCode;
+	}
 	public String getTempBeginDate() {
 		return tempBeginDate;
 	}
@@ -28,12 +34,6 @@ public class AttTempDataBO{
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public String getFlag() {
-		return flag;
-	}
-	public void setFlag(String flag) {
-		this.flag = flag;
 	}
 	public String getName() {
 		return name;

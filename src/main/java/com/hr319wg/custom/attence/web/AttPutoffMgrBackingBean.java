@@ -44,14 +44,6 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 	private String editInit;
 	private AttPutoff2BO bo;
 	private String modifyInit;    
-	
-	public String getSelectedUserIDs() {
-		return selectedUserIDs;
-	}
-
-	public void setSelectedUserIDs(String selectedUserIDs) {
-		this.selectedUserIDs = selectedUserIDs;
-	}
 	private String putoffDays;
 	private String leaveDays;
 	private String bingjia;
@@ -79,6 +71,14 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 	private String yearStr;
 	private String overtimePay="20";
 	
+	
+	public String getSelectedUserIDs() {
+		return selectedUserIDs;
+	}
+	
+	public void setSelectedUserIDs(String selectedUserIDs) {
+		this.selectedUserIDs = selectedUserIDs;
+	}
 	public String getOvertimePay() {
 		return overtimePay;
 	}
@@ -898,11 +898,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 				AttTempDataBO bo=(AttTempDataBO)obj[0];
 				bo.setSecDeptName(CodeUtil.interpertCode(obj[1].toString()));
 				PersonBO p=SysCacheTool.findPersonById(bo.getId());
-				try{
-					bo.setId(p.getPersonCode());
-				}catch(Exception e) {
-					bo.setId("无");
-				}
+				bo.setPersonCode(p.getPersonCode());
 				
 				try{
 					bo.setName(p.getName());
@@ -941,6 +937,8 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 			}
 		} catch (SysException e) {
 			e.printStackTrace();
+			super.showMessageDetail("发送失败");
 		}
+		super.showMessageDetail("发送完毕");
 	}
 }

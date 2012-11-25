@@ -309,7 +309,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public void checkin(String userID, String date, String time)
 			throws SysException {
 		String id = UUID.randomUUID().toString();
-		String sql = "insert into a808 (id,subid,a808000,a808700,a808701,a808704) values('"
+		String sql = "insert into a808 (id,subid,a808000,a808700,a808701,a808704,a808702) values('"
 				+ userID
 				+ "','"
 				+ id
@@ -317,7 +317,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				+ date
 				+ "','"
 				+ time
-				+ "','1') ";
+				+ "','1','电子签到') ";
 		this.activeapi.executeSql(sql);
 	}
 
@@ -3407,7 +3407,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			String soa=String.valueOf(m1.get("soa"));
 			String OAName=String.valueOf(m1.get("oaname"));
 			for(Map m : list){
-				CommonUtil.sendEmail(url, soa, "考勤情况明细", m.get("detail")==null?"":String.valueOf(m.get("detail")), OAName, m.get("toOA"));
+				CommonUtil.sendEmail(url, soa, "考勤情况明细", m.get("detail")==null?"":String.valueOf(m.get("detail")), OAName, m.get("OAName"));
 			}
 		}
 	}
@@ -3423,10 +3423,8 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			String sql="select a244202 as detail from a244 where id='"+personId+"'";
 			result=this.activeapi.queryForString(sql);
 		} catch (SysException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//组装结果，某人那些天迟到旷工，哪些天请假

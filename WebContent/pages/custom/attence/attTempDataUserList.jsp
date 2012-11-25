@@ -84,13 +84,13 @@
                <h:commandButton id="queryPerson" styleClass="button01" value="查询" action="#{attPutoffMgrBB.attYearDoQuery}"/>
 	       	   <h:outputText value="  "/>                
 	           <h:outputText value="统计日期从"/>
-               <h:inputText id="tempBeginDate" readonly="true" styleClass="input Wdate" size="20" onclick="WdatePicker({alwaysUseStartDate:true,dateFmt:'yyyy-MM-dd'})" value="#{attPutoffMgrBB.tempBeginDate}" />
+               <h:inputText id="tempBeginDate" readonly="true" styleClass="input Wdate" size="15" onclick="WdatePicker({alwaysUseStartDate:true,dateFmt:'yyyy-MM-dd'})" value="#{attPutoffMgrBB.tempBeginDate}" />
 	       	   <h:outputText value="至"/>
-               <h:inputText id="tempEndDate" readonly="true" styleClass="input Wdate" size="20" onclick="WdatePicker({alwaysUseStartDate:true,dateFmt:'yyyy-MM-dd'})" value="#{attPutoffMgrBB.tempEndDate}" />
-	       	   <h:commandButton value="统计考勤" onclick="return checkDate();" action="#{attPutoffMgrBB.updateCalcAttTempData }" />
+               <h:inputText id="tempEndDate" readonly="true" styleClass="input Wdate" size="15" onclick="WdatePicker({alwaysUseStartDate:true,dateFmt:'yyyy-MM-dd'})" value="#{attPutoffMgrBB.tempEndDate}" />
+	       	   <h:commandButton value="统计考勤" styleClass="button01" onclick="return checkDate();" action="#{attPutoffMgrBB.updateCalcAttTempData }" />
 	       	   <h:outputText value="  "/>
-	       	   <h:commandButton value="选择发送邮件" onclick="return selUser();" action="#{attPutoffMgrBB.sendEmail}" />
-	       	   <h:commandButton value="全部发送邮件" onclick="return forSend();" action="#{attPutoffMgrBB.sendEmail}" />
+	       	   <h:commandButton value="选择发送邮件" styleClass="button01" onclick="return selUser();" action="#{attPutoffMgrBB.sendEmail}" />
+	       	   <h:commandButton value="全部发送邮件" styleClass="button01" onclick="return forSend();" action="#{attPutoffMgrBB.sendEmail}" />
 	       	 </h:panelGroup>
 	     </h:panelGrid>
 	     <h:panelGrid align="right" columns="1">
@@ -119,8 +119,18 @@
                  headerClass="td_top" columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center"
                  styleClass="table03" width="98%" >
         <h:column>
+	        <f:facet name="header">
+	            <f:verbatim escape="false">
+	                <input type="checkbox" name="all"
+	                       onclick="selectAll(document.forms(0).all,document.forms(0).selectItem)"/>
+	            </f:verbatim>
+	        </f:facet>
+	        <f:verbatim escape="false">
+	            <div align="center"> <input type="checkbox" name="selectItem" value="</f:verbatim><h:outputText value="#{list.id}"/><f:verbatim escape="false">"/></div></f:verbatim>
+	    </h:column>
+        <h:column>
             <c:facet name="header"><h:outputText value="员工编号"/></c:facet>
-            <h:outputText value="#{list.id}"/>
+            <h:outputText value="#{list.personCode}"/>
         </h:column>
         <h:column>
             <c:facet name="header"><h:outputText value="姓名"/></c:facet>
