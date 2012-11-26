@@ -120,8 +120,8 @@
     </script>
    <body style="overflow-x:hidden;overflow-y:scroll"> 
     </c:verbatim>
-    <x:saveState value="#{self_selfnewsbb}"></x:saveState>
-    <x:saveState value="#{train_courcebb}"></x:saveState>
+    <x:saveState value="#{self_selfnewsbb}"/>
+    <x:saveState value="#{train_courcebb}"/>
 <h:form id="form1">
     <h:inputHidden id="pageInit2" value="#{self_selfnewsbb.pageInit}"/>
     <h:inputHidden value="#{sys_videoNewsBB.initShow}"/>

@@ -27,9 +27,17 @@
             alert("请选择人员!");
             return false;
         }
-        document.all('form1:ids').value=getFirstSelectValue(form1.chk,"|");
-        
-        var ret=window.showModalDialog("/wage/adjust/selectWageSet.jsf?PersonID="+document.all('form1:ids').value, null, "dialogWidth:300px; dialogHeight:100px;center:center;resizable:yes;status:no;scroll:yes;");
+        var ids=getFirstSelectValue(form1.chk,"|");
+        var ids2=ids.split("-");
+        var id=null;
+        if(ids2.length==2){
+        	id=ids2[0];
+        }else if(ids2.length==3){
+        	id=ids2[1];
+        }
+        document.all('form1:ids').value=id;
+        alert(id);
+        var ret=window.showModalDialog("/wage/adjust/selectWageSet.jsf?PersonID="+id, null, "dialogWidth:300px; dialogHeight:100px;center:center;resizable:yes;status:no;scroll:yes;");
         if (ret==null || ret==""){
             return false;
         }
@@ -46,6 +54,17 @@
         }
         else{
             alert("请选择人员!");
+        }
+        return false;
+    }
+    function doDelete(){
+        if (!checkMutilSelect(form1.chk)) {
+            alert("请选择人员!");
+            return false;
+        }
+        if(confirm('确定删除吗?')){
+	        document.all("form1:ids").value=getAllSelectValue(form1.chk,",");
+        	return true;
         }
         return false;
     }
@@ -67,20 +86,23 @@
         
         <td class="td_title" align="right"  height=8>
 </f:verbatim>
-            <h:commandButton value="设定" styleClass="button01" onclick="return setWageItem();" type="button"></h:commandButton>
-            <h:outputText value="输入查询时间"></h:outputText>
-            <h:inputText  id="inputDate" readonly="true" value="#{wage_enterPersonSetBB.inputDate}"></h:inputText>
-            <h:commandButton type="button" styleClass="button_select" onclick="PopUpCalendarDlg_OnlyMonth('form1:inputDate')"/>
-            <h:commandButton value="修改薪资信息" styleClass="button01" type="button" onclick="doViewPerson();"></h:commandButton>
-            <h:commandButton value="查询" styleClass="button01" action="#{wage_enterPersonSetBB.queryEnter}"></h:commandButton>
+			<h:outputText value="已处理"/>
+			<h:selectBooleanCheckbox value="#{wage_enterPersonSetBB.done}" onclick="submit();" valueChangeListener="#{wage_enterPersonSetBB.setDone}"/>
+			<h:outputText value="未处理"/>
+			<h:selectBooleanCheckbox value="#{wage_enterPersonSetBB.noDone}" onclick="submit();" valueChangeListener="#{wage_enterPersonSetBB.setNoDone}"/>
+			<h:outputText value="  "/>
+            <h:outputText value="处理日期："/>
+            <h:inputText id="inputDate" readonly="true" size="15" value="#{wage_enterPersonSetBB.inputDate}" styleClass="input Wdate" onclick="WdatePicker({startDate:'%y-%M',dateFmt:'yyyy-MM',el:'form1:inputDate'})"  onkeypress ="enterKeyDown('form1:queryPerson')"/>
+            <h:commandButton id="queryPerson" value="查询" styleClass="button01" action="#{wage_enterPersonSetBB.queryEnter}"/>
+            <h:outputText value="  "/>
+            <h:commandButton value="修改薪资信息" styleClass="button01" type="button" onclick="doViewPerson();"/>
             <h:inputHidden id="ids" value="#{wage_enterPersonSetBB.ids}"/>
-            <h:commandButton value="加入帐套" styleClass="button01" onclick="return enterWageSet();" action="#{wage_enterPersonSetBB.saveEnter}"></h:commandButton>
+            <h:commandButton value="加入帐套" styleClass="button01" onclick="return enterWageSet();" action="#{wage_enterPersonSetBB.saveEnter}"/>
+            <h:commandButton value="删除" styleClass="button01" action="#{wage_enterPersonSetBB.delete}" onclick="return doDelete();"/>
             <h:inputHidden id="setId" value="#{wage_enterPersonSetBB.setId}"/>
-            <h:commandButton value="导出" styleClass="button01" type="button" onclick="doExport();"></h:commandButton>
-            <h:commandButton value="查看流程" id="showFlow" type="button" onclick="return showWF();" styleClass="button01" rendered="#{emp_personListBB.workFlow=='1'}"></h:commandButton>
-            <h:selectOneMenu id="ReportID" style="width:190px">
-               		<c:selectItems value="#{wage_enterPersonSetBB.regTableList}"/>
-           	</h:selectOneMenu>
+            <h:outputText value="  "/>
+            <h:commandButton value="导出" styleClass="button01" type="button" onclick="doExport();"/>
+            <h:commandButton value="查看流程" id="showFlow" type="button" onclick="return showWF();" styleClass="button01" rendered="#{emp_personListBB.workFlow=='1'}"/>
 <f:verbatim>
         </td>
     </tr>
