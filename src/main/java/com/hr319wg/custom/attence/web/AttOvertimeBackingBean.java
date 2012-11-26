@@ -646,7 +646,13 @@ public class AttOvertimeBackingBean extends BaseBackingBean {
 				overtimeBo.setStatus(AttConstants.STATUS_APPLY);
 			}
 			//将页面获得的小时转换为天数
-			double d=Double.parseDouble(overtimeBo.getApplyDays());
+			double d=0.0;
+			if(overtimeBo.getApplyDays()!=null&&!"".equals(overtimeBo.getApplyDays())){
+				d=Double.parseDouble(overtimeBo.getApplyDays());
+			}else{
+				
+				d=0.0;
+			}
 			
 			overtimeBo.setApplyDays(String.valueOf(d/8.0));
 			attBusiService.saveOrUpdateBO(overtimeBo);
