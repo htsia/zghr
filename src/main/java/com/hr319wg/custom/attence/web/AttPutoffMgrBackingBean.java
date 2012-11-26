@@ -567,7 +567,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 			e.printStackTrace();
 		}	
 		
-		reset();
+		//reset();
 		doQuery();
 		return pageInit;
 	}
@@ -691,12 +691,9 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 		return null;
 	}
 	
-	public String reset(){
-		String subID = super.getRequestParameter("subID");
-		String set = super.getRequestParameter("set");
-		if(set!=null){
+	public void toWage(){
 			try {
-				PersonBO p=SysCacheTool.findPersonByCode(subID);
+				PersonBO p=SysCacheTool.findPersonByCode(this.userid);
 				this.bo =(AttPutoff2BO)this.attBusiService.findBOById(AttPutoff2BO.class, p.getPersonId());
 				
 				this.bo.setName(p.getName());
@@ -713,10 +710,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 				}
 				String hours=String.valueOf(Double.parseDouble(bo.getPutoffDays()));
 				//更新加班费子集的信息
-				this.overtimePay=super.getRequestParameter("overtimePay");
-				this.overtimePayMonth=super.getRequestParameter("selectMonth");
 				this.attBusiService.updateOvertimePay(id, hours,this.overtimePayMonth,overtimePay);
-				return "success";
 			} catch (SysException e) {
 				super.showMessageDetail("修改失败");
 				e.printStackTrace();
@@ -724,9 +718,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
 		
-		return null;
 	}
 	public String resetData(){
 		try {
@@ -908,7 +900,7 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 				Object[]obj = (Object[])list1.get(i);
 				AttTempDataBO bo=(AttTempDataBO)obj[0];
 				bo.setSecDeptName(CodeUtil.interpertCode(obj[1].toString()));
-				PersonBO p=SysCacheTool.findPersonById(bo.getId());
+				PersonBO p=SysCacheTool.findPersonById(bo.getPersonId());
 				bo.setPersonCode(p.getPersonCode());
 				
 				try{
@@ -1001,4 +993,5 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 		}
 		super.showMessageDetail("发送完毕");
 	}
+
 }

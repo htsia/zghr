@@ -8,6 +8,25 @@
 %>
 <script type="text/javascript" contenteditable="inherit">
 function checkSubmit() {
+	//alert(id);
+	var selectMonth = document.all("form1:selectMonth").value;
+	if (selectMonth.length < 1) {
+		alert("请首先选择月份，表示加班费计入哪个月份的工资");
+		return false;
+	}
+	var overtimePay = document.all("form1:overtimePay").value;
+	if (overtimePay != null && overtimePay != "") {
+		if (isNaN(overtimePay)) {
+			alert("加班费不是数字");
+			return false;
+		} else if (overtimePay < 0) {
+			alert("加班费要大于0");
+			return false;
+		}
+	} else {
+		alert("加班费不能为空!");
+		return false;
+	}
     var filename = form1.all("form1:excelFile").value;
     if (filename.substr(filename.length - 3).toLowerCase() != 'xls') {
         alert("请选择xls文件！");
@@ -72,9 +91,8 @@ function checkSubmit() {
 			return false;
 		}
 		if (confirm('存休将清空，将转为工资，请确认。')) {
-			window.location.href = ("/custom/attence/attPutoffMgrUserList.jsf?selectMonth="
-					+ selectMonth + "&subID=" + id + "&set='1'&overtimePay=" + overtimePay);
-			return false;
+			alert(11);
+			return true;
 		}
 
 	}
@@ -129,7 +147,8 @@ function checkSubmit() {
 									value="#{attPutoffMgrBB.overtimePayMonth}" />
 								<h:outputText value="加班费" />
 								<h:inputText id="overtimePay" styleClass="input" size="4"
-									value="#{attPutoffMgrBB.overtimePay}" />
+									value="#{attPutoffMgrBB.overtimePay}" >
+									</h:inputText>
 								<h:outputText value="元/天" />
 								<h:outputText value="  " />
 								<f:verbatim>
@@ -257,7 +276,9 @@ function checkSubmit() {
 									<h:outputText value="操作" />
 								</c:facet>
 								<h:commandButton value="存休转工资" styleClass="button01"
-									onclick="return reset1('#{list.id}');"></h:commandButton>
+									onclick="return reset1();" action="#{attPutoffMgrBB.toWage }">
+									<x:updateActionListener property="#{attPutoffMgrBB.userid }" value="#{list.id }"></x:updateActionListener>
+									</h:commandButton>
 							</h:column>
 						</h:dataTable>
 						<c:verbatim>

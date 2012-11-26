@@ -2223,7 +2223,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public void updateOvertimePay(String id, String hours, String selectMonth,String overtimePay)
 			throws SysException, ParseException {
 		// TODO Auto-generated method stub
-		if(Double.parseDouble(hours)==0){
+		if(hours==null||Double.parseDouble(hours)==0){
 			return;
 		}
 		// 首先清空带薪假子集的存休

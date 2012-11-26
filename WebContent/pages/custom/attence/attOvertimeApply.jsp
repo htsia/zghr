@@ -41,7 +41,7 @@
 			alert("申请原因不能超过100字。");
 			return false;
 		}
-  		document.all("form1:applyHours").value=applydays;
+  		//document.all("form1:applyHours").value=applydays;
   		
   		return true;
   	}

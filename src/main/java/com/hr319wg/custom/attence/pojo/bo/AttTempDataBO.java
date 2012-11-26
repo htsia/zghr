@@ -1,7 +1,8 @@
 package com.hr319wg.custom.attence.pojo.bo;
 
 public class AttTempDataBO{
-	private String id;
+	private String subid;
+	private String personId;
 	private String personCode;
 	private String name;//姓名
 	private String deptName;//部门名称
@@ -11,6 +12,18 @@ public class AttTempDataBO{
 	private String attDetail;//考勤详情
 	
 	
+	public String getSubid() {
+		return subid;
+	}
+	public void setSubid(String subid) {
+		this.subid = subid;
+	}
+	public String getPersonId() {
+		return personId;
+	}
+	public void setPersonId(String personId) {
+		this.personId = personId;
+	}
 	public String getPersonCode() {
 		return personCode;
 	}
@@ -28,12 +41,6 @@ public class AttTempDataBO{
 	}
 	public void setTempEndDate(String tempEndDate) {
 		this.tempEndDate = tempEndDate;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
 	}
 	public String getName() {
 		return name;

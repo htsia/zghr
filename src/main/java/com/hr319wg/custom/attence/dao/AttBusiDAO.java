@@ -622,7 +622,7 @@ public class AttBusiDAO extends BaseDAO{
 	}
 	//获取临时考勤统计数据
 	public List getAttTempDataBO(PageVO pageVO, String orgID, String nameStr, String personType) throws SysException{
-		String hql = " from AttTempDataBO bo,UserBO u where u.userID=bo.id ";
+		String hql = " from AttTempDataBO bo,UserBO u where u.userID=bo.personId ";
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
 			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";

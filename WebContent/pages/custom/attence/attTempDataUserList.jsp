@@ -126,7 +126,7 @@
 	            </f:verbatim>
 	        </f:facet>
 	        <f:verbatim escape="false">
-	            <div align="center"> <input type="checkbox" name="selectItem" value="</f:verbatim><h:outputText value="#{list.id}"/><f:verbatim escape="false">"/></div></f:verbatim>
+	            <div align="center"> <input type="checkbox" name="selectItem" value="</f:verbatim><h:outputText value="#{list.personId}"/><f:verbatim escape="false">"/></div></f:verbatim>
 	    </h:column>
         <h:column>
             <c:facet name="header"><h:outputText value="Ô±¹¤±àºÅ"/></c:facet>
