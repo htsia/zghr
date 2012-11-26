@@ -17,6 +17,7 @@
     <SCRIPT language=javascript>
         var actionbar = null;
         var mode = 'chart';
+
     <%
         if ("tree".equals(request.getParameter("RadioGroup"))){
              out.println("mode='tree';");
@@ -24,7 +25,7 @@
     
         OrgBO org= (OrgBO) session.getAttribute("ROOTORG");
         if (org!=null){
-           out.println("var rootNode = new Node("+org.getOrgId()+",0,'"+"Î÷ÑÇË¹"+"');");
+           out.println("var rootNode = new Node("+org.getOrgId()+",0,'"+org.getName()+"');");
            out.println("rootNode.open=true;");
         }
         List list = (List) session.getAttribute("POSTMAP");
@@ -39,8 +40,6 @@
                     out.println(output);
                     output = "  node" + row[1].getValue()+".open=true";
                     out.println(output);
-                    //output = "  node" + row[1].getValue()+".attributes.width='33'";
-                    //out.println(output);
                 }
                 else{
                     output = "  rootNode.addSubnode(node"+row[0].getValue()+");";
@@ -64,6 +63,7 @@
         function drawChart() {
             if (rootNode != null)
                 chartTd.appendChild(rootNode.createAllNode());
+
             adaptPosition();
             adaptLevelViewNode();
 
