@@ -14,7 +14,7 @@
         %>
     </title>
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>
-    <script src="<%=request.getContextPath()%>/js/jquery.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js" type="text/javascript"></script>
     <script type="text/javascript" language="javascript" src="/js/Appclient.js"></script>
     <script type="text/javascript" language="javascript" src="/js/check.js"></script>
     <script type="text/javascript">

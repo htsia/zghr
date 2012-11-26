@@ -49,7 +49,7 @@
 %>
     <c:verbatim>
     <script type="text/javascript" language="JavaScript1.2" src="<%=request.getContextPath()%>/js/menu.js"></script>
-	<script src="<%=request.getContextPath()%>/js/jquery.js" type="text/javascript"></script>	
+	<script src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js" type="text/javascript"></script>	
 	<script src="<%=request.getContextPath()%>/js/jcarousellite.min.js" type="text/javascript"></script>
     <script language="javascript" src="<%=request.getContextPath()%>/js/maininterface.js"></script>
     <script language="javascript">

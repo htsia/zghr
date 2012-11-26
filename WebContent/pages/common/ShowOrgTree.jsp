@@ -22,12 +22,34 @@
 %>
 <html>
 <head><title></title>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.ztree.core-3.5.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/tree.js" language="JavaScript"></script>
     <script src="<%=request.getContextPath()%>/js/Appclient.js" language="JavaScript"></script>
     <script language="javascript">
         var xmlHttp;
         var superId = "";
-
+		var zNodes = [];
+		var setting = {
+				data: {
+					simpleData: {
+						enable: true
+					}
+				},callback: {
+					onClick: function(event, treeId, treeNode){
+						if (treeNode.key!=null){
+				            var url = treeNode.key;
+				 	       	if(url.indexOf("?")!=-1 && url.indexOf("/custom/")!=-1){
+				 	       		url+="&inself=0";
+				 	       	}else if(url.indexOf("/custom/")!=-1){
+				 	       		url+="?inself=0";
+				 	       	}
+				 	        parent.refreshFun(url);
+				         }
+					}
+				}
+			};
         //创建XMLHttpRequest对象
         function createXMLHttpRequest() {
             if (window.ActiveXObject) {
@@ -61,8 +83,6 @@
         //解析从xml文件得到的结果 ，动态画树
         function parseResults() {
             var results = xmlHttp.responseXML;
-            //            alert(results);
-            //            alert(xmlHttp.responseText);
             var superorg = null;
             var orgs = null;
             var key = "";
@@ -96,6 +116,10 @@
                     name+="(已撤销)";
                 }
                 //动态画树
+                zNodes.push({id:'+id+',pId:'0',name:'+name+',key:'+key+',icon:'/images/tree_images/book1_open.gif'});
+//                 $(function(){
+//         			$.fn.zTree.init($("#tree"), setting, zNodes);
+//         		});
                 var nNode = tree.add(toNode, 'last', name, "n" + key, id, '', icon, '', '');
                 if (nNode.parent.first.label.innerText == 'loading...')nNode.parent.first.remove();
                 if (childnum != 0) {
@@ -117,11 +141,14 @@
 
             }
         }
-        //document.oncontextmenu=function(e){return false;}
+        
     </script>
 </head>
 
 <body topmargin="0" leftmargin="0" BGCOLOR=<%=Constants.BGCOLOR%>>
+	<div >
+		<ul id="tree" class="ztree"></ul>
+	</div>
 <div id="tt"></div>
 <script language="javascript">
     //定义树的图片对象

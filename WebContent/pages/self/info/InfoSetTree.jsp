@@ -30,56 +30,42 @@
     }
 %>
 <html>
-<head><title>
-</title></head>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.ztree.core-3.5.min.js"></script>
+	<script src="/js/Appclient.js" type="text/javascript"></script>
+	<script language="javascript">
+		var setting = {
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},callback: {
+				onClick: function(event, treeId, treeNode){
+		 	        parent.refreshList(treeNode.setId,treeNode.setType);
+				}
+			}
+		};
+		var zNodes =[];
+		<%
+		    //画指标集
+		    for(int i=0;i<list.size();i++){
+		        InfoSetBO set = (InfoSetBO)list.get(i);
+		        out.println("zNodes.push({id:'"+set.getSetId()+"',pId:'0',name:'"+set.getSetName()+"',setId:'"+set.getSetId()+"',setType:'"+set.getSet_rsType()+"',open:true,icon:'/images/tree_images/hfile.gif'})");
+		    }
+		
+		%>
+		$(function(){
+			$.fn.zTree.init($("#tree"), setting, zNodes);
+		});
+	</script>
+</head>
 
 <body bgcolor="#FFFFFF"  leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-
-<div id="dt"></div>
-<script type="text/javascript" src="/js/tree.js"></script>
-<script src="/js/Appclient.js" type="text/javascript"></script>
-<script language="javascript">
-<%
-    if ("1".equals(request.getParameter("inLead"))){
-       out.println("    inLead=1;");
-    }
-%>
-    var setId = "";
-    var flag = true;
-    //定义树的图片对象
-    var images = new getTreeImage();
-    //初始化树
-    var tree = new newtree(images, 16, dt);
-    root = tree.root;
-
-<%
-    //画指标集
-    for(int i=0;i<list.size();i++){
-        InfoSetBO set = (InfoSetBO)list.get(i);
-        String str =set.getSetId() + " = tree.add(root,'last','" + set.getSetName() + "','" + set.getSetId() + "','"+set.getSet_rsType()+"','','file','','');";
-        out.println(str);
-    }
-
-%>
-   tree.expandAll(false);
-    //展开根节点
-    try {
-        rootNodes =root.children;
-        for (i = 0; i < rootNodes.length; i++) {
-                rootNodes[i].expand(true);
-        }
-    } catch(e) {
-
-    }
-
-   tree.onclick = function(node) {
-       if(node.key2 != null && node.key2 != ""){
-            parent.refreshList(node.getKey(),node.key2);
-       }else{
-           return ;
-       }
-   }
-   //document.oncontextmenu=function(e){return false;}
-</script>
+	<div >
+		<ul id="tree" class="ztree"></ul>
+	</div>
 </body>
 </html>

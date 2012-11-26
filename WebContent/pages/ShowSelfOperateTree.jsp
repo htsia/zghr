@@ -25,18 +25,38 @@
 %>
 <html>
 <head><title></title>
-    <script src="<%=request.getContextPath()%>/js/tree.js" language="JavaScript"></script>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.ztree.core-3.5.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/Appclient.js" language="JavaScript"></script>
 </head>
 
 <body topmargin="0" leftmargin="0">
-<div id="tt">
-</div>
+	<div >
+		<ul id="tree" class="ztree"></ul>
+	</div>
 <script language="javascript">
-    //定义树的图片对象
-    var images = getTreeImage();
-    //初始化树
-    var tree = new newtree(images, 16, tt);
+	var setting = {
+		data: {
+			simpleData: {
+				enable: true
+			}
+		},callback: {
+			onClick: function(event, treeId, treeNode){
+				if (treeNode.key!=null){
+		            var url = treeNode.key;
+		 	       	if(url.indexOf("?")!=-1 && url.indexOf("/custom/")!=-1){
+		 	       		url+="&inself=0";
+		 	       	}else if(url.indexOf("/custom/")!=-1){
+		 	       		url+="?inself=1";
+		 	       	}
+		 	        parent.refreshFun(url);
+		         }
+			}
+		}
+	};
+	var zNodes =[];
+
     <%
         User user =  (User) session.getAttribute(Constants.USER_INFO);
         UserManageService us = (UserManageService) SysContext.getBean("user_userManageService");
@@ -44,57 +64,24 @@
         Hashtable hashMenus = us.getSelfFunction(Root, user);
         MenuObj allmenu = (MenuObj) hashMenus.get(Root);
 		
-        if (ModuleID==null || "".equals(ModuleID)){  // 显示全部菜单
-            String icon="folder";
-            for(int i=0;allmenu.getMenus()!=null && i<allmenu.getMenus().size();i++){
-                MenuObj childmenu=(MenuObj)allmenu.getMenus().get(i);
-                if (childmenu.getUrl()==null || "".equals(childmenu.getUrl())){
-                    icon="folder";
-                }
-                else{
-                   icon="book_open";
-                }
-                out.println("tree.add(tree.root, 'last', '"+childmenu.getName()+"', 'n' + '"+childmenu.getOperateId()+"', '"+childmenu.getUrl()+"', '', '"+icon+"', '', '');");
-                for(int j=0;childmenu.getMenus()!=null && j<childmenu.getMenus().size();j++){
-                    MenuObj childchildmenu=(MenuObj)childmenu.getMenus().get(j);
-                    if (childchildmenu.getUrl()==null || "".equals(childchildmenu.getUrl())){
-                        icon="folder";
-                    }
-                    else{
-                       icon="book_open";
-                    }
-                    out.println("tree.add(tree.nodes['n'+'"+childmenu.getOperateId()+"'], 'last', '"+childchildmenu.getName()+"', 'n' + '"+childchildmenu.getOperateId()+"', '"+childchildmenu.getUrl()+"', '', '"+icon+"', '', '');");
-                    for(int k=0;childchildmenu.getMenus()!=null && k<childchildmenu.getMenus().size();k++){
-                        MenuObj childchildchildmenu=(MenuObj)childchildmenu.getMenus().get(k);
-                        if (childchildchildmenu.getUrl()==null || "".equals(childchildchildmenu.getUrl())){
-                            icon="folder";
-                        }
-                        else{
-                           icon="book_open";
-                        }
-
-                        out.println("tree.add(tree.nodes['n'+'"+childchildmenu.getOperateId()+"'], 'last', '"+childchildchildmenu.getName()+"', 'n' + '"+childchildchildmenu.getOperateId()+"', '"+childchildchildmenu.getUrl()+"', '', '"+icon+"', '', '');");
-                    }
-                }
-            }
-        }
-        else{   // 显示自助模块
-        	if(ModuleID!=null && ModuleID.endsWith("GL")){
+         // 显示自助模块
+        	if(ModuleID!=null){
         		if("KQGL".equals(ModuleID)){
                		operURL="/custom/attence/attLeaveQuery.jsf";
             	}
-        		String icon="folder";
-                out.println("tree.add(tree.root, 'last', '"+SysCacheTool.findOperate(moduleOperID).getOperateName()+"', 'n' + '"+ModuleID+"', '', '', '"+icon+"', '', '');");
+        		out.println("zNodes.push({id:'"+moduleOperID+"',pId:-1,name:'"+SysCacheTool.findOperate(moduleOperID).getOperateName()+"',open:true,isParent:true})");
                 if("1".equals(subfolder)){//有二级菜单
 	                List<OperateBO> operList2 = cd.getAllSubOperateBOInSelf(moduleOperID, user.getUserId());
                 	if(operList2 !=null ){
 	                	int i=0;
     	                for(OperateBO bo : operList2){
-			        		icon="folder";
-    	                	out.println("tree.add(tree.nodes['n'+'"+ModuleID+"'], 'last', '"+bo.getOperateName()+"', 'n' + '"+bo.getOperateId()+"', \""+bo.getUrl()+"\", '', '"+icon+"', '', '');");
+    	                	if("1".equals(subfolder)){
+    	                		out.println("zNodes.push({id:'"+bo.getOperateId()+"',pId:'"+moduleOperID+"',name:'"+bo.getOperateName()+"',open:true,isParent:true})");
+    	                	}else{
+    	                		out.println("zNodes.push({id:'"+bo.getOperateId()+"',pId:'"+moduleOperID+"',name:'"+bo.getOperateName()+"',key:'"+bo.getUrl()+"',icon:'/images/tree_images/book1_open.gif'})");
+    	                	}
     	                	List<OperateBO> operList3 = cd.getAllOperateBOBySuperID(bo.getOperateId(), user.getUserId(), bylevel);
 			                if(operList3!=null){
-				                icon="book_open";
 				                for(OperateBO bo3 : operList3){
 				                	if(!"KQGL".equals(ModuleID)){
 					                	if(i==0){
@@ -102,13 +89,12 @@
 					                	}
 					                	i++;
 				                	}
-				                	out.println("tree.add(tree.nodes['n'+'"+bo.getOperateId()+"'], 'last', '"+bo3.getOperateName()+"', 'n' + '"+bo3.getOperateId()+"', \""+bo3.getUrl()+"\", '', '"+icon+"', '', '');");
+	    	                		out.println("zNodes.push({id:'"+bo3.getOperateId()+"',pId:'"+bo.getOperateId()+"',name:'"+bo3.getOperateName()+"',key:'"+bo3.getUrl()+"',icon:'/images/tree_images/book1_open.gif'})");
 				                }
 			                }
     	                }
                 	}
                 }else{
-	                icon="book_open";
                 	List<OperateBO> operList = cd.getAllOperateBO(ModuleID, user.getUserId(), bylevel);
 	                if(operList!=null){
 	                	int i=0;
@@ -117,66 +103,15 @@
 		                		operURL=bo.getUrl();
 		                	}
 		                	i++;
-		                	out.println("tree.add(tree.nodes['n'+'"+ModuleID+"'], 'last', '"+bo.getOperateName()+"', 'n' + '"+bo.getOperateId()+"', \""+bo.getUrl()+"\", '', '"+icon+"', '', '');");
-		                	
+   	                		out.println("zNodes.push({id:'"+bo.getOperateId()+"',pId:'"+moduleOperID+"',name:'"+bo.getOperateName()+"',key:'"+bo.getUrl()+"',icon:'/images/tree_images/book1_open.gif'})");
 		                }
 	                }
                 }
-        	}else{
-        		MenuObj menu=null;
-                for(int i=0;i<allmenu.getMenus().size();i++){
-                   if (((MenuObj)allmenu.getMenus().get(i)).getOperateId().equals(ModuleID)){
-                      menu=(MenuObj)allmenu.getMenus().get(i);
-                      break;
-                    }
-                }
-                String icon="folder";
-                out.println("tree.add(tree.root, 'last', '"+menu.getName()+"', 'n' + '"+ModuleID+"', '', '', '"+icon+"', '', '');");
-                for(int i=0;menu.getMenus()!=null && i<menu.getMenus().size();i++){
-                    MenuObj childmenu=(MenuObj)menu.getMenus().get(i);
-                    if (childmenu.getUrl()==null || "".equals(childmenu.getUrl())){
-                        icon="folder";
-                    }
-                    else{
-                       icon="book_open";
-                    }
-                    out.println("tree.add(tree.nodes['n'+'"+ModuleID+"'], 'last', '"+childmenu.getName()+"', 'n' + '"+childmenu.getOperateId()+"', \""+childmenu.getUrl()+"\", '', '"+icon+"', '', '');");
-                    for(int j=0;childmenu.getMenus()!=null && j<childmenu.getMenus().size();j++){
-                        MenuObj childchildmenu=(MenuObj)childmenu.getMenus().get(j);
-                        if (childchildmenu.getUrl()==null || "".equals(childchildmenu.getUrl())){
-                            icon="folder";
-                        }
-                        else{
-                           icon="book_open";
-                        }
-                        out.println("tree.add(tree.nodes['n'+'"+childmenu.getOperateId()+"'], 'last', '"+childchildmenu.getName()+"', 'n' + '"+childchildmenu.getOperateId()+"', \""+childchildmenu.getUrl()+"\", '', '"+icon+"', '', '');");
-                        for(int k=0;childchildmenu.getMenus()!=null && k<childchildmenu.getMenus().size();k++){
-                            MenuObj childchildchildmenu=(MenuObj)childchildmenu.getMenus().get(k);
-                            if (childchildchildmenu.getUrl()==null || "".equals(childchildchildmenu.getUrl())){
-                                icon="folder";
-                            }
-                            else{
-                               icon="book_open";
-                            }
-                            out.println("tree.add(tree.nodes['n'+'"+childchildmenu.getOperateId()+"'], 'last', '"+childchildchildmenu.getName()+"', 'n' + '"+childchildchildmenu.getOperateId()+"', \""+childchildchildmenu.getUrl()+"\", '', '"+icon+"', '', '');");
-                        }
-                    }
-                }        		
         	}
-        }
     %>
-    tree.onclick = function(srcNode) {
-        //debugger;
-        if (srcNode.key2!=null && srcNode.key2!="" && srcNode.key2!="null"){
-        	var url = srcNode.key2;
-        	if(url.indexOf("?")!=-1 && url.indexOf("/custom/")!=-1){
-        		url+="&inself=1";
-        	}else if(url.indexOf("/custom/")!=-1){
-        		url+="?inself=1";
-        	}
-            parent.refreshFun(url);
-        }
-    }
+    $(function(){
+		$.fn.zTree.init($("#tree"), setting, zNodes);
+	});
     if("<%=operURL%>"!=''){
     	var url = "<%=operURL%>";
     	<%
