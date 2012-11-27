@@ -1,3 +1,4 @@
+<%@page import="net.sf.json.JSONArray"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.sys.cache.SysCache" %>
 <%@ page import="com.hr319wg.sys.cache.SysCacheTool" %>
@@ -16,9 +17,8 @@
 
 <%
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
-    response.setContentType("text/xml;charset=GBK");
 
-    String superId = request.getParameter("superId");                           // 上级
+    String superId = request.getParameter("id");                           // 上级
     String rightFlag = CommonFuns.filterNull(request.getParameter("rightFlag"));     // 权限方式  //   0-不使用 1-使用查询权限过滤,2-使用维护权限过滤
     String rootId = CommonFuns.filterNull(request.getParameter("rootId"));           // 根节点
     String cancelFlag = CommonFuns.filterNull(request.getParameter("cancelFlag"));   // 是否显示撤销机构
@@ -27,7 +27,6 @@
     String showTeam = CommonFuns.filterNull(request.getParameter("showTeam"));          // 显示团队
     String secDeptTreeId = CommonFuns.filterNull(request.getParameter("secDeptTreeId"));          // 二级部门树id
     ArrayList list = null;
-
     User user = (User) (session.getAttribute(Constants.USER_INFO));
     teamManagerUcc teamucc = (teamManagerUcc) SysContext.getBean("teamucc");
 
@@ -102,14 +101,14 @@
             TreeMap tree = new TreeMap();
             for (int i = 0; i < list.size(); i++) {
                 OrgBO org = (OrgBO) list.get(i);
-                tree.put(org.getTreeId(), org);
+                tree.put(org.getOrgId(), org);
             }
             Iterator it = tree.values().iterator();
             if (it.hasNext()) {
                 OrgBO prevOrg = (OrgBO) it.next();
                 while (it.hasNext()) {
                     OrgBO posOrg = (OrgBO) it.next();
-                    if (posOrg.getTreeId().startsWith(prevOrg.getTreeId())) {
+                    if (posOrg.getOrgId().startsWith(prevOrg.getOrgId())) {
                         it.remove();
                     } else {
                         prevOrg = posOrg;
@@ -123,16 +122,13 @@
     }
 
     OrgBO org = SysCacheTool.findOrgById(superId);
-    String icon = "";
-    String childnum = "";
-    out.println("<?xml version=\"1.0\" encoding=\"GBK\" ?>");
-    out.println("<tree>");
-
+    String childnum = null;
+    List orgList = new ArrayList();
     // 返回结果
     if (list != null) {
         for (int i = 0; i < list.size(); i++) {
             OrgBO o = (OrgBO) list.get(i);
-            if(o.getTreeId().length()>6 && secDeptTreeId!=null && !"".equals(secDeptTreeId) && !"null".equals(secDeptTreeId) && !o.getTreeId().startsWith(secDeptTreeId)){
+            if(o.getOrgId().length()>6 && secDeptTreeId!=null && !"".equals(secDeptTreeId) && !"null".equals(secDeptTreeId) && !o.getOrgId().startsWith(secDeptTreeId)){
 				continue;
 			}
             if (!"1".equals(cancelFlag) && Constants.YES.equals(o.getOrgCancel()))//如果cancelFlag 为空或undefined则过滤掉"已撤消结构(即org.orgCancel = yes);如果给值且值为1,则显示全部机构
@@ -144,7 +140,6 @@
                 continue;
             }
             childnum = "0";
-            out.println("<org>");
 
             //判断下级是否有节点,并且如果不显示撤消机构 则判下级是否都是撤消机构
             if (o != null) {
@@ -193,49 +188,23 @@
                 } else {
                     cancel = "0";
                 }
-                if (OrgBO.UNITTYPE.equals(o.getorgType())) {
-                    icon = "org";
-                } else if (OrgBO.DEPTTYPE.equals(o.getorgType())) {
-                    icon = "dept";
-                } else if (OrgBO.GROUPTYPE.equals(o.getorgType())) {
-                    icon = "group";
-                } else if (OrgBO.VIRTUALTYPE.equals(o.getorgType())) {
-                    icon = "virtual";
-                } else {
-                    icon = "folder";
-                }
-                out.println("<key>" + o.getTreeId() + "</key>");
-                out.println("<name>" + o.getName() + "</name>");
-                out.println("<id>" + o.getOrgId() + "</id>");
-                out.println("<cancel>" + cancel + "</cancel>");
-                out.println("<icon>" + icon + "</icon>");
-                out.println("<childnum>" + childnum + "</childnum>");
+				String name=o.getName()+("1".equals(cancel)?"已撤销":"");
+				if("1".equals(childnum)){
+					orgList.add("{id:'"+o.getOrgId()+"',name:'"+name+"',pId:'"+o.getSuperId()+"',open:true,isParent:true,iconOpen:'/images/tree_images/org.gif',iconOpen:'/images/tree_images/org.gif'}");
+				}else{
+					orgList.add("{id:'"+o.getOrgId()+"',name:'"+name+"',pId:'"+o.getSuperId()+"',icon:'/images/tree_images/dept.gif'}");					
+				}
             }
-            out.println("</org>");
         }
         if ("1".equals(showTeam)) { // 显示团队
             List teamlist = teamucc.getAllEmpTeamInfoBo(superId);
             if (teamlist != null) {
                 for (int j = 0; j < teamlist.size(); j++) {
                     EmpTeamInfoBo em=(EmpTeamInfoBo)teamlist.get(j);
-                    out.println("<org>");
-                    out.println("<key>" + em.getTeamId() + "</key>");
-                    out.println("<name>" + em.getTeamName() + "</name>");
-                    out.println("<id>" + em.getTeamId() + "</id>");
-                    out.println("<cancel>0</cancel>");
-                    out.println("<icon>group</icon>");
-                    out.println("<childnum>0</childnum>");
-                    out.println("</org>");
+                    orgList.add("{id:'"+em.getTeamId()+"',name:'"+em.getTeamName()+"',pId:'"+em.getTeamId()+"',icon:'/images/tree_images/dept.gif'}");
                 }
             }
         }
     }
-
-    if (org != null) {
-        out.println("<supertree>");
-        out.println("<treeid>" + org.getTreeId() + "</treeid>");
-        out.println("</supertree>");
-    }
-
-    out.println("</tree>");
+    out.print(JSONArray.fromObject(orgList));
 %>

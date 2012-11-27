@@ -25,123 +25,54 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/zTreeStyle/zTreeStyle.css" type="text/css">
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.ztree.core-3.5.min.js"></script>
-    <script src="<%=request.getContextPath()%>/js/tree.js" language="JavaScript"></script>
     <script src="<%=request.getContextPath()%>/js/Appclient.js" language="JavaScript"></script>
     <script language="javascript">
-        var xmlHttp;
-        var superId = "";
+        var cancelFlag1="<%=cancelFlag%>";
+        var showGroup1="<%=Constants.TREE_SHOW_GROUP%>";
+        var rightFlag1="<%=rightFlag%>";
+        var rootId1="<%=rootId%>";
+        var secDeptTreeId1="<%=secDeptTreeId%>";
+        var zTree;
 		var zNodes = [];
+		var thirdIds=[];
 		var setting = {
-				data: {
-					simpleData: {
-						enable: true
-					}
-				},callback: {
-					onClick: function(event, treeId, treeNode){
-						if (treeNode.key!=null){
-				            var url = treeNode.key;
-				 	       	if(url.indexOf("?")!=-1 && url.indexOf("/custom/")!=-1){
-				 	       		url+="&inself=0";
-				 	       	}else if(url.indexOf("/custom/")!=-1){
-				 	       		url+="?inself=0";
-				 	       	}
-				 	        parent.refreshFun(url);
-				         }
-					}
+			data: {
+				simpleData: {
+					enable: true
 				}
-			};
-        //创建XMLHttpRequest对象
-        function createXMLHttpRequest() {
-            if (window.ActiveXObject) {
-                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-            } else if (window.XMLHttpRequest) {
-                xmlHttp = new XMLHttpRequest();
-            }
-        }
-
-        //展示树要调用的事件
-        function showTree(pid, rightFlag, rootId,secDeptTreeId) {
-            superId = pid;
-            if (rightFlag == null) rightFlag = "";
-            if (rootId == null) rootId = "";
-            createXMLHttpRequest();
-            xmlHttp.onreadystatechange = handleStateChange;
-            
-            xmlHttp.open("GET", "../ajax/Org.jsp?cancelFlag=<%=cancelFlag%>&showGroup=<%=Constants.TREE_SHOW_GROUP%>&superId=" + superId + "&rightFlag=" + rightFlag + "&rootId=" + rootId+"&secDeptTreeId="+secDeptTreeId, true);
-            xmlHttp.send(null);
-        }
-        //XMLHttpRequest状态改变时要执行的函数
-        function handleStateChange() {
-            if (xmlHttp.readyState == 4) {
-                if (xmlHttp.status == 200) {
-                    //解析从xml文件得到的结果,动态画树
-                    parseResults();
-                }
-            }
-        }
-
-        //解析从xml文件得到的结果 ，动态画树
-        function parseResults() {
-            var results = xmlHttp.responseXML;
-            var superorg = null;
-            var orgs = null;
-            var key = "";
-            var name = "";
-            var icon = "";
-            var id = "";
-            var childnum = "";
-            var treeid = "";
-            var cancel = "";
-
-            var trees = results.getElementsByTagName("org");
-            var supertree = results.getElementsByTagName("supertree");
-            if (superId == "-1") {
-                var toNode = tree.root;
-            } else {
-                superorg = supertree[0];
-                treeid = superorg.getElementsByTagName("treeid")[0].firstChild.nodeValue;
-                var toNode = tree.nodes["n" + treeid];
-            }
-
-            for (var i = 0; i < trees.length; i++) {
-                orgs = trees[i];
-                key = orgs.getElementsByTagName("key")[0].firstChild.nodeValue;
-                name = orgs.getElementsByTagName("name")[0].firstChild.nodeValue;
-                id = orgs.getElementsByTagName("id")[0].firstChild.nodeValue;
-                cancel = orgs.getElementsByTagName("cancel")[0].firstChild.nodeValue;
-                icon = orgs.getElementsByTagName("icon")[0].firstChild.nodeValue;
-                childnum = orgs.getElementsByTagName("childnum")[0].firstChild.nodeValue;
-
-                if (cancel == "1") {
-                    name+="(已撤销)";
-                }
-                //动态画树
-                zNodes.push({id:'+id+',pId:'0',name:'+name+',key:'+key+',icon:'/images/tree_images/book1_open.gif'});
-//                 $(function(){
-//         			$.fn.zTree.init($("#tree"), setting, zNodes);
-//         		});
-                var nNode = tree.add(toNode, 'last', name, "n" + key, id, '', icon, '', '');
-                if (nNode.parent.first.label.innerText == 'loading...')nNode.parent.first.remove();
-                if (childnum != 0) {
-                    nNode.add('loading...');
-                    nNode.expand(false);
-                }
-            }
-
-            //展开根节点
-            try {
-                rootNodes = tree.root.children;
-                for (i = 0; i < rootNodes.length; i++) {
-                    if (rootNodes[i].first.label.innerText == "loading...") {
-                        rootNodes[i].expand(true);
-                        break;
-                    }
-                }
-            } catch(e) {
-
-            }
-        }
-        
+			},async: {
+				enable: true,
+				url:"../ajax/Org.jsp",
+				autoParam:["id"],
+				otherParam:{"cancelFlag":cancelFlag1,"showGroup":showGroup1,"rightFlag":rightFlag1,"secDeptTreeId":secDeptTreeId1}
+			},callback: {
+				onAsyncSuccess: function(event, treeId, treeNode){
+					treeNode.halfCheck = false;
+					zTree.updateNode(treeNode);
+				},onNodeCreated: function(event, treeId, treeNode){
+					if(rootId1==null || rootId1==''){
+						if(treeNode.pId==null){
+							treeRootId=treeNode.id;
+						}
+						if(treeNode.pId==treeRootId){
+							zTree.expandNode(treeNode, true);
+						}
+					}
+				},onClick: function(event, treeId, treeNode){
+					parent.refreshList(treeNode.id);
+				}
+			}
+		};
+		$(function(){
+			var zData=null;
+			var url="../ajax/Org.jsp?cancelFlag="+cancelFlag1+"&showGroup="+showGroup1+"&id=-1&rightFlag="+rightFlag1+"&rootId="+rootId1+"&secDeptTreeId="+secDeptTreeId1;
+			$.post(url,function(data){
+				zData=eval(data);
+				zTree=$.fn.zTree.init($("#tree"), setting, zData);
+				var nodes = zTree.getNodes();
+		        zTree.expandNode(nodes[0], true);
+			});
+		});
     </script>
 </head>
 
@@ -149,25 +80,5 @@
 	<div >
 		<ul id="tree" class="ztree"></ul>
 	</div>
-<div id="tt"></div>
-<script language="javascript">
-    //定义树的图片对象
-    var images = getTreeImage();
-    //初始化树
-    var tree = new newtree(images, 16, tt);
-    showTree("-1", "<%=rightFlag%>", "<%=rootId%>","<%=secDeptTreeId%>");//树的根节点
-    //定义树的节点的扩展方法
-    tree.onexpand = function(srcNode) {
-        if (srcNode.first.label.innerText == "loading..."){
-            showTree(srcNode.key2, "<%=rightFlag%>", "","<%=secDeptTreeId%>");
-        }
-        return true;
-    }
-
-    tree.onclick = function(srcNode) {
-        parent.refreshList(srcNode.key2);
-    }
-</script>
-
 </body>
 </html>
