@@ -190,7 +190,11 @@
                 }
 				String name=o.getName()+("1".equals(cancel)?"ÒÑ³·Ïú":"");
 				if("1".equals(childnum)){
-					orgList.add("{id:'"+o.getOrgId()+"',name:'"+name+"',pId:'"+o.getSuperId()+"',open:true,isParent:true,iconOpen:'/images/tree_images/org.gif',iconClose:'/images/tree_images/org.gif'}");
+					String icon="/images/tree_images/org.gif";
+					if(!"089110".equals(o.getorgType())){
+						icon="/images/tree_images/dept.gif";
+					}
+					orgList.add("{id:'"+o.getOrgId()+"',name:'"+name+"',pId:'"+o.getSuperId()+"',open:true,isParent:true,iconOpen:'"+icon+"',iconClose:'"+icon+"'}");
 				}else{
 					orgList.add("{id:'"+o.getOrgId()+"',name:'"+name+"',pId:'"+o.getSuperId()+"',icon:'/images/tree_images/dept.gif'}");					
 				}
