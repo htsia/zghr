@@ -33,8 +33,6 @@
         var rootId1="<%=rootId%>";
         var secDeptTreeId1="<%=secDeptTreeId%>";
         var zTree;
-		var zNodes = [];
-		var thirdIds=[];
 		var setting = {
 			data: {
 				simpleData: {

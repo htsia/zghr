@@ -4,6 +4,9 @@
 <%@ page import="com.hr319wg.user.pojo.bo.OperateBO" %>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ include file="../include/taglib.jsp" %>
+<style>
+	.activeTab,.tab{cursor: pointer;}
+</style>
     <script language="javascript" src="<%=request.getContextPath()%>/js/tree2.js"></script>
     <%
         response.setHeader("progma", "no-cache");

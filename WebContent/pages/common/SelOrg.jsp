@@ -51,18 +51,18 @@
             xmlHttp.onreadystatechange = handleStateChange;
             if (showGroup==null || showGroup==""){
                 if (onlyOrg==null || onlyOrg==""){
-                    xmlHttp.open("GET", "/pages/ajax/Org.jsp?superId=" + superId + "&rightFlag=" + rightFlag + "&rootId=" + rootId +"&cancelFlag="+cancelFlag, true);
+                    xmlHttp.open("GET", "/pages/ajax/Org1.jsp?superId=" + superId + "&rightFlag=" + rightFlag + "&rootId=" + rootId +"&cancelFlag="+cancelFlag, true);
                 }
                 else{
-                    xmlHttp.open("GET", "/pages/ajax/Org.jsp?superId=" + superId + "&rightFlag=" + rightFlag + "&rootId=" + rootId +"&cancelFlag="+cancelFlag+"&onlyOrg="+onlyOrg, true);
+                    xmlHttp.open("GET", "/pages/ajax/Org1.jsp?superId=" + superId + "&rightFlag=" + rightFlag + "&rootId=" + rootId +"&cancelFlag="+cancelFlag+"&onlyOrg="+onlyOrg, true);
                 }
             }
             else {
                 if (onlyOrg==null || onlyOrg==""){
-                    xmlHttp.open("GET", "/pages/ajax/Org.jsp?superId=" + superId + "&rightFlag=" + rightFlag + "&rootId=" + rootId +"&cancelFlag="+cancelFlag+"&showGroup=1", true);
+                    xmlHttp.open("GET", "/pages/ajax/Org1.jsp?superId=" + superId + "&rightFlag=" + rightFlag + "&rootId=" + rootId +"&cancelFlag="+cancelFlag+"&showGroup=1", true);
                  }
                 else{
-                    xmlHttp.open("GET", "/pages/ajax/Org.jsp?superId=" + superId + "&rightFlag=" + rightFlag + "&rootId=" + rootId +"&cancelFlag="+cancelFlag+"&showGroup=1"+"&onlyOrg="+onlyOrg, true);
+                    xmlHttp.open("GET", "/pages/ajax/Org1.jsp?superId=" + superId + "&rightFlag=" + rightFlag + "&rootId=" + rootId +"&cancelFlag="+cancelFlag+"&showGroup=1"+"&onlyOrg="+onlyOrg, true);
                 }
             }
             xmlHttp.send(null);

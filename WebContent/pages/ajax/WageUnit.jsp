@@ -1,3 +1,5 @@
+<%@page import="net.sf.json.JSONArray"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.sys.cache.SysCache" %>
 <%@ page import="com.hr319wg.sys.cache.SysCacheTool" %>
@@ -18,9 +20,8 @@
     response.setHeader("progma", "no-cache");
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
-    response.setContentType("text/xml;charset=GBK");
 
-    String superId = request.getParameter("superId");
+    String superId = request.getParameter("id");
     User user = (User) session.getAttribute(Constants.USER_INFO);
     ArrayList list = new ArrayList();
 
@@ -46,39 +47,26 @@
         list = SysCacheTool.querySubObject(SysCache.OBJ_WAGEUNIT, null, superId);
     }
     WageUnitBO org = SysCacheTool.findWageUnit(superId);
-    String icon = "";
     String childnum = "";
-    out.println("<?xml version=\"1.0\" encoding=\"GBK\" ?>");
-    out.println("<tree>");
+    List unitList = new ArrayList();
     if (list != null) {
         for (int i = 0; i < list.size(); i++) {
             WageUnitBO o = (WageUnitBO) list.get(i);
             // х╗очеп╤о
             if (userapi.checkOrgTreeId(user,SysCacheTool.findOrgById(o.getUnitId()),"1")==1) continue;
-            icon = "hfiles";
-            out.println("<org>");
             if (o != null) {
                 if (SysCache.wageUnitSubStrMap.containsKey(o.getUnitId())) {
                     childnum = "1";
                 } else {
                     childnum = "0";
-                    icon = "file";
                 }
-                out.println("<key>" + o.getTreeId() + "</key>");
-                out.println("<name>" + o.getName() + "</name>");
-                out.println("<id>" + o.getUnitId() + "</id>");
-                out.println("<treeId>" + o.getTreeId() + "</treeId>");
-                out.println("<icon>" + icon + "</icon>");
-                out.println("<childnum>" + childnum + "</childnum>");
+                if("1".equals(childnum)){
+	                unitList.add("{id:'"+o.getUnitId()+"',name:'"+o.getName()+"',pId:'"+o.getSuperId()+"',childNum:'"+childnum+"',open:true,isParent:true,iconOpen:'/images/tree_images/hfiles.gif',iconClose:'/images/tree_images/hfiles.gif'}");
+                }else{
+                	unitList.add("{id:'"+o.getUnitId()+"',name:'"+o.getName()+"',pId:'"+o.getSuperId()+"',childNum:'"+childnum+"',icon:'/images/tree_images/hfile.gif'}");
+                }
             }
-            out.println("</org>");
         }
-
     }
-    if (org != null) {
-        out.println("<supertree>");
-        out.println("<treeid>" + org.getTreeId() + "</treeid>");
-        out.println("</supertree>");
-    }
-    out.println("</tree>");
+    out.print(JSONArray.fromObject(unitList));
 %>

@@ -160,15 +160,18 @@
         }
         return true;
     }
-    
 
     </script>
 
 <x:saveState value="#{emp_DataUploadBB}"/>
 <h:form id="form1" enctype="multipart/form-data">
+<f:verbatim>
+<table height=100% width=100% align="center">
+<tr><td><div style='width:100%;height:98%;overflow:auto' id=datatable>
+</f:verbatim>
     <h:inputHidden value="#{emp_DataUploadBB.pageInit}"/>
     <h:inputHidden value="#{emp_DataUploadBB.moduleid}"/>
-    <h:panelGrid styleClass="td_title" width="100%" border="0" cellpadding="0" cellspacing="6" bgcolor="#FFFFFF" columns="2">
+    <h:panelGrid styleClass="td_title" width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" columns="2">
        <h:panelGroup>
         <h:graphicImage value="/images/tips.gif" />
           <f:verbatim>
@@ -284,6 +287,9 @@
             </h:panelGroup>
         </h:panelGrid>
     </h:panelGrid>
+    <f:verbatim>
+		</div></td></tr></table>
+	</f:verbatim>
 </h:form>
 <script type="text/javascript">
    if (document.all("form1:configname").value!=""){   // 点保存后回发
