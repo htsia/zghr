@@ -1,3 +1,4 @@
+<%@page import="com.hr319wg.custom.util.CommonUtil"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.common.Constants" %>
 <%@ page import="com.hr319wg.common.pojo.vo.User" %>
@@ -61,7 +62,7 @@
         <tr>
             <td width="10" >&nbsp;</td>
             <td width="40">
-                <img src="/images/maininterface/logo.png" />
+                <img src="/<%=CommonUtil.getSYS_INTERFACE()[1]%>" />
             </td>
             <td align="right" valign="top">
                  <table height="58" width="100" border="0" cellspacing="0" cellpadding="0" style="margin-top:1px;">

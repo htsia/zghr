@@ -27,6 +27,7 @@ import com.hr319wg.util.CommonFuns;
 import com.hr319wg.util.SequenceGenerator;
 import com.hr319wg.wage.pojo.bo.WageAdjustDetailBO;
 public class CommonUtil {
+	private static String[]SYS_INTERFACE;
 	private CommonDAO commonDAO;
 	
 	public CommonDAO getCommonDAO() {
@@ -37,6 +38,31 @@ public class CommonUtil {
 		this.commonDAO = commonDAO;
 	}
 
+	public static String[] getSYS_INTERFACE() {
+		try {
+			if(SYS_INTERFACE==null){
+				ActivePageAPI api = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
+				String sql = "select para_value from SYS_PARAMETER t where t.para_key='SYS_INTERFACE'";
+				String pic=api.queryForString(sql);
+				if(pic!=null && !"".equals(pic)){
+					if(pic.split(",").length==2){
+						SYS_INTERFACE=pic.split(",");
+						return SYS_INTERFACE;
+					}
+				}
+			}else{
+				return SYS_INTERFACE;
+			}
+		} catch (SysException e) {
+			e.printStackTrace();
+		}
+		return new String[2];
+	}
+
+	public static void setSYS_INTERFACE(String[] sYS_INTERFACE) {
+		SYS_INTERFACE = sYS_INTERFACE;
+	}
+	
 	public static Object findBOById(Class c, String id){
 		try {
 			CommonDAO commonDAO = (CommonDAO)SysContext.getBean("commondao");
