@@ -14,11 +14,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=GBK"/>
     <title>
         <%
-            response.setHeader("Pragma","No-cache");
-            response.setHeader("Cache-Control","no-cache");
-            response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
-            response.setContentType("text/html;charset=GBK");
-
             if ("1".equals(Constants.USE_OAMAIN)){
                 out.print(Constants.OA_SYSTEM_NAME);
             }

@@ -1,18 +1,26 @@
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.common.Constants" %>
 <%@ include file="taglib.jsp" %>
+<%
+    response.setHeader("Pragma","No-cache");
+    response.setHeader("Cache-Control","no-cache");
+    response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
+    response.setContentType("text/html;charset=GBK");
+%>
 <html>
 <c:view>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8;"/>
     <meta http-equiv="Content-Type" content="text/html;charset=GBK"/>
     <title>
-        <%
-            response.setHeader("Pragma","No-cache");
-            response.setHeader("Cache-Control","no-cache");
-            response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
-            response.setContentType("text/html;charset=GBK");
-        %>
+	    <%
+	        if ("1".equals(Constants.USE_OAMAIN)){
+	            out.println(Constants.OA_SYSTEM_NAME);
+	        }
+	        else{
+	            out.println(Constants.SYSTEM_NAME);
+	        }
+	    %>
     </title>
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>
     <script src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js" type="text/javascript"></script>

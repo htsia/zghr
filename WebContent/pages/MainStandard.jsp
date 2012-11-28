@@ -39,7 +39,7 @@
          window.location="/MainInterface/MainStandard.jsf?moduleId=HOMEPAGE";
     }
 </script>
-<body  scroll="no">
+<body scroll="no">
 </c:verbatim>
 
 <%

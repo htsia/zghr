@@ -18,14 +18,14 @@
     <script type="text/javascript" language="javascript" src="/js/check.js"></script>
     <base target="_self">
     <title>
-    <%
-        if ("1".equals(Constants.USE_OAMAIN)){
-            out.println(Constants.OA_SYSTEM_NAME);
-        }
-        else{
-            out.println(Constants.SYSTEM_NAME);
-        }
-    %>
+	    <%
+	        if ("1".equals(Constants.USE_OAMAIN)){
+	            out.println(Constants.OA_SYSTEM_NAME);
+	        }
+	        else{
+	            out.println(Constants.SYSTEM_NAME);
+	        }
+	    %>
     </title>
     <script type="text/javascript">
         //document.oncontextmenu=function(e){return false;}

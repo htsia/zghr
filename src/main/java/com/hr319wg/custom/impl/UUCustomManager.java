@@ -46,9 +46,6 @@ public class UUCustomManager implements IUUManager{
 
 	public void organizationModify(String arg0, String arg1, String arg2)
 			throws SysException {
-		//Ë¢ÐÂ´úÂë¼¯
-		SysCache.loadCodeSetMap();
-        SysCache.loadCodeItemMap();
 	}
 	
 	public void organizationRemove(String arg0, String arg1, String arg2)
