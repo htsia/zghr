@@ -188,13 +188,13 @@
                 } else {
                     cancel = "0";
                 }
-				String name=o.getName()+("1".equals(cancel)?"已撤销":"");
-				if("1".equals(childnum)){
-					String icon="/images/tree_images/org.gif";
-					if(!"089110".equals(o.getorgType())){
-						icon="/images/tree_images/dept.gif";
+				String name=o.getName()+("1".equals(cancel)?"(已撤销)":"");
+				if("089110".equals(o.getorgType())){
+					if("1".equals(childnum)){
+						orgList.add("{id:'"+o.getOrgId()+"',name:'"+name+"',pId:'"+o.getSuperId()+"',open:true,isParent:true,iconOpen:'/images/tree_images/org.gif',iconClose:'/images/tree_images/org.gif'}");
+					}else{
+						orgList.add("{id:'"+o.getOrgId()+"',name:'"+name+"',pId:'"+o.getSuperId()+"',isParent:true,iconOpen:'/images/tree_images/org.gif',iconClose:'/images/tree_images/org.gif'}");
 					}
-					orgList.add("{id:'"+o.getOrgId()+"',name:'"+name+"',pId:'"+o.getSuperId()+"',open:true,isParent:true,iconOpen:'"+icon+"',iconClose:'"+icon+"'}");
 				}else{
 					orgList.add("{id:'"+o.getOrgId()+"',name:'"+name+"',pId:'"+o.getSuperId()+"',icon:'/images/tree_images/dept.gif'}");					
 				}

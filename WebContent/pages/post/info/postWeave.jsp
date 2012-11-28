@@ -22,7 +22,6 @@
             <td class="td_title"><img src="/images/tips.gif">
                   <%=LanguageSupport.getResource("JGGL-0200"," 岗位管理")%> ->
                   <%=LanguageSupport.getResource("JGGL-0224"," 编制管理")%>   
-                             
              </td>
         </tr>
     </table>
@@ -30,7 +29,7 @@
         <tr>
             <td id="showTree" width="210">
                         <iframe name="tree" height="400"  frameborder="0" framespacing="0" scrolling="auto" width="100%"
-                                src="/pages/common/ShowOnlyOrgTree.jsp"></iframe>
+                                src="/pages/common/ShowOrgTree.jsp"></iframe>
            </td>
 
            <td width="10" class="ctrlbar" valign="middle">

@@ -11,130 +11,56 @@
 %>
 <html>
 <head><title></title>
-    <script src="<%=request.getContextPath()%>/js/tree.js" language="JavaScript"></script>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.ztree.core-3.5.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/Appclient.js" language="JavaScript"></script>
     <script language="javascript">
-        var xmlHttp;
-        var superId = "";
-
-        //创建XMLHttpRequest对象
-        function createXMLHttpRequest() {
-            if (window.ActiveXObject) {
-                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-
-            } else if (window.XMLHttpRequest) {
-                xmlHttp = new XMLHttpRequest();
-            }
-        }
-
-        //展示树要调用的事件
-        function showTree(pid, rightFlag, rootId) {
-            superId = pid;
-            if (rightFlag == null) rightFlag = "";
-            if (rootId == null) rootId = "";
-            createXMLHttpRequest();
-            xmlHttp.onreadystatechange = handleStateChange;
-            xmlHttp.open("GET", "../ajax/Org.jsp?onlyOrg=1&superId=" + superId + "&rightFlag=" + rightFlag + "&rootId=" + rootId, true);
-            xmlHttp.send(null);
-        }
-        //XMLHttpRequest状态改变时要执行的函数
-        function handleStateChange() {
-            if (xmlHttp.readyState == 4) {
-                if (xmlHttp.status == 200) {
-                    //解析从xml文件得到的结果,动态画树
-                    parseResults();
-                }
-            }
-        }
-
-        //解析从xml文件得到的结果 ，动态画树
-        function parseResults() {
-            var results = xmlHttp.responseXML;
-            //            alert(results);
-            //            alert(xmlHttp.responseText);
-            var superorg = null;
-            var orgs = null;
-            var key = "";
-            var name = "";
-            var icon = "";
-            var id = "";
-            var childnum = "";
-            var treeid = "";
-            var cancel = "";
-
-            var trees = results.getElementsByTagName("org");
-            var supertree = results.getElementsByTagName("supertree");
-            if (superId == "-1") {
-                var toNode = tree.root;
-            } else {
-                superorg = supertree[0];
-                treeid = superorg.getElementsByTagName("treeid")[0].firstChild.nodeValue;
-                var toNode = tree.nodes["n" + treeid];
-            }
-
-            for (var i = 0; i < trees.length; i++) {
-                orgs = trees[i];
-                key = orgs.getElementsByTagName("key")[0].firstChild.nodeValue;
-                name = orgs.getElementsByTagName("name")[0].firstChild.nodeValue;
-                id = orgs.getElementsByTagName("id")[0].firstChild.nodeValue;
-                cancel = orgs.getElementsByTagName("cancel")[0].firstChild.nodeValue;
-                icon = orgs.getElementsByTagName("icon")[0].firstChild.nodeValue;
-                childnum = orgs.getElementsByTagName("childnum")[0].firstChild.nodeValue;
-
-                if (cancel == "1") {
-                    continue;
-                }
-                //动态画树
-                var nNode = tree.add(toNode, 'last', name, "n" + key, id, '', icon, '', '');
-                if (nNode.parent.first.label.innerText == 'loading...')nNode.parent.first.remove();
-                if (childnum != 0) {
-                    nNode.add('loading...');
-                    nNode.expand(false);
-                }
-            }
-
-            //展开根节点
-            try {
-                rootNodes = tree.root.children;
-                for (i = 0; i < rootNodes.length; i++) {
-                    if (rootNodes[i].first.label.innerText == "loading...") {
-                        rootNodes[i].expand(true);
-                        break;
-                    }
-                }
-            } catch(e) {
-
-            }
-
-        }
+	    var rightFlag1="<%=rightFlag%>";
+	    var rootId1="<%=rootId%>";
+	    var zTree;
+		var setting = {
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},async: {
+				enable: true,
+				url:"../ajax/Org.jsp",
+				autoParam:["id"],
+				otherParam:{"onlyOrg":"1","rightFlag":rightFlag1}
+			},callback: {
+				onAsyncSuccess: function(event, treeId, treeNode){
+					treeNode.halfCheck = false;
+					zTree.updateNode(treeNode);
+				},onClick: function(event, treeId, treeNode){
+					parent.refreshList(treeNode.id);
+				}
+			}
+		};
+		$(function(){
+			var zData=null;
+			var url="../ajax/Org.jsp?onlyOrg=1&id=-1&rightFlag="+rightFlag1+"&rootId="+rootId1;
+			$.post(url,function(data){
+				zData=eval(data);
+				zTree=$.fn.zTree.init($("#tree"), setting, zData);
+				var nodes = zTree.getNodes();
+		        zTree.expandNode(nodes[0], true);
+			});
+		});
     </script>
 </head>
 
 <body topmargin="0" leftmargin="0">
-<div id="tt"></div>
+	<div >
+		<ul id="tree" class="ztree"></ul>
+	</div>
 <script language="javascript">
     <%
         if ("1".equals(request.getParameter("inLead"))){
            out.println("    inLead=1;");
         }
     %>
-    
-    //定义树的图片对象
-    var images = getTreeImage();
-    //初始化树
-    var tree = new newtree(images, 16, tt);
-    showTree("-1", "<%=rightFlag%>", "<%=rootId%>");//树的根节点
-    //定义树的节点的扩展方法
-    tree.onexpand = function(srcNode) {
-        if (srcNode.first.label.innerText == "loading..."){
-            showTree(srcNode.key2, "1", "");
-        }
-        return true;
-    }
-
-    tree.onclick = function(srcNode) {
-        parent.refreshList(srcNode.key2);
-    }
 </script>
 
 </body>

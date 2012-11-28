@@ -1,12 +1,13 @@
+<%@page import="com.hr319wg.custom.util.CommonUtil"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.common.Constants" %>
 <%@ page import="com.hr319wg.util.CommonFuns" %>
 <%@ include file="/pages/include/taglib.jsp" %>
 <link href="/css/style.css" rel="stylesheet" type="text/css"/>
-<script src="<%=request.getContextPath()%>/js/jquery.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js" type="text/javascript"></script>
     <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" align="center" >
        <tr>
-           <td  height='100%' width='100%' ><img alt="" src='/images/maininterface/login_backgroud.jpg' width=100% height=100% style='position:absolute;top:0;left:0;z-index:-1'></td>
+           <td  height='100%' width='100%' ><img alt="" src='/<%=CommonUtil.getSYS_INTERFACE()[0]%>' width=100% height=100% style='position:absolute;top:0;left:0;z-index:-1'></td>
        </tr>
     </table>
 
