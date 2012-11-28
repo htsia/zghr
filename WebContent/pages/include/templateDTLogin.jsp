@@ -7,10 +7,10 @@
    response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
    response.setContentType("text/html;charset=GBK");
 %>
-
 <html>
 <c:view>
 <head >
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8;"/>
     <meta http-equiv="Content-Type" content="text/html;charset=GBK"/>
     <title>
         <%

@@ -28,7 +28,7 @@
         <tr>
             <td id="showTree" width="210" valign="top">
                         <iframe name="tree" height="400"  frameborder="0"  scrolling="yes" width="100%"
-                                src="/pages/common/ShowOnlyOrgTree.jsp"></iframe>
+                                src="/pages/common/ShowOrgTree.jsp"></iframe>
             </td>
 
             <td width="10" class="ctrlbar" valign="middle">

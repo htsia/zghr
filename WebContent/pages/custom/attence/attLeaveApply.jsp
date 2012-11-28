@@ -6,7 +6,7 @@
 	response.setHeader("Cache-Control", "no-cache");
 	response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
-
+<f:verbatim>
 <script type="text/javascript">
 	function getApplyDays() {
 		document.all("form1:saveleave").disabled = "disabled";
@@ -14,7 +14,7 @@
 		$("#applist").html("");
 		var beginDate = document.all("form1:beginTime").value;
 		var endDate = document.all("form1:endTime").value;
-		if (beginDate != "" && endDate != "") {
+		if(beginDate != "" && endDate != "") {
 			var beginHour = document.all("beginHour").value;
 			var endHour = document.all("endHour").value;
 			var realBeginTime = beginDate + " " + beginHour;
@@ -34,6 +34,7 @@
 						} else {
 							document.all("form1:saveleave").disabled = "";
 							var info = msg.split(',');
+							alert(msg);
 							document.all("form1:applydays").value = info[0];
 							var userlist = "";
 							for ( var i = 1; i < info.length - 1; i++) {
@@ -257,20 +258,19 @@
 	function isChanjia() {
 		var type = document.all("form1:leaveType").value;
 		if (type == 5 || type == 6) {
-			document.all("form1:chan").style.display = "block";
-			document.all("form1:totalDays").style.display = "block";
-			document.all("form1:nochan").style.display = "none";
-			document.all("form1:applydays").style.display = "none";
+			document.getElementById("form1:chan").style.display = "block";
+			document.getElementById("form1:totalDays").style.display = "block";
+			document.getElementById("form1:nochan").style.display = "none";
+			document.getElementById("form1:applydays").style.display = "none";
 		} else if(type==1|| type == 2|| type == 3|| type == 4|| type == 7) {
-			document.all("form1:chan").style.display = "none";
-			document.all("form1:totalDays").style.display = "none";
-			document.all("form1:nochan").style.display = "block";
-			document.all("form1:applydays").style.display = "block";
-			
+			document.getElementById("form1:chan").style.display = "none";
+			document.getElementById("form1:totalDays").style.display = "none";
+			document.getElementById("form1:nochan").style.display = "block";
+			document.getElementById("form1:applydays").style.display = "block";
 		}
 	}
 </script>
-
+</f:verbatim>
 <x:saveState value="#{attLeaveApplyBB}" />
 <h:form id="form1">
 	<h:inputHidden id="initEdit" value="#{attLeaveApplyBB.initEdit}"></h:inputHidden>
@@ -340,12 +340,8 @@
 				<h:outputText id="chan" style="display:none" value="产  假/难产产假天数" />
 			</h:panelGroup>
 			<h:panelGroup>
-				<h:inputText style="display:block" styleClass="input1"
-					readonly="true" id="applydays"
-					value="#{attLeaveApplyBB.leaveBo.applyDays}"></h:inputText>
-				<h:inputText style="display:none" styleClass="input1"
-					readonly="true" id="totalDays"
-					value="#{attLeaveApplyBB.leaveBo.totalDays}"></h:inputText>
+				<h:inputText styleClass="input1" readonly="true" id="applydays" value="#{attLeaveApplyBB.leaveBo.applyDays}"/>
+				<h:inputText style="display:none" styleClass="input1" readonly="true" id="totalDays" value="#{attLeaveApplyBB.leaveBo.totalDays}"/>
 			</h:panelGroup>
 		</h:panelGrid>
 		<h:panelGrid columns="2" width="100%"

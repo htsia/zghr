@@ -50,21 +50,21 @@
 	            if (childmenu.getUrl()==null || "".equals(childmenu.getUrl())){
 	            	out.println("zNodes.push({id:'"+childmenu.getOperateId()+"',pId:'"+menu.getOperateId()+"',name:'"+childmenu.getName()+"',open:true,isParent:true})");
 	            }else{
-	            	out.println("zNodes.push({id:'"+childmenu.getOperateId()+"',pId:'"+menu.getOperateId()+"',name:'"+childmenu.getName()+"',key:'"+childmenu.getUrl()+"',icon:'/images/tree_images/book1_open.gif'})");
+	            	out.println("zNodes.push({id:'"+childmenu.getOperateId()+"',pId:'"+menu.getOperateId()+"',name:'"+childmenu.getName()+"',key:\""+childmenu.getUrl()+"\",icon:'/images/tree_images/book1_open.gif'})");
 	            }
 	            for(int j=0;childmenu.getMenus()!=null && j<childmenu.getMenus().size();j++){
 	                MenuObj childchildmenu=(MenuObj)childmenu.getMenus().get(j);
 	                if (childchildmenu.getUrl()==null || "".equals(childchildmenu.getUrl())){
 	                	out.println("zNodes.push({id:'"+childchildmenu.getOperateId()+"',pId:'"+childmenu.getOperateId()+"',name:'"+childchildmenu.getName()+"',open:true,isParent:true})");
 		            }else{
-		            	out.println("zNodes.push({id:'"+childchildmenu.getOperateId()+"',pId:'"+childmenu.getOperateId()+"',name:'"+childchildmenu.getName()+"',key:'"+childchildmenu.getUrl()+"',icon:'/images/tree_images/book1_open.gif'})");
+		            	out.println("zNodes.push({id:'"+childchildmenu.getOperateId()+"',pId:'"+childmenu.getOperateId()+"',name:'"+childchildmenu.getName()+"',key:\""+childchildmenu.getUrl()+"\",icon:'/images/tree_images/book1_open.gif'})");
 		            }
 	                for(int k=0;childchildmenu.getMenus()!=null && k<childchildmenu.getMenus().size();k++){
 	                    MenuObj childchildchildmenu=(MenuObj)childchildmenu.getMenus().get(k);
 	                    if (childchildchildmenu.getUrl()==null || "".equals(childchildchildmenu.getUrl())){
 	                    	out.println("zNodes.push({id:'"+childchildchildmenu.getOperateId()+"',pId:'"+childchildmenu.getOperateId()+"',name:'"+childchildchildmenu.getName()+"',open:true,isParent:true})");
 			            }else{
-			            	out.println("zNodes.push({id:'"+childchildchildmenu.getOperateId()+"',pId:'"+childchildmenu.getOperateId()+"',name:'"+childchildchildmenu.getName()+"',key:'"+childchildchildmenu.getUrl()+"',icon:'/images/tree_images/book1_open.gif'})");
+			            	out.println("zNodes.push({id:'"+childchildchildmenu.getOperateId()+"',pId:'"+childchildmenu.getOperateId()+"',name:'"+childchildchildmenu.getName()+"',key:\""+childchildchildmenu.getUrl()+"\",icon:'/images/tree_images/book1_open.gif'})");
 			            }
 	                }
 	            }

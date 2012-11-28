@@ -287,7 +287,7 @@ function PopUpCalendarDialog(obj) {
     showx = event.screenX - event.offsetX - 160;
     showy = event.screenY - event.offsetY + 18;
 
-    retval = window.showModalDialog("/pages/common/CalendarDlg.jsp?date=" + ctrlobj.value, "", "dialogWidth:30px; dialogHeight:160px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;");
+    retval = window.showModalDialog("/pages/common/CalendarDlg.jsp?date=" + ctrlobj.value, "", "dialogWidth:250px; dialogHeight:170px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;");
     if (retval != null) {
         ctrlobj.value = retval;
     } else {

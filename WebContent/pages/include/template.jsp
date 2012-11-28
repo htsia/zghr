@@ -4,6 +4,7 @@
 <html>
 <c:view>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8;"/>
     <meta http-equiv="Content-Type" content="text/html;charset=GBK"/>
     <title>
         <%
@@ -17,9 +18,6 @@
     <script src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js" type="text/javascript"></script>
     <script type="text/javascript" language="javascript" src="/js/Appclient.js"></script>
     <script type="text/javascript" language="javascript" src="/js/check.js"></script>
-    <script type="text/javascript">
-        ////document.oncontextmenu=function(e){return false;}
-    </script>
 </head>
 <body BGCOLOR=<%=Constants.BGCOLOR%>>
     <tiles:insert attribute="body" flush="true"/>

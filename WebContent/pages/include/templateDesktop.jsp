@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.common.Constants" %>
 <%@ include file="taglib.jsp" %>
-
 <html>
 <c:view>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8;"/>
     <meta http-equiv="Content-Type" content="text/html;charset=GBK"/>
     <title>
         <%

@@ -10,6 +10,7 @@
 <html>
 <c:view>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8;"/>
     <meta http-equiv="Content-Type" content="text/html;charset=GBK"/>
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>
     <script src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js" type="text/javascript"></script>
