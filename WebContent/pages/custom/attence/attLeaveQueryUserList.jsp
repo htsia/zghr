@@ -91,16 +91,6 @@
                  headerClass="td_top" columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center80,td_middle_center80,td_middle_center,td_middle_center80,td_middle_center100,td_middle_center,td_middle_center"
                  styleClass="table03" width="98%" >
         <h:column>
-	       <f:facet name="header">
-	           <f:verbatim escape="false">
-	               <input type="checkbox" name="all"
-	                      onclick="selectAll(document.forms(0).all,document.forms(0).selectItem)"/>
-	           </f:verbatim>
-	       </f:facet>
-	       <f:verbatim escape="false">
-	           <div align="center"> <input type="checkbox" name="selectItem" value="</f:verbatim><h:outputText value="#{list.machineIP}"/><f:verbatim escape="false">"/></div></f:verbatim>
-	   </h:column>
-        <h:column>
             <c:facet name="header"><h:outputText value="Ô±¹¤±àºÅ"/></c:facet>
             <h:outputText value="#{list.personCode}"/>
         </h:column>

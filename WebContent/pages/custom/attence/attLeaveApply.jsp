@@ -68,7 +68,7 @@
 			alert("请选择开始日期");
 			return false;
 		}else if(beginDate<str){
-  			alert("开始时间不能小于当天");
+  			alert("根据考勤制度，只能申请当天及以后的。如果您需要补录，请联系人力资源处。");
   			return false;
   		} else if (endDate == null || endDate == "") {
 			alert("请选择结束日期");

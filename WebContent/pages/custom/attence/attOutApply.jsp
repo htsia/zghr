@@ -17,7 +17,7 @@
   			alert("请选择开始日期");
   			return false;
   		}else if(beginDate<str){
-  			alert("开始时间小于当天，根据考勤制度，只能申请当天以后的。如果您要补录单子，请联系人力资源处。");
+  			alert("根据考勤制度，只能申请当天及以后的。如果您需要补录，请联系人力资源处。");
   			return false;
   		}else if(beginDate>endDate){
   			alert("结束日期大于开始日期");

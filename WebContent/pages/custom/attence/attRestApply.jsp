@@ -27,7 +27,7 @@
   			alert("请选择开始日期");
   			return false;
   		}else if(beginDate<str){
-  			alert("开始时间小于当天，根据考勤制度，只能申请当天以后的。如果您要补录单子，请联系人力资源处。");
+  			alert("根据考勤制度，只能申请当天及以后的。如果您需要补录，请联系人力资源处。");
   			return false;
   		}else if(beginDate>endDate){
   			alert("结束日期大于开始日期");
@@ -44,7 +44,7 @@
   			if(restdays.length==0){
   				restdays=0;
   			}
-  			alert("您的存休时间不足,还有"+restdays+"小时");
+  			alert("您的存休时间不足,剩余"+restdays+"小时");
   			return false;
   		}
   	//判断原因是否过长
