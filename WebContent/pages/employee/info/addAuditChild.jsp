@@ -38,7 +38,7 @@
                 } else
                     perID = form1.chk.value;
                 var url="/employee/info/ProcessAduit.jsf?perIds="+perID;
-
+	
                 window.showModalDialog(url, null, "dialogWidth:500px; dialogHeight:340px;center:center;resizable:no;status:no;scroll:yes;");
                 return true;
             } else {
@@ -58,37 +58,33 @@
 <f:verbatim>
          <table height="98%" width="100%">
           <tr>
-            <td align="left" height=8>
+            <td align="left" height=8 valign="top">
  </f:verbatim>
               <h:outputText escape="false" value="<strong>当前单位:</strong>#{emp_personListBB.superName}"></h:outputText>
  <f:verbatim>
             </td>
-         </tr>
-
-         <tr>
             <td height=8 align="right">
 </f:verbatim>
               <h:selectOneRadio value="#{emp_personListBB.auditStatus}" id="auditStatus" onclick="disPlayProcessBar();submit();" valueChangeListener="#{emp_personListBB.changeAuditStatus}">
                   <c:selectItem itemValue="00000" itemLabel="未审批"></c:selectItem>
-                  <c:selectItem itemValue="00900" itemLabel="审批不通过"></c:selectItem>
+                  <c:selectItem itemValue="00900" itemLabel="审批未通过"></c:selectItem>
                   <c:selectItem itemValue="00901" itemLabel="审批通过"></c:selectItem>
               </h:selectOneRadio>
             </td>
             <td>
-              <h:outputText escape="false" value="<strong>输入姓名或员工编号：</strong>"></h:outputText> 
+              <h:outputText escape="false" value="<strong>姓名或编号：</strong>"></h:outputText> 
               <h:inputText id="name" value="#{emp_personListBB.name}"   size="10" styleClass="input"   />
 
-              <h:outputText escape="false" value="<strong>输入时间：</strong>"></h:outputText>
+              <h:outputText escape="false" value="<strong>入职时间：</strong>"></h:outputText>
               <h:inputText id="processDate" value="#{emp_personListBB.processDate}"   size="10" styleClass="input"   />
               <h:commandButton type="button" styleClass="button_date" onclick="PopUpCalendarDlg_OnlyMonth('form1:processDate');"></h:commandButton>
               <h:commandButton value="查询" id="query" action="#{emp_personListBB.doQueryCheckAuditPerson}" onclick="return disPlayProcessBar();" styleClass="button01" />
-
+			  <h:outputText value="  "/>
              <h:commandButton styleClass="button01" onclick="return audit();" action="#{emp_personListBB.doQueryCheckAuditPerson}" value="审批"></h:commandButton>
              <h:commandButton styleClass="button01" type="button" onclick="doExport();" value="导出"></h:commandButton>
              <h:commandButton value="查看流程" id="showFlow" type="button" onclick="return showWF();" styleClass="button01" rendered="#{emp_personListBB.workFlow=='1'}"></h:commandButton>
 <f:verbatim>
          </td></tr>
-
         <tr><td colspan="2">
             <jsp:include page="../../common/activepage/ActiveList.jsp">
                 <jsp:param name="hasOperSign" value="true"/>

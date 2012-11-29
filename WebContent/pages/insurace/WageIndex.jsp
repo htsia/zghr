@@ -11,7 +11,7 @@
     String type = request.getParameter("type");
     User user = (User) session.getAttribute(Constants.USER_INFO);
     if (user == null) {
-        response.sendRedirect("/pages/overtime.htm");
+        response.sendRedirect("/pages/overtime.jsp");
     } 
 %>
 <html>

@@ -17,7 +17,7 @@
 
   <script  language="javascript">
         if(window.opener != null){
-            window.opener.location = "/pages/overtime.htm";
+            window.opener.location = "/pages/overtime.jsp";
             this.close();
         }
         var p = window.parent;
@@ -28,7 +28,7 @@
            p = p.parent;
            cur = p;
         }
-        if(p != this)     p.location = "overtime.htm"
+        if(p != this)     p.location = "overtime.jsp"
     </script>
 
         <script type="text/javascript">

@@ -33,7 +33,7 @@
         mmidincolor ='<%=Constants.MENUID_IN_COLOR%>';
     }
     function refreshFun(url){
-        document.main.location.href=url;
+    	$("iframe[name=main]").attr("src",url);
     }
     function refreshMain(){
          window.location="/MainInterface/MainStandard.jsf?moduleId=HOMEPAGE";

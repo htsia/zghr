@@ -13,7 +13,7 @@
     String title = "";
     String url = "";
     if (user == null) {
-        response.sendRedirect("/pages/overtime.htm");
+        response.sendRedirect("/pages/overtime.jsp");
     } else {
         String userId = user.getUserId();
         String unitId = SysCacheTool.findPersonById(userId).getGongZiGX();

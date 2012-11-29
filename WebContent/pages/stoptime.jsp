@@ -1,3 +1,4 @@
+<%@page import="com.hr319wg.custom.util.CommonUtil"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <html>
 <head>
@@ -9,7 +10,7 @@
         <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
            <tr>
                 <script type="text/javascript">
-                    document.write("<td  height='100%' width='100%'  ><img src='/images/maininterface/login_backgroud.jpg' width=100% height=100% style='position:absolute;top:0;left:0;z-index:-1'></td>");
+                    document.write("<td  height='100%' width='100%'  ><img src='<%=CommonUtil.getSYS_INTERFACE()[0]%>' width=100% height=100% style='position:absolute;top:0;left:0;z-index:-1'></td>");
                 </script>
            </tr>
         </table>

@@ -49,7 +49,14 @@
     function doViewPerson(){
         var ID=getFirstSelectValue(form1.chk);
         if (ID!=null && ID!=""){
-            var arg = "id=" + ID;
+        	var IDs=ID.split("-");
+        	var userID=null;
+            if(IDs.length==2){
+            	userID=IDs[0];
+            }else if(IDs.length==3){
+            	userID=IDs[1];
+            }
+            var arg = "id=" + userID;
             window.open("/pages/wage/base/PersonInfoFrame.jsf?" + arg, null, "left=100,top=50,height=600,width=900,status=yes,toolbar=no,menubar=no,location=no,status=no,scroll=yes,resizable=yes");
         }
         else{

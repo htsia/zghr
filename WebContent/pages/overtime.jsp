@@ -1,32 +1,34 @@
+<%@page import="com.hr319wg.custom.util.CommonUtil"%>
+<%@ page contentType="text/html;charset=GBK" language="java" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç³»ç»Ÿè¶…æ—¶</title>
+<title>ÏµÍ³³¬Ê±</title>
 </head>
 
 <body>
         <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
            <tr>
                 <script type="text/javascript">
-                    document.write("<td  height='100%' width='100%'  ><img src='/images/maininterface/login_backgroud.jpg' width=100% height=100% style='position:absolute;top:0;left:0;z-index:-1'></td>");
+                    document.write("<td  height='100%' width='100%'  ><img src='/<%=CommonUtil.getSYS_INTERFACE()[0] %>' width=100% height=100% style='position:absolute;top:0;left:0;z-index:-1'></td>");
                 </script>
            </tr>
         </table>
 
   <script  language="javascript">
         if(window.opener != null){
-            window.opener.location = "/pages/overtime.htm";
+            window.opener.location = "/pages/overtime.jsp";
             this.close();
         }
         var p = window.parent;
         var cur = this;
-        //æ‰¾åˆ°æœ€ä¸Šçº§é¡µé¢
+        //ÕÒµ½×îÉÏ¼¶Ò³Ãæ
         while(p != cur)
         {
            p = p.parent;
            cur = p;
         }
-        if(p != this)     p.location = "overtime.htm"
+        if(p != this)     p.location = "overtime.jsp"
     </script>
 
         <script type="text/javascript">
@@ -35,7 +37,7 @@
             document.write(contentStr);
         </script>
           <tr><td align="center">
-          <font size="6">ç³»ç»Ÿè¿æ¥è¶…æ—¶ï¼Œè¯·é‡æ–°<a href="/index.jsp"><font color="red">ç™»å½•</font></a>ï¼</font>
+          <font size="6">ÏµÍ³Á¬½Ó³¬Ê±£¬ÇëÖØĞÂ<a href="/index.jsp"><font color="red">µÇÂ¼</font></a>£¡</font>
           </td></tr>
         <script type="text/javascript">
             document.write("</table>");

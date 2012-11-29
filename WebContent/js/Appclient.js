@@ -100,8 +100,8 @@ function codeInterpretCallback() {
                 else
                     codeid = "";
 
-                document.all(fieldName).code = codeid;
-                document.all(fieldName).value = codename;
+                document.getElementById(fieldName).code = codeid;
+                document.getElementById(fieldName).value = codename;
             }
         }
     }
@@ -281,7 +281,7 @@ function forsubmit(form1, flag) {
 function PopUpCalendarDialog(obj) {
     var ctrlobj
     if (obj.tagName == null)
-        ctrlobj = document.all(obj);
+        ctrlobj = document.getElementById(obj);
     else
         ctrlobj = obj;
     showx = event.screenX - event.offsetX - 160;
@@ -296,7 +296,7 @@ function PopUpCalendarDialog(obj) {
 function PopUpCalendarDlg_OnlyMonth(obj) {   // 只选到月份
     var ctrlobj
     if (obj.tagName == null)
-        ctrlobj = document.all(obj);
+        ctrlobj = document.getElementById(obj);
     else
         ctrlobj = obj;
     showx = event.screenX - event.offsetX - 160;
@@ -316,7 +316,7 @@ function PopUpCalendarDlg_OnlyMonth(obj) {   // 只选到月份
 function PopUpCalendar_OnlyMonth(obj) {   // 只显示年月下拉框
     var ctrlobj
     if (obj.tagName == null)
-        ctrlobj = document.all(obj);
+        ctrlobj = document.getElementById(obj);
     else
         ctrlobj = obj;
     showx = event.screenX - event.offsetX - 160;
@@ -331,7 +331,7 @@ function PopUpCalendar_OnlyMonth(obj) {   // 只显示年月下拉框
 function PopUpCalendarDlg_OnlyYear(obj) {   // 只选到年份
     var ctrlobj
     if (obj.tagName == null)
-        ctrlobj = document.all(obj);
+        ctrlobj = document.getElementById(obj);
     else
         ctrlobj = obj;
     showx = event.screenX - event.offsetX - 160;
@@ -373,7 +373,7 @@ function windowOpen(theURL, winName, features, width, hight, scrollbars, top, le
 //    rootCodeId,代码的根节点，用逗号隔开 "12,13";
 //    flag 是否选则叶 flag=0,只允许选择叶，flag=1,允许选择枝 ,不传或者=2，根据数据库里的属性判断要选择枝还是叶
 function PopUpCodeDlgOneControl(obj, rootCodeId, flag) {
-    var ctrlobj = document.all(obj);
+    var ctrlobj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
 
@@ -438,7 +438,7 @@ function PopUpCodeDlgTwoControlSelectAll(codec, valuec, dict_num, rootCodeId) {
  *       rootOrgId根节点的机构编号，可以用“，”分隔
  */
 function PopUpOrgDlg(obj, useRightFlag, rootOrgId) {
-    var ctrlobj = document.all(obj);
+    var ctrlobj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
     if (useRightFlag == null)
@@ -460,7 +460,7 @@ function PopUpOrgDlg(obj, useRightFlag, rootOrgId) {
 }
 
 function PopUpOrgOnlyDlg(obj, useRightFlag, rootOrgId) { //   仅仅显示机构 useRightFlag 0-不使用 1-使用查询权限过滤,2-使用维护权限过滤；rootOrgId根节点的机构编号，可以用“，”分隔
-    var ctrlobj = document.all(obj);
+    var ctrlobj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
     if (useRightFlag == null)
@@ -482,7 +482,7 @@ function PopUpOrgOnlyDlg(obj, useRightFlag, rootOrgId) { //   仅仅显示机构 useRi
 }
 
 function PopUpOrgDlgShowGroup(obj, useRightFlag, rootOrgId) {    // 显示班组
-    var ctrlobj = document.all(obj);
+    var ctrlobj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 150;
     // + deltaX;
     showy = event.screenY - event.offsetY + 18;
@@ -511,9 +511,9 @@ function fPopUpOrgDlg2(codec, valuec, useRightFlag, rootOrgId) {  //选择机构  us
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
     if (codec != "[object]")
-        codec = document.all(codec);
+        codec = document.getElementById(codec);
     if (valuec != "[object]")
-        valuec = document.all(valuec);
+        valuec = document.getElementById(valuec);
 
     if (useRightFlag == null)
         useRightFlag = 0;
@@ -536,9 +536,9 @@ function PopUpOrgOnlyDlgTwoControl(codec, valuec, useRightFlag, rootOrgId) {
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
     if (codec != "[object]")
-        codec = document.all(codec);
+        codec = document.getElementById(codec);
     if (valuec != "[object]")
-        valuec = document.all(valuec);
+        valuec = document.getElementById(valuec);
 
     if (useRightFlag == null)
         useRightFlag = 0;
@@ -559,7 +559,7 @@ function PopUpOrgOnlyDlgTwoControl(codec, valuec, useRightFlag, rootOrgId) {
 }
 
 function fPopUpWageUnitDlg(obj, checkRight) { //选择薪资机构检查权限 checkRight =true 不检查权限 checkright＝false
-    var ctrlobj = document.all(obj);
+    var ctrlobj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
 
@@ -582,9 +582,9 @@ function fPopUpWageUnitDlg2(codec,valuec, checkRight) {
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
      if (codec != "[object]")
-        codec = document.all(codec);
+        codec = document.getElementById(codec);
     if (valuec != "[object]")
-        valuec = document.all(valuec);
+        valuec = document.getElementById(valuec);
 
     if (checkRight == null || checkRight == "") {
         checkRight = false;
@@ -607,9 +607,9 @@ function fPopUpLeadUnitDlg2(codec,valuec) {
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
      if (codec != "[object]")
-        codec = document.all(codec);
+        codec = document.getElementById(codec);
     if (valuec != "[object]")
-        valuec = document.all(valuec);
+        valuec = document.getElementById(valuec);
     var arg = "dict_num=OU";
     arg += "&curCode=" + codec.value;
     arg += "&value=" + valuec.value;
@@ -623,15 +623,15 @@ function fPopUpLeadUnitDlg2(codec,valuec) {
 
 //检查权限 checkRight =true 不检查权限 checkright＝false
 function fPopUpMutiWageUnitDlg2(codec,valuec, checkRight) {
-   // var ctrlobj = document.all(obj);
+   // var ctrlobj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 150;
     // + deltaX;
     showy = event.screenY - event.offsetY + 18;
     // + deltaY;
      if (codec != "[object]")
-        codec = document.all(codec);
+        codec = document.getElementById(codec);
     if (valuec != "[object]")
-        valuec = document.all(valuec);
+        valuec = document.getElementById(valuec);
 
     if (checkRight == null || checkRight == "") {
         checkRight = false;
@@ -650,7 +650,7 @@ function fPopUpMutiWageUnitDlg2(codec,valuec, checkRight) {
 // 选择薪资项
 function PopUpWageItemDlg(obj) {
     if (obj != "[object]")
-        obj = document.all(obj);
+        obj = document.getElementById(obj);
 
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
@@ -666,7 +666,7 @@ function PopUpWageItemDlg(obj) {
 // 选择薪资部门
 function PopUpWageDeptDlg(obj,setID) {
     if (obj != "[object]")
-        obj = document.all(obj);
+        obj = document.getElementById(obj);
 
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
@@ -678,7 +678,7 @@ function PopUpWageDeptDlg(obj,setID) {
 }
 function PopUpWageDeptDlgByPerson(obj,personID) {
     if (obj != "[object]")
-        obj = document.all(obj);
+        obj = document.getElementById(obj);
 
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
@@ -691,7 +691,7 @@ function PopUpWageDeptDlgByPerson(obj,personID) {
 }
 function PopUpWageDeptDlgByOrg(obj,OrgID) {
     if (obj != "[object]")
-        obj = document.all(obj);
+        obj = document.getElementById(obj);
 
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
@@ -705,7 +705,7 @@ function PopUpWageDeptDlgByOrg(obj,OrgID) {
 //选择党组织  useRightFlag 0-不使用 1-使用权限过滤； rootOrgId根节点的机构编号，可以用“，”分隔
 //partyType 0：全部 1|null|''：党组织 2：已撤销党组织 3：只显示现有的党委
 function fPopUpPartyDlg(obj, useRightFlag, rootOrgId, partyType) {
-    var ctrlobj = document.all(obj);
+    var ctrlobj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 150;
     // + deltaX;
     showy = event.screenY - event.offsetY + 18;
@@ -738,9 +738,9 @@ function fPopUpPartyDlg2(codec, valuec, useRightFlag, rootOrgId, partyType) {
     showy = event.screenY - event.offsetY + 18;
     // + deltaY;
     if (codec != "[object]")
-        codec = document.all(codec);
+        codec = document.getElementById(codec);
     if (valuec != "[object]")
-        valuec = document.all(valuec);
+        valuec = document.getElementById(valuec);
     if (partyType == "undefined" || partyType == null)
         partyType = "";
 
@@ -765,21 +765,21 @@ function fPopUpPartyDlg2(codec, valuec, useRightFlag, rootOrgId, partyType) {
 
 //控制 树页面的显示、隐藏
 function ctrlbar() {
-    if (document.all.showTree.style.display == "") {
-        document.all.showTree.style.display = "none"
-        document.all.ctrlBnt.src = '/images/button_2.gif';
+    if (document.getElementById("showTree").style.display == "") {
+        document.getElementById("showTree").style.display = "none"
+        document.getElementById("ctrlBnt").src = '/images/button_2.gif';
     } else {
-        document.all.showTree.style.display = ""
-        document.all.ctrlBnt.src = '/images/button_1.gif';
+        document.getElementById("showTree").style.display = ""
+        document.getElementById("ctrlBnt").src = '/images/button_1.gif';
     }
 }
 function functrlbar() {
-    if (document.all.showfunTree.style.display == "") {
-        document.all.showfunTree.style.display = "none"
-        document.all.functrlbar.src = '/images/button_2.gif';
+    if (document.getElementById("showfunTree").style.display == "") {
+        document.getElementById("showfunTree").style.display = "none"
+        document.getElementById("functrlbar").src = '/images/button_2.gif';
     } else {
-        document.all.showfunTree.style.display = ""
-        document.all.functrlbar.src = '/images/button_1.gif';
+        document.getElementById("showfunTree").style.display = ""
+        document.getElementById("functrlbar").src = '/images/button_1.gif';
     }
 }
 //useRightFlag 0-不使用 1-使用权限过滤； rootOrgId根节点的机构编号
@@ -787,7 +787,7 @@ function PopUpMutilOrgOneControl(obj, useRightFlag, rootOrgId) {
     if (obj == null)
         return;
     if (obj != "[object]")
-        obj = document.all(obj);
+        obj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 160//+ 25; // + deltaX;
     showy = event.screenY - event.offsetY + 18;
     // + deltaY;
@@ -810,9 +810,9 @@ function PopUpMutilOrgTwoControl(codeField, nameField, useRightFlag, rootOrgId) 
     if (codeField == null || nameField == null)
         return false;
     if (codeField != "[object]")
-        codeField = document.all(codeField);
+        codeField = document.getElementById(codeField);
     if (nameField != "[object]")
-        nameField = document.all(nameField);
+        nameField = document.getElementById(nameField);
     showx = event.screenX - event.offsetX - 160//+ 25; // + deltaX;
     showy = event.screenY - event.offsetY + 18;
     // + deltaY;
@@ -836,9 +836,9 @@ function PopUpMutilOnlyOrgTwoControl(codeField, nameField, useRightFlag, rootOrg
     if (codeField == null || nameField == null)
         return false;
     if (codeField != "[object]")
-        codeField = document.all(codeField);
+        codeField = document.getElementById(codeField);
     if (nameField != "[object]")
-        nameField = document.all(nameField);
+        nameField = document.getElementById(nameField);
     showx = event.screenX - event.offsetX - 160//+ 25; // + deltaX;
     showy = event.screenY - event.offsetY + 18;
 
@@ -864,7 +864,7 @@ function PopUpMutilCodeDlg(obj) {
     if (obj == null)
         return;
     if (obj != "[object]")
-        obj = document.all(obj);
+        obj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 160;
     showy = event.screenY - event.offsetY + 18;
     var arg = "dict_num=" + ctrlobj.dict_num;
@@ -884,9 +884,9 @@ function PopUpMutilCodeDlgNoSubmit(codeField, nameField, dict_num,root_code) {
     var setId = dict_num;
     var url;
     if (codeField != "[object]")
-        codeField = document.all(codeField);
+        codeField = document.getElementById(codeField);
     if (nameField != "[object]")
-        nameField = document.all(nameField);
+        nameField = document.getElementById(nameField);
     showx = event.screenX - event.offsetX - 160;
     showy = event.screenY - event.offsetY + 18;
     url="/pages/common/SelMutilCode.jsp?dict_num=" + setId + "&curCode=" + codeField.value + "&value=" + nameField.value+"&rootCode="+root_code;
@@ -910,9 +910,9 @@ function PopUpMutilCodeDlgForSubmit(codeField, nameField, dict_num,root_code) {
         return;
     var setId = dict_num;
     if (codeField != "[object]")
-        codeField = document.all(codeField);
+        codeField = document.getElementById(codeField);
     if (nameField != "[object]")
-        nameField = document.all(nameField);
+        nameField = document.getElementById(nameField);
     showx = event.screenX - event.offsetX - 160;
     showy = event.screenY - event.offsetY + 18;
     //alert(cur_code);
@@ -936,9 +936,9 @@ function PopUpMutilCodeDlgNoLayerForSubmit(codeField, nameField, dict_num,root_c
         return;
     var setId = dict_num;
     if (codeField != "[object]")
-        codeField = document.all(codeField);
+        codeField = document.getElementById(codeField);
     if (nameField != "[object]")
-        nameField = document.all(nameField);
+        nameField = document.getElementById(nameField);
     showx = event.screenX - event.offsetX - 160;
     showy = event.screenY - event.offsetY + 18;
 
@@ -963,7 +963,7 @@ function fPopUpMutilParty(obj, useRightFlag, rootOrgId, partyType) {
     if (obj == null)
         return;
     if (obj != "[object]")
-        obj = document.all(obj);
+        obj = document.getElementById(obj);
     if (partyType == "undefined" || partyType == null)
         partyType = "";
     showx = event.screenX - event.offsetX - 160//+ 25; // + deltaX;
@@ -989,9 +989,9 @@ function fPopUpMutilParty2(codeField, nameField, useRightFlag, rootOrgId, partyT
     if (codeField == null || nameField == null)
         return;
     if (codeField != "[object]")
-        codeField = document.all(codeField);
+        codeField = document.getElementById(codeField);
     if (nameField != "[object]")
-        nameField = document.all(nameField);
+        nameField = document.getElementById(nameField);
     if (partyType == "undefined" || partyType == null)
         partyType = "";
     showx = event.screenX - event.offsetX - 160//+ 25; // + deltaX;
@@ -1019,8 +1019,8 @@ function fPopUpMutilParty2(codeField, nameField, useRightFlag, rootOrgId, partyT
  *      rightFlag 机构权限模式 0 不检查   1 操作  2 查询
  */
 function fPopUpPerDlgFilter(objname1, objname2, filter) {
-    var obj1 = document.all(objname1);
-    var obj2 = document.all(objname2);
+    var obj1 = document.getElementById(objname1);
+    var obj2 = document.getElementById(objname2);
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
 
@@ -1041,10 +1041,10 @@ function fPopUpPerDlgFilter(objname1, objname2, filter) {
 
 }
 function fPopUpPerDlg(objname1, objname2, superId,rightFlag) {
-    var obj1 = document.all(objname1);
+    var obj1 = document.getElementById(objname1);
     var obj2=null;
     if (objname2!=null && objname2!=undefined){
-       obj2= document.all(objname2);
+       obj2= document.getElementById(objname2);
     }
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
@@ -1073,10 +1073,10 @@ function fPopUpPerDlg(objname1, objname2, superId,rightFlag) {
 }
 // 选择人员
 function fPopUpPerEMailDlg(objname1, objname2,objname3,objname4) {
-    var obj1 = document.all(objname1);
-    var obj2 = document.all(objname2);
-    var obj3 = document.all(objname3);
-    var obj4 = document.all(objname4);
+    var obj1 = document.getElementById(objname1);
+    var obj2 = document.getElementById(objname2);
+    var obj3 = document.getElementById(objname3);
+    var obj4 = document.getElementById(objname4);
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
 
@@ -1104,8 +1104,8 @@ function fPopUpPerEMailDlg(objname1, objname2,objname3,objname4) {
 
 // 选择人员 需要看自助权限级别
 function fPopUpPerDlgInSelf(objname1, objname2,filter) {
-    var obj1 = document.all(objname1);
-    var obj2 = document.all(objname2);
+    var obj1 = document.getElementById(objname1);
+    var obj2 = document.getElementById(objname2);
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
 
@@ -1131,8 +1131,8 @@ function fPopUpPerDlgInSelf(objname1, objname2,filter) {
 
 //多选择人员
 function fPopUpMutiPerDlg(obj1, obj2, superId,rightFlag) {
-    var obj11 = document.all(obj1);
-    var obj21 = document.all(obj2);
+    var obj11 = document.getElementById(obj1);
+    var obj21 = document.getElementById(obj2);
     showx = event.screenX - event.offsetX - 150;
     // + deltaX;
     showy = event.screenY - event.offsetY + 18;
@@ -1184,8 +1184,8 @@ function fPopUpBackPerTreeDlg(rootId) {
 
 //单选择人员(通过党组织查询)
 function fPopUpPerByPartyDlg(obj1, obj2) {
-    var obj11 = document.all(obj1);
-    var obj21 = document.all(obj2);
+    var obj11 = document.getElementById(obj1);
+    var obj21 = document.getElementById(obj2);
     showx = event.screenX - event.offsetX - 150;
     // + deltaX;
     showy = event.screenY - event.offsetY + 18;
@@ -1219,11 +1219,11 @@ function fPopUpPostDlg(obj1, obj2, superId) {
     if (obj1 == null)
         return;
     if (obj1 != "[object]")
-        obj11 = document.all(obj1);
+        obj11 = document.getElementById(obj1);
     else
         obj11 = obj1;
     if (obj2 != "[object]" && obj2 != null)
-        obj21 = document.all(obj2);
+        obj21 = document.getElementById(obj2);
     else if (obj2 != null) {
         obj21 = obj2
     }
@@ -1259,11 +1259,11 @@ function fPopUpPostDlgRy(obj1, obj2, superId) {
     if (obj1 == null)
         return;
     if (obj1 != "[object]")
-        obj11 = document.all(obj1);
+        obj11 = document.getElementById(obj1);
     else
         obj11 = obj1;
     if (obj2 != "[object]" && obj2 != null)
-        obj21 = document.all(obj2);
+        obj21 = document.getElementById(obj2);
     else if (obj2 != null) {
         obj21 = obj2
     }
@@ -1294,11 +1294,11 @@ function PopUpPostDlgByDept(obj1, obj2, superId) {
     if (obj1 == null)
         return;
     if (obj1 != "[object]")
-        obj11 = document.all(obj1);
+        obj11 = document.getElementById(obj1);
     else
         obj11 = obj1;
     if (obj2 != "[object]" && obj2 != null)
-        obj21 = document.all(obj2);
+        obj21 = document.getElementById(obj2);
     else if (obj2 != null) {
         obj21 = obj2
     }
@@ -1330,11 +1330,11 @@ function fPopUpMutiPostDlg(obj1, obj2, obj3) {
         return;
     }
     if (obj1 != "[object]")
-        obj1 = document.all(obj1);
+        obj1 = document.getElementById(obj1);
     if (obj2 != "[object]")
-        obj2 = document.all(obj2);
+        obj2 = document.getElementById(obj2);
     if (obj3 != "[object]")
-        obj3 = document.all(obj3);
+        obj3 = document.getElementById(obj3);
     showx = event.screenX - event.offsetX - 150;
     // + deltaX;
     showy = event.screenY - event.offsetY + 18;
@@ -1527,7 +1527,7 @@ function trlinkOut(src) {
 }
 
 function setDataTableOver(id){
-    if (document.all(id)==null) return;
+    if (document.getElementById(id)==null) return;
     var changeTr=document.getElementById(id).getElementsByTagName("tr");
     for(i=1;i<changeTr.length;i++){
           changeTr[i].onmouseover=function(){
@@ -1598,7 +1598,7 @@ function forSearch(str) {
 
 function enterKeyDown(btnName){
     if (event.keyCode == 13) {  //回车
-        document.all(btnName).click();
+        document.getElementById(btnName).click();
         event.keyCode=null;
     }
     return false;
@@ -2010,9 +2010,9 @@ function PopUpRptList(codeField, nameField, useRightFlag, rootId) {
     if (codeField == null || nameField == null)
         return false;
     if (codeField != "[object]")
-        codeField = document.all(codeField);
+        codeField = document.getElementById(codeField);
     if (nameField != "[object]")
-        nameField = document.all(nameField);
+        nameField = document.getElementById(nameField);
     showx = event.screenX - event.offsetX - 160//+ 25; // + deltaX;
     showy = event.screenY - event.offsetY + 18;
 
@@ -2138,7 +2138,7 @@ function selectItemFlag(controlName){
 //---------- 身份卡 ---------------
 function installDrv(){
     try{
-         document.all('cardIApi').GetLibVersion();
+         document.getElementById('cardIApi').GetLibVersion();
     }
     catch(err){
         window.status=err.message;
@@ -2162,11 +2162,11 @@ function PopUpItemRptSetControl(codec, valuec) {
 }
 
 function viewTax(){
-    window.showModalDialog("/wage/set/taxCountMethod.jsf?setId=" + document.all("form1:setId").value, null, "dialogWidth:800px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
+    window.showModalDialog("/wage/set/taxCountMethod.jsf?setId=" + document.getElementById("form1:setId").value, null, "dialogWidth:800px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
     return false;
 }
 function viewYearTax(){
-    window.showModalDialog("/wage/set/taxYearCountMethod.jsf?setId=" + document.all("form1:setId").value, null, "dialogWidth:800px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
+    window.showModalDialog("/wage/set/taxYearCountMethod.jsf?setId=" + document.getElementById("form1:setId").value, null, "dialogWidth:800px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
     return false;
 }
 function viewStandard(sid){
@@ -2180,9 +2180,9 @@ function viewFormula(fid){
 function disPlayProcessBar() {
    x = document.body.clientWidth / 2 - 150;
    y = document.body.clientHeight / 2;
-   document.all('processbar').style.top = y;
-   document.all('processbar').style.left = x;
-   document.all('processbar').style.display = "";
+   document.getElementById('processbar').style.top = y;
+   document.getElementById('processbar').style.left = x;
+   document.getElementById('processbar').style.display = "";
    return true;
 }
 function showExcelFile(){

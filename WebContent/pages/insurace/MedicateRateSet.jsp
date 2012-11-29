@@ -10,7 +10,7 @@
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
     User user = (User) session.getAttribute(Constants.USER_INFO);
     if (user == null) {
-        response.sendRedirect("/pages/overtime.htm");
+        response.sendRedirect("/pages/overtime.jsp");
     } else {
         String userId = user.getUserId();
         String unitId = SysCacheTool.findPersonById(userId).getGongZiGX();

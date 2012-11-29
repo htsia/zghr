@@ -37,7 +37,7 @@
             document.main.location.href = url;
         }
         function refreshFun(url){
-            document.main.location.href=url;
+            $("iframe[name=main]").attr("src",url);
         }
         function goSys(){
             document.all('form1:gotoSys').click();
@@ -147,7 +147,7 @@
             return false;
         }
         var url="/desktop/PersonInfoList.jsf?superId=<%=Constants.ORG_BENBU%>&&queryMode=true&filter=(p.name like '%"+name+"%' or p.shortName like '%"+name+"%' or p.personCode like '%"+name+"%')";
-        document.main.location.href=url;
+        $("iframe[name=main]").attr("src",url);
     }
     function doNavigate(){
         document.main.location.href='/lead/chart/OrgChartIndex.jsf';

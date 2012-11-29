@@ -10,7 +10,7 @@
 
     User user = (User) session.getAttribute(Constants.USER_INFO);
     if (user == null) {
-        response.sendRedirect("/pages/overtime.htm");
+        response.sendRedirect("/pages/overtime.jsp");
     }
     String treeId = user.getOrgId();
     String root = "-1";

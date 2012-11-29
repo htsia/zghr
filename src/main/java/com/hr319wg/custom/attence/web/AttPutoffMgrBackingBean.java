@@ -920,7 +920,6 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 		}
 	}
 	public void uploadFile(){
-		System.out.println(this.overtimePay+"\n"+this.overtimePayMonth);
 		try {
 			Workbook wb = Workbook.getWorkbook(this.excelFile.getInputStream());
 			Sheet st=wb.getSheet(0);

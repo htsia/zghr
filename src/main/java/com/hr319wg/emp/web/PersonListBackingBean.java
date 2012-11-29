@@ -905,9 +905,6 @@ public class PersonListBackingBean extends BaseBackingBean
   }
 
   public String getProcessDate() {
-    if (this.processDate == null) {
-      this.processDate = CommonFuns.getSysDate("yyyy-MM");
-    }
     return this.processDate;
   }
   public void setProcessDate(String date) {
@@ -956,10 +953,10 @@ public class PersonListBackingBean extends BaseBackingBean
         typeWhere = " (A001031 in (" + Constants.EMP_OTHER + ")  or A001031 is null or A001031='')";
       }
       if ((this.name != null) && (!"".equals(this.name))) {
-        typeWhere = typeWhere + " and (A001001 like '%" + this.name + "%' or a001002 like '%" + this.name + "%' or A001735 like '%" + this.name + "%')";
+        typeWhere += " and (A001001 like '%" + this.name + "%' or a001002 like '%" + this.name + "%' or A001735 like '%" + this.name + "%')";
       }
       if ((this.processDate != null) && (!"".equals(this.processDate))) {
-        typeWhere = typeWhere + " and A016020 like '" + this.processDate + "%' ";
+        typeWhere += " and A016020 like '" + this.processDate + "%' ";
       }
       if (("00000".equals(this.auditStatus)) || ("".equals(this.auditStatus)) || (this.auditStatus == null)) {
         sql = this.personucc.queryAuditingPersonList(table, this.superId, pageNum, rowNum, user, "157", "  ((auditResult <>'00900' and  auditResult<>'00901') or auditResult is null) and " + typeWhere);
@@ -967,7 +964,6 @@ public class PersonListBackingBean extends BaseBackingBean
       else {
         sql = this.personucc.queryAuditingPersonList(table, this.superId, pageNum, rowNum, user, "157", " auditResult='" + this.auditStatus + "' and " + typeWhere);
       }
-
       CommonFuns.DebugLog(sql);
       getHttpSession().setAttribute("activeSql", sql);
       getHttpSession().setAttribute("pageNum", String.valueOf("1"));

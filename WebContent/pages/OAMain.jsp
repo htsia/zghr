@@ -47,7 +47,7 @@
         }
 
         function refreshFun(url){
-            document.main.location.href=url;
+            $("iframe[name=main]").attr("src",url);
         }
         with (window) onload = onresize = function(){
             var mainHeight = document.body.clientHeight - 150;

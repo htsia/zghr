@@ -235,14 +235,10 @@ public class BaseDAO {
                 }
             }
             hql = hql+order;
-
-            System.out.println("hql:"+hql);
-
             return hibernatetemplate.find(hql);
         }else{
             return null;
         }
-
     }
 
     /**

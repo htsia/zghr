@@ -26,7 +26,7 @@
             document.main.location.href = url;
         }
         function refreshFun(url){
-            document.main.location.href=url;
+            $("iframe[name=main]").attr("src",url);
         }
     </script>
 <body scroll="no">
