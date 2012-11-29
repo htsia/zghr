@@ -1,3 +1,5 @@
+--数据库升级版本
+insert into SYS_DB_VERSION values('5000',sysdate);
 
 --修改岗位报错
 delete from SYS_INFO_ITEM_REF t where t.item_id like 'C%'
