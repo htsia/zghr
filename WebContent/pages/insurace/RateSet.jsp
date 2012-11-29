@@ -41,7 +41,7 @@
     <tr>
         <td align="center" valign="top" class="explorer" id="showTree" width="250">
                         <iframe name="tree" frameborder="0" framespacing="0" scrolling="auto" width="100%"
-                                src="/pages/insurace/UnitTree.jsp"></iframe>
+                                src="/pages/common/ShowOnlyOrgTree.jsp"></iframe>
         </td>
 
         <td width="10" class="ctrlbar" valign="middle">
