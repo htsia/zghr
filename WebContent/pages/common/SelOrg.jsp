@@ -24,7 +24,7 @@
 <head><title>Ñ¡Ôñ»ú¹¹</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css"/>
     <script src="<%=request.getContextPath()%>/js/tree.js" language="JavaScript"></script>
-    <script src="<%=request.getContextPath()%>/js/Appclient.js" language="JavaScript"></script>
+    
     <script language="javascript">
         var xmlHttp;
         var superId = "";

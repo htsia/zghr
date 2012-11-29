@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/zTreeStyle/zTreeStyle.css" type="text/css">
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.ztree.core-3.5.min.js"></script>
-    <script src="<%=request.getContextPath()%>/js/Appclient.js" language="JavaScript"></script>
+    
     <script type="text/javascript">
     	var setting = {
 			data: {

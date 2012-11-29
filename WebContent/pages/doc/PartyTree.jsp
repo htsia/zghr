@@ -11,7 +11,7 @@
 <html>
 <head><title></title>
     <script src="../../js/tree.js" language="JavaScript"></script>
-    <script src="<%=request.getContextPath()%>/js/Appclient.js" language="JavaScript"></script>
+    
     <script language="javascript">
         var xmlHttp;
         var superId = "";

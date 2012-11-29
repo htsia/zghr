@@ -9,7 +9,7 @@
 <html>
 <head><title></title>
     <script src="<%=request.getContextPath()%>/js/tree.js" language="JavaScript"></script>
-    <script src="<%=request.getContextPath()%>/js/Appclient.js" language="JavaScript"></script>
+    
     <script language="javascript">
         var xmlHttp;
         var superId = "";

@@ -13,7 +13,7 @@
 <html>
 <head><title></title>
     <script src="<%=request.getContextPath()%>/js/tree.js" language="JavaScript"></script>
-    <script src="<%=request.getContextPath()%>/js/Appclient.js" language="JavaScript"></script>
+    
 </head>
 
 <body topmargin="0" leftmargin="0">

@@ -122,11 +122,11 @@ function showTable(changId){
                </td>
                <td align="left" class=td_title>
               </f:verbatim> 
-               		<h:outputText value="试用期转正月数:"/>
+               		<h:outputText value="试用期"/>
 					<h:outputText value="#{empprobastionmgrBB.passMonth}"/>
-               		<h:outputText value="见习期转正月数:"/>
+               		<h:outputText value="个月,见习期"/>
 					<h:outputText value="#{empprobastionmgrBB.passMonth2}"/>
-					<h:outputText value="  "></h:outputText>
+					<h:outputText value="个月  "></h:outputText>
 					<h:commandButton value="设置"  styleClass="button01" onclick="return SetProbation()"/>
                 	<h:outputText value="  "></h:outputText>
 					<h:commandButton value="报批"  styleClass="button01" onclick="selectPerson();" action="#{empprobastionmgrBB.approvid}" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
