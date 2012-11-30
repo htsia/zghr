@@ -113,7 +113,7 @@
         <table id=t1 width="98%" height=96% border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td class="td_page" height=2 colspan="2">
-                    <input name="simple1" type="button" id=15 next=20 class="button01" value="<%=LanguageSupport.getResource("XTGL-1012","选择人员类别") %>"     onclick="forSel()">
+                    <input name="simple1" type="button" id=15 next=20 class="button01" value="<%=LanguageSupport.getResource("XTGL-1012","选择人员类别") %>" onclick="forSel()">
 </f:verbatim>
                     <h:inputHidden id="personType" value="#{emp_personListBB.personType}"/>
                     <h:inputHidden id="personTypeValue" value="#{emp_personListBB.personTypeValue}"/>

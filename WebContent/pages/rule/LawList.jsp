@@ -13,8 +13,8 @@
     }
     with (window) onload = onresize = function(){
         var mainHeight = document.body.offsetHeight - 80;
-        document.getElementById("tree").style.height = "" + mainHeight + "px";
-        document.getElementById("main").style.height = "" + mainHeight + "px";
+        $("iframe[name=tree]").height(mainHeight);
+        $("iframe[name=main]").height(mainHeight);
     }
     function doQueryLaw(){
         window.showModalDialog("/rule/LawIndex.jsf", null, "dialogWidth:"+screen.width*0.8+"px; dialogHeight:"+screen.height*0.8+"px;center:center;resizable:yes;status:no;scroll:yes;");

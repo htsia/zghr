@@ -12,8 +12,8 @@
         }
         with (window) onload = onresize = function(){
             var mainHeight = document.body.offsetHeight - 40;
-            document.getElementById("tree").style.height = "" + mainHeight + "px";
-            document.getElementById("main").style.height = "" + mainHeight + "px";
+            $("iframe[name=tree]").height(mainHeight);
+            $("iframe[name=main]").height(mainHeight);
         }
         function caclItems(){
        	 window.showModalDialog("/coalsafe/caclAmerce.jsf", null, "dialogWidth:"+screen.width*0.7+"px; dialogHeight:"+screen.height*0.7+"px;center:center;resizable:yes;status:no;scroll:yes;");

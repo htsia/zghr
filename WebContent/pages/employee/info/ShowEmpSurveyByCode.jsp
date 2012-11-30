@@ -16,7 +16,7 @@
     <script type="text/javascript">
         with (window) onload = onresize = function(){
             var mainHeight = document.body.clientHeight - 50;
-            document.getElementById("main").style.height = "" + mainHeight + "px";
+            $("iframe[name=main]").height(mainHeight);
        }
        function copyValue(){
            document.all('form1:filtervalue').value=document.all('conditionID').value;

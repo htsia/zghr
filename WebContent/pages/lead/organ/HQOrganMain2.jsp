@@ -21,7 +21,7 @@
         with (window) onload = onresize = function() {
             var mainHeight = document.body.offsetHeight - 97;
 			document.body.scroll="no";
-            document.getElementById("main").style.height = "" + mainHeight + "px";
+            $("iframe[name=main]").height(mainHeight);
             document.getElementById("tree").style.height = "" + (mainHeight-20) + "px";
         }
         mmenucolor = '<%=Constants.MENU_COLOR%>';

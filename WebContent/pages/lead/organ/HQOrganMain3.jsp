@@ -19,7 +19,7 @@
     <script language="javascript">
         with (window) onload = onresize = function() {
             var mainHeight = document.body.offsetHeight - 120;
-            document.getElementById("main").style.height = "" + mainHeight + "px";
+            $("iframe[name=main]").height(mainHeight);
             document.getElementById("tree").style.height = "" + (mainHeight-30) + "px";
         }
         mmenucolor = '<%=Constants.MENU_COLOR%>';

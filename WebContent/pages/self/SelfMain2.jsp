@@ -13,13 +13,14 @@
    response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
 <c:verbatim>
+	<script src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js" type="text/javascript"></script>
     <script type="text/javascript" language="JavaScript1.2" src="<%=request.getContextPath()%>/js/menu.js"></script>
     <script language="javascript" src="<%=request.getContextPath()%>/js/maininterface.js"></script>
     <script language="javascript">
         with (window) onload = onresize = function() {
             var mainHeight = document.body.offsetHeight - 100;
-            document.getElementById("main").style.height = "" + mainHeight + "px";
-            document.getElementById("tree").style.height = "" + mainHeight + "px";
+            $("iframe[name=main]").height(mainHeight);
+            $("iframe[name=tree]").height(mainHeight);
         }
         // ¹ØÁª²Ù×÷
         function LinkOper(url){

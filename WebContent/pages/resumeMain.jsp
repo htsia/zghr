@@ -20,7 +20,7 @@
          }
         with (window) onload = onresize = function(){
             var mainHeight = document.body.clientHeight - 95;
-            document.getElementById("main").style.height = "" + mainHeight + "px";
+            $("iframe[name=main]").height(mainHeight);
         }
     </script>
 

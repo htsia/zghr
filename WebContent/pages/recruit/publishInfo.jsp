@@ -10,8 +10,8 @@
         }
         with (window) onload = onresize = function(){
             var mainHeight = document.body.offsetHeight - 34;            
-            document.getElementById("tree").style.height = "" + mainHeight + "px";
-            document.getElementById("main").style.height = "" + mainHeight + "px";         
+            $("iframe[name=tree]").height(mainHeight);
+            $("iframe[name=main]").height(mainHeight);         
         }
         function beginInput(){      	
             var url="/recruit/recuPublishInfoList.jsf";

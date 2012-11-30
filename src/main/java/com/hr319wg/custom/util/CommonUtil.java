@@ -21,6 +21,7 @@ import com.hr319wg.custom.pojo.bo.WageSetPersonBO;
 import com.hr319wg.emp.pojo.bo.EmpPostChangeBO;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.api.UserAPI;
+import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.CodeItemBO;
 import com.hr319wg.user.pojo.bo.OperateBO;
 import com.hr319wg.util.CommonFuns;
@@ -206,6 +207,14 @@ public class CommonUtil {
     			}else{
     				if(dBo.getOldValue()!=null){
     					dBo.setNewValue(dBo.getOldValue());
+    				}
+    				if(bo!=null && "A223209".equals(fieldID)){
+    					if(bo.getOldPost()!=null && !"".equals(bo.getOldPost())){
+    						dBo.setOldValue("原岗位："+SysCacheTool.findPost(bo.getOldPost()).getName());
+    					}
+    					if(bo.getNewPost()!=null && !"".equals(bo.getNewPost())){
+    						dBo.setNewValue("新岗位："+SysCacheTool.findPost(bo.getNewPost()).getName());
+    					}
     				}
     			}
     			cDao.saveOrUpdateBo(dBo);

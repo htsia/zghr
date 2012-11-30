@@ -21,7 +21,7 @@
     <script type="text/javascript">
         with (window) onload = onresize = function(){
             var mainHeight = document.body.offsetHeight - 20;
-            document.getElementById("main").style.height = "" + mainHeight + "px";
+            $("iframe[name=main]").height(mainHeight);
         }
     </script>
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>

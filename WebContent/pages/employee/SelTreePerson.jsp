@@ -22,8 +22,8 @@
         with (window) onload = onresize = function()
         {
             var mainHeight = document.body.offsetHeight - 39;
-            document.getElementById("tree").style.height = "" + mainHeight + "px";
-            document.getElementById("main").style.height = "" + mainHeight + "px";
+            $("iframe[name=tree]").height(mainHeight);
+            $("iframe[name=main]").height(mainHeight);
         }
     </script>
 </head>

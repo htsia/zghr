@@ -35,8 +35,8 @@ response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
           with (window) onload = onresize = function()
         {
             var mainHeight = document.body.offsetHeight - 50;
-            document.getElementById("tree").style.height = "" + mainHeight + "px";
-            document.getElementById("main").style.height = "" + mainHeight + "px";
+            $("iframe[name=tree]").height(mainHeight);
+            $("iframe[name=main]").height(mainHeight);
         }
     </script>
 

@@ -15,7 +15,7 @@
     }
     with (window) onload = onresize = function(){
         var mainHeight = document.body.clientHeight - 70;
-        document.getElementById("main").style.height = "" + mainHeight + "px";
+        $("iframe[name=main]").height(mainHeight);
     }
     function forAddPerson() {
         var reval = window.showModalDialog("/eva/personQuery2.jsf?planID="+document.all('form1:planID').value+"&orgId="+document.all('form1:orgId').value, null, "dialogWidth:1000px; dialogHeight:600px;center:center;resizable:yes;status:yes;scroll:yes;");

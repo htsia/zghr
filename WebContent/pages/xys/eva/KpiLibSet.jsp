@@ -13,8 +13,8 @@
         }
         with (window) onload = onresize = function(){
             var mainHeight = document.body.offsetHeight - 40;
-            document.getElementById("tree").style.height = "" + mainHeight + "px";
-            document.getElementById("main").style.height = "" + mainHeight + "px";
+            $("iframe[name=tree]").height(mainHeight);
+            $("iframe[name=main]").height(mainHeight);
         }
         function uploadKeySet(){
             window.showModalDialog("/xys/eva/KpiLibUpLoad.jsf", null, "dialogWidth:600px;dialogHeight:400px;center:center;resizable:no;status:no;scroll:yes;");

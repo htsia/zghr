@@ -38,7 +38,7 @@
     }
     with (window) onload = onresize = function(){
         var mainHeight = document.body.offsetHeight - 40;
-        document.getElementById("main").style.height = "" + mainHeight + "px";
+        $("iframe[name=main]").height(mainHeight);
         document.getElementById("post").style.height = "" + mainHeight + "px";
     }
 

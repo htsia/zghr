@@ -18,8 +18,8 @@
 <script language="javascript">
     with (window) onload = onresize = function(){
         var mainHeight = document.body.clientHeight - 120;
-        document.getElementById("main").style.height = "" + mainHeight + "px";
-        document.getElementById("tree").style.height = "" + mainHeight + "px";
+        $("iframe[name=main]").height(mainHeight);
+        $("iframe[name=tree]").height(mainHeight);
     }
     if ("1"=="<%=Constants.BUSI_MENU_CONFIG%>"){
         mmenucolor = '<%=Constants.MENU_COLOR%>';

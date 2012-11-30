@@ -28,7 +28,7 @@
             var mainHeight = document.body.offsetHeight-10;
             var treeHeight = mainHeight - 32;
             document.getElementById("tree").style.height = "" + treeHeight + "px";
-            document.getElementById("main").style.height = "" + mainHeight + "px";
+            $("iframe[name=main]").height(mainHeight);
         }
     </script>
 

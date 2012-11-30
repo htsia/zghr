@@ -34,7 +34,6 @@
 						} else {
 							document.all("form1:saveleave").disabled = "";
 							var info = msg.split(',');
-							alert(msg);
 							document.all("form1:applydays").value = info[0];
 							var userlist = "";
 							for ( var i = 1; i < info.length - 1; i++) {

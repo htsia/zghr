@@ -16,7 +16,7 @@
     <script language="javascript">
         with (window) onload = onresize = function(){
             var mainHeight = document.body.offsetHeight - 95;
-            document.getElementById("main").style.height = "" + mainHeight + "px";
+            $("iframe[name=main]").height(mainHeight);
         }
         mmenucolor = '<%=Constants.MENU_COLOR%>';
         mfontcolor='<%=Constants.MENU_FONT_COLOR%>';

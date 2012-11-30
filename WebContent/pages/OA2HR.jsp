@@ -50,7 +50,7 @@
     <script language="javascript">
         with (window) onload = onresize = function(){
             var mainHeight = document.body.clientHeight - 5;
-            document.getElementById("main").style.height = "" + mainHeight + "px";
+            $("iframe[name=main]").height(mainHeight);
         }
         if ("1"=="<%=Constants.BUSI_MENU_CONFIG%>"){
             mmenucolor = '<%=Constants.MENU_COLOR%>';

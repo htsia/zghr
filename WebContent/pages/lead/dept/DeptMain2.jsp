@@ -20,8 +20,8 @@
         with (window) onload = onresize = function() {
             var mainHeight = document.body.offsetHeight - 97;
 			document.body.scroll="no";
-            document.getElementById("main").style.height = "" + mainHeight + "px";
-            document.getElementById("tree").style.height = "" + mainHeight + "px";
+            $("iframe[name=main]").height(mainHeight);
+            $("iframe[name=tree]").height(mainHeight);
         }
 
         // ¹ØÁª²Ù×÷
