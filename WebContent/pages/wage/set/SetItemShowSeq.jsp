@@ -44,7 +44,7 @@
     <h:panelGrid columns="5" align="right" cellspacing="2">
         <h:panelGroup>
             <h:outputText value="每次移动位数:"></h:outputText>
-            <h:inputText id="step" value="" />
+            <h:inputText id="step" value="1" />
         </h:panelGroup>
         <c:verbatim>
             <input type=button class=button01 value="上移" onclick="moveUP();">
