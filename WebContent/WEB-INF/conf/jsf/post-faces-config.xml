@@ -23,6 +23,10 @@
             <property-name>postucc</property-name>
             <value>#{post_postUCC}</value>
         </managed-property>
+        <managed-property>
+            <property-name>orgucc</property-name>
+            <value>#{org_orgUCC}</value>
+        </managed-property>
     </managed-bean>
 
     <managed-bean>

@@ -1591,206 +1591,208 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				beginDate, endDate);
 
 		for (AttLeaveBO bo : leaveList) {
-			// 规定:请假当天，如果在12点之前请，算1天；如果在12点之后请，算半天
-			// 请假结束当天，如果在14点之前，算半天；如果在14点之后，算1天。
-			// 先算出假条开始时间的小时数 和结束时间的小时数
-			String beginDayHh = "";
-			if("nihaoa".equals(bo.getReason())){
-				int k=0;
-			}
-			String endDayHh = "";
-			if (bo.getBeginTime().length() > 14
-					&& bo.getEndTime().length() > 14) {
-				beginDayHh = bo.getBeginTime().substring(11, 13);
-				endDayHh = bo.getEndTime().substring(11, 13);
-			} else {
-				beginDayHh = "00";
-				endDayHh = "23";
-			}
-
-			// 统计假条天数;
-			beginDate = bo.getBeginTime().substring(0, 10);
-			endDate = bo.getEndTime().substring(0, 10);
-			List dayList = DateUtil.getAllBetweenDates(beginDate, endDate);
-			// ////计算当月事假或病假总天数
-			if (bo.getLeaveType().equals("1") || bo.getLeaveType().equals("2")
-					|| bo.getLeaveType().equals("5")
-					|| bo.getLeaveType().equals("6")) {
-				for (int i = 0; i < dayList.size(); i++) {
-					if (dayList.size() == 1) {
-						// 请假当天，如果12点之前请，下午2点之后来，算一天，其他算半天
-						if (Integer.parseInt(beginDayHh) < 12
-								&& Integer.parseInt(endDayHh) > 14) {
-							// 记请假一天
-							sql = "update a240 a set a240236=a240236+1 where a.id='"
-									+ bo.getPersonId()
-									+ "'  and a.a240200='"
-									+ yearMonth + "'";
-							this.activeapi.executeSql(sql);
-						} else {
-							// 记请假半天
-							sql = "update a240 a set a240236=a240236+0.5 where a.id='"
-									+ bo.getPersonId()
-									+ "' and a.a240200='"
-									+ yearMonth + "'";
-							this.activeapi.executeSql(sql);
-						}
-					} else {
-						// ////请假不是当天结束
-						String date = dayList.get(i).toString();
-						String ym = date.substring(0, 7);// 获得年月
-						String d = date.substring(8);// 获得日子
-						if (i == 0) {
-							// //如果是请假第一天
-							if (ym.equals(yearMonth)) {
-								// 对应表中的列名称
-								if (Integer.parseInt(beginDayHh) < 12) {
-									// 12点前，当天按全天算
-									sql = "update a240 a set a240236=a240236+1 where a.id='"
-											+ bo.getPersonId()
-											+ "' and a2402"
-											+ d
-											+ " in('工作日','公休调休','会议')  and a.a240200='"
-											+ yearMonth + "'";
-									this.activeapi.executeSql(sql);
-								} else {
-									// 12点后，当天按半天算
-									sql = "update a240 a set a240236=a240236+0.5 where a.id='"
-											+ bo.getPersonId()
-											+ "' and a2402"
-											+ d
-											+ " in('工作日','公休调休','会议')  and a.a240200='"
-											+ yearMonth + "'";
-									this.activeapi.executeSql(sql);
-								}
-
-							}
-						} else if (i == dayList.size() - 1) {
-							// //如果是请假结束那天
-							if (ym.equals(yearMonth)) {
-								// 对应表中的列名称
-								if (Integer.parseInt(endDayHh) <= 14) {
-									// 14点前，当天按半天算
-									sql = "update a240 a set a240236=a240236+0.5 where a.id='"
-											+ bo.getPersonId()
-											+ "' and a2402"
-											+ d
-											+ " in('工作日','公休调休','会议')  and a.a240200='"
-											+ yearMonth + "'";
-									this.activeapi.executeSql(sql);
-								} else {
-									// 14点后，当天按全天算
-									sql = "update a240 a set a240236=a240236+1 where a.id='"
-											+ bo.getPersonId()
-											+ "' and a2402"
-											+ d
-											+ " in('工作日','公休调休','会议')  and a.a240200='"
-											+ yearMonth + "'";
-									this.activeapi.executeSql(sql);
-								}
-
-							}
-						} else {
-							// 不是请假开始和结束的日子，是工作日就按照1天算
-							if (ym.equals(yearMonth)) {
-								// 对应表中的列名称
+			if("2".equals(bo.getStatus())){
+				// 规定:请假当天，如果在12点之前请，算1天；如果在12点之后请，算半天
+				// 请假结束当天，如果在14点之前，算半天；如果在14点之后，算1天。
+				// 先算出假条开始时间的小时数 和结束时间的小时数
+				String beginDayHh = "";
+				if("nihaoa".equals(bo.getReason())){
+					int k=0;
+				}
+				String endDayHh = "";
+				if (bo.getBeginTime().length() > 14
+						&& bo.getEndTime().length() > 14) {
+					beginDayHh = bo.getBeginTime().substring(11, 13);
+					endDayHh = bo.getEndTime().substring(11, 13);
+				} else {
+					beginDayHh = "00";
+					endDayHh = "23";
+				}
+	
+				// 统计假条天数;
+				beginDate = bo.getBeginTime().substring(0, 10);
+				endDate = bo.getEndTime().substring(0, 10);
+				List dayList = DateUtil.getAllBetweenDates(beginDate, endDate);
+				// ////计算当月事假或病假总天数
+				if (bo.getLeaveType().equals("1") || bo.getLeaveType().equals("2")
+						|| bo.getLeaveType().equals("5")
+						|| bo.getLeaveType().equals("6")) {
+					for (int i = 0; i < dayList.size(); i++) {
+						if (dayList.size() == 1) {
+							// 请假当天，如果12点之前请，下午2点之后来，算一天，其他算半天
+							if (Integer.parseInt(beginDayHh) < 12
+									&& Integer.parseInt(endDayHh) > 14) {
+								// 记请假一天
 								sql = "update a240 a set a240236=a240236+1 where a.id='"
 										+ bo.getPersonId()
-										+ "' and a2402"
-										+ d
-										+ " in('工作日','公休调休','会议')  and a.a240200='"
+										+ "'  and a.a240200='"
 										+ yearMonth + "'";
 								this.activeapi.executeSql(sql);
+							} else {
+								// 记请假半天
+								sql = "update a240 a set a240236=a240236+0.5 where a.id='"
+										+ bo.getPersonId()
+										+ "' and a.a240200='"
+										+ yearMonth + "'";
+								this.activeapi.executeSql(sql);
+							}
+						} else {
+							// ////请假不是当天结束
+							String date = dayList.get(i).toString();
+							String ym = date.substring(0, 7);// 获得年月
+							String d = date.substring(8);// 获得日子
+							if (i == 0) {
+								// //如果是请假第一天
+								if (ym.equals(yearMonth)) {
+									// 对应表中的列名称
+									if (Integer.parseInt(beginDayHh) < 12) {
+										// 12点前，当天按全天算
+										sql = "update a240 a set a240236=a240236+1 where a.id='"
+												+ bo.getPersonId()
+												+ "' and a2402"
+												+ d
+												+ " in('工作日','公休调休','会议')  and a.a240200='"
+												+ yearMonth + "'";
+										this.activeapi.executeSql(sql);
+									} else {
+										// 12点后，当天按半天算
+										sql = "update a240 a set a240236=a240236+0.5 where a.id='"
+												+ bo.getPersonId()
+												+ "' and a2402"
+												+ d
+												+ " in('工作日','公休调休','会议')  and a.a240200='"
+												+ yearMonth + "'";
+										this.activeapi.executeSql(sql);
+									}
+	
+								}
+							} else if (i == dayList.size() - 1) {
+								// //如果是请假结束那天
+								if (ym.equals(yearMonth)) {
+									// 对应表中的列名称
+									if (Integer.parseInt(endDayHh) <= 14) {
+										// 14点前，当天按半天算
+										sql = "update a240 a set a240236=a240236+0.5 where a.id='"
+												+ bo.getPersonId()
+												+ "' and a2402"
+												+ d
+												+ " in('工作日','公休调休','会议')  and a.a240200='"
+												+ yearMonth + "'";
+										this.activeapi.executeSql(sql);
+									} else {
+										// 14点后，当天按全天算
+										sql = "update a240 a set a240236=a240236+1 where a.id='"
+												+ bo.getPersonId()
+												+ "' and a2402"
+												+ d
+												+ " in('工作日','公休调休','会议')  and a.a240200='"
+												+ yearMonth + "'";
+										this.activeapi.executeSql(sql);
+									}
+	
+								}
+							} else {
+								// 不是请假开始和结束的日子，是工作日就按照1天算
+								if (ym.equals(yearMonth)) {
+									// 对应表中的列名称
+									sql = "update a240 a set a240236=a240236+1 where a.id='"
+											+ bo.getPersonId()
+											+ "' and a2402"
+											+ d
+											+ " in('工作日','公休调休','会议')  and a.a240200='"
+											+ yearMonth + "'";
+									this.activeapi.executeSql(sql);
+								}
 							}
 						}
 					}
 				}
-			}
-			if (bo.getLeaveType().equals("5")) {
-				// 如果是产假，将临时天数存入产假列，然后将临时天数清零
-				sql = "update a240 set a240237=nvl(a240237,0)+a240236 where a240.id='"
-						+ bo.getPersonId() + "'  and a240200='" + yearMonth
-						+ "'";
-				this.activeapi.executeSql(sql);
-				sql = "update a240 set a240236=0 where a240.id='"
-						+ bo.getPersonId() + "'  and a240200='" + yearMonth
-						+ "'";
-				this.activeapi.executeSql(sql);
-			}
-			if (bo.getLeaveType().equals("6")) {
-				// 如果是难产产假，将临时天数存入难产产假列，然后将临时天数清零
-				sql = "update a240 set a240238=nvl(a240238,0)+a240236 where a240.id='"
-						+ bo.getPersonId() + "'  and a240200='" + yearMonth
-						+ "'";
-				this.activeapi.executeSql(sql);
-				sql = "update a240 set a240236=0 where a240.id='"
-						+ bo.getPersonId() + "'  and a240200='" + yearMonth
-						+ "'";
-				this.activeapi.executeSql(sql);
-			}
-			if (bo.getLeaveType().equals("1")) {
-				// 如果是事假，将临时天数存入事假列，然后将临时天数清零
-				sql = "update a240 set a240232=nvl(a240232,0)+a240236 where a240.id='"
-						+ bo.getPersonId() + "'  and a240200='" + yearMonth
-						+ "'";
-				this.activeapi.executeSql(sql);
-				sql = "update a240 set a240236=0 where a240.id='"
-						+ bo.getPersonId() + "'  and a240200='" + yearMonth
-						+ "'";
-				this.activeapi.executeSql(sql);
-			}
-
-			if (bo.getLeaveType().equals("2")) {
-				  //病假本分第一个月和第二个月，因为这里面可能包含带薪病假
-				String beginMonth=bo.getBeginTime().substring(0,7);
-				String nextMonth=DateUtil.getNextMonth(beginMonth);
-				if(beginMonth.compareTo(yearMonth)==0){
-					sql = "update a240 a set a.a240236=a.a240236-"+bo.getBeginMonthDays()+" where a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth
+				if (bo.getLeaveType().equals("5")) {
+					// 如果是产假，将临时天数存入产假列，然后将临时天数清零
+					sql = "update a240 set a240237=nvl(a240237,0)+a240236 where a240.id='"
+							+ bo.getPersonId() + "'  and a240200='" + yearMonth
 							+ "'";
-				}else if(nextMonth.compareTo(yearMonth)==0){
-					sql = "update a240 a set a.a240236=a.a240236-"+bo.getNextMonthDays()+" where a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth
+					this.activeapi.executeSql(sql);
+					sql = "update a240 set a240236=0 where a240.id='"
+							+ bo.getPersonId() + "'  and a240200='" + yearMonth
 							+ "'";
-				}
-				this.activeapi.executeSql(sql);
-			if (dayList.size() <= 15) {
-					// 病假天数存入扣除30%工资的列内
-					sql = "update a240 a set a.a240233=a.a240236 where a.a240236>=0 and a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth + "'";
-					this.activeapi.executeSql(sql);
-				} else if (dayList.size() <= 30) {
-					// 将减去带薪病假的病假天数存入扣除50%工资的列内
-					sql = "update a240 a set a.a240234=a.a240236 where a.a240236>=0 and a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth + "'";
-					this.activeapi.executeSql(sql);
-				} else if (dayList.size() <= 60) {
-					// 将减去带薪病假的病假天数存入扣除80%工资的列内
-					sql = "update a240 a set a.a240235=a.a240236 where a.a240236>=0 and a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth + "'";
-					this.activeapi.executeSql(sql);
-				} else {
-					// 大于60天的病假，停发工资，扣除100%工资
-					sql = "update a240 a set a.a240239=a.a240236 where a.a240236>=0 and a.id='"
-							+ bo.getPersonId()
-							+ "'  and a.a240200='"
-							+ yearMonth + "'";
 					this.activeapi.executeSql(sql);
 				}
-				sql = "update a240 set a240236=0 where a240.id='"
-						+ bo.getPersonId() + "'  and a240200='" + yearMonth
-						+ "'";
-				this.activeapi.executeSql(sql);
+				if (bo.getLeaveType().equals("6")) {
+					// 如果是难产产假，将临时天数存入难产产假列，然后将临时天数清零
+					sql = "update a240 set a240238=nvl(a240238,0)+a240236 where a240.id='"
+							+ bo.getPersonId() + "'  and a240200='" + yearMonth
+							+ "'";
+					this.activeapi.executeSql(sql);
+					sql = "update a240 set a240236=0 where a240.id='"
+							+ bo.getPersonId() + "'  and a240200='" + yearMonth
+							+ "'";
+					this.activeapi.executeSql(sql);
+				}
+				if (bo.getLeaveType().equals("1")) {
+					// 如果是事假，将临时天数存入事假列，然后将临时天数清零
+					sql = "update a240 set a240232=nvl(a240232,0)+a240236 where a240.id='"
+							+ bo.getPersonId() + "'  and a240200='" + yearMonth
+							+ "'";
+					this.activeapi.executeSql(sql);
+					sql = "update a240 set a240236=0 where a240.id='"
+							+ bo.getPersonId() + "'  and a240200='" + yearMonth
+							+ "'";
+					this.activeapi.executeSql(sql);
+				}
+	
+				if (bo.getLeaveType().equals("2")) {
+					  //病假本分第一个月和第二个月，因为这里面可能包含带薪病假
+					String beginMonth=bo.getBeginTime().substring(0,7);
+					String nextMonth=DateUtil.getNextMonth(beginMonth);
+					if(beginMonth.compareTo(yearMonth)==0){
+						sql = "update a240 a set a.a240236=a.a240236-"+bo.getBeginMonthDays()+" where a.id='"
+								+ bo.getPersonId()
+								+ "'  and a.a240200='"
+								+ yearMonth
+								+ "'";
+					}else if(nextMonth.compareTo(yearMonth)==0){
+						sql = "update a240 a set a.a240236=a.a240236-"+bo.getNextMonthDays()+" where a.id='"
+								+ bo.getPersonId()
+								+ "'  and a.a240200='"
+								+ yearMonth
+								+ "'";
+					}
+					this.activeapi.executeSql(sql);
+				if (dayList.size() <= 15) {
+						// 病假天数存入扣除30%工资的列内
+						sql = "update a240 a set a.a240233=a.a240236 where a.a240236>=0 and a.id='"
+								+ bo.getPersonId()
+								+ "'  and a.a240200='"
+								+ yearMonth + "'";
+						this.activeapi.executeSql(sql);
+					} else if (dayList.size() <= 30) {
+						// 将减去带薪病假的病假天数存入扣除50%工资的列内
+						sql = "update a240 a set a.a240234=a.a240236 where a.a240236>=0 and a.id='"
+								+ bo.getPersonId()
+								+ "'  and a.a240200='"
+								+ yearMonth + "'";
+						this.activeapi.executeSql(sql);
+					} else if (dayList.size() <= 60) {
+						// 将减去带薪病假的病假天数存入扣除80%工资的列内
+						sql = "update a240 a set a.a240235=a.a240236 where a.a240236>=0 and a.id='"
+								+ bo.getPersonId()
+								+ "'  and a.a240200='"
+								+ yearMonth + "'";
+						this.activeapi.executeSql(sql);
+					} else {
+						// 大于60天的病假，停发工资，扣除100%工资
+						sql = "update a240 a set a.a240239=a.a240236 where a.a240236>=0 and a.id='"
+								+ bo.getPersonId()
+								+ "'  and a.a240200='"
+								+ yearMonth + "'";
+						this.activeapi.executeSql(sql);
+					}
+					sql = "update a240 set a240236=0 where a240.id='"
+							+ bo.getPersonId() + "'  and a240200='" + yearMonth
+							+ "'";
+					this.activeapi.executeSql(sql);
+				}
 			}
 		}
 	}

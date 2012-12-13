@@ -226,7 +226,6 @@ public class PostEditBackingBean extends BaseBackingBean
       }
 
       this.orgucc.updatePageInfo(table, ee, user);
-
       String pkvalue = getServletRequest().getParameter("pk");
       if ((pkvalue != null) && (!"".equals(pkvalue))) {
         SysCache.setMap(new String[] { pkvalue }, 3, 7);

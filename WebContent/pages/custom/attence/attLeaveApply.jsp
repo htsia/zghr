@@ -6,7 +6,132 @@
 	response.setHeader("Cache-Control", "no-cache");
 	response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
-<f:verbatim>
+<x:saveState value="#{attLeaveApplyBB}" />
+<h:form id="form1">
+	<h:inputHidden id="initEdit" value="#{attLeaveApplyBB.initEdit}"></h:inputHidden>
+	<!-- 将带薪假剩余的天数封装 -->
+	<h:inputHidden id="leaveday2" value="#{attLeaveApplyBB.days.a236202}"></h:inputHidden>
+	<h:inputHidden id="leaveday3" value="#{attLeaveApplyBB.days.a236203}"></h:inputHidden>
+	<h:inputHidden id="leaveday4" value="#{attLeaveApplyBB.days.a236204}"></h:inputHidden>
+	<h:inputHidden id="leaveday5" value="#{attLeaveApplyBB.days.a236205}"></h:inputHidden>
+	<h:inputHidden id="leaveday6" value="#{attLeaveApplyBB.days.a236206}"></h:inputHidden>
+	<h:inputHidden id="leaveday7" value="#{attLeaveApplyBB.days.a236207}"></h:inputHidden>
+	<!--没批准的带薪假天数  -->
+	<h:inputHidden id="leaveday33" value="#{attLeaveApplyBB.undoneDays.a3}"></h:inputHidden>
+	<h:inputHidden id="leaveday44" value="#{attLeaveApplyBB.undoneDays.a4}"></h:inputHidden>
+	<h:inputHidden id="leaveday55" value="#{attLeaveApplyBB.undoneDays.a5}"></h:inputHidden>
+	<h:inputHidden id="leaveday66" value="#{attLeaveApplyBB.undoneDays.a6}"></h:inputHidden>
+	<h:inputHidden id="leaveday77" value="#{attLeaveApplyBB.undoneDays.a7}"></h:inputHidden>
+
+
+	<!--请假条实际天数  -->
+	<h:panelGrid columns="1" styleClass="td_title" width="98%"
+		align="center">
+		<h:panelGroup>
+			<h:graphicImage value="/images/tips.gif" />
+			<h:outputText value=" 考勤管理 ->请假申请" />
+		</h:panelGroup>
+	</h:panelGrid>
+	<h:panelGrid columns="1" width="98%" align="center">
+		<h:panelGrid columns="4" width="100%"
+			columnClasses="td_form01,td_form02,td_form01,td_form02"
+			align="center" styleClass="table03">
+			<h:outputText value="申请人" />
+			<h:outputText value="#{attLeaveApplyBB.personName}" />
+			<h:outputText value="请假类型" />
+			<h:selectOneMenu id="leaveType" onchange="isChanjia()"
+				value="#{attLeaveApplyBB.leaveBo.leaveType}">
+				<c:selectItems value="#{attLeaveApplyBB.leaveTypeList}" />
+			</h:selectOneMenu>
+			<h:outputText value="开始时间" />
+			<h:panelGroup>
+				<h:inputText styleClass="input" id="beginTime"
+					value="#{attLeaveApplyBB.leaveBo.beginTime}" readonly="true"
+					alt="开始日期|0|d|50||"/>
+				<c:verbatim>
+				<input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:beginTime');getApplyDays();">
+					<select id="beginHour" onchange="getApplyDays();">
+						<option value="00:00">早上</option>
+						<option value="12:00">中午</option>
+					</select>
+				</c:verbatim>
+			</h:panelGroup>
+
+			<h:outputText value="结束时间" />
+			<h:panelGroup>
+				<h:inputText styleClass="input" id="endTime"
+					value="#{attLeaveApplyBB.leaveBo.endTime}" readonly="true"
+					alt="结束日期|0|d|50||"/>
+				<c:verbatim>
+				<input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:endTime');getApplyDays();">
+					<select id="endHour" onchange="getApplyDays();">
+						<option value="23:59">晚上</option>
+						<option value="12:00">中午</option>
+					</select>
+				</c:verbatim>
+			</h:panelGroup>
+			<h:panelGroup>
+				<h:outputText id="nochan" value="请假时间/工作日天数" />
+				<h:outputText id="chan" style="display:none" value="产  假/难产产假天数" />
+			</h:panelGroup>
+			<h:panelGroup>
+				<h:inputText styleClass="input1" readonly="true" id="applydays" value="#{attLeaveApplyBB.leaveBo.applyDays}"/>
+				<h:inputText style="display:none" styleClass="input1" readonly="true" id="totalDays" value="#{attLeaveApplyBB.leaveBo.totalDays}"/>
+			</h:panelGroup>
+		</h:panelGrid>
+		<h:panelGrid columns="2" width="100%"
+			columnClasses="td_form01,td_form02" align="center"
+			styleClass="table03">
+			<h:outputText value="请假原因" />
+			<h:inputTextarea id="reason" cols="60" rows="5"
+				value="#{attLeaveApplyBB.leaveBo.reason}"></h:inputTextarea>
+		</h:panelGrid>
+		<h:panelGrid columns="2" width="100%"
+			columnClasses="td_form01_center,td_middle" align="center"
+			styleClass="table03">
+			<h:outputText value="提示信息" />
+			<f:verbatim>
+				<div style="width: 350px; color: red;">
+					<div id="applist"></div>
+				</div>
+			</f:verbatim>
+		</h:panelGrid>
+		<c:verbatim>
+			<br />
+		</c:verbatim>
+		<h:panelGrid align="center">
+			<h:commandButton id="saveleave" disabled="true" value="　保　存　"
+				onclick="return checkDays();" styleClass="button01"
+				action="#{attLeaveApplyBB.saveLeave}" />
+		</h:panelGrid>
+		<c:verbatim>
+			<br />
+		</c:verbatim>
+
+		<c:verbatim>您的带薪假剩余情况：<br />
+		</c:verbatim>
+		<h:panelGrid columns="4" width="100%"
+			columnClasses="td_form01,td_form02,td_form01,td_form02"
+			align="center" styleClass="table03">
+			<h:outputText value="病假" />
+			<h:outputText value="#{attLeaveApplyBB.days.a236202}" />
+			<h:outputText value="婚假" />
+			<h:outputText value="#{attLeaveApplyBB.days.a236203}" />
+			<h:outputText value="丧假" />
+			<h:outputText value="#{attLeaveApplyBB.days.a236204}" />
+			<h:outputText value="产假"
+				rendered="#{attLeaveApplyBB.personSex=='female' }" />
+			<h:outputText value="#{attLeaveApplyBB.days.a236205}"
+				rendered="#{attLeaveApplyBB.personSex=='female' }" />
+			<h:outputText value="难产产假"
+				rendered="#{attLeaveApplyBB.personSex=='female' }" />
+			<h:outputText value="#{attLeaveApplyBB.days.a236206}"
+				rendered="#{attLeaveApplyBB.personSex=='female' }" />
+			<h:outputText value="带薪事假" />
+			<h:outputText value="#{attLeaveApplyBB.days.a236207}" />
+		</h:panelGrid>
+	</h:panelGrid>
+</h:form>
 <script type="text/javascript">
 	function getApplyDays() {
 		document.all("form1:saveleave").disabled = "disabled";
@@ -202,7 +327,7 @@
 		if (applydays > 10) {
 			var str = "您请假"
 					+ applydays
-					+ "个工作日，需销假，假期结束必须到人力资源处销假。销假之前，您将一直处于请假状态。具体事宜，请联系人力资源处负责老师。";
+					+ "个工作日需销假。假期结束必须到人力资源处销假。销假之前，您将一直处于请假状态。具体事宜请联系人力资源处。";
 
 			if (!confirm(str)) {
 				return false;
@@ -269,133 +394,6 @@
 		}
 	}
 </script>
-</f:verbatim>
-<x:saveState value="#{attLeaveApplyBB}" />
-<h:form id="form1">
-	<h:inputHidden id="initEdit" value="#{attLeaveApplyBB.initEdit}"></h:inputHidden>
-	<!-- 将带薪假剩余的天数封装 -->
-	<h:inputHidden id="leaveday2" value="#{attLeaveApplyBB.days.a236202}"></h:inputHidden>
-	<h:inputHidden id="leaveday3" value="#{attLeaveApplyBB.days.a236203}"></h:inputHidden>
-	<h:inputHidden id="leaveday4" value="#{attLeaveApplyBB.days.a236204}"></h:inputHidden>
-	<h:inputHidden id="leaveday5" value="#{attLeaveApplyBB.days.a236205}"></h:inputHidden>
-	<h:inputHidden id="leaveday6" value="#{attLeaveApplyBB.days.a236206}"></h:inputHidden>
-	<h:inputHidden id="leaveday7" value="#{attLeaveApplyBB.days.a236207}"></h:inputHidden>
-	<!--没批准的带薪假天数  -->
-	<h:inputHidden id="leaveday33" value="#{attLeaveApplyBB.undoneDays.a3}"></h:inputHidden>
-	<h:inputHidden id="leaveday44" value="#{attLeaveApplyBB.undoneDays.a4}"></h:inputHidden>
-	<h:inputHidden id="leaveday55" value="#{attLeaveApplyBB.undoneDays.a5}"></h:inputHidden>
-	<h:inputHidden id="leaveday66" value="#{attLeaveApplyBB.undoneDays.a6}"></h:inputHidden>
-	<h:inputHidden id="leaveday77" value="#{attLeaveApplyBB.undoneDays.a7}"></h:inputHidden>
-
-
-	<!--请假条实际天数  -->
-	<h:panelGrid columns="1" styleClass="td_title" width="98%"
-		align="center">
-		<h:panelGroup>
-			<h:graphicImage value="/images/tips.gif" />
-			<h:outputText value=" 考勤管理 ->请假申请" />
-		</h:panelGroup>
-	</h:panelGrid>
-	<h:panelGrid columns="1" width="98%" align="center">
-		<h:panelGrid columns="4" width="100%"
-			columnClasses="td_form01,td_form02,td_form01,td_form02"
-			align="center" styleClass="table03">
-			<h:outputText value="申请人" />
-			<h:outputText value="#{attLeaveApplyBB.personName}" />
-			<h:outputText value="请假类型" />
-			<h:selectOneMenu id="leaveType" onchange="isChanjia()"
-				value="#{attLeaveApplyBB.leaveBo.leaveType}">
-				<c:selectItems value="#{attLeaveApplyBB.leaveTypeList}" />
-			</h:selectOneMenu>
-			<h:outputText value="开始时间" />
-			<h:panelGroup>
-				<h:inputText styleClass="input" id="beginTime"
-					value="#{attLeaveApplyBB.leaveBo.beginTime}" readonly="true"
-					alt="开始日期|0|d|50||"/>
-				<c:verbatim>
-				<input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:beginTime');getApplyDays();">
-					<select id="beginHour" onchange="getApplyDays();">
-						<option value="00:00">早上</option>
-						<option value="12:00">中午</option>
-					</select>
-				</c:verbatim>
-			</h:panelGroup>
-
-			<h:outputText value="结束时间" />
-			<h:panelGroup>
-				<h:inputText styleClass="input" id="endTime"
-					value="#{attLeaveApplyBB.leaveBo.endTime}" readonly="true"
-					alt="结束日期|0|d|50||"/>
-				<c:verbatim>
-				<input type="button" class="button_date" onclick="PopUpCalendarDialog('form1:endTime');getApplyDays();">
-					<select id="endHour" onchange="getApplyDays();">
-						<option value="23:59">晚上</option>
-						<option value="12:00">中午</option>
-					</select>
-				</c:verbatim>
-			</h:panelGroup>
-			<h:panelGroup>
-				<h:outputText id="nochan" value="请假时间/工作日天数" />
-				<h:outputText id="chan" style="display:none" value="产  假/难产产假天数" />
-			</h:panelGroup>
-			<h:panelGroup>
-				<h:inputText styleClass="input1" readonly="true" id="applydays" value="#{attLeaveApplyBB.leaveBo.applyDays}"/>
-				<h:inputText style="display:none" styleClass="input1" readonly="true" id="totalDays" value="#{attLeaveApplyBB.leaveBo.totalDays}"/>
-			</h:panelGroup>
-		</h:panelGrid>
-		<h:panelGrid columns="2" width="100%"
-			columnClasses="td_form01,td_form02" align="center"
-			styleClass="table03">
-			<h:outputText value="请假原因" />
-			<h:inputTextarea id="reason" cols="60" rows="5"
-				value="#{attLeaveApplyBB.leaveBo.reason}"></h:inputTextarea>
-		</h:panelGrid>
-		<h:panelGrid columns="2" width="100%"
-			columnClasses="td_form01_center,td_middle" align="center"
-			styleClass="table03">
-			<h:outputText value="提示信息" />
-			<f:verbatim>
-				<div style="width: 350px; color: red;">
-					<div id="applist"></div>
-				</div>
-			</f:verbatim>
-		</h:panelGrid>
-		<c:verbatim>
-			<br />
-		</c:verbatim>
-		<h:panelGrid align="center">
-			<h:commandButton id="saveleave" disabled="true" value="　保　存　"
-				onclick="return checkDays();" styleClass="button01"
-				action="#{attLeaveApplyBB.saveLeave}" />
-		</h:panelGrid>
-		<c:verbatim>
-			<br />
-		</c:verbatim>
-
-		<c:verbatim>您的带薪假剩余情况：<br />
-		</c:verbatim>
-		<h:panelGrid columns="4" width="100%"
-			columnClasses="td_form01,td_form02,td_form01,td_form02"
-			align="center" styleClass="table03">
-			<h:outputText value="病假" />
-			<h:outputText value="#{attLeaveApplyBB.days.a236202}" />
-			<h:outputText value="婚假" />
-			<h:outputText value="#{attLeaveApplyBB.days.a236203}" />
-			<h:outputText value="丧假" />
-			<h:outputText value="#{attLeaveApplyBB.days.a236204}" />
-			<h:outputText value="产假"
-				rendered="#{attLeaveApplyBB.personSex=='female' }" />
-			<h:outputText value="#{attLeaveApplyBB.days.a236205}"
-				rendered="#{attLeaveApplyBB.personSex=='female' }" />
-			<h:outputText value="难产产假"
-				rendered="#{attLeaveApplyBB.personSex=='female' }" />
-			<h:outputText value="#{attLeaveApplyBB.days.a236206}"
-				rendered="#{attLeaveApplyBB.personSex=='female' }" />
-			<h:outputText value="带薪事假" />
-			<h:outputText value="#{attLeaveApplyBB.days.a236207}" />
-		</h:panelGrid>
-	</h:panelGrid>
-</h:form>
 <script type="text/javascript">
 	interpret(document.forms(0));
 	document.all("form1:applydays").value="";

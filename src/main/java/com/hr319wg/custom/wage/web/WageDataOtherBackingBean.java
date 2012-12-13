@@ -386,7 +386,7 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 				m+=bo.getTotalmoney();
 				PersonBO p = SysCacheTool.findPersonById(bo.getCreateUserID());
 				bo.setCreateUserName(p.getName());
-				if(!"1".equals(bo.getItemType()) && !"2".equals(bo.getItemType())){
+				if(!"1".equals(bo.getItemType()) && !"2".equals(bo.getItemType()) && !"4".equals(bo.getItemType())){
 					bo.setApplyDate(bo.getBeginDate());												
 				}else{
 					bo.setApplyDate(bo.getBeginDate()+" жа "+bo.getEndDate());						

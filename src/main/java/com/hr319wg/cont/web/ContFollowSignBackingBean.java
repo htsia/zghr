@@ -1027,16 +1027,16 @@ public ISysInProcessUCC getLinkucc()
 						pass=false;	
 						break;
 					}
-					String[]starts=start.split("/");
-					bo.setContStartDate(starts[2]+"-"+starts[1]+"-"+starts[0]);
+					start=start.replace(".", "-");
+					bo.setContStartDate(start.replace("/", "-"));
 					String end = st.getCell(4, i).getContents();
 					if(end==null || "".equals(end)){
 						super.showMessageDetail("第"+i+"行合同起始时间不能为空");
-						pass=false;	
+						pass=false;
 						break;
 					}
-					String[]ends=end.split("/");
-					bo.setContEndDate(ends[2]+"-"+ends[1]+"-"+ends[0]);
+					end=end.replace(".", "-");
+					bo.setContEndDate(end.replace("/", "-"));
 					ContSignBO bo1=(ContSignBO)m.get(p.getPersonId());
 					bo.setContCode(bo1.getContCode());
 					bo.setPersonName(p.getName());

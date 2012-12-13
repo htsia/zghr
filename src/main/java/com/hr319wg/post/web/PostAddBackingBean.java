@@ -1,13 +1,24 @@
 package com.hr319wg.post.web;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.SysContext;
+import com.hr319wg.org.ucc.IOrgUCC;
 import com.hr319wg.post.pojo.bo.PostBO;
 import com.hr319wg.post.pojo.vo.PostVO;
 import com.hr319wg.post.ucc.IPostUCC;
-import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.cache.SysCache;
+import com.hr319wg.sys.cache.SysCacheTool;
+import com.hr319wg.sys.pojo.bo.InfoItemBO;
+import com.hr319wg.sys.pojo.vo.TableVO;
 import com.hr319wg.util.CodeUtil;
 import com.hr319wg.util.CommonFuns;
 
@@ -15,11 +26,40 @@ public class PostAddBackingBean extends BaseBackingBean
 {
   private PostVO postvo = new PostVO();
   private IPostUCC postucc;
+  private IOrgUCC orgucc;
   private PostBO[] postlist;
   private String wageClass;
   private String wageXL;
+  private String pageInit;
+  private TableVO tableVO;
 
-  public String getWageClass() {
+  public TableVO getTableVO() {
+	return tableVO;
+}
+
+public void setTableVO(TableVO tableVO) {
+	this.tableVO = tableVO;
+}
+
+public String getPageInit() {
+	try {
+		this.tableVO = this.orgucc.queryPageInfo("C001", "-1", "", super.getUserInfo());
+		getHttpSession().setAttribute("OBJECT_DETAIL", this.tableVO);
+	} catch (SysException e) {
+		e.printStackTrace();
+	}
+	return pageInit;
+}
+
+public IOrgUCC getOrgucc() {
+	return orgucc;
+}
+
+public void setOrgucc(IOrgUCC orgucc) {
+	this.orgucc = orgucc;
+}
+
+public String getWageClass() {
 	return wageClass;
 }
 
@@ -78,29 +118,52 @@ public PostVO getPostvo()
     return null;
   }
 
-  public String savePost() {
+  public String saveOne() {
     try {
       User user = getUserInfo();
-      String[] tmpIds = getServletRequest().getParameterValues("chk");
       String postId = "";
-      if (this.postvo != null) {
-        String tmpId = "";
-        if ((tmpIds != null) && (tmpIds.length > 0)) {
-          tmpId = tmpIds[0];
-        }
+      Map dataMap = getServletRequest().getParameterMap();
         this.postvo.setPostTemp("00900");
-        if ((this.postvo.getPostCode() == null) || ("".equals(this.postvo.getPostCode()))) {
-          String id = this.postucc.buildPostCode(this.postvo.getOrgId());
-          this.postvo.setPostCode(id);
+        String name=((String[])dataMap.get("C001005"))[0];
+        String org=((String[])dataMap.get("C001010"))[0];
+        String type=((String[])dataMap.get("C001001"))[0];
+        String date=((String[])dataMap.get("C001030"))[0];
+        String workout=((String[])dataMap.get("C001735"))[0];
+        String code=((String[])dataMap.get("C001003"))[0];
+        this.postvo.setName(name);
+        this.postvo.setOrgId(org);
+        this.postvo.setPostClass(type);
+        this.postvo.setUpdateDate(date);
+        this.postvo.setWorkOut(workout);
+        if (code==null || "".equals(code)) {
+        	String id = this.postucc.buildPostCode(org);
+        	this.postvo.setPostCode(id);
         }
-        postId = this.postucc.createPost(this.postvo, tmpId, user);
-        ActivePageAPI api = (ActivePageAPI)SysContext.getBean("sys_activePageApi"); 
-        String sql = "update c001 set C001203 ='"+this.wageClass+"',C001205='"+this.wageXL+"' where postid='"+postId+"'";
-        api.executeSql(sql);
-      }
-
-      SysCache.setMap(new String[] { postId }, 1, 7);
-      showMessageDetail("岗位增加成功！");
+        postId = this.postucc.createPost(this.postvo, null, user);
+        List keys=new ArrayList();
+        Iterator set = dataMap.keySet().iterator();
+        while(set.hasNext()){
+        	String k=set.next().toString();
+        	if(k.indexOf("C001")!=-1){
+        		InfoItemBO bo= SysCacheTool.findInfoItem("C001", k);
+        		if(bo!=null && "1".equals(bo.getItemStatus())){
+        			keys.add(k);        			
+        		}
+        	}
+        }
+        String sql="update c001 set ";
+        for(int i=0;i<keys.size();i++){
+        	sql+=keys.get(i)+"="+"case when "+keys.get(i)+" is null then '"+((String[])dataMap.get(keys.get(i)))[0]+"' else "+keys.get(i)+" end ";
+        	if(i+1!=keys.size()){
+        		sql+=",";
+        	}
+        }
+        
+        sql+=" where postid='"+postId+"'";
+        JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
+        jdbcTemplate.execute(sql);
+      SysCache.setMap(new String[] { postId }, 3, 7);
+      showMessageDetail("岗位增加成功");
       getServletRequest().setAttribute("P_POSTID", postId);
     } catch (Exception e) {
       e.printStackTrace();
