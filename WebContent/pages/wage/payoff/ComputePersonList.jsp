@@ -38,22 +38,60 @@
                    <h:outputText value="#{wage_computeBB.payoffDate}"/>
                    <c:verbatim>&nbsp;&nbsp;</c:verbatim>
                    <h:outputText escape="false" value="<font color=red>总计#{wage_computeBB.allCount}</font>"/>
+                   <c:verbatim>&nbsp;&nbsp;</c:verbatim>
+                   <h:outputText escape="false" value="<font color=red>多段#{wage_computeBB.manyDeptCount}</font>"/>
+                   <c:verbatim>&nbsp;&nbsp;</c:verbatim>
+                   <h:outputText  escape="false" value="<font color=red>问题数据#{wage_computeBB.errData}</font>"></h:outputText>
+
+                   <h:panelGroup rendered="#{wage_computeBB.specQuery}">
+                       <h:commandButton value="已解决" styleClass="button01" id="apply"  onclick="return modifyOk();" action="#{wage_computeBB.modifyOK}"></h:commandButton>
+                       <h:commandButton value="查询问题" id="queryquestion" style="display:none" action="#{wage_computeBB.queryQestion}"></h:commandButton>
+                       <h:commandButton value="查询问题" id="queryAllQestion" style="display:none" action="#{wage_computeBB.queryAllQestion}"></h:commandButton>
+                       <h:selectOneMenu id="SpecialQuery">
+                             <c:selectItem itemValue="-1" itemLabel="未解决问题"></c:selectItem>
+                             <c:selectItem itemValue="1" itemLabel="无卡人员"></c:selectItem>
+                             <c:selectItem itemValue="2" itemLabel="卡号重复人员"></c:selectItem>
+                             <c:selectItem itemValue="3" itemLabel="应发为零人员"></c:selectItem>
+                             <c:selectItem itemValue="4" itemLabel="薪资部门有误人员"></c:selectItem>
+                             <c:selectItem itemValue="5" itemLabel="薪资变动人员"></c:selectItem>
+                       </h:selectOneMenu>
+                       <h:commandButton type="button" value="查询" styleClass="button01" onclick="showSpecialQuery();"></h:commandButton>
+                    </h:panelGroup>
                </h:panelGroup>
 
                <h:panelGrid  columns="3" align="right">
                    <h:panelGroup>
+                       <h:outputText escape="false" value="<font color='red'>底限报警:</font>" style=""></h:outputText>
+                       <h:commandButton action="#{wage_computeBB.queryNagetive}" image="/images/common/unvalidate.gif" rendered="#{wage_computeBB.haveNegative}"></h:commandButton>
+                       <h:commandButton image="/images/common/validate.gif" rendered="#{not wage_computeBB.haveNegative}"></h:commandButton>
+                   </h:panelGroup>
+
+                   <h:panelGroup>
+                       <h:selectOneMenu id="groupLevel" value="#{wage_computeBB.groupLevel}">
+                           <c:selectItem itemValue="DEPT_NAME" itemLabel="最细层次"></c:selectItem>
+                           <c:selectItem itemValue="HIGH_NAME" itemLabel="汇总1"></c:selectItem>
+                           <c:selectItem itemValue="HIGH_NAME2" itemLabel="汇总2"></c:selectItem>
+                           <c:selectItem itemValue="HIGH_NAME3" itemLabel="汇总3"></c:selectItem>
+                           <c:selectItem itemValue="HIGH_NAME4" itemLabel="汇总4"></c:selectItem>
+                       </h:selectOneMenu>
+                       <h:commandButton value="选择" styleClass="button01" action="#{wage_computeBB.changeLevel}"></h:commandButton>
                        <h:selectOneMenu id="WageDept"  value="#{wage_computeBB.dept}">
                           <c:selectItems value="#{wage_computeBB.deptList}"></c:selectItems>
                        </h:selectOneMenu>
-                       <h:commandButton styleClass="button01"value="过滤" action="#{wage_computeBB.queryPersonByDept}"/>
+                       <h:commandButton styleClass="button01"value="过滤" action="#{wage_computeBB.queryPersonByDept}"></h:commandButton>
                    </h:panelGroup>
-                   <h:commandButton type="button" value="发放工资" rendered="#{wage_computeBB.operPayoff}" styleClass="button01"  onclick="doPayoff();"/>
+
+                   <h:panelGroup>
+                       <h:commandButton type="button" value="申请复核" rendered="#{wage_computeBB.operApply}" styleClass="button01"  onclick="doApply();" />
+                       <h:commandButton type="button" value="管控" styleClass="button01"  rendered="#{sys_commonInfoBB.wagesumControl}" onclick="viewFinish();" />
+                       <h:commandButton type="button" value="发放薪酬" rendered="#{wage_computeBB.operPayoff}" styleClass="button01"  onclick="doPayoff();"/>
+                   </h:panelGroup>
                </h:panelGrid>
         </h:panelGrid>
 
         <h:panelGrid  columns="5" width="99%" align="center">
              <h:panelGroup>
-                 <h:outputText value="编号或姓名" />
+                 <h:outputText value="姓名/编号" />
                  <h:inputText value="" id="nameStr" style="width:100px" onkeypress ="enterKeyDown('form1:queryPerson');"/>
                  <h:commandButton id="queryPerson" value="查询" action="#{wage_computeBB.queryPersonByNameStr}" styleClass="button01"/>
                  <h:commandButton value="多人查询" action="#{wage_computeBB.queryMultiPerson}" onclick="doQueryManyPerson();" styleClass="button01"/>
@@ -76,30 +114,33 @@
                  <h:selectOneMenu value="#{wage_computeBB.itemType}">
                      <c:selectItems value="#{wage_computeBB.itemTypeList}"></c:selectItems>
                  </h:selectOneMenu>
-                 <h:commandButton value="确定" styleClass="button01" action="#{wage_computeBB.queryPersonBySetId}"/>
+                 <h:commandButton value="确定" styleClass="button01" action="#{wage_computeBB.queryPersonBySetId}"></h:commandButton>
                  <h:commandButton value="设置显示项" rendered="#{wage_computeBB.operCompute}" styleClass="button01"
                                   action="#{wage_computeBB.saveShowItem}" onclick="return doShowItem()" />
 
                 <h:selectOneMenu id="condition"  value="#{wage_computeBB.qryID}">
                    <c:selectItems value="#{wage_computeBB.displaySetList}"></c:selectItems>
                 </h:selectOneMenu>
-                <h:commandButton styleClass="button01" value="过滤" action="#{wage_computeBB.queryByCondition}"/>
+                <h:commandButton styleClass="button01" value="过滤" action="#{wage_computeBB.queryByCondition}"></h:commandButton>
             </h:panelGroup>
         </h:panelGrid>
 
         <h:panelGrid columns="12" width="99%" align="center">
-             <h:panelGroup>
+             <h:panelGroup rendered="#{wage_computeBB.showRpt}">
                  <h:selectOneMenu id="ReportID" style="width:190px">
                      <c:selectItems value="#{wage_computeBB.reportList}"/>
                  </h:selectOneMenu>
-                 <h:commandButton value="导出excel" type="button" styleClass="button01" onclick="return OpenRpt();"/>
+                 <h:commandButton value="Excel显示" type="button" styleClass="button01" onclick="return OpenRpt();"></h:commandButton>
+                 <h:commandButton value="直接打开" type="button" styleClass="button01" onclick="return OpenRptByControl();"></h:commandButton>
+                 <h:commandButton value="分部门打印" type="button" styleClass="button01" onclick="return OpenRptByDept();"></h:commandButton>
+                 <h:commandButton value="薪酬变动" type="button" styleClass="button01" onclick="return openChangeRecord();"></h:commandButton>
              </h:panelGroup>
 
              <h:panelGroup>
                  <h:commandButton value="常量" rendered="#{wage_computeBB.canModifyData}" styleClass="button01"
                                    onclick="return doSetConst()"/>
 
-                 <h:commandButton value="卡片" type="button" rendered="#{wage_computeBB.canShowCard}" styleClass="button01" onclick="return doViewCard();"/>
+                 <h:commandButton value="卡片" type="button" rendered="#{wage_computeBB.canShowCard}" styleClass="button01" onclick="return doViewCard();"></h:commandButton>
                  <h:commandButton value="修改排序" styleClass="button01" rendered="#{wage_computeBB.canModifyData}"
                                   action="#{wage_computeBB.turnPageQuery}"
                                   onclick="return doOrderInput()"/>
@@ -120,16 +161,86 @@
                                    onclick="showSum();return false;"/>
                  <h:commandButton value="校验" rendered="#{wage_computeBB.canComputer}" styleClass="button01" type="button"
                                    onclick="doCheckDate();return false;"/>
-                 <h:outputText value="  "/>
-                 <h:commandButton value="暂停工资" styleClass="button01"    rendered="#{wage_computeBB.canModifyData}"
-                                 action="#{wage_computeBB.deleteSet}"
-                                 onclick="return doDelete();"/>
-                 <h:commandButton value="恢复工资" styleClass="button01"    rendered="#{wage_computeBB.canModifyData}"
-                                 action="#{wage_computeBB.restoreSet}"
-                                 onclick="return doRestore();"/>
               </h:panelGroup>
          </h:panelGrid>
-       
+
+        <h:panelGrid columns="14" width="99%" align="center" >
+            <h:panelGroup>
+                <h:commandButton value="导入" styleClass="button01" rendered="#{wage_computeBB.canModifyData}"
+                                  action="#{wage_computeBB.turnPageQuery}"
+                                  onclick="return doUploadFile()"/>
+            </h:panelGroup>
+
+            <h:panelGroup>
+                <h:commandButton value="清空" styleClass="button01" rendered="#{wage_computeBB.canModifyData}"
+                                 action="#{wage_computeBB.turnPageQuery}" onclick="return doClearZero()"/>
+                <h:commandButton value="基础信息" type="button" styleClass="button01" rendered="#{wage_computeBB.canModifyData}"
+                                 onclick="return doBaseInfoInput()"/>
+                <h:commandButton value="定标准" styleClass="button01" rendered="#{wage_computeBB.canModifyStandard}"
+                                 action="#{wage_computeBB.turnPageQuery}"
+                                 onclick="return doSetStandard()"/>
+
+                <h:commandButton value="选择录入" styleClass="button01" rendered="#{wage_computeBB.canModifyData}"
+                                 action="#{wage_computeBB.turnPageQuery}"
+                                 onclick="return doSelectInput()"/>
+                <h:commandButton value="模版录入" styleClass="button01" rendered="#{wage_computeBB.canModifyData}"
+                                 action="#{wage_computeBB.turnPageQuery}" onclick="doTemplateInput()"></h:commandButton>
+                <h:commandButton value="单个修改" rendered="#{wage_computeBB.canModifyData}" styleClass="button01"
+                                  action="#{wage_computeBB.turnPageQuery}" onclick="return doSingleInput();"/>
+                <h:commandButton value="批量修改" rendered="#{wage_computeBB.canModifyData}" styleClass="button01"
+                                 action="#{wage_computeBB.turnPageQuery}"
+                                 onclick="return doBatch();"/>
+           </h:panelGroup>
+
+           <h:panelGroup>
+                <h:commandButton value="部门信息" styleClass="button01" rendered="#{wage_computeBB.deptinfo}"
+                                  action="#{wage_computeBB.turnPageQuery}"
+                                  onclick="return doDeptInput()"/>
+           </h:panelGroup>
+
+
+            <h:panelGroup>
+                <h:commandButton value="清帐" styleClass="button01"  rendered="#{wage_computeBB.clearSheet}"
+                                 action="#{wage_computeBB.finishPerson}"
+                                 onclick="return doDelete();"/>
+
+                <h:panelGroup rendered="#{wage_computeBB.makeupPay}">
+                <h:commandButton value="加人" styleClass="button01"  rendered="#{wage_computeBB.canModifyData}"
+                                 action="#{wage_computeBB.reinforce}"
+                                 onclick="return doReinforce();"/>
+                <h:commandButton value="补数据" styleClass="button01" rendered="#{wage_computeBB.canModifyData}"
+                                 action="#{wage_computeBB.supplyData}">
+                    <x:updateActionListener property="#{wage_setInputBB.dateId}" value="#{wage_computeBB.dateId}"/>
+                    <x:updateActionListener property="#{wage_setInputBB.payoffDate}" value="#{wage_computeBB.payoffDate}"/>
+                    <x:updateActionListener property="#{wage_setInputBB.setId}" value="#{wage_computeBB.setId}"/>
+                    <x:updateActionListener property="#{wage_setInputBB.unitId}" value="#{wage_computeBB.unitId}"/>
+                    <x:updateActionListener property="#{wage_setInputBB.setName}" value="#{wage_computeBB.setName}"/>
+                    <x:updateActionListener property="#{wage_setInputBB.unitName}" value="#{wage_computeBB.unitName}"/>
+                    <x:updateActionListener property="#{wage_setInputBB.operRight}" value="#{wage_computeBB.operCompute}"/>
+                </h:commandButton>
+                <h:commandButton value="减人" styleClass="button01"    rendered="#{wage_computeBB.canModifyData}"
+                                 action="#{wage_computeBB.delete}"
+                                 onclick="return doDelete();"/>
+                <h:commandButton value="暂停" styleClass="button01"    rendered="#{wage_computeBB.canModifyData}"
+                                 action="#{wage_computeBB.deleteSet}"
+                                 onclick="return doDelete();"/>
+                <h:commandButton value="恢复" styleClass="button01"    rendered="#{wage_computeBB.canModifyData}"
+                                 action="#{wage_computeBB.restoreSet}"
+                                 onclick="return doRestore();"/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{wage_computeBB.multiPay}">
+                    <h:commandButton value="多段发放" styleClass="button01"   rendered="#{wage_computeBB.canModifyData}"
+                                     action="#{wage_computeBB.CountManyDept}"
+                                     onclick="return doSelectManyDept();"/>
+                    <h:commandButton value="多段增加" styleClass="button01"   rendered="#{wage_computeBB.canModifyData}"
+                                     action="#{wage_computeBB.CountManyDept}"
+                                     onclick="return doaddManyDept();"/>
+                </h:panelGroup>
+            </h:panelGroup>
+
+            <h:commandButton value="导出" type="button" onclick="doExport();" styleClass="button01"/>
+            <h:commandButton value="报税" type="button" onclick="doTaxExport();" styleClass="button01"/>
+        </h:panelGrid>
 <c:verbatim>
         </td>
     </tr>
