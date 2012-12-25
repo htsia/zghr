@@ -559,7 +559,7 @@ public IWageSetPersonUCC getWagesetpersonucc()
 				if ((opo != null) && (opo.getWageItem() != null)&& (!opo.getWageItem().equals(""))){
 					this.adjustucc.createAdjustDetail(changbo.getPersonId(),adjust.getItemID(), opo.getWageItem().split(","));
 				}
-				CommonUtil.setWageAdjust(adjust.getItemID(), changbo.getPersonId(), changbo, false);
+//				CommonUtil.setWageAdjust(adjust.getItemID(), changbo.getPersonId(), changbo, false);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
