@@ -124,9 +124,7 @@ function showTable(changId){
               </f:verbatim> 
                		<h:outputText value="试用期"/>
 					<h:outputText value="#{empprobastionmgrBB.passMonth}"/>
-               		<h:outputText value="个月,见习期"/>
-					<h:outputText value="#{empprobastionmgrBB.passMonth2}"/>
-					<h:outputText value="个月  "></h:outputText>
+               		<h:outputText value="个月  "/>
 					<h:commandButton value="设置"  styleClass="button01" onclick="return SetProbation()"/>
                 	<h:outputText value="  "></h:outputText>
 					<h:commandButton value="报批"  styleClass="button01" onclick="selectPerson();" action="#{empprobastionmgrBB.approvid}" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
@@ -143,8 +141,6 @@ function showTable(changId){
                </f:verbatim>
               			<h:outputText value="试用"/>
                         <h:selectBooleanCheckbox value="#{empprobastionmgrBB.newProbation}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryNewProbation}" />
-              			<h:outputText value="见习"/>
-                        <h:selectBooleanCheckbox value="#{empprobastionmgrBB.newProbation2}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryNewProbation2}" />
                         <h:outputText value="报批" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
                         <h:selectBooleanCheckbox value="#{empprobastionmgrBB.apprving}" onclick="changeStatus();" valueChangeListener="#{empprobastionmgrBB.queryApprving}" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
                         <h:outputText value="批准" rendered="#{empprobastionmgrBB.mustApprov=='0'}"/>
@@ -271,7 +267,7 @@ function showTable(changId){
                 <h:outputText value="#{list.personType}"/>
             </h:column>
              <h:column>
-                <c:facet name="header"><h:outputText value="入校时间"/></c:facet>
+                <c:facet name="header"><h:outputText value="入职时间"/></c:facet>
                 <h:outputText value="#{list.unitTime}"/>
             </h:column>
             <h:column>
