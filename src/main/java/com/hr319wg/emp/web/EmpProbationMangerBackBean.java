@@ -303,8 +303,8 @@ public String getName()
                 super.showMessageDetail("未到转正日期！");
                 break;
               }
-              if (Constants.EMP_DIRECT_PROBATION.equals("1")) {
-                if (!bo.getStatus().equals(EmpProbationBO.PASS)) {
+              if (Constants.EMP_DIRECT_PROBATION.equals("0")) {
+                if (bo.getStatus().equals(EmpProbationBO.PASS)) {
                   bo.setStatus(EmpProbationBO.EFFICIRNT);
                   this.empprobationucc.saveEmpProbationBO(bo);
                   JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
