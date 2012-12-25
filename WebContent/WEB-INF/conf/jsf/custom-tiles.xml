@@ -163,6 +163,27 @@
         <put name="body" value="/pages/custom/setOAEmail.jsp"/>
     </definition>
     
+    <definition name="/custom/tiancai/user.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/tiancai/user.jsp"/>
+    </definition>
+    <definition name="/custom/tiancai/userlist.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/tiancai/userlist.jsp"/>
+    </definition>
+    <definition name="/custom/tiancai/userbd.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/tiancai/userbd.jsp"/>
+    </definition>
+    <definition name="/custom/tiancai/dept.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/tiancai/dept.jsp"/>
+    </definition>
+    <definition name="/custom/tiancai/deptlist.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/tiancai/deptlist.jsp"/>
+    </definition>
+    <definition name="/custom/tiancai/deptbd.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/tiancai/deptbd.jsp"/>
+    </definition>
+    
+    
+    
     <!-- 考勤相关 -->
     <definition name="/custom/attence/attLogMgr.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/attence/attLogMgr.jsp"/>

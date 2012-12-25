@@ -16,6 +16,8 @@ import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.SysContext;
+import com.hr319wg.custom.util.SqlUtil;
+import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.pojo.vo.IntroLetter;
 import com.hr319wg.emp.ucc.IEmpChangeUCC;
 import com.hr319wg.emp.ucc.IPersonUCC;
@@ -130,7 +132,10 @@ public class PersonEditBackingBean extends BaseBackingBean {
 			tableId = "OBJECT_DETAIL";
 		try {
 			User user = getUserInfo();
-
+			String pkvalue = getServletRequest().getParameter("pk");
+			
+			PersonBO p = SysCacheTool.findPersonById(pkvalue);
+			
 			TableVO table = (TableVO) getHttpSession().getAttribute(tableId);
 			Map dataMap = getServletRequest().getParameterMap();
 			Map ee = new HashMap();
@@ -159,8 +164,9 @@ public class PersonEditBackingBean extends BaseBackingBean {
 					getHttpSession().removeAttribute(itemId);
 				}
 			}
+			String[] perNames = (String[]) (String[]) ee.get("A001001");
+			String[] IDCards = (String[]) (String[]) ee.get("A001077");
 			if ("A001".equals(table.getSetId())) {
-				String[] perNames = (String[]) (String[]) ee.get("A001001");
 				if (perNames != null) {
 					if ((perNames[0] == null) || ("".equals(perNames[0]))) {
 						showMessageDetail("人员姓名为空，不能保存!");
@@ -173,13 +179,29 @@ public class PersonEditBackingBean extends BaseBackingBean {
 					return null;
 				}
 			}
+			
+			//同步财务中间库,添加一条人员信息维护记录
+			String card=perNames[0];
+			boolean cardChanged=false;
+			if(card==null && p.getIdCard()!=null){
+				cardChanged=true;
+			}else if(card!=null && p.getIdCard()==null){
+				cardChanged=true;
+			}else if(card!=null && p.getIdCard()!=null && !p.getIdCard().equals(card)){
+				cardChanged=true;
+			}
+			if("A001".equals(table.getSetId()) && (!p.getName().equals(perNames[0]) || cardChanged)){
+				SqlUtil.updateData("insert into a001_bd (user_id,change_date,change_type,old_dept_id,new_dept_id,user_type,name,user_code) values " +
+						"('"+p.getPersonId()+"',getdate(),'信息维护','"+p.getDeptId()+"','"+p.getDeptId()+"','"+p.getPersonType()+"','"+perNames[0]+"','"+p.getPersonCode()+"')");
+				SqlUtil.updateData("update a001 set a001001 ='"+perNames[0]+"',a001077='"+IDCards[0]+"' where id='"+p.getPersonId()+"'");
+			}
+			
 			if (imageMap.isEmpty())
 				this.orgucc.updatePageInfo(table, ee, user);
 			else {
 				this.orgucc.updatePageInfo(table, ee, user, imageMap);
 			}
 
-			String pkvalue = getServletRequest().getParameter("pk");
 			if ((pkvalue != null) && (!"".equals(pkvalue))) {
 				SysCache.setPerson(pkvalue, 3);
 			}
