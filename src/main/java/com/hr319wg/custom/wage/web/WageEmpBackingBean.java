@@ -37,6 +37,7 @@ public class WageEmpBackingBean extends BaseBackingBean {
 	private String operUserID;
 	private String wage;
 	private String other;
+	private String importType;
 	private boolean hasWage=true;
 	private boolean noWage=true;
 	private boolean hasCash=true;
@@ -46,6 +47,14 @@ public class WageEmpBackingBean extends BaseBackingBean {
 	private List<Map> list;
 	private IWageDataService wageDataService;
 	private UserBO user = new UserBO();
+
+	public String getImportType() {
+		return importType;
+	}
+
+	public void setImportType(String importType) {
+		this.importType = importType;
+	}
 
 	public String getOperUserID() {
 		return operUserID;
@@ -336,13 +345,14 @@ public class WageEmpBackingBean extends BaseBackingBean {
 				}
 				m.put("name", name);
 				String dept = st.getCell(1, i).getContents();
-				sql="select orguid from b001 where b001005='"+dept+"' and b001730='00901'";
+				sql="select orguid from b001 where b001005='"+dept+"' and b001730='00900'";
 				List deptList = jdbc.queryForList(sql);
 				if(deptList==null || deptList.size()==0){
 					super.showMessageDetail("第"+i+"行姓名为"+name+"的所在部门"+dept+"不存在");
 					break;
 				}
-				m.put("deptID", ((Map)list.get(0)).get("orguid"));
+				m.put("deptID", ((Map)deptList.get(0)).get("orguid"));
+				
 				String personType = st.getCell(2, i).getContents();
 				if(!"项目工".equals(personType) && !"兼职教师".equals(personType)){
 					super.showMessageDetail("第"+i+"行姓名为"+name+"的人员类别"+personType+"不存在");
@@ -353,7 +363,27 @@ public class WageEmpBackingBean extends BaseBackingBean {
 				}else if("兼职教师".equals(personType)){
 					m.put("personType", "0135700574");					
 				}
-				String wage1 = st.getCell(3, i).getContents();
+				
+				String card = st.getCell(3, i).getContents();
+				if(card==null || "".equals(card)){
+					break;
+				}
+				m.put("card", card);
+				
+				String bank = st.getCell(4, i).getContents();
+				String hasCash = st.getCell(7, i).getContents();
+				if("是".equals(hasCash)){
+					m.put("hasCash", "1");					
+				}else{
+					if(bank==null || "".equals(bank)){
+						super.showMessageDetail("第"+i+"行姓名为"+name+"的银行账号不能为空");
+						break;
+					}
+					m.put("bank", bank);										
+					m.put("hasCash", "0");										
+				}
+				
+				String wage1 = st.getCell(5, i).getContents();
 				if(wage1!=null && wage1.length()>0){
 					wage1=wage1.trim();
 					try {
@@ -364,7 +394,8 @@ public class WageEmpBackingBean extends BaseBackingBean {
 					}
 				}
 				m.put("wage", wage1.trim());
-				String other1 = st.getCell(4, i).getContents();
+				
+				String other1 = st.getCell(6, i).getContents();
 				if(other1!=null && other1.length()>0){
 					other1=other1.trim();
 					try {
@@ -375,15 +406,18 @@ public class WageEmpBackingBean extends BaseBackingBean {
 					}
 				}
 				m.put("other", other1.trim());
-				String hasCash = st.getCell(5, i).getContents();
-				if("是".equals(hasCash)){
-					m.put("hasCash", "1");					
-				}else{
-					m.put("hasCash", "0");										
+				sql="select id from a001 where A001054 in ('0135700572','0135700574') and A001077='"+card+"'";
+				List cardList=jdbc.queryForList(sql);
+				if(cardList!=null && cardList.size()==1){
+					Map id=(Map)cardList.get(0);
+					m.put("id", id.get("id"));
+				}else if(cardList!=null && cardList.size()>1){
+					super.showMessageDetail("第"+i+"行姓名为"+name+"的身份证在系统中已经存在"+cardList.size()+"个");
+					break;
 				}
 				listEmp.add(m);
 			}
-			
+			this.wageDataService.batchSaveWageEmpPerson(listEmp, this.importType);
 		} catch (BiffException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {

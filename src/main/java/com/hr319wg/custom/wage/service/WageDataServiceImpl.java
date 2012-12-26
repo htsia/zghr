@@ -116,11 +116,13 @@ public class WageDataServiceImpl implements IWageDataService{
 		this.activeapi.executeSql(sql);
 	}
 	
+	
 	//保存短期工人员
 	public void saveWageEmpPerson(UserBO user, String wage, String other) throws SysException{
+		
 		boolean isnew =user.getUserID()==null?true:false;
 		if(isnew){
-			String sql ="select max(cast(a001735 as int))+1 from a001 where a001735 not like '@%'";
+			String sql ="select personnum_sequence.nextval from dual";
 			int code=this.jdbcTemplate.queryForInt(sql);
 			user.setPersonSeq(code+"");
 		}
@@ -151,14 +153,21 @@ public class WageDataServiceImpl implements IWageDataService{
 			this.jdbcTemplate.execute(sql);	
 		}
 	}
-	@Override
-	public void batchSaveWageEmpPerson(List<Map> list) throws SysException {
+	//导入短期工人员
+	public void batchSaveWageEmpPerson(List<Map> list, String importType) throws SysException {
+		String sql="update a239 set a239200=null,a239201=null where id in (select id from a001 where A001054='"+importType+"')";
+		this.jdbcTemplate.execute(sql);
 		for(Map m : list){
 			UserBO bo = new UserBO();
 			bo.setName(m.get("name").toString());
 			bo.setDeptId(m.get("deptID").toString());
 			bo.setPersonType(m.get("personType").toString());
 			bo.setHasCashStr(m.get("hasCash").toString());
+			bo.setCardNO(m.get("card").toString());
+			bo.setBankNO(m.get("bank")==null?"":m.get("bank").toString());
+			if(m.get("id")!=null){
+				bo.setId(m.get("id").toString());
+			}
 			saveWageEmpPerson(bo, String.valueOf(m.get("wage")), String.valueOf(m.get("other")));
 		}
 	}

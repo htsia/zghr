@@ -61,10 +61,15 @@
 				<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{wage_empBB.doQuery}"/>
 				<h:commandButton styleClass="button01" value="查询" action="#{wage_empBB.doQuery}"/>
 				<h:outputText value=" "/>
-				<h:outputLink value="/pages/custom/wage/import.xls" target="_new">
+				<h:outputLink value="/pages/custom/wage/importEmp.xls" target="_new">
 					<h:outputText value="下载模板  " />
 				</h:outputLink>
 	            <x:inputFileUpload id="excelFile" styleClass="input" value="#{wage_empBB.excelFile}" storage="file" size="5"/>
+	            <h:outputText value="导入类别"/>
+	            <h:selectOneMenu value="#{wage_empBB.importType}" >
+		        	<c:selectItem itemLabel="兼职教师" itemValue="0135700574"/>
+		        	<c:selectItem itemLabel="项目工" itemValue="0135700572"/>
+		        </h:selectOneMenu>
 	            <h:commandButton styleClass="button01" value="导入" action="#{wage_empBB.uploadFile}" onclick="return checkSubmit();"/>
 				<h:outputText value=" "/>
 				<h:commandButton styleClass="button01" value="加入帐套" action="#{wage_empBB.addToWageset}"/>

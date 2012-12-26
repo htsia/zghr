@@ -35,8 +35,8 @@ public interface IWageDataService {
 	
 	//保存短期工人员
 	public void saveWageEmpPerson(UserBO user, String wage, String other) throws SysException;
-	//保存短期工人员
-	public void batchSaveWageEmpPerson(List<Map> list) throws SysException;
+	//导入短期工人员
+	public void batchSaveWageEmpPerson(List<Map> list, String importType) throws SysException;
 	//删除短期工人员
 	public void deleteWageEmpPerson(String userID) throws SysException;
 	
