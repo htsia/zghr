@@ -121,10 +121,12 @@
 </c:verbatim>
     </h:form>
 <script type="text/javascript">
+/*
 	for(var i=0;i<document.all('form1:baseinfo').length;i++){
 	   var item = document.all('form1:baseinfo')[i];
 	   if(item.value=="A754020" || item.value=="A754202" || item.value=="A754040" || item.value=="A754200"){
 			item.parentNode.style.display="none";
 	   }
 	}
+	*/
 </script>

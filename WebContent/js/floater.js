@@ -5,7 +5,6 @@ lastScrollX =-10; lastScrollY = -40;
 NS = (document.layers) ? 1 : 0;
 IE = (document.all) ? 1: 0;
 
-<!-- STALKER CODE -->      
 function heartBeat() {
     if(IE) { diffY = document.body.scrollTop; diffX = document.body.scrollLeft; }
     if(NS) { diffY = self.pageYOffset; diffX = self.pageXOffset; }
