@@ -18,11 +18,7 @@
 <%@ page import="com.hr319wg.emp.pojo.bo.PersonBO" %>
 
 <script language=javascript src="/js/hashtable.js"></script>
-<script language=javascript>
-$(function(){
-	$(":text,select").width("200px");
-});
-</script>
+<script language=javascript src="/js/hashtable.js"></script>
 <%
     //------------------------------  视图录入页面 ---------------------------------
     //是否查看
