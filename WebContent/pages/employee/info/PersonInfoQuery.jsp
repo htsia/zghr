@@ -229,7 +229,7 @@
                     <h:inputHidden id="ManyPerson" value="#{emp_personListBB.nameStrs}"></h:inputHidden>
                     <h:commandButton value="多人查询" id="queryPerson2" onclick="return doQueryManyPerson()" styleClass="button01"
                                      action="#{emp_personListBB.queryMultPerson}"/>
-                    <h:commandButton value="清除" id="clean_queryName" onclick="clearQueryName()" styleClass="button01"/>
+                    <h:commandButton value="清除" id="clean_queryName" onclick="clearQueryName()" styleClass="button01" action="#{emp_personListBB.queryPerson}"/>
 <f:verbatim>
                 </td>
 
