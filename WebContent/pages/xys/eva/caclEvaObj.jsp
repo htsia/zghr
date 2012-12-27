@@ -85,7 +85,7 @@
             <h:outputText value="#{list.score360}"/>
         </h:column>
         <h:column>
-            <c:facet name="header"><h:outputText value="学生评价"/></c:facet>
+            <c:facet name="header"><h:outputText value="其他评价"/></c:facet>
             <h:outputText value="#{list.scoreXspj}"/>
         </h:column>
         <h:column>

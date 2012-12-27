@@ -31,7 +31,7 @@
 			<div><a target="main" href="main.jsp?username=admin&url=/xys/eva/Person360AuditCtr.jsf">360考核监控</a></div>
 			<div><a target="main" href="main.jsp?username=admin&url=/xys/eva/DeptKpiAuditCtr.jsf">部门KPI考核监控</a></div>
 			<div><a target="main" href="main.jsp?username=admin&url=/xys/eva/PersonKpiAuditCtr.jsf">个人KPI考核监控</a></div>
-			<div><a target="main" href="main.jsp?username=admin&url=/xys/eva/regStudentGrade.jsf">录入学生评价</a></div>
+			<div><a target="main" href="main.jsp?username=admin&url=/xys/eva/regStudentGrade.jsf">录入其他评价</a></div>
 			<div>绩效评估与分析</div>
 			<div><a target="main" href="main.jsp?username=admin&url=/xys/eva/caclEvaPlan.jsf">结果计算</a></div>
 			<div><a target="main" href="main.jsp?username=admin&url=/xys/eva/auditEvaPlan.jsf">结果审批</a></div>

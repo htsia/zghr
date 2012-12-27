@@ -76,8 +76,8 @@ function forSave() {
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td class="td_title"><img src="/images/tips.gif">
-          <%=LanguageSupport.getResource("RYGL-2362", " 学生管理 ")%>-> 
-          <%=LanguageSupport.getResource("RYGL-2363", "增加学生  ")%>      
+          <%=LanguageSupport.getResource("RYGL-2362", " 其他管理 ")%>-> 
+          <%=LanguageSupport.getResource("RYGL-2363", "增加其他  ")%>      
        </td>
         <td class="td_title" align="right">
             <%

@@ -456,8 +456,8 @@ RYGL-2357|工作单位|工作單位|Work units
 RYGL-2358|家庭住址|家庭住址|Home Address
 RYGL-2360|现居住地区|現居住地區|Living Area
 RYGL-2361|联系方式|聯繫方式|Contact
-RYGL-2362|学生管理|學生管理|Student Management
-RYGL-2363|增加学生|增加學生|To increase students
+RYGL-2362|其他管理|學生管理|Student Management
+RYGL-2363|增加其他|增加學生|To increase students
 RYGL-2364|班级|班級|Class
 RYGL-2365|当前单位|當前單位|Current unit
 RYGL-2366|浏览人员信息|流覽人員資訊|Browse personnel information

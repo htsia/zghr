@@ -28,7 +28,7 @@ function chkDate(){
 		<h:panelGrid columns="2" width="100%"
 			columnClasses="td_form01,td_form02" align="center"
 			styleClass="table03">
-			<h:outputText value="培训学生" />
+			<h:outputText value="培训其他" />
 			<h:panelGroup>
 				<h:inputHidden id="recID"
 					value="#{TrainClassSign_EditBB.studentbo.personID}" />

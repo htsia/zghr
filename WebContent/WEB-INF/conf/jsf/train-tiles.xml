@@ -222,7 +222,7 @@
      <definition name="/train/trainClassSignList1.tiles" extends="layout.busitemplate">
         <put name="body" value="/pages/train/trainClassSignList1.jsp"/>
     </definition>
-    <!-- 培训学生审批 -->
+    <!-- 培训其他审批 -->
      <definition name="/train/studentAudit.tiles" extends="layout.busitemplateLogin" >
         <put name="body" value="/pages/train/studentAudit.jsp" />
     </definition>

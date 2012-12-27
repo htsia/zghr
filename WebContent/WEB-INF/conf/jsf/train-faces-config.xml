@@ -584,7 +584,7 @@
             <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
-    <!--培训学生审批 -->
+    <!--培训其他审批 -->
     <managed-bean>
 		<managed-bean-name>studentAudit_ListBB</managed-bean-name>
 		<managed-bean-class>com.hr319wg.train.web.StudentAuditListBackingBean</managed-bean-class>
