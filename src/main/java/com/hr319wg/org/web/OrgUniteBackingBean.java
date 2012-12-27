@@ -83,7 +83,12 @@ public class OrgUniteBackingBean extends BaseBackingBean
 			//同步财务系统,添加一条机构合并记录
 			SqlUtil.updateData("insert into b001_bd (change_date,change_type,old_mainDeptID,new_mainDeptID,dept_id,dept_type,dept_name,appendToDeptID) values " +
 		      					"(getdate(),'合并','"+bo.getSuperId()+"','"+bo.getSuperId()+"','"+bo.getOrgId()+"','"+("089110".equals(bo.getorgType())?"单位":"部门")+"','"+bo.getName()+"','"+this.orgId+"')");
+			//增加人员变动信息
+			SqlUtil.updateData("insert into a001_bd (user_id,change_date,change_type,old_dept_id,new_dept_id,user_type,name,user_code) " +
+					"select id,getdate(),'部门变动','"+bo.getOrgId()+"' dept,'"+this.orgId+"',a001054,a001001,a001735 from a001 where a001705='"+bo.getOrgId()+"'");			
+			//人员信息修改
 			SqlUtil.updateData("update a001 set a001705='"+this.orgId+"' where a001705='"+bo.getOrgId()+"'");
+			//删除被合并部门
 			SqlUtil.updateData("delete from b001 where id='"+bo.getOrgId()+"'");
 			
 			this.uniteOrgId = null;

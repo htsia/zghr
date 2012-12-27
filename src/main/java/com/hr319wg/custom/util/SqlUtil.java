@@ -17,7 +17,7 @@ public class SqlUtil {
 			try {
 				Context intitCtx = new InitialContext();
 				Context envCtx = (Context) intitCtx.lookup("java:comp/env");
-				DataSource ds = (DataSource) envCtx.lookup("hrcaiwu");
+				DataSource ds = (DataSource) envCtx.lookup("tiancai");
 				connection = ds.getConnection();
 			} catch (Exception e) {
 				e.printStackTrace();

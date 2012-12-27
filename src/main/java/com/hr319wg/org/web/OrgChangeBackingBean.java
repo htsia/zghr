@@ -82,6 +82,7 @@ public class OrgChangeBackingBean extends BaseBackingBean
       //同步财务系统,添加一条主管机构变更记录
 	  SqlUtil.updateData("insert into b001_bd (change_date,change_type,old_mainDeptID,new_mainDeptID,dept_id,dept_type,dept_name) values " +
       					"(getdate(),'主管机构变更','"+bo.getSuperId()+"','"+this.superOrg+"','"+this.changeOrg+"','"+("089110".equals(bo.getorgType())?"单位":"部门")+"','"+bo.getName()+"')");
+	  
 	  SqlUtil.updateData("update b001 set b001003='"+bo.getTreeId()+"',b001002='"+this.superOrg+"',b001005='"+bo.getName()+"' where id='"+bo.getOrgId()+"'");
       
 	  SysCache.loadOrgMap();
