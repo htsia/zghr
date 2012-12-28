@@ -295,11 +295,21 @@ public class WageEmpBackingBean extends BaseBackingBean {
 		}
 	}
 
-	//加入帐套
-	public void addToWageset(){
+	//项目工加入帐套
+	public void addProToWageset(){
 		try {
-			this.wageDataService.addToWageset();
-			super.showMessageDetail("添加完成");
+			int result = this.wageDataService.addToWageset("0135700572", "10212", super.getUserInfo().getOrgId());
+			super.showMessageDetail("成功添加"+result+"个");
+		} catch (SysException e) {
+			super.showMessageDetail("添加失败");
+			e.printStackTrace();
+		}
+	}
+	//兼职教师加入帐套
+	public void addTeaToWageset(){
+		try {
+			int result = this.wageDataService.addToWageset("0135700574", "10220", super.getUserInfo().getOrgId());
+			super.showMessageDetail("成功添加"+result+"个");
 		} catch (SysException e) {
 			super.showMessageDetail("添加失败");
 			e.printStackTrace();

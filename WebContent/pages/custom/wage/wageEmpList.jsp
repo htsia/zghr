@@ -71,13 +71,15 @@
 		        	<c:selectItem itemLabel="项目工" itemValue="0135700572"/>
 		        </h:selectOneMenu>
 	            <h:commandButton styleClass="button01" value="导入" action="#{wage_empBB.uploadFile}" onclick="return checkSubmit();"/>
-				<h:outputText value=" "/>
-				<h:commandButton styleClass="button01" value="加入帐套" action="#{wage_empBB.addToWageset}"/>
-				<h:commandButton styleClass="button01" value="导出现金工资" onclick="return exportCash();"/>
-		    </h:panelGroup>
+	        </h:panelGroup>
 		 </h:panelGrid>
-		 <h:panelGrid columns="1" align="right">
+		<h:panelGrid columns="1" align="left">
 			<h:panelGroup>
+				<h:commandButton styleClass="button01" value="加入项目工至帐套" onclick="return confirm('确定加入帐套吗?');" action="#{wage_empBB.addProToWageset}"/>
+				<h:commandButton styleClass="button01" value="加入兼职教师至帐套" onclick="return confirm('确定加入兼职教师帐套吗?');" action="#{wage_empBB.addTeaToWageset}"/>
+				<h:outputText value="  "/>
+				<h:commandButton styleClass="button01" value="导出现金工资" onclick="return exportCash();"/>
+				<h:outputText value="  "/>
 				<h:outputText value="记录数:#{wage_empBB.mypage.totalRecord}"/>
 				<h:outputText value="  "/>
 				<h:outputText value="页数:#{wage_empBB.mypage.totalPage}"/>

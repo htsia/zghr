@@ -31,7 +31,7 @@ public interface IWageDataService {
 	public void calcClassWage() throws SysException;
 	
 	//加入到帐套
-	public void addToWageset() throws SysException;
+	public int addToWageset(String personType, String wageSetID, String unitID) throws SysException;
 	
 	//保存短期工人员
 	public void saveWageEmpPerson(UserBO user, String wage, String other) throws SysException;

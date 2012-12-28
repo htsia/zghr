@@ -104,16 +104,38 @@ public class WageDataServiceImpl implements IWageDataService{
 		this.activeapi.executeSql("BEGIN proc_calc_classwage(); END;");
 	}
 
-	//加入到帐套
-	public void addToWageset() throws SysException{
-		String sql = "delete from wage_set_pers_r where a815700 in ('10220','10221')";
+	/**
+	 *加入到帐套
+	 *type 0项目工资、1兼职教师 
+	 */
+	public int addToWageset(String personType, String wageSetID, String unitID) throws SysException{
+		//删除数据
+		String sql = "delete from wage_set_pers_r where id in (select id from a001 where a001054='"+personType+"')";
 		this.activeapi.executeSql(sql);
-		//兼职教师
-		sql = "insert into wage_set_pers_r (id,subid,a815000,a815700) select id,'0','00901','10220' from a001 where a001054 in ('0135700574') and  a001738 not like '001002011%' and id in (select id from a239 where a239202='1')";
-		this.activeapi.executeSql(sql);			
-		//项目工
-		sql = "insert into wage_set_pers_r (id,subid,a815000,a815700) select id,'0','00901','10221' from a001 where a001054 in ('0135700572') and  a001738 not like '001002011%' and id in (select id from a239 where a239202='1')";
+		//判断帐套是否已经建立
+		int result=-1;
+		sql="select count(*) from dba_tables where owner='HRMT_1' and tablespace_name='DATA' and table_name='A815_SET_"+wageSetID+"'";
+		result=this.activeapi.queryForInt(sql);
+		if(result==1){
+			sql = "delete from A815_SET_"+wageSetID+" where id in (select id from a001 where a001054='"+personType+"')";
+			this.activeapi.executeSql(sql);
+		}
+		
+		//添加数据
+		sql = "insert into wage_set_pers_r (id,subid,a815000,a815700) select a.id,'0','00901','"+wageSetID+"' from a001 a,a239 w where a.id=w.id and a001054='"+personType+"' and a001201 ='0' and (w.a239200>0 or w.a239201>0)";
 		this.activeapi.executeSql(sql);
+		if(result==1){
+			sql = "select s.a815701 ||','||s.a815702 from a815_set_"+wageSetID+" s where rownum=1";
+			String wageInfo=this.activeapi.queryForString(sql);
+			if(wageInfo!=null && !"".equals(wageInfo)){
+				String[]wageInfos=wageInfo.split(",");
+				sql = "insert into a815_set_"+wageSetID+" (a815700,a815701,a815702,id,subid,a815000,a815705) " +
+						"select '"+wageSetID+"','"+wageInfos[0]+"','"+wageInfos[1]+"',a.id,'0','00901','"+unitID+"' from a001 a,a239 w where a.id=w.id and a001054='"+personType+"' and a001201 ='0' and (w.a239200>0 or w.a239201>0)";
+				this.activeapi.executeSql(sql);
+			}
+		}
+		sql = "select count(*) from a001 a,a239 w where a.id=w.id and a001054='"+personType+"' and a001201<>'1' and (w.a239200>0 or w.a239201>0)";
+		return this.activeapi.queryForInt(sql);
 	}
 	
 	
@@ -135,7 +157,7 @@ public class WageDataServiceImpl implements IWageDataService{
 		if(user.isHasCash()){
 			user.setHasCashStr("1");
 		}else{
-			user.setHasCashStr(null);			
+			user.setHasCashStr("0");			
 		}
 		HibernateTemplate temp = (HibernateTemplate)SysContext.getBean("hibernateTemplate");
 		temp.saveOrUpdate(user);
