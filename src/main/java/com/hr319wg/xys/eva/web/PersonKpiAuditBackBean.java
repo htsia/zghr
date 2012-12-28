@@ -28,9 +28,7 @@ public class PersonKpiAuditBackBean extends BaseBackingBean {
 	private String pageInit;
 	private List objList;
 	private String objId;
-	private String desc = "温馨提醒：\\n\\r　　根据考核方案，您没有对下属KPI评分的职责，您可以完成对同事属态度能力指标（含下属）的评分，"
-			+ "对下属KPI具有评分职责的考核者有以下人员：高层领导；中层党政领导；系主任、教研室主任。";
-
+	
 	public IXysKpiDeptUCC getXysKpiDeptUCC() {
 		return xysKpiDeptUCC;
 	}
@@ -78,8 +76,6 @@ public class PersonKpiAuditBackBean extends BaseBackingBean {
 					obj.setScore(CommonFuns.filterNull(sbj.getScore()));
 					objList.set(i, obj);
 				}
-			} else {
-				super.showMessageDetail(desc);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
