@@ -416,11 +416,12 @@ public class WageEmpBackingBean extends BaseBackingBean {
 					}
 				}
 				m.put("other", other1.trim());
-				sql="select id from a001 where A001054 in ('0135700572','0135700574') and A001077='"+card+"'";
+				sql="select id,a001735 from a001 where A001054 in ('0135700572','0135700574') and A001077='"+card+"'";
 				List cardList=jdbc.queryForList(sql);
 				if(cardList!=null && cardList.size()==1){
 					Map id=(Map)cardList.get(0);
 					m.put("id", id.get("id"));
+					m.put("personCode", id.get("a001735"));
 				}else if(cardList!=null && cardList.size()>1){
 					super.showMessageDetail("第"+i+"行姓名为"+name+"的身份证在系统中已经存在"+cardList.size()+"个");
 					break;
@@ -428,6 +429,7 @@ public class WageEmpBackingBean extends BaseBackingBean {
 				listEmp.add(m);
 			}
 			this.wageDataService.batchSaveWageEmpPerson(listEmp, this.importType);
+			super.showMessageDetail("成功导入"+listEmp.size()+"个");
 		} catch (BiffException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {

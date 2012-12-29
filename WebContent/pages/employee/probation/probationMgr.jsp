@@ -121,7 +121,7 @@ function showTable(changId){
       				<f:verbatim>
                </td>
                <td align="left" class=td_title>
-              </f:verbatim> 
+              </f:verbatim>
                		<h:outputText value="试用期"/>
 					<h:outputText value="#{empprobastionmgrBB.passMonth}"/>
                		<h:outputText value="个月,见习期"/>
