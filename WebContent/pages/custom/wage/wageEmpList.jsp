@@ -28,6 +28,9 @@
     	}
     	return true;
     }
+	function exportCash(){
+		window.open("/pages/custom/wage/exportEmpWage.jsp");
+	}
 	function checkSubmit() {
         var filename = document.all("form1:excelFile").value;
         if (filename.substr(filename.length - 3).toLowerCase() != 'xls') {

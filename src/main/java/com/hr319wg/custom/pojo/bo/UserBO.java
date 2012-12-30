@@ -42,11 +42,9 @@ public class UserBO {
 	public void setHasCashStr(String hasCashStr) {
 		this.hasCashStr = hasCashStr;
 	}
+	
 	public boolean isHasCash() {
-		if("1".equals(hasCashStr)){
-			return true;
-		}
-		return false;
+		return hasCash;
 	}
 	public void setHasCash(boolean hasCash) {
 		this.hasCash = hasCash;

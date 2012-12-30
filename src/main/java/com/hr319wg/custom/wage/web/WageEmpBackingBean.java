@@ -22,7 +22,6 @@ import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.custom.wage.pojo.bo.WageEmpBO;
 import com.hr319wg.custom.wage.service.IWageDataService;
-import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CodeUtil;
 
 public class WageEmpBackingBean extends BaseBackingBean {
@@ -160,6 +159,9 @@ public class WageEmpBackingBean extends BaseBackingBean {
 		}
 		if(this.user==null){
 			this.user=new UserBO();
+		}
+		if("1".equals(user.getHasCashStr())){
+			user.setHasCash(true);
 		}
 		return editInit;
 	}
@@ -435,7 +437,6 @@ public class WageEmpBackingBean extends BaseBackingBean {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} catch (SysException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

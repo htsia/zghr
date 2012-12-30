@@ -1,11 +1,7 @@
-<%@page import="com.hr319wg.custom.wage.service.IWageDataService"%>
+<%@page import="org.springframework.jdbc.core.JdbcTemplate"%>
 <%@page import="jxl.write.Label"%>
 <%@page import="java.io.File"%>
 <%@page import="jxl.Workbook"%>
-<%@page import="com.hr319wg.custom.pojo.bo.UserBO"%>
-<%@page import="com.hr319wg.util.CodeUtil"%>
-<%@page import="com.hr319wg.sys.cache.SysCacheTool"%>
-<%@page import="com.hr319wg.emp.pojo.bo.PersonBO"%>
 <%@page import="com.hr319wg.common.web.SysContext"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.io.FileInputStream"%>
@@ -27,71 +23,48 @@
 					WritableWorkbook book = Workbook.createWorkbook(new File(path+"file\\export\\result.xls"));
 					WritableSheet sheet = book.createSheet("现金工资明细", 0);
 					
-					String[]heads={"员工编号", "身份证号", "姓名", "二级部门", "所在部门", "人员类别", "职称等级", "超课时数", "应发超课时工资", "代扣税", "实发超课时工资", "银行账号"};
+					String[]heads={"序号","员工编号", "姓名", "身份证号", "所在部门", "应发工资", "其他", "应发合计", "实发合计", "签字", "备注"};
+					
 					for(int i=0;i<heads.length;i++){
 						Label label = new Label(i, 0, heads[i]);
 						sheet.addCell(label);
 					}
-					IWageDataService wage = (IWageDataService)SysContext.getBean("wage_dataservice");
-					List list = wage.getAllClassWageBO();
-					List list1 = new ArrayList();
-					List list2 = new ArrayList();
-					if(list!=null && list.size()>0){
-						for(int i=0;i<list.size();i++){
-							Map m = (Map)list.get(i);
-							double realwage = Double.valueOf(String.valueOf(m.get("realwage")));
-							if(realwage>0){
-								list1.add(list.get(i));
-							}else if(realwage<0){
-								list2.add(list.get(i));								
-							}
-						}
-					}
-					for(int i=0;i<list1.size();i++){
-						Map m = (Map)list1.get(i);
-						Label labelcode = new Label(0, i+1, m.get("personcode").toString());
+					JdbcTemplate jdbc = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
+					String sql = "select a.a001735,a.a001001,a.a001077,b.b001005,nvl(w.a239200,0) base,nvl(w.a239201,0) other,nvl(w.a239200,0)+nvl(w.a239201,0) wage from a239 w left join a001 a on w.id=a.id left join b001 b on a.a001735=b.orguid where (nvl(w.a239200,0)<>0 or nvl(w.a239201,0)<>0) and a.a001201='1' and a.a001054='0135700572'";
+					List list = jdbc.queryForList(sql);
+					
+					for(int i=0;list!=null && i<list.size();i++){
+						Map m = (Map)list.get(i);
+						Label labelindex = new Label(0, i+1, i+1+"");
+						sheet.addCell(labelindex);
+						
+						Label labelcode = new Label(1, i+1, m.get("a001735").toString());
 						sheet.addCell(labelcode);
 						
-						if(m.get("card")!=null){
-							Label labelcard = new Label(1, i+1, m.get("card").toString());
+						Label labelname = new Label(2, i+1, m.get("a001001").toString());
+						sheet.addCell(labelname);
+						
+						if(m.get("a001077")!=null){
+							Label labelcard = new Label(3, i+1, m.get("a001077").toString());
 							sheet.addCell(labelcard);
 						}
 						
-						Label labelname = new Label(2, i+1, m.get("name").toString());
-						sheet.addCell(labelname);
-	
-						Label labelsecdept = new Label(3, i+1, CodeUtil.interpertCode(m.get("secdept").toString()));
-						sheet.addCell(labelsecdept);
-						
-						Label labeldept = new Label(4, i+1, CodeUtil.interpertCode(CodeUtil.TYPE_ORG, m.get("dept").toString()));
-						sheet.addCell(labeldept);
-						
-						Label labeltype = new Label(5, i+1, CodeUtil.interpertCode(m.get("persontype").toString()));
-						sheet.addCell(labeltype);
-						
-						if(m.get("zclevel")!=null){
-							Label labellevel = new Label(6, i+1, CodeUtil.interpertCode(m.get("zclevel").toString()));
-							sheet.addCell(labellevel);
+						if(m.get("b001005")!=null){
+							Label labeldept = new Label(4, i+1, m.get("b001005").toString());
+							sheet.addCell(labeldept);
 						}
 						
-						if(m.get("classnum")!=null){
-							Label labelnum = new Label(7, i+1, m.get("classnum").toString());
-							sheet.addCell(labelnum);
-						}
+						Label labelbase = new Label(5, i+1, m.get("base").toString());
+						sheet.addCell(labelbase);
 						
-						Label labelwage = new Label(8, i+1, m.get("wage").toString());
+						Label labelother = new Label(6, i+1, m.get("other").toString());
+						sheet.addCell(labelother);
+						
+						Label labelwage = new Label(7, i+1, m.get("wage").toString());
 						sheet.addCell(labelwage);
 						
-						Label labelreduce = new Label(9, i+1, m.get("reduce").toString());
-						sheet.addCell(labelreduce);
-						
-						Label labelrealwage = new Label(10, i+1, m.get("realwage").toString());
-						sheet.addCell(labelrealwage);
-						
-						if(m.get("bank")!=null){
-							Label labelbank = new Label(11, i+1, m.get("bank").toString());
-							sheet.addCell(labelbank);
-						}
+						Label labelwage2 = new Label(8, i+1, m.get("wage").toString());
+						sheet.addCell(labelwage2);
 					}
 					
 					book.write();
