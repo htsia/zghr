@@ -1,8 +1,10 @@
 package com.hr319wg.emp.web;
 
 import java.io.File;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
@@ -20,6 +22,7 @@ import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.util.CommonUtil;
+import com.hr319wg.custom.util.SqlUtil;
 import com.hr319wg.emp.pojo.bo.EmpChangeTypeConfigBO;
 import com.hr319wg.emp.pojo.bo.EmpReduceBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
@@ -542,17 +545,22 @@ public class PersonListBackingBean extends BaseBackingBean
           rb.setAuditDate(CommonFuns.getSysDate("yyyy-MM-dd"));
           rb.setAuditResult("1");
           this.personucc.saveReduceBO(rb);
-
+          String[]ids=rb.getPersID().split(",");
           PersonChangeVO personchangevo = new PersonChangeVO();
           personchangevo.setTractDate(CommonFuns.getSysDate("yyyy-MM-dd"));
           personchangevo.setTractPerson(super.getUserInfo().getUserId());
           personchangevo.setChangeDate(rb.getApplyDate());
           personchangevo.setChangeType(rb.getA016010());
-          this.personucc.updateRetirePerson(super.getUserInfo(), personchangevo, rb.getPersID().split(","));
+          
+          this.personucc.updateRetirePerson(super.getUserInfo(), personchangevo, ids);
 //          this.personucc.updateRetirePerson(personchangevo, rb.getPersID().split(","));
-          this.personucc.ModifyPersonType(rb.getPersID().split(","), rb.getA001054());
-          this.personucc.ModifyPersonStatus(rb.getPersID().split(","), rb.getA001725());
+          this.personucc.ModifyPersonType(ids, rb.getA001054());
+          this.personucc.ModifyPersonStatus(ids, rb.getA001725());
           SysCache.setMap(rb.getPersID().split(","), 3, 6);
+          for(int j=0;j<ids.length;j++){
+        	  PersonBO p=SysCacheTool.findPersonById(ids[j]);
+        	  addData(p);
+          }
         }
       }
     }
@@ -699,6 +707,7 @@ public class PersonListBackingBean extends BaseBackingBean
         String sql = "insert into emp_audit_info (id,changedate,changetype) values('"+personids[i]+"','"+CommonFuns.getSysDate("yyyy-MM-dd")+"','2')";
         JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
         jdbcTemplate.execute(sql);
+        addData(pb);
       }
 
       if (this.autoMessage) {
@@ -721,6 +730,13 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     return "success";
   }
+  private void addData(PersonBO p){
+	//同步财务中间库,添加一条人员离职记录
+  	SqlUtil.updateData("insert into a001_bd (user_id,change_date,change_type,old_dept_id,new_dept_id,user_type,name,user_code) values " +
+      			"('"+p.getPersonId()+"',getdate(),'离职','"+p.getDeptId()+"','"+p.getDeptId()+"','"+p.getPersonType()+"','"+p.getName()+"','"+p.getPersonCode()+"')");
+  	SqlUtil.updateData("update a001 set a001054 ='"+p.getPersonType()+"' where id='"+p.getPersonId()+"'");
+  }
+  
   public String auditfirst() {
     this.pagevo.setCurrentPage(1);
     doauditQuery();
@@ -1648,6 +1664,7 @@ public class PersonListBackingBean extends BaseBackingBean
     try {
       String name = "";
       String[] ids = getServletRequest().getParameter("pids").split(",");
+      JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
       for (int i = 0; i < ids.length; i++) {
     	this.personucc.UpdateAuditState(ids[i], this.auditOpition, this.auditResult, CommonFuns.getSysDate("yyyy-MM-dd"), super.getUserInfo().getUserId());
         if ("00901".equals(this.auditResult)) {
@@ -1663,8 +1680,20 @@ public class PersonListBackingBean extends BaseBackingBean
             }
           }
           String sql = "insert into emp_audit_info (id,changedate,changetype) values('"+ids[i]+"','"+CommonFuns.getSysDate("yyyy-MM-dd")+"','1')";
-          JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
           jdbcTemplate.execute(sql);
+          //同步财务中间库,添加一条人员新增记录
+          PersonBO p=SysCacheTool.findPersonById(ids[i]);
+          SqlUtil.updateData("insert into a001_bd (user_id,change_date,change_type,new_dept_id,user_type,name,user_code) values " +
+          		"('"+ids[i]+"',getdate(),'新增','"+p.getDeptId()+"','"+p.getPersonType()+"','"+p.getName()+"','"+p.getPersonCode()+"')");
+          sql="select a001021 from a001 where id='"+p.getPersonId()+"'";
+          List mzlist= jdbcTemplate.queryForList(sql);
+          Object mz=null;
+          if(mzlist!=null && mzlist.size()>0){
+        	  Map m=(Map)mzlist.get(0);
+        	  mz=m.get("a001021");
+          }
+          SqlUtil.updateData("insert into a001(id,a001705,a001001,a001735,a001054,a001077,a001007,a001021,a001044) values " +
+          		"('"+p.getPersonId()+"','"+p.getDeptId()+"','"+p.getName()+"','"+p.getPersonCode()+"','"+p.getPersonType()+"','"+p.getIdCard()+"','"+p.getSex()+"','"+mz+"','"+p.getUnitTime()+"')");
         }
         SysCache.setPerson(ids[i], 2);
         PersonBO pb = SysCacheTool.findPersonById(ids[i]);
@@ -1702,6 +1731,7 @@ public class PersonListBackingBean extends BaseBackingBean
       }
     }
     catch (Exception e) {
+    	e.printStackTrace();
     }
     return "success";
   }

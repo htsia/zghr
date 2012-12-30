@@ -354,7 +354,8 @@ function PopUpCalendarDlg_OnlyYear(obj) {   // 只选到年份
  *
  */
 function windowOpen(theURL, winName, features, width, hight, scrollbars, top, left, resizable) {
-    var parameter = features + " top=" + top + ",left=" + left + ",width=" + width + ",height=" + hight+"location=no";
+    var parameter = features + " top=" + top + ",left=" + left + ",width=" + width + ",height=" + hight;
+    //+"location=no";
     if (scrollbars == "no") {
         parameter += ",scrollbars=no";
     } else {

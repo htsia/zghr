@@ -540,7 +540,6 @@ function RandomFontColorPercent(mode, pos) {
 		switch(v) {
 			case "¡¡":
 			case " ":
-			case "	":
 			case "\n":
 			case "\r":
 			case "\t":

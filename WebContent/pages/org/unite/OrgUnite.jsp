@@ -66,7 +66,7 @@
             <input type="button" class="button_select" onclick="SelectUniteOrg();">
         </td>
         <td width="90" class="td_form01 td_form_required">
-         <%=LanguageSupport.getResource("JGGL-1012","合并机构")%> 
+         <%=LanguageSupport.getResource("JGGL-1012","合并机构")%>
          
         </td>
         <td class="td_form02">　

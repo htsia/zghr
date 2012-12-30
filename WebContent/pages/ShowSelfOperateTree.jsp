@@ -46,7 +46,7 @@
 				if (treeNode.key!=null){
 		            var url = treeNode.key;
 		 	       	if(url.indexOf("?")!=-1 && url.indexOf("/custom/")!=-1){
-		 	       		url+="&inself=0";
+		 	       		url+="&inself=1";
 		 	       	}else if(url.indexOf("/custom/")!=-1){
 		 	       		url+="?inself=1";
 		 	       	}

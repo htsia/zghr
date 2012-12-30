@@ -347,5 +347,10 @@
              <property-name>jdbcTemplate</property-name>
              <value>#{jdbcTemplate}</value>
         </managed-property>	</managed-bean>
+    <managed-bean>
+		<managed-bean-name>tiancaiBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.wage.web.TiancaiBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
     
 </faces-config>

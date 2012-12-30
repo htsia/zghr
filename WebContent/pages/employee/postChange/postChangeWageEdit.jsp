@@ -128,7 +128,7 @@
 								</c:facet>
 								<h:commandButton value="录入新值"
 									onclick="return modify('#{list.adjustID}')" styleClass="button01"></h:commandButton>
-								<h:commandButton value="删除" onclick="return confirm('确定要删除吗?');"
+								<h:commandButton value="删除" rendered="false" onclick="return confirm('确定要删除吗?');"
 									action="#{emppostChangeWageMgrBB.delete}" styleClass="button01">
 									<x:updateActionListener
 										property="#{emppostChangeWageMgrBB.itemId}"
