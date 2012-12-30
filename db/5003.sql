@@ -1,3 +1,4 @@
+
 insert into SYS_DB_VERSION values('5003',sysdate);
 
 CREATE OR REPLACE PROCEDURE proc_ins_calc(calcSetString in varchar2)
