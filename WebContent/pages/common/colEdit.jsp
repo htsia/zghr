@@ -1,3 +1,4 @@
+<%@page import="com.hr319wg.custom.util.SqlUtil"%>
 <%@ page import="com.hr319wg.common.Constants" %>
 <%@ page import="com.hr319wg.sys.pojo.vo.TableVO" %>
 <%@ page import="com.hr319wg.sys.pojo.vo.CellVO" %>
@@ -82,10 +83,30 @@
                   catch (Exception e) {
 
                   }
-                  if ("A001".equals(setbo.getSetId())){ // 刷新缓存
+                  if ("A001".equals(setbo.getSetId())){
+                	  if("A001001".equals(ib.getItemId())){
+                		  PersonBO p=SysCacheTool.findPersonById(cell.getValue());
+                		  if(!modiValue.equals(p.getName())){
+		                	  //增加人员变动信息
+		                	  SqlUtil.updateData("insert into a001_bd (user_id,change_date,change_type,old_dept_id,new_dept_id,user_type,name,user_code) values " +
+		      						"('"+p.getPersonId()+"',getdate(),'信息维护','"+p.getDeptId()+"','"+p.getDeptId()+"','"+p.getPersonType()+"','"+modiValue+"','"+p.getPersonCode()+"')");
+		      				  SqlUtil.updateData("update a001 set a001001 ='"+modiValue+"' where id='"+cell.getValue()+"'");
+                		  }
+                	  }
+                	  // 刷新缓存
                       SysCache.setPerson(cell.getValue(), SysCache.OPER_UPDATE);
                   }
-                  else if ("B001".equals(setbo.getSetId())){ // 刷新缓存
+                  else if ("B001".equals(setbo.getSetId())){ 
+                	  if("B001005".equals(ib.getItemId())){
+                		  OrgBO bo=SysCacheTool.findOrgById(cell.getValue());
+                		  if(!modiValue.equals(bo.getName())){
+                			  //增加部门变动信息
+                			  SqlUtil.updateData("insert into b001_bd (change_date,change_type,old_mainDeptID,new_mainDeptID,dept_id,dept_type,dept_name) values " +
+                						"(getdate(),'信息维护','"+bo.getSuperId()+"','"+bo.getSuperId()+"','"+bo.getOrgId()+"','"+("089110".equals(bo.getorgType())?"单位":"部门")+"','"+modiValue+"')");
+                	    	  SqlUtil.updateData("update b001 set b001005='"+modiValue+"' where id='"+cell.getValue()+"'");
+                		  }
+                	  }
+                	  // 刷新缓存
                       SysCache.setMap(new String[]{cell.getValue()}, SysCache.OPER_UPDATE,SysCache.OBJ_UNIT);
                   }
               }

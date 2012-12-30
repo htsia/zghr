@@ -16,6 +16,11 @@
 			alert("请选择部门");
 			return false;
 		}
+		var cardNO =document.all("form1:cardNO").value;
+		if(cardNO==null || cardNO==''){
+			alert("请填写身份证");
+			return false;
+		}
 		var wage = document.all("form1:wage").value;
 		wage=$.trim(wage);
 		if(wage!='' && wage!=null && isNaN(wage)){
@@ -69,7 +74,7 @@
         	<h:outputText value="其他工资"/>
 			<h:inputText id="other" value="#{wage_empBB.other}" styleClass="input"/>
         	<h:outputText value="是否发现金"/>
-        	<h:selectBooleanCheckbox value="#{wage_empBB.user.hasCash}"/>
+        	<h:selectBooleanCheckbox id="hasCash" value="#{wage_empBB.user.hasCash}"/>
 		</h:panelGrid>
 		
 		<h:panelGrid align="right">

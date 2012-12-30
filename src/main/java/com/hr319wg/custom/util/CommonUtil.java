@@ -191,11 +191,11 @@ public class CommonUtil {
     				}
     				dBo.setNewValue(activeapi.queryForString(sql));
     			}else if("A223204".equals(fieldID)){//变动时间
-    				if(dBo.getOldValue()!=null){
-    					dBo.setNewValue(dBo.getOldValue());
-    				}else{
-    					dBo.setNewValue(CommonFuns.getSysDate("yyyy-MM-dd"));
-    				}
+//    				if(dBo.getOldValue()!=null){
+//    					dBo.setNewValue(dBo.getOldValue());
+//    				}else{
+//    					dBo.setNewValue(CommonFuns.getSysDate("yyyy-MM-dd"));
+//    				}
     			}else if("A223205".equals(fieldID)){//人员状态
     				if(isZhuanzheng){
     					dBo.setNewValue("0145700284");
