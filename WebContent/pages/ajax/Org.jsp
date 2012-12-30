@@ -1,3 +1,4 @@
+<%@page import="java.util.Collections"%>
 <%@page import="net.sf.json.JSONArray"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.sys.cache.SysCache" %>
@@ -29,7 +30,6 @@
     ArrayList list = null;
     User user = (User) (session.getAttribute(Constants.USER_INFO));
     teamManagerUcc teamucc = (teamManagerUcc) SysContext.getBean("teamucc");
-
     if (!"".equals(rootId) && !"undefined".equals(rootId) && !"null".equals(rootId)) {
         if ("-1".equals(superId)) {   // 如果指定了首层机构
             String[] ids = rootId.split(",");
@@ -53,6 +53,7 @@
                     for (int i = 0; i < os.length; i++) {
                         list.add(SysCacheTool.findOrgById(os[i].getOrgId()));
                     }
+                    Collections.sort(list);
                 }
             } else {
                 list = SysCacheTool.querySubObject(SysCache.OBJ_ORG, null, superId);
@@ -121,7 +122,6 @@
         }
     }
 
-    OrgBO org = SysCacheTool.findOrgById(superId);
     String childnum = null;
     List orgList = new ArrayList();
     // 返回结果
