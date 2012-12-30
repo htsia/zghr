@@ -183,9 +183,7 @@
              document.all("form1:name").value = "";
              doAdvanceQuery("A","ORG","111","Y","","A001.A001730='<%=Constants.NO%>'","Y","<%=Constants.DEFAULT_QUERY_PERSON%>","Y","1");
          }
-         function clearQueryName(){
-        	 document.all("form1:name").value = "";
-         }
+    
     </script>
 
       <x:saveState value="#{emp_personListBB}"></x:saveState>
@@ -220,7 +218,7 @@
                 </td>
             </tr>
             <tr>
-                <td height=8 class="td_page" colspan=2><%=LanguageSupport.getResource("XTGL-1056","姓名/编号/简拼") %>：
+                <td height=8 class="td_page" colspan=2><%=LanguageSupport.getResource("XTGL-1056","姓名或员工编号") %>：
 </f:verbatim>
                     <h:inputText id="name" value="#{emp_personListBB.name}"
                                     size="10" styleClass="input"  onkeypress ="enterKeyDown('form1:queryPerson')" />
@@ -229,7 +227,6 @@
                     <h:inputHidden id="ManyPerson" value="#{emp_personListBB.nameStrs}"></h:inputHidden>
                     <h:commandButton value="多人查询" id="queryPerson2" onclick="return doQueryManyPerson()" styleClass="button01"
                                      action="#{emp_personListBB.queryMultPerson}"/>
-                    <h:commandButton value="清除" id="clean_queryName" onclick="clearQueryName()" styleClass="button01" action="#{emp_personListBB.queryPerson}"/>
 <f:verbatim>
                 </td>
 
