@@ -47,6 +47,15 @@
 				onAsyncSuccess: function(event, treeId, treeNode){
 					treeNode.halfCheck = false;
 					zTree.updateNode(treeNode);
+				},onNodeCreated: function(event, treeId, treeNode){
+					if(rootId1==null || rootId1==''){
+						if(treeNode.pId==null){
+							treeRootId=treeNode.id;
+						}
+						if(treeNode.pId==treeRootId){
+							zTree.expandNode(treeNode, true);
+						}
+					}
 				},onClick: function(event, treeId, treeNode){
 					parent.refreshList(treeNode.id);
 				}
