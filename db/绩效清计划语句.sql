@@ -1,5 +1,5 @@
 --删除计划：
-delete from xys_eva_plan where 
+delete from xys_eva_plan where ...
 
 ---删除360  注意plan_id 替换为要删除的
 
