@@ -1,3 +1,4 @@
+
 --数据库升级版本
 insert into SYS_DB_VERSION values('5002',sysdate);
 
