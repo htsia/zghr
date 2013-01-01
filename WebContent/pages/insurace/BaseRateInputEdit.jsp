@@ -17,7 +17,14 @@
 <x:saveState value="#{ins_brieBB}"/>
 <h:form id="form1">
 <h:inputHidden value="#{ins_brieBB.pageInit}"/>
-    <c:verbatim><br></c:verbatim>
+    <c:verbatim>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+        <tr>
+            <td height=20 class="td_title"><img src="/images/tips.gif">保险管理 -> 录入保险基数</td>
+        </tr>
+    </table>
+    <br/>
+	</c:verbatim>
     <h:panelGrid columns="2" width="95%"  styleClass="table03" align="center" columnClasses="td_top,td_top">
 
         <h:outputText escape="false" value="<strong>选择输入项：</strong>"/>

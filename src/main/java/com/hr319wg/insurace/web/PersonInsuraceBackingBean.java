@@ -17,6 +17,7 @@ import com.hr319wg.sys.pojo.bo.InfoItemBO;
 import com.hr319wg.sys.pojo.vo.CellVO;
 import com.hr319wg.sys.pojo.vo.RecordVO;
 import com.hr319wg.sys.pojo.vo.TableVO;
+import com.hr319wg.util.CommonFuns;
 
 public class PersonInsuraceBackingBean extends BaseBackingBean {
 	private IBaseSetUCC basesetucc;
@@ -33,6 +34,15 @@ public class PersonInsuraceBackingBean extends BaseBackingBean {
 	private String[] inputList;
 	private String initSingleEdit;
 	private String caclpersonType;
+	private String selfPay;
+
+	public String getSelfPay() {
+		return selfPay;
+	}
+
+	public void setSelfPay(String selfPay) {
+		this.selfPay = selfPay;
+	}
 
 	public String getChangeReason() {
 		return changeReason;
@@ -85,7 +95,8 @@ public class PersonInsuraceBackingBean extends BaseBackingBean {
 					InfoItemBO ib = (InfoItemBO) list.get(i);
 					if (("0".equals(ib.getItemStatus()))
 							|| (!"0090".equals(ib.getItemCodeSet()))
-							|| (value.indexOf(ib.getItemId()) >= 0))
+							|| (value.indexOf(ib.getItemId()) >= 0)
+							|| "A754202".equals(ib.getItemId()))
 						continue;
 					SelectItem si = new SelectItem();
 					si.setLabel(ib.getItemName());
@@ -210,17 +221,13 @@ public class PersonInsuraceBackingBean extends BaseBackingBean {
 				super.showMessageDetail("没有选择任何保险数据");
 				return "";
 			}
-			JdbcTemplate jdbc = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
-			String sql = "select nvl(max(cast(subid as int)),0) from b731";
-			int currSubid = jdbc.queryForInt(sql);
-			
 			this.basesetucc.updateInsurceChangeInfo(this.perIds.split(","), this.changeType, this.changeDate, this.depName, this.inputList);
 			this.basesetucc.updateInsurceBaseInfo(this.perIds.split(","), this.inputList, this.personType, this.caclpersonType);
 			getServletRequest().setAttribute("message", "业务处理成功");
-			
-			String reason =this.changeReason==null?"":this.changeReason;
-			sql = "update b731 set b731209='"+reason+"' where cast(subid as int)>'"+currSubid+"'";
-			jdbc.execute(sql);
+			if("00901".equals(this.selfPay)){
+				JdbcTemplate jdbc = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
+				String sql="update a754 set A754202='00901' where "+CommonFuns.splitInSql(this.perIds.split(","), "id");				
+			}
 		} catch (Exception e) {
 			super.showMessageDetail("处理业务失败:" + e.getMessage());
 			getServletRequest().setAttribute("message", "业务处理失败");

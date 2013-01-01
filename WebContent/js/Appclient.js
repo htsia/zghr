@@ -482,7 +482,7 @@ function PopUpOrgOnlyDlg(obj, useRightFlag, rootOrgId) { //   仅仅显示机构 useRi
     }
 }
 
-function PopUpOrgDlgShowGroup(obj, useRightFlag, rootOrgId) {    // 显示班组
+function PopUpOrgDlgShowGroup(obj, useRightFlag, rootOrgId, onlyOrg) {    // 显示班组
     var ctrlobj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 150;
     // + deltaX;
@@ -497,6 +497,7 @@ function PopUpOrgDlgShowGroup(obj, useRightFlag, rootOrgId) {    // 显示班组
     arg += "&value=" + ctrlobj.value;
     arg += "&rightFlag=" + useRightFlag;
     arg += "&rootId=" + rootOrgId;
+    arg += "&onlyOrg=" + onlyOrg;
     arg+="&showGroup=1";
 
     retval = window.showModalDialog("/pages/common/SelOrg.jsp?" + arg, "", "dialogWidth:300px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");

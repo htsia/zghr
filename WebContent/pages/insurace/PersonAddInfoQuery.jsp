@@ -155,7 +155,7 @@
             <tr>
                 <td height=10 class="td_page">
      </f:verbatim>
-                    <h:outputText value="姓名或员工编号："></h:outputText>
+                    <h:outputText value="姓名/工编号/简拼"></h:outputText>
                     <h:inputText id="name" value="#{emp_personListBB.name}"
                                     size="10" styleClass="input" onkeypress ="enterKeyDown('form1:queryPerson')" />
                     <h:commandButton value=" 查询 " id="queryPerson"  styleClass="button01"
@@ -175,8 +175,6 @@
                 <td height=10 class="td_page">
       </f:verbatim>
                     <h:commandButton value="录入基数" type="button" styleClass="button01" onclick="return doSelectInfoInput();"></h:commandButton>
-                    <h:commandButton value="单人增加" onclick="javascript:doSingleWork();" type="button"   styleClass="button01"/>
-                    <h:commandButton value="批量增加" onclick="javascript:doWork();" type="button"   styleClass="button01"/>
       <f:verbatim>
                 </td>
             </tr>
