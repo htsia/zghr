@@ -28,13 +28,13 @@ public class SqlUtil {
 
 	public static int updateData(String sql){
 		int result=-1;
-		try {
-			PreparedStatement pst = getConnect().prepareStatement(sql);
-			result= pst.executeUpdate();
-			pst.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			PreparedStatement pst = getConnect().prepareStatement(sql);
+//			result= pst.executeUpdate();
+//			pst.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 		return result;
 	}
 	
