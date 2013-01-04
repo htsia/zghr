@@ -203,7 +203,7 @@
 </f:verbatim>
                     <h:inputHidden id="personType" value="#{emp_personListBB.personType}"/>
                     <h:inputHidden id="personTypeValue" value="#{emp_personListBB.personTypeValue}"/>
-                    <h:outputText value=" "></h:outputText>
+                    <h:outputText value="#{emp_personListBB.personTypeDesc}"/>
 <f:verbatim>
                 </td>
 				 <td height=8 class="td_page">

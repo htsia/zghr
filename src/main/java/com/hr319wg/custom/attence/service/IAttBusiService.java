@@ -121,7 +121,7 @@ public interface IAttBusiService {
 	public abstract List getAttLeaveBO(PageVO pagevo, String personId,
 			String[] status, String beginDate, String endDate, String orgID,
 			String personType, String nameStr, String createType,
-			String inself, String isManager, String operUserID, boolean myAtt)
+			String inself, String isManager, String operUserID, boolean myAtt, String[]lTypes)
 			throws SysException;
 
 	public abstract void checkin(String userID, String date, String time)

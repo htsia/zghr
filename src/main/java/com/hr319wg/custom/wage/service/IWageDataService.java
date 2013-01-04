@@ -18,6 +18,8 @@ public interface IWageDataService {
 	
 	public Object findBOById(Class c, String id) throws SysException;
 	
+	public void batchSaveOrUpdate(List list) throws SysException;
+	
 	//获取超课时
 	public List getAllClassWageBO(PageVO pageVo, String orgID, String personType, String nameStr, String operUserID, String inself) throws SysException;
 	//获取导出超课时
@@ -103,7 +105,7 @@ public interface IWageDataService {
 	 * 同步扣房租房补暖气费数据
 	 * @throws SysException 
 	 */
-	public void updateWageDataSigle(String yearMonth, String orgID ,String itemType, String userID, String operUserID) throws SysException;
+	public void updateWageDataSigle(String orgID ,String itemType, String userID, String operUserID) throws SysException;
 	//清空sigle数据
 	public void deleteWageDataSigle(String itemType, String userID, String operUserID) throws SysException;
 	
@@ -114,6 +116,8 @@ public interface IWageDataService {
 	
 	//other项目总额
 	public double getWageOtherItemSum(String itemType, String wageDate, String wageSetID);
+	//other项目总额
+	public double getWageOtherItemSumByID(String ID, String wageDate, String wageSetID);
 	//litle项目总额
 	public double getWageLitleItemSum(String itemType, String wageDate, String wageSetID);
 	//others项目总额

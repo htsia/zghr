@@ -294,13 +294,18 @@ public class AttBusiDAO extends BaseDAO{
 	}
 	
 	//Çë¼Ù²éÑ¯
-	public List getAttLeaveBO(PageVO pagevo, String personId, String[] status, String beginDate, String endDate, String orgID, String personType, String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt)throws SysException{
+	public List getAttLeaveBO(PageVO pagevo, String personId, String[] status, String beginDate, String endDate, String orgID, String personType, String nameStr, String createType, String inself, String isManager, String operUserID, boolean myAtt, String[]lTypes)throws SysException{
 		String hql="from AttLeaveBO bo,UserBO u where u.userID=bo.personId ";
 		if(personId!=null&&!"".equals(personId)){
 			hql+=" and bo.personId='"+personId+"'";
 		}
 		if(status.length>0){
 			hql+=" and "+CommonFuns.splitInSql(status,"bo.status");
+		}else{
+			hql+=" and 1=0 ";			
+		}
+		if(lTypes.length>0){
+			hql+=" and "+CommonFuns.splitInSql(lTypes,"bo.leaveType");
 		}else{
 			hql+=" and 1=0 ";			
 		}

@@ -28,8 +28,8 @@
        }
     </script>
 
-<x:saveState value="#{attLeaveApplyBB}"></x:saveState>
-<h:inputHidden value="#{attLeaveApplyBB.queryInit}"></h:inputHidden>
+<x:saveState value="#{attLeaveApplyBB}"/>
+<h:inputHidden value="#{attLeaveApplyBB.queryInit}"/>
 <h:form id="form1">
 	<h:inputHidden id="personType" value="#{attLeaveApplyBB.personType}"/>
     <h:inputHidden id="personTypeValue" value="#{attLeaveApplyBB.personTypeValue}"/>
@@ -42,21 +42,21 @@
     <h:panelGrid width="98%" columns="1">
 	    <h:panelGrid align="right" columns="1">
 	       <h:panelGroup>
-                 <h:outputText value="我的单据"></h:outputText>
+                 <h:outputText value="我的单据"/>
                  <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selMyAtt}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryMyAtt}"></h:selectBooleanCheckbox>
-                 <h:outputText value="  "></h:outputText>
-                 <h:outputText value="报批"></h:outputText>
+                 <h:outputText value="  请假单状态:"/>
+                 <h:outputText value="报批"/>
                  <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selAuditing}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryAuditing}"></h:selectBooleanCheckbox>
-                 <h:outputText value="  "></h:outputText>
-                 <h:outputText value="批准"></h:outputText>
+                 <h:outputText value="  "/>
+                 <h:outputText value="批准"/>
                  <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selAudited}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryAudited}"></h:selectBooleanCheckbox>
-                 <h:outputText value="  "></h:outputText>
-                 <h:outputText value="退回"></h:outputText>
+                 <h:outputText value="  "/>
+                 <h:outputText value="退回"/>
                  <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selRefuse}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryRefuse}"></h:selectBooleanCheckbox>
-                 <h:outputText value="  "></h:outputText>
-                 <h:outputText value="开始日期从"></h:outputText>
+                 <h:outputText value="  "/>
+                 <h:outputText value="开始日期从"/>
                  <h:inputText id="beginDate" value="#{attLeaveApplyBB.beginDate}" styleClass="input Wdate" size="15" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:beginDate'})"/>
-                 <h:outputText value="至"></h:outputText>
+                 <h:outputText value="至"/>
                  <h:inputText id="endDate" value="#{attLeaveApplyBB.endDate}" styleClass="input Wdate" size="15" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:endDate'})"/>
                  <h:outputText value="  "/>
                  <h:outputText value="姓名或编号"/>
@@ -67,17 +67,39 @@
 	    </h:panelGrid>
 	    <h:panelGrid align="right" columns="1">
 	       <h:panelGroup>
-	          <h:outputText value="记录数:#{attLeaveApplyBB.mypage.totalRecord}"></h:outputText>
-		       <h:outputText value="  "></h:outputText>
-		       <h:outputText value="页数:#{attLeaveApplyBB.mypage.totalPage}"></h:outputText>
-		       <h:outputText value="  "></h:outputText>
-		       <h:outputText value="每页有#{attLeaveApplyBB.mypage.pageSize}"></h:outputText>
-		       <h:outputText value="  "></h:outputText>
-		       <h:outputText value="当前为第#{attLeaveApplyBB.mypage.currentPage}页"></h:outputText>
-		     		<h:commandButton value="首页" action="#{attLeaveApplyBB.first}" styleClass="button01"></h:commandButton>
-		       <h:commandButton value="上页" action="#{attLeaveApplyBB.pre}" styleClass="button01"></h:commandButton>
-		       <h:commandButton value="下页" action="#{attLeaveApplyBB.next}" styleClass="button01"></h:commandButton>
-		       <h:commandButton value="尾页" action="#{attLeaveApplyBB.last}" styleClass="button01"></h:commandButton>
+                 <h:outputText value="请假单类型:  正常请假"/>
+	       		 <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selLeave1}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryLeave1}"/>
+                 <h:outputText value="  "/>
+                 <h:outputText value="病假"/>
+	       		 <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selLeave2}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryLeave2}"/>
+                 <h:outputText value="  "/>
+                 <h:outputText value="婚假"/>
+	       		 <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selLeave3}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryLeave3}"/>
+                 <h:outputText value="  "/>
+                 <h:outputText value="丧假"/>
+	       		 <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selLeave4}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryLeave4}"/>
+                 <h:outputText value="  "/>
+                 <h:outputText value="产假"/>
+	       		 <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selLeave5}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryLeave5}"/>
+                 <h:outputText value="  "/>
+                 <h:outputText value="难产产假"/>
+	       		 <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selLeave6}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryLeave6}"/>
+                 <h:outputText value="  "/>
+                 <h:outputText value="带薪事假"/>
+	       		 <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selLeave7}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryLeave7}"/>
+                 <h:outputText value="  "/>
+                
+	          <h:outputText value="记录数:#{attLeaveApplyBB.mypage.totalRecord}"/>
+		       <h:outputText value="  "/>
+		       <h:outputText value="页数:#{attLeaveApplyBB.mypage.totalPage}"/>
+		       <h:outputText value="  "/>
+		       <h:outputText value="每页有#{attLeaveApplyBB.mypage.pageSize}"/>
+		       <h:outputText value="  "/>
+		       <h:outputText value="当前为第#{attLeaveApplyBB.mypage.currentPage}页"/>
+		     		<h:commandButton value="首页" action="#{attLeaveApplyBB.first}" styleClass="button01"/>
+		       <h:commandButton value="上页" action="#{attLeaveApplyBB.pre}" styleClass="button01"/>
+		       <h:commandButton value="下页" action="#{attLeaveApplyBB.next}" styleClass="button01"/>
+		       <h:commandButton value="尾页" action="#{attLeaveApplyBB.last}" styleClass="button01"/>
 		      </h:panelGroup>
 	    </h:panelGrid>
     </h:panelGrid>
@@ -111,7 +133,7 @@
         <h:column>
             <c:facet name="header"><h:outputText value="是否销假"/></c:facet>
             <h:outputText value="已销假" rendered="#{list.isBack=='1' }"/>
-            <h:outputText value="否" rendered="#{list.isBack!='1' && list.applyDays>10 }"></h:outputText>
+            <h:outputText value="否" rendered="#{list.isBack!='1' && list.applyDays>10 }"/>
         </h:column>
         <h:column>
             <c:facet name="header"><h:outputText value="开始时间"/></c:facet>
@@ -148,8 +170,8 @@
              <h:commandButton value="重新报批"  action="#{attLeaveApplyBB.applyLeave}" onclick="return confirm('确定要重新报批吗？');" styleClass="button01" rendered="#{attLeaveApplyBB.ismanager=='1'}">
              	<x:updateActionListener property="#{attLeaveApplyBB.leaveId}" value="#{list.id}"/>
              </h:commandButton>
-             <h:commandButton value="查看流程" onclick="showFlow('#{list.id}')" styleClass="button01" rendered="#{list.createType=='0'}"></h:commandButton>
-             <h:commandButton value="销假" onclick="leaveback('#{list.id}')"  styleClass="button01" rendered="#{list.status=='2' && list.applyDays>10 && list.isBack!='1' && attLeaveApplyBB.ismanager=='1'}"></h:commandButton>
+             <h:commandButton value="查看流程" onclick="showFlow('#{list.id}')" styleClass="button01" rendered="#{list.createType=='0'}"/>
+             <h:commandButton value="销假" onclick="leaveback('#{list.id}')"  styleClass="button01" rendered="#{list.status=='2' && list.applyDays>10 && list.isBack!='1' && attLeaveApplyBB.ismanager=='1'}"/>
         </h:column>
     </h:dataTable>
     <c:verbatim>

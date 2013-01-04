@@ -447,13 +447,13 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 			if(id!=null && !"".equals(id)){
 				item = (WageDataSetBO)this.wageDataService.getObjectByID(WageDataSetBO.class, id);				
 			}else{
-				item = new WageDataSetBO();	
+				item = new WageDataSetBO();
+				item.setBeginDate(CommonFuns.getSysDate("yyyy-MM"));
 			}
 			
 		} catch (SysException e) {
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
 	
@@ -526,7 +526,10 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 		try {
 			if(id!=null && !"".equals(id)){
 				this.item= (WageDataSetBO)this.wageDataService.getObjectByID(WageDataSetBO.class, setID);
-				this.userBo  = (WageDataSetUserBO)this.wageDataService.getObjectByID(WageDataSetUserBO.class, id);				
+				this.userBo  = (WageDataSetUserBO)this.wageDataService.getObjectByID(WageDataSetUserBO.class, id);
+				if(this.userBo.getRemark()==null || "".equals(this.userBo.getRemark())){
+					this.userBo.setRemark(this.item.getDesc());					
+				}
 			}
 		} catch (SysException e) {
 			e.printStackTrace();
@@ -585,32 +588,38 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 	//添加人员
 	public void adduser(){
 		String[]ids=this.selectedUserIds.split(",");
-		List<String> ids2= new ArrayList();
-		
+		List userList= new ArrayList();
+		boolean pass=true;
 		for(int i=0;i<ids.length;i++){
 			int count;
 			try {
 				count = this.wageDataService.getWageDataSetUserCount(item.getID(), ids[i]);
 				if(count==0){
-					ids2.add(ids[i]);
+					WageDataSetUserBO bo = new WageDataSetUserBO();
+					bo.setSetID(item.getID());
+					bo.setUserID(ids[i]);
+					bo.setRemark(item.getDesc());
+					userList.add(bo);
+				}else{
+					PersonBO p=SysCacheTool.findPersonById(ids[i]);
+					super.showMessageDetail("员工编号为"+p.getPersonCode()+"已经添加过");
+					pass=false;
+					break;
 				}
 			} catch (SysException e) {
 				e.printStackTrace();
 			}			
 		}
-		for(String id : ids2){
-			WageDataSetUserBO bo = new WageDataSetUserBO();
-			bo.setSetID(item.getID());
-			bo.setUserID(id);
+		if(pass){
 			try {
-				this.wageDataService.saveOrUpdateObject(bo);
+				this.wageDataService.batchSaveOrUpdate(userList);
+				setTotalMoney();
+				super.showMessageDetail("添加完成");			
 			} catch (SysException e) {
+				super.showMessageDetail("添加失败");			
 				e.printStackTrace();
 			}
 		}
-		setTotalMoney();
-//		queryUser();
-		super.showMessageDetail("添加完成");
 	}
 	
 	//删除人员设置人员

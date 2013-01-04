@@ -325,10 +325,10 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public List getAttLeaveBO(PageVO pagevo, String personId, String[] status,
 			String beginDate, String endDate, String orgID, String personType,
 			String nameStr, String createType, String inself, String isManager,
-			String operUserID, boolean myAtt) throws SysException {
+			String operUserID, boolean myAtt, String[]lTypes) throws SysException {
 		return this.attBusiDAO.getAttLeaveBO(pagevo, personId, status,
 				beginDate, endDate, orgID, personType, nameStr, createType,
-				inself, isManager, operUserID, myAtt);
+				inself, isManager, operUserID, myAtt, lTypes);
 	}
 
 	@Override
@@ -1485,7 +1485,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		this.activeapi.executeSql(sql);
 		// 更新请假天数，从请假单中统计出当月请假天数
 		sql = "update a810 a set a.a810707=(select nvl(sum(to_number(b.apply_days)),0) from att_leave b where a.id=b.person_id and b.leave_type='1' and b.status='2'"
-				+ " and to_date(b.begin_time,'yyyy-mm-dd hh24:mi')>=to_date('2012-09-01','yyyy-mm-dd')   and to_date(b.begin_time,'yyyy-mm-dd hh24:mi')<=to_date('2012-09-30','yyyy-mm-dd') )";
+				+ " and to_date(b.begin_time,'yyyy-mm-dd hh24:mi')>=to_date('"+beginDate+"','yyyy-mm-dd') and to_date(b.begin_time,'yyyy-mm-dd hh24:mi')<=to_date('"+endDate+"','yyyy-mm-dd') )";
 		this.activeapi.executeSql(sql);
 		// 调用生成考勤扣款函数 传递orgId，公休日列表，人员获取sql和年月
 		List days = DateUtil.getAllBetweenDates(beginDate, endDate);
@@ -1591,7 +1591,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				beginDate, endDate);
 
 		for (AttLeaveBO bo : leaveList) {
-			if("2".equals(bo.getStatus())){
+			if("1".equals(bo.getStatus()) || "2".equals(bo.getStatus())){
 				// 规定:请假当天，如果在12点之前请，算1天；如果在12点之后请，算半天
 				// 请假结束当天，如果在14点之前，算半天；如果在14点之后，算1天。
 				// 先算出假条开始时间的小时数 和结束时间的小时数

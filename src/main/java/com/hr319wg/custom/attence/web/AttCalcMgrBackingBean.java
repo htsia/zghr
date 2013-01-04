@@ -819,7 +819,7 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 			this.orgID=orgID1;
 		}
 		String dID = super.getRequestParameter("dID");
-		if(dID!=null){
+		if(dID!=null && !"".equals(dID)){
 			try {
 				this.attDurationBO=(AttDurationBO)this.attBusiService.findBOById(AttDurationBO.class, dID);
 				currList = this.attBusiService.getCurrAttDurationBO();
@@ -833,26 +833,6 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 	}
 	public void setPageInit(String pageInit) {
 		this.pageInit = pageInit;
-	}
-	
-	public synchronized void calc(){
-		if(this.attDurationBO.getQryID()==null){
-			super.showMessageDetail("请设置关联查询方案");
-		}
-		try {
-			String dId=this.attDurationBO.getQryID();
-			String msg = this.attBusiService.updateCalcAttData(super.getUserInfo().getOrgId(), this.attDurationBO.getDuraBegin(), this.attDurationBO.getDuraEnd(), this.attDurationBO.getDuraYear(), this.attDurationBO.getDuraMonth(),dId);
-			if(msg!=null && msg.length()!=0){
-				super.showMessageDetail(msg);
-			}else{
-				doQuery();
-				super.showMessageDetail("计算完成");
-			}
-			
-		}  catch (Exception e) {
-			e.printStackTrace();
-			super.showMessageDetail("计算出错:"+e.getMessage());		
-		}
 	}
 	
 	public void doQuery(){
@@ -891,6 +871,26 @@ public class AttCalcMgrBackingBean extends BaseBackingBean {
 			e.printStackTrace();
 		}
 	}
+	public synchronized void calc(){
+		if(this.attDurationBO.getQryID()==null){
+			super.showMessageDetail("请设置关联查询方案");
+		}
+		try {
+			String dId=this.attDurationBO.getQryID();
+			String msg = this.attBusiService.updateCalcAttData(super.getUserInfo().getOrgId(), this.attDurationBO.getDuraBegin(), this.attDurationBO.getDuraEnd(), this.attDurationBO.getDuraYear(), this.attDurationBO.getDuraMonth(),dId);
+			if(msg!=null && msg.length()!=0){
+				super.showMessageDetail(msg);
+			}else{
+//				doQuery();
+				super.showMessageDetail("计算完成");
+			}
+			
+		}  catch (Exception e) {
+			e.printStackTrace();
+			super.showMessageDetail("计算出错:"+e.getMessage());		
+		}
+	}
+	
 	//查询和显示一段时间内的月汇总
 	public void doQuery1(){
 		if(mypage.getCurrentPage()==0){

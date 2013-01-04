@@ -42,7 +42,6 @@
 			<h:outputText value=" 员工编号或姓名:" />
 			<h:inputText value="#{attCalcMgrBB.nameStr}" styleClass="input"
 				size="20" />			
-
 			<h:commandButton styleClass="button01" value="人员类别"
 				onclick="return forSel();" action="#{attCalcMgrBB.doQuery}" />
 			<h:commandButton styleClass="button01" value="查询"

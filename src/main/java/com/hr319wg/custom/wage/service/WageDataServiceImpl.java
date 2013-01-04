@@ -66,6 +66,12 @@ public class WageDataServiceImpl implements IWageDataService{
 		this.wageDataSetDAO.saveOrUpdateBo(obj);
 	}
 	
+	public void batchSaveOrUpdate(List list) throws SysException {
+		for(int i=0;i<list.size();i++){
+			this.wageDataSetDAO.saveOrUpdateBo(list.get(i));
+		}
+	}
+	
 	public void setTotalMoney(String itemID) throws SysException{
 		String sql = "update wage_dataset ds set ds.totalmoney= (select nvl(sum(du.money),0) from wage_dataset_user du where du.setid=ds.id) where ds.id='"+itemID+"'";
 		this.activeapi.executeSql(sql);
@@ -496,7 +502,7 @@ public class WageDataServiceImpl implements IWageDataService{
 	 * 同步扣房租房补暖气费数据
 	 * @throws SysException 
 	 */
-	public void updateWageDataSigle(String yearMonth, String orgID ,String itemType, String userID, String operUserID) throws SysException{
+	public void updateWageDataSigle(String orgID ,String itemType, String userID, String operUserID) throws SysException{
 		String set = null;
 		if("1".equals(itemType)){
 			set="a225"; 
@@ -505,7 +511,7 @@ public class WageDataServiceImpl implements IWageDataService{
 		}else if("3".equals(itemType)){
 			set="a227";
 		}
-		String sql = "update "+set+" set "+set+"200="+set+"201,"+set+"201=null,"+set+"202=null where "+set+"202='"+yearMonth+"' and id in (select id from a001 where a001701='"+orgID+"')";
+		String sql = "update "+set+" set "+set+"200="+set+"201,"+set+"201=null,"+set+"202=null where "+set+"202 is not null";// and id in (select id from a001 where a001701='"+orgID+"')";
 		if(userID!=null && !"".equals(userID)){
 			sql+=" and id='"+userID+"'";
 		}
@@ -539,16 +545,30 @@ public class WageDataServiceImpl implements IWageDataService{
 		return this.wageDataSetDAO.getAllWageSetBO(itemType, wageDate);
 	}
 	
-	
 	//other项目总额
 	public double getWageOtherItemSum(String itemType, String wageDate, String wageSetID){
 		double r = 0.0;
 		try {
 			String sql = "select sum(money) from wage_data_record where yearmonth='"+wageDate+"' and setid in (select id from wage_dataset where item_type='"+itemType+"') " +
 					"and userid in (select p.id from wage_set_pers_r p,wage_set w where p.A815700=w.set_id and w.set_id='"+wageSetID+"')";
-			if("2".equals(itemType) || "3".equals(itemType)){
-				sql+= " and id in (select concat(v.dataset_user_id,'"+wageDate+"') from wage_dataset_verify v where v.status=1 and v.yearmonth='"+wageDate+"')";				
+//			if("2".equals(itemType) || "3".equals(itemType)){
+//				sql+= " and id in (select concat(v.dataset_user_id,'"+wageDate+"') from wage_dataset_verify v where v.status=1 and v.yearmonth='"+wageDate+"')";				
+//			}
+			String c = this.activeapi.queryForString(sql); 
+			if(c!=null && !"".equals(c)){
+				r = Double.valueOf(c);
 			}
+		} catch (SysException e) {
+			e.printStackTrace();
+		}
+		return r;
+	}
+	//other单个项目总额
+	public double getWageOtherItemSumByID(String ID, String wageDate, String wageSetID){
+		double r = 0.0;
+		try {
+			String sql = "select sum(money) from wage_data_record where yearmonth='"+wageDate+"' and setid ='"+ID+"'" +
+					"and userid in (select p.id from wage_set_pers_r p,wage_set w where p.A815700=w.set_id and w.set_id='"+wageSetID+"')";
 			String c = this.activeapi.queryForString(sql); 
 			if(c!=null && !"".equals(c)){
 				r = Double.valueOf(c);
@@ -777,10 +797,10 @@ public class WageDataServiceImpl implements IWageDataService{
   	  	  SqlUtil.updateData("delete from a001 where id='"+p.getPersonId()+"'");
 	}
 
-	@Override
 	public void setOAEmail(String userID1, String userID2, String userID3, String url, String soa, String onoff)
 			throws SysException {
 		String sql = "update sys_oa_email set userid1='"+userID1+"',userid2='"+userID2+"',userid3='"+userID3+"',url='"+url+"',soa='"+soa+"',onoff='"+onoff+"'";
 		this.jdbcTemplate.execute(sql);
 	}
+
 }

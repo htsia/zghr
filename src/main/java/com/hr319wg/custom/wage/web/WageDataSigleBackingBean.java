@@ -280,32 +280,26 @@ public class WageDataSigleBackingBean extends BaseBackingBean {
 	}
 
 	//同步数据
-	public String updateWageDataSigle(){
+	public void updateWageDataSigle(){
 		try {
-			this.wageDataService.updateWageDataSigle(CommonFuns.getSysDate("yyyy-MM"), user.getOrgId(), this.itemType, this.operUserID, super.getUserInfo().getUserId());
-			if(operUserID==null || "".equals(operUserID)){
-				return "success";				
-			}
+			this.wageDataService.updateWageDataSigle(user.getOrgId(), this.itemType, this.operUserID, super.getUserInfo().getUserId());
 			this.operUserID=null;
+			super.showMessageDetail("操作完成");
 		} catch (SysException e) {
 			super.showMessageDetail("操作失败");
 			e.printStackTrace();
 		}
-		return null;
 	}
 	//退回
-	public String deleteWageDataSigle(){
+	public void deleteWageDataSigle(){
 		try {
 			this.wageDataService.deleteWageDataSigle(this.itemType, this.operUserID, super.getUserInfo().getUserId());
-			if(operUserID==null || "".equals(operUserID)){
-				return "success";				
-			}
 			this.operUserID=null;
+			super.showMessageDetail("操作完成");
 		} catch (SysException e) {
 			super.showMessageDetail("操作失败");
 			e.printStackTrace();
 		}
-		return null;
 	}
 	
 	public void uploadFile(){

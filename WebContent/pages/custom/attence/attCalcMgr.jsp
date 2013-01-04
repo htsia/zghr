@@ -12,7 +12,7 @@ String isView = request.getParameter("isView");
 %>
 <script type="text/javascript">
         function refreshList(orgId) {
-            document.main.location.href = "/custom/attence/attCalcList.jsf?act=init&orgID=" + orgId+"&isView=<%=isView%>";
+            document.main.location.href = "/custom/attence/attCalcList.jsf?act=init&dID=<%=dID %>&isView=<%=isView%>&orgID=" + orgId;
         }
         with (window) onload = onresize = function(){
             var mainHeight = document.body.offsetHeight - 34;

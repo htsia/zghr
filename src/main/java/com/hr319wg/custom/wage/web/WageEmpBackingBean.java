@@ -156,8 +156,7 @@ public class WageEmpBackingBean extends BaseBackingBean {
 			} catch (SysException e) {
 				e.printStackTrace();
 			}
-		}
-		if(this.user==null){
+		}else{
 			this.user=new UserBO();
 		}
 		if("1".equals(user.getHasCashStr())){
@@ -349,6 +348,7 @@ public class WageEmpBackingBean extends BaseBackingBean {
 			List<Map> listEmp = new ArrayList<Map>();
 			JdbcTemplate jdbc = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
 			String sql=null; 
+			boolean pass=true;
 			for(int i=1;i<stRow;i++){
 				Map m = new HashMap();
 				String name = st.getCell(0, i).getContents();
@@ -361,6 +361,7 @@ public class WageEmpBackingBean extends BaseBackingBean {
 				List deptList = jdbc.queryForList(sql);
 				if(deptList==null || deptList.size()==0){
 					super.showMessageDetail("第"+i+"行姓名为"+name+"的所在部门"+dept+"不存在");
+					pass=false;
 					break;
 				}
 				m.put("deptID", ((Map)deptList.get(0)).get("orguid"));
@@ -368,6 +369,7 @@ public class WageEmpBackingBean extends BaseBackingBean {
 				String personType = st.getCell(2, i).getContents();
 				if(!"项目工".equals(personType) && !"兼职教师".equals(personType)){
 					super.showMessageDetail("第"+i+"行姓名为"+name+"的人员类别"+personType+"不存在");
+					pass=false;
 					break;					
 				}
 				if("项目工".equals(personType)){
@@ -378,6 +380,8 @@ public class WageEmpBackingBean extends BaseBackingBean {
 				
 				String card = st.getCell(3, i).getContents();
 				if(card==null || "".equals(card)){
+					super.showMessageDetail("第"+i+"行姓名为"+name+"的身份证不能为空");
+					pass=false;
 					break;
 				}
 				m.put("card", card);
@@ -389,6 +393,7 @@ public class WageEmpBackingBean extends BaseBackingBean {
 				}else{
 					if(bank==null || "".equals(bank)){
 						super.showMessageDetail("第"+i+"行姓名为"+name+"的银行账号不能为空");
+						pass=false;
 						break;
 					}
 					m.put("bank", bank);										
@@ -402,6 +407,7 @@ public class WageEmpBackingBean extends BaseBackingBean {
 						Double.valueOf(wage1);						
 					} catch (NumberFormatException e) {
 						super.showMessageDetail("第"+i+"行姓名为"+name+"的基础工资格式有误");
+						pass=false;
 						break;
 					}
 				}
@@ -414,6 +420,7 @@ public class WageEmpBackingBean extends BaseBackingBean {
 						Double.valueOf(other1);						
 					} catch (NumberFormatException e) {
 						super.showMessageDetail("第"+i+"行姓名为"+name+"的其他补贴格式有误");
+						pass=false;
 						break;
 					}
 				}
@@ -426,12 +433,15 @@ public class WageEmpBackingBean extends BaseBackingBean {
 					m.put("personCode", id.get("a001735"));
 				}else if(cardList!=null && cardList.size()>1){
 					super.showMessageDetail("第"+i+"行姓名为"+name+"的身份证在系统中已经存在"+cardList.size()+"个");
+					pass=false;
 					break;
 				}
 				listEmp.add(m);
 			}
-			this.wageDataService.batchSaveWageEmpPerson(listEmp, this.importType);
-			super.showMessageDetail("成功导入"+listEmp.size()+"个");
+			if(pass){
+				this.wageDataService.batchSaveWageEmpPerson(listEmp, this.importType);
+				super.showMessageDetail("成功导入"+listEmp.size()+"个");				
+			}
 		} catch (BiffException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {

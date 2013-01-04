@@ -34,6 +34,13 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	private boolean selAuditing = true;
 	private boolean selAudited;
 	private boolean selRefuse = true;
+	private boolean selLeave1 = true;
+	private boolean selLeave2 = true;
+	private boolean selLeave3 = true;
+	private boolean selLeave4 = true;
+	private boolean selLeave5 = true;
+	private boolean selLeave6 = true;
+	private boolean selLeave7 = true;
 	private List leaveTypeList;
 	private String leaveId;
 	private ActivitiToolsService activitiToolService;
@@ -74,6 +81,48 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	private String inputPopEditInit;
 	private String selectPersonId;
 	
+	public boolean isSelLeave1() {
+		return selLeave1;
+	}
+	public void setSelLeave1(boolean selLeave1) {
+		this.selLeave1 = selLeave1;
+	}
+	public boolean isSelLeave2() {
+		return selLeave2;
+	}
+	public void setSelLeave2(boolean selLeave2) {
+		this.selLeave2 = selLeave2;
+	}
+	public boolean isSelLeave3() {
+		return selLeave3;
+	}
+	public void setSelLeave3(boolean selLeave3) {
+		this.selLeave3 = selLeave3;
+	}
+	public boolean isSelLeave4() {
+		return selLeave4;
+	}
+	public void setSelLeave4(boolean selLeave4) {
+		this.selLeave4 = selLeave4;
+	}
+	public boolean isSelLeave5() {
+		return selLeave5;
+	}
+	public void setSelLeave5(boolean selLeave5) {
+		this.selLeave5 = selLeave5;
+	}
+	public boolean isSelLeave6() {
+		return selLeave6;
+	}
+	public void setSelLeave6(boolean selLeave6) {
+		this.selLeave6 = selLeave6;
+	}
+	public boolean isSelLeave7() {
+		return selLeave7;
+	}
+	public void setSelLeave7(boolean selLeave7) {
+		this.selLeave7 = selLeave7;
+	}
 	public void setInputPopEditInit(String inputPopEditInit) {
 		this.inputPopEditInit = inputPopEditInit;
 	}
@@ -360,7 +409,6 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 						attBusiService.saveAttLeaveBO(bo);
 					}
 				} catch (SysException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}			
 			}
@@ -619,6 +667,34 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	public void qryRefuse(ValueChangeEvent event) {
 		selRefuse = event.getNewValue().toString().equals("true");
 	}
+	
+	public void qryLeave1(ValueChangeEvent event) {
+		this.selLeave1 = event.getNewValue().toString().equals("true");
+	}
+	
+	public void qryLeave2(ValueChangeEvent event) {
+		this.selLeave2 = event.getNewValue().toString().equals("true");
+	}
+	
+	public void qryLeave3(ValueChangeEvent event) {
+		this.selLeave3 = event.getNewValue().toString().equals("true");
+	}
+	
+	public void qryLeave4(ValueChangeEvent event) {
+		this.selLeave4 = event.getNewValue().toString().equals("true");
+	}
+	
+	public void qryLeave5(ValueChangeEvent event) {
+		this.selLeave5 = event.getNewValue().toString().equals("true");
+	}
+	
+	public void qryLeave6(ValueChangeEvent event) {
+		this.selLeave6 = event.getNewValue().toString().equals("true");
+	}
+	
+	public void qryLeave7(ValueChangeEvent event) {
+		this.selLeave7 = event.getNewValue().toString().equals("true");
+	}
 
 	public boolean getSelApply() {
 		return selApply;
@@ -654,26 +730,26 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 
 	public String first() {
 		mypage.setCurrentPage(1);
-		return "";
+		return null;
 	}
 
 	public String pre() {
 		if (mypage.getCurrentPage() > 1) {
 			mypage.setCurrentPage(mypage.getCurrentPage() - 1);
 		}
-		return "";
+		return null;
 	}
 
 	public String next() {
 		if (mypage.getCurrentPage() < mypage.getTotalPage()) {
 			mypage.setCurrentPage(mypage.getCurrentPage() + 1);
 		}
-		return "";
+		return null;
 	}
 
 	public String last() {
 		mypage.setCurrentPage(mypage.getTotalPage());
-		return "";
+		return null;
 	}
 
 	public void doQuery() {
@@ -694,6 +770,35 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 					status[i] = (String) sList.get(i);
 				}
 			}
+			
+			List lList = new ArrayList();
+			if (this.selLeave1) {
+				lList.add("1");
+			}
+			if (this.selLeave2) {
+				lList.add("2");
+			}
+			if (this.selLeave3) {
+				lList.add("3");
+			}
+			if (this.selLeave4) {
+				lList.add("4");
+			}
+			if (this.selLeave5) {
+				lList.add("5");
+			}
+			if (this.selLeave6) {
+				lList.add("6");
+			}
+			if (this.selLeave7) {
+				lList.add("7");
+			}
+			String[] lTypes = new String[lList.size()];
+			if (lList != null && lList.size() > 0) {
+				for (int i = 0; i < lList.size(); i++) {
+					lTypes[i] = (String) lList.get(i);
+				}
+			}
 
 			if (mypage.getCurrentPage() == 0) {
 				mypage.setCurrentPage(1);
@@ -706,7 +811,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 				userID = super.getUserInfo().getUserId();
 			}
 			list = attBusiService.getAttLeaveBO(mypage, userID, status,
-					beginDate, endDate, orgID, personType, nameStr, createType, this.inself, this.ismanager, super.getUserInfo().getUserId(), this.selMyAtt);
+					beginDate, endDate, orgID, personType, nameStr, createType, this.inself, this.ismanager, super.getUserInfo().getUserId(), this.selMyAtt, lTypes);
 			if (list != null && list.size() > 0) {
 				for (int i = 0; i < list.size(); i++) {
 					AttLeaveBO bo = (AttLeaveBO) list.get(i);

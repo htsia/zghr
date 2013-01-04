@@ -41,7 +41,11 @@
     
 	<h:panelGrid columns="1" width="100%" align="left">
 		<h:panelGroup>
-			<h:commandButton value="审核数据" styleClass="button01" rendered="#{wage_dataSigleBB.inself!='1'}" onclick="verifydata('#{wage_dataSigleBB.itemType}');"/>
+<%-- 			<h:commandButton value="审核数据" styleClass="button01" rendered="#{wage_dataSigleBB.inself!='1'}" onclick="verifydata('#{wage_dataSigleBB.itemType}');"/> --%>
+			<h:commandButton value="全部审阅" onclick="return confirm('确定审阅吗');" styleClass="button01"
+					action="#{wage_dataSigleBB.updateWageDataSigle}" rendered="#{wage_dataSigleBB.inself==0}"/>
+			<h:commandButton value="全部退回" onclick="return confirm('确定退回吗');" styleClass="button01"
+					action="#{wage_dataSigleBB.deleteWageDataSigle}" rendered="#{wage_dataSigleBB.inself==0}"/>
 			<h:outputText value=" "/>
 			<h:outputText value="  "/>
 			<h:selectBooleanCheckbox value="#{wage_dataSigleBB.verifyFlag}" onclick="submit();" valueChangeListener="#{wage_dataSigleBB.chengeVerifyFlag}">
@@ -135,7 +139,13 @@
 					<f:facet name="header">
 						<h:outputText value="操作" />
 					</f:facet>
-					<h:commandButton styleClass="button01" value="修改金额" onclick="modifyuser('#{user.userID}','#{user.money}')" />
+					<h:commandButton styleClass="button01" value="修改金额" onclick="modifyuser('#{user.userID}','#{user.money}')" rendered="#{wage_dataSigleBB.inself==1}"/>
+					<h:commandButton rendered="#{wage_dataSigleBB.inself==0}" value="审阅" onclick="return confirm('确定审阅吗');" styleClass="button01" action="#{wage_dataSigleBB.updateWageDataSigle}">
+						<x:updateActionListener value="#{user.userID}" property="#{wage_dataSigleBB.operUserID}"/>
+					</h:commandButton>
+					<h:commandButton rendered="#{wage_dataSigleBB.inself==0}" value="退回" onclick="return confirm('确定退回吗');" styleClass="button01" action="#{wage_dataSigleBB.deleteWageDataSigle}">
+						<x:updateActionListener value="#{user.userID}" property="#{wage_dataSigleBB.operUserID}"/>
+					</h:commandButton>
 				</h:column>
 			</x:dataTable>
 		</h:panelGrid>

@@ -282,7 +282,7 @@ public class WageDataDAO extends BaseDAO{
 			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
 		if("1".equals(isVerify) || verifyFlag){
-			hql+=" and bo.modifyDate='"+yearMonth+"' ";
+			hql+=" and bo.modifyDate is not null ";
 		}
 		if(personType!=null && !"".equals(personType)){			
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");

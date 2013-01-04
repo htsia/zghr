@@ -8,7 +8,7 @@
 		var ids = window.showModalDialog(
 			"/custom/selPerson.jsf?itemType="+document.all("form1:itemType").value,
 			null,
-			"dialogWidth:800px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
+			"dialogWidth:900px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
 		if(ids!=null && ids.length>0){
 			document.all('form1:selectedUserIds').value=ids;
 			return true;
@@ -81,9 +81,9 @@
 	                             onclick="return checkSubmit();"/>
 	        </h:panelGroup>
 			<h:outputText value=" 员工编号或姓名"/>
-			<h:inputText value="#{wage_dataOtherBB.nameStr}" styleClass="input" size="10"/>
+			<h:inputText value="#{wage_dataOtherBB.nameStr}" styleClass="input" size="10"  onkeypress ="enterKeyDown('form1:queryPerson')"/>
 			<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{wage_dataOtherBB.queryUser}"/>
-			<h:commandButton styleClass="button01" value="查询" action="#{wage_dataOtherBB.queryUser}"/>
+			<h:commandButton id="queryPerson" styleClass="button01" value="查询" action="#{wage_dataOtherBB.queryUser}"/>
 			<h:outputText value=" "/>
 			
 			<h:inputText id="batchMoney" value="#{wage_dataOtherBB.batchMoney}" styleClass="input" size="5" rendered="#{wage_dataOtherBB.isView!='1'}"/>
