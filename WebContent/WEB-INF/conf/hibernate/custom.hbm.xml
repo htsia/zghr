@@ -3,6 +3,22 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+<!-- 保险 -->
+    <class name="com.hr319wg.custom.ins.pojo.bo.InsCalcSetBO" table="ins_calc_set">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="createUserID" column="createUserID"/>
+        <property name="createOrgID" column="createOrgID"/>
+        <property name="createDate" column="createDate"/>
+        <property name="wageDate" column="wageDate"/>
+        <property name="status" column="status"/>
+    </class>
+    
+    
+    
+    
     <class name="com.hr319wg.custom.wage.pojo.bo.ClassWageBO" table="a242">
         <id name="subID" type="string" unsaved-value="null">
             <column name="subid" sql-type="nvarchar(32)"/>
