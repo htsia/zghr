@@ -33,18 +33,26 @@
     </table>
     <br/>
 	</c:verbatim>
-    <h:panelGrid columns="2" width="95%"  styleClass="table03" align="center" columnClasses="td_top,td_top">
+    <h:panelGrid columns="3" width="95%"  styleClass="table03" align="center" columnClasses="td_top,td_top,td_top">
 
         <h:outputText escape="false" value="<strong>选择输入项：</strong>"/>
         <h:selectManyCheckbox value="#{ins_brieBB.selectFields}" layout="pageDirection" id="inputField">
             <c:selectItems value="#{ins_brieBB.fieldsList}"/>
         </h:selectManyCheckbox>
-        <h:outputText escape="false" value="<strong>缴费归属地：</strong>"/>
+        <h:panelGroup>
+        <h:outputText escape="false" value="<strong>缴费单位：</strong>"/>
         <h:panelGroup>
         <h:inputText styleClass="input" id="payAddress" code="" dict="yes" dict_num="OU" value="#{ins_brieBB.payAddress}"
                       alt="缴费归属地|0|s|50||"/>
         <f:verbatim>
-        	<input type="button" class="button_org" onclick="PopUpOrgDlgShowGroup('form1:payAddress',null,null, '1');"/>
+        	<input type="button" class="button_org" onclick="PopUpOrgDlgShowGroup('form1:payAddress',null,null, '1');"/><br/>
+        </f:verbatim>
+        </h:panelGroup>
+        <h:outputText escape="false" value="<strong>是否自付：</strong>"/>
+        <h:panelGroup>
+        <h:inputText styleClass="input" id="selfpay" code="" dict="yes" dict_num="0090" value="#{ins_brieBB.selfPay}" alt="是否自付|1|s|50||"/>
+        <f:verbatim>
+        	<input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:selfpay')" ><br/>
         </f:verbatim>
         </h:panelGroup>
         <h:outputText escape="false" value="<strong>增加日期：</strong>"/>
@@ -52,7 +60,7 @@
         <h:inputText styleClass="input" id="B731701" value="#{ins_brieBB.changeDate}"
                       alt="增加日期|0|s|50||"/>
         <f:verbatim>
-        	<input type="button" class="button_select" onclick="PopUpCalendarDialog('form1:B731701')">
+        	<input type="button" class="button_select" onclick="PopUpCalendarDialog('form1:B731701')"><br/>
         </f:verbatim>
         </h:panelGroup>
         <h:outputText escape="false" value="<strong>增加类别：</strong>"/>
@@ -60,17 +68,12 @@
         <h:inputText styleClass="input" id="B731702" code="" dict="yes" dict_num="0200"
         	value="#{ins_brieBB.changeType}"/>
         <f:verbatim>
-        	<input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:B731702','02010001')" >
+        	<input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:B731702','02010001')" ><br/>
         </f:verbatim>
         </h:panelGroup>
         <h:outputText escape="false" value="<strong>来往单位：</strong>"/>
         <h:inputText styleClass="input" value="#{ins_brieBB.depName}" alt="来往单位|1|s|50||"/>
-        <h:outputText escape="false" value="<strong>是否自付：</strong>"/>
-        <h:panelGroup>
-        <h:inputText styleClass="input" id="selfpay" code="" dict="yes" dict_num="0090" value="#{ins_brieBB.selfPay}" alt="是否自付|1|s|50||"/>
-        <f:verbatim>
-        	<input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:selfpay')" >
-        </f:verbatim>
+        
         </h:panelGroup>
     </h:panelGrid>
 

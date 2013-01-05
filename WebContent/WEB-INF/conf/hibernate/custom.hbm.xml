@@ -14,9 +14,34 @@
         <property name="createDate" column="createDate"/>
         <property name="wageDate" column="wageDate"/>
         <property name="status" column="status"/>
+        <property name="remark" column="remark"/>
     </class>
-    
-    
+    <class name="com.hr319wg.custom.ins.pojo.bo.InsMonthPayBO" table="A243">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="userID" column="ID"/>
+        <property name="wageDate" column="A243200"/>
+        <property name="personYlao" column="A243201"/>
+        <property name="personShiye" column="A243218"/>
+        <property name="personYliao" column="A243202"/>
+        <property name="personDaejin" column="A243203"/>
+        <property name="personGongjijin" column="A243204"/>
+        <property name="companyYlao" column="A243205"/>
+        <property name="companyShiye" column="A243206"/>
+        <property name="companyGongshang" column="A243207"/>
+        <property name="companyYliao" column="A243208"/>
+        <property name="companyShengyu" column="A243209"/>
+        <property name="companyGongjijin" column="A243210"/>
+        <property name="calcSetID" column="A243211"/>
+        <property name="orgID" column="A243212"/>
+        <property name="secDeptID" column="A243213"/>
+        <property name="userType" column="A243214"/>
+        <property name="payAddress" column="A243215"/>
+        <property name="insNO" column="A243216"/>
+        <property name="selfPay" column="A243217"/>        
+    </class>
     
     
     <class name="com.hr319wg.custom.wage.pojo.bo.ClassWageBO" table="a242">
