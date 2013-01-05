@@ -155,7 +155,7 @@
             <tr>
                 <td height=10 class="td_page">
      </f:verbatim>
-                    <h:outputText value="ÐÕÃû/¹¤±àºÅ/¼òÆ´"></h:outputText>
+                    <h:outputText value="ÐÕÃû/Ô±¹¤±àºÅ/¼òÆ´"></h:outputText>
                     <h:inputText id="name" value="#{emp_personListBB.name}"
                                     size="10" styleClass="input" onkeypress ="enterKeyDown('form1:queryPerson')" />
                     <h:commandButton value=" ²éÑ¯ " id="queryPerson"  styleClass="button01"

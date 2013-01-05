@@ -1,7 +1,6 @@
 package com.hr319wg.wage.web;
 
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,6 @@ import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.sys.api.QueryAPI;
 import com.hr319wg.sys.api.UserAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
-import com.hr319wg.sys.pojo.bo.CodeItemBO;
 import com.hr319wg.sys.pojo.vo.CellVO;
 import com.hr319wg.sys.pojo.vo.TableVO;
 import com.hr319wg.user.ucc.IUserReportUCC;

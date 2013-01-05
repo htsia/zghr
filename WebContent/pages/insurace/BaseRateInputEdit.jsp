@@ -12,8 +12,16 @@
                 document.all('form1:inputField')[i].checked=isSelect;
             }
         }
+       function forsave(){
+    	   if(!checkMutilSelect(form1.all('form1:inputField'))){
+    		   alert('请选择输入项');
+    		   return false;
+    	   }else{
+    		   return forsubmit(document.forms(0));
+    	   }
+       }
     </script>
-
+<!-- BaseRateInputEditBackingBean -->
 <x:saveState value="#{ins_brieBB}"/>
 <h:form id="form1">
 <h:inputHidden value="#{ins_brieBB.pageInit}"/>
@@ -31,6 +39,39 @@
         <h:selectManyCheckbox value="#{ins_brieBB.selectFields}" layout="pageDirection" id="inputField">
             <c:selectItems value="#{ins_brieBB.fieldsList}"/>
         </h:selectManyCheckbox>
+        <h:outputText escape="false" value="<strong>缴费归属地：</strong>"/>
+        <h:panelGroup>
+        <h:inputText styleClass="input" id="payAddress" code="" dict="yes" dict_num="OU" value="#{ins_brieBB.payAddress}"
+                      alt="缴费归属地|0|s|50||"/>
+        <f:verbatim>
+        	<input type="button" class="button_org" onclick="PopUpOrgDlgShowGroup('form1:payAddress',null,null, '1');"/>
+        </f:verbatim>
+        </h:panelGroup>
+        <h:outputText escape="false" value="<strong>增加日期：</strong>"/>
+        <h:panelGroup>
+        <h:inputText styleClass="input" id="B731701" value="#{ins_brieBB.changeDate}"
+                      alt="增加日期|0|s|50||"/>
+        <f:verbatim>
+        	<input type="button" class="button_select" onclick="PopUpCalendarDialog('form1:B731701')">
+        </f:verbatim>
+        </h:panelGroup>
+        <h:outputText escape="false" value="<strong>增加类别：</strong>"/>
+        <h:panelGroup>
+        <h:inputText styleClass="input" id="B731702" code="" dict="yes" dict_num="0200"
+        	value="#{ins_brieBB.changeType}"/>
+        <f:verbatim>
+        	<input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:B731702','02010001')" >
+        </f:verbatim>
+        </h:panelGroup>
+        <h:outputText escape="false" value="<strong>来往单位：</strong>"/>
+        <h:inputText styleClass="input" value="#{ins_brieBB.depName}" alt="来往单位|1|s|50||"/>
+        <h:outputText escape="false" value="<strong>是否自付：</strong>"/>
+        <h:panelGroup>
+        <h:inputText styleClass="input" id="selfpay" code="" dict="yes" dict_num="0090" value="#{ins_brieBB.selfPay}" alt="是否自付|1|s|50||"/>
+        <f:verbatim>
+        	<input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:selfpay')" >
+        </f:verbatim>
+        </h:panelGroup>
     </h:panelGrid>
 
     <c:verbatim escape="false"><br></c:verbatim>
@@ -41,7 +82,7 @@
             <h:commandButton  styleClass="button01" type="button" value="全部选择" onclick="DoSelectAll(true);" />
             <h:commandButton  styleClass="button01" type="button" value="全部取消" onclick="DoSelectAll(false);" />
             <h:commandButton styleClass="button01" value="确认" action="#{ins_brieBB.queryPersonInput}"
-                             onclick="if(!checkMutilSelect(form1.all('form1:inputField'))){alert('请选择输入项');return false;}else{return true;}"/>
+                             onclick="return forsave();"/>
             <h:commandButton styleClass="button01" type="button" value="取消" onclick="window.close()"/>
         </h:panelGroup>
     </h:panelGrid>
@@ -76,5 +117,6 @@
     </h:panelGrid>
 </h:form>
 <script type="text/javascript">
+   interpret(document.forms(0));
    setDataTableOver("form1:dateList");
 </script>

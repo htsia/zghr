@@ -50,10 +50,8 @@
         </h:panelGroup>
         <h:panelGrid align="right" columns="3">
             <h:panelGroup>
-                <h:inputText id="allrate" size="10"></h:inputText>
-                <h:commandButton value="设置全部" styleClass="button01" type="button" onclick="doSetAll();"></h:commandButton>
-                <h:selectBooleanCheckbox value="#{ins_brieBB.autoCalc}"></h:selectBooleanCheckbox>
-                <h:outputText value="保存后自动计算缴费额"></h:outputText>
+                <h:inputText id="allrate" size="10"/>
+                <h:commandButton value="设置全部" styleClass="button01" type="button" onclick="doSetAll();"/>
             </h:panelGroup>
             <h:commandButton styleClass="button01" value="确认" action="#{ins_brieBB.savePersonBase}"   />
             <h:commandButton styleClass="button01" type="button" value="取消" onclick="window.close()"/>
