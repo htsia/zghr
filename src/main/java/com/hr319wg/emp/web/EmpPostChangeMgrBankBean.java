@@ -18,7 +18,6 @@ import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.util.CommonUtil;
-import com.hr319wg.custom.util.SqlUtil;
 import com.hr319wg.emp.pojo.bo.EmpBeginnerBO;
 import com.hr319wg.emp.pojo.bo.EmpPostChangeBO;
 import com.hr319wg.emp.pojo.bo.OrgBeginnerBO;
@@ -1000,14 +999,6 @@ public IWageSetPersonUCC getWagesetpersonucc()
               this.wagesetpersonucc.adjustWageDept(super.getUserInfo(), bo);
             }
             notice(CodeUtil.interpertCode(CodeUtil.TYPE_PERSON, bo.getPersonId()));
-            
-            //同步财务中间库,添加一条人员部门变动记录
-            if(!bo.getOldDept().equals(bo.getNewDept())){
-            	PersonBO p=SysCacheTool.findPersonById(bo.getPersonId());
-            	SqlUtil.updateData("insert into a001_bd (user_id,change_date,change_type,old_dept_id,new_dept_id,user_type,name,user_code) values " +
-            			"('"+bo.getPersonId()+"',getdate(),'部门变动','"+bo.getOldDept()+"','"+bo.getNewDept()+"','"+p.getPersonType()+"','"+p.getName()+"','"+p.getPersonCode()+"')");
-            	SqlUtil.updateData("update a001 set a001705 ='"+p.getDeptId()+"' where id='"+p.getPersonId()+"'");
-            }
           }
       }
     }

@@ -17,7 +17,6 @@ import com.hr319wg.common.web.PageVO;
 import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.custom.util.CommonUtil;
-import com.hr319wg.custom.util.SqlUtil;
 import com.hr319wg.custom.wage.dao.WageDataDAO;
 import com.hr319wg.custom.wage.pojo.bo.ClassWageBO;
 import com.hr319wg.custom.wage.pojo.bo.WageDataSetBO;
@@ -28,7 +27,6 @@ import com.hr319wg.custom.wage.pojo.bo.WageOthersDataSetUserBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.sys.api.ActivePageAPI;
-import com.hr319wg.sys.cache.SysCache;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CommonFuns;
 
@@ -176,22 +174,6 @@ public class WageDataServiceImpl implements IWageDataService{
 		HibernateTemplate temp = (HibernateTemplate)SysContext.getBean("hibernateTemplate");
 		temp.saveOrUpdate(user);
 		temp.flush();
-		//同步中间库
-		if(isnew){
-			SysCache.setPerson(user.getUserID(), 2);
-			PersonBO p=SysCacheTool.findPersonById(user.getUserID());
-			SqlUtil.updateData("insert into a001_bd (user_id,change_date,change_type,new_dept_id,user_type,name,user_code) values " +
-	          		"('"+p.getPersonId()+"',getdate(),'新增','"+p.getDeptId()+"','"+p.getPersonType()+"','"+p.getName()+"','"+p.getPersonCode()+"')");
-	          SqlUtil.updateData("insert into a001(id,a001705,a001001,a001735,a001054,a001077,a001007,a001044) values " +
-	          		"('"+p.getPersonId()+"','"+p.getDeptId()+"','"+p.getName()+"','"+p.getPersonCode()+"','"+p.getPersonType()+"','"+p.getIdCard()+"','"+p.getSex()+"','"+p.getUnitTime()+"')");
-		}else{
-			if(!user.getName().equals(pEdit.getName()) || !user.getCardNO().equals(pEdit.getIdCard()) || !user.getDeptId().equals(pEdit.getDeptId())){
-				SqlUtil.updateData("insert into a001_bd (user_id,change_date,change_type,old_dept_id,new_dept_id,user_type,name,user_code) values " +
-						"('"+user.getUserID()+"',getdate(),'信息维护','"+pEdit.getDeptId()+"','"+user.getDeptId()+"','"+user.getPersonType()+"','"+user.getName()+"','"+user.getPersonSeq()+"')");
-				SqlUtil.updateData("update a001 set a001001 ='"+user.getName()+"',a001077='"+user.getCardNO()+"' where id='"+pEdit.getPersonId()+"'");
-			}
-			SysCache.setPerson(user.getUserID(), 2);
-		}
 		
 		//添加
 		if(isnew){
@@ -770,11 +752,6 @@ public class WageDataServiceImpl implements IWageDataService{
 		this.jdbcTemplate.execute(sql);
 		sql="delete from a001 where id='"+userID+"'";
 		this.jdbcTemplate.execute(sql);
-		
-		//同步中间库
-		SqlUtil.updateData("insert into a001_bd (user_id,change_date,change_type,old_dept_id,new_dept_id,user_type,name,user_code) values " +
-  	      		"('"+p.getPersonId()+"',getdate(),'删除','"+p.getDeptId()+"','"+p.getDeptId()+"','"+p.getPersonType()+"','"+p.getName()+"','"+p.getPersonCode()+"')");
-  	  	  SqlUtil.updateData("delete from a001 where id='"+p.getPersonId()+"'");
 	}
 
 	@Override
