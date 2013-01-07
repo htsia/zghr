@@ -92,7 +92,16 @@
 			<value>#{evawageservice}</value>
 		</managed-property>
 	</managed-bean>
-	
+<!-- 	保险管理 -->
+	<managed-bean>
+		<managed-bean-name>ins_dataBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.ins.web.InsDataBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>insDataService</property-name>
+			<value>#{ins_dataservice}</value>
+		</managed-property>
+	</managed-bean>
 	
 	 <!-- 考勤管理 -->
 	 <managed-bean>
