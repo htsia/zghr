@@ -261,7 +261,7 @@ public class InsDataBackingBean extends BaseBackingBean{
 	
 	public void doDataQuery(){
 		if(mypage.getCurrentPage()==0){
-			mypage.setCurrentPage(1);
+		 	mypage.setCurrentPage(1);
 		}
 		try {
 			this.monthPayList = this.insDataService.getAllInsMonthPayBO(mypage, this.operSetID, this.operWageDate, this.orgID, this.personType, this.nameStr);
