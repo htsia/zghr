@@ -22,6 +22,7 @@ public class InsDataBackingBean extends BaseBackingBean{
 	private String pageInit;
 	private String editInit;
 	private String dataInit;
+	private String editMonthInit;
 	private String orgID;
 	private String nameStr;
 	private String personType;
@@ -34,7 +35,14 @@ public class InsDataBackingBean extends BaseBackingBean{
 	private List<InsCalcSetBO> setList;
 	private List<InsMonthPayBO> monthPayList;
 	private InsCalcSetBO item;
-	private InsMonthPayBO insMonthPayBO;
+	private InsMonthPayBO monthPay;
+	
+	public InsMonthPayBO getMonthPay() {
+		return monthPay;
+	}
+	public void setMonthPay(InsMonthPayBO monthPay) {
+		this.monthPay = monthPay;
+	}
 	
 	public List<InsMonthPayBO> getMonthPayList() {
 		return monthPayList;
@@ -71,12 +79,6 @@ public class InsDataBackingBean extends BaseBackingBean{
 	}
 	public void setWageDate(String wageDate) {
 		this.wageDate = wageDate;
-	}
-	public InsMonthPayBO getInsMonthPayBO() {
-		return insMonthPayBO;
-	}
-	public void setInsMonthPayBO(InsMonthPayBO insMonthPayBO) {
-		this.insMonthPayBO = insMonthPayBO;
 	}
 	public List<InsCalcSetBO> getSetList() {
 		return setList;
@@ -293,4 +295,25 @@ public class InsDataBackingBean extends BaseBackingBean{
 		}
 	}
 	
+	public String getEditMonthInit() {
+		String subID=super.getRequestParameter("subID");
+		if(subID!=null && !"".equals(subID)){
+			try {
+				this.monthPay=(InsMonthPayBO) this.insDataService.getBOByID(InsMonthPayBO.class, subID);
+			} catch (SysException e) {
+				e.printStackTrace();
+			}
+		}
+		return editMonthInit;
+	}
+	
+	public String saveMonthPay(){
+		try {
+			this.insDataService.saveOrUpdateBO(this.monthPay);
+			return "success";
+		} catch (SysException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

@@ -77,7 +77,7 @@
              <tr>
                 <td class="td_page" height=8>
                     </f:verbatim>
-                                 <h:outputText value="姓名或员工编号："></h:outputText>
+                                 <h:outputText value="姓名/员工编号/简拼"></h:outputText>
                                  <h:inputText id="name" value="#{emp_personListBB.name}"
                                                  size="10" styleClass="input" onkeypress ="enterKeyDown('form1:queryPerson')" />
                                  <h:commandButton value=" 查询 " id="queryPerson"  styleClass="button01"
