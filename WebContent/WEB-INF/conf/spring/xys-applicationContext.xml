@@ -2,141 +2,141 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
     <!-- 绩效考核 -->
-    <bean id="xys_relSetDao" class="com.hr319wg.xys.eva.dao.RelSetDAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="xys_relSetService" class="com.hr319wg.xys.eva.service.RelSetService">
-        <property name="relSetDAO" ref="xys_relSetDao"/>
-        <property name="activePageAPI" ref="sys_activePageApi"/>
-    </bean>
-    <bean id="xys_relSetUCC" class="com.hr319wg.xys.eva.ucc.impl.RelSetUCC">
-        <property name="relSetService" ref="xys_relSetService"/>
-    </bean>
+<!--     <bean id="xys_relSetDao" class="com.hr319wg.xys.eva.dao.RelSetDAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="xys_relSetService" class="com.hr319wg.xys.eva.service.RelSetService"> -->
+<!--         <property name="relSetDAO" ref="xys_relSetDao"/> -->
+<!--         <property name="activePageAPI" ref="sys_activePageApi"/> -->
+<!--     </bean> -->
+<!--     <bean id="xys_relSetUCC" class="com.hr319wg.xys.eva.ucc.impl.RelSetUCC"> -->
+<!--         <property name="relSetService" ref="xys_relSetService"/> -->
+<!--     </bean> -->
 
-    <bean id="xys_evaPlanDao" class="com.hr319wg.xys.eva.dao.XysEvaPlanDAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="xys_evaPlanService" class="com.hr319wg.xys.eva.service.XysEvaPlanService">
-        <property name="xysEvaPlanDAO" ref="xys_evaPlanDao"/>
-    </bean>
-    <bean id="xys_evaPlanUCC" class="com.hr319wg.xys.eva.ucc.impl.XysEvaPlanUCC">
-        <property name="xysEvaPlanService" ref="xys_evaPlanService"/>
-    </bean>
+<!--     <bean id="xys_evaPlanDao" class="com.hr319wg.xys.eva.dao.XysEvaPlanDAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="xys_evaPlanService" class="com.hr319wg.xys.eva.service.XysEvaPlanService"> -->
+<!--         <property name="xysEvaPlanDAO" ref="xys_evaPlanDao"/> -->
+<!--     </bean> -->
+<!--     <bean id="xys_evaPlanUCC" class="com.hr319wg.xys.eva.ucc.impl.XysEvaPlanUCC"> -->
+<!--         <property name="xysEvaPlanService" ref="xys_evaPlanService"/> -->
+<!--     </bean> -->
 
-    <bean id="xys360KeyDAO" class="com.hr319wg.xys.eva.dao.Xys360KeyDAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="xys360KeyService" class="com.hr319wg.xys.eva.service.Xys360KeyService">
-        <property name="xys360KeyDAO" ref="xys360KeyDAO"/>
-    </bean>
-    <bean id="xys360KeyUCC" class="com.hr319wg.xys.eva.ucc.impl.Xys360KeyUCC">
-        <property name="xys360KeyService" ref="xys360KeyService"/>
-    </bean>
+<!--     <bean id="xys360KeyDAO" class="com.hr319wg.xys.eva.dao.Xys360KeyDAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="xys360KeyService" class="com.hr319wg.xys.eva.service.Xys360KeyService"> -->
+<!--         <property name="xys360KeyDAO" ref="xys360KeyDAO"/> -->
+<!--     </bean> -->
+<!--     <bean id="xys360KeyUCC" class="com.hr319wg.xys.eva.ucc.impl.Xys360KeyUCC"> -->
+<!--         <property name="xys360KeyService" ref="xys360KeyService"/> -->
+<!--     </bean> -->
 
-    <bean id="xysKpiKeyDAO" class="com.hr319wg.xys.eva.dao.XysKpiKeyDAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="xysKpiKeyService" class="com.hr319wg.xys.eva.service.XysKpiKeyService">
-        <property name="xysKpiKeyDAO" ref="xysKpiKeyDAO"/>
-        <property name="activePageAPI" ref="sys_activePageApi"/>
-    </bean>
-    <bean id="xysKpiKeyUCC" class="com.hr319wg.xys.eva.ucc.impl.XysKpiKeyUCC">
-        <property name="xysKpiKeyService" ref="xysKpiKeyService"/>
-    </bean>
+<!--     <bean id="xysKpiKeyDAO" class="com.hr319wg.xys.eva.dao.XysKpiKeyDAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysKpiKeyService" class="com.hr319wg.xys.eva.service.XysKpiKeyService"> -->
+<!--         <property name="xysKpiKeyDAO" ref="xysKpiKeyDAO"/> -->
+<!--         <property name="activePageAPI" ref="sys_activePageApi"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysKpiKeyUCC" class="com.hr319wg.xys.eva.ucc.impl.XysKpiKeyUCC"> -->
+<!--         <property name="xysKpiKeyService" ref="xysKpiKeyService"/> -->
+<!--     </bean> -->
 
-    <bean id="xys360TempDAO" class="com.hr319wg.xys.eva.dao.Xys360TempDAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="xys360TempService" class="com.hr319wg.xys.eva.service.Xys360TempService">
-        <property name="xys360TempDAO" ref="xys360TempDAO"/>
-    </bean>
-    <bean id="xys360TempUCC" class="com.hr319wg.xys.eva.ucc.impl.Xys360TempUCC">
-        <property name="xys360TempService" ref="xys360TempService"/>
-    </bean>
+<!--     <bean id="xys360TempDAO" class="com.hr319wg.xys.eva.dao.Xys360TempDAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="xys360TempService" class="com.hr319wg.xys.eva.service.Xys360TempService"> -->
+<!--         <property name="xys360TempDAO" ref="xys360TempDAO"/> -->
+<!--     </bean> -->
+<!--     <bean id="xys360TempUCC" class="com.hr319wg.xys.eva.ucc.impl.Xys360TempUCC"> -->
+<!--         <property name="xys360TempService" ref="xys360TempService"/> -->
+<!--     </bean> -->
 
-    <bean id="xysKpiDeptDAO" class="com.hr319wg.xys.eva.dao.XysKpiDeptDAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="xysKpiDeptService" class="com.hr319wg.xys.eva.service.XysKpiDeptService">
-        <property name="xysKpiDeptDAO" ref="xysKpiDeptDAO"/>
-        <property name="activePageAPI" ref="sys_activePageApi"/>
-    </bean>
-    <bean id="xysKpiDeptUCC" class="com.hr319wg.xys.eva.ucc.impl.XysKpiDeptUCC">
-        <property name="xysKpiDeptService" ref="xysKpiDeptService"/>
-    </bean>
+<!--     <bean id="xysKpiDeptDAO" class="com.hr319wg.xys.eva.dao.XysKpiDeptDAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysKpiDeptService" class="com.hr319wg.xys.eva.service.XysKpiDeptService"> -->
+<!--         <property name="xysKpiDeptDAO" ref="xysKpiDeptDAO"/> -->
+<!--         <property name="activePageAPI" ref="sys_activePageApi"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysKpiDeptUCC" class="com.hr319wg.xys.eva.ucc.impl.XysKpiDeptUCC"> -->
+<!--         <property name="xysKpiDeptService" ref="xysKpiDeptService"/> -->
+<!--     </bean> -->
 
-    <bean id="xysKpiPersonDAO" class="com.hr319wg.xys.eva.dao.XysKpiPersonDAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="xysKpiPersonService" class="com.hr319wg.xys.eva.service.XysKpiPersonService">
-        <property name="xysKpiPersonDAO" ref="xysKpiPersonDAO"/>
-        <property name="activePageAPI" ref="sys_activePageApi"/>
-    </bean>
-    <bean id="xysKpiPersonUCC" class="com.hr319wg.xys.eva.ucc.impl.XysKpiPersonUCC">
-        <property name="xysKpiPersonService" ref="xysKpiPersonService"/>
-    </bean>
+<!--     <bean id="xysKpiPersonDAO" class="com.hr319wg.xys.eva.dao.XysKpiPersonDAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysKpiPersonService" class="com.hr319wg.xys.eva.service.XysKpiPersonService"> -->
+<!--         <property name="xysKpiPersonDAO" ref="xysKpiPersonDAO"/> -->
+<!--         <property name="activePageAPI" ref="sys_activePageApi"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysKpiPersonUCC" class="com.hr319wg.xys.eva.ucc.impl.XysKpiPersonUCC"> -->
+<!--         <property name="xysKpiPersonService" ref="xysKpiPersonService"/> -->
+<!--     </bean> -->
     
-    <bean id="xys360DAO" class="com.hr319wg.xys.eva.dao.Xys360DAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="xys360Service" class="com.hr319wg.xys.eva.service.Xys360Service">
-        <property name="xys360DAO" ref="xys360DAO"/>
-        <property name="activePageAPI" ref="sys_activePageApi"/>
-    </bean>
-    <bean id="xys360UCC" class="com.hr319wg.xys.eva.ucc.impl.Xys360UCC">
-        <property name="xys360Service" ref="xys360Service"/>
-    </bean>
+<!--     <bean id="xys360DAO" class="com.hr319wg.xys.eva.dao.Xys360DAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="xys360Service" class="com.hr319wg.xys.eva.service.Xys360Service"> -->
+<!--         <property name="xys360DAO" ref="xys360DAO"/> -->
+<!--         <property name="activePageAPI" ref="sys_activePageApi"/> -->
+<!--     </bean> -->
+<!--     <bean id="xys360UCC" class="com.hr319wg.xys.eva.ucc.impl.Xys360UCC"> -->
+<!--         <property name="xys360Service" ref="xys360Service"/> -->
+<!--     </bean> -->
     
-    <bean id="xysEvaRoleDAO" class="com.hr319wg.xys.eva.dao.XysEvaRoleDAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="xysEvaRoleService" class="com.hr319wg.xys.eva.service.XysEvaRoleService">
-        <property name="xysEvaRoleDAO" ref="xysEvaRoleDAO"/>
-    </bean>
-    <bean id="xysEvaRoleUcc" class="com.hr319wg.xys.eva.ucc.impl.XysEvaRoleUCC">
-        <property name="xysEvaRoleService" ref="xysEvaRoleService"/>
-    </bean>
+<!--     <bean id="xysEvaRoleDAO" class="com.hr319wg.xys.eva.dao.XysEvaRoleDAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysEvaRoleService" class="com.hr319wg.xys.eva.service.XysEvaRoleService"> -->
+<!--         <property name="xysEvaRoleDAO" ref="xysEvaRoleDAO"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysEvaRoleUcc" class="com.hr319wg.xys.eva.ucc.impl.XysEvaRoleUCC"> -->
+<!--         <property name="xysEvaRoleService" ref="xysEvaRoleService"/> -->
+<!--     </bean> -->
     
-    <bean id="studentGradeDAO" class="com.hr319wg.xys.eva.dao.StudentGradeDAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="studentGradeService" class="com.hr319wg.xys.eva.service.StudentGradeService">
-        <property name="studentGradeDAO" ref="studentGradeDAO"/>
-    </bean>
-    <bean id="studentGradeUcc" class="com.hr319wg.xys.eva.ucc.impl.StudentGradeUCC">
-        <property name="studentGradeService" ref="studentGradeService"/>
-    </bean>
-    <bean id="xysEvaGroupDAO" class="com.hr319wg.xys.eva.dao.XysEvaGroupDAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="xysEvaGroupService" class="com.hr319wg.xys.eva.service.XysEvaGroupService">
-        <property name="xysEvaGroupDAO" ref="xysEvaGroupDAO"/>
-    </bean>
-    <bean id="xysEvaGroupUcc" class="com.hr319wg.xys.eva.ucc.impl.XysEvaGroupUCC">
-        <property name="xysEvaGroupService" ref="xysEvaGroupService"/>
-    </bean>
+<!--     <bean id="studentGradeDAO" class="com.hr319wg.xys.eva.dao.StudentGradeDAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="studentGradeService" class="com.hr319wg.xys.eva.service.StudentGradeService"> -->
+<!--         <property name="studentGradeDAO" ref="studentGradeDAO"/> -->
+<!--     </bean> -->
+<!--     <bean id="studentGradeUcc" class="com.hr319wg.xys.eva.ucc.impl.StudentGradeUCC"> -->
+<!--         <property name="studentGradeService" ref="studentGradeService"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysEvaGroupDAO" class="com.hr319wg.xys.eva.dao.XysEvaGroupDAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysEvaGroupService" class="com.hr319wg.xys.eva.service.XysEvaGroupService"> -->
+<!--         <property name="xysEvaGroupDAO" ref="xysEvaGroupDAO"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysEvaGroupUcc" class="com.hr319wg.xys.eva.ucc.impl.XysEvaGroupUCC"> -->
+<!--         <property name="xysEvaGroupService" ref="xysEvaGroupService"/> -->
+<!--     </bean> -->
     
-    <bean id="xysEvaObjDao" class="com.hr319wg.xys.eva.dao.XysEvaObjDAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="xysEvaObjService" class="com.hr319wg.xys.eva.service.XysEvaObjService">
-        <property name="xysEvaObjDao" ref="xysEvaObjDao"/>
-        <property name="activePageAPI" ref="sys_activePageApi"/>
-    </bean>
-    <bean id="xysEvaObjUcc" class="com.hr319wg.xys.eva.ucc.impl.XysEvaObjUCC">
-        <property name="xysEvaObjService" ref="xysEvaObjService"/>
-        <property name="activePageService" ref="sys_activePageService"/>
-        <property name="evaGradeService" ref="eva_gradeservice"/>
-    </bean>
+<!--     <bean id="xysEvaObjDao" class="com.hr319wg.xys.eva.dao.XysEvaObjDAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysEvaObjService" class="com.hr319wg.xys.eva.service.XysEvaObjService"> -->
+<!--         <property name="xysEvaObjDao" ref="xysEvaObjDao"/> -->
+<!--         <property name="activePageAPI" ref="sys_activePageApi"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysEvaObjUcc" class="com.hr319wg.xys.eva.ucc.impl.XysEvaObjUCC"> -->
+<!--         <property name="xysEvaObjService" ref="xysEvaObjService"/> -->
+<!--         <property name="activePageService" ref="sys_activePageService"/> -->
+<!--         <property name="evaGradeService" ref="eva_gradeservice"/> -->
+<!--     </bean> -->
     
-    <bean id="xysSpreadMgrDao" class="com.hr319wg.xys.eva.dao.XysSpreadMgrDAO">
-        <property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
-    <bean id="xysSpreadMgrService" class="com.hr319wg.xys.eva.service.XysSpreadMgrService">
-        <property name="xysSpreadMgrDao" ref="xysSpreadMgrDao"/>
-    </bean>
-    <bean id="xysSpreadMgrUCC" class="com.hr319wg.xys.eva.ucc.impl.XysSpreadMgrUCC">
-        <property name="xysSpreadMgrService" ref="xysSpreadMgrService"/>
-    </bean>
+<!--     <bean id="xysSpreadMgrDao" class="com.hr319wg.xys.eva.dao.XysSpreadMgrDAO"> -->
+<!--         <property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysSpreadMgrService" class="com.hr319wg.xys.eva.service.XysSpreadMgrService"> -->
+<!--         <property name="xysSpreadMgrDao" ref="xysSpreadMgrDao"/> -->
+<!--     </bean> -->
+<!--     <bean id="xysSpreadMgrUCC" class="com.hr319wg.xys.eva.ucc.impl.XysSpreadMgrUCC"> -->
+<!--         <property name="xysSpreadMgrService" ref="xysSpreadMgrService"/> -->
+<!--     </bean> -->
 
 </beans>

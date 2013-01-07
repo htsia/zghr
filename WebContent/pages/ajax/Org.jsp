@@ -127,7 +127,6 @@
 	    Collections.sort(list);
         for (int i = 0; i < list.size(); i++) {
             OrgBO o = (OrgBO) list.get(i);
-        	System.out.println(o.getName()+" "+o.getOrgSort());
             if(o.getOrgId().length()>6 && secDeptTreeId!=null && !"".equals(secDeptTreeId) && !"null".equals(secDeptTreeId) && !o.getOrgId().startsWith(secDeptTreeId)){
 				continue;
 			}

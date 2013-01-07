@@ -328,7 +328,7 @@ function selAddTime() {
     <td class=td_form02>
 </f:verbatim>
         <h:inputText styleClass="input" id="A001715" code="" dict="yes" dict_num="PO"
-                     readonly="true"  size="21"   value="#{emp_personAddBB.personvo.postId}"
+                     readonly="true"  size="21" value="#{emp_personAddBB.personvo.postId}"
                      alt="岗位|1|s|50||"/>
 <f:verbatim>
         <input type="button" class="button_post" onclick="selPost()">
@@ -349,14 +349,7 @@ function selAddTime() {
         </script>
         <input type="button" class="button_date" onclick="selUnitTime();"></td>
     <!-- <td class=td_form01> <%=LanguageSupport.getResource("JGGL-1078", "岗位名称")%></td>
-    <td class=td_form02>
-</f:verbatim>
-        <h:inputText styleClass="input" id="A001715" code="" dict="yes" dict_num="PO"
-                     readonly="true" value="#{emp_personAddBB.personvo.postId}"
-                     alt="岗位|1|s|50||"/>
-<f:verbatim>
-        <input type="button" class="button_post" onclick="selPost()">
-    </td> -->
+    
 <!--修改3开始   把 td  隐藏掉-->
     <td id="td_postLevel" class="td_form01 td_form_required">当前状态</td>
     <td class=td_form02>
