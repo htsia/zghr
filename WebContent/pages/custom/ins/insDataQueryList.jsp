@@ -20,6 +20,13 @@
     	}
     	return true;
     }
+	function process() {
+		x = document.body.clientWidth / 2 - 150;
+		y = document.body.clientHeight / 2;
+		document.getElementById('processbar').style.top = y;
+		document.getElementById('processbar').style.left = x;
+		document.getElementById('processbar').style.display = "";
+	}
 </script>
 <x:saveState value="#{ins_dataBB}" />
 <h:inputHidden value="#{ins_dataBB.dataInit}"/>
@@ -33,7 +40,7 @@
 	<h:panelGrid width="98%" columns="1" align="center">
 		<h:panelGrid columns="1" align="left">
 			<h:panelGroup>
-				<h:commandButton value="计算" styleClass="button01" action="#{ins_dataBB.calc}"/>
+				<h:commandButton value="计算" styleClass="button01" onclick="process();" action="#{ins_dataBB.calc}"/>
 				<h:outputText value=" 姓名/编号/简拼"/>
 				<h:inputText value="#{ins_dataBB.nameStr}" styleClass="input" size="10"/>
 				<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{ins_dataBB.doQuery}"/>
@@ -206,3 +213,18 @@
 <script type="text/javascript" language="javascript">
 	setDataTableOver("form1:dateList");
 </script>
+<marquee id="processbar"
+	style="position: absolute; display: none; border: 1px solid #000000"
+	direction="right" width="300" scrollamount="5" scrolldelay="10"
+	bgcolor="#ECF2FF">
+	<table cellspacing="1" cellpadding="0">
+		<tr height=8>
+			<td bgcolor=#3388FF width=9></td>
+			<td></td>
+			<td bgcolor=#3388FF width=9></td>
+			<td></td>
+			<td bgcolor=#3388FF width=9></td>
+			<td></td>
+		</tr>
+	</table>
+</marquee>
