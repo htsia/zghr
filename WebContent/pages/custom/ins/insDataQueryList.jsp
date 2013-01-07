@@ -9,11 +9,8 @@
 %>
 
 <script type="text/javascript">
-	function doAddItem() {
-		window.showModalDialog("/custom/ins/insDataEdit.jsf",null,"dialogWidth:470px; dialogHeight:300px;center:center;resizable:yes;status:no;scroll:yes;");
-	}
-	function editItem(ID) {
-		window.showModalDialog("/custom/ins/insDataEdit.jsf?ID="+ID,null,"dialogWidth:470px; dialogHeight:300px;center:center;resizable:yes;status:no;scroll:yes;");
+	function edit(subID) {
+		window.showModalDialog("/custom/ins/insMonthDataEdit.jsf?subID="+subID,null,"dialogWidth:400px; dialogHeight:450px;center:center;resizable:yes;status:no;scroll:yes;");
 	}
 	function forSel() {
     	PopUpMutilCodeDlgNoLayerForSubmit('form1:personType', 'form1:personTypeValue', "0135",'');

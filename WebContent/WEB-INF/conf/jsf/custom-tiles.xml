@@ -179,6 +179,9 @@
     <definition name="/custom/ins/insDataQueryList.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/ins/insDataQueryList.jsp"/>
     </definition>
+    <definition name="/custom/ins/insMonthDataEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/ins/insMonthDataEdit.jsp"/>
+    </definition>
     
     <!-- 考勤相关 -->
     <definition name="/custom/attence/attLogMgr.tiles" extends="layout.busitemplateSelf">
