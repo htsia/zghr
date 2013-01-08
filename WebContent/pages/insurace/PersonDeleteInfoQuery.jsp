@@ -30,7 +30,6 @@
                             perIds += obj[i].value + ",";
                         }
                     }
-
                 }               
                 if (perIds != "") {
                     perIds = perIds.substr(0, perIds.length - 1);
@@ -52,6 +51,10 @@
 
          function forAdQry(){
              doAdvanceQuery("A","ORG","111","Y","","A001.A001730='00900'","Y","<%=Constants.DEFAULT_QUERY_PERSON%>","Y","1");
+         }
+         function forExport() {
+             window.open('/pages/common/ExportToExcel.jsp?sessionKey=<%=Constants.OBJECT%>');
+             return null;
          }
     </script>
 </head>
@@ -82,10 +85,13 @@
                                                  size="10" styleClass="input" onkeypress ="enterKeyDown('form1:queryPerson')" />
                                  <h:commandButton value=" 查询 " id="queryPerson"  styleClass="button01"
                                                   action="#{emp_personListBB.queryPerson}"/>
-                                 <h:commandButton value="高级查询" onclick="javascript:return forAdQry();" styleClass="button01" />
+                                 <h:outputText value="  "/>
+                                 <h:commandButton value="自定义查询" onclick="javascript:return forAdQry();" styleClass="button01" />
                                 <h:selectOneMenu id="displaySet" value="#{emp_personListBB.defaultQry}" onchange="disPlayProcessBar();submit();" valueChangeListener="#{emp_personListBB.changeQuery}">
                                     <c:selectItems value="#{emp_personListBB.insdisplaySetList}"></c:selectItems>
                                 </h:selectOneMenu>
+                                <h:outputText value=" "/>
+                    			<h:commandButton styleClass="button01" value="导出Excel" type="button" onclick="return forExport();"/>
                     <f:verbatim>
                 </td>
                 <td class="td_page" height=8>

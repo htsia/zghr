@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.SysContext;
+import com.hr319wg.custom.ins.service.IInsDataService;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.ucc.IPersonUCC;
 import com.hr319wg.insurace.ucc.IBaseSetUCC;
@@ -35,6 +36,23 @@ public class PersonInsuraceBackingBean extends BaseBackingBean {
 	private String initSingleEdit;
 	private String caclpersonType;
 	private String selfPay;
+	private IInsDataService insDataService;
+	
+	public String getPerIds() {
+		return perIds;
+	}
+
+	public void setPerIds(String perIds) {
+		this.perIds = perIds;
+	}
+
+	public IInsDataService getInsDataService() {
+		return insDataService;
+	}
+
+	public void setInsDataService(IInsDataService insDataService) {
+		this.insDataService = insDataService;
+	}
 
 	public String getSelfPay() {
 		return selfPay;
@@ -250,16 +268,10 @@ public class PersonInsuraceBackingBean extends BaseBackingBean {
 					}
 				}
 			}
-			JdbcTemplate jdbc = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
-			String sql = "select nvl(max(cast(subid as int)),0) from b731";
-			int currSubid = jdbc.queryForInt(sql);
-			
+			this.insDataService.updateInsurceChangeInfo(this.perIds.split(","), this.changeType, this.changeDate, this.changeReason, this.depName, inputList1.split(","));
 			this.basesetucc.updateInsurceChangeInfo(this.perIds.split(","), this.changeType, this.changeDate, this.depName, inputList1.split(","));
 		    this.basesetucc.deleteInsurceBase(this.perIds.split(","), null);
 			getServletRequest().setAttribute("message", "处理业务成功!");
-			String reason =this.changeReason==null?"":this.changeReason;
-			sql = "update b731 set b731209='"+reason+"' where cast(subid as int)>'"+currSubid+"'";
-			jdbc.execute(sql);
 		} catch (Exception e) {
 			this.msg.setMainMsg(e, getClass());
 			getServletRequest().setAttribute("flag", "1");

@@ -182,6 +182,15 @@
     <definition name="/custom/ins/insMonthDataEdit.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/ins/insMonthDataEdit.jsp"/>
     </definition>
+    <definition name="/custom/ins/insDataManager.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/ins/insDataManager.jsp"/>
+    </definition>
+    <definition name="/custom/ins/insDataManagerQueryList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/ins/insDataManagerQueryList.jsp"/>
+    </definition>
+    <definition name="/custom/ins/BaseRateInputEdit2.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/ins/BaseRateInputEdit2.jsp"/>
+    </definition>
     
     <!-- 考勤相关 -->
     <definition name="/custom/attence/attLogMgr.tiles" extends="layout.busitemplateSelf">

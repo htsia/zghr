@@ -1,25 +1,35 @@
 package com.hr319wg.custom.ins.web;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
+import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
+import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.ins.pojo.bo.InsCalcSetBO;
 import com.hr319wg.custom.ins.pojo.bo.InsMonthPayBO;
 import com.hr319wg.custom.ins.service.IInsDataService;
 import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.emp.pojo.bo.PersonBO;
+import com.hr319wg.emp.ucc.IPersonUCC;
+import com.hr319wg.org.pojo.bo.OrgBO;
+import com.hr319wg.sys.api.QueryAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
+import com.hr319wg.sys.pojo.vo.CellVO;
+import com.hr319wg.sys.pojo.vo.TableVO;
 import com.hr319wg.util.CodeUtil;
+import com.hr319wg.util.CommonFuns;
 
 public class InsDataBackingBean extends BaseBackingBean{
 	
 	private User user = super.getUserInfo();
 	private PageVO mypage = new PageVO();
 	private String pageInit;
+	private String pageInit2;
 	private String editInit;
 	private String dataInit;
 	private String editMonthInit;
@@ -27,16 +37,38 @@ public class InsDataBackingBean extends BaseBackingBean{
 	private String nameStr;
 	private String personType;
 	private String personTypeValue;
+	private String personTypeDesc;
 	private String wageDate;
 	private String operSetID;
 	private String operWageDate;
 	private String operStatus;
 	private IInsDataService insDataService;
+	private IPersonUCC personucc;
 	private List<InsCalcSetBO> setList;
 	private List<InsMonthPayBO> monthPayList;
 	private InsCalcSetBO item;
 	private InsMonthPayBO monthPay;
 	
+	public IPersonUCC getPersonucc() {
+		return personucc;
+	}
+
+	public void setPersonucc(IPersonUCC personucc) {
+		this.personucc = personucc;
+	}
+
+	public String getPersonTypeDesc() {
+		if ((this.personTypeValue == null) || ("".equals(this.personTypeValue))) {
+			this.personTypeDesc = "当前人员类别:全部人员";
+		} else {
+			this.personTypeDesc = ("当前人员类别:" + this.personTypeValue);
+		}
+		return this.personTypeDesc;
+	}
+	
+	public void setPersonTypeDesc(String personTypeDesc) {
+		this.personTypeDesc = personTypeDesc;
+	}
 	public InsMonthPayBO getMonthPay() {
 		return monthPay;
 	}
@@ -117,7 +149,12 @@ public class InsDataBackingBean extends BaseBackingBean{
 		this.personType = personType;
 	}
 	public String getPersonTypeValue() {
-		return personTypeValue;
+		this.personTypeValue = "";
+		if (this.personType != null) {
+			this.personTypeValue = CodeUtil.interpertCode(CodeUtil.TYPE_CODE,
+					this.personType);
+		}
+		return this.personTypeValue;
 	}
 	public void setPersonTypeValue(String personTypeValue) {
 		this.personTypeValue = personTypeValue;
@@ -314,6 +351,91 @@ public class InsDataBackingBean extends BaseBackingBean{
 		} catch (SysException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public String getPageInit2() {
+		String act=super.getRequestParameter("act");
+		if("init".equals(act)){
+			this.nameStr=null;
+			this.orgID=null;
+		}
+		String orgID1=super.getRequestParameter("orgID");
+		if(orgID1!=null && !"".equals(orgID1)){
+			this.orgID=orgID1;
+		}
+		
+		if(this.personType==null || "".equals(this.personType)){
+			try {
+				this.personType=CommonUtil.getAllPersonTypes(super.getUserInfo());
+			} catch (SysException e) {
+				e.printStackTrace();
+			}
+		}
+		doQuery2();
+		return pageInit2;
+	}
+	
+	public void doQuery2(){
+		try {
+			TableVO table = new TableVO();
+			QueryAPI api = (QueryAPI) SysContext.getBean("qry_queryApi");
+			CellVO[] headerItem = api.queryInfoItem("134");
+			table.setHeader(headerItem);
+			// 查询语句
+			Hashtable hash = api.getQuerySqlHash(null, "134");
+			String select = (String) hash.get("SQL_SELECT_PART");
+			String from = CommonFuns.filterNull(
+					(String) hash.get("SQL_FROM_PART")).toUpperCase();
+			String order = CommonFuns.filterNull((String) hash
+					.get("SQL_ORDER_PART"));
+
+			String sql = "select " + select + " from " + from + " where 1=1 ";
+			if (this.orgID != null) {
+				OrgBO org = SysCacheTool.findOrgById(this.orgID);
+				sql += " and a001738 like '"+org.getTreeId()+"%' ";
+			}
+			String nameStr1 = "%";
+			if (this.nameStr != null) {
+				nameStr1 = this.nameStr;
+			}
+			sql += " and (a001001 like '%" + nameStr1
+					+ "%' or a001735 like '%" + nameStr1 + "%' )";
+			sql += " and "+CommonFuns.splitInSql(this.personType.split(","), "a001054");
+			if (!"".equals(order)) {
+				sql += "order by " + order;
+			}
+
+			int pageNum = Integer.parseInt(CommonFuns.filterNullToZero(super
+						.getRequestParameter("pageNum")));
+			if (pageNum == 0)
+				pageNum = Integer.parseInt(CommonFuns
+						.filterNullToZero((String) super.getHttpSession()
+								.getAttribute("pageNum")));
+			if (pageNum == 0)
+				pageNum = 1;
+			int rowNum = Integer.parseInt(CommonFuns.filterNullToZero(super
+						.getRequestParameter("rowNum")));
+			if (rowNum == 0)
+				rowNum = Integer.parseInt(CommonFuns
+						.filterNullToZero((String) super.getHttpSession()
+								.getAttribute("rowNum")));
+			if (rowNum == 0)
+				rowNum = Constants.ACTIVE_PAGE_SIZE;
+			if (table == null)
+				table = (TableVO) super.getHttpSession().getAttribute("OBJECT");
+			if (sql == null)
+				sql = (String) super.getHttpSession().getAttribute("activeSql");
+			this.personucc.querySql(table, sql, user, pageNum, rowNum);
+			super.getHttpSession().setAttribute("activeSql", sql);
+			super.getHttpSession().setAttribute("rowNum",
+					String.valueOf(rowNum));
+			super.getHttpSession().setAttribute("pageNum",
+					String.valueOf(pageNum));
+			super.getHttpSession().setAttribute("OBJECT", table);
+		} catch (Exception e) {
+			e.printStackTrace();
+			super.showMessageDetail("错误：" + e.getMessage());
 		}
 	}
 }

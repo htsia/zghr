@@ -43,24 +43,25 @@
 <x:saveState value="#{ins_brieBB}"/>
 
 <h:form id="form1">
-    <h:panelGrid align="center" columns="2" width="95%" >
-        <h:panelGroup>
-            <h:graphicImage value="/images/tips.gif" />
-            <h:outputText value="录入保险基数"/>
-        </h:panelGroup>
-        <h:panelGrid align="right" columns="3">
-            <h:panelGroup>
-                <h:inputText id="allrate" size="10"/>
-                <h:commandButton value="设置全部" styleClass="button01" type="button" onclick="doSetAll();"/>
-            </h:panelGroup>
-            <h:commandButton styleClass="button01" value="确认" action="#{ins_brieBB.savePersonBase}"   />
-            <h:commandButton styleClass="button01" type="button" value="取消" onclick="window.close()"/>
-        </h:panelGrid>
-    </h:panelGrid>
-
+	<c:verbatim>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+        <tr>
+            <td height=30 class="td_title"><img src="/images/tips.gif">保险管理 -> 录入保险基数</td>
+            <td align="right" class="td_title" style="padding-right: 30px;">
+		    </c:verbatim>
+		    	<h:panelGroup>
+	                <h:inputText id="allrate" size="10"/>
+	                <h:commandButton value="设置全部" styleClass="button01" type="button" onclick="doSetAll();"/>
+	            </h:panelGroup>
+	            <h:commandButton styleClass="button01" value="确认" action="#{ins_brieBB.savePersonBase}"   />
+	            <h:commandButton styleClass="button01" type="button" value="取消" onclick="window.close()"/>
+			<c:verbatim>
+            </td>
+        </tr>
+    </table>
+    </c:verbatim>
     <c:verbatim escape="false">
-     <br>
-     <br>
+    	<br/>
         <%
             if (persId != null && field != null) {
                 int col = field.length;

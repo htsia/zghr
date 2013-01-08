@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.common.Constants"%>
-<%@ include file="../include/taglib.jsp" %>
+<%@ include file="/pages/include/taglib.jsp" %>
 <%
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
@@ -13,7 +13,6 @@
                   document.forms(0).all('form1:queryPerson').click();
            }
         }
-        
          function forAdQry(){
              doAdvanceQuery("A","ORG","111","Y","","A001.A001730='00900'","Y","<%=Constants.DEFAULT_QUERY_PERSON%>","Y","1");
          }
@@ -35,35 +34,40 @@
                     }
                 } else
                     str = form1.chk.value.replace("#","~");
-                	window.showModalDialog("/insurace/BaseRateInputEdit.jsf?act=init&addRecord=1&PerStr="+str, null, "dialogWidth:"+screen.width*0.85+"px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
-                	return true;
+                var reval = window.showModalDialog("/custom/ins/BaseRateInputEdit2.jsf?act=init&PerStr="+str, null, "dialogWidth:"+screen.width*0.85+"px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
             } else {
                 alert("请选择人员");
                 return false;
             }
             return true;
         }
+        function forUploadFile() {
+	        var arg = "moduleid=BXGL"
+	        reval = window.showModalDialog("/employee/import/PerDataUpload.jsf?" + arg, null, "dialogWidth:800px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
+	        if (reval != null) {
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    }
         function forExport() {
             window.open('/pages/common/ExportToExcel.jsp?sessionKey=<%=Constants.OBJECT%>');
             return null;
         }
     </script>
-    <x:saveState value="#{emp_personListBB}"></x:saveState>
+    <x:saveState value="#{ins_dataBB}"></x:saveState>
+    <h:inputHidden value="#{ins_dataBB.pageInit2}"/>
     <h:form id="form1">
-        <h:inputHidden value="#{emp_personListBB.personList}"/>
-        <h:inputHidden id="superId" value="#{emp_personListBB.superId}"/>
-        <h:inputHidden id="defaultQry" value="#{emp_personListBB.defaultQry}"/>
-        <input type="hidden" name="sessionFlag" value="2">
-         <f:verbatim>
+        <f:verbatim>
         <table id=t1 width="100%" height="98%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td height=10 class="td_page" colspan=3>
                     <input name="simple1" type="button" id=15 next=20 class="button01" value="选择人员类别"
                            onclick="forSel()">
            </f:verbatim>
-                    <h:inputHidden id="personType" value="#{emp_personListBB.personType}"/>
-                    <h:inputHidden id="personTypeValue" value="#{emp_personListBB.personTypeValue}"/>
-                    <h:outputText value="#{emp_personListBB.personTypeDesc}"></h:outputText>
+                    <h:inputHidden id="personType" value="#{ins_dataBB.personType}"/>
+                    <h:inputHidden id="personTypeValue" value="#{ins_dataBB.personTypeValue}"/>
+                    <h:outputText value="#{ins_dataBB.personTypeDesc}"></h:outputText>
     <f:verbatim>
                 </td>
             </tr>
@@ -71,15 +75,12 @@
                 <td height=10 class="td_page">
      </f:verbatim>
                     <h:outputText value="姓名/员工编号/简拼"></h:outputText>
-                    <h:inputText id="name" value="#{emp_personListBB.name}"
-                                    size="10" styleClass="input" onkeypress ="enterKeyDown('form1:queryPerson')" />
+                    <h:inputText id="nameStr" value="#{ins_dataBB.nameStr}"
+                                    size="10" styleClass="input" onkeypress ="enterKeyDown('form1:doQuery2')" />
                     <h:commandButton value=" 查询 " id="queryPerson"  styleClass="button01"
-                                     action="#{emp_personListBB.queryPerson}"/>
-
-                    <h:selectOneMenu id="displaySet" value="#{emp_personListBB.defaultQry}" onchange="disPlayProcessBar();submit();" valueChangeListener="#{emp_personListBB.changeInsQuery}">
-                        <c:selectItems value="#{emp_personListBB.insdisplaySetList}"></c:selectItems>
-                    </h:selectOneMenu>
-                    <h:outputText value="  "/>
+                                     action="#{ins_dataBB.doQuery2}"/>
+                                     
+                    <h:outputText value=" "/>
                     <h:commandButton value="自定义查询" onclick="javascript:return forAdQry();" styleClass="button01" />
                     <h:outputText value=" "/>
                     <h:commandButton styleClass="button01" value="导出Excel" type="button" onclick="return forExport();"/>
@@ -87,13 +88,15 @@
                 </td>
                 <td height=10 class="td_page">
       </f:verbatim>
-                    <h:commandButton value="录入基数" type="button" styleClass="button01" onclick="return doSelectInfoInput();" action="{emp_personListBB.queryPerson}"></h:commandButton>
+                    <h:commandButton value="基数变动" type="button" styleClass="button01" onclick="return doSelectInfoInput();"/>
+                    <h:outputText value="  "/>
+                    <h:commandButton styleClass="button01" value="数据导入" type="button" onclick="return forUploadFile()"/>
       <f:verbatim>
                 </td>
             </tr>
             <tr>
                 <td colspan=2>
-                    <jsp:include page="../common/activepage/ActiveList.jsp">
+                    <jsp:include page="/pages/common/activepage/ActiveList.jsp">
                         <jsp:param name="hasOperSign" value="true"/>
                         <jsp:param name="operSignType" value="checkbox"/>
                         <jsp:param name="hasEdit" value="true"/>
