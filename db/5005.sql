@@ -1,6 +1,26 @@
 
 insert into SYS_DB_VERSION values('5005',sysdate);
 
+--配置菜单
+insert into sys_operate (OPERATE_ID, OPERATE_NAME, MENU_URL, OPERATE_TYPE, TREEID, SUPERID, MODULEID, SYS_FLAG, HAVE_REPORT, IS_USE, DLL_IMPORT, DLL_ICON, HAVE_QUERY, OPERATE_NAME_CN, OPERATE_NAME_TW, OPERATE_NAME_EN, OPERATE_DES, OPERATE_DES_CN, OPERATE_DES_TW, OPERATE_DES_EN, WEB_ICON, IN_SELF)
+values ('1402', '社会保险人员增加', '/insurace/PersonAddInfoIndex.jsf', '1', '001400010001', '1401', 'BXGL', '0', '1', '1', null, null, '1', null, null, null, null, null, null, null, null, null);
+
+insert into sys_operate (OPERATE_ID, OPERATE_NAME, MENU_URL, OPERATE_TYPE, TREEID, SUPERID, MODULEID, SYS_FLAG, HAVE_REPORT, IS_USE, DLL_IMPORT, DLL_ICON, HAVE_QUERY, OPERATE_NAME_CN, OPERATE_NAME_TW, OPERATE_NAME_EN, OPERATE_DES, OPERATE_DES_CN, OPERATE_DES_TW, OPERATE_DES_EN, WEB_ICON, IN_SELF)
+values ('1403', '社会保险人员减少', '/insurace/PersonDeleteInfoIndex.jsf', '1', '001400010002', '1401', 'BXGL', '0', '1', '1', null, null, '1', null, null, null, null, null, null, null, null, null);
+
+insert into sys_operate (OPERATE_ID, OPERATE_NAME, MENU_URL, OPERATE_TYPE, TREEID, SUPERID, MODULEID, SYS_FLAG, HAVE_REPORT, IS_USE, DLL_IMPORT, DLL_ICON, HAVE_QUERY, OPERATE_NAME_CN, OPERATE_NAME_TW, OPERATE_NAME_EN, OPERATE_DES, OPERATE_DES_CN, OPERATE_DES_TW, OPERATE_DES_EN, WEB_ICON, IN_SELF)
+values ('1412', '变动人员查询', '/insurace/ChangeQuery.jsf', '1', '001400010003', '1401', 'BXGL', '0', '1', '1', null, null, '1', null, null, null, null, null, null, null, null, null);
+
+insert into sys_operate (OPERATE_ID, OPERATE_NAME, MENU_URL, OPERATE_TYPE, TREEID, SUPERID, MODULEID, SYS_FLAG, HAVE_REPORT, IS_USE, DLL_IMPORT, DLL_ICON, HAVE_QUERY, OPERATE_NAME_CN, OPERATE_NAME_TW, OPERATE_NAME_EN, OPERATE_DES, OPERATE_DES_CN, OPERATE_DES_TW, OPERATE_DES_EN, WEB_ICON, IN_SELF)
+values ('1413', '缴费比例设定', '/insurace/RateSet.jsf', '1', '001400020003', '1410', 'BXGL', '0', '0', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+
+insert into sys_operate (OPERATE_ID, OPERATE_NAME, MENU_URL, OPERATE_TYPE, TREEID, SUPERID, MODULEID, SYS_FLAG, HAVE_REPORT, IS_USE, DLL_IMPORT, DLL_ICON, HAVE_QUERY, OPERATE_NAME_CN, OPERATE_NAME_TW, OPERATE_NAME_EN, OPERATE_DES, OPERATE_DES_CN, OPERATE_DES_TW, OPERATE_DES_EN, WEB_ICON, IN_SELF)
+values ('1414', '保险缴费计算', '/custom/ins/insDataIndex.jsf', '1', '001400020004', '1410', 'BXGL', '0', '1', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+
+insert into sys_operate (OPERATE_ID, OPERATE_NAME, MENU_URL, OPERATE_TYPE, TREEID, SUPERID, MODULEID, SYS_FLAG, HAVE_REPORT, IS_USE, DLL_IMPORT, DLL_ICON, HAVE_QUERY, OPERATE_NAME_CN, OPERATE_NAME_TW, OPERATE_NAME_EN, OPERATE_DES, OPERATE_DES_CN, OPERATE_DES_TW, OPERATE_DES_EN, WEB_ICON, IN_SELF)
+values ('1416', '缴费基数维护', '/custom/ins/insDataManager.jsf', '1', '001400020002', '1410', 'BXGL', '0', '1', '1', null, null, '1', null, null, null, null, null, null, null, '/images/maininterface/menu/operate.gif', null);
+
+
 --计算保险月缴费金额
 CREATE OR REPLACE PROCEDURE proc_calc_ins(setID in varchar2, wageDate in varchar2, orgID in varchar2)
 is
