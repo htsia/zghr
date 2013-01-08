@@ -56,6 +56,11 @@
              window.open('/pages/common/ExportToExcel.jsp?sessionKey=<%=Constants.OBJECT%>');
              return null;
          }
+         function forEdit(form, id, right) {
+             var arg = "id=" + id;
+             window.open("/pages/insurace/base/PersonInfoFrame.jsp?" + arg, null, "left="+screen.width*0.05+",top="+screen.height*0.01+",height="+screen.height*0.9+",width="+screen.width*0.9+",status=yes,toolbar=no,menubar=no,location=no,status=no,scroll=yes,resizable=yes");
+             window.status = "";
+         }
     </script>
 </head>
 
@@ -104,13 +109,12 @@
             <tr><td colspan=2>
                 <jsp:include page="../common/activepage/ActiveList.jsp">
                     <jsp:param name="hasOperSign" value="true"/>
-                    <jsp:param name="operSignType" value="checkbox"/>
-                    <jsp:param name="hasEdit" value="true"/>
-                    <jsp:param name="isEditList" value="false"/>
-                    <jsp:param name="isCheckRight" value="true"/>
-                    <jsp:param name="isForward" value="true"/>
-                    <jsp:param name="isRow" value="false"/>
-                    <jsp:param name="isPage" value="true"/>
+			            <jsp:param name="operSignType" value="checkbox"/>
+			            <jsp:param name="hasEdit" value="true"/>
+			            <jsp:param name="isForward" value="true"/>
+			            <jsp:param name="rowFuncName" value="forEdit"/>
+			            <jsp:param name="isEditList" value="false"/>
+			            <jsp:param name="isCheckRight" value="false"/>
                 </jsp:include>
             </td></tr>
         </table>

@@ -1,7 +1,45 @@
 
 insert into SYS_DB_VERSION values('5005',sysdate);
 
+-- Create table
+create table INS_CALC_SET
+(
+  id           VARCHAR2(50),
+  createuserid VARCHAR2(50),
+  createorgid  VARCHAR2(50),
+  createdate   VARCHAR2(50),
+  wagedate     VARCHAR2(50),
+  status       VARCHAR2(50),
+  remark       VARCHAR2(300)
+)
+tablespace DATA
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the columns 
+comment on column INS_CALC_SET.createuserid
+  is '创建人';
+comment on column INS_CALC_SET.createorgid
+  is '创建单位';
+comment on column INS_CALC_SET.createdate
+  is '创建时间';
+comment on column INS_CALC_SET.wagedate
+  is '工资月份';
+comment on column INS_CALC_SET.status
+  is '状态 0:草稿,1:归档';
+comment on column INS_CALC_SET.remark
+  is '备注';
+  
 --配置菜单
+--只保留以下几个菜单,视自己情况删除其他菜单
+delete from sys_operate where OPERATE_ID in ('1402','1403','1412','1413','1414','1416');
+
 insert into sys_operate (OPERATE_ID, OPERATE_NAME, MENU_URL, OPERATE_TYPE, TREEID, SUPERID, MODULEID, SYS_FLAG, HAVE_REPORT, IS_USE, DLL_IMPORT, DLL_ICON, HAVE_QUERY, OPERATE_NAME_CN, OPERATE_NAME_TW, OPERATE_NAME_EN, OPERATE_DES, OPERATE_DES_CN, OPERATE_DES_TW, OPERATE_DES_EN, WEB_ICON, IN_SELF)
 values ('1402', '社会保险人员增加', '/insurace/PersonAddInfoIndex.jsf', '1', '001400010001', '1401', 'BXGL', '0', '1', '1', null, null, '1', null, null, null, null, null, null, null, null, null);
 
@@ -85,6 +123,9 @@ END;
 
 
 --保险缴费基数查询方案
+insert into qry_query (CLASS_ID, QRY_ID, QRY_NAME, QS_TYPE, SET_TYPE, CREATE_USER, CREATE_DATE, ID_FLAG, HISTORY_FLAG, ORG_IDS, ORG_NAMES, SYS_FLAG, ADDED_CONDITION, UNIT_TYPE, STATIC_ITEM_ID, STATIC_COUNT, STATIC_MAX, STATIC_MIN, STATIC_AVG, DEFAULT_QUERY, HISTORY_SET, LINKSUPERDEPT, STATIC_SUM)
+values ('QASYSTEM', '134', '人员保险缴费基数信息', 'Q', 'A', null, '2013-01-08', '0', '0', null, null, 1, null, 'ORG', null, null, null, null, null, null, null, null, null);
+
 insert into qry_query_item (QRY_ITEM_ID, QRY_ID, SET_ID, ITEM_ID, ORDER_FLAG, DEFAULT_FLAG, DEFAULT_TYPE, SHOW_ID, SHOW_HISTORY, ORDER_SEQ, IS_HIDE)
 values ('134001', '134', 'A001', 'A001735', null, 0, null, 0, 0, '0', null);
 

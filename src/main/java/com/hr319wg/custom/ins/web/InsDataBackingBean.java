@@ -357,7 +357,6 @@ public class InsDataBackingBean extends BaseBackingBean{
 	public String getPageInit2() {
 		String act=super.getRequestParameter("act");
 		if("init".equals(act)){
-			this.nameStr=null;
 			this.orgID=null;
 		}
 		String orgID1=super.getRequestParameter("orgID");
@@ -399,8 +398,7 @@ public class InsDataBackingBean extends BaseBackingBean{
 			if (this.nameStr != null) {
 				nameStr1 = this.nameStr;
 			}
-			sql += " and (a001001 like '%" + nameStr1
-					+ "%' or a001735 like '%" + nameStr1 + "%' )";
+			sql += " and (a001001 like '%" + nameStr1 + "%' or a001735 like '%" + nameStr1 + "%' or a001002 like '%"+nameStr1+"%' )";
 			sql += " and "+CommonFuns.splitInSql(this.personType.split(","), "a001054");
 			if (!"".equals(order)) {
 				sql += "order by " + order;

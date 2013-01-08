@@ -55,6 +55,8 @@
 					styleClass="button01"></h:commandButton>
 				<h:commandButton value="尾页" action="#{ins_dataBB.last}"
 					styleClass="button01"></h:commandButton>
+				<h:outputText value="  "/>
+				
 			</h:panelGroup>
 		</h:panelGrid>
 	</h:panelGrid>
@@ -100,12 +102,6 @@
 					<h:outputText value="人员类别" />
 				</f:facet>
 				<h:outputText value="#{item.userType}"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="缴费地" />
-				</f:facet>
-				<h:outputText value="#{item.payAddress}"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">
