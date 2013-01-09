@@ -329,6 +329,10 @@
 			<property-name>basesetucc</property-name>
 			<value>#{insurace_basesetucc}</value>
 		</managed-property>
+		<managed-property>
+			<property-name>insDataService</property-name>
+			<value>#{ins_dataservice}</value>
+		</managed-property>
 	</managed-bean>
 
 	<managed-bean>
@@ -521,6 +525,10 @@
             <property-name>wagepowerucc</property-name>
             <value>#{wage_itemPowerUCC}</value>
         </managed-property>
+        <managed-property>
+			<property-name>insDataService</property-name>
+			<value>#{ins_dataservice}</value>
+		</managed-property>
     </managed-bean>
     
     <navigation-rule>

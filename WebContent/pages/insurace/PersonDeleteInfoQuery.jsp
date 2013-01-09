@@ -30,7 +30,6 @@
                             perIds += obj[i].value + ",";
                         }
                     }
-
                 }               
                 if (perIds != "") {
                     perIds = perIds.substr(0, perIds.length - 1);
@@ -52,6 +51,15 @@
 
          function forAdQry(){
              doAdvanceQuery("A","ORG","111","Y","","A001.A001730='00900'","Y","<%=Constants.DEFAULT_QUERY_PERSON%>","Y","1");
+         }
+         function forExport() {
+             window.open('/pages/common/ExportToExcel.jsp?sessionKey=<%=Constants.OBJECT%>');
+             return null;
+         }
+         function forEdit(form, id, right) {
+             var arg = "id=" + id;
+             window.open("/pages/insurace/base/PersonInfoFrame.jsp?" + arg, null, "left="+screen.width*0.05+",top="+screen.height*0.01+",height="+screen.height*0.9+",width="+screen.width*0.9+",status=yes,toolbar=no,menubar=no,location=no,status=no,scroll=yes,resizable=yes");
+             window.status = "";
          }
     </script>
 </head>
@@ -77,15 +85,18 @@
              <tr>
                 <td class="td_page" height=8>
                     </f:verbatim>
-                                 <h:outputText value="姓名或员工编号："></h:outputText>
+                                 <h:outputText value="姓名/员工编号/简拼"></h:outputText>
                                  <h:inputText id="name" value="#{emp_personListBB.name}"
                                                  size="10" styleClass="input" onkeypress ="enterKeyDown('form1:queryPerson')" />
                                  <h:commandButton value=" 查询 " id="queryPerson"  styleClass="button01"
                                                   action="#{emp_personListBB.queryPerson}"/>
-                                 <h:commandButton value="高级查询" onclick="javascript:return forAdQry();" styleClass="button01" />
+                                 <h:outputText value="  "/>
+                                 <h:commandButton value="自定义查询" onclick="javascript:return forAdQry();" styleClass="button01" />
                                 <h:selectOneMenu id="displaySet" value="#{emp_personListBB.defaultQry}" onchange="disPlayProcessBar();submit();" valueChangeListener="#{emp_personListBB.changeQuery}">
                                     <c:selectItems value="#{emp_personListBB.insdisplaySetList}"></c:selectItems>
                                 </h:selectOneMenu>
+                                <h:outputText value=" "/>
+                    			<h:commandButton styleClass="button01" value="导出Excel" type="button" onclick="return forExport();"/>
                     <f:verbatim>
                 </td>
                 <td class="td_page" height=8>
@@ -98,13 +109,12 @@
             <tr><td colspan=2>
                 <jsp:include page="../common/activepage/ActiveList.jsp">
                     <jsp:param name="hasOperSign" value="true"/>
-                    <jsp:param name="operSignType" value="checkbox"/>
-                    <jsp:param name="hasEdit" value="true"/>
-                    <jsp:param name="isEditList" value="false"/>
-                    <jsp:param name="isCheckRight" value="true"/>
-                    <jsp:param name="isForward" value="true"/>
-                    <jsp:param name="isRow" value="false"/>
-                    <jsp:param name="isPage" value="true"/>
+			            <jsp:param name="operSignType" value="checkbox"/>
+			            <jsp:param name="hasEdit" value="true"/>
+			            <jsp:param name="isForward" value="true"/>
+			            <jsp:param name="rowFuncName" value="forEdit"/>
+			            <jsp:param name="isEditList" value="false"/>
+			            <jsp:param name="isCheckRight" value="false"/>
                 </jsp:include>
             </td></tr>
         </table>
