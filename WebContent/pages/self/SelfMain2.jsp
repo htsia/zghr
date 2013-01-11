@@ -84,7 +84,7 @@
         <table width="100%" border="0" cellpadding="0" height="70" cellspacing="0" background="/images/maininterface/hd_top2.jpg" >
         <tr>
             <td width="30" >&nbsp;</td>
-            <td width="40" ><img src="/images/maininterface/logo.jpg" align="left" alt="" height="58" valign="top"></td>
+            <td width="40" ><img src="/<%=CommonUtil.getSYS_INTERFACE()[1]%>" align="left" alt="" height="58" valign="top"></td>
             <td  width="500" align="center">
                 <!--ÐÞ¸Ä¿ªÊ¼1 -->
 				<!-- <span style="font-size:30px; color:#ffffff; line-height:43px; font-weight:bold; padding-left:0px; padding-top:15px; height:43px;"><%=Constants.TITLE_NAME%></span> -->

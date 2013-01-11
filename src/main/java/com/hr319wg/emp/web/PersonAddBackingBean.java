@@ -417,7 +417,7 @@ public String getClassId()
     return null;
   }
   
-    //增加教职工
+    //增加人员
 	public String createPerson() {
 		try {
 			User user = getUserInfo();
@@ -579,6 +579,8 @@ public String getClassId()
 				sql = "delete from emp_probation where person_id='"+personId+"'";
 				api.executeSql(sql);
 			}
+			
+			//设置见习到期日期
 			if("014512".equals(curr)){
 				sql = "select normail_type from org_probation where orguid='"+super.getUserInfo().getOrgId()+"'";
 				String jianxi = api.queryForString(sql);
