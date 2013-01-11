@@ -16,16 +16,48 @@
     	   window.showModalDialog("/custom/attence/attLeaveLog.jsf?leaveId="+id, null, "dialogWidth:"+screen.width+"px; dialogHeight:"+screen.height*0.9+"px;center:center;resizable:yes;status:no;scroll:yes;");
            return true;
        }
+       function batchAudit(){
+           var item = document.getElementsByName("selectItem");
+           var selId="";
+           if(item.length>0){
+               for(var i=0;i<item.length;i++){
+                   if(item[i].checked)
+                   {
+                   	selId+=item[i].value+",";    
+                   }
+               }
+           }
+           if(selId==""){
+           	alert("请选择单据");
+           	return false;
+           }
+           if(confirm('确定批量审批吗')){
+	           document.all("form1:selectedItemIDs").value=selId;
+	           return true;
+           }
+           return false;
+   	}
     </script>
 
 <x:saveState value="#{attLeaveAuditBB}"/>
 <h:inputHidden value="#{attLeaveAuditBB.initAudit}"/>
 <h:form id="form1">
+	<h:inputHidden id="selectedItemIDs" value="#{attLeaveAuditBB.selectedItemIDs}"/>
      <c:verbatim>
        <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <tr>
            <td class="td_title"><img src="/images/tips.gif">
                              考勤管理 ->请假审批
+           </td>
+           <td class="td_title" align="right" style="padding-right:30px;">
+           </c:verbatim>
+	            <h:outputText value="审批结果:"/>
+			    <h:selectOneMenu value="#{attLeaveAuditBB.result}">
+			     	<c:selectItem itemLabel="通过" itemValue="1"/>
+			     	<c:selectItem itemLabel="退回" itemValue="0"/>
+			    </h:selectOneMenu>
+           		<h:commandButton value="批量审批" styleClass="button01" onclick="return batchAudit();" action="#{attLeaveAuditBB.batchSaveAudit}"/>
+           <c:verbatim>
            </td>
         </tr>
     </table>
@@ -37,6 +69,16 @@
     <h:dataTable value="#{attLeaveAuditBB.leaveList}" var="list" align="center" id="dateList"
                  headerClass="td_top" columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center"
                  styleClass="table03" width="98%" >
+        <h:column>
+	        <f:facet name="header">
+	            <f:verbatim escape="false">
+	                <input type="checkbox" name="all"
+	                       onclick="selectAll(document.forms(0).all,document.forms(0).selectItem)"/>
+	            </f:verbatim>
+	        </f:facet>
+	        <f:verbatim escape="false">
+	            <div align="center"> <input type="checkbox" name="selectItem" value="</f:verbatim><h:outputText value="#{list.id}-#{list.taskId}"/><f:verbatim escape="false">"/></div></f:verbatim>
+	    </h:column>
         <h:column>
             <c:facet name="header"><h:outputText value="员工编号"/></c:facet>
             <h:outputText value="#{list.personCode}"/>

@@ -1,22 +1,11 @@
 package com.hr319wg.custom.attence.web;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.activiti.engine.task.Task;
-
+import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
-import com.hr319wg.custom.attence.pojo.bo.AttLeaveBO;
-import com.hr319wg.custom.attence.pojo.bo.AttLogBO;
 import com.hr319wg.custom.attence.pojo.bo.AttOutBO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
-import com.hr319wg.custom.attence.util.AttConstants;
-import com.hr319wg.emp.pojo.bo.PersonBO;
-import com.hr319wg.sys.cache.SysCacheTool;
-import com.hr319wg.util.CodeUtil;
-import com.hr319wg.util.CommonFuns;
 import com.hr319wg.xys.workflow.service.ActivitiToolsService;
 
 public class AttOutAuditBackingBean extends BaseBackingBean {
@@ -24,8 +13,16 @@ public class AttOutAuditBackingBean extends BaseBackingBean {
 	private ActivitiToolsService activitiToolService;
 	private String initAudit;
 	private List list;
+	private String selectedItemIDs;
 	
-	
+	public String getSelectedItemIDs() {
+		return selectedItemIDs;
+	}
+
+	public void setSelectedItemIDs(String selectedItemIDs) {
+		this.selectedItemIDs = selectedItemIDs;
+	}
+
 	public List getList() {
 		return list;
 	}
@@ -118,6 +115,22 @@ public class AttOutAuditBackingBean extends BaseBackingBean {
 //		}
 //		return "success";
 	}
+	
+	/**
+	 * 批量审批
+	 * 
+	 * @return
+	 */
+	public void batchOutAudit() {
+		try {
+			this.attBusiService.batchOutAudit(this.selectedItemIDs, this.result, null, super.getUserInfo().getUserId());
+			super.showMessageDetail("审批完成");
+		} catch (SysException e) {
+			super.showMessageDetail("审批失败");
+			e.printStackTrace();
+		}
+	}
+	
 	public String getResult() {
 		return result;
 	}

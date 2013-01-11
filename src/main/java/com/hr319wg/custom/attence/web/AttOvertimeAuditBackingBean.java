@@ -2,6 +2,7 @@ package com.hr319wg.custom.attence.web;
 
 import java.util.List;
 
+import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.custom.attence.pojo.bo.AttOvertimeBO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
@@ -12,7 +13,15 @@ public class AttOvertimeAuditBackingBean extends BaseBackingBean {
 	private ActivitiToolsService activitiToolService;
 	private String initAudit;
 	private List list;
+	private String selectedItemIDs;
 	
+	public String getSelectedItemIDs() {
+		return selectedItemIDs;
+	}
+
+	public void setSelectedItemIDs(String selectedItemIDs) {
+		this.selectedItemIDs = selectedItemIDs;
+	}
 	
 	public List getList() {
 		return list;
@@ -75,6 +84,22 @@ public class AttOvertimeAuditBackingBean extends BaseBackingBean {
 		}
 		return null;
 	}
+	
+	/**
+	 * 批量审批
+	 * 
+	 * @return
+	 */
+	public void batchOvertimeAudit() {
+		try {
+			this.attBusiService.batchOvertimeAudit(this.selectedItemIDs, this.result, null, super.getUserInfo().getUserId());
+			super.showMessageDetail("审批完成");
+		} catch (SysException e) {
+			super.showMessageDetail("审批失败");
+			e.printStackTrace();
+		}
+	}
+	
 	public String getResult() {
 		return result;
 	}

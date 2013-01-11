@@ -56,14 +56,6 @@ import com.jacob.com.Variant;
  * @author Administrator
  *
  */
-/**
- * @author Administrator
- *
- */
-/**
- * @author Administrator
- *
- */
 public class AttBusiServiceImpl implements IAttBusiService {
 
 	private AttDurationDAO attDurationDAO;
@@ -1277,7 +1269,8 @@ public class AttBusiServiceImpl implements IAttBusiService {
 					saveBingjia(leave);
 				} else {
 					this.updateLeaveDays(type, days, personId);
-					this.saveAttLeaveBO(leave);
+					this.attBusiDAO.updateBo(leave.getId(), leave);
+//					this.saveAttLeaveBO(leave);
 				}
 				// 如果流程未结束，添加或者更新待办事宜
 				// TODO 待补充
@@ -1321,7 +1314,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				this.updateLeaveDays(type, days, personId);
 
 			}
-			this.saveOrUpdateBO(rest);
+			this.attBusiDAO.updateBo(rest.getId(), rest);
 
 			bo.setAuditTime(CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss"));
 			bo.setLeaveId(rest.getId());
@@ -1371,7 +1364,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				this.updateLeaveDays(type, days, personId);
 
 			}
-			this.saveOrUpdateBO(overtime);
+			this.attBusiDAO.updateBo(overtime.getId(), overtime);
 
 			bo.setAuditTime(CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss"));
 			bo.setLeaveId(overtime.getId());
@@ -1410,7 +1403,8 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				// this.updateLeaveDays(type,days,personId);
 
 			}
-			this.saveOrUpdateBO(out);
+//			this.saveOrUpdateBO(out);
+			this.attBusiDAO.updateBo(out.getId(), out);
 
 			bo.setAuditTime(CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss"));
 			bo.setLeaveId(out.getId());
@@ -3431,5 +3425,45 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		map.put("result", result);
 		map.put("list", list);
 		return map;
+	}
+
+	public void batchSaveAudit(String selectedItemIDs, String result,
+			String reason, String currentUserId) throws SysException {
+		String[]itemIDs=selectedItemIDs.split(",");
+		for(int i=0;i<itemIDs.length;i++){
+			String[]IDs=itemIDs[i].split("-");
+			AttLeaveBO bo = this.findAttLeaveBOById(IDs[0]);
+			this.saveAudit(result, bo, reason, IDs[1], currentUserId);
+		}
+	}
+
+	public void batchRestAudit(String selectedItemIDs, String result,
+			String reason, String currentUserId) throws SysException {
+		String[]itemIDs=selectedItemIDs.split(",");
+		for(int i=0;i<itemIDs.length;i++){
+			String[]IDs=itemIDs[i].split("-");
+			AttRestBO bo = (AttRestBO)this.findBOById(AttRestBO.class, IDs[0]);
+			this.saveRestAudit(result, bo, reason, IDs[1], currentUserId);
+		}
+	}
+
+	public void batchOvertimeAudit(String selectedItemIDs, String result,
+			String reason, String currentUserId) throws SysException {
+		String[]itemIDs=selectedItemIDs.split(",");
+		for(int i=0;i<itemIDs.length;i++){
+			String[]IDs=itemIDs[i].split("-");
+			AttOvertimeBO bo = (AttOvertimeBO)this.findBOById(AttOvertimeBO.class, IDs[0]);
+			this.saveOvertimeAudit(result, bo, reason, IDs[1], currentUserId);
+		}
+	}
+
+	public void batchOutAudit(String selectedItemIDs, String result,
+			String reason, String currentUserId) throws SysException {
+		String[]itemIDs=selectedItemIDs.split(",");
+		for(int i=0;i<itemIDs.length;i++){
+			String[]IDs=itemIDs[i].split("-");
+			AttOutBO bo = (AttOutBO)this.findBOById(AttOutBO.class, IDs[0]);
+			this.saveOutAudit(result, bo, reason, IDs[1], currentUserId);
+		}
 	}
 }

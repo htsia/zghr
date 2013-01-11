@@ -2,6 +2,7 @@ package com.hr319wg.custom.attence.web;
 
 import java.util.List;
 
+import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.custom.attence.pojo.bo.AttLeaveBO;
 import com.hr319wg.custom.attence.service.IAttBusiService;
@@ -14,6 +15,15 @@ public class AttLeaveAuditBackingBean extends BaseBackingBean {
 	private List leaveList;
 	private List leaveTypeList;
 	private IAttBusiService attBusiService;
+	private String selectedItemIDs;
+	
+	public String getSelectedItemIDs() {
+		return selectedItemIDs;
+	}
+
+	public void setSelectedItemIDs(String selectedItemIDs) {
+		this.selectedItemIDs = selectedItemIDs;
+	}
 
 	public IAttBusiService getAttBusiService() {
 		return attBusiService;
@@ -68,7 +78,7 @@ public class AttLeaveAuditBackingBean extends BaseBackingBean {
 	private String reason;
 
 	/**
-	 * 请假审批（流程已经启动）
+	 * 审批
 	 * 
 	 * @return
 	 */
@@ -86,6 +96,21 @@ public class AttLeaveAuditBackingBean extends BaseBackingBean {
 		return null;
 	}
 
+	/**
+	 * 批量审批
+	 * 
+	 * @return
+	 */
+	public void batchSaveAudit() {
+		try {
+			this.attBusiService.batchSaveAudit(this.selectedItemIDs, this.result, null, super.getUserInfo().getUserId());
+			super.showMessageDetail("审批完成");
+		} catch (SysException e) {
+			super.showMessageDetail("审批失败");
+			e.printStackTrace();
+		}
+	}
+	
 	public String getResult() {
 		return result;
 	}
@@ -127,6 +152,5 @@ public class AttLeaveAuditBackingBean extends BaseBackingBean {
 		}
 		return null;
 	}
-	
 
 }

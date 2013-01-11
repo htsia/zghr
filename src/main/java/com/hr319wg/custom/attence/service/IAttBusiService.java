@@ -197,19 +197,35 @@ public interface IAttBusiService {
 	public abstract void saveAudit(String result, AttLeaveBO leave,
 			String reason, String taskId, String currentUserId)
 			throws SysException;
+	
+	public abstract void batchSaveAudit(String selectedItemIDs, String result,
+			String reason, String currentUserId)
+					throws SysException;
 
 	public abstract void saveRestAudit(String result, AttRestBO rest,
 			String reason, String taskId, String currentUserId)
 			throws SysException;
 
+	public abstract void batchRestAudit(String selectedItemIDs, String result,
+			String reason, String currentUserId)
+					throws SysException;
+	
 	public abstract void saveOvertimeAudit(String result,
 			AttOvertimeBO overtime, String reason, String taskId,
 			String currentUserId) throws SysException;
 
+	public abstract void batchOvertimeAudit(String selectedItemIDs, String result,
+			String reason, String currentUserId)
+					throws SysException;
+	
 	public abstract void saveOutAudit(String result, AttOutBO out,
 			String reason, String taskId, String currentUserId)
 			throws SysException;
 
+	public abstract void batchOutAudit(String selectedItemIDs, String result,
+			String reason, String currentUserId)
+					throws SysException;
+	
 	// public abstract String calcAttData1(String orgId, String beginDate,
 	// String endDate, String year, String month)
 	// throws SysException, ParseException;
