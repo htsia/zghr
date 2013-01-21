@@ -263,27 +263,29 @@ function initShowItem(flag, itemId, itemName) {
         </tr>
     </table>
 </marquee>
-
-<h:form id="form1">
-<h:inputHidden value="#{qry_querySettingBB.initVO}"/>
 <c:verbatim>
-<table width="100%" border="0" cellspacing="6" cellpadding="0">
+<table width="100%" border="0" style="margin:0;padding:0;" cellspacing="0" cellpadding="0">
     <tr>
         <td class="td_title"> <img src="/images/tips.gif" >设定查询项目 </td>
     </tr>
 </table>
-<table width="98%" border="0" align="center">
-     <tr>
+</c:verbatim>
+<h:form id="form1">
+<h:inputHidden value="#{qry_querySettingBB.initVO}"/>
+<c:verbatim>
+<table width="98%" height="360" style="margin:0;padding:0;" border="0" align="center">
+     <tr height="1" valign="top">
      <td width="230">&nbsp;</td>
      <td align="center" valign="middle">&nbsp;</td>
      <td colspan="3">要查询历史记录的子集：<input type="text" id="historySetName" class="input" name="historySetName" value="<%=historySetName%>"> <input type="button" class="button_select" onclick="fPopUpSet('historySet','historySetName','<%=request.getParameter("setType")%>')"><input id="historySet" type="hidden" name="historySet" value="<%=historySet%>"></td>
     </tr>
-    <tr>
+    <tr valign="top" height="300">
         <td width="230">
-            <iframe src="/pages/qry/InfoItemList.jsp?setType=<%=request.getParameter("setType")%>"
-                    style="width:100%;height:400px;"></iframe>
+            <iframe height="350" src="/pages/qry/InfoItemList.jsp?setType=<%=request.getParameter("setType")%>"
+                    style="width:100%;height:350px;"></iframe>
         </td>
-        <td align="center" valign="middle"><div>
+        <td align="center" valign="middle">
+        <div>
             <input name="Submit" type="button" style="width:80;" class="button01" value="显示中文" onclick="insertShowItem(0)">
             <input name="Submit2" type="button" style="width:80;" class="button01" value="显示代码" onclick="insertShowItem(1)">
             <br><br>
@@ -297,7 +299,7 @@ function initShowItem(flag, itemId, itemName) {
         </td>
 
         <td width="230" align="left" valign="top">
-            <select name="showItem" size="28" multiple id="showItem" style="width:100%"></select>
+            <select name="showItem" size="28" multiple id="showItem" style="width:100%;height:350px;"></select>
         </td>
 
         <td width="0" align="center" valign="middle">
@@ -313,11 +315,11 @@ function initShowItem(flag, itemId, itemName) {
                 <input name="Submit2232" type="button" class="button01" style="width:80;" value="下移" onclick="move(orderItem,1);">
             </div></td>
         <td width="230" align="left" valign="top">
-            <select name="orderItem" id="orderItem" size="28" multiple style="width:100%"></select>
+            <select name="orderItem" id="orderItem" size="28" multiple style="width:100%;height:350px;"></select>
         </td>
     </tr>
 
-    <tr>
+    <tr valign="top">
         <td colspan="5" align="right">
             <span style="display:<%=saveHidden%>">
             <input type="button" name="rest2" value="&nbsp;取消&nbsp;" class="button01" onclick="forBack();">

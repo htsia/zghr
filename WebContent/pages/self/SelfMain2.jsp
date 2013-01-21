@@ -150,14 +150,8 @@
                       	  if(moduleId!=null){
                       		  for(OperateBO bo : moduleList){
                       			  String moduleID=bo.getModuleID();
-                      			  String subfolder="1";
+                      			  String subfolder=null;
                       			  String bylevel=null;                      			  
-					              if("JXGL".equals(moduleID) || "XCGL".equals(moduleID)){
-					            	  subfolder="0";
-					              }
-					              if("JXGL".equals(moduleID)){
-					            	  bylevel="1";
-					              }
                       			  %>
                       			  	<td width=11 align="middle"><img src="/images/maininterface/top_menu_sp.jpg" /></td>
 					                <td align="center" id="_TD" class="<%="".equals(moduleId)?"maintabactive":"maintabinactive" %>" width="65">

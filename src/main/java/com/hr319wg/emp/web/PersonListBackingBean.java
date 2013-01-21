@@ -1,6 +1,7 @@
 package com.hr319wg.emp.web;
 
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ import com.hr319wg.emp.ucc.IPersonUCC;
 import com.hr319wg.org.ucc.IOrgUCC;
 import com.hr319wg.qry.pojo.vo.QueryVO;
 import com.hr319wg.qry.ucc.IQueryUCC;
+import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.api.UserAPI;
 import com.hr319wg.sys.api.WageAPI;
 import com.hr319wg.sys.cache.SysCache;
@@ -1688,21 +1690,46 @@ public class PersonListBackingBean extends BaseBackingBean
         this.wfservice.processTrans(trans);
       }
 
-      if (this.autoMessage) {
-        String[] oper = this.personucc.queryAddPersonOperater(ids);
-        for (int i = 0; i < oper.length; i++) {
-          ShortMessageBO sbo = new ShortMessageBO();
-          sbo.setReceiveID(oper[i]);
-          sbo.setSendID(super.getUserInfo().getUserId());
-          sbo.setSendTime(CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss"));
-          sbo.setIsPopup("0");
-          sbo.setContent(this.auditMessage + "(" + name + " )");
-          this.shortmessageucc.SaveMessage(sbo);
-        }
-      }
+		if (this.autoMessage) {
+			String[] oper = this.personucc.queryAddPersonOperater(ids);
+			for (int i = 0; i < oper.length; i++) {
+				ShortMessageBO sbo = new ShortMessageBO();
+				sbo.setReceiveID(oper[i]);
+				sbo.setSendID(super.getUserInfo().getUserId());
+				sbo.setSendTime(CommonFuns
+						.getSysDate("yyyy-MM-dd HH:mm:ss"));
+				sbo.setIsPopup("0");
+				sbo.setContent(this.auditMessage + "(" + name + " )");
+				this.shortmessageucc.SaveMessage(sbo);
+			}
+		}
+		
+		//发送OA短信
+		ActivePageAPI pageAPI = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
+		String sql="select t.userid ||','||t.password||','||t.tooauserid||','||t.onoff info from SYS_OA_EMAIL t";
+		String info=pageAPI.queryForString(sql);
+		if(info!=null && !"".equals(info)){
+			String[]infos=info.split(",");
+			if("1".equals(infos[3])){
+				for(int i=0;i<ids.length;i++){
+					PersonBO p=SysCacheTool.findPersonById(ids[i]);
+					if(p!=null){
+						StringBuffer html= new StringBuffer();
+						html.append("所在单位:"+CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getOrgId()));				
+						html.append(",所在部门:"+CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId()));				
+						html.append(",姓名:"+p.getName());
+						html.append(",员工编号:"+p.getPersonId());				
+						URL u=new URL("http://192.168.2.40/interface/sms.php?USER_ID="+infos[0]+"&PASSWORD="+infos[1]+"&FROM_ID="+infos[0]+"&TO_ID="+infos[2]+"&SMS_TYPE=0&CONTENT="+html.toString());
+						u.openConnection();
+						u.openStream();
+					}
+				}
+			}
+		}
+    }catch (Exception e) {
+    	e.printStackTrace();
     }
-    catch (Exception e) {
-    }
+    
     return "success";
-  }
+  }	  
 }

@@ -10,7 +10,7 @@ import com.hr319wg.custom.wage.pojo.bo.WageDataSetBO;
 
 public interface IWageDataService {
 
-	public void setOAEmail(String userID1, String userID2, String userID3, String url, String soa, String onoff) throws SysException;
+	public void setOAEmail(String userID, String password, String toOAUserID, String onoff) throws SysException;
 	
 	public void saveOrUpdateObject(Object obj) throws SysException;
 	

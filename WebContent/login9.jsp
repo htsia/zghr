@@ -45,7 +45,6 @@
 			var loginleft=document.body.clientWidth /3*2-20;
 			document.all("center").style.top=logintop;
 			document.all("center").style.left=loginleft;
-
 			logintop=document.body.clientHeight*0.86;
 		}
 		setpos();
@@ -56,17 +55,17 @@
 			var password = document.all("password").value;
 			if(username == ""){
 				alert("ÇëÊäÈëµÇÂ¼Ãû");
-// 			}else if(password == ""){
-// 				alert("ÇëÊäÈëÃÜÂë");
+			}else if(password == ""){
+				alert("ÇëÊäÈëÃÜÂë");
 			}else{
-// 				$.post("/pages/uum/valLogin9.jsp?para="+$("#password").val(),function(data){
-// 					if(data!=1){
-// 						alert("ÃÜÂë´íÎó");
-// 					}else{
-						var url = "/pages/uum/Login_ehr.jsp?username="+username;
+				$.post("/pages/uum/valLogin9.jsp?para="+$("#password").val(),function(data){
+					if(data!=1){
+						alert("ÃÜÂë´íÎó");
+					}else{
+						var url = "/pages/uum/login_ehr.jsp?username="+username;
 						window.location=url;
-// 					}
-// 				});
+					}
+				});
 			}
 		}
 		document.all("username").focus();

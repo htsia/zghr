@@ -68,10 +68,8 @@
                     <td style="line-height:150%">
                         <strong>请选择机构范围，如果不选择，将在您拥有查询权力的所有机构中进行查询</strong><br>
                         <strong>机构范围是自动包含所有下级，所以无需手动选择下级</strong>
-                        <br>
 </c:verbatim>
-                        <h:outputText escape="false" value="<strong>显示所在部门方式</strong>" ></h:outputText>
-                        <h:selectOneMenu value="#{qry_querySettingBB.deptLink}">
+                        <h:selectOneMenu value="#{qry_querySettingBB.deptLink}" rendered="false">
                             <c:selectItem itemLabel="不做处理" itemValue="0"></c:selectItem>
                             <c:selectItem itemLabel="级联上级部门" itemValue="1"></c:selectItem>
                         </h:selectOneMenu>
@@ -109,28 +107,6 @@
             <span style="display:<%=conditionHidden%>">
 </c:verbatim>
             <h:commandButton action="#{qry_querySettingBB.toConditionPage}" value="修改定义" styleClass="button01"/>
-<c:verbatim>
-            </span>
-            <span style="display:<%=saveHidden%>">
-</c:verbatim>
-            <h:commandButton action="#{qry_querySettingBB.doSave}" value=" 保存 "
-                             onclick="return forSave();" styleClass="button01"/>
-<c:verbatim>
-            </span>
-</c:verbatim>
-            <%
-                if ("Q".equals(qsType)) {
-            %>
-            <h:commandButton action="#{qry_querySettingBB.doQuery}" value=" 查询 " onclick="return forQuery();"
-                             styleClass="button01"/>
-            <%
-            } else {
-            %>
-            <h:commandButton action="#{qry_staticSettingBB.doQuery}" value=" 统计 " onclick="return forQuery();"
-                             styleClass="button01"/>
-            <%
-                }
-            %>
 <c:verbatim>
       </td>
     </tr>

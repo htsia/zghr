@@ -2,323 +2,324 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-<!-- 	<bean id="att_itempowerDAO" class="com.hr319wg.attence.dao.AttItemPowerDAO"> -->
-<!-- 		<property name="hibernatetemplate"> -->
-<!-- 			<ref bean="hibernateTemplate" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
-<!-- 	<bean id="att_machine_mgrchilddao" class="com.hr319wg.attence.dao.AttMachineMgrChildDAO"> -->
-<!-- 		<property name="hibernatetemplate"> -->
-<!-- 			<ref bean="hibernateTemplate" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="att_itempowerDAO" class="com.hr319wg.attence.dao.AttItemPowerDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="att_machine_mgrchilddao" class="com.hr319wg.attence.dao.AttMachineMgrChildDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="attFeast_DAO" class="com.hr319wg.attence.dao.AttFeastDAO"> -->
-<!-- 		<property name="hibernatetemplate"> -->
-<!-- 			<ref bean="hibernateTemplate" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="attFeast_DAO" class="com.hr319wg.attence.dao.AttFeastDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="att_rest_weekdao" class="com.hr319wg.attence.dao.AttRestWeekDAO"> -->
-<!-- 		<property name="hibernatetemplate"> -->
-<!-- 			<ref bean="hibernateTemplate" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="att_rest_weekdao" class="com.hr319wg.attence.dao.AttRestWeekDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="attenceSet_DAO" class="com.hr319wg.attence.dao.AttDurationDAO"> -->
-<!-- 		<property name="hibernatetemplate"> -->
-<!-- 			<ref bean="hibernateTemplate" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="attenceSet_DAO" class="com.hr319wg.attence.dao.AttDurationDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="groupMgr_DAO" class="com.hr319wg.attence.dao.GroupMgrDAO"> -->
-<!-- 		<property name="hibernatetemplate"> -->
-<!-- 			<ref bean="hibernateTemplate" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="groupMgr_DAO" class="com.hr319wg.attence.dao.GroupMgrDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="fileImport_DAO" class="com.hr319wg.attence.dao.FileImportDAO"> -->
-<!-- 		<property name="hibernatetemplate"> -->
-<!-- 			<ref bean="hibernateTemplate" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="fileImport_DAO" class="com.hr319wg.attence.dao.FileImportDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="cardMessage_DAO" class="com.hr319wg.attence.dao.CardMessageDAO"> -->
-<!-- 		<property name="hibernatetemplate"> -->
-<!-- 			<ref bean="hibernateTemplate" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="cardMessage_DAO" class="com.hr319wg.attence.dao.CardMessageDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="AttCaclInfo_DAO" class="com.hr319wg.attence.dao.AttCaclInfoDAO"> -->
-<!-- 		<property name="hibernatetemplate"> -->
-<!-- 			<ref bean="hibernateTemplate" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="AttCaclInfo_DAO" class="com.hr319wg.attence.dao.AttCaclInfoDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="AttPersonService_DAO" class="com.hr319wg.attence.dao.AttPersonServiceDAO"> -->
-<!-- 		<property name="hibernatetemplate"> -->
-<!-- 			<ref bean="hibernateTemplate" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="AttPersonService_DAO" class="com.hr319wg.attence.dao.AttPersonServiceDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="att_setService" class="com.hr319wg.attence.service.AttenceSetService"> -->
-<!-- 		<property name="attPersonServiceDAO"> -->
-<!-- 			<ref bean="AttPersonService_DAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="conditiondao"> -->
-<!-- 			<ref bean="qry_queryConditionDAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="staticdao"> -->
-<!-- 			<ref bean="qry_queryStaticDAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="itemdao"> -->
-<!-- 			<ref bean="qry_queryItemDAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="querydao"> -->
-<!-- 			<ref bean="qry_queryDAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="activeapi" ref="sys_activePageApi" /> -->
-<!-- 		<property name="attCaclinfoDAO"> -->
-<!-- 			<ref bean="AttCaclInfo_DAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="cardMessageDAO"> -->
-<!-- 			<ref bean="cardMessage_DAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="fileImportDAO"> -->
-<!-- 			<ref bean="fileImport_DAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="groupMgrDAO"> -->
-<!-- 			<ref bean="groupMgr_DAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="attenceSetDAO"> -->
-<!-- 			<ref bean="attenceSet_DAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="attmachinedao"> -->
-<!-- 			<ref bean="att_machine_mgrchilddao" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="attFeastDAO"> -->
-<!-- 			<ref bean="attFeast_DAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="attRestWeekDAO"> -->
-<!-- 			<ref bean="att_rest_weekdao" /> -->
-<!-- 		</property> -->
+	<bean id="att_setService" class="com.hr319wg.attence.service.AttenceSetService">
+		<property name="attPersonServiceDAO">
+			<ref bean="AttPersonService_DAO" />
+		</property>
+		<property name="conditiondao">
+			<ref bean="qry_queryConditionDAO" />
+		</property>
+		<property name="staticdao">
+			<ref bean="qry_queryStaticDAO" />
+		</property>
+		<property name="itemdao">
+			<ref bean="qry_queryItemDAO" />
+		</property>
+		<property name="querydao">
+			<ref bean="qry_queryDAO" />
+		</property>
+		<property name="activeapi" ref="sys_activePageApi" />
+		<property name="attCaclinfoDAO">
+			<ref bean="AttCaclInfo_DAO" />
+		</property>
+		<property name="cardMessageDAO">
+			<ref bean="cardMessage_DAO" />
+		</property>
+		<property name="fileImportDAO">
+			<ref bean="fileImport_DAO" />
+		</property>
+		<property name="groupMgrDAO">
+			<ref bean="groupMgr_DAO" />
+		</property>
+		<property name="attenceSetDAO">
+			<ref bean="attenceSet_DAO" />
+		</property>
+		<property name="attmachinedao">
+			<ref bean="att_machine_mgrchilddao" />
+		</property>
+		<property name="attFeastDAO">
+			<ref bean="attFeast_DAO" />
+		</property>
+		<property name="attRestWeekDAO">
+			<ref bean="att_rest_weekdao" />
+		</property>
 
-<!-- 	</bean> -->
+	</bean>
 
-<!-- 	<bean id="att_dataProcessService" class="com.hr319wg.attence.service.AttDataProcessService"> -->
-<!-- 		<property name="wfdao" ref="sys_wfdao" /> -->
-<!-- 		<property name="attenceSetDAO"> -->
-<!-- 			<ref bean="attenceSet_DAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="cardMessageDAO"> -->
-<!-- 			<ref bean="cardMessage_DAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="attrestweekDAO"> -->
-<!-- 			<ref bean="att_rest_weekdao" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="attfeastDAO"> -->
-<!-- 			<ref bean="attFeast_DAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="activeapi" ref="sys_activePageApi" /> -->
-<!-- 		<property name="groupMgrDAO"> -->
-<!-- 			<ref bean="groupMgr_DAO" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="att_dataProcessService" class="com.hr319wg.attence.service.AttDataProcessService">
+		<property name="wfdao" ref="sys_wfdao" />
+		<property name="attenceSetDAO">
+			<ref bean="attenceSet_DAO" />
+		</property>
+		<property name="cardMessageDAO">
+			<ref bean="cardMessage_DAO" />
+		</property>
+		<property name="attrestweekDAO">
+			<ref bean="att_rest_weekdao" />
+		</property>
+		<property name="attfeastDAO">
+			<ref bean="attFeast_DAO" />
+		</property>
+		<property name="activeapi" ref="sys_activePageApi" />
+		<property name="groupMgrDAO">
+			<ref bean="groupMgr_DAO" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="att_setUCC" class="com.hr319wg.attence.ucc.impl.AttenceSetUCC"> -->
-<!-- 		<property name="wfservice"> -->
-<!-- 			<ref bean="sys_wfservice" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="attDataProcessService"> -->
-<!-- 			<ref bean="att_dataProcessService" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="attSetService"> -->
-<!-- 			<ref bean="att_setService" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="activepageservice" ref="sys_activePageService"></property> -->
-<!-- 		<property name="attDataCaclService" ref="attDataCaclService"></property> -->
-<!-- 	</bean> -->
+	<bean id="att_setUCC" class="com.hr319wg.attence.ucc.impl.AttenceSetUCC">
+		<property name="wfservice">
+			<ref bean="sys_wfservice" />
+		</property>
+		<property name="attDataProcessService">
+			<ref bean="att_dataProcessService" />
+		</property>
+		<property name="attSetService">
+			<ref bean="att_setService" />
+		</property>
+		<property name="activepageservice" ref="sys_activePageService"></property>
+		<property name="attDataCaclService" ref="attDataCaclService"></property>
+	</bean>
 
-<!-- 	<bean id="AttWorkCalender_DAO" class="com.hr319wg.attence.dao.AttWorkCalenderDAO"> -->
-<!-- 		<property name="hibernatetemplate"> -->
-<!-- 			<ref bean="hibernateTemplate" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="AttWorkCalender_DAO" class="com.hr319wg.attence.dao.AttWorkCalenderDAO">
+		<property name="hibernatetemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="att_workCalenderService" class="com.hr319wg.attence.service.workCalenderService"> -->
-<!-- 		<property name="attWorkCalenderDAO"> -->
-<!-- 			<ref bean="AttWorkCalender_DAO" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="att_workCalenderService" class="com.hr319wg.attence.service.workCalenderService">
+		<property name="attWorkCalenderDAO">
+			<ref bean="AttWorkCalender_DAO" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="att_workCalenderUCC" class="com.hr319wg.attence.ucc.impl.workCalenderUCC"> -->
-<!-- 		<property name="attWorkCalenderService"> -->
-<!-- 			<ref bean="att_workCalenderService" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="activepageservice" ref="sys_activePageService"></property> -->
-<!-- 	</bean> -->
+	<bean id="att_workCalenderUCC" class="com.hr319wg.attence.ucc.impl.workCalenderUCC">
+		<property name="attWorkCalenderService">
+			<ref bean="att_workCalenderService" />
+		</property>
+		<property name="activepageservice" ref="sys_activePageService"></property>
+	</bean>
 
-<!-- 	<bean id="att_WorkFlowFurloughService" class="com.hr319wg.attence.service.AttWorkFlowFurloughService"> -->
-<!-- 		<property name="activeapi" ref="sys_activePageApi" /> -->
-<!-- 		<property name="cardMessageDAO"> -->
-<!-- 			<ref bean="cardMessage_DAO" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="att_WorkFlowFurloughService" class="com.hr319wg.attence.service.AttWorkFlowFurloughService">
+		<property name="activeapi" ref="sys_activePageApi" />
+		<property name="cardMessageDAO">
+			<ref bean="cardMessage_DAO" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="att_WorkFlowEvcctionService" class="com.hr319wg.attence.service.AttWorkFlowEvcctionService"> -->
-<!-- 		<property name="activeapi" ref="sys_activePageApi" /> -->
-<!-- 		<property name="cardMessageDAO"> -->
-<!-- 			<ref bean="cardMessage_DAO" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="att_WorkFlowEvcctionService" class="com.hr319wg.attence.service.AttWorkFlowEvcctionService">
+		<property name="activeapi" ref="sys_activePageApi" />
+		<property name="cardMessageDAO">
+			<ref bean="cardMessage_DAO" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="att_WorkFlowOutWorkService" class="com.hr319wg.attence.service.AttWorkFlowOutWorkService"> -->
-<!-- 		<property name="activeapi" ref="sys_activePageApi" /> -->
-<!-- 		<property name="cardMessageDAO"> -->
-<!-- 			<ref bean="cardMessage_DAO" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="att_WorkFlowOutWorkService" class="com.hr319wg.attence.service.AttWorkFlowOutWorkService">
+		<property name="activeapi" ref="sys_activePageApi" />
+		<property name="cardMessageDAO">
+			<ref bean="cardMessage_DAO" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="att_WorkFlowChangeWorkService" -->
-<!-- 		class="com.hr319wg.attence.service.AttWorkFlowChangeWorkService"> -->
-<!-- 		<property name="activeapi" ref="sys_activePageApi" /> -->
-<!-- 		<property name="cardMessageDAO"> -->
-<!-- 			<ref bean="cardMessage_DAO" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="att_WorkFlowChangeWorkService"
+		class="com.hr319wg.attence.service.AttWorkFlowChangeWorkService">
+		<property name="activeapi" ref="sys_activePageApi" />
+		<property name="cardMessageDAO">
+			<ref bean="cardMessage_DAO" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="att_WorkFlowAddWorkService" class="com.hr319wg.attence.service.AttWorkFlowAddWorkService"> -->
-<!-- 		<property name="activeapi" ref="sys_activePageApi" /> -->
-<!-- 		<property name="cardMessageDAO"> -->
-<!-- 			<ref bean="cardMessage_DAO" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="att_WorkFlowAddWorkService" class="com.hr319wg.attence.service.AttWorkFlowAddWorkService">
+		<property name="activeapi" ref="sys_activePageApi" />
+		<property name="cardMessageDAO">
+			<ref bean="cardMessage_DAO" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="att_WorkFlowNetWorkHolidayService" -->
-<!-- 		class="com.hr319wg.attence.service.AttWorkFlowNetWorkHolidayService"> -->
-<!-- 		<property name="activeapi" ref="sys_activePageApi" /> -->
-<!-- 		<property name="cardMessageDAO"> -->
-<!-- 			<ref bean="cardMessage_DAO" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="att_WorkFlowNetWorkHolidayService"
+		class="com.hr319wg.attence.service.AttWorkFlowNetWorkHolidayService">
+		<property name="activeapi" ref="sys_activePageApi" />
+		<property name="cardMessageDAO">
+			<ref bean="cardMessage_DAO" />
+		</property>
+	</bean>
 
-<!-- 	<bean id="att_WorkFlowMrNetWorkHolidayService" class="com.hr319wg.attence.service.AttWorkFlowMrNetWorkHolidayService"> -->
-<!-- 		<property name="activeapi" ref="sys_activePageApi" /> -->
-<!-- 		<property name="cardMessageDAO"> -->
-<!-- 			<ref bean="cardMessage_DAO" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
-<!--           edit by gaohaixing begin -->
-<!--     -->
-<!--     <bean id="attAnnualMgrDao" class="com.hr319wg.attence.dao.AttAnnualMgrDAO"> -->
-<!-- 		<property name="hibernatetemplate" ref="hibernateTemplate"/> -->
-<!-- 	</bean> -->
+	<bean id="att_WorkFlowMrNetWorkHolidayService" class="com.hr319wg.attence.service.AttWorkFlowMrNetWorkHolidayService">
+		<property name="activeapi" ref="sys_activePageApi" />
+		<property name="cardMessageDAO">
+			<ref bean="cardMessage_DAO" />
+		</property>
+	</bean>
+    <!--
+          edit by gaohaixing begin
+    -->
+    <bean id="attAnnualMgrDao" class="com.hr319wg.attence.dao.AttAnnualMgrDAO">
+		<property name="hibernatetemplate" ref="hibernateTemplate"/>
+	</bean>
 
-<!--     <bean id="attAnnualService" class="com.hr319wg.attence.service.AttAnnualService"> -->
-<!--             <property name="attAnnualMgrDao" ref="attAnnualMgrDao"/> -->
-<!--             <property name="activeapi" ref="sys_activePageApi"/> -->
-<!--     </bean> -->
+    <bean id="attAnnualService" class="com.hr319wg.attence.service.AttAnnualService">
+            <property name="attAnnualMgrDao" ref="attAnnualMgrDao"/>
+            <property name="activeapi" ref="sys_activePageApi"/>
+    </bean>
 
-<!--     <bean id="attAnnualUcc" class="com.hr319wg.attence.ucc.impl.AttAnnualUCC"> -->
-<!--             <property name="attAnnualService" ref="attAnnualService"/> -->
-<!--             <property name="wfservice" ref="sys_wfservice"/> -->
-<!--     </bean> -->
-
-
-<!--     <bean id="attEvcctionStateDao" class="com.hr319wg.attence.dao.AttEvcctionStateDAO"> -->
-<!-- 		<property name="hibernatetemplate" ref="hibernateTemplate"/> -->
-<!-- 	</bean> -->
-
-<!--     <bean id="attEvcctionStateServcie" class="com.hr319wg.attence.service.AttEvcctionStateServcie"> -->
-<!--             <property name="attEvcctionStateDao" ref="attEvcctionStateDao"/> -->
-<!--     </bean> -->
-
-<!--     <bean id="attEvcctionStateUcc" class="com.hr319wg.attence.ucc.impl.AttEvcctionStateUCC"> -->
-<!--             <property name="attEvcctionStateServcie" ref="attEvcctionStateServcie"/> -->
-<!--     </bean> -->
-
-<!--     <bean id="attOverTimeDao" class="com.hr319wg.attence.dao.AttOverTimeDAO"> -->
-<!-- 		<property name="hibernatetemplate" ref="hibernateTemplate"/> -->
-<!-- 	</bean> -->
-
-<!--     <bean id="attOverTimeService" class="com.hr319wg.attence.service.AttOverTimeService"> -->
-<!--             <property name="attOverTimeDao" ref="attOverTimeDao"/> -->
-<!--     </bean> -->
-
-<!--     <bean id="attOverTimeUcc" class="com.hr319wg.attence.ucc.impl.AttOverTimeUCC"> -->
-<!--             <property name="attOverTimeService" ref="attOverTimeService"/> -->
-<!--     </bean> -->
-
-<!--     <bean id="attOutWorkDao" class="com.hr319wg.attence.dao.AttOutWorkDAO"> -->
-<!-- 		<property name="hibernatetemplate" ref="hibernateTemplate"/> -->
-<!-- 	</bean> -->
-
-<!--     <bean id="attOutWorkService" class="com.hr319wg.attence.service.AttOutWorkService"> -->
-<!--             <property name="attOutWorkDao" ref="attOutWorkDao"/> -->
-<!--     </bean> -->
-
-<!--     <bean id="attOutWorkUcc" class="com.hr319wg.attence.ucc.impl.AttOutWorkUCC"> -->
-<!--             <property name="attOutWorkService" ref="attOutWorkService"/> -->
-<!--     </bean> -->
-
-<!--     <bean id="attFurloughRecDAO" class="com.hr319wg.attence.dao.AttFurloughRecDAO"> -->
-<!-- 		<property name="hibernatetemplate" ref="hibernateTemplate"/> -->
-<!-- 	</bean> -->
-
-<!--     <bean id="attFurloughRecService" class="com.hr319wg.attence.service.AttFurloughRecService"> -->
-<!--             <property name="attFurloughRecDAO" ref="attFurloughRecDAO"/> -->
-<!--     </bean> -->
-
-<!--     <bean id="attFurloughRecUcc" class="com.hr319wg.attence.ucc.impl.AttFurloughRecUCC"> -->
-<!--             <property name="attFurloughRecService" ref="attFurloughRecService"/> -->
-<!--     </bean> -->
-
-<!--     <bean id="attSumDataMgrDAO" class="com.hr319wg.attence.dao.AttSumDataMgrDAO"> -->
-<!-- 		<property name="hibernatetemplate" ref="hibernateTemplate"/> -->
-<!-- 	</bean> -->
-
-<!--     <bean id="attSumDataMgrService" class="com.hr319wg.attence.service.AttSumDataMgrService"> -->
-<!--             <property name="attSumDataMgrDAO" ref="attSumDataMgrDAO"/> -->
-<!--     </bean> -->
-
-<!--     <bean id="attSumDataMgrUcc" class="com.hr319wg.attence.ucc.impl.AttSumDataMgrUCC"> -->
-<!--             <property name="attSumDataMgrService" ref="attSumDataMgrService"/> -->
-<!--     </bean> -->
-<!--     <bean id="attDataCaclService" class="com.hr319wg.attence.service.AttDataCaclService"> -->
-<!--         <property name="attDurationDAO"> -->
-<!-- 			<ref bean="attenceSet_DAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="attrestweekDAO"> -->
-<!-- 			<ref bean="att_rest_weekdao" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="attfeastDAO"> -->
-<!-- 			<ref bean="attFeast_DAO" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="activeapi" ref="sys_activePageApi" /> -->
-<!--         <property name="attEvcctionStateDao" ref="attEvcctionStateDao"/> -->
-<!--         <property name="attOverTimeDao" ref="attOverTimeDao"/> -->
-<!--         <property name="attFurloughRecDAO" ref="attFurloughRecDAO"/> -->
-<!--         <property name="attOutWorkDao" ref="attOutWorkDao"/> -->
-<!--         <property name="attAnnualMgrDao" ref="attAnnualMgrDao"/> -->
-<!--     </bean> -->
-
-<!--     <bean id="attDataCaclUcc" class="com.hr319wg.attence.ucc.impl.AttDataCaclUCC"> -->
-<!--             <property name="attDataCaclService" ref="attDataCaclService"/> -->
-<!--     </bean> -->
+    <bean id="attAnnualUcc" class="com.hr319wg.attence.ucc.impl.AttAnnualUCC">
+            <property name="attAnnualService" ref="attAnnualService"/>
+            <property name="wfservice" ref="sys_wfservice"/>
+    </bean>
 
 
-<!--     <bean id="attRestChgDAO" class="com.hr319wg.attence.dao.AttRestChgDAO"> -->
-<!-- 		<property name="hibernatetemplate" ref="hibernateTemplate"/> -->
-<!-- 	</bean> -->
+    <bean id="attEvcctionStateDao" class="com.hr319wg.attence.dao.AttEvcctionStateDAO">
+		<property name="hibernatetemplate" ref="hibernateTemplate"/>
+	</bean>
 
-<!--     <bean id="attRestChgService" class="com.hr319wg.attence.service.AttRestChgService"> -->
-<!--             <property name="attRestChgDAO" ref="attRestChgDAO"/> -->
-<!--             <property name="attFeastDAO" ref="attFeast_DAO"/> -->
-<!-- 		    <property name="attRestWeekDAO" ref="att_rest_weekdao"/> -->
-<!--     </bean> -->
+    <bean id="attEvcctionStateServcie" class="com.hr319wg.attence.service.AttEvcctionStateServcie">
+            <property name="attEvcctionStateDao" ref="attEvcctionStateDao"/>
+    </bean>
 
-<!--     <bean id="attRestChgUCC" class="com.hr319wg.attence.ucc.impl.AttRestChgUCC"> -->
-<!--             <property name="attRestChgService" ref="attRestChgService"/> -->
-<!--     </bean> -->
+    <bean id="attEvcctionStateUcc" class="com.hr319wg.attence.ucc.impl.AttEvcctionStateUCC">
+            <property name="attEvcctionStateServcie" ref="attEvcctionStateServcie"/>
+    </bean>
+
+    <bean id="attOverTimeDao" class="com.hr319wg.attence.dao.AttOverTimeDAO">
+		<property name="hibernatetemplate" ref="hibernateTemplate"/>
+	</bean>
+
+    <bean id="attOverTimeService" class="com.hr319wg.attence.service.AttOverTimeService">
+            <property name="attOverTimeDao" ref="attOverTimeDao"/>
+    </bean>
+
+    <bean id="attOverTimeUcc" class="com.hr319wg.attence.ucc.impl.AttOverTimeUCC">
+            <property name="attOverTimeService" ref="attOverTimeService"/>
+    </bean>
+
+    <bean id="attOutWorkDao" class="com.hr319wg.attence.dao.AttOutWorkDAO">
+		<property name="hibernatetemplate" ref="hibernateTemplate"/>
+	</bean>
+
+    <bean id="attOutWorkService" class="com.hr319wg.attence.service.AttOutWorkService">
+            <property name="attOutWorkDao" ref="attOutWorkDao"/>
+    </bean>
+
+    <bean id="attOutWorkUcc" class="com.hr319wg.attence.ucc.impl.AttOutWorkUCC">
+            <property name="attOutWorkService" ref="attOutWorkService"/>
+    </bean>
+
+    <bean id="attFurloughRecDAO" class="com.hr319wg.attence.dao.AttFurloughRecDAO">
+		<property name="hibernatetemplate" ref="hibernateTemplate"/>
+	</bean>
+
+    <bean id="attFurloughRecService" class="com.hr319wg.attence.service.AttFurloughRecService">
+            <property name="attFurloughRecDAO" ref="attFurloughRecDAO"/>
+    </bean>
+
+    <bean id="attFurloughRecUcc" class="com.hr319wg.attence.ucc.impl.AttFurloughRecUCC">
+            <property name="attFurloughRecService" ref="attFurloughRecService"/>
+    </bean>
+
+    <bean id="attSumDataMgrDAO" class="com.hr319wg.attence.dao.AttSumDataMgrDAO">
+		<property name="hibernatetemplate" ref="hibernateTemplate"/>
+	</bean>
+
+    <bean id="attSumDataMgrService" class="com.hr319wg.attence.service.AttSumDataMgrService">
+            <property name="attSumDataMgrDAO" ref="attSumDataMgrDAO"/>
+    </bean>
+
+    <bean id="attSumDataMgrUcc" class="com.hr319wg.attence.ucc.impl.AttSumDataMgrUCC">
+            <property name="attSumDataMgrService" ref="attSumDataMgrService"/>
+    </bean>
+    <bean id="attDataCaclService" class="com.hr319wg.attence.service.AttDataCaclService">
+        <property name="attDurationDAO">
+			<ref bean="attenceSet_DAO" />
+		</property>
+		<property name="attrestweekDAO">
+			<ref bean="att_rest_weekdao" />
+		</property>
+		<property name="attfeastDAO">
+			<ref bean="attFeast_DAO" />
+		</property>
+		<property name="activeapi" ref="sys_activePageApi" />
+        <property name="attEvcctionStateDao" ref="attEvcctionStateDao"/>
+        <property name="attOverTimeDao" ref="attOverTimeDao"/>
+        <property name="attFurloughRecDAO" ref="attFurloughRecDAO"/>
+        <property name="attOutWorkDao" ref="attOutWorkDao"/>
+        <property name="attAnnualMgrDao" ref="attAnnualMgrDao"/>
+    </bean>
+
+    <bean id="attDataCaclUcc" class="com.hr319wg.attence.ucc.impl.AttDataCaclUCC">
+            <property name="attDataCaclService" ref="attDataCaclService"/>
+    </bean>
+
+
+    <bean id="attRestChgDAO" class="com.hr319wg.attence.dao.AttRestChgDAO">
+		<property name="hibernatetemplate" ref="hibernateTemplate"/>
+	</bean>
+
+    <bean id="attRestChgService" class="com.hr319wg.attence.service.AttRestChgService">
+            <property name="attRestChgDAO" ref="attRestChgDAO"/>
+            <property name="attFeastDAO" ref="attFeast_DAO"/>
+		    <property name="attRestWeekDAO" ref="att_rest_weekdao"/>
+    </bean>
+
+    <bean id="attRestChgUCC" class="com.hr319wg.attence.ucc.impl.AttRestChgUCC">
+            <property name="attRestChgService" ref="attRestChgService"/>
+    </bean>
    
 </beans>

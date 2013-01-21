@@ -36,7 +36,7 @@
             /WEB-INF/conf/jsf/wage-faces-config.xml,
             /WEB-INF/conf/jsf/rule-faces-config.xml,
             /WEB-INF/conf/jsf/train-faces-config.xml,
-<!--             /WEB-INF/conf/jsf/attence-faces-config.xml, -->
+            /WEB-INF/conf/jsf/attence-faces-config.xml,
             /WEB-INF/conf/jsf/eLearn-faces-config.xml,
             /WEB-INF/conf/jsf/recruit-faces-config.xml,
             /WEB-INF/conf/jsf/wageBusi-faces-config.xml,
@@ -90,7 +90,7 @@
             /WEB-INF/conf/jsf/sys-tiles.xml,
             /WEB-INF/conf/jsf/wage-tiles.xml,
             /WEB-INF/conf/jsf/train-tiles.xml,
-<!--             /WEB-INF/conf/jsf/attence-tiles.xml, -->
+            /WEB-INF/conf/jsf/attence-tiles.xml,
             /WEB-INF/conf/jsf/eLearn-tiles.xml,
             /WEB-INF/conf/jsf/lead-tiles.xml,
             /WEB-INF/conf/jsf/recruit-tiles.xml,
