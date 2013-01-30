@@ -91,7 +91,7 @@
 		<table border="0" align="center" cellspacing="2" cellpadding="10"
 			columnClasses="td_form01,td_form02" styleClass="table03">
 			<tr>
-				<td class="td_form01"><%=LanguageSupport.getResource("XTGL-1094", "新闻标题")%>
+				<td class="td_form01 td_form_required"><%=LanguageSupport.getResource("XTGL-1094", "新闻标题")%>
 				</td>
 				<td class="td_form02"></c:verbatim> <h:inputText id="text1"
 						styleClass="input" value="#{sys_NewsEditBackingBean.vo.topic}"
@@ -122,7 +122,7 @@
 			</tr>
 
 			<tr>
-				<td class="td_form01"><%=LanguageSupport.getResource("XTGL-1335", "新闻内容")%>
+				<td class="td_form01 td_form_required"><%=LanguageSupport.getResource("XTGL-1335", "新闻内容")%>
 				</td>
 				<td class="td_form02"></c:verbatim> <h:inputTextarea id="textarea" rows="15"
 						cols="80" style="display:none;"
@@ -139,7 +139,7 @@
 			</tr>
 
 			<tr>
-				<td class="td_form01"><%=LanguageSupport.getResource("XTGL-1090", "生效时间")%>
+				<td class="td_form01 td_form_required"><%=LanguageSupport.getResource("XTGL-1090", "生效时间")%>
 				</td>
 				<td class="td_form02"></c:verbatim> <h:inputText id="text3"
 						styleClass="input" value="#{sys_NewsEditBackingBean.vo.startDate}"
@@ -150,19 +150,19 @@
 			</tr>
 
 			<tr>
-				<td class="td_form01"><img src="/images/common/new.gif"><%=LanguageSupport.getResource("XTGL-1092", "失效时间")%>
+				<td class="td_form01"><img src="/images/common/new.gif"><%=LanguageSupport.getResource("XTGL-1092", "标示失效时间")%>
 				</td>
 				<td class="td_form02"></c:verbatim> <h:inputText id="textflag"
 						styleClass="input"
-						value="#{sys_NewsEditBackingBean.vo.newEndDate}" size="17"
+ 						value="#{sys_NewsEditBackingBean.vo.newEndDate}" size="17" 
 						readonly="true">
 					</h:inputText> <h:commandButton value="" styleClass="button_date" type="button"
-						onclick="PopUpCalendarDialog('BulletinEditForm:textflag')" /> <c:verbatim>
+ 						onclick="PopUpCalendarDialog('BulletinEditForm:textflag')" /> <c:verbatim>
 				</td>
 			</tr>
 
 			<tr>
-				<td class="td_form01"><%=LanguageSupport.getResource("XTGL-1092", "失效时间")%>
+				<td class="td_form01 td_form_required"><%=LanguageSupport.getResource("XTGL-1092", "失效时间")%>
 				</td>
 				<td class="td_form02"></c:verbatim> <h:inputText id="text4"
 						styleClass="input" value="#{sys_NewsEditBackingBean.vo.endDate}"
@@ -172,42 +172,41 @@
 				</td>
 			</tr>
 
+<!-- 			<tr> -->
+<%-- 				<td class="td_form01"><%=LanguageSupport.getResource("XTGL-1298", "查看级别")%> --%>
+<!-- 				</td> -->
+<%-- 				<td class="td_form02"></c:verbatim> <h:selectManyCheckbox --%>
+<%-- 						value="#{sys_NewsEditBackingBean.inputList}" --%>
+<!-- 						layout="pageDirection"> -->
+<%-- 						<c:selectItems value="#{sys_NewsEditBackingBean.levelList}"></c:selectItems> --%>
+<%-- 					</h:selectManyCheckbox> <c:verbatim> --%>
+<!-- 				</td> -->
+<!-- 			</tr> -->
+
+<!-- 			<tr> -->
+<%-- 				<td class="td_form01"><%=LanguageSupport.getResource("XTGL-1299", "是否公开")%></td> --%>
+<%-- 				<td class="td_form02" colspan=3></c:verbatim> --%>
+<%--                     <h:selectOneRadio --%>
+<%-- 						value="#{sys_NewsEditBackingBean.vo.publicFlag}"> --%>
+<%-- 						<f:selectItem itemValue="1" itemLabel="可以公开" /> --%>
+<%-- 						<f:selectItem itemValue="0" value="true" itemLabel="登录后查看" /> --%>
+<%-- 					</h:selectOneRadio> <c:verbatim> --%>
+<!-- 				</td> -->
+<!-- 			</tr> -->
+
+<!--         <tr> -->
+<!--             <td class="td_form01">是否显示在快递栏目</td> -->
+<%--             <td class="td_form02" colspan=3></c:verbatim> --%>
+<%--                 <h:selectOneRadio --%>
+<%--                     value="#{sys_NewsEditBackingBean.vo.express}"> --%>
+<%--                     <f:selectItem itemValue="1" itemLabel="是" /> --%>
+<%--                     <f:selectItem itemValue="0" itemLabel="否" /> --%>
+<%--                 </h:selectOneRadio> <c:verbatim> --%>
+<!--             </td> -->
+<!--         </tr> -->
 
 			<tr>
-				<td class="td_form01"><%=LanguageSupport.getResource("XTGL-1298", "查看级别")%>
-				</td>
-				<td class="td_form02"></c:verbatim> <h:selectManyCheckbox
-						value="#{sys_NewsEditBackingBean.inputList}"
-						layout="pageDirection">
-						<c:selectItems value="#{sys_NewsEditBackingBean.levelList}"></c:selectItems>
-					</h:selectManyCheckbox> <c:verbatim>
-				</td>
-			</tr>
-
-			<tr>
-				<td class="td_form01"><%=LanguageSupport.getResource("XTGL-1299", "是否公开")%></td>
-				<td class="td_form02" colspan=3></c:verbatim>
-                    <h:selectOneRadio
-						value="#{sys_NewsEditBackingBean.vo.publicFlag}">
-						<f:selectItem itemValue="1" itemLabel="可以公开" />
-						<f:selectItem itemValue="0" value="true" itemLabel="登录后查看" />
-					</h:selectOneRadio> <c:verbatim>
-				</td>
-			</tr>
-
-        <tr>
-            <td class="td_form01">是否显示在快递栏目</td>
-            <td class="td_form02" colspan=3></c:verbatim>
-                <h:selectOneRadio
-                    value="#{sys_NewsEditBackingBean.vo.express}">
-                    <f:selectItem itemValue="1" itemLabel="是" />
-                    <f:selectItem itemValue="0" itemLabel="否" />
-                </h:selectOneRadio> <c:verbatim>
-            </td>
-        </tr>
-
-			<tr>
-				<td class="td_form01"><%=LanguageSupport.getResource("XTGL-1097", "新闻范围")%></td>
+				<td class="td_form01 td_form_required"><%=LanguageSupport.getResource("XTGL-1097", "新闻范围")%></td>
 				<td class="td_form02"></c:verbatim> <h:inputText id="text5"
 						styleClass="input"
 						value="#{sys_NewsEditBackingBean.vo.scopeOrgNames}" size="80"

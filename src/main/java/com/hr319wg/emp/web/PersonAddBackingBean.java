@@ -4,9 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.model.SelectItem;
+
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.college.ucc.ICollegeUCC;
 import com.hr319wg.common.Constants;
@@ -24,6 +28,7 @@ import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.org.pojo.bo.OrgEnterBO;
 import com.hr319wg.org.pojo.bo.OrgProbationBO;
 import com.hr319wg.org.ucc.IOrgProbationUcc;
+import com.hr319wg.org.ucc.IOrgUCC;
 import com.hr319wg.org.util.OrgTool;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.api.WageAPI;
@@ -34,6 +39,8 @@ import com.hr319wg.sys.pojo.bo.CodeItemBO;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
 import com.hr319wg.sys.pojo.bo.WFDefineExcludeBO;
 import com.hr319wg.sys.pojo.bo.WFTypeBO;
+import com.hr319wg.sys.pojo.vo.CellVO;
+import com.hr319wg.sys.pojo.vo.TableVO;
 import com.hr319wg.sys.pojo.vo.WFTransaction;
 import com.hr319wg.sys.service.WorkFlowService;
 import com.hr319wg.sys.ucc.ISysInProcessUCC;
@@ -46,177 +53,234 @@ import com.hr319wg.wage.pojo.bo.WageAdjustBO;
 import com.hr319wg.wage.ucc.IWageAdjustUCC;
 import com.hr319wg.wage.ucc.IWageSetPersonUCC;
 
-public class PersonAddBackingBean extends BaseBackingBean
-{
-  private IUserManageUCC usermanageucc;
-  private ICollegeUCC collegeucc;
-  private PersonVO personvo = new PersonVO();
-  private PersonChangeVO personchangevo = new PersonChangeVO();
-  private IPersonUCC personucc;
-  private ISysInProcessUCC linkucc;
-  private IWageSetPersonUCC wagesetpersonucc;
-  private WageAPI wageapi;
-  private WorkFlowService wfservice;
-  private IEmpAuditAddUCC auditucc;
-  private String type = "";
-  private String education = "";
-  private String graduate = "";
-  private String year = "";
-  private String college = "";
-  private String degree = "";
-  private String degreeTime = "";
-  private String returnType = "";
-  private String returnTime = "";
-  private String classId;
-  private String enterTime = "";
-  private String returnDep = "";
-  private String returnDuty = "";
-  private String returnDutyLevel = "";
-  private String photoFile = null;
-  private String idFile = null;
-  private CodeItemDAO codeItemDAO;
-  private List<SelectItem> currStatusList;
-  private IWageAdjustUCC adjustucc;
-  private IOrgProbationUcc orgprobationucc;
-  
-  public IWageAdjustUCC getAdjustucc() {
-	return adjustucc;
-}
-public void setAdjustucc(IWageAdjustUCC adjustucc) {
-	this.adjustucc = adjustucc;
-}
-public IOrgProbationUcc getOrgprobationucc() {
-	return orgprobationucc;
-}
-public void setOrgprobationucc(IOrgProbationUcc orgprobationucc) {
-	this.orgprobationucc = orgprobationucc;
-}
-public CodeItemDAO getCodeItemDAO() {
-	return codeItemDAO;
-}
-public void setCodeItemDAO(CodeItemDAO codeItemDAO) {
-	this.codeItemDAO = codeItemDAO;
-}
-public List<SelectItem> getCurrStatusList() {
-	return currStatusList;
-}
-public void setCurrStatusList(List<SelectItem> currStatusList) {
-	this.currStatusList = currStatusList;
-}
+public class PersonAddBackingBean extends BaseBackingBean {
+	User user=super.getUserInfo();
+	private IUserManageUCC usermanageucc;
+	private ICollegeUCC collegeucc;
+	private PersonVO personvo = new PersonVO();
+	private PersonChangeVO personchangevo = new PersonChangeVO();
+	private IPersonUCC personucc;
+	private ISysInProcessUCC linkucc;
+	private IWageSetPersonUCC wagesetpersonucc;
+	private WageAPI wageapi;
+	private WorkFlowService wfservice;
+	private IEmpAuditAddUCC auditucc;
+	private String type = "";
+	private String education = "";
+	private String graduate = "";
+	private String year = "";
+	private String college = "";
+	private String degree = "";
+	private String degreeTime = "";
+	private String returnType = "";
+	private String returnTime = "";
+	private String classId;
+	private String enterTime = "";
+	private String returnDep = "";
+	private String returnDuty = "";
+	private String returnDutyLevel = "";
+	private String photoFile = null;
+	private String idFile = null;
+	private CodeItemDAO codeItemDAO;
+	private List<SelectItem> currStatusList;
+	private IWageAdjustUCC adjustucc;
+	private IOrgProbationUcc orgprobationucc;
+	private String addPageInit;
+	private IOrgUCC orgucc;
+	private TableVO tableVO;
+	
+	public IOrgUCC getOrgucc() {
+		return orgucc;
+	}
 
-public String getClassId()
-  {
-    return this.classId;
-  }
-  public void setClassId(String classId) {
-    this.classId = classId;
-  }
+	public void setOrgucc(IOrgUCC orgucc) {
+		this.orgucc = orgucc;
+	}
 
-  public String getEnterTime()
-  {
-    return this.enterTime;
-  }
+	public TableVO getTableVO() {
+		return tableVO;
+	}
 
-  public void setEnterTime(String enterTime) {
-    this.enterTime = enterTime;
-  }
+	public void setTableVO(TableVO tableVO) {
+		this.tableVO = tableVO;
+	}
+	
+	public IWageAdjustUCC getAdjustucc() {
+		return adjustucc;
+	}
 
-  public String getReturnDep()
-  {
-    return this.returnDep;
-  }
+	public void setAdjustucc(IWageAdjustUCC adjustucc) {
+		this.adjustucc = adjustucc;
+	}
 
-  public void setReturnDep(String returnDep) {
-    this.returnDep = returnDep;
-  }
+	public IOrgProbationUcc getOrgprobationucc() {
+		return orgprobationucc;
+	}
 
-  public String getReturnDutyLevel() {
-    return this.returnDutyLevel;
-  }
+	public void setOrgprobationucc(IOrgProbationUcc orgprobationucc) {
+		this.orgprobationucc = orgprobationucc;
+	}
 
-  public void setReturnDutyLevel(String returnDutyLevel) {
-    this.returnDutyLevel = returnDutyLevel;
-  }
+	public CodeItemDAO getCodeItemDAO() {
+		return codeItemDAO;
+	}
 
-  public IUserManageUCC getUsermanageucc()
-  {
-    return this.usermanageucc;
-  }
-  public void setUsermanageucc(IUserManageUCC usermanageucc) {
-    this.usermanageucc = usermanageucc;
-  }
+	public void setCodeItemDAO(CodeItemDAO codeItemDAO) {
+		this.codeItemDAO = codeItemDAO;
+	}
 
-  public IWageSetPersonUCC getWagesetpersonucc() {
-    return this.wagesetpersonucc;
-  }
-  public void setWagesetpersonucc(IWageSetPersonUCC wagesetpersonucc) {
-    this.wagesetpersonucc = wagesetpersonucc;
-  }
+	public List<SelectItem> getCurrStatusList() {
+		return currStatusList;
+	}
 
-  public WageAPI getWageapi()
-  {
-    return this.wageapi;
-  }
-  public void setWageapi(WageAPI api) {
-    this.wageapi = api;
-  }
+	public void setCurrStatusList(List<SelectItem> currStatusList) {
+		this.currStatusList = currStatusList;
+	}
 
-  public void setType(String str) {
-    this.type = str;
-  }
-  public String getType() {
-	if(this.currStatusList==null){
-		this.currStatusList = new ArrayList();
-		List<CodeItemBO> itemList;
-		try {
-			itemList = this.codeItemDAO.queryAllCodeItemForTree("0145");
-			if(itemList!=null){
-				for(CodeItemBO bo: itemList){
-					if("1".equals(bo.getItemStatus())){
-						SelectItem item = new SelectItem(bo.getItemId(), bo.getItemName());
-						this.currStatusList.add(item);
+	public String getClassId() {
+		return this.classId;
+	}
+
+	public void setClassId(String classId) {
+		this.classId = classId;
+	}
+
+	public String getEnterTime() {
+		return this.enterTime;
+	}
+
+	public void setEnterTime(String enterTime) {
+		this.enterTime = enterTime;
+	}
+
+	public String getReturnDep() {
+		return this.returnDep;
+	}
+
+	public void setReturnDep(String returnDep) {
+		this.returnDep = returnDep;
+	}
+
+	public String getReturnDutyLevel() {
+		return this.returnDutyLevel;
+	}
+
+	public void setReturnDutyLevel(String returnDutyLevel) {
+		this.returnDutyLevel = returnDutyLevel;
+	}
+
+	public IUserManageUCC getUsermanageucc() {
+		return this.usermanageucc;
+	}
+
+	public void setUsermanageucc(IUserManageUCC usermanageucc) {
+		this.usermanageucc = usermanageucc;
+	}
+
+	public IWageSetPersonUCC getWagesetpersonucc() {
+		return this.wagesetpersonucc;
+	}
+
+	public void setWagesetpersonucc(IWageSetPersonUCC wagesetpersonucc) {
+		this.wagesetpersonucc = wagesetpersonucc;
+	}
+
+	public WageAPI getWageapi() {
+		return this.wageapi;
+	}
+
+	public void setWageapi(WageAPI api) {
+		this.wageapi = api;
+	}
+
+	public String getPhotoFile() {
+		return this.photoFile;
+	}
+
+	public void setPhotoFile(String photoFile) {
+		this.photoFile = photoFile;
+	}
+
+	public String getIdFile() {
+		return this.idFile;
+	}
+
+	public void setIdFile(String idFile) {
+		this.idFile = idFile;
+	}
+
+	public ICollegeUCC getCollegeucc() {
+		return this.collegeucc;
+	}
+
+	public void setCollegeucc(ICollegeUCC collegeucc) {
+		this.collegeucc = collegeucc;
+	}
+
+	public IEmpAuditAddUCC getAuditucc() {
+		return this.auditucc;
+	}
+
+	public void setAuditucc(IEmpAuditAddUCC auditucc) {
+		this.auditucc = auditucc;
+	}
+	
+	public void setType(String str) {
+		this.type = str;
+	}
+	  public String getType() {
+		if(this.currStatusList==null){
+			this.currStatusList = new ArrayList();
+			List<CodeItemBO> itemList;
+			try {
+				itemList = this.codeItemDAO.queryAllCodeItemForTree("0145");
+				if(itemList!=null){
+					for(CodeItemBO bo: itemList){
+						if("1".equals(bo.getItemStatus())){
+							SelectItem item = new SelectItem(bo.getItemId(), bo.getItemName());
+							this.currStatusList.add(item);
+						}
 					}
 				}
+			} catch (SysException e) {
+				e.printStackTrace();
 			}
-		} catch (SysException e) {
-			e.printStackTrace();
 		}
-	}
-    if (super.getRequestParameter("type") != null) {
-      this.type = super.getRequestParameter("type");
-      if ((this.personvo.getUnitTime() == null) || ("".equals(this.personvo.getUnitTime()))) {
-        InfoItemBO unitTime = SysCacheTool.findInfoItem("A001", "A001044");
-        if ("15".equals(unitTime.getItemDataType())) {
-          this.personvo.setUnitTime(CommonFuns.getSysDate("yyyy-MM"));
-        }
-        else {
-          this.personvo.setUnitTime(CommonFuns.getSysDate("yyyy-MM-dd"));
-        }
-      }
-      if ((this.personvo.getSysTime() == null) || ("".equals(this.personvo.getSysTime()))) {
-        InfoItemBO unitTime = SysCacheTool.findInfoItem("A001", "A001781");
-        if ("15".equals(unitTime.getItemDataType())) {
-          this.personvo.setSysTime(CommonFuns.getSysDate("yyyy-MM"));
-        }
-        else {
-          this.personvo.setSysTime(CommonFuns.getSysDate("yyyy-MM-dd"));
-        }
-      }
-      if ((this.personchangevo.getChangeDate() == null) || ("".equals(this.personchangevo.getChangeDate()))) {
-        InfoItemBO unitTime = SysCacheTool.findInfoItem("A016", "A016020");
-        if ("15".equals(unitTime.getItemDataType())) {
-          this.personchangevo.setChangeDate(CommonFuns.getSysDate("yyyy-MM"));
-        }
-        else {
-          this.personchangevo.setChangeDate(CommonFuns.getSysDate("yyyy-MM-dd"));
-        }
-      }
-      if (super.getRequestParameter("A001031") != null) {
-        this.personvo.setPersonIdentity(super.getRequestParameter("A001031"));
-      }
-    }
-    return this.type;
-  }
+	    if (super.getRequestParameter("type") != null) {
+	      this.type = super.getRequestParameter("type");
+	      if ((this.personvo.getUnitTime() == null) || ("".equals(this.personvo.getUnitTime()))) {
+	        InfoItemBO unitTime = SysCacheTool.findInfoItem("A001", "A001044");
+	        if ("15".equals(unitTime.getItemDataType())) {
+	          this.personvo.setUnitTime(CommonFuns.getSysDate("yyyy-MM"));
+	        }
+	        else {
+	          this.personvo.setUnitTime(CommonFuns.getSysDate("yyyy-MM-dd"));
+	        }
+	      }
+	      if ((this.personvo.getSysTime() == null) || ("".equals(this.personvo.getSysTime()))) {
+	        InfoItemBO unitTime = SysCacheTool.findInfoItem("A001", "A001781");
+	        if ("15".equals(unitTime.getItemDataType())) {
+	          this.personvo.setSysTime(CommonFuns.getSysDate("yyyy-MM"));
+	        }
+	        else {
+	          this.personvo.setSysTime(CommonFuns.getSysDate("yyyy-MM-dd"));
+	        }
+	      }
+	      if ((this.personchangevo.getChangeDate() == null) || ("".equals(this.personchangevo.getChangeDate()))) {
+	        InfoItemBO unitTime = SysCacheTool.findInfoItem("A016", "A016020");
+	        if ("15".equals(unitTime.getItemDataType())) {
+	          this.personchangevo.setChangeDate(CommonFuns.getSysDate("yyyy-MM"));
+	        }
+	        else {
+	          this.personchangevo.setChangeDate(CommonFuns.getSysDate("yyyy-MM-dd"));
+	        }
+	      }
+	      if (super.getRequestParameter("A001031") != null) {
+	        this.personvo.setPersonIdentity(super.getRequestParameter("A001031"));
+	      }
+	    }
+	    return this.type;
+	  }
 
   public String getPageInit() {
     if (super.getRequestParameter("A016010") != null) {
@@ -631,149 +695,348 @@ public String getClassId()
 		}
 	}
 	
-  private String querySysRoleId() throws SysException {
-    List list = this.usermanageucc.queryUserRoleInfo(super.getUserInfo().getUserId());
-    RoleInfoBO role = (RoleInfoBO)list.get(0);
-    return role.getRoleId();
-  }
+	  private String querySysRoleId() throws SysException {
+	    List list = this.usermanageucc.queryUserRoleInfo(super.getUserInfo().getUserId());
+	    RoleInfoBO role = (RoleInfoBO)list.get(0);
+	    return role.getRoleId();
+	  }
+	
+	  public String createManger() {
+	    try {
+	      User user = getUserInfo();
+	      OrgBO org = OrgTool.getOrgByDept(CommonFuns.filterNull(this.personvo.getDeptId()));
+	      if (org == null) {
+	        showMessageDetail("所增人员的所在机构无法找到，不能增加此人!");
+	        return null;
+	      }
+	      InfoItemBO ib = SysCacheTool.findInfoItem("", "A001031");
+	      if (ib != null) this.personvo.setPersonIdentity(ib.getItemDefaultValue());
+	      String personId = this.personucc.createPerson(this.personvo, null, user, null);
+	      String[] ids = new String[1];
+	      ids[0] = personId;
+	      this.usermanageucc.makeStatus(ids, true);
+	      List li = this.usermanageucc.queryUserRoleInfo(ids[0]);
+	      if ((li == null) || (li.size() == 0)) {
+	        this.usermanageucc.assignRole(ids[0], RoleInfoBO.EMPLOYEE_ROLE_ID);
+	      }
+	      this.usermanageucc.makeCurrentLevelUser(ids, querySysRoleId());
+	
+	      showMessageDetail("增加用户成功!");
+	      cancelPerson();
+	      return "success";
+	    }
+	    catch (Exception e) {
+	      e.printStackTrace();
+	      showMessageDetail("增加失败:" + e.getMessage());
+	    }
+	    return null;
+	  }
+  
+	  public String createUser()
+	  {
+	    try
+	    {
+	      byte[] photo = (byte[])(byte[])getHttpSession().getAttribute("A001780");
+	      if ((photo == null) && (this.photoFile != null) && (!"".equals(this.photoFile))) {
+	        String base = super.getRealPath("/");
+	        photo = FileUtil.ReadInFile(base + this.photoFile);
+	      }
+	      User user = getUserInfo();
+	      if (this.personchangevo != null) {
+	        this.personchangevo.setTractPerson(user.getUserId());
+	      }
+	      OrgBO org = OrgTool.getOrgByDept(CommonFuns.filterNull(this.personvo.getDeptId()));
+	      if (org == null) {
+	        showMessageDetail("所增人员的所在机构无法找到，不能增加此人!");
+	        return null;
+	      }
+	      InfoItemBO ib = SysCacheTool.findInfoItem("", "A001031");
+	      if (ib != null) this.personvo.setPersonIdentity(ib.getItemDefaultValue());
+	      String personId = this.personucc.createPerson(this.personvo, this.personchangevo, user, photo);
+	      String[] ids = new String[1];
+	      ids[0] = personId;
+	      this.usermanageucc.makeStatus(ids, true);
+	      List li = this.usermanageucc.queryUserRoleInfo(ids[0]);
+	      if ((li == null) || (li.size() == 0)) {
+	        this.usermanageucc.assignRole(ids[0], RoleInfoBO.EMPLOYEE_ROLE_ID);
+	      }
+	      this.usermanageucc.makeCurrentLevelUser(ids, querySysRoleId());
+	
+	      this.wageapi.addPersonRelation(org.getOrgId(), personId);
+	
+	      if (("1".equals(Constants.WAGE_POST_LINK)) && ("0".equals(Constants.EMP_ADD_AFTER_APPROVE))) {
+	        String set = this.wageapi.querySetByPersonPost(personId);
+	        if ((set != null) && (!"".equals(set))) {
+	          String[] pids = new String[1];
+	          pids[0] = personId;
+	          this.wagesetpersonucc.batchAddPerson(set, pids);
+	          this.wagesetpersonucc.batchAdd(super.getUserInfo().getUserId(), set, pids);
+	        }
+	      }
+	      this.personucc.UpdateA001730(personId, "00900");
+	
+	      if ((this.idFile != null) && (!"".equals(this.idFile))) {
+	        String base = super.getRealPath("/");
+	        String photoFile = base + this.idFile;
+	        if (FileUtil.fileExists(photoFile)) {
+	          this.personucc.setPersonIDPhoto(personId, photoFile);
+	        }
+	      }
+	      String[] id = new String[1];
+	      id[0] = personId;
+	      SysCache.setMap(id, 2, 6);
+	
+	      this.photoFile = null;
+	      this.idFile = null;
+	      showMessageDetail("增加用户成功!");
+	      cancelPerson();
+	      return "success";
+	    }
+	    catch (Exception e) {
+	      e.printStackTrace();
+	      showMessageDetail("增加失败:" + e.getMessage());
+	    }
+	    return null;
+	  }
+	
+	  public String cancelPerson() {
+	    try {
+	      this.personvo = new PersonVO();
+	      this.personchangevo = new PersonChangeVO();
+	      getHttpSession().removeAttribute("A001780");
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	      this.msg.setMainMsg(e, getClass());
+	    }
+	    return "";
+	  }
+  
+	public String getAddPageInit() {
+		try {
+			this.tableVO = this.orgucc.queryPageInfo("A001", "-1", "", super.getUserInfo());
+			String personCode= personucc.getNextPersonCode(user.getOrgId());
+			CellVO[] cell=this.tableVO.getHeader();
+			if(cell!=null){
+				int index=0;
+				for(int i=0;i<cell.length;i++){
+					CellVO c=cell[i];
+					if("A001735".equals(c.getItemId())){
+						c.setValue(personCode);
+						index++;
+					}
+					if("A001044".equals(c.getItemId())){
+						c.setValue(CommonFuns.getSysDate("yyyy-MM-dd"));
+						index++;
+					}
+					if(index==2){
+						break;
+					}
+				}
+			}
+			getHttpSession().setAttribute("OBJECT_DETAIL", this.tableVO);				
+		} catch (SysException e) {
+			e.printStackTrace();
+		}
+		return pageInit;
+	}
 
-  public String createManger() {
-    try {
-      User user = getUserInfo();
-      OrgBO org = OrgTool.getOrgByDept(CommonFuns.filterNull(this.personvo.getDeptId()));
-      if (org == null) {
-        showMessageDetail("所增人员的所在机构无法找到，不能增加此人!");
-        return null;
-      }
-      InfoItemBO ib = SysCacheTool.findInfoItem("", "A001031");
-      if (ib != null) this.personvo.setPersonIdentity(ib.getItemDefaultValue());
-      String personId = this.personucc.createPerson(this.personvo, null, user, null);
-      String[] ids = new String[1];
-      ids[0] = personId;
-      this.usermanageucc.makeStatus(ids, true);
-      List li = this.usermanageucc.queryUserRoleInfo(ids[0]);
-      if ((li == null) || (li.size() == 0)) {
-        this.usermanageucc.assignRole(ids[0], RoleInfoBO.EMPLOYEE_ROLE_ID);
-      }
-      this.usermanageucc.makeCurrentLevelUser(ids, querySysRoleId());
+    //增加人员
+	public String saveOne() {
+		try {
+			User user = getUserInfo();
+			Map dataMap = getServletRequest().getParameterMap();
+	        String name=((String[])dataMap.get("A001001"))[0];
+	        String personCode=((String[])dataMap.get("A001735"))[0];
+	        String personType=((String[])dataMap.get("A001054"))[0];
+	        String deptID=((String[])dataMap.get("A001705"))[0];
+	        String postID=((String[])dataMap.get("A001715"))[0];
+	        String cardID=((String[])dataMap.get("A001077"))[0];
+	        String currStatus=((String[])dataMap.get("A001725"))[0];
+	        String unitTime=((String[])dataMap.get("A001044"))[0];
+	        String addType=((String[])dataMap.get("A001716"))[0];
+			
+			byte[] photo = (byte[]) (byte[]) getHttpSession().getAttribute(
+					"A001780");
+			if ((photo == null) && (this.photoFile != null)
+					&& (!"".equals(this.photoFile))) {
+				String base = super.getRealPath("/");
+				photo = FileUtil.ReadInFile(base + this.photoFile);
+			}
 
-      showMessageDetail("增加用户成功!");
-      cancelPerson();
-      return "success";
-    }
-    catch (Exception e) {
-      e.printStackTrace();
-      showMessageDetail("增加失败:" + e.getMessage());
-    }
-    return null;
-  }
+			OrgBO org = OrgTool.getOrgByDept(deptID);
+			if (org == null) {
+				showMessageDetail("所增人员的所在机构无法找到，不能增加此人!");
+				return null;
+			}
+			PersonVO vo=new PersonVO();
+			vo.setName(name);
+			vo.setDeptId(deptID);
+			vo.setPersonType(personType);
+			vo.setPersonCode(personCode);
+			vo.setUnitTime(unitTime);
+			vo.setIdNum(cardID);
+			PersonChangeVO cvo=new PersonChangeVO();
+			cvo.setChangeDate(unitTime);
+			cvo.setTractDate(CommonFuns.getSysDate("yyyy-MM-dd"));
+			cvo.setTractPerson(user.getUserId());
+			cvo.setChangeType(addType);
+			
+			String personId = this.personucc.createPerson(vo, cvo, user, photo);
+			getServletRequest().setAttribute("P_PERSONID", personId);
+			getServletRequest().setAttribute("P_FLAG", "show");
+			getHttpSession().removeAttribute("images");
+			if ("1".equals(Constants.AUTO_OPEN_USER)) {
+				String[] ids = new String[1];
+				ids[0] = personId;
+				this.usermanageucc.makeStatus(ids, true);
+				List li = this.usermanageucc.queryUserRoleInfo(ids[0]);
+				if ((li == null) || (li.size() == 0)) {
+					this.usermanageucc.assignRole(ids[0],
+							RoleInfoBO.EMPLOYEE_ROLE_ID);
+				}
+				this.usermanageucc.makeCurrentLevelUser(ids, querySysRoleId());
+			}
 
-  public String getPhotoFile() {
-    return this.photoFile;
-  }
-  public void setPhotoFile(String photoFile) {
-    this.photoFile = photoFile;
-  }
+			this.wageapi.addPersonRelation(org.getOrgId(), personId);
 
-  public String getIdFile()
-  {
-    return this.idFile;
-  }
+			if (("1".equals(Constants.WAGE_POST_LINK))
+					&& ("0".equals(Constants.EMP_ADD_AFTER_APPROVE))) {
+				String set = this.wageapi.querySetByPersonPost(personId);
+				if ((set != null) && (!"".equals(set))) {
+					String[] pids = new String[1];
+					pids[0] = personId;
+					this.wagesetpersonucc.batchAddPerson(set, pids);
+					this.wagesetpersonucc.batchAdd(super.getUserInfo()
+							.getUserId(), set, pids);
+				}
+			}
 
-  public void setIdFile(String idFile) {
-    this.idFile = idFile;
-  }
+			if ("1".equals(Constants.EMP_ADD_AFTER_APPROVE)) {
+				WFTransaction trans = new WFTransaction();
+				trans.setUser(super.getUserInfo());
+				if ((this.personvo.getPersonIdentity() != null)
+						&& (Constants.EMP_CADRESCODE.indexOf(this.personvo
+								.getPersonIdentity() + ",") >= 0)) {
+					trans.setWfType(WFTypeBO.RYGL_CAR_ENTER);
+				} else {
+					trans.setWfType(WFTypeBO.RYGL_WORK_ENTER);
+				}
 
-  public String createUser()
-  {
-    try
-    {
-      byte[] photo = (byte[])(byte[])getHttpSession().getAttribute("A001780");
-      if ((photo == null) && (this.photoFile != null) && (!"".equals(this.photoFile))) {
-        String base = super.getRealPath("/");
-        photo = FileUtil.ReadInFile(base + this.photoFile);
-      }
-      User user = getUserInfo();
-      if (this.personchangevo != null) {
-        this.personchangevo.setTractPerson(user.getUserId());
-      }
-      OrgBO org = OrgTool.getOrgByDept(CommonFuns.filterNull(this.personvo.getDeptId()));
-      if (org == null) {
-        showMessageDetail("所增人员的所在机构无法找到，不能增加此人!");
-        return null;
-      }
-      InfoItemBO ib = SysCacheTool.findInfoItem("", "A001031");
-      if (ib != null) this.personvo.setPersonIdentity(ib.getItemDefaultValue());
-      String personId = this.personucc.createPerson(this.personvo, this.personchangevo, user, photo);
-      String[] ids = new String[1];
-      ids[0] = personId;
-      this.usermanageucc.makeStatus(ids, true);
-      List li = this.usermanageucc.queryUserRoleInfo(ids[0]);
-      if ((li == null) || (li.size() == 0)) {
-        this.usermanageucc.assignRole(ids[0], RoleInfoBO.EMPLOYEE_ROLE_ID);
-      }
-      this.usermanageucc.makeCurrentLevelUser(ids, querySysRoleId());
+				trans.setOperID("0361");
+				trans.setLinkID(personId);
+				trans.setStatusValue("报批");
+				this.wfservice.processTrans(trans);
+			} else if ("2".equals(Constants.EMP_ADD_AFTER_APPROVE)) {
+				WFDefineExcludeBO excludebo = this.wfservice
+						.findWFDefineExcludeBO(WFTypeBO.RYGL_COMMON_IN);
+				if ((excludebo == null) || (excludebo.getOrguid() == null)
+						|| ("".equals(excludebo.getOrguid()))
+						|| (excludebo.getOrguid().indexOf(org.getOrgId()) < 0)) {
+					PersonAddAuditBO abo = new PersonAddAuditBO();
+					abo.setApplyDate(CommonFuns.getSysDate("yyyy-MM-dd"));
+					abo.setApplyOper(super.getUserInfo().getUserId());
+					abo.setPersonID(personId);
+					this.auditucc.savePersonAddAuditBO(abo);
 
-      this.wageapi.addPersonRelation(org.getOrgId(), personId);
+					WFTransaction trans = new WFTransaction();
+					trans.setUser(super.getUserInfo());
+					trans.setLinkID(abo.getItemID());
+					trans.setWfType(WFTypeBO.RYGL_COMMON_IN);
+					trans.setOperID("0310");
+					trans.setStatusValue("0");
+					trans.setWffunction("emp_addAuditservice");
+					this.wfservice.processTrans(trans);
+				}
 
-      if (("1".equals(Constants.WAGE_POST_LINK)) && ("0".equals(Constants.EMP_ADD_AFTER_APPROVE))) {
-        String set = this.wageapi.querySetByPersonPost(personId);
-        if ((set != null) && (!"".equals(set))) {
-          String[] pids = new String[1];
-          pids[0] = personId;
-          this.wagesetpersonucc.batchAddPerson(set, pids);
-          this.wagesetpersonucc.batchAdd(super.getUserInfo().getUserId(), set, pids);
-        }
-      }
-      this.personucc.UpdateA001730(personId, "00900");
+			}
 
-      if ((this.idFile != null) && (!"".equals(this.idFile))) {
-        String base = super.getRealPath("/");
-        String photoFile = base + this.idFile;
-        if (FileUtil.fileExists(photoFile)) {
-          this.personucc.setPersonIDPhoto(personId, photoFile);
-        }
-      }
-      String[] id = new String[1];
-      id[0] = personId;
-      SysCache.setMap(id, 2, 6);
+			OrgEnterBO oo = this.personucc.getOrgEnterBO(user.getOrgId());
+			if ((oo != null) && (oo.getWageItems() != null)) {
+				String[] pids = new String[1];
+				pids[0] = personId;
+				String[] items = oo.getWageItems().split(",");
+				String itemString = "";
+				ListMap listmap = new ListMap();
+				for (int j = 0; j < items.length; j++) {
+					if (super.getRequestParameter(items[j]) != null) {
+						if ("".equals(itemString)) {
+							itemString = items[j];
+						} else {
+							itemString = itemString + "," + items[j];
+						}
+						listmap.put(personId + "|" + items[j],
+								super.getRequestParameter(items[j]));
+					}
+				}
+				if (!"".equals(itemString)) {
+					this.wagesetpersonucc.updateBaseInfo(pids,
+							itemString.split(","), listmap);
+				}
+			}
+			
+			if ((this.idFile != null) && (!"".equals(this.idFile))) {
+				String base = super.getRealPath("/");
+				String photoFile = base + this.idFile;
+				if (FileUtil.fileExists(photoFile)) {
+					this.personucc.setPersonIDPhoto(personId, photoFile);
+				}
+			}
 
-      this.photoFile = null;
-      this.idFile = null;
-      showMessageDetail("增加用户成功!");
-      cancelPerson();
-      return "success";
-    }
-    catch (Exception e) {
-      e.printStackTrace();
-      showMessageDetail("增加失败:" + e.getMessage());
-    }
-    return null;
-  }
-
-  public String cancelPerson() {
-    try {
-      this.personvo = new PersonVO();
-      this.personchangevo = new PersonChangeVO();
-      getHttpSession().removeAttribute("A001780");
-    } catch (Exception e) {
-      e.printStackTrace();
-      this.msg.setMainMsg(e, getClass());
-    }
-    return "";
-  }
-
-  public ICollegeUCC getCollegeucc() {
-    return this.collegeucc;
-  }
-  public void setCollegeucc(ICollegeUCC collegeucc) {
-    this.collegeucc = collegeucc;
-  }
-
-  public IEmpAuditAddUCC getAuditucc() {
-    return this.auditucc;
-  }
-  public void setAuditucc(IEmpAuditAddUCC auditucc) {
-    this.auditucc = auditucc;
-  }
+			//增加工资变动记录
+			importData(personId);
+			ActivePageAPI api = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
+			String sql=null;
+			if(!"014511".equals(currStatus) && !"014512".equals(currStatus)){
+				sql = "delete from emp_probation where person_id='"+personId+"'";
+				api.executeSql(sql);
+			}
+			
+			//设置见习到期日期
+			if("014512".equals(currStatus)){
+				sql = "select normail_type from org_probation where orguid='"+super.getUserInfo().getOrgId()+"'";
+				String jianxi = api.queryForString(sql);
+				if(jianxi==null || "".equals(jianxi)){
+					jianxi = Constants.DEFAULT_PROBATION;
+				}
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	            Calendar cd = new GregorianCalendar();
+	            cd.setTime(sdf.parse(this.personvo.getUnitTime()));
+	            cd.add(2, Integer.parseInt(jianxi));
+	            String planDate =sdf.format(cd.getTime());
+				sql = "update emp_probation set status='5',plan_passdate='"+planDate+"' where person_id='"+personId+"'";
+				api.executeSql(sql);
+			}
+			List keys=new ArrayList();
+	        Iterator set = dataMap.keySet().iterator();
+	        while(set.hasNext()){
+	        	String k=set.next().toString();
+	        	if(k.indexOf("A001")!=-1){
+	        		InfoItemBO bo= SysCacheTool.findInfoItem("A001", k);
+	        		if(bo!=null && "1".equals(bo.getItemStatus())){
+	        			keys.add(k);        			
+	        		}
+	        	}
+	        }
+	        sql="update a001 set ";
+	        for(int i=0;i<keys.size();i++){
+	        	sql+=keys.get(i)+"="+"case when "+keys.get(i)+" is null then '"+((String[])dataMap.get(keys.get(i)))[0]+"' else "+keys.get(i)+" end ";
+	        	if(i+1!=keys.size()){
+	        		sql+=",";
+	        	}
+	        }
+	        
+	        sql+=" where id='"+personId+"'";
+	        api.executeSql(sql);
+	        
+			showMessageDetail("增加人员成功!");
+			return "edit";
+		} catch (Exception e) {
+			e.printStackTrace();
+			getHttpSession().removeAttribute("images");
+			showMessageDetail("增加失败:" + e.getMessage());
+			super.getServletRequest().setAttribute("type", this.type);
+		}
+		return null;
+	}
+  
 }

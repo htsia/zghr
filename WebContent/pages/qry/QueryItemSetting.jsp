@@ -35,10 +35,11 @@ function fPopUpSet(codeField, nameField,setType) {
     }
 }
 function forSave() {
-    rt = window.prompt("请输入查询名称", document.all("qryName").value);
-    if (rt == "" || rt == null)
-        return false;
-    document.all("qryName").value = rt;
+	var qryName=document.getElementById("qryName").value;
+	if(qryName==''){
+		alert("请输入查询名称");
+		return false;
+	}
     return toSubmit();
 }
 function forQuery(){
@@ -321,6 +322,7 @@ function initShowItem(flag, itemId, itemName) {
 
     <tr valign="top">
         <td colspan="5" align="right">
+        	方案名称：<input id="qryName" name="qryName" value="<%=qryName%>" class="input" style="width: 200px;"/>
             <span style="display:<%=saveHidden%>">
             <input type="button" name="rest2" value="&nbsp;取消&nbsp;" class="button01" onclick="forBack();">
             </span>

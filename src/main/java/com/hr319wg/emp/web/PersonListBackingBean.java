@@ -26,6 +26,7 @@ import com.hr319wg.emp.pojo.bo.EmpReduceBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.pojo.vo.PersonChangeVO;
 import com.hr319wg.emp.ucc.IPersonUCC;
+import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.org.ucc.IOrgUCC;
 import com.hr319wg.qry.pojo.vo.QueryVO;
 import com.hr319wg.qry.ucc.IQueryUCC;
@@ -1404,7 +1405,7 @@ public class PersonListBackingBean extends BaseBackingBean
           else {
             sql = this.personucc.queryPersonList(table, this.name, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry);
           }
-
+          
           getHttpSession().setAttribute("activeSql", sql);
           getHttpSession().setAttribute("pageNum", String.valueOf("1"));
           getHttpSession().setAttribute("rowNum", String.valueOf(rowNum));
@@ -1576,6 +1577,7 @@ public class PersonListBackingBean extends BaseBackingBean
         String where = " A001.ID in (select PERSON_ID from EMP_TEAM_PERSON where TEAM_ID='" + this.superId + "')";
         sql = this.personucc.queryPersonList(table, this.name, this.personType, null, 1, rowNum, "00900", null, this.defaultQry, where);
       }
+      
       getHttpSession().setAttribute("activeSql", sql);
       getHttpSession().setAttribute("pageNum", String.valueOf("1"));
       getHttpSession().setAttribute("rowNum", String.valueOf(rowNum));

@@ -8,19 +8,16 @@ function showProcessBar() {
 function forQuery(obj){
     flag = toSubmit(obj);
     if(flag)
-        showProcessBar()
+        showProcessBar();
     return flag;
 }
 function forSave() {
-	flag = toSubmit();
-	if(flag){
-    rt = window.prompt("请输入查询名称", document.all('qryName').value);
-    if (rt == "" || rt == null)
-        return false;
-    document.all("qryName").value = rt;
-    //验证输入
+	var qryName=document.getElementById("qryName").value;
+	if(qryName==''){
+		alert("请输入查询名称");
+		return false;
 	}
-    return flag;
+    return toSubmit();
 }
 //提交时js的处理
 function toSubmit(src) {
@@ -169,37 +166,43 @@ function rebuildGroup() {
         drawGroup(conditionId);
     }
 }
-
-
+var src1=null;
 function groupChange(src) {
     if (src.spanType == 'logic') {
+    	src1=null;
+  	    $("#setCond").hide();
         if (src.innerText == '与')
             src.innerText = '或';
         else
             src.innerText = '与';
     } else {
-        tmp = prompt("请输入括号", src.innerText)
-        if (tmp == null)
-            tmp = "";
-        //过滤全角括号
-        while (tmp != tmp.replace("（", "(")) {
-            tmp = tmp.replace("（", "(");
-        }
-        while (tmp != tmp.replace("）", ")")) {
-            tmp = tmp.replace("）", ")");
-        }
-        if (src.spanType == "left_bracket") {
-            while (tmp != tmp.replace(")", "")) {
-                tmp = " " + tmp.replace(")", "");
-            }
-        }
-        if (src.spanType == "right_bracket") {
-            while (tmp != tmp.replace("(", "")) {
-                tmp = tmp.replace("(", "");
-            }
-        }
-        src.innerText = tmp;
+    	src1=src;
+    	$("#setCond").show();
+    	$("#condValue").val(src.innerText);
     }
+}
+function setCond(){
+	  //过滤全角括号
+	  var tmp=$("#condValue").val();
+	  while (tmp != tmp.replace("（", "(")) {
+	      tmp = tmp.replace("（", "(");
+	  }
+	  while (tmp != tmp.replace("）", ")")) {
+	      tmp = tmp.replace("）", ")");
+	  }
+	  if (src1.spanType == "left_bracket") {
+	      while (tmp != tmp.replace(")", "")) {
+	          tmp = " " + tmp.replace(")", "");
+	      }
+	  }
+	  if (src1.spanType == "right_bracket") {
+	      while (tmp != tmp.replace("(", "")) {
+	          tmp = tmp.replace("(", "");
+	      }
+	  }
+	  src1.innerText = tmp;
+	  src1=null;
+	  $("#setCond").hide();
 }
 function spanOver(src) {
     oldBgColor = src.style.backgroundColor;
@@ -331,9 +334,9 @@ function insertConditionRow(itemId, itemName, itemType, codeSetId, operator, hid
     c5 = newRow.insertCell();
     c5.id = "ACTION_" + conditionId;
     c5.className = tdClass;
-    c5.innerHTML = "<a onclick='deleteCondition(" + newRow.id + ")'>删除</a>&nbsp;&nbsp;"
-    c5.innerHTML += "<a onclick='moveUp(" + newRow.id + ")'>上移</a>&nbsp;&nbsp;"
-    c5.innerHTML += "<a onclick='moveDown(" + newRow.id + ")'>下移</a>&nbsp;&nbsp;"
+    c5.innerHTML = "<a href='javascript:void(0);' style='cursor:pointer;' onclick='deleteCondition(" + newRow.id + ")'>删除</a>&nbsp;&nbsp;"
+    c5.innerHTML += "<a href='javascript:void(0);' onclick='moveUp(" + newRow.id + ")'>上移</a>&nbsp;&nbsp;"
+    c5.innerHTML += "<a href='javascript:void(0);' onclick='moveDown(" + newRow.id + ")'>下移</a>&nbsp;&nbsp;"
 
     drawGroup(conditionId)
 
@@ -346,21 +349,21 @@ function insertConditionRow(itemId, itemName, itemType, codeSetId, operator, hid
 
 function drawGroup(conditionId) {
     if (groupField.innerHTML != "") {
-        groupField.innerHTML += "<span	 onclick='groupChange(this);' " +
+        groupField.innerHTML += "<span onclick='groupChange(this);' " +
                                 "onmouseover='spanOver(this)' " +
-                                "onmouseout='spanOut(this)' style='width:10px;' id='groupSpan' spanType='logic'>与</span> "
+                                "onmouseout='spanOut(this)' style='width:10px;cursor:pointer;' id='groupSpan' spanType='logic'>与</span> "
         //与或 在括号之前
     }
 
-    groupField.innerHTML += "<span	 onclick='groupChange(this);' " +
+    groupField.innerHTML += "<span onclick='groupChange(this);' " +
                             "onmouseover='spanOver(this)' " +
-                            "onmouseout='spanOut(this)' style='width:10px;' id='groupSpan' spanType='left_bracket' >&nbsp;</span> " //前括号span
+                            "onmouseout='spanOut(this)' style='width:10px;cursor:pointer;' id='groupSpan' spanType='left_bracket' >&nbsp;</span> " //前括号span
 
     groupField.innerHTML += "<span style='width:20px;'>" + conditionId + "&nbsp;</span>";
 
-    groupField.innerHTML += "<span	 onclick='groupChange(this);' " +
+    groupField.innerHTML += "<span onclick='groupChange(this);' " +
                             "onmouseover='spanOver(this)' " +
-                            "onmouseout='spanOut(this)' style='width:10px;' id='groupSpan' spanType='right_bracket'>&nbsp;</span> " //后括号span
+                            "onmouseout='spanOut(this)' style='width:10px;cursor:pointer;' id='groupSpan' spanType='right_bracket'>&nbsp;</span> " //后括号span
 }
 //取条件的编号 即A1 A2
 function getConditionId() {

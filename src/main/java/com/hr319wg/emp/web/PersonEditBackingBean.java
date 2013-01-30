@@ -16,6 +16,7 @@ import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.SysContext;
+import com.hr319wg.custom.util.CommonProcEmp;
 import com.hr319wg.emp.pojo.vo.IntroLetter;
 import com.hr319wg.emp.ucc.IEmpChangeUCC;
 import com.hr319wg.emp.ucc.IPersonUCC;
@@ -293,10 +294,15 @@ public class PersonEditBackingBean extends BaseBackingBean {
 					return null;
 				}
 			}
+			
 			this.orgucc.delPageInfo(table, delId, user);
+			
+			CommonProcEmp proc=(CommonProcEmp)SysContext.getBean("common_proemp");
+			proc.deleteEmp(setId, fk, pk);
 
 			SysCache.setPerson(fk, 3);
 			table = this.orgucc.queryPageInfo(setId, pk, fk, user);
+			
 			getHttpSession().setAttribute(tableId, table);
 			showMessageDetail("删除成功!");
 		} catch (Exception e) {
@@ -335,15 +341,19 @@ public class PersonEditBackingBean extends BaseBackingBean {
 					getHttpSession().removeAttribute(itemId);
 				}
 			}
+			String subID=null;
 			if (imageMap.isEmpty())
-				this.orgucc.addPageInfo(table, ee, user);
+				subID=this.orgucc.addPageInfo(table, ee, user);
 			else {
 				this.orgucc.addPageInfo(table, ee, user, imageMap);
 			}
 			
-			if("A010".equals(setId)){
-				setA010ZhiCheng(fk, pk, "0");
-			}
+//			if("A010".equals(setId)){
+//				setA010ZhiCheng(fk, pk, "0");
+//			}
+			
+			CommonProcEmp proc=(CommonProcEmp)SysContext.getBean("common_proemp");
+			proc.addEmp(setId, fk, subID);
 			
 			table = this.orgucc.queryPageInfo(setId, "", fk, user);
 			getHttpSession().setAttribute(tableId, table);
@@ -351,6 +361,7 @@ public class PersonEditBackingBean extends BaseBackingBean {
 			if ((fk != null) && (!"".equals(fk))) {
 				SysCache.setPerson(fk, 3);
 			}
+			
 			showMessageDetail("保存成功!");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -393,10 +404,13 @@ public class PersonEditBackingBean extends BaseBackingBean {
 			else {
 				this.orgucc.updatePageInfo(table, ee, user, imageMap);
 			}
-			if("A010".equals(setId)){
-				setA010ZhiCheng(fk, pk, "1");
-			}
-
+//			if("A010".equals(setId)){
+//				setA010ZhiCheng(fk, pk, "1");
+//			}
+			
+			CommonProcEmp proc=(CommonProcEmp)SysContext.getBean("common_proemp");
+			proc.addEmp(setId, fk, pk);
+			
 			table = this.orgucc.queryPageInfo(setId, "", fk, user);
 			getHttpSession().setAttribute(tableId, table);
 

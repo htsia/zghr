@@ -20,12 +20,31 @@
     	}
     	return true;
     }
+	function forCalc(){
+		var item = document.getElementsByName("selectItem");
+        var selId="";
+        if(item.length>0){
+            for(var i=0;i<item.length;i++){
+                if(item[i].checked)
+                {
+                	selId+=item[i].value+",";    
+                }
+            }
+        }
+        if(selId==""){
+        	alert("请选择人员");
+        	return false;
+        }
+        document.getElementById("form1:selectedUserIDs").value=","+selId;
+        return true;
+	}
 </script>
 <x:saveState value="#{ins_dataBB}" />
 <h:inputHidden value="#{ins_dataBB.dataInit}"/>
 <h:form id="form1">
 	<h:inputHidden id="personType" value="#{ins_dataBB.personType}"/>
     <h:inputHidden id="personTypeValue" value="#{ins_dataBB.personTypeValue}"/>
+    <h:inputHidden id="selectedUserIDs" value="#{ins_dataBB.selectedUserIDs}"/>
 	<f:verbatim>
     <table height=100% width=100% align="center">
 	<td height="1">
@@ -33,7 +52,8 @@
 	<h:panelGrid width="98%" columns="1" align="center">
 		<h:panelGrid columns="1" align="left">
 			<h:panelGroup>
-				<h:commandButton value="计算" styleClass="button01" action="#{ins_dataBB.calc}"/>
+				<h:commandButton value="全部计算" styleClass="button01" action="#{ins_dataBB.calc}" rendered="#{ins_dataBB.operStatus==0}"/>
+				<h:commandButton value="选择计算" styleClass="button01" onclick="return forCalc();" action="#{ins_dataBB.calc}" rendered="#{ins_dataBB.operStatus==0}"/>
 				<h:outputText value=" 姓名/编号/简拼"/>
 				<h:inputText value="#{ins_dataBB.nameStr}" styleClass="input" size="10"/>
 				<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{ins_dataBB.doQuery}"/>
@@ -67,6 +87,16 @@
 			headerClass="td_top" rowIndexVar="index" var="item" id="dateList"
 			styleClass="table03" border="1" width="98%"
 			columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center">
+			<h:column rendered="#{ins_dataBB.operStatus==0}">
+		        <f:facet name="header">
+		            <f:verbatim escape="false">
+		                <input type="checkbox" name="all"
+		                       onclick="selectAll(document.forms(0).all,document.forms(0).selectItem)"/>
+		            </f:verbatim>
+		        </f:facet>
+		        <f:verbatim escape="false">
+		            <div align="center"> <input type="checkbox" name="selectItem" value="</f:verbatim><h:outputText value="#{item.userID}"/><f:verbatim escape="false">"/></div></f:verbatim>
+		    </h:column>
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="序号" />

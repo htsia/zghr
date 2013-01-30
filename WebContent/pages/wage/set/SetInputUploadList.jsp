@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.sys.cache.SysCacheTool" %>
 <%@ page import="com.hr319wg.emp.pojo.bo.PersonBO" %>
@@ -12,9 +13,9 @@
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
     String []dealItem = (String[]) session.getAttribute("field");
-    Map hash = (Map) session.getAttribute("fileValue");
+    List<Map> list = (List) session.getAttribute("fileValue");
 %>
-   
+
 <x:saveState value="#{wage_setInputBB}"/>
 <h:form id="form1">
     <c:verbatim escape="false"><br></c:verbatim>
@@ -27,16 +28,16 @@
     </h:panelGrid>
     <c:verbatim><br></c:verbatim>
     <h:panelGrid columns="1" align="center" width="95%" >
-        <h:outputLink  target="_blank" rendered="#{wage_setInputBB.showError}" style="color:red" value="#{wage_setInputBB.errorFileUrl}">
+        <h:outputLink target="_blank" rendered="#{wage_setInputBB.showError}" style="color:red" value="#{wage_setInputBB.errorFileUrl}">
             <h:outputText value="导入文件中发现有数据错误，请查看后再保存！"/>
         </h:outputLink>
     </h:panelGrid>
 
     <c:verbatim>
         <%
-            if (hash != null && hash.size() > 0) {
+            if (list != null && list.size() > 0) {
                 int col = dealItem.length;
-                out.println("<table align=\"center\" width=\"90%\"><tr><td>共有"+hash.size()+"条记录</td></tr></table>");
+                out.println("<table align=\"center\" width=\"90%\"><tr><td>共有"+list.size()+"条记录</td></tr></table>");
         %>
         <table width="95%" border="0" align="center" class="table03" id="dataList">
             <tr align="center" class="td_top">
@@ -45,7 +46,7 @@
             <tr >
                 <td class="td_top">员工编号</td>
                 <td class="td_top">员工姓名</td>
-                <td class="td_top">所在机构</td>
+                <td class="td_top">所在部门</td>
                 <%
                     for (int c = 0; c < col; c++) {
                 %>
@@ -55,21 +56,17 @@
                 %>
             </tr>
             <%
-                Iterator iterator = hash.values().iterator();
-                Iterator key = hash.keySet().iterator();
-
-                while (iterator.hasNext() && key.hasNext()) {
-                    PersonBO p = SysCacheTool.findPersonById(((String) key.next()).split("\\|")[0]);
+                for(Map m : list) {
+                    PersonBO p = SysCacheTool.findPersonById(m.get("id").toString());
             %>
             <tr>
                 <td class="td_middle"><%=p.getPersonCode()%></td>
                 <td class="td_middle"><%=p.getName()%></td>
-                <td class="td_middle"><%=CommonFuns.filterNull(CodeUtil.interpertCode("OU",p.getOrgId()))%></td>
+                <td class="td_middle"><%=CommonFuns.filterNull(CodeUtil.interpertCode("OU",p.getDeptId()))%></td>
                 <%
-                    String[] data = (String[]) iterator.next();
                     for (int c = 0; c < col; c++) {
                 %>
-                <td class="td_middle"><%=CodeUtil.interpertCode("", data[c])%></td>
+                <td class="td_middle"><%=m.get(dealItem[c])%></td>
                 <%
                     }
                 %>

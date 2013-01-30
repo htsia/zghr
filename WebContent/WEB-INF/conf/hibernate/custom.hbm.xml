@@ -253,6 +253,7 @@
         <property name="sDeptID" column="A001704"/>
         <property name="secDeptID" column="A001239"/>
         <property name="deptSort" column="A001738"/>
+        <property name="selfSort" column="A001746"/>
         <property name="cardNO" column="A001077"/>
         <property name="bankNO" column="A001242"/>
         <property name="mainDeptSort" column="A001728"/>

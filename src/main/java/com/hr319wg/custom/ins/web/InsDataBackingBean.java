@@ -42,6 +42,7 @@ public class InsDataBackingBean extends BaseBackingBean{
 	private String operSetID;
 	private String operWageDate;
 	private String operStatus;
+	private String selectedUserIDs;
 	private IInsDataService insDataService;
 	private IPersonUCC personucc;
 	private List<InsCalcSetBO> setList;
@@ -49,6 +50,14 @@ public class InsDataBackingBean extends BaseBackingBean{
 	private InsCalcSetBO item;
 	private InsMonthPayBO monthPay;
 	
+	public String getSelectedUserIDs() {
+		return selectedUserIDs;
+	}
+
+	public void setSelectedUserIDs(String selectedUserIDs) {
+		this.selectedUserIDs = selectedUserIDs;
+	}
+
 	public IPersonUCC getPersonucc() {
 		return personucc;
 	}
@@ -230,7 +239,11 @@ public class InsDataBackingBean extends BaseBackingBean{
 	//保存项目
 	public String saveSet(){
 		try {
-			this.insDataService.saveOrUpdateBO(this.item);
+			String result= this.insDataService.saveSet(this.item);
+			if(result!=null){
+				this.showMessageDetail(result);
+				return null;
+			}
 			return "success";
 		} catch (SysException e) {
 			e.printStackTrace();
@@ -241,9 +254,7 @@ public class InsDataBackingBean extends BaseBackingBean{
 	//归档
 	public void endCalc(){
 		try {
-			InsCalcSetBO bo =(InsCalcSetBO) this.insDataService.getBOByID(InsCalcSetBO.class, this.operSetID);
-			bo.setStatus("1");
-			this.insDataService.saveOrUpdateBO(bo);
+			this.insDataService.endSet(this.operSetID);
 			super.showMessageDetail("归档完成");
 		} catch (SysException e) {
 			super.showMessageDetail("归档失败");
@@ -324,7 +335,8 @@ public class InsDataBackingBean extends BaseBackingBean{
 	//计算缴费金额
 	public void calc(){
 		try {
-			this.insDataService.calc(this.operSetID, this.operWageDate, user.getOrgId());
+			this.insDataService.calc(this.operSetID, this.operWageDate, user.getOrgId(), this.selectedUserIDs);
+			this.selectedUserIDs=null;
 			super.showMessageDetail("计算完成");
 		} catch (SysException e) {
 			super.showMessageDetail("计算失败");

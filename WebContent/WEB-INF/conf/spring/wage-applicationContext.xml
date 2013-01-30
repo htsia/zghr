@@ -526,7 +526,7 @@
 
     </bean>
 
-    <bean id="wage_ComputeService" class="com.hr319wg.wage.service.WageComputeService">
+    <bean id="wage_ComputeService" class="com.hr319wg.custom.extend.service.WageComputeServiceByExtend">
         <property name="wageapi">
             <ref bean="wage_api"/>
         </property>

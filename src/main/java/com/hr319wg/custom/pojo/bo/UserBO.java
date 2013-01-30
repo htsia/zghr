@@ -16,6 +16,7 @@ public class UserBO {
 	private String ssDeptID;
 	private String sDeptID;
 	private String deptSort;
+	private String selfSort;
 	private String comeDate;
 	private String xueli;
 	private String xuewei;
@@ -30,6 +31,12 @@ public class UserBO {
 	private String OAName;
 	private boolean hasCash;
 	
+	public String getSelfSort() {
+		return selfSort;
+	}
+	public void setSelfSort(String selfSort) {
+		this.selfSort = selfSort;
+	}
 	public String getOAName() {
 		return OAName;
 	}

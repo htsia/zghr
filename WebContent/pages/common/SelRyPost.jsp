@@ -17,7 +17,7 @@
     if (bo != null) {
         name = bo.getName();
     }
-	String orgId=null;
+	String orgId=request.getParameter("orgId");
 	if(fk!=null && !"".equals(fk)){
 	    PersonBO p = SysCacheTool.findPersonById(fk);
 	    orgId = p.getDeptId();

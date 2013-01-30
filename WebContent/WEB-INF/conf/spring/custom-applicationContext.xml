@@ -6,7 +6,10 @@
     	<property name="jdbcTemplate" ref="jdbcTemplate" />
     	<property name="activeapi" ref="sys_activePageApi" />
     </bean>
-    <bean id="busiProcess" class="com.hr319wg.emp.web.IBusiProcessImpl"/>
+    
+    <bean id="common_proemp" class="com.hr319wg.custom.util.CommonProcEmp">
+    	<property name="activeapi" ref="sys_activePageApi" />
+    </bean>
     
 <!--     每天晚11点定时计算年龄校龄 -->
     <bean name="myjob" class="org.springframework.scheduling.quartz.JobDetailBean">
