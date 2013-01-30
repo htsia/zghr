@@ -75,8 +75,9 @@
                 OrgBO[] os = (OrgBO[]) api.getOptTreeRoot("0", (User) session.getAttribute(Constants.USER_INFO));
                 if (os != null && os.length > 0) {
                     list = new ArrayList();
-                    for (int i = 0; i < os.length; i++)
+                    for (int i = 0; i < os.length; i++){
                         list.add(SysCacheTool.findOrgById(os[i].getOrgId()));
+                    }
                 }
             } else {
                 list = SysCacheTool.querySubObject(SysCache.OBJ_ORG, null, superId);
@@ -96,30 +97,30 @@
         list = SysCacheTool.querySubObject(SysCache.OBJ_ORG, null, superId);
     }
 
-    if ("-1".equals(superId)) {
-        if (list != null && list.size() > 1) {
-            TreeMap tree = new TreeMap();
-            for (int i = 0; i < list.size(); i++) {
-                OrgBO org = (OrgBO) list.get(i);
-                tree.put(org.getOrgId(), org);
-            }
-            Iterator it = tree.values().iterator();
-            if (it.hasNext()) {
-                OrgBO prevOrg = (OrgBO) it.next();
-                while (it.hasNext()) {
-                    OrgBO posOrg = (OrgBO) it.next();
-                    if (posOrg.getOrgId().startsWith(prevOrg.getOrgId())) {
-                        it.remove();
-                    } else {
-                        prevOrg = posOrg;
-                    }
-                }
-            }
-            if (tree.size() != 0) {
-                list = new ArrayList(tree.values());
-            }
-        }
-    }
+//     if ("-1".equals(superId)) {
+//         if (list != null && list.size() > 1) {
+//             TreeMap tree = new TreeMap();
+//             for (int i = 0; i < list.size(); i++) {
+//                 OrgBO org = (OrgBO) list.get(i);
+//                 tree.put(org.getOrgId(), org);
+//             }
+//             Iterator it = tree.values().iterator();
+//             if (it.hasNext()) {
+//                 OrgBO prevOrg = (OrgBO) it.next();
+//                 while (it.hasNext()) {
+//                     OrgBO posOrg = (OrgBO) it.next();
+//                     if (posOrg.getOrgId().startsWith(prevOrg.getOrgId())) {
+//                         it.remove();
+//                     } else {
+//                         prevOrg = posOrg;
+//                     }
+//                 }
+//             }
+//             if (tree.size() != 0) {
+//                 list = new ArrayList(tree.values());
+//             }
+//         }
+//     }
     String childnum = null;
     List orgList = new ArrayList();
     // ·µ»Ø½á¹û
@@ -213,5 +214,6 @@
             }
         }
     }
+//     System.out.println(orgList);
     out.print(JSONArray.fromObject(orgList));
 %>
