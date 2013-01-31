@@ -127,6 +127,7 @@
         <property name="xysEvaObjService" ref="xysEvaObjService"/>
         <property name="activePageService" ref="sys_activePageService"/>
         <property name="evaGradeService" ref="eva_gradeservice"/>
+        <property name="xys360Service" ref="xys360Service"/>
     </bean>
     
     <bean id="xysSpreadMgrDao" class="com.hr319wg.xys.eva.dao.XysSpreadMgrDAO">

@@ -132,7 +132,7 @@
             <h:commandButton value="结果发布" styleClass="button01" action="#{xys_evaPlanPublicBB.publicResult}" rendered="#{list.status=='4'}" onclick="showProcessBar();">
             	<x:updateActionListener value="#{list.planId}" property="#{xys_evaPlanPublicBB.planId}"/>
             </h:commandButton>
-            <h:commandButton value="结束计划" styleClass="button01" action="#{xys_evaPlanPublicBB.finishPlan}" rendered="#{list.status=='5'}">
+            <h:commandButton value="结束计划" styleClass="button01" onclick="return confirm('确定结束计划吗');" action="#{xys_evaPlanPublicBB.finishPlan}" rendered="#{list.status=='5'}">
             	<x:updateActionListener value="#{list.planId}" property="#{xys_evaPlanPublicBB.planId}"/>
             </h:commandButton>
             </h:panelGrid>

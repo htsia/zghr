@@ -357,6 +357,7 @@ public class XysEvaPlanCaclBackBean extends BaseBackingBean {
 		queryPerson360();
 		return "";
 	}
+	
 	public void queryPerson360(){
 		try{
 			if(mypage.getCurrentPage()==0){
