@@ -45,6 +45,7 @@
 			<div><a target="main" href="main.jsp?username=<%=manager%>&url=/xys/eva/SelfPersonKpiSetAudit.jsf">个人KPI审批</a></div>
 			<div><a target="main" href="main.jsp?username=<%=manager%>&url=/xys/eva/PersonKpiAudit.jsf">下属KPI评分</a></div>
 			<div><a target="main" href="main.jsp?username=<%=manager%>&url=/xys/eva/Person360Audit.jsf">同事能力态度评分</a></div>
+			<div><a target="main" href="main.jsp?username=<%=manager%>&url=/pages/custom/subSetQuery.jsp?setID=A746">同事能力态度评分</a></div>
 		</td>
 		<td>
 			<iframe name="main" height="900" width="800"></iframe>

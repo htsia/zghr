@@ -42,7 +42,9 @@
                 ]>
 
 <tiles-definitions>
-
+	<definition name="/employee/info/PersonSubSetQueryList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/employee/info/personSubSetQueryList.jsp"/>
+    </definition>
 	<definition name="/common/SelRyPost.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/common/SelRyPost.jsp"/>
     </definition>
