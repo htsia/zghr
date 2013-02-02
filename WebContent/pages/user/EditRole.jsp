@@ -102,9 +102,9 @@
                 <f:verbatim>
                     <input id="chkBoxSysOper" type="checkbox" name="chkSysOper">IT管理员</input>
                     <input type="checkbox" name="chkBusinessUser">HR专业人员</input>
-<!--                     <input type="checkbox" name="chkUnitLeader">机构领导</input> -->
-<!--                     <input type="checkbox" name="chkDeptLeader">部门领导</input> -->
-<!--                     <input type="checkbox" name="chkHrLeader">HR领导</input> -->
+                    <input type="checkbox" name="chkUnitLeader">机构领导</input>
+                    <input type="checkbox" name="chkDeptLeader">部门领导</input>
+                    <input type="checkbox" name="chkHrLeader">HR领导</input>
                 </f:verbatim>
             </h:panelGroup>
 
