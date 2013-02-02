@@ -36,12 +36,13 @@
                 } else
                     str = form1.chk.value.replace("#","~");
                 	window.showModalDialog("/insurace/BaseRateInputEdit.jsf?act=init&addRecord=1&PerStr="+str, null, "dialogWidth:"+screen.width*0.85+"px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
-                	return true;
+                	window.location.reload();
+                	return false;
             } else {
                 alert("«Î—°‘Ò»À‘±");
-                return false;
+               	return false;
             }
-            return true;
+           	return false;
         }
         function forExport() {
             window.open('/pages/common/ExportToExcel.jsp?sessionKey=<%=Constants.OBJECT%>');
