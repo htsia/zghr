@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.ins.dao.InsDataDAO;
+import com.hr319wg.custom.ins.pojo.bo.InsCalcSetBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
@@ -50,7 +51,23 @@ public class InsDataServiceImpl implements IInsDataService {
 	public void saveOrUpdateBO(Object bo) throws SysException {
 		this.insDataDAO.saveOrUpdateBo(bo);
 	}
+	
+	public void updateMonthPayStatus(String itemID) throws SysException {
+		String sql="update a243 set status=case when status=1 then null else 1 end where subid='"+itemID+"'";
+		this.jdbcTemplate.execute(sql);
+	}
 
+	public void batchUpdateMonthPay(String setID, String itemID, String value)
+			throws SysException {
+		String sql="update a243 set "+itemID+"='"+value+"' where a243211='"+setID+"'";
+		this.jdbcTemplate.execute(sql);
+	}
+	
+	public String getLockUserIDs(String setID) throws SysException {
+		String sql="select wm_concat(id) from a243 where status=1 and a243211='"+setID+"'";
+		return this.activeapi.queryForString(sql);
+	}
+	
 	public List getAllInsCalcSetBO(PageVO pageVO, String createOrgID, String createUserID, String wageDate) throws SysException{
 		return this.insDataDAO.getAllInsCalcSetBO(pageVO, createOrgID, createUserID, wageDate);
 	}
@@ -59,22 +76,56 @@ public class InsDataServiceImpl implements IInsDataService {
 		this.insDataDAO.deleteBo(c, ID);
 	}
 
+	public String saveSet(InsCalcSetBO bo) throws SysException {
+		if(bo.getID()==null){//新建
+			String sql="select count(*) from ins_calc_set where createuserid='"+bo.getCreateUserID()+"' and status<>1";
+			int c=this.jdbcTemplate.queryForInt(sql);
+			if(c>0){
+				return "上个计算未归档";
+			}
+			sql="select count(*) from ins_calc_set where createuserid='"+bo.getCreateUserID()+"' and wagedate='"+bo.getWageDate()+"'";
+			c=this.jdbcTemplate.queryForInt(sql);
+			if(c>0){
+				return "已存在适用月份为"+bo.getWageDate()+"的计算";
+			}
+		}else{
+			String sql="select count(*) from ins_calc_set where createuserid='"+bo.getCreateUserID()+"' and wagedate='"+bo.getWageDate()+"' and id<>'"+bo.getID()+"'";
+			int c=this.jdbcTemplate.queryForInt(sql);
+			if(c>0){
+				return "已存在适用月份为"+bo.getWageDate()+"的计算";
+			}
+			sql="update a243 set a243200='"+bo.getWageDate()+"' where a243211='"+bo.getID()+"'";
+			this.jdbcTemplate.execute(sql);
+		}
+		this.insDataDAO.saveOrUpdateBo(bo);
+		return null;
+	}
+	
 	public void deleteSet(String ID, String wageDate)
 			throws SysException {
-		String sql = "delete from ins_calc_set where id ='"+ID+"'";
+		String sql = "delete from a243 where A243211 ='"+ID+"'";
 		this.jdbcTemplate.execute(sql);
-		sql = "delete from a243 where a243000='00901' and a243200='"+wageDate+"' and A243211 ='"+ID+"'";
+		sql = "delete from ins_calc_set where id ='"+ID+"'";
 		this.jdbcTemplate.execute(sql);
 	}
 
+	public void endSet(String ID) throws SysException{
+		String sql="update a243 set a243000='00900' where id in (select id from a243 where a243211='"+ID+"')";
+		this.jdbcTemplate.execute(sql);
+		sql="update a243 set a243000='00901' where a243211='"+ID+"'";
+		this.jdbcTemplate.execute(sql);
+		sql="update ins_calc_set set status=1 where id='"+ID+"'";
+		this.jdbcTemplate.execute(sql);
+	}
+	
 	public List getAllInsMonthPayBO(PageVO pageVO, String setID, String wageDate, String orgID, String personType, String nameStr)
 			throws SysException {
 		return this.insDataDAO.getAllInsMonthPayBO(pageVO, setID, wageDate, orgID, personType, nameStr);
 	}
 
-	public void calc(String setID, String wageDate, String orgID)
+	public void calc(String setID, String wageDate, String orgID, String selectedUserIDs)
 			throws SysException {
-		this.jdbcTemplate.execute("BEGIN proc_calc_ins('"+setID+"','"+wageDate+"','"+orgID+"'); END;");
+		this.jdbcTemplate.execute("BEGIN proc_calc_ins('"+setID+"','"+wageDate+"','"+orgID+"','"+selectedUserIDs+"'); END;");
 	}
 
 	public void saveInsBaseData(String id, String tablename, String value,
@@ -161,5 +212,4 @@ public class InsDataServiceImpl implements IInsDataService {
 			}
 		}
 	}
-
 }

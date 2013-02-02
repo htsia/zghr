@@ -17,6 +17,7 @@ public class InsMonthPayBO {
     private String companyShengyu;
     private String companyGongjijin;
     private String calcSetID;
+    private String status;
     
     private String userName;
 	private String userCode;
@@ -27,6 +28,12 @@ public class InsMonthPayBO {
     private String insNO;
     private String selfPay;
 	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getPersonShiye() {
 		return personShiye;
 	}

@@ -20,6 +20,14 @@
     	}
     	return true;
     }
+	function forUpdate(){
+		var v=document.getElementById("form1:itemID").value;
+		if(v=='' || isNaN(v)){
+			alert("必须输入数字");
+			return false;
+		}
+		return confirm('确定批量更新吗');
+	}
 </script>
 <x:saveState value="#{ins_dataBB}" />
 <h:inputHidden value="#{ins_dataBB.dataInit}"/>
@@ -33,7 +41,19 @@
 	<h:panelGrid width="98%" columns="1" align="center">
 		<h:panelGrid columns="1" align="left">
 			<h:panelGroup>
-				<h:commandButton value="计算" styleClass="button01" action="#{ins_dataBB.calc}"/>
+				<h:panelGroup rendered="#{ins_dataBB.operStatus==0}">
+					<h:outputText value="包含锁定数据"/>
+					<h:selectBooleanCheckbox value="#{ins_dataBB.containLock}"/>
+					<h:outputText value="  "/>
+					<h:commandButton value="全部计算" styleClass="button01" action="#{ins_dataBB.calc}"/>
+					<h:outputText value="  批量操作："/>
+					<h:selectOneMenu value="#{ins_dataBB.bacthItemID}">
+						<f:selectItems value="#{ins_dataBB.insItems}"/>
+					</h:selectOneMenu>
+					<h:inputText id="itemID" value="#{ins_dataBB.bacthValue}" styleClass="input" size="4"/>                  
+					<h:commandButton value="批量更新" onclick="return forUpdate();" styleClass="button01" action="#{ins_dataBB.batchUpdateMonthPay}"/>
+				</h:panelGroup>
+
 				<h:outputText value=" 姓名/编号/简拼"/>
 				<h:inputText value="#{ins_dataBB.nameStr}" styleClass="input" size="10"/>
 				<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{ins_dataBB.doQuery}"/>
@@ -191,6 +211,12 @@
 				<f:facet name="header">
 					<h:outputText value="操作" />
 				</f:facet>
+				<h:commandButton styleClass="button01" value="锁定" onclick="return confirm('确定锁定吗?锁定后重新计算不会影响该条记录');" rendered="#{item.status!=1}" action="#{ins_dataBB.updateMonthPayStatus}">
+					<x:updateActionListener value="#{item.subID}" property="#{ins_dataBB.operItemID}"></x:updateActionListener>
+				</h:commandButton>
+				<h:commandButton styleClass="button01" value="解锁" rendered="#{item.status==1}" action="#{ins_dataBB.updateMonthPayStatus}">
+					<x:updateActionListener value="#{item.subID}" property="#{ins_dataBB.operItemID}"></x:updateActionListener>
+				</h:commandButton>
 				<h:commandButton styleClass="button01" onclick="return edit('#{item.subID}');" value="修改" />
 			</h:column>
 		</x:dataTable>
