@@ -143,7 +143,7 @@
                           }
                       %>
                       <%
-                          List<OperateBO> moduleList = CommonUtil.getAllModulesInSelf();
+                          List<OperateBO> moduleList = CommonUtil.getAllModulesInSelf(user.getUserId());
                       	  if(moduleId!=null){
                       		  for(OperateBO bo : moduleList){
                       			  String moduleID=bo.getModuleID();

@@ -274,9 +274,9 @@ public class CommonUtil {
 	}
 	
 	//获取所有在自助中的大模块
-	public static List<OperateBO> getAllModulesInSelf() throws SysException{
+	public static List<OperateBO> getAllModulesInSelf(String userID) throws SysException{
 		CommonDAO commonDAO = (CommonDAO)SysContext.getBean("commondao");
-		return commonDAO.getAllModulesInSelf();
+		return commonDAO.getAllModulesInSelf(userID);
 	}
 
 	//是否有审批
