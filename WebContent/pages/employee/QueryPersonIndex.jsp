@@ -22,7 +22,7 @@
 <h:form id="form1">
    <h:inputHidden value="#{qry_namelistBB.pageInit}"></h:inputHidden>
     <f:verbatim>
-     <table width=100% border=0 id="datatable" height=98%>
+     <table width=100% border=0 id="datatable" height=100%>
          <tr><td height=8>
 </f:verbatim>
              <h:panelGrid width="95%" columns="1" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -41,10 +41,10 @@
                                       action="#{qry_namelistBB.queryPersonList}"/>
                  </h:panelGroup>
              </h:panelGrid>
-  <f:verbatim>           
+  <f:verbatim>
          </td></tr>
-         <tr><td valign="top">
-                 <jsp:include page="/pages/employee/QueryPersonList.jsp"></jsp:include>
+         <tr><td valign="top" height="400"><div style='width:100%;height:100%;overflow:auto' id=datatable>
+                 <jsp:include page="/pages/employee/QueryPersonList.jsp"></jsp:include></div>
          </td></tr>
     </table>
     </f:verbatim>
