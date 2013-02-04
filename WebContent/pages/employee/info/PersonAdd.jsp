@@ -252,7 +252,7 @@ function selAddTime() {
     <td class=td_form02>
 </f:verbatim>
         <h:inputText styleClass="input" id="A001011"  size="21"  value="#{emp_personAddBB.personvo.birth}"
-                     readonly="true" alt="出生日期|1|d|50||"/>
+                      alt="出生日期|1|d|50||"/>
 <f:verbatim>
          <%if ("1".equals(Constants.AUTO_CACL_BIRTH)){%>
             从身份证号得到
@@ -267,7 +267,7 @@ function selAddTime() {
     <td class=td_form02>
 </f:verbatim>
         <h:inputText styleClass="input" id="A001011" value="#{emp_personAddBB.personvo.birth}"
-                     readonly="true" alt="出生日期|1|d|50||"/>
+                      alt="出生日期|1|d|50||"/>
 <f:verbatim>
          <%if ("1".equals(Constants.AUTO_CACL_BIRTH)){%>
             从身份证号得到
@@ -316,11 +316,8 @@ function selAddTime() {
     <td class=td_form02>
 </f:verbatim>
         <h:inputText styleClass="input" id="A001044" value="#{emp_personAddBB.personvo.unitTime}"
-                     readonly="true" alt="来公司时间|1|d6|50||"/>
+                      alt="来公司时间|1|d6|50||"/>
 <f:verbatim>
-        <script type="text/javascript">
-            document.all('form1:A001044').alt = "<%=unitTime.getItemName()%>|1|<%=InfoItemBO.getHtmlDataType(unitTime.getItemDataType())%>|50||";
-        </script>
         <input type="button" class="button_date" onclick="selUnitTime();"></td> -->
 <!--修改2结束-->
 
@@ -342,7 +339,7 @@ function selAddTime() {
     <td class=td_form02>
 </f:verbatim>
         <h:inputText styleClass="input" id="A001044" value="#{emp_personAddBB.personvo.unitTime}"
-                     readonly="true" alt="来公司时间|1|d6|50||"/>
+                      alt="来公司时间|1|d6|50||"/>
 <f:verbatim>
         <script type="text/javascript">
             document.all('form1:A001044').alt = "<%=unitTime.getItemName()%>|1|<%=InfoItemBO.getHtmlDataType(unitTime.getItemDataType())%>|50||";
@@ -376,7 +373,7 @@ function selAddTime() {
     <td class=td_form02>
 </f:verbatim>
         <h:inputText styleClass="input" id="A001044" value="#{emp_personAddBB.personvo.unitTime}"
-             readonly="true" alt="来公司时间|1|d6|50||"/>
+              alt="来公司时间|1|d6|50||"/>
 <f:verbatim>
        
         <input type="button" class="button_date" onclick="selUnitTime();"></td> -->
@@ -389,7 +386,7 @@ function selAddTime() {
     <td class=td_form02>
 </f:verbatim>
         <h:inputText styleClass="input" id="A001781" value="#{emp_personAddBB.personvo.sysTime}"
-                     readonly="true" alt="进入本系统时间|1|d6|50||"/>
+                      alt="进入本系统时间|1|d6|50||"/>
 <f:verbatim>
     <script type="text/javascript">
         document.all('form1:A001781').alt = "<%=sysTime.getItemName()%>|1|<%=InfoItemBO.getHtmlDataType(sysTime.getItemDataType())%>|50||";
@@ -444,7 +441,7 @@ function selAddTime() {
         <td class="td_form01 td_form_required" width="120"><%=addTime.getItemName()%></td>
         <td class=td_form02>
 </f:verbatim>
-            <h:inputText styleClass="input" id="A016020" value="#{emp_personAddBB.personchangevo.changeDate}"  readonly="true" alt="增员时间|0|d6|50||"/>
+            <h:inputText styleClass="input" id="A016020" value="#{emp_personAddBB.personchangevo.changeDate}"  alt="增员时间|0|d6|50||"/>
             <h:commandButton type="button" styleClass="button_date" onclick="selAddTime();"/>
 <f:verbatim>
     <script type="text/javascript">
