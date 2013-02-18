@@ -1607,7 +1607,7 @@
 
     <managed-bean>
         <managed-bean-name>wage_computeBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.wage.web.WageComputeBackingBean</managed-bean-class>
+        <managed-bean-class>com.hr319wg.custom.extend.web.WageComputeBackingBeanByExtend</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
         <managed-property>
             <property-name>wagecomputeucc</property-name>
@@ -2688,7 +2688,7 @@
         <from-view-id>/wage/payoff/SetSelectToExport.jsp</from-view-id>
         <navigation-case>
             <from-outcome>toExcel</from-outcome>
-            <to-view-id>/pages/common/ExportToExcel.jsp</to-view-id>
+            <to-view-id>/pages//wage/payoff/exportWage.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
 
