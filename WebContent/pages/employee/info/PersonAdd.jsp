@@ -77,12 +77,12 @@
 	function forsave(form) {
 	    if (ajaxCheck(form)) {
 	    	document.all("form1:saveOne").click();
+		    x = document.body.clientWidth / 2 - 150;
+			y = document.body.clientHeight / 2;
+			document.all('processbar').style.top = y;
+			document.all('processbar').style.left = x;
+			document.all('processbar').style.display = "";
 	    }
-	    x = document.body.clientWidth / 2 - 150;
-		y = document.body.clientHeight / 2;
-		document.all('processbar').style.top = y;
-		document.all('processbar').style.left = x;
-		document.all('processbar').style.display = "";
 	    return true;
 	}
 </script>
