@@ -84,12 +84,9 @@
         <table width="100%" border="0" cellpadding="0" height="70" cellspacing="0" background="/images/maininterface/hd_top2.jpg" >
         <tr>
             <td width="30" >&nbsp;</td>
-            <td width="40" ><img src="/images/maininterface/logo.jpg" align="left" alt="" height="58" valign="top"></td>
+            <td width="40" ><img src="/<%=CommonUtil.getSYS_INTERFACE()[1]%>" align="left" alt="" height="58" valign="top"></td>
             <td  width="500" align="center">
-                <!--修改开始1 -->
-				<!-- <span style="font-size:30px; color:#ffffff; line-height:43px; font-weight:bold; padding-left:0px; padding-top:15px; height:43px;"><%=Constants.TITLE_NAME%></span> -->
 				<img src="/images/maininterface/title_name.png"/>
-				<!--修改结束1 -->
            </td>
            <td align="right" >&nbsp;</td>
        </tr>
@@ -146,18 +143,12 @@
                           }
                       %>
                       <%
-                          List<OperateBO> moduleList = CommonUtil.getAllModulesInSelf();
+                          List<OperateBO> moduleList = CommonUtil.getAllModulesInSelf(user.getUserId());
                       	  if(moduleId!=null){
                       		  for(OperateBO bo : moduleList){
                       			  String moduleID=bo.getModuleID();
-                      			  String subfolder="1";
+                      			  String subfolder=null;
                       			  String bylevel=null;                      			  
-					              if("JXGL".equals(moduleID) || "XCGL".equals(moduleID)){
-					            	  subfolder="0";
-					              }
-					              if("JXGL".equals(moduleID)){
-					            	  bylevel="1";
-					              }
                       			  %>
                       			  	<td width=11 align="middle"><img src="/images/maininterface/top_menu_sp.jpg" /></td>
 					                <td align="center" id="_TD" class="<%="".equals(moduleId)?"maintabactive":"maintabinactive" %>" width="65">

@@ -1,10 +1,9 @@
 package com.hr319wg.emp.web;
 
 import java.io.File;
-import java.sql.ResultSet;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
@@ -22,15 +21,16 @@ import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.util.CommonUtil;
-import com.hr319wg.custom.util.SqlUtil;
 import com.hr319wg.emp.pojo.bo.EmpChangeTypeConfigBO;
 import com.hr319wg.emp.pojo.bo.EmpReduceBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.pojo.vo.PersonChangeVO;
 import com.hr319wg.emp.ucc.IPersonUCC;
+import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.org.ucc.IOrgUCC;
 import com.hr319wg.qry.pojo.vo.QueryVO;
 import com.hr319wg.qry.ucc.IQueryUCC;
+import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.api.UserAPI;
 import com.hr319wg.sys.api.WageAPI;
 import com.hr319wg.sys.cache.SysCache;
@@ -545,22 +545,17 @@ public class PersonListBackingBean extends BaseBackingBean
           rb.setAuditDate(CommonFuns.getSysDate("yyyy-MM-dd"));
           rb.setAuditResult("1");
           this.personucc.saveReduceBO(rb);
-          String[]ids=rb.getPersID().split(",");
+
           PersonChangeVO personchangevo = new PersonChangeVO();
           personchangevo.setTractDate(CommonFuns.getSysDate("yyyy-MM-dd"));
           personchangevo.setTractPerson(super.getUserInfo().getUserId());
           personchangevo.setChangeDate(rb.getApplyDate());
           personchangevo.setChangeType(rb.getA016010());
-          
-          this.personucc.updateRetirePerson(super.getUserInfo(), personchangevo, ids);
+          this.personucc.updateRetirePerson(super.getUserInfo(), personchangevo, rb.getPersID().split(","));
 //          this.personucc.updateRetirePerson(personchangevo, rb.getPersID().split(","));
-          this.personucc.ModifyPersonType(ids, rb.getA001054());
-          this.personucc.ModifyPersonStatus(ids, rb.getA001725());
+          this.personucc.ModifyPersonType(rb.getPersID().split(","), rb.getA001054());
+          this.personucc.ModifyPersonStatus(rb.getPersID().split(","), rb.getA001725());
           SysCache.setMap(rb.getPersID().split(","), 3, 6);
-          for(int j=0;j<ids.length;j++){
-        	  PersonBO p=SysCacheTool.findPersonById(ids[j]);
-        	  addData(p);
-          }
         }
       }
     }
@@ -707,7 +702,6 @@ public class PersonListBackingBean extends BaseBackingBean
         String sql = "insert into emp_audit_info (id,changedate,changetype) values('"+personids[i]+"','"+CommonFuns.getSysDate("yyyy-MM-dd")+"','2')";
         JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
         jdbcTemplate.execute(sql);
-        addData(pb);
       }
 
       if (this.autoMessage) {
@@ -730,13 +724,6 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     return "success";
   }
-  private void addData(PersonBO p){
-	//同步财务中间库,添加一条人员离职记录
-  	SqlUtil.updateData("insert into a001_bd (user_id,change_date,change_type,old_dept_id,new_dept_id,user_type,name,user_code) values " +
-      			"('"+p.getPersonId()+"',getdate(),'离职','"+p.getDeptId()+"','"+p.getDeptId()+"','"+p.getPersonType()+"','"+p.getName()+"','"+p.getPersonCode()+"')");
-  	SqlUtil.updateData("update a001 set a001054 ='"+p.getPersonType()+"' where id='"+p.getPersonId()+"'");
-  }
-  
   public String auditfirst() {
     this.pagevo.setCurrentPage(1);
     doauditQuery();
@@ -1418,7 +1405,7 @@ public class PersonListBackingBean extends BaseBackingBean
           else {
             sql = this.personucc.queryPersonList(table, this.name, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry);
           }
-
+          
           getHttpSession().setAttribute("activeSql", sql);
           getHttpSession().setAttribute("pageNum", String.valueOf("1"));
           getHttpSession().setAttribute("rowNum", String.valueOf(rowNum));
@@ -1590,6 +1577,7 @@ public class PersonListBackingBean extends BaseBackingBean
         String where = " A001.ID in (select PERSON_ID from EMP_TEAM_PERSON where TEAM_ID='" + this.superId + "')";
         sql = this.personucc.queryPersonList(table, this.name, this.personType, null, 1, rowNum, "00900", null, this.defaultQry, where);
       }
+      
       getHttpSession().setAttribute("activeSql", sql);
       getHttpSession().setAttribute("pageNum", String.valueOf("1"));
       getHttpSession().setAttribute("rowNum", String.valueOf(rowNum));
@@ -1664,7 +1652,6 @@ public class PersonListBackingBean extends BaseBackingBean
     try {
       String name = "";
       String[] ids = getServletRequest().getParameter("pids").split(",");
-      JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
       for (int i = 0; i < ids.length; i++) {
     	this.personucc.UpdateAuditState(ids[i], this.auditOpition, this.auditResult, CommonFuns.getSysDate("yyyy-MM-dd"), super.getUserInfo().getUserId());
         if ("00901".equals(this.auditResult)) {
@@ -1680,20 +1667,8 @@ public class PersonListBackingBean extends BaseBackingBean
             }
           }
           String sql = "insert into emp_audit_info (id,changedate,changetype) values('"+ids[i]+"','"+CommonFuns.getSysDate("yyyy-MM-dd")+"','1')";
+          JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
           jdbcTemplate.execute(sql);
-          //同步财务中间库,添加一条人员新增记录
-          PersonBO p=SysCacheTool.findPersonById(ids[i]);
-          SqlUtil.updateData("insert into a001_bd (user_id,change_date,change_type,new_dept_id,user_type,name,user_code) values " +
-          		"('"+ids[i]+"',getdate(),'新增','"+p.getDeptId()+"','"+p.getPersonType()+"','"+p.getName()+"','"+p.getPersonCode()+"')");
-          sql="select a001021 from a001 where id='"+p.getPersonId()+"'";
-          List mzlist= jdbcTemplate.queryForList(sql);
-          Object mz=null;
-          if(mzlist!=null && mzlist.size()>0){
-        	  Map m=(Map)mzlist.get(0);
-        	  mz=m.get("a001021");
-          }
-          SqlUtil.updateData("insert into a001(id,a001705,a001001,a001735,a001054,a001077,a001007,a001021,a001044) values " +
-          		"('"+p.getPersonId()+"','"+p.getDeptId()+"','"+p.getName()+"','"+p.getPersonCode()+"','"+p.getPersonType()+"','"+p.getIdCard()+"','"+p.getSex()+"','"+mz+"','"+p.getUnitTime()+"')");
         }
         SysCache.setPerson(ids[i], 2);
         PersonBO pb = SysCacheTool.findPersonById(ids[i]);
@@ -1717,22 +1692,46 @@ public class PersonListBackingBean extends BaseBackingBean
         this.wfservice.processTrans(trans);
       }
 
-      if (this.autoMessage) {
-        String[] oper = this.personucc.queryAddPersonOperater(ids);
-        for (int i = 0; i < oper.length; i++) {
-          ShortMessageBO sbo = new ShortMessageBO();
-          sbo.setReceiveID(oper[i]);
-          sbo.setSendID(super.getUserInfo().getUserId());
-          sbo.setSendTime(CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss"));
-          sbo.setIsPopup("0");
-          sbo.setContent(this.auditMessage + "(" + name + " )");
-          this.shortmessageucc.SaveMessage(sbo);
-        }
-      }
-    }
-    catch (Exception e) {
+		if (this.autoMessage) {
+			String[] oper = this.personucc.queryAddPersonOperater(ids);
+			for (int i = 0; i < oper.length; i++) {
+				ShortMessageBO sbo = new ShortMessageBO();
+				sbo.setReceiveID(oper[i]);
+				sbo.setSendID(super.getUserInfo().getUserId());
+				sbo.setSendTime(CommonFuns
+						.getSysDate("yyyy-MM-dd HH:mm:ss"));
+				sbo.setIsPopup("0");
+				sbo.setContent(this.auditMessage + "(" + name + " )");
+				this.shortmessageucc.SaveMessage(sbo);
+			}
+		}
+		
+		//发送OA短信
+		ActivePageAPI pageAPI = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
+		String sql="select t.userid ||','||t.password||','||t.tooauserid||','||t.onoff info from SYS_OA_EMAIL t";
+		String info=pageAPI.queryForString(sql);
+		if(info!=null && !"".equals(info)){
+			String[]infos=info.split(",");
+			if("1".equals(infos[3])){
+				for(int i=0;i<ids.length;i++){
+					PersonBO p=SysCacheTool.findPersonById(ids[i]);
+					if(p!=null){
+						StringBuffer html= new StringBuffer();
+						html.append("所在单位:"+CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getOrgId()));				
+						html.append(",所在部门:"+CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId()));				
+						html.append(",姓名:"+p.getName());
+						html.append(",员工编号:"+p.getPersonId());				
+						URL u=new URL("http://192.168.2.40/interface/sms.php?USER_ID="+infos[0]+"&PASSWORD="+infos[1]+"&FROM_ID="+infos[0]+"&TO_ID="+infos[2]+"&SMS_TYPE=0&CONTENT="+html.toString());
+						u.openConnection();
+						u.openStream();
+					}
+				}
+			}
+		}
+    }catch (Exception e) {
     	e.printStackTrace();
     }
+    
     return "success";
-  }
+  }	  
 }

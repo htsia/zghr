@@ -6,7 +6,7 @@
         <property name="hibernatetemplate" ref="hibernateTemplate"></property>
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>
-    <bean id="post_postService" class="com.hr319wg.post.service.PostService">
+    <bean id="post_postService" class="com.hr319wg.custom.extend.service.PostServiceByExtend">
         <property name="postdao" ref="post_postDAO"></property>
         <property name="api" ref="sys_activePageApi"></property>
     </bean>

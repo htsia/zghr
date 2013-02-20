@@ -6,7 +6,10 @@
     	<property name="jdbcTemplate" ref="jdbcTemplate" />
     	<property name="activeapi" ref="sys_activePageApi" />
     </bean>
-    <bean id="busiProcess" class="com.hr319wg.emp.web.IBusiProcessImpl"/>
+    
+    <bean id="common_proemp" class="com.hr319wg.custom.util.CommonProcEmp">
+    	<property name="activeapi" ref="sys_activePageApi" />
+    </bean>
     
 <!--     每天晚11点定时计算年龄校龄 -->
     <bean name="myjob" class="org.springframework.scheduling.quartz.JobDetailBean">
@@ -51,15 +54,15 @@
            <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     <!-- 薪酬管理 -->
-    <bean id="wageAdjustService" class="com.hr319wg.custom.emp.service.WageAdjustService">
-           <property name="commonDAO" ref="commondao" />
-           <property name="activeapi" ref="sys_activePageApi" />
-    </bean>
-    <bean id="wage_datadao" class="com.hr319wg.custom.wage.dao.WageDataDAO">
-		<property name="hibernatetemplate" ref="hibernateTemplate"/>
-    </bean>
+<!--     <bean id="wageAdjustService" class="com.hr319wg.custom.emp.service.WageAdjustService"> -->
+<!--            <property name="commonDAO" ref="commondao" /> -->
+<!--            <property name="activeapi" ref="sys_activePageApi" /> -->
+<!--     </bean> -->
+<!--     <bean id="wage_datadao" class="com.hr319wg.custom.wage.dao.WageDataDAO"> -->
+<!-- 		<property name="hibernatetemplate" ref="hibernateTemplate"/> -->
+<!--     </bean> -->
     <bean id="wage_dataserviceImpl" class="com.hr319wg.custom.wage.service.WageDataServiceImpl">
-           <property name="wageDataSetDAO" ref="wage_datadao" />
+<!--            <property name="wageDataSetDAO" ref="wage_datadao" /> -->
            <property name="activeapi" ref="sys_activePageApi" />
            <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
@@ -74,9 +77,29 @@
             <property name="transactionManager" ref="transactionManager"/>
             <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
     </bean>
+    <!-- 保险管理 -->
+    <bean id="ins_datadao" class="com.hr319wg.custom.ins.dao.InsDataDAO">
+		<property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="ins_dataserviceImpl" class="com.hr319wg.custom.ins.service.InsDataServiceImpl">
+           <property name="insDataDAO" ref="ins_datadao" />
+           <property name="activeapi" ref="sys_activePageApi" />
+           <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+    
+    <bean id="ins_dataservice" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.custom.ins.service.IInsDataService</value>
+                </list>
+            </property>
+            <property name="target" ref="ins_dataserviceImpl"/>
+            <property name="transactionManager" ref="transactionManager"/>
+            <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
     
     
-    <!-- 考勤管理 -->
+    <!-- 考勤管理
     <bean id="attbusidao" class="com.hr319wg.custom.attence.dao.AttBusiDAO">
 		<property name="hibernatetemplate" ref="hibernateTemplate"/>
     </bean>
@@ -124,6 +147,8 @@
     <property name="activitiToolService" ref="activitiToolService"/>
     <property name="attBusiService" ref="attBusiService"/>
     </bean>
+     -->
+    
     <bean id="user_loginBB" class="com.hr319wg.user.web.LoginBackingBean">
     <property name="userucc" ref="user_userManageUccImpl"/>    
     </bean>

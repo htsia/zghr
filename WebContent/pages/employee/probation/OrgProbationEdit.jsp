@@ -17,15 +17,6 @@ function checkform() {
     }else{
     	document.all("form1:probation").value=probation;
     }
-    
-    var jianxi=document.all("form1:jianxi").value;
-    jianxi=$.trim(jianxi);
-    if(jianxi=="" || isNaN(jianxi)){
-        alert("见习期只能是数字");
-        return false;
-    }else{
-    	document.all("form1:jianxi").value=jianxi;
-    }
 
     return forsubmit(document.forms(0));
 }
@@ -83,8 +74,6 @@ function forCopyPersonItem(){
                 <%=LanguageSupport.getResource("RYGL-2426", "试用期(月)")%>
                </f:verbatim>
                <h:inputText id="probation" value="#{empprobastionmgrBB.probation}"/>
-               <h:outputText value="见习期(月)"/>
-               <h:inputText id="jianxi" value="#{empprobastionmgrBB.jianxi}"/>
                <f:verbatim>
                <%=LanguageSupport.getResource("RYGL-2143", "薪资变动相关指标项")%>
                </f:verbatim>

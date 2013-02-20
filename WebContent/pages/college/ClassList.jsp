@@ -79,7 +79,7 @@
             </h:column>
 
             <h:column>
-                <c:facet name="header"><h:outputText value="其他人数"/></c:facet>
+                <c:facet name="header"><h:outputText value="学生人数"/></c:facet>
                 <h:outputText value="#{list.studentCount}"></h:outputText>
             </h:column>
 

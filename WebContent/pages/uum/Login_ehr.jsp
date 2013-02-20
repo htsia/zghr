@@ -1,3 +1,5 @@
+<%@page import="com.hr319wg.common.pojo.vo.User"%>
+<%@page import="com.hr319wg.user.ucc.IUserManageUCC"%>
 <%@page import="com.hr319wg.common.web.SysContext"%>
 <%@page import="com.hr319wg.sys.api.ActivePageAPI"%>
 <%@ page language="java" contentType="text/html; charset=GBK" pageEncoding="GBK"%>
@@ -22,10 +24,16 @@
 	if(count==0){
 		response.sendRedirect("/Login.jsf");
 	}else{
-		session.setAttribute("loginName",username);
-		response.sendRedirect("/Logininterface.jsf");
+		IUserManageUCC userucc = (IUserManageUCC) SysContext.getBean("user_userManageUccImpl");
+		User user1 = userucc.verifyLogon(username, session, request);
+		session.setAttribute("USER_INFO", user1);
+		if ((user1.getPmsMenus() != null) && (user1.getPmsMenus().values().size() > 0) && ((user1.isBusinessUser()) || (user1.ischo()) || (user1.isSysOper())))
+	    {
+			response.sendRedirect("/MainInterface/MainStandard.jsf");
+	    }else{
+	    	response.sendRedirect("/self/SelfMain2.jsf");
+	    }
 	}
-	
 %>
 </body>
 </html>

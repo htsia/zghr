@@ -31,7 +31,7 @@ if("1".equals(inself)){
     <c:verbatim>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <tr>
-            <td class="td_title"><img src="/images/tips.gif">项目工、其他工、兼职教师录入</td>
+            <td class="td_title"><img src="/images/tips.gif">项目工、学生工、兼职教师录入</td>
         </tr>
     </table>
     <table width="100%" border="0" cellpadding="0" cellspacing="0">

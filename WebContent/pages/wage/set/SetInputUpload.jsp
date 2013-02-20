@@ -5,12 +5,13 @@
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
+
     <script language="javascript" src="<%=request.getContextPath()%>/js/selectItem.js"></script>
     <script type="text/javascript">
         function checkSubmit() {
             var filename = form1.all("form1:excelFile").value;
             var obj = form1.rsItem;
-            if (filename.substr(filename.length - 3) == 'csv') {
+            if (filename.substr(filename.length - 3).toLowerCase() == 'xls') {
                 if (obj.options.length < 3) {
                     alert("请选择输入项！")
                     return false;
@@ -22,7 +23,7 @@
                     return true;
                 }
             } else {
-                alert("请选择csv文件！");
+                alert("请选择xls文件！");
                 return false;
             }
         }
@@ -79,11 +80,11 @@
             var count = obj.options.length;
             for (i = 0; i < count; i++) {
                 if (obj.options[i].selected) {
-                    if (i == 0 || i == 1 || i == 2) {
+                    if (i == 0 || i == 1) {
                         continue;
                     }
                     var op1 = document.createElement("Option");
-                    if (i - 1 > 2) {
+                    if (i - 1 > 1) {
                         op1.value = obj.options[i].value;
                         op1.text = obj.options[i].text;
                         obj.add(op1, i - 1);
@@ -100,7 +101,7 @@
             var count = obj.options.length;
             for (i = 0; i < count; i++) {
                 if (obj.options[i].selected) {
-                    if (i == count - 1 || i == 0 || i == 1 || i == 2) {
+                    if (i == count - 1 || i == 0 || i == 1) {
                         continue;
                     }
                     var op1 = document.createElement("Option");
@@ -124,9 +125,9 @@
                  if (va[0]=="A001999"){
                     document.all("form1:useold").checked=true;
                  }
-                 else if (va[0]=="A001735"){
-                     document.all("form1:useold").checked=false;
-                 }
+//                  else if (va[0]=="A001735"){
+//                      document.all("form1:useold").checked=false;
+//                  }
              }
          }
          document.all("form1:configname").value=document.all("form1:importconfig").options(document.all("form1:importconfig").selectedIndex).text;
@@ -166,7 +167,7 @@
     <c:verbatim escape="false"><br></c:verbatim>
     <h:panelGrid columns="1" align="center" width="95%"  styleClass="table03" columnClasses="td_middle">
         <h:panelGroup>
-                <h:outputText value="上传csv(逗号分割)文件:"/>
+                <h:outputText value="上传xls文件:"/>
                 <x:inputFileUpload id="excelFile" styleClass="input" value="#{wage_setInputBB.excelFile}" storage="file" size="40"/>
                 <h:commandButton styleClass="button01" value="上传" action="#{wage_setInputBB.uploadFile}" onclick="return checkSubmit();"/>
                 <h:commandButton styleClass="button01" type="button" value="取消" onclick="window.close()"/>
@@ -176,13 +177,11 @@
         <h:outputText escape="false">
             <c:verbatim escape="false">
                  <strong>上传文件格式说明： </strong><br>
-                1. 导入文件的格式为CSV文件。可以将Excel文件另存为CSV (逗号分割)格式文件。<br>
+                1. 导入文件的格式为XLS文件。<br>
                 2. 电子表格的第一行为标题行，数据从第二行开始。<br>
-                3. 电子表格的第一列固定为：员工编号(新系统A001735或旧系统A001999)，员工编号不能为空值。第二列为姓名(A001001)。<br>
+                3. 电子表格的第一列固定为：员工编号,姓名且不能为空。<br>
                 4. 为保证数据准确，请将电子表格的所有列的数据格式设置为文本格式。<br>
-                5. 如果是代码项，那么必须是代码值。可以在代码管理中找到对应代码<br>
-                6. 如果是6位日期类型数据，数据格式为6位数字，如"200609",如果是8位日期类型数据，数据格式为8位数字，如"20060918"。<br>
-                7. 用户在系统中所选择的项目必须与文件中准备的项目个数、顺序一致，否则系统不能准确导入。<br>
+                5. 在系统中所选择的项目必须与文件中准备的项目个数、顺序一致，否则系统不能准确导入。<br>
             </c:verbatim>
         </h:outputText>
     </h:panelGrid>
@@ -199,12 +198,12 @@
              <h:selectOneMenu id="importconfig" onchange="forselect()">
                  <f:selectItems value="#{wage_setInputBB.selitem}"/>
              </h:selectOneMenu>
-             <h:selectBooleanCheckbox id="useold" value="false"  onclick="doSetUseOld()" /> <h:outputText value="使用旧系统编号"></h:outputText>
-             <h:selectBooleanCheckbox id="useid" value="false"  onclick="doSetUseID()" /> <h:outputText value="使用身份证"></h:outputText>
+             <h:selectBooleanCheckbox id="useold" value="false"  onclick="doSetUseOld()" rendered="false"/>
+             <h:selectBooleanCheckbox id="useid" value="false"  onclick="doSetUseID()" rendered="false"/>
         </h:panelGroup>
         <h:outputText value=" "/>
 
-        <h:selectManyListbox size="15" style="width:250px;height:300px" id="preTreat">
+        <h:selectManyListbox size="15" style="width:250px;height:400px" id="preTreat">
             <c:selectItems value="#{wage_setInputBB.inputList}"/>
         </h:selectManyListbox>
 
@@ -220,7 +219,7 @@
 
         <h:panelGrid columns="1" align="center">
           <c:verbatim>
-            <select size="15" style="width:250;height:250" name="rsItem" multiple="true">
+            <select size="15" style="width:250;height:350" name="rsItem" multiple="true">
                 <option value="A001735">员工编号</option>
                 <option value="A001001">姓名</option>
             </select>

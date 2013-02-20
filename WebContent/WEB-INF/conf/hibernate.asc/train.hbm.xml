@@ -245,7 +245,7 @@
         <property name="classType"	   column="class_type"/>
         <property name="classLinkSystem"	   column="class_link_system"/>
     </class>
-    <!-- 培训其他 -->
+    <!-- 培训学生 -->
     <class name="com.hr319wg.train.pojo.bo.TrainStudentBO" table="TRAIN_STUDENT">
 		<id name="studentID" type="string" unsaved-value="null">
 			<column name="STUDENT_ID " sql-type="varchar(32)" />

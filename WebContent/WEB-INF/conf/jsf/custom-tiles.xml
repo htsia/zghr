@@ -165,6 +165,35 @@
         <put name="body" value="/pages/custom/setOAEmail.jsp"/>
     </definition>
     
+    <!-- 保险相关 -->
+    <definition name="/custom/ins/insDataIndex.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/ins/insDataIndex.jsp"/>
+    </definition>
+    <definition name="/custom/ins/insDataEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/ins/insDataEdit.jsp"/>
+    </definition>
+    <definition name="/custom/ins/insDataList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/ins/insDataList.jsp"/>
+    </definition>
+    <definition name="/custom/ins/insDataQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/ins/insDataQuery.jsp"/>
+    </definition>
+    <definition name="/custom/ins/insDataQueryList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/ins/insDataQueryList.jsp"/>
+    </definition>
+    <definition name="/custom/ins/insMonthDataEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/ins/insMonthDataEdit.jsp"/>
+    </definition>
+    <definition name="/custom/ins/insDataManager.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/ins/insDataManager.jsp"/>
+    </definition>
+    <definition name="/custom/ins/insDataManagerQueryList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/ins/insDataManagerQueryList.jsp"/>
+    </definition>
+    <definition name="/custom/ins/BaseRateInputEdit2.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/ins/BaseRateInputEdit2.jsp"/>
+    </definition>
+    
     <!-- 考勤相关 -->
     <definition name="/custom/attence/attLogMgr.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/attence/attLogMgr.jsp"/>

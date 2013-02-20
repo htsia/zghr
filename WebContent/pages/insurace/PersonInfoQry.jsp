@@ -84,7 +84,6 @@
     }
 </script>
 
-
 <x:saveState value="#{wage_personQueryBB}"/>
 <h:inputHidden id="pageInit" value="#{wage_personQueryBB.insPageInit}"/>
 <h:form id="form1">
@@ -110,7 +109,7 @@
                                      action="#{wage_personQueryBB.queryAdvance}"/>
                     <h:outputText value=" "></h:outputText>
                 <h:commandButton styleClass="button01" value="批量维护" type="button" onclick="return forMutilEdit()"/>
-                    <h:outputText value=" "></h:outputText>
+                <h:outputText value=" "/>
                 <h:commandButton styleClass="button01" value="导出到Excel" type="button" onclick="return forExport();"/>
                 </h:panelGroup>
             </h:panelGrid>

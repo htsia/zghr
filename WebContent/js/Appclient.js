@@ -1255,7 +1255,7 @@ function fPopUpPostDlg(obj1, obj2, superId) {
 *        obj2 描述控件ID
 *        superId 要查岗位的机构代码
 */
-function fPopUpPostDlgRy(obj1, obj2, superId) {
+function fPopUpPostDlgRy(obj1, obj2, orgId) {
     if (obj1 == null)
         return;
     if (obj1 != "[object]")
@@ -1267,14 +1267,10 @@ function fPopUpPostDlgRy(obj1, obj2, superId) {
     else if (obj2 != null) {
         obj21 = obj2
     }
-    if (superId == null) {
-        superId = "";
-    }
 
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
-
-    retval = window.showModalDialog("/common/SelRyPost.jsf?fk=" + fk, "", "dialogWidth:700px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
+    retval = window.showModalDialog("/common/SelRyPost.jsf?fk=" + fk+"&orgId="+orgId, "", "dialogWidth:700px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
     if (retval != null) {
         rs = retval.split(",");
         if (obj2 != null) {
@@ -1302,8 +1298,41 @@ function PopUpPostDlgByDept(obj1, obj2, superId) {
     else if (obj2 != null) {
         obj21 = obj2
     }
-    if (superId == null) {
-        superId = "";
+
+    showx = event.screenX - event.offsetX - 150;
+    showy = event.screenY - event.offsetY + 18;
+
+    retval = window.showModalDialog("/common/SelPostByDept.jsf?superId=" + superId, "", "dialogWidth:700px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
+    if (retval != null) {
+        rs = retval.split(",");
+        if (obj2 != null) {
+            obj11.value = rs[0];
+            obj21.value = rs[1];
+        } else {
+            obj11.value = rs[1];
+            obj11.code = rs[0];
+        }
+        return true;
+    } else {
+        return false;
+    }
+}
+function PopUpPostDlgByDept1(obj1, obj2, superId) {
+    if (obj1 == null)
+        return;
+    if (obj1 != "[object]")
+        obj11 = document.getElementById(obj1);
+    else
+        obj11 = obj1;
+    if (obj2 != "[object]" && obj2 != null)
+        obj21 = document.getElementById(obj2);
+    else if (obj2 != null) {
+        obj21 = obj2
+    }
+    superId=document.getElementById(superId).code;
+    if(superId==''){
+    	alert("请选择部门");
+    	return false;
     }
 
     showx = event.screenX - event.offsetX - 150;

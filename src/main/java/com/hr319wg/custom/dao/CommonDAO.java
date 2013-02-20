@@ -42,14 +42,10 @@ public class CommonDAO extends BaseDAO{
 	}
 	
 	//获取所有在自助中的大模块
-	public List<OperateBO> getAllModulesInSelf(){
-		String hql = "select bo from OperateBO bo where bo.inSelf='1' and bo.superId='-1'";
-		return this.hibernatetemplate.find(hql);	
+	public List<OperateBO> getAllModulesInSelf(String userID){
+		String hql = "select bo from OperateBO bo where bo.superId='-1' and bo.moduleID in (select o.moduleID from OperateBO o,UserSelfOperBO op where o.operateId =op.OperateID and op.PersonID='"+userID+"') order by bo.treeId";
+		return this.hibernatetemplate.find(hql);
 	}
-	
-//	5a9ded4739fc2c3a0139fcc986940338	自助--中层领导
-//	5a9ded473a35b8f7013a3e1c57e51488	自助--校级领导
-//	08	员工
 
 	//获取自助模块二级菜单
 	public List<OperateBO> getAllSubOperateBOInSelf(String superID, String userID) throws SysException{
@@ -102,4 +98,5 @@ public class CommonDAO extends BaseDAO{
 		hql += " order by bo.treeId";
 		return this.hibernatetemplate.find(hql);	
 	}
+	
 }

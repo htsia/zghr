@@ -42,7 +42,7 @@
              <f:verbatim>
                      <%=LanguageSupport.getResource("XTGL-1305","发送信箱")%> 
               </f:verbatim>
-            <h:inputText  readonly="true" id="sendeMail" value="#{sys_eMailEditBackingBean.sendeMail}" />
+            <h:inputText id="sendeMail" value="#{sys_eMailEditBackingBean.sendeMail}" />
              <f:verbatim>
                      <%=LanguageSupport.getResource("XTGL-1304","发送人")%> 
               </f:verbatim>
@@ -61,7 +61,7 @@
                      <%=LanguageSupport.getResource("XTGL-1302","接收信箱")%> 
               </f:verbatim>
             <h:panelGroup>
-              <h:inputText  readonly="true" id="receiveMail" value="#{sys_eMailEditBackingBean.receiveMail}"/>
+              <h:inputText id="receiveMail" value="#{sys_eMailEditBackingBean.receiveMail}"/>
               <h:inputHidden id="mobile"></h:inputHidden>
             </h:panelGroup>
 

@@ -437,7 +437,6 @@
             <property-name>personucc</property-name>
             <value>#{emp_personUCC}</value>
         </managed-property>
-
          <managed-property>
           <property-name>linkucc</property-name>
           <value>#{sys_inprocessUCC}</value>
@@ -478,6 +477,10 @@
 			<property-name>orgprobationucc</property-name>
 			<value>#{orgprobationucc}</value>
 		</managed-property>
+		<managed-property>
+            <property-name>orgucc</property-name>
+            <value>#{org_orgUCC}</value>
+        </managed-property>
     </managed-bean>
 
     <managed-bean>

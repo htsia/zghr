@@ -18,7 +18,7 @@
     <c:verbatim>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <tr>
-            <td class="td_title"><img src="/images/tips.gif"> 培训管理 -> 培训班其他审批</td>
+            <td class="td_title"><img src="/images/tips.gif"> 培训管理 -> 培训班学生审批</td>
         </tr>
     </table>
     <table width="100%" border="0" cellpadding="0" cellspacing="0">

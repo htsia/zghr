@@ -133,7 +133,7 @@
             var unitId = form1.all("form1:unitId").value;
             var setId = form1.all("form1:setId").value;
             var arg = "act=selectSetInput" + "&setName=" + setName + "&unitId=" + unitId + "&setId=" + setId+"&showOnlyCheck=true";
-            var reval = window.showModalDialog("/wage/set/SetInputUpload.jsf?" + arg, null, "dialogWidth:800px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
+            var reval = window.showModalDialog("/wage/set/SetInputUpload.jsf?" + arg, null, "dialogWidth:1200px; dialogHeight:700px;center:center;resizable:yes;status:no;scroll:yes;");
             if (reval != null) {
                 return true;
             } else {

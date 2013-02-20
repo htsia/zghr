@@ -1,6 +1,8 @@
 package com.hr319wg.custom.extend.ucc;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
 
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
@@ -56,4 +58,92 @@ public class PersonUCCByExtend extends PersonUCC {
 	    return sql.toString();
 	}
 	
+	public String queryPersonList(TableVO table, String name, String perType, String superId, int pageNum, int rowNum, String cancel, User user, String qryID, String addConditon) throws SysException {
+	    try {
+	      StringBuffer where = new StringBuffer();
+
+	      name = CommonFuns.filterNull(name).trim();
+	      if ((name != null) && (!"".equals(name.trim()))) {
+	        String namecon = "1=0";
+	        String[] namestr = name.split(",");
+	        for (int i = 0; i < namestr.length; i++) {
+	          if (!"".equals(namestr[i])) {
+	            namecon = namecon + " or A001.A001001 LIKE '%" + namestr[i] + "%' or A001.A001735 like '%" + namestr[i] + "%' or A001002 like '%" + namestr[i] + "%' or A001999 like '%" + namestr[i] + "%'";
+	          }
+	        }
+	        namecon = " and (" + namecon + ")";
+	        where.append(namecon);
+	      }
+	      if ((perType != null) && (!"".equals(perType.trim()))) {
+	        String[] pers = perType.split(",");
+	        where.append(" and ").append(CommonFuns.splitInSql(pers, "A001.A001054"));
+	      }
+
+	      if ((superId != null) && (!"".equals(superId.trim()))) {
+	        OrgBO bo = SysCacheTool.findOrgById(superId);
+	        if (bo != null) {
+	          if (OrgBO.GROUPTYPE.equals(bo.getorgType())) {
+	            where.append(" and A001.A001706='" + bo.getOrgId() + "'");
+	          }
+	          else {
+	            where.append(" and A001.A001738 LIKE '" + bo.getTreeId() + "%'");
+	          }
+	        }
+	      }
+
+	      String addCondition = "";
+	      if (!"".equals(cancel)) {
+	        addCondition = "A001730 = '" + cancel + "'";
+	      }
+	      if ((qryID == null) || ("".equals(qryID))) {
+	        qryID = "156";
+	      }
+	      CellVO[] c1 = this.getQueryapi().queryInfoItem(qryID);
+
+	      table.setHeader(c1);
+	      table.setSetType("A");
+	      Hashtable hash = this.getQueryapi().getQuerySqlHash(user, qryID, addCondition);
+	      String select = CommonFuns.filterNull((String)hash.get("SQL_SELECT_PART"));
+	      String from = CommonFuns.filterNull((String)hash.get("SQL_FROM_PART"));
+	      String condition = CommonFuns.filterNull((String)hash.get("SQL_WHERE_PART"));
+	      String scale = CommonFuns.filterNull((String)hash.get("SQL_SCALE_PART"));
+	      String order = CommonFuns.filterNull((String)hash.get("SQL_ORDER_PART"));
+	      StringBuffer sql = new StringBuffer();
+	      if ((!"".equals(select)) && (!"".equals(from))) {
+	        sql.append("SELECT ").append(select).append(" FROM ").append(from);
+	        if ((!"".equals(condition)) || (!"".equals(scale)) || ((where != null) && (where.length() > 0))) {
+	          sql.append(" WHERE 1=1 ");
+	        }
+	        if (!"".equals(condition)) {
+	          sql.append(" and ").append(condition);
+	        }
+	        if (!"".equals(scale)) {
+	          sql.append(" and ").append(scale);
+	        }
+	        if ((where != null) && (where.length() > 0)) {
+	          sql.append(where);
+	        }
+	        if ((addConditon != null) && (!"".equals(addConditon))) {
+	          sql.append(" and ").append(addConditon);
+	        }
+	        
+	        if(superId!=null && !"".equals(superId)){
+	        	  OrgBO bo=SysCacheTool.findOrgById(superId);
+	        	  List list= SysCacheTool.querySubObject(5, null, superId);
+	        	  if(list==null || list.size()==0){
+	        		  order="A001.A001746,"+order;
+	        	  }
+	          }
+	        if (!"".equals(order))
+	          sql.append(" order by ").append(order);
+	        else {
+	          sql.append(" order by ").append("A001.A001746");
+	        }
+	      }
+	      this.getActivepageservice().querySql(table, sql.toString(), user, pageNum, rowNum, true);
+	      return sql.toString(); 
+	      } catch (Exception e) {
+			throw new SysException("", "≤È—Ø ß∞‹", e, getClass());
+	    }
+	  }
 }

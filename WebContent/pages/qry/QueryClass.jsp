@@ -89,13 +89,13 @@ var root = tree.root;
    }
    else{
 %>
-<%=publicTreeRoot%> = tree.add(root, "list", "公共<%=typeName%>", "<%=publicTreeRoot%>", "<%=publicTreeRoot%>", "PUBLIC", "find");
+<%=publicTreeRoot%> = tree.add(root, "list", "公共<%=typeName%>", "<%=publicTreeRoot%>", "<%=publicTreeRoot%>", "PRIVATE", "find");
 <%
     QueryClassBO[] bos = (QueryClassBO[]) request.getAttribute("classPublic");
     if(bos != null && bos.length > 0){
         for(int i=0;i<bos.length;i++){
             QueryClassBO bo = bos[i];
-            String sc = bo.getClassId() + " = tree.add(" + bo.getSuperId() + ", 'last', '" + bo.getName() + "', '" + bo.getClassId() + "', '" + bo.getRootId() +"', 'PUBLIC', 'find');";
+            String sc = bo.getClassId() + " = tree.add(" + bo.getSuperId() + ", 'last', '" + bo.getName() + "', '" + bo.getClassId() + "', '" + bo.getRootId() +"', 'PRIVATE', 'find');";
             out.println(sc);
         }
 }

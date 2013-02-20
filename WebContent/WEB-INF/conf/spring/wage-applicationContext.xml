@@ -138,7 +138,7 @@
         <property name="wageapi" ref="wage_api"/>
         <property name="wageinputpowerdao" ref="wage_inputpowerDAO"/>
         <property name="insItempowerdao" ref="ins_itempowerDAO"/>
-        <property name="attItempowerdao" ref="att_itempowerDAO"/>
+<!--         <property name="attItempowerdao" ref="att_itempowerDAO"/> -->
         <property name="insdeptdao" ref="ins_DeptPowerDAO"/>
     </bean>
 
@@ -526,7 +526,7 @@
 
     </bean>
 
-    <bean id="wage_ComputeService" class="com.hr319wg.wage.service.WageComputeService">
+    <bean id="wage_ComputeService" class="com.hr319wg.custom.extend.service.WageComputeServiceByExtend">
         <property name="wageapi">
             <ref bean="wage_api"/>
         </property>

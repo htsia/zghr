@@ -1,3 +1,4 @@
+<%@page import="java.util.Collections"%>
 <%@page import="net.sf.json.JSONArray"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.sys.cache.SysCache" %>
@@ -26,10 +27,9 @@
     String onlyOrg = CommonFuns.filterNull(request.getParameter("onlyOrg"));          //  只显示机构
     String showTeam = CommonFuns.filterNull(request.getParameter("showTeam"));          // 显示团队
     String secDeptTreeId = CommonFuns.filterNull(request.getParameter("secDeptTreeId"));          // 二级部门树id
-    ArrayList list = null;
+    List<OrgBO> list = null;
     User user = (User) (session.getAttribute(Constants.USER_INFO));
     teamManagerUcc teamucc = (teamManagerUcc) SysContext.getBean("teamucc");
-
     if (!"".equals(rootId) && !"undefined".equals(rootId) && !"null".equals(rootId)) {
         if ("-1".equals(superId)) {   // 如果指定了首层机构
             String[] ids = rootId.split(",");
@@ -51,7 +51,7 @@
                 if (os != null && os.length > 0) {
                     list = new ArrayList();
                     for (int i = 0; i < os.length; i++) {
-                        list.add(SysCacheTool.findOrgById(os[i].getOrgId()));
+                    	list.add(SysCacheTool.findOrgById(os[i].getOrgId()));
                     }
                 }
             } else {
@@ -76,7 +76,7 @@
                 if (os != null && os.length > 0) {
                     list = new ArrayList();
                     for (int i = 0; i < os.length; i++)
-                        list.add(os[i]);
+                        list.add(SysCacheTool.findOrgById(os[i].getOrgId()));
                 }
             } else {
                 list = SysCacheTool.querySubObject(SysCache.OBJ_ORG, null, superId);
@@ -120,12 +120,11 @@
             }
         }
     }
-
-    OrgBO org = SysCacheTool.findOrgById(superId);
     String childnum = null;
     List orgList = new ArrayList();
     // 返回结果
     if (list != null) {
+	    Collections.sort(list);
         for (int i = 0; i < list.size(); i++) {
             OrgBO o = (OrgBO) list.get(i);
             if(o.getOrgId().length()>6 && secDeptTreeId!=null && !"".equals(secDeptTreeId) && !"null".equals(secDeptTreeId) && !o.getOrgId().startsWith(secDeptTreeId)){

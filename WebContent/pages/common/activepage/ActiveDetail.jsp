@@ -393,26 +393,33 @@
                     out.println(msg);
                     out.println("</td>");
                 } else if (InfoItemBO.DATA_TYPE_POST.equals(cellType)) {//岗位型指标的处理
-                    input.append("<input name=\"")
-                            .append(itemId).append("\"")
-                            .append(" type=\"text\" class=\"input\" ")
-                            .append(" readonly ")
-                            .append(id)
-                            .append(next)
-                            .append(check)
-                            .append(event)
-                            .append(" dict=\"yes\"").append(" dict_num=\"").append(CommonFuns.filterNull(cell.getItemCodeSet())).append("\"")
-                            .append(" code=\"").append(realValue).append("\" ")
-                            .append(value)
-                            .append(">");
+                	if ("readonly".equals(cellRight) || "A001".equals(setId)){
+                        input.append(maskValue);
+                        input.append("<input type='hidden' name='"+itemId+"' value='"+realValue+"'>");
+                    }else{
+	                    input.append("<input name=\"")
+	                            .append(itemId).append("\"")
+	                            .append(" type=\"text\" class=\"input\" ")
+	                            .append(" readonly ")
+	                            .append(id)
+	                            .append(next)
+	                            .append(check)
+	                            .append(event)
+	                            .append(" dict=\"yes\"").append(" dict_num=\"").append(CommonFuns.filterNull(cell.getItemCodeSet())).append("\"")
+	                            .append(" code=\"").append(realValue).append("\" ")
+	                            .append(value)
+	                            .append(">");
+                    }
                     out.println("<td class='" + tdfontclass + "'  >" + itemName + "</td>");
                     out.print("<td class=" + tdclass + "  >");
                     out.print(input.toString());
-                    if (isEdit) {
+                    if (isEdit && !"A001".equals(setId)) {
 						if("A001".equals(setId)){
-							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" if onclick=\"fPopUpPostDlgRy('" + cell.getItemId().trim() + "')\">");
-						}else{						
-							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" if onclick=\"fPopUpPostDlg('" + cell.getItemId().trim() + "')\">");
+							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"fPopUpPostDlgRy('" + cell.getItemId().trim() + "')\">");
+						}else if("C001".equals(setId)){
+							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"fPopUpPostDlg('" + cell.getItemId().trim() + "')\">");
+						}else{
+							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"PopUpPostDlgByDept1('" + cell.getItemId().trim() + "',null,'A001705')\">");
 						}                        
                     }
                     out.println(msg);
@@ -507,7 +514,7 @@
                     out.println(msg);
                     out.println("</td>");
                 } else if (InfoItemBO.DATA_TYPE_ORG.equals(cellType)) { //机构型指标
-                    if ("readonly".equals(cellRight)){
+                    if ("readonly".equals(cellRight) || "A001".equals(setId)){
                         input.append(maskValue);
                         input.append("<input type='hidden' name='"+itemId+"' value='"+realValue+"'>");
                     }
@@ -527,7 +534,7 @@
                     out.println("<td  class='" + tdfontclass + "'  >" + itemName + "</td>");
                     out.print("<td  class=" + tdclass + "  >");
                     out.print(input.toString());
-                    if (isEdit && !"readonly".equals(cellRight)) {
+                    if (isEdit && !"readonly".equals(cellRight) && !"A001".equals(setId)) {
                         if ("A001706".equals(cell.getItemId()) || "C001010".equals(cell.getItemId())) {  // 班组
                             out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"PopUpOrgDlgShowGroup('" + cell.getItemId().trim() + "',1,'')\">");
                         } else {
