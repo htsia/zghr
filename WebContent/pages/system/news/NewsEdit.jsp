@@ -98,6 +98,13 @@
 						size="80" maxlength="50" /> <c:verbatim>
 				</td>
 			</tr>
+			<tr>
+				<td class="td_form01">顺序</td>
+				<td class="td_form02"></c:verbatim> <h:inputText id="itemOrder"
+						styleClass="input" value="#{sys_NewsEditBackingBean.vo.itemOrder}"
+						size="80" maxlength="50" /> <c:verbatim>
+				</td>
+			</tr>
 
 			<tr>
 				<td class="td_form01"><%=LanguageSupport.getResource("XTGL-1333", "新闻来源")%></td>

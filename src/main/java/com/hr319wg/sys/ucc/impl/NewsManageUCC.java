@@ -84,6 +84,7 @@ public class NewsManageUCC implements INewsManageUCC {
 		parambo.setNewsSource(vo.getNewsSource());
 		parambo.setPublicFlag(vo.getPublicFlag());
 		parambo.setExpress(vo.getExpress());
+		parambo.setItemOrder(vo.getItemOrder());
 		try {
 			RoleId = findRoleId(AuthorId);
 		} catch (Exception e) {
@@ -150,6 +151,7 @@ public class NewsManageUCC implements INewsManageUCC {
 		parambo.setNewsSource(CommonFuns.filterNull(vo.getNewsSource()));
 		parambo.setPublicFlag(vo.getPublicFlag());
 		parambo.setExpress(vo.getExpress());
+		parambo.setItemOrder(vo.getItemOrder());
 		try {
 			RoleId = findRoleId(AuthorId);
 		} catch (Exception e) {

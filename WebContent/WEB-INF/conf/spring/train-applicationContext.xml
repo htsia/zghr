@@ -43,6 +43,9 @@
       <property name="courcedao">
           <ref bean="train_courceDAO"/>
       </property>
+      <property name="jdbcTemplate">
+          <ref bean="jdbcTemplate"/>
+      </property>
     </bean>
     <bean id="train_courceucc" class="com.hr319wg.train.ucc.impl.CourceWareUCCImpl">
       <property name="courcewareservice">

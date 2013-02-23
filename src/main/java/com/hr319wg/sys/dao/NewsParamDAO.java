@@ -11,12 +11,12 @@ public class NewsParamDAO extends BaseDAO {
 	private NewsParamBO parambo;
 
 	public List queryPublicNews() {
-		String strHQL = "from NewsParamBO bp where bp.publicFlag = '1' order by bp.submitDate desc";
+		String strHQL = "from NewsParamBO bp where bp.publicFlag = '1' order by bp.itemOrder,bp.submitDate desc";
 		return this.hibernatetemplate.find(strHQL);
 	}
 
 	public List queryByCreatorRoleId(String RoleId) {
-		String strHQL = "from NewsParamBO bp where bp.creatorRoleId = ? order by bp.submitDate desc";
+		String strHQL = "from NewsParamBO bp where bp.creatorRoleId = ? order by bp.itemOrder,bp.submitDate desc";
 		String[] obj = new String[1];
 		obj[0] = RoleId;
 		List list = this.hibernatetemplate.find(strHQL, obj);
@@ -36,7 +36,7 @@ public class NewsParamDAO extends BaseDAO {
 	    }else{
 	    	hql+=" and (bo.endDate<'"+date+"' or isnull(bo.newEndDate,'"+date+"')<'"+date+"')";	    	
 	    }
-		hql+=" order by bo.startDate desc";
+		hql+=" order by bo.itemOrder,bo.startDate desc";
 		return this.hibernatetemplate.find(hql);
 	}
 

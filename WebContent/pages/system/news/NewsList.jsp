@@ -49,7 +49,7 @@
         </f:verbatim>
 		<h:dataTable value="#{sys_NewsListBackingBean.newsList}" var="list" width="95%"
                      headerClass="td_top" id="dateList"
-                     styleClass="table03" columnClasses="td_middle_center,td_middle,td_middle_center,td_middle,td_middle,td_middle_left" align="center">
+                     styleClass="table03" columnClasses="td_middle_center,td_middle_center,td_middle,td_middle_center,td_middle,td_middle,td_middle_left" align="center">
             <h:column>
 		        <f:facet name="header">
 		            <f:verbatim escape="false">
@@ -60,6 +60,12 @@
 		        <f:verbatim escape="false">
 		            <div align="center"> <input type="checkbox" name="chkblltnId" value="</f:verbatim><h:outputText value="#{list.newId}"/><f:verbatim escape="false">"/></div></f:verbatim>
 		    </h:column>
+			<h:column>
+				<f:facet name="header">
+				     <f:verbatim>Ë³Ðò</f:verbatim>
+				</f:facet>
+				<h:outputText style="width:180px" value="#{list.itemOrder}" />
+			</h:column>
 			<h:column>
 				<f:facet name="header">
 				     <f:verbatim>
