@@ -1,11 +1,18 @@
 package com.hr319wg.custom.attence.web;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.faces.event.ValueChangeEvent;
+
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
+import org.apache.myfaces.custom.fileupload.UploadedFile;
 
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
@@ -16,6 +23,7 @@ import com.hr319wg.custom.attence.service.IAttBusiService;
 import com.hr319wg.custom.attence.util.AttConstants;
 import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.custom.util.CommonUtil;
+import com.hr319wg.custom.wage.pojo.bo.WageDataSetUserBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.api.UserAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
@@ -62,7 +70,16 @@ public class AttOvertimeBackingBean extends BaseBackingBean {
 	private String ismanager;
     private String userId;
 	private boolean selMyAtt;
+	private UploadedFile excelFile;
 	
+	public UploadedFile getExcelFile() {
+		return excelFile;
+	}
+
+	public void setExcelFile(UploadedFile excelFile) {
+		this.excelFile = excelFile;
+	}
+
 	public boolean isSelMyAtt() {
 		return selMyAtt;
 	}
@@ -782,4 +799,8 @@ public class AttOvertimeBackingBean extends BaseBackingBean {
 			selMyAtt = event.getNewValue().toString().equals("true");
 		}
 		
+		//批量上传加班
+		public void uploadFile(){
+			
+		}
 }

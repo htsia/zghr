@@ -27,11 +27,27 @@
 	    	}
 	    	return true;
 	    }
+       function checkSubmit() {
+           var filename = form1.all("form1:excelFile").value;
+           if (filename.substr(filename.length - 3).toLowerCase() != 'xls') {
+               alert("请选择xls文件");
+               return false;
+           }
+           process();
+   		return true;
+       }
+       function process(){
+   		x = document.body.clientWidth / 2 - 150;
+   		y = document.body.clientHeight / 2;
+   		document.all('processbar').style.top = y;
+   		document.all('processbar').style.left = x;
+   		document.all('processbar').style.display = "";
+       }
     </script>
 
 <x:saveState value="#{attOvertimeApplyBB}"></x:saveState>
 <h:inputHidden value="#{attOvertimeApplyBB.inputInit}"/>
-<h:form id="form1">
+<h:form id="form1" enctype="multipart/form-data">
 	<h:inputHidden id="personType" value="#{attOvertimeApplyBB.personType}"/>
     <h:inputHidden id="personTypeValue" value="#{attOvertimeApplyBB.personTypeValue}"/>
      <c:verbatim>
@@ -53,7 +69,10 @@
             <h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{attOvertimeApplyBB.doQuery}"/>
             <h:commandButton styleClass="button01" value="查询" action="#{attOvertimeApplyBB.doQuery}"/> 
             <h:outputText value="  "/>
-            <h:commandButton value="增加"  styleClass="button01" onclick="add()"/>
+            <x:inputFileUpload id="excelFile" styleClass="input" value="#{attOvertimeApplyBB.excelFile}" storage="file" size="10"/>
+            <h:commandButton styleClass="button01" value="加班导入" action="#{attOvertimeApplyBB.uploadFile}"
+	                             onclick="return checkSubmit();"/>
+            <h:commandButton value="添加加班"  styleClass="button01" onclick="add()"/>
 	      </h:panelGroup>
 	    </h:panelGrid>
 	    <h:panelGrid align="right" columns="1">
@@ -131,3 +150,17 @@
 <script type="text/javascript">
    setDataTableOver("form1:dateList");
 </script>
+<marquee id="processbar" style="position:absolute;display:none; border:1px solid #000000" direction="right" width="300"
+         scrollamount="5" scrolldelay="10"
+         bgcolor="#ECF2FF">
+    <table cellspacing="1" cellpadding="0">
+        <tr height=8>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+        </tr>
+    </table>
+</marquee>
