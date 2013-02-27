@@ -1,7 +1,11 @@
 package com.hr319wg.custom.attence.web;
 
-import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,8 +14,8 @@ import javax.faces.event.ValueChangeEvent;
 
 import jxl.Sheet;
 import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 
 import com.hr319wg.common.exception.SysException;
@@ -23,12 +27,12 @@ import com.hr319wg.custom.attence.service.IAttBusiService;
 import com.hr319wg.custom.attence.util.AttConstants;
 import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.custom.util.CommonUtil;
-import com.hr319wg.custom.wage.pojo.bo.WageDataSetUserBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.api.UserAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CodeUtil;
 import com.hr319wg.util.CommonFuns;
+import com.hr319wg.util.FileUtil;
 import com.hr319wg.xys.workflow.service.ActivitiToolsService;
 import com.hr319wg.xys.workflow.service.SelPersonsToolService;
 
@@ -71,7 +75,25 @@ public class AttOvertimeBackingBean extends BaseBackingBean {
     private String userId;
 	private boolean selMyAtt;
 	private UploadedFile excelFile;
+	private boolean showError;
+	private String errorFileUrl;
 	
+	public String getErrorFileUrl() {
+		return errorFileUrl;
+	}
+
+	public void setErrorFileUrl(String errorFileUrl) {
+		this.errorFileUrl = errorFileUrl;
+	}
+
+	public boolean isShowError() {
+		return showError;
+	}
+
+	public void setShowError(boolean showError) {
+		this.showError = showError;
+	}
+
 	public UploadedFile getExcelFile() {
 		return excelFile;
 	}
@@ -219,35 +241,14 @@ public class AttOvertimeBackingBean extends BaseBackingBean {
 			}
 		}
 	}
-	
+	//录入加班
 	public String saveInput(){
 		if(this.selectedUserIds!=null && !"".equals(this.selectedUserIds)){
-			String[]userIDs=this.selectedUserIds.split(",");
-			for(int i=0;i<userIDs.length;i++){
-				AttOvertimeBO bo = new AttOvertimeBO();
-				bo.setPersonId(userIDs[i]);
-				bo.setBeginTime(this.inputEditBeginDate);
-				bo.setEndTime(this.inputEditEndDate);
-				bo.setApplyDays(String.valueOf(Double.parseDouble(this.inputEditApplyDays)/8.0));
-				bo.setApplyTime(CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss"));
-				bo.setStatus(AttConstants.STATUS_AUDIT_SUCCES);
-				bo.setReason(this.inputEditReason);
-				bo.setCreateType("1");
-				try {
-					this.attBusiService.saveOrUpdateBO(bo);
-					String day = bo.getBeginTime();
-					String days=bo.getApplyDays();
-	                if(this.attBusiService.isFeast(day, userIDs[i])){
-	                	if(Double.parseDouble(days)<1){
-	                		days="1.0";
-	                	}else{
-	                		days="2.0";
-	                	}
-	                }
-					this.attBusiService.updateLeaveDays("0", days, userIDs[i]);
-				} catch (SysException e) {
-					e.printStackTrace();
-				}
+			try {
+				this.attBusiService.saveOvertimeInput(this.inputEditBeginDate, this.inputEditEndDate, this.inputEditReason, this.inputEditApplyDays, CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss"), this.selectedUserIds.split(","));
+			} catch (SysException e) {
+				super.showMessageDetail("添加失败");
+				e.printStackTrace();
 			}
 		}
 		return "success";
@@ -800,7 +801,101 @@ public class AttOvertimeBackingBean extends BaseBackingBean {
 		}
 		
 		//批量上传加班
-		public void uploadFile(){
+		public String uploadFile(){
+			try {
+				Workbook wb = Workbook.getWorkbook(this.excelFile.getInputStream());
+				Sheet st=wb.getSheet(0);
+				int row=st.getRows();
+				if(row<=1){
+					super.showMessageDetail("上传文件工作薄没有内容");				
+					return null;
+				}
+				Map map=new HashMap();
+				Map repeatMap=new HashMap();
+				List<Map> list=new ArrayList<Map>();
+				List<Map> list2=new ArrayList<Map>();
+				
+				Long d=new Date().getTime();
+				String path=super.getRealPath("/")+"file\\att\\"+d+".txt";
+				BufferedWriter bw = new BufferedWriter(new FileWriter(path));
+				for(int i=1;i<row;i++){
+					boolean pass=true;
+					Map m=new HashMap();
+					String pCode = st.getCell(0, i).getContents();
+					if(pCode==null || "".equals(pCode)){
+						break;
+					}
+					PersonBO p = SysCacheTool.findPersonByCode(pCode.trim());
+					if(p==null){
+						FileUtil.addErrorFormatLabel(bw, i, 0, "人员编号"+pCode+"不存在");
+						pass=false;
+						this.showError=true;
+					}else{
+						String name=st.getCell(1, i).getContents().trim();
+						if(!p.getName().equals(name)){
+							FileUtil.addErrorFormatLabel(bw, i, 1, "姓名不匹配,系统中为"+p.getName()+"此处为"+name);
+							pass=false;
+							this.showError=true;
+						}else if(map.containsKey(p.getPersonId())){
+							FileUtil.addErrorFormatLabel(bw, i, 0, "员工编号"+pCode+"重复");
+							repeatMap.put(p.getPersonId(), null);
+							pass=false;
+							this.showError=true;
+						}else{
+							m.put("id", p.getPersonId());
+							map.put(p.getPersonId(), null);
+						}
+					}
+					
+					String beginDate=st.getCell(2, i).getContents().trim();
+					SimpleDateFormat f=new SimpleDateFormat("yyyy-MM-dd");
+					try {
+						f.parse(beginDate);
+						m.put("beginDate", beginDate);
+					} catch (Exception e) {
+						FileUtil.addErrorFormatLabel(bw, i, 2, "日期格式不正确");
+						pass=false;
+						this.showError=true;
+					}
+					String appDays=st.getCell(3, i).getContents().trim();
+					try {
+						double day=Double.valueOf(appDays);
+						m.put("appDays", appDays);
+					} catch (Exception e) {
+						FileUtil.addErrorFormatLabel(bw, i, 3, "加班时间格式不正确");
+						pass=false;
+						this.showError=true;
+					}
+					
+					if(pass){
+						list.add(m);
+					}
+				}
+				if(this.showError){
+					this.errorFileUrl=super.getServletRequest().getContextPath()+"\\file\\att\\"+d+".txt";
+				}
+				for(Map m : list){
+					String id=String.valueOf(m.get("id"));
+					if(!repeatMap.containsKey(id)){
+						list2.add(m);
+					}
+				}
+				super.getHttpSession().setAttribute("inputValue", list2);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
+			return "fileInfoList";
+		}
+		
+		public String saveFile(){
+			List list = (List)super.getHttpSession().getAttribute("inputValue");
+			try {
+				this.attBusiService.batchOvertimeInput(list);
+				return "success";
+			} catch (SysException e) {
+				e.printStackTrace();
+			}
+			return null;
 		}
 }

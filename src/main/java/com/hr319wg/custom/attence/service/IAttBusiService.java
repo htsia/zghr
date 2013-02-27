@@ -218,6 +218,11 @@ public interface IAttBusiService {
 			String reason, String currentUserId)
 					throws SysException;
 	
+	public abstract void saveOvertimeInput(String beginDate, String endDate, String reason, String applyDays, String applyTime, String[]userIDs) throws SysException;
+	
+	public abstract void batchOvertimeInput(List<Map> list)
+					throws SysException;
+	
 	public abstract void saveOutAudit(String result, AttOutBO out,
 			String reason, String taskId, String currentUserId)
 			throws SysException;

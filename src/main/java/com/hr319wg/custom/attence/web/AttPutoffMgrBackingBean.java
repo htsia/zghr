@@ -865,9 +865,10 @@ public class AttPutoffMgrBackingBean extends BaseBackingBean {
 		}
 	}
 	//计算临时考勤
-	public String updateCalcAttTempData(){
+	public String updateCalcAttTempData(String currUserID){
 		try {
-			this.attBusiService.updateCalcAttTempData("1651", this.tempBeginDate, this.tempEndDate);
+			PersonBO p=SysCacheTool.findPersonById(currUserID);
+			this.attBusiService.updateCalcAttTempData(p.getOrgId(), this.tempBeginDate, this.tempEndDate);
 			this.attBusiService.updateAttTempDate(this.tempBeginDate, this.tempEndDate);
 			super.showMessageDetail("计算完成");
 		} catch (SysException e) {

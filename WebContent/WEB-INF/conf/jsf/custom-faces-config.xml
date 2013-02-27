@@ -36,7 +36,13 @@
 			<to-view-id>/custom/attence/successLeave.jsf</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+	<navigation-rule>
+        <from-view-id>/custom/attence/fileInfoIndex.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>fileInfoList</from-outcome>
+            <to-view-id>/custom/attence/fileInfoList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
     
 	<managed-bean>
 		<managed-bean-name>wage_dataOtherBB</managed-bean-name>

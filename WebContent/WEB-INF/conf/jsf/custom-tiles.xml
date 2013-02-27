@@ -185,6 +185,12 @@
     
     
     <!-- 考勤相关 -->
+    <definition name="/custom/attence/fileInfoIndex.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/fileInfoIndex.jsp"/>
+    </definition>
+    <definition name="/custom/attence/fileInfoList.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/attence/fileInfoList.jsp"/>
+    </definition>
     <definition name="/custom/attence/attLogMgr.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/attence/attLogMgr.jsp"/>
     </definition>

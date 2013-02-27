@@ -2061,12 +2061,13 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		// 需要插入item_id，operate_id，send_person，send_date，have_process，orguid，content，
 		// wf_node_log，processid
 		// 主键生成 *** 发送人id 发送日期 是否有流程 "1651" 大致描述 ******* 流程id
+		PersonBO p=SysCacheTool.findPersonById(currentUserId);
 		ISysInProcessUCC ucc = (ISysInProcessUCC) SysContext
 				.getBean("sys_inprocessUCC");
 		SysInProcessBO sb = new SysInProcessBO();
 		sb.setSendPerson(currentUserId); // 发送人ID
 		sb.setSendDate(CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss"));
-		sb.setOrguid("1651"); // 业务所属机构
+		sb.setOrguid(p.getOrgId()); // 业务所属机构
 		sb.setHave_process("1");
 		// String msg=formateMsg(wt,trans.getToMessage()); // 消息
 		sb.setContent("**************");
@@ -2457,10 +2458,11 @@ public class AttBusiServiceImpl implements IAttBusiService {
 							eDate);
 					daysSet.addAll(tempDays);
 				}
+				PersonBO p=SysCacheTool.findPersonById(userId);
 				// 找到这个假期相关的公休调休日，有的话删除这个公休调休日
 				List<AttWorkDateBO> attWorkDateList = this.attfeastDAO
 						.getAllAttWorkDate(feastList.get(i).getFeastID(),
-								"1651");
+								p.getOrgId());
 				if (attWorkDateList != null) {
 					for (int j = 0; j < attWorkDateList.size(); j++) {
 						daysSet.remove(attWorkDateList.get(j).getWorkDate());
@@ -3233,7 +3235,8 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public boolean isFeast(String date, String personId) throws SysException {
 		boolean b = false;
-		List leaveList = this.attfeastDAO.getAllAttFeast("1651");
+		PersonBO p=SysCacheTool.findPersonById(personId);
+		List leaveList = this.attfeastDAO.getAllAttFeast(p.getOrgId());
 		// 获取人员类型
 		String sql = "select a.a001218 as postType from a001 a where a.id='"
 				+ personId + "'";
@@ -3411,7 +3414,8 @@ public class AttBusiServiceImpl implements IAttBusiService {
 		List<AttLeaveBO> list= this.attBusiDAO.getAttDetailForSomebody(personId,yearMonth);
 		String  result="";
 		try {
-			this.updateCalcAttTempData("1651", beginDate, endDate);
+			PersonBO p=SysCacheTool.findPersonById(personId);
+			this.updateCalcAttTempData(p.getOrgId(), beginDate, endDate);
 			this.updateAttTempDate(beginDate, endDate);
 			String sql="select a244202 as detail from a244 where id='"+personId+"'";
 			result=this.activeapi.queryForString(sql);
@@ -3464,6 +3468,51 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			String[]IDs=itemIDs[i].split("-");
 			AttOutBO bo = (AttOutBO)this.findBOById(AttOutBO.class, IDs[0]);
 			this.saveOutAudit(result, bo, reason, IDs[1], currentUserId);
+		}
+	}
+
+	//录入加班
+	public void saveOvertimeInput(String beginDate, String endDate,
+			String reason, String applyDays, String applyTime, String[] userIDs)
+			throws SysException {
+		for(int i=0;i<userIDs.length;i++){
+			saveOvertimeInput(beginDate, endDate, reason, applyDays, applyTime, userIDs[i]);
+		}
+	}
+
+	//批量导入加班
+	public void batchOvertimeInput(List<Map> list) throws SysException {
+		String date=CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss");
+		for(Map m : list){
+			saveOvertimeInput(String.valueOf(m.get("beginDate")), null, null, String.valueOf(m.get("appDays")), date, String.valueOf(m.get("id")));
+		}
+	}
+	
+	private void saveOvertimeInput(String beginDate, String endDate,
+			String reason, String applyDays, String applyTime, String userID){
+		AttOvertimeBO bo = new AttOvertimeBO();
+		bo.setPersonId(userID);
+		bo.setBeginTime(beginDate);
+		bo.setEndTime(endDate);
+		bo.setApplyDays(String.valueOf(Double.parseDouble(applyDays)/8.0));
+		bo.setApplyTime(applyTime);
+		bo.setStatus(AttConstants.STATUS_AUDIT_SUCCES);
+		bo.setReason(reason);
+		bo.setCreateType("1");
+		try {
+			this.saveOrUpdateBO(bo);
+			String day = bo.getBeginTime();
+			String days=bo.getApplyDays();
+            if(this.isFeast(day, userID)){
+            	if(Double.parseDouble(days)<1){
+            		days="1.0";
+            	}else{
+            		days="2.0";
+            	}
+            }
+			this.updateLeaveDays("0", days, userID);
+		} catch (SysException e) {
+			e.printStackTrace();
 		}
 	}
 }
