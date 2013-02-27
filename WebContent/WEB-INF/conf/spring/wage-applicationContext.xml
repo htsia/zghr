@@ -132,7 +132,7 @@
         </property>
     </bean>
 
-    <bean id="wage_deptservice" class="com.hr319wg.wage.service.WageDeptService">
+    <bean id="wage_deptservice" class="com.hr319wg.custom.extend.service.WageDeptServiceByExtend">
         <property name="wagedeptdao" ref="wage_deptDAO"/>
         <property name="wagedeptpowerdao" ref="wage_deptpowerDAO"/>
         <property name="wageapi" ref="wage_api"/>

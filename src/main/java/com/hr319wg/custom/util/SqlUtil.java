@@ -17,10 +17,12 @@ public class SqlUtil {
 			try {
 				Context intitCtx = new InitialContext();
 				Context envCtx = (Context) intitCtx.lookup("java:comp/env");
-				DataSource ds = (DataSource) envCtx.lookup("tiancai");
-				connection = ds.getConnection();
+				Object ds = envCtx.lookup("tiancai");
+				if(ds==null){
+					return null;
+				}
+				connection = ((DataSource)ds).getConnection();
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
 		}
 		return connection;
@@ -29,7 +31,11 @@ public class SqlUtil {
 	public static int updateData(String sql){
 		int result=-1;
 		try {
-			PreparedStatement pst = getConnect().prepareStatement(sql);
+			Connection conn=getConnect();
+			if(conn==null){
+				return result;
+			}
+			PreparedStatement pst = conn.prepareStatement(sql);
 			result= pst.executeUpdate();
 			pst.close();
 		} catch (SQLException e) {
@@ -40,7 +46,11 @@ public class SqlUtil {
 	
 	public static ResultSet getData(String sql){
 		try {
-			PreparedStatement pst = getConnect().prepareStatement(sql);
+			Connection conn=getConnect();
+			if(conn==null){
+				return null;
+			}
+			PreparedStatement pst = conn.prepareStatement(sql);
 			return pst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
