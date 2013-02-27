@@ -134,7 +134,7 @@ function ShowCalendar(InputBox) {
     document.all.Calendar.style.visibility="visible";
 
     //下面开始输出日历表格(border-color:#9DBAF7)
-    DivContent="<table border='0' cellspacing='0' align=center style='border:1px solid #0066FF; background-color:#EDF2FC'>";
+    DivContent="<table border='0' cellspacing='0' align=center style='border:1px solid #0066FF; background-color:#EDF2FC;margin-top:10px;'>";
     DivContent+="<tr>";
     DivContent+="<td style='border-bottom:1px solid #0066FF; background-color:#C7D8FA'>";
 
