@@ -58,7 +58,10 @@
 				<h:inputText value="#{ins_dataBB.nameStr}" styleClass="input" size="10"/>
 				<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{ins_dataBB.doQuery}"/>
 				<h:commandButton action="#{ins_dataBB.doQuery}" styleClass="button01" value="查询 "/>
-				<h:outputText value="  "/>
+			</h:panelGroup>
+		</h:panelGrid>
+		<h:panelGrid columns="1" align="right">
+			<h:panelGroup>
 				<h:outputText value="记录数:#{ins_dataBB.mypage.totalRecord}"></h:outputText>
 				<h:outputText value="  "></h:outputText>
 				<h:outputText value="页数:#{ins_dataBB.mypage.totalPage}"></h:outputText>
@@ -76,7 +79,6 @@
 				<h:commandButton value="尾页" action="#{ins_dataBB.last}"
 					styleClass="button01"></h:commandButton>
 				<h:outputText value="  "/>
-				
 			</h:panelGroup>
 		</h:panelGrid>
 	</h:panelGrid>

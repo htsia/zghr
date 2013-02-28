@@ -413,6 +413,7 @@ public class InsDataBackingBean extends BaseBackingBean{
 	
 	public String saveMonthPay(){
 		try {
+			this.monthPay.setStatus("1");
 			this.insDataService.saveOrUpdateBO(this.monthPay);
 			return "success";
 		} catch (SysException e) {
