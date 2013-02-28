@@ -3,6 +3,48 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+	<!-- 保险_begin-->
+    <class name="com.hr319wg.custom.ins.pojo.bo.InsCalcSetBO" table="ins_calc_set">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="createUserID" column="createUserID"/>
+        <property name="createOrgID" column="createOrgID"/>
+        <property name="createDate" column="createDate"/>
+        <property name="wageDate" column="wageDate"/>
+        <property name="status" column="status"/>
+        <property name="remark" column="remark"/>
+    </class>
+    <class name="com.hr319wg.custom.ins.pojo.bo.InsMonthPayBO" table="A246">
+        <id name="subID" type="string" unsaved-value="null">
+            <column name="SUBID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="userID" column="ID"/>
+        <property name="wageDate" column="A246200"/>
+        <property name="personYlao" column="A246201"/>
+        <property name="personShiye" column="A246218"/>
+        <property name="personYliao" column="A246202"/>
+        <property name="personDaejin" column="A246203"/>
+        <property name="personGongjijin" column="A246204"/>
+        <property name="companyYlao" column="A246205"/>
+        <property name="companyShiye" column="A246206"/>
+        <property name="companyGongshang" column="A246207"/>
+        <property name="companyYliao" column="A246208"/>
+        <property name="companyShengyu" column="A246209"/>
+        <property name="companyGongjijin" column="A246210"/>
+        <property name="calcSetID" column="A246211"/>
+        <property name="orgID" column="A246212"/>
+        <property name="secDeptID" column="A246213"/>
+        <property name="userType" column="A246214"/>
+        <property name="payAddress" column="A246215"/>
+        <property name="insNO" column="A246216"/>
+        <property name="selfPay" column="A246217"/>        
+        <property name="insOther" column="A246219"/>        
+    </class>
+    <!-- 保险_end-->
+    
     <class name="com.hr319wg.custom.wage.pojo.bo.ClassWageBO" table="a242">
         <id name="subID" type="string" unsaved-value="null">
             <column name="subid" sql-type="nvarchar(32)"/>

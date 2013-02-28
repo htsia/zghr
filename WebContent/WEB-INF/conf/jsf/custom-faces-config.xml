@@ -98,7 +98,27 @@
 			<value>#{evawageservice}</value>
 		</managed-property>
 	</managed-bean>
-	
+	<!-- 	保险管理 -->
+	<managed-bean>
+		<managed-bean-name>ins_dataBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.ins.web.InsDataBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>insDataService</property-name>
+			<value>#{ins_dataservice}</value>
+		</managed-property>
+		<managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+	</managed-bean>
+	<navigation-rule>
+		<from-view-id>/custom/ins/BaseRateInputEdit2.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>inputEdit</from-outcome>
+			<to-view-id>/insurace/BaseRateInputEditSelect.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	
 	 <!-- 考勤管理 -->
 	 <managed-bean>

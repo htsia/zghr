@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=GBK" language="java" %>
-<%@ include file="../include/taglib.jsp" %>
+<%@ include file="/pages/include/taglib.jsp" %>
 <%
     response.setHeader("progma", "no-cache");
     response.setHeader("Cache-Control", "no-cache");
@@ -16,9 +16,8 @@
     	   if(!checkMutilSelect(form1.all('form1:inputField'))){
     		   alert('请选择输入项');
     		   return false;
-    	   }else{
-    		   return forsubmit(document.forms(0));
     	   }
+    	   return true;
        }
     </script>
 <!-- BaseRateInputEditBackingBean -->
@@ -33,57 +32,21 @@
     </table>
     <br/>
 	</c:verbatim>
-    <h:panelGrid columns="3" width="95%"  styleClass="table03" align="center" columnClasses="td_top,td_top,td_top">
+    <h:panelGrid columns="2" width="95%"  styleClass="table03" align="center" columnClasses="td_top,td_top,td_top">
 
         <h:outputText escape="false" value="<strong>选择输入项：</strong>"/>
         <h:selectManyCheckbox value="#{ins_brieBB.selectFields}" layout="pageDirection" id="inputField">
             <c:selectItems value="#{ins_brieBB.fieldsList}"/>
         </h:selectManyCheckbox>
-        <h:panelGroup>
-	        <h:outputText escape="false" value="<strong>计算类别：</strong>"/>
-	        <h:panelGroup>
-		        <h:inputText styleClass="input" id="payAddress" code="" dict="yes" dict_num="0202" value="#{ins_brieBB.payAddress}"
-		                      alt="计算类别|0|s|50||"/>
-		        <f:verbatim>
-		        	<input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:payAddress')" ><br/>
-		        </f:verbatim>
-	        </h:panelGroup>
-	        <h:outputText escape="false" value="<strong>是否自付：</strong>"/>
-	        <h:panelGroup>
-		        <h:inputText styleClass="input" id="selfpay" code="" dict="yes" dict_num="0090" value="#{ins_brieBB.selfPay}" alt="是否自付|1|s|50||"/>
-		        <f:verbatim>
-		        	<input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:selfpay')" ><br/>
-		        </f:verbatim>
-	        </h:panelGroup>
-	        <h:outputText escape="false" value="<strong>增加日期：</strong>"/>
-	        <h:panelGroup>
-		        <h:inputText styleClass="input" id="B731701" value="#{ins_brieBB.changeDate}"
-		                      alt="增加日期|0|s|50||"/>
-		        <f:verbatim>
-		        	<input type="button" class="button_select" onclick="PopUpCalendarDialog('form1:B731701')"><br/>
-		        </f:verbatim>
-	        </h:panelGroup>
-	        <h:outputText escape="false" value="<strong>增加类别：</strong>"/>
-	        <h:panelGroup>
-		        <h:inputText styleClass="input" id="B731702" code="" dict="yes" dict_num="0200"
-		        	value="#{ins_brieBB.changeType}"/>
-		        <f:verbatim>
-		        	<input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:B731702','02010001')" ><br/>
-		        </f:verbatim>
-	        </h:panelGroup>
-	        <h:outputText escape="false" value="<strong>来往单位：</strong>"/>
-	        <h:inputText styleClass="input" value="#{ins_brieBB.depName}" alt="来往单位|1|s|50||"/>
-        </h:panelGroup>
     </h:panelGrid>
 
     <c:verbatim escape="false"><br></c:verbatim>
 
-    <h:panelGrid columns="2" cellspacing="3" >
-        <h:outputText escape="false" value="<font color=red>注意：本功能保存后会自动新增记录。修改时请用修改基数功能</font>"></h:outputText>
+    <h:panelGrid columns="1" cellspacing="3" style="margin-left:20px;">
         <h:panelGroup>
             <h:commandButton  styleClass="button01" type="button" value="全部选择" onclick="DoSelectAll(true);" />
             <h:commandButton  styleClass="button01" type="button" value="全部取消" onclick="DoSelectAll(false);" />
-            <h:commandButton styleClass="button01" value="确认" action="#{ins_brieBB.queryPersonInput}"
+            <h:commandButton styleClass="button01" value="确认" action="#{ins_brieBB.queryPersonInput2}"
                              onclick="return forsave();"/>
             <h:commandButton styleClass="button01" type="button" value="取消" onclick="window.close()"/>
         </h:panelGroup>

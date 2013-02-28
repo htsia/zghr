@@ -34,6 +34,10 @@
          function forAdQry(){
              doAdvanceQuery("A","ORG","111","Y","","A001.A001730='00900'","Y","<%=Constants.DEFAULT_QUERY_PERSON%>","Y","1");
          }
+         function forExport() {
+             window.open('/pages/common/ExportToExcel.jsp?sessionKey=<%=Constants.OBJECT%>');
+             return null;
+         }
     </script>
 
     <h:form id="form1">
@@ -45,28 +49,16 @@
             <tr>
                 <td class="td_page" height=8 widht=100%>
         </f:verbatim>
-                    <h:outputText value="姓名或员工编号："></h:outputText>
+                    <h:outputText value="姓名/员工编号/简拼"></h:outputText>
                     <h:inputText id="name" value="#{ins_ChangeQueryBB.name}"
                                     size="10" styleClass="input" onkeypress ="enterKeyDown('form1:queryPerson')" />
                     <h:commandButton value=" 查询 " id="queryPerson"  styleClass="button01"
                                      action="#{ins_ChangeQueryBB.queryPerson}"/>
-                    <h:commandButton value="高级查询" onclick="javascript:return forAdQry();" styleClass="button01" />
+                    <h:outputText value="  "/>
+                    <h:commandButton value="自定义查询" onclick="javascript:return forAdQry();" styleClass="button01" />
 					<h:commandButton styleClass="button01" type="button" value="导出Excel" onclick="doExport();"></h:commandButton>
         <f:verbatim>
         </td>
-                <td class="td_page" height=8>
-        </f:verbatim>
-                    <h:selectOneMenu id="ReportID" style="width:150px">
-                        <c:selectItems value="#{ins_ChangeQueryBB.reportList}"/>
-                    </h:selectOneMenu>
-                    <h:commandButton value="显示登记表" styleClass="button01" onclick="return OpenRpt();"></h:commandButton>
-
-                    <h:selectOneMenu id="listRptID" style="width:150px">
-                        <c:selectItems value="#{ins_ChangeQueryBB.listrptList}"/>
-                    </h:selectOneMenu>
-                    <h:commandButton value="显示花名册" styleClass="button01" onclick="return OpenListRpt();"></h:commandButton>
-           <f:verbatim>
-                </td>
             </tr>
             <tr>
                 <td colspan=2 width="100%">

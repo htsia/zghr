@@ -1,3 +1,4 @@
+<%@page import="com.hr319wg.util.CommonFuns"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ include file="../include/taglib.jsp" %>
 <%
@@ -22,6 +23,11 @@
              }
             return false;
          }
+         function selectDept(){
+             PopUpOrgDlgShowGroup('form1:A754002',null,null, '1');
+             return false;
+         }
+         document.getElementById("form1:B731701").value="<%=CommonFuns.getSysDate("yyyy-MM-dd")%>";
     </script>
 
     <x:saveState value="#{ins_PersonInfoBB}"/>
@@ -42,25 +48,14 @@
             <tr><td colspan=4 height=10></td></tr>
 
             <tr nowrap>
-                <td width="90" class=td_form01>计算类别</td>
+                <td width="90" class=td_form01>缴费地</td>
                 <td  class=td_form02>
  </c:verbatim>
-                    <h:inputText styleClass="input" id="A754002" code="" dict="yes" dict_num="0202"
-                                 value="#{ins_PersonInfoBB.caclpersonType}" alt="计算类别|0|s|50||"/>
+                    <h:inputText styleClass="input" id="A754002" code="" dict="yes" dict_num="OU"
+                            readonly="true" value="#{ins_PersonInfoBB.caclpersonType}" alt="缴费地|0|s|50||"/>
 <c:verbatim>
-                    <input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:A754002','')" >
+                    <input type="button" class="button_org" onclick="return selectDept();">
                 </td>
-                <td width="90" class=td_form01>增加类别</td>
-                <td  class=td_form02>
-</c:verbatim>
-                    <h:inputText styleClass="input" id="B731702" code="" dict="yes" dict_num="0200"
-                                 value="#{ins_PersonInfoBB.changeType}" alt="增加类别|0|s|50||"/>
-<c:verbatim>
-                    <input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:B731702','02010001')" >
-                </td>
-            </tr>
-      
-            <tr>
                 <td width="90" class=td_form01>增加日期</td>
                 <td  class=td_form02>
  </c:verbatim>
@@ -69,33 +64,20 @@
 <c:verbatim>
                     <input type="button" class="button_select" onclick="PopUpCalendarDialog('form1:B731701')">
                 </td>
-                 <td width="90" class=td_form01>来往单位</td>
-                 <td  class=td_form02>
- </c:verbatim>
-                        <h:inputText styleClass="input" id="B731703" value="#{ins_PersonInfoBB.depName}" alt="来往单位|1|s|50||"/>
-<c:verbatim>
-                </td>
             </tr>
 
             <tr>
-                <td width="90" class=td_form01>保险人员类别</td>
+                <td width="90" class=td_form01>是否自付</td>
                 <td  class=td_form02>
 </c:verbatim>
-                    <h:inputText styleClass="input" id="A754003" code="" dict="yes" dict_num="0203" value="#{ins_PersonInfoBB.personType}" alt="保险人员类别|0|s|50||"/>
+                    <h:inputText styleClass="input" id="selfPay" code="" dict="yes" dict_num="0090" value="#{ins_PersonInfoBB.selfPay}" alt="是否自付|0|s|50||"/>
 <c:verbatim>
-                    <input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:A754003','')" >
-                </td>                
-                <td width="90" class=td_form01>变动原因</td>
-                <td  class=td_form02>
- </c:verbatim>
-                	<h:inputText styleClass="input" id="B731209" value="#{ins_PersonInfoBB.changeReason}" alt="变动原因|1|s|50||"/>
-<c:verbatim>
+                    <input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:selfPay','')" >
                 </td>
             </tr>
-
             <tr>
                 <td width="90" class="td_form01">
-                    参加保险情况<c:verbatim><br><br></c:verbatim>
+                    参加保险情况<br><br>
  </c:verbatim>
                     <h:commandButton type="button" styleClass="button01" value="全部参保" onclick="selectAll()"></h:commandButton><c:verbatim><br><br></c:verbatim>
                     <h:commandButton type="button" styleClass="button01" value="全不参保" onclick="deSelectAll()"></h:commandButton><c:verbatim><br></c:verbatim>
@@ -121,10 +103,12 @@
 </c:verbatim>
     </h:form>
 <script type="text/javascript">
+/*
 	for(var i=0;i<document.all('form1:baseinfo').length;i++){
 	   var item = document.all('form1:baseinfo')[i];
 	   if(item.value=="A754020" || item.value=="A754202" || item.value=="A754040" || item.value=="A754200"){
 			item.parentNode.style.display="none";
 	   }
 	}
+	*/
 </script>
