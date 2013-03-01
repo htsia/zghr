@@ -42,6 +42,7 @@
         <property name="insNO" column="A246216"/>
         <property name="selfPay" column="A246217"/>        
         <property name="insOther" column="A246219"/>        
+        <property name="status" column="status"/>        
     </class>
     <!-- 保险_end-->
     

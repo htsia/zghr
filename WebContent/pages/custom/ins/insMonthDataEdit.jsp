@@ -37,26 +37,28 @@
 			align="center" styleClass="table03">
 			<h:outputText value="个人养老"/>
 			<h:inputText id="personYlao" dict="个人养老" value="#{ins_dataBB.monthPay.personYlao}" styleClass="input"/>
-			<h:outputText value="个人失业"/>
-			<h:inputText id="personShiye" dict="个人失业" value="#{ins_dataBB.monthPay.personShiye}" styleClass="input"/>
+			<h:outputText value="单位养老"/>
+			<h:inputText id="companyYlao" dict="单位养老" value="#{ins_dataBB.monthPay.companyYlao}" styleClass="input"/>
 			<h:outputText value="个人医疗"/>
 			<h:inputText id="personYliao" dict="个人医疗" value="#{ins_dataBB.monthPay.personYliao}" styleClass="input"/>
-			<h:outputText value="大额医疗"/>
-			<h:inputText id="personDaejin" dict="大额医疗" value="#{ins_dataBB.monthPay.personDaejin}" styleClass="input"/>
-			<h:outputText value="个人公积金"/>
-			<h:inputText id="personGongjijin" value="#{ins_dataBB.monthPay.personGongjijin}" styleClass="input"/>
-			<h:outputText value="单位养老"/>
-			<h:inputText id="companyYlao" dict="个人公积金" value="#{ins_dataBB.monthPay.companyYlao}" styleClass="input"/>
-			<h:outputText value="单位失业"/>
-			<h:inputText id="companyShiye" dict="单位失业" value="#{ins_dataBB.monthPay.companyShiye}" styleClass="input"/>
-			<h:outputText value="单位工伤"/>
-			<h:inputText id="companyGongshang" dict="单位工伤" value="#{ins_dataBB.monthPay.companyGongshang}" styleClass="input"/>
 			<h:outputText value="单位医疗"/>
 			<h:inputText id="companyYliao" dict="单位医疗" value="#{ins_dataBB.monthPay.companyYliao}" styleClass="input"/>
 			<h:outputText value="单位生育"/>
 			<h:inputText id="companyShengyu" dict="单位生育" value="#{ins_dataBB.monthPay.companyShengyu}" styleClass="input"/>
+			<h:outputText value="大额医疗"/>
+			<h:inputText id="personDaejin" dict="大额医疗" value="#{ins_dataBB.monthPay.personDaejin}" styleClass="input"/>
+			<h:outputText value="个人公积金"/>
+			<h:inputText id="personGongjijin" dict="个人公积金"  value="#{ins_dataBB.monthPay.personGongjijin}" styleClass="input"/>
 			<h:outputText value="单位公积金"/>
 			<h:inputText id="companyGongjijin" dict="单位公积金" value="#{ins_dataBB.monthPay.companyGongjijin}" styleClass="input"/>
+			<h:outputText value="单位工伤"/>
+			<h:inputText id="companyGongshang" dict="单位工伤" value="#{ins_dataBB.monthPay.companyGongshang}" styleClass="input"/>
+			<h:outputText value="个人失业"/>
+			<h:inputText id="personShiye" dict="个人失业" value="#{ins_dataBB.monthPay.personShiye}" styleClass="input"/>
+			<h:outputText value="单位失业"/>
+			<h:inputText id="companyShiye" dict="单位失业" value="#{ins_dataBB.monthPay.companyShiye}" styleClass="input"/>
+			<h:outputText value="社保补缴"/>
+			<h:inputText id="insOther" dict="社保补缴" value="#{ins_dataBB.monthPay.insOther}" styleClass="input"/>
 		</h:panelGrid>
 
 		<h:panelGrid align="right">
