@@ -858,7 +858,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 		this.mypage = mypage;
 	}
 
-	// «ÎºŸ±‡º≠
+	// «ÎºŸ…Í«Î
 	private String initEdit;
 	private AttLeaveBO leaveBo;
 	private String personName;

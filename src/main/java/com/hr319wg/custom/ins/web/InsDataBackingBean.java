@@ -52,11 +52,20 @@ public class InsDataBackingBean extends BaseBackingBean{
 	private IInsDataService insDataService;
 	private IPersonUCC personucc;
 	private List<InsCalcSetBO> setList;
-	private List<InsMonthPayBO> monthPayList;
+	private List monthPayList;
+	private List monthPayList1;
 	private InsCalcSetBO item;
 	private InsMonthPayBO monthPay;
 	private boolean containLock;
 	
+	public List getMonthPayList1() {
+		return monthPayList1;
+	}
+
+	public void setMonthPayList1(List monthPayList1) {
+		this.monthPayList1 = monthPayList1;
+	}
+
 	public String getBacthValue() {
 		return bacthValue;
 	}
@@ -124,10 +133,10 @@ public class InsDataBackingBean extends BaseBackingBean{
 		this.monthPay = monthPay;
 	}
 	
-	public List<InsMonthPayBO> getMonthPayList() {
+	public List getMonthPayList() {
 		return monthPayList;
 	}
-	public void setMonthPayList(List<InsMonthPayBO> monthPayList) {
+	public void setMonthPayList(List monthPayList) {
 		this.monthPayList = monthPayList;
 	}
 	public String getOperStatus() {
@@ -363,18 +372,23 @@ public class InsDataBackingBean extends BaseBackingBean{
 		 	mypage.setCurrentPage(1);
 		}
 		try {
-			this.monthPayList = this.insDataService.getAllInsMonthPayBO(mypage, this.operSetID, this.operWageDate, this.orgID, this.personType, this.nameStr);
-			if(this.monthPayList!=null){
-				for(InsMonthPayBO bo : this.monthPayList){
+			this.monthPayList1 = this.insDataService.getAllInsMonthPayBO(mypage, this.operSetID, this.operWageDate, this.orgID, this.personType, this.nameStr);
+			this.monthPayList=new ArrayList();
+			if(this.monthPayList1!=null){
+				for(int i=0;i<this.monthPayList1.size();i++){
+					Object[]obj=(Object[]) this.monthPayList1.get(i);
+					InsMonthPayBO bo = (InsMonthPayBO)obj[0];
 					PersonBO p = SysCacheTool.findPersonById(bo.getUserID());
 					bo.setUserCode(p.getPersonCode());
 					bo.setUserName(p.getName());
+					bo.setUserType(CodeUtil.interpertCode(String.valueOf(obj[1])));
 					bo.setSecDeptID(CodeUtil.interpertCode(bo.getSecDeptID()));
 					bo.setOrgID(CodeUtil.interpertCode(CodeUtil.TYPE_ORG, bo.getOrgID()));
 					bo.setPayAddress(CodeUtil.interpertCode(CodeUtil.TYPE_ORG, bo.getPayAddress()));
 					bo.setUserType(CodeUtil.interpertCode(bo.getUserType()));
 					bo.setSelfPay(CodeUtil.interpertCode(bo.getSelfPay()));
 					bo.setPayAddress(CodeUtil.interpertCode(bo.getPayAddress()));
+					this.monthPayList.add(bo);
 				}
 			}
 		} catch (SysException e) {

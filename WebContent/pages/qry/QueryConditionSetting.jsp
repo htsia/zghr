@@ -6,8 +6,12 @@
 <%@ page import="com.hr319wg.sys.pojo.bo.InfoItemBO" %>
 <%@ page import="com.hr319wg.util.CommonFuns" %>
 <%@ include file="/pages/include/taglib.jsp" %>
-
- <script type="text/javascript" language="javascript" src="/pages/qry/QueryConditionSetting.js"></script>
+<%
+	response.setHeader("Pragma", "No-cache");
+	response.setHeader("Cache-Control", "no-cache");
+	response.setDateHeader("Expires", 0);
+%>
+ <script type="text/javascript" language="javascript" src="/js/setQueryCond.js" charset="gbk"></script>
 <h:form id="form1">
 <h:inputHidden value="#{qry_querySettingBB.initVO}"/>
 <%
@@ -77,9 +81,21 @@
         <td width="25%" rowspan="2">
             <iframe src="/pages/qry/InfoItemList.jsp?setType=<%=setType%>" style="width:100%;height:350px;"></iframe>
         </td>
-
         <td width="75%" align="left" valign="top">
-            <table width="100%" border="0" align="left" cellpadding="5" cellspacing="1" class="td02">
+            <table width="100%" border="0" align="left" cellpadding="1" cellspacing="1" class="td02">
+                <tr class="td_top" align=center>
+                    <td width="65" height="25">方案名称</td>
+                    <td align="left" valign="middle">
+                    	<input id="qryName" name="qryName" value="<%=qryName%>" class="input" style="width: 300px;"/>
+                    </td>
+                </tr>
+                <tr id="setCond" class="td_top" align=center style="display:none;">
+                    <td width="65" height="25">输入括号</td>
+                    <td align="left" valign="middle">
+                    	<input id="condValue" value="" class="input" />
+                    	<input type="button" onclick="setCond();" value="确定" class="button01"/>
+                    </td>
+                </tr>
                 <tr class="td_top" align=center>
                     <td width="65">条件组合</td>
                     <td align="left" id="groupField" valign="middle"></td>
@@ -167,7 +183,7 @@
                         out.println("insertConditionRow('" + cbo[i].getItemId() + "', '" + item.getItemName() + "','" + item.getItemDataType() + "','" + item.getItemCodeSet() + "','" + cbo[i].getOperator() + "','" + CommonFuns.filterNull(cbo[i].getValue()) + "','" + CommonFuns.filterNull(cbo[i].getText()) + "','" + CommonFuns.filterNull(cbo[i].getValue2()) + "','" + CommonFuns.filterNull(cbo[i].getText2()) + "');");
                     }
             }
-            String groupshow=CommonFuns.filterNull(vo.getStatics().getGroup());
+            String groupshow=CommonFuns.filterNull(vo.getStatics().getGroupShow());
             out.println("groupField.innerHTML = '" +groupshow + "';");
         }catch(Exception e){
 
@@ -182,7 +198,6 @@
 <input type="hidden" name="qsType" value="<%=qsType%>">
 <input type="hidden" name="setType" value="<%=setType%>">
 <input type="hidden" name="classId" value="<%=classId%>">
-<input type="hidden" name="qryName" value="<%=qryName%>">
 <input type="hidden" name="sysFlag" value="<%=sysFlag%>">
 <input type="hidden" name="qryId" value="<%=qryId%>">
 <input type="hidden" name="unitType" value="<%=unitType%>">

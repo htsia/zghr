@@ -9,7 +9,7 @@
 <x:saveState value="#{attLeaveApplyBB}" />
 <h:form id="form1">
 	<h:inputHidden id="initEdit" value="#{attLeaveApplyBB.initEdit}"></h:inputHidden>
-	<!-- 将带薪假剩余的天数封装 -->
+	<!-- 带薪假剩余的天数 -->
 	<h:inputHidden id="leaveday2" value="#{attLeaveApplyBB.days.a236202}"></h:inputHidden>
 	<h:inputHidden id="leaveday3" value="#{attLeaveApplyBB.days.a236203}"></h:inputHidden>
 	<h:inputHidden id="leaveday4" value="#{attLeaveApplyBB.days.a236204}"></h:inputHidden>
@@ -83,8 +83,7 @@
 			columnClasses="td_form01,td_form02" align="center"
 			styleClass="table03">
 			<h:outputText value="请假原因" />
-			<h:inputTextarea id="reason" cols="60" rows="5"
-				value="#{attLeaveApplyBB.leaveBo.reason}"></h:inputTextarea>
+			<h:inputTextarea id="reason" cols="60" rows="5" value="#{attLeaveApplyBB.leaveBo.reason}"/>
 		</h:panelGrid>
 		<h:panelGrid columns="2" width="100%"
 			columnClasses="td_form01_center,td_middle" align="center"
@@ -175,7 +174,7 @@
 		}
 	}
 	function checkDays() {
-		//保存请假条出发的事件
+		//保存请假单
 		var type = document.all("form1:leaveType").value;
 		var applydays = document.all("form1:applydays").value;
 		var beginDate = document.all("form1:beginTime").value;

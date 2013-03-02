@@ -28,12 +28,17 @@
 		}
 		return confirm('确定批量更新吗');
 	}
+	function exportIns(){
+		window.open("/pages/custom/ins/exportIns.jsp?setID="+document.getElementById("form1:operSetID").value+"&date="+document.getElementById("form1:operWageDate").value);
+	}
 </script>
 <x:saveState value="#{ins_dataBB}" />
 <h:inputHidden value="#{ins_dataBB.dataInit}"/>
 <h:form id="form1">
 	<h:inputHidden id="personType" value="#{ins_dataBB.personType}"/>
     <h:inputHidden id="personTypeValue" value="#{ins_dataBB.personTypeValue}"/>
+    <h:inputHidden id="operSetID" value="#{ins_dataBB.operSetID}"/>
+    <h:inputHidden id="operWageDate" value="#{ins_dataBB.operWageDate}"/>
 	<f:verbatim>
     <table height=100% width=100% align="center">
 	<td height="1">
@@ -58,6 +63,8 @@
 				<h:inputText value="#{ins_dataBB.nameStr}" styleClass="input" size="10"/>
 				<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{ins_dataBB.doQuery}"/>
 				<h:commandButton action="#{ins_dataBB.doQuery}" styleClass="button01" value="查询 "/>
+				<h:outputText value="  "/>
+				<h:commandButton onclick="return exportIns();" styleClass="button01" value="导出excel"/>
 			</h:panelGroup>
 		</h:panelGrid>
 		<h:panelGrid columns="1" align="right">
