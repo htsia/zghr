@@ -123,10 +123,10 @@ public class WageDataServiceImpl implements IWageDataService{
 		String sql = "delete from wage_set_pers_r where id in (select id from a001 where a001054='"+personType+"')";
 		this.activeapi.executeSql(sql);
 		//判断帐套是否已经建立
-		int result=-1;
-		sql="select count(*) from sysobjects where name='A815_SET_"+wageSetID+"'";
-		result=this.activeapi.queryForInt(sql);
-		if(result==1){
+		boolean result=this.activeapi.isDBTable("A815_SET_"+wageSetID);
+//		sql="select count(*) from sysobjects where name='A815_SET_"+wageSetID+"'";
+//		result=this.activeapi.queryForInt(sql);
+		if(result){
 			sql = "delete from A815_SET_"+wageSetID+" where id in (select id from a001 where a001054='"+personType+"')";
 			this.activeapi.executeSql(sql);
 		}
@@ -134,7 +134,7 @@ public class WageDataServiceImpl implements IWageDataService{
 		//添加数据
 		sql = "insert into wage_set_pers_r (id,subid,a815000,a815700) select a.id,'0','00901','"+wageSetID+"' from a001 a,a239 w where a.id=w.id and a001054='"+personType+"' and a001201 ='0' and (w.a239200>0 or w.a239201>0)";
 		this.activeapi.executeSql(sql);
-		if(result==1){
+		if(result){
 			sql = "select s.a815701 ||','||s.a815702 from a815_set_"+wageSetID+" s where rownum=1";
 			String wageInfo=this.activeapi.queryForString(sql);
 			String[]wageInfos=null;
