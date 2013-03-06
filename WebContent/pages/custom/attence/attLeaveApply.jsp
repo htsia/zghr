@@ -8,20 +8,22 @@
 %>
 <x:saveState value="#{attLeaveApplyBB}" />
 <h:form id="form1">
-	<h:inputHidden id="initEdit" value="#{attLeaveApplyBB.initEdit}"></h:inputHidden>
+	<h:inputHidden id="initEdit" value="#{attLeaveApplyBB.initEdit}"/>
 	<!-- 带薪假剩余的天数 -->
-	<h:inputHidden id="leaveday2" value="#{attLeaveApplyBB.days.a236202}"></h:inputHidden>
-	<h:inputHidden id="leaveday3" value="#{attLeaveApplyBB.days.a236203}"></h:inputHidden>
-	<h:inputHidden id="leaveday4" value="#{attLeaveApplyBB.days.a236204}"></h:inputHidden>
-	<h:inputHidden id="leaveday5" value="#{attLeaveApplyBB.days.a236205}"></h:inputHidden>
-	<h:inputHidden id="leaveday6" value="#{attLeaveApplyBB.days.a236206}"></h:inputHidden>
-	<h:inputHidden id="leaveday7" value="#{attLeaveApplyBB.days.a236207}"></h:inputHidden>
+	<h:inputHidden id="leaveday2" value="#{attLeaveApplyBB.days.a236202}"/>
+	<h:inputHidden id="leaveday3" value="#{attLeaveApplyBB.days.a236203}"/>
+	<h:inputHidden id="leaveday4" value="#{attLeaveApplyBB.days.a236204}"/>
+	<h:inputHidden id="leaveday5" value="#{attLeaveApplyBB.days.a236205}"/>
+	<h:inputHidden id="leaveday6" value="#{attLeaveApplyBB.days.a236206}"/>
+	<h:inputHidden id="leaveday7" value="#{attLeaveApplyBB.days.a236207}"/>
+	<h:inputHidden id="leaveday9" value="#{attLeaveApplyBB.days.a236216}"/>
 	<!--没批准的带薪假天数  -->
-	<h:inputHidden id="leaveday33" value="#{attLeaveApplyBB.undoneDays.a3}"></h:inputHidden>
-	<h:inputHidden id="leaveday44" value="#{attLeaveApplyBB.undoneDays.a4}"></h:inputHidden>
-	<h:inputHidden id="leaveday55" value="#{attLeaveApplyBB.undoneDays.a5}"></h:inputHidden>
-	<h:inputHidden id="leaveday66" value="#{attLeaveApplyBB.undoneDays.a6}"></h:inputHidden>
-	<h:inputHidden id="leaveday77" value="#{attLeaveApplyBB.undoneDays.a7}"></h:inputHidden>
+	<h:inputHidden id="leaveday33" value="#{attLeaveApplyBB.undoneDays.a3}"/>
+	<h:inputHidden id="leaveday44" value="#{attLeaveApplyBB.undoneDays.a4}"/>
+	<h:inputHidden id="leaveday55" value="#{attLeaveApplyBB.undoneDays.a5}"/>
+	<h:inputHidden id="leaveday66" value="#{attLeaveApplyBB.undoneDays.a6}"/>
+	<h:inputHidden id="leaveday77" value="#{attLeaveApplyBB.undoneDays.a7}"/>
+	<h:inputHidden id="leaveday99" value="#{attLeaveApplyBB.undoneDays.a9}"/>
 
 
 	<!--请假条实际天数  -->
@@ -41,7 +43,7 @@
 			<h:outputText value="请假类型" />
 			<h:selectOneMenu id="leaveType" onchange="isChanjia()"
 				value="#{attLeaveApplyBB.leaveBo.leaveType}">
-				<c:selectItems value="#{attLeaveApplyBB.leaveTypeList}" />
+				<c:selectItems value="#{attLeaveApplyBB.leaveTypeList1}" />
 			</h:selectOneMenu>
 			<h:outputText value="开始时间" />
 			<h:panelGroup>
@@ -71,8 +73,7 @@
 				</c:verbatim>
 			</h:panelGroup>
 			<h:panelGroup>
-				<h:outputText id="nochan" value="请假时间/工作日天数" />
-				<h:outputText id="chan" style="display:none" value="产  假/难产产假天数" />
+				<h:outputText id="days" value="正常请假/天" />
 			</h:panelGroup>
 			<h:panelGroup>
 				<h:inputText styleClass="input1" readonly="true" id="applydays" value="#{attLeaveApplyBB.leaveBo.applyDays}"/>
@@ -119,13 +120,17 @@
 			<h:outputText value="丧假" />
 			<h:outputText value="#{attLeaveApplyBB.days.a236204}" />
 			<h:outputText value="产假"
-				rendered="#{attLeaveApplyBB.personSex=='female' }" />
+				rendered="#{attLeaveApplyBB.user.sex=='01002' }" />
 			<h:outputText value="#{attLeaveApplyBB.days.a236205}"
-				rendered="#{attLeaveApplyBB.personSex=='female' }" />
+				rendered="#{attLeaveApplyBB.user.sex=='01002' }" />
 			<h:outputText value="难产产假"
-				rendered="#{attLeaveApplyBB.personSex=='female' }" />
+				rendered="#{attLeaveApplyBB.user.sex=='01002' }" />
 			<h:outputText value="#{attLeaveApplyBB.days.a236206}"
-				rendered="#{attLeaveApplyBB.personSex=='female' }" />
+				rendered="#{attLeaveApplyBB.user.sex=='01002' }" />
+			<h:outputText value="双胞胎产假"
+				rendered="#{attLeaveApplyBB.user.sex=='01002' }" />
+			<h:outputText value="#{attLeaveApplyBB.days.a236216}"
+				rendered="#{attLeaveApplyBB.user.sex=='01002' }" />
 			<h:outputText value="带薪事假" />
 			<h:outputText value="#{attLeaveApplyBB.days.a236207}" />
 		</h:panelGrid>
@@ -233,106 +238,27 @@
 				}
 			}
 		} else if (type == 3) {
-			//剩余的带薪假天数
-			var day = document.all("form1:leaveday3").value;
-			//除去本次请假天数以后的天数
-			var left = day - applydays;
-			if (left < 0) {
-				alert("您的婚假还有 " + (day - 0) + "天，小于本次请假天数，请选择正常请假，或者减少请假天数。");
-				return false;
-			} else {
-				//检测有没有申请中的假条
-				var undoneDays = document.all("form1:leaveday33").value;
-				//除去未审批的带薪假天数
-				if (left - undoneDays < 0) {
-					alert("您有" + undoneDays + "天婚假正在审批，剩余婚假还有"
-							+ (day - undoneDays - 0)
-							+ "天， 小于本次请假天数，请选择正常请假，或者减少请假天数。");
-					return false;
-				}
-			}
+			return checkLeaveType("婚假", 3, applydays);
 		} else if (type == 4) {
-			var day = document.all("form1:leaveday4").value;
-			var left = day - applydays;
-			if (left < 0) {
-				alert("您的丧假还有 " + (day - 0) + "天，小于本次请假天数，请选择正常请假，或者减少请假天数。");
-				return false;
-			} else {
-				//检测有没有申请中的假条
-				var undoneDays = document.all("form1:leaveday44").value;
-				//除去未审批的带薪假天数
-				if (left - undoneDays < 0) {
-					alert("您有" + undoneDays + "天丧假正在审批，剩余丧假还有"
-							+ (day - undoneDays - 0)
-							+ "天， 小于本次请假天数，请选择正常请假，或者减少请假天数。");
-					return false;
-				}
-			}
+			return checkLeaveType("丧假", 4, applydays);
 		} else if (type == 5) {			
-			document.all("form1:applydays").value = alldays;
-			var day = document.all("form1:leaveday5").value;
-			var left = day - alldays;
-			if (left < 0) {
-				alert("您的产假还有 " + (day - 0) + "天， 小于本次请假天数，请选择正常请假，或者减少请假天数。");
-				return false;
-			} else {
-				//检测有没有申请中的假条
-				var undoneDays = document.all("form1:leaveday55").value;
-				//除去未审批的带薪假天数
-				if (left - undoneDays < 0) {
-					alert("您有" + undoneDays + "天产假正在审批，剩余产假还有"
-							+ (day - undoneDays - 0)
-							+ "天，小于本次请假天数，请选择正常请假，或者减少请假天数。");
-					return false;
-				}
-			}
+			return checkLeaveType("产假", 5, applydays);
 		} else if (type == 6) {
-			document.all("form1:applydays").value = alldays;
-			var day = document.all("form1:leaveday6").value;
-			var left = day - alldays;
-			if (left < 0) {
-				alert("您的难产产假还有 " + (day - 0) + "天，小于本次请假天数，请选择正常请假，或者减少请假天数。");
-				return false;
-			} else {
-				//检测有没有申请中的假条
-				var undoneDays = document.all("form1:leaveday66").value;
-				//除去未审批的带薪假天数
-				if (left - undoneDays < 0) {
-					alert("您有" + undoneDays + "天难产产假正在审批，剩余难产产假还有"
-							+ (day - undoneDays - 0)
-							+ "天， 小于本次请假天数，请选择正常请假，或者减少请假天数。");
-					return false;
-				}
-			}
-
+			return checkLeaveType("难产产假", 6, applydays);
 		} else if (type == 7) {
-			var day = document.all("form1:leaveday7").value;
-			var left = day - applydays;
-			if (left < 0) {
-				alert("您的带薪事假还有 " + (day - 0) + "天，小于本次请假天数，请选择正常请假，或者减少请假天数。");
-				return false;
-			} else {
-				//检测有没有申请中的假条
-				var undoneDays = document.all("form1:leaveday77").value;
-				//除去未审批的带薪假天数
-				if (left - undoneDays < 0) {
-					alert("您有" + undoneDays + "天带薪事假正在审批，剩余带薪事假还有"
-							+ (day - undoneDays - 0)
-							+ "天，小于本次请假天数，请选择正常请假，或者减少请假天数。");
-					return false;
-				}
-			}
+			return checkLeaveType("带薪事假", 7, applydays);
+		} else if (type == 9) {
+			return checkLeaveType("双胞胎产假", 9, applydays);
 		}
 		if (applydays > 10) {
 			var str = "您请假"
 					+ applydays
-					+ "个工作日需销假。假期结束必须到人力资源处销假。销假之前，您将一直处于请假状态。具体事宜请联系人力资源处。";
+					+ "个工作日需销假，假期结束必须到人力资源处销假，销假之前您将一直处于请假状态。具体事宜请联系人力资源处。";
 
 			if (!confirm(str)) {
 				return false;
 			}
 		}
-		//判断原因是否过长
 		var reason = document.all("form1:reason").value;
 		if (reason.length > 100) {
 			alert("原因不能超过100字。");
@@ -343,6 +269,25 @@
 		document.all("form1:beginTime").value = realBeginTime;
 		document.all("form1:endTime").value = realEndTime;
 		return true;
+	}
+	
+	function checkLeaveType(name, type, applydays){
+		var day = document.all("form1:leaveday"+type).value;
+		var left = day - applydays;
+		if (left < 0) {
+			alert("您的"+name+"还有" + (day - 0) + "天小于本次请假天数，请选择正常请假或者减少请假天数。");
+			return false;
+		} else {
+			//检测有没有申请中的假条
+			var undoneDays = document.all("form1:leaveday77").value;
+			//除去未审批的带薪假天数
+			if (left - undoneDays < 0) {
+				alert("您有" + undoneDays + "天"+name+"正在审批，剩余"+name+"还有"
+						+ (day - undoneDays - 0)
+						+ "天小于本次请假天数。请选择正常请假或者减少请假天数。");
+				return false;
+			}
+		}
 	}
 
 	//字符串转成Time(dateDiff)所需方法
@@ -380,15 +325,31 @@
 
 	function isChanjia() {
 		var type = document.all("form1:leaveType").value;
-		if (type == 5 || type == 6) {
-			document.getElementById("form1:chan").style.display = "block";
+		if (type == 5 || type == 6 || type == 8 || type == 9) {
+			var title="产假/天";
+			if(type==6){
+				title="难产产假/天";
+			}else if(type==8){
+				title="流产产假/天";
+			}else if(type==9){
+				title="双胞胎产假/天";
+			}
+			document.getElementById("form1:days").innerHTML=title;
 			document.getElementById("form1:totalDays").style.display = "block";
-			document.getElementById("form1:nochan").style.display = "none";
 			document.getElementById("form1:applydays").style.display = "none";
 		} else if(type==1|| type == 2|| type == 3|| type == 4|| type == 7) {
-			document.getElementById("form1:chan").style.display = "none";
+			var title="正常请假/天";
+			if(type==2){
+				title="病假/天";
+			}else if(type==3){
+				title="婚假/天";
+			}else if(type==4){
+				title="丧假/天";
+			}else if(type==7){
+				title="带薪事假/天";
+			}
+			document.getElementById("form1:days").innerHTML=title;
 			document.getElementById("form1:totalDays").style.display = "none";
-			document.getElementById("form1:nochan").style.display = "block";
 			document.getElementById("form1:applydays").style.display = "block";
 		}
 	}

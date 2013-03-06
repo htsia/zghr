@@ -241,7 +241,6 @@
                         <x:updateActionListener property="#{wage_computeBB.operCompute}" value="#{list.operCompute}"/>
                     </h:commandButton>
                     <h:commandButton value="计算日志" type="button"   onclick="showHis('#{list.dateId}');" styleClass="button01" rendered="#{list.operCompute || list.operView}"/>
-                    <h:commandButton value="数据日志" type="button"   onclick="showHisData('#{list.dateId}');" styleClass="button01" rendered="#{list.operCompute || list.operView}"/>
                     <h:commandButton value="查看明细" styleClass="button01" rendered="#{list.operView}"     type="button" onclick="doDetailPopup('#{list.dateId}')"/>
                     <f:verbatim><br></f:verbatim>
                    

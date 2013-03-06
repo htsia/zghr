@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
 
 import com.hr319wg.common.exception.SysException;
+import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.attence.pojo.bo.AttLeaveBO;
@@ -26,6 +28,7 @@ import com.hr319wg.xys.workflow.service.ActivitiToolsService;
 import com.hr319wg.xys.workflow.service.SelPersonsToolService;
 
 public class AttLeaveBackingBean extends BaseBackingBean {
+	private User user =super.getUserInfo();
 	// 浏览申请
 	private String pageInit;
 	private List list;
@@ -41,7 +44,10 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	private boolean selLeave5 = true;
 	private boolean selLeave6 = true;
 	private boolean selLeave7 = true;
+	private boolean selLeave8 = true;
+	private boolean selLeave9 = true;
 	private List leaveTypeList;
+	private List leaveTypeList1;
 	private String leaveId;
 	private ActivitiToolsService activitiToolService;
 	private SelPersonsToolService selPersonsTool;
@@ -75,12 +81,35 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	private String ismanager;
 	private List<UserBO> approverList=new ArrayList();
 	private String toLeave="";
-	private String personSex="male";//默认男性
 	private String userId;
 	private boolean selMyAtt;
 	private String inputPopEditInit;
 	private String selectPersonId;
 	
+	public boolean isSelLeave8() {
+		return selLeave8;
+	}
+	public void setSelLeave8(boolean selLeave8) {
+		this.selLeave8 = selLeave8;
+	}
+	public boolean isSelLeave9() {
+		return selLeave9;
+	}
+	public void setSelLeave9(boolean selLeave9) {
+		this.selLeave9 = selLeave9;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public List getLeaveTypeList1() {
+		return leaveTypeList1;
+	}
+	public void setLeaveTypeList1(List leaveTypeList1) {
+		this.leaveTypeList1 = leaveTypeList1;
+	}
 	public boolean isSelLeave1() {
 		return selLeave1;
 	}
@@ -144,8 +173,8 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 				personName = SysCacheTool.findPersonById(leaveBo.getPersonId())
 						.getName();
 			} else {
-				personId = super.getUserInfo().getUserId();
-				personName = super.getUserInfo().getName();
+				personId = user.getUserId();
+				personName = user.getName();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -156,21 +185,14 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 				selectPersonId=selectedUserIds.split(",")[0];
 			}			
 			if(selectPersonId==null||"".equals(selectPersonId)){
-				selectPersonId=super.getUserInfo().getUserId();
+				selectPersonId=user.getUserId();
 			}
 			List list = this.attBusiService.getDays(selectPersonId);
 			this.undoneDays=this.attBusiService.getUndoneDays(selectPersonId);
-			this.personSex=SysCacheTool.findPersonById(selectPersonId).getSex();//获得员工性别
-			if("01001".equals(this.personSex)){
-				this.personSex="male";//男员工
-			}
-			if("01002".equals(this.personSex)){
-				this.personSex="female";//女员工
-			}
 			Map<String, Object> map = (Map<String, Object>) list.get(0);
 			this.days = map;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return inputPopEditInit;
@@ -189,14 +211,6 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-
-	public String getPersonSex() {
-		return personSex;
-	}
-
-	public void setPersonSex(String personSex) {
-		this.personSex = personSex;
 	}
 
 	public String getToLeave() {
@@ -481,7 +495,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 		}
 		this.querySelf = false;
 		try {
-			int role = CommonUtil.getRoleCount("07", super.getUserInfo().getUserId());
+			int role = CommonUtil.getRoleCount("07", user.getUserId());
 			if(role>0){
 				this.ismanager="1";
 			}else{
@@ -492,7 +506,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 		}
 		
 		doQuery();
-		this.userId=super.getUserInfo().getUserId();
+		this.userId=user.getUserId();
 		return queryInit;
 	}
 
@@ -695,6 +709,14 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 	public void qryLeave7(ValueChangeEvent event) {
 		this.selLeave7 = event.getNewValue().toString().equals("true");
 	}
+	
+	public void qryLeave8(ValueChangeEvent event) {
+		this.selLeave8 = event.getNewValue().toString().equals("true");
+	}
+	
+	public void qryLeave9(ValueChangeEvent event) {
+		this.selLeave9 = event.getNewValue().toString().equals("true");
+	}
 
 	public boolean getSelApply() {
 		return selApply;
@@ -793,6 +815,12 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 			if (this.selLeave7) {
 				lList.add("7");
 			}
+			if (this.selLeave8) {
+				lList.add("8");
+			}
+			if (this.selLeave9) {
+				lList.add("9");
+			}
 			String[] lTypes = new String[lList.size()];
 			if (lList != null && lList.size() > 0) {
 				for (int i = 0; i < lList.size(); i++) {
@@ -804,14 +832,14 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 				mypage.setCurrentPage(1);
 			}
 			if (this.personType == null || "".equals(this.personType)) {
-				this.personType=CommonUtil.getAllPersonTypes(super.getUserInfo());
+				this.personType=CommonUtil.getAllPersonTypes(user);
 			}
 			String userID = null;
 			if (querySelf) {
-				userID = super.getUserInfo().getUserId();
+				userID = user.getUserId();
 			}
 			list = attBusiService.getAttLeaveBO(mypage, userID, status,
-					beginDate, endDate, orgID, personType, nameStr, createType, this.inself, this.ismanager, super.getUserInfo().getUserId(), this.selMyAtt, lTypes);
+					beginDate, endDate, orgID, personType, nameStr, createType, this.inself, this.ismanager, user.getUserId(), this.selMyAtt, lTypes);
 			if (list != null && list.size() > 0) {
 				for (int i = 0; i < list.size(); i++) {
 					AttLeaveBO bo = (AttLeaveBO) list.get(i);
@@ -884,7 +912,7 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 			}
 			attBusiService.saveAttLeaveBO(leaveBo);
 			this.leaveId=leaveBo.getId();
-			this.attBusiService.applyLeave(super.getUserInfo().getUserId(),this.leaveId);
+			this.attBusiService.applyLeave(user.getUserId(),this.leaveId);
 			this.leaveBo=null;
 			this.toLeave="1";
 			return "successleave";
@@ -920,27 +948,57 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 				personName = SysCacheTool.findPersonById(leaveBo.getPersonId())
 						.getName();
 			} else {
-				personId = super.getUserInfo().getUserId();
-				personName = super.getUserInfo().getName();
+				personId = user.getUserId();
+				personName = user.getName();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// 获得带薪假存休子集的数据
-		try {
+			
+			// 获得带薪假存休子集的数据
 			List list = this.attBusiService.getDays(personId);
 			this.undoneDays=this.attBusiService.getUndoneDays(personId);
-			this.personSex=SysCacheTool.findPersonById(personId).getSex();//获得员工性别
-			if("01001".equals(this.personSex)){
-				this.personSex="male";//男员工
-			}
-			if("01002".equals(this.personSex)){
-				this.personSex="female";//女员工
-			}
 			Map<String, Object> map = (Map<String, Object>) list.get(0);
 			this.days = map;
+			
+			//设置请假类型
+			this.leaveTypeList1=new ArrayList();
+			SelectItem si1=new SelectItem();
+			si1.setLabel("正常请假");
+			si1.setValue("1");
+			SelectItem si2=new SelectItem();
+			si2.setLabel("病假");
+			si2.setValue("2");
+			SelectItem si3=new SelectItem();
+			si3.setLabel("婚假");
+			si3.setValue("3");
+			SelectItem si4=new SelectItem();
+			si4.setLabel("丧假");
+			si4.setValue("4");
+			SelectItem si7=new SelectItem();
+			si7.setLabel("带薪事假");
+			si7.setValue("7");
+			this.leaveTypeList1.add(si1);
+			this.leaveTypeList1.add(si2);
+			this.leaveTypeList1.add(si3);
+			this.leaveTypeList1.add(si4);
+			this.leaveTypeList1.add(si7);
+			if("01002".equals(user.getSex())){
+				SelectItem si5=new SelectItem();
+				si5.setLabel("产假");
+				si5.setValue("5");
+				SelectItem si6=new SelectItem();
+				si6.setLabel("难产产假");
+				si6.setValue("6");
+				SelectItem si8=new SelectItem();
+				si8.setLabel("流产产假");
+				si8.setValue("8");
+				SelectItem si9=new SelectItem();
+				si9.setLabel("双胞胎产假");
+				si9.setValue("9");
+				this.leaveTypeList1.add(si5);
+				this.leaveTypeList1.add(si6);
+//				this.leaveTypeList1.add(si8);
+//				this.leaveTypeList1.add(si9);
+			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return initEdit;
@@ -1033,10 +1091,10 @@ public class AttLeaveBackingBean extends BaseBackingBean {
 			this.attBusiService
 					.updateLeaveBackDate(this.leaveId, leaveBackDate);
 		} catch (SysException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		super.showMessageDetail("操作成功");

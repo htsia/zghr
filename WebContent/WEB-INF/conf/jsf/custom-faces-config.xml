@@ -88,6 +88,10 @@
 			<property-name>wageDataService</property-name>
 			<value>#{wage_dataservice}</value>
 		</managed-property>
+		<managed-property>
+			<property-name>pageAPI</property-name>
+			<value>#{sys_activePageApi}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>evaWageBB</managed-bean-name>

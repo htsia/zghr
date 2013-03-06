@@ -55,6 +55,16 @@
 	<h:inputHidden id="personTypeValue" value=""/>
     
 	<h:panelGrid columns="1" width="100%" align="left">
+		<h:panelGrid columns="1" align="left" styleClass="table03" columnClasses="td_form01">
+	       <h:panelGroup>
+	       	<c:verbatim>帐套中项目工有</c:verbatim>
+	       	<h:outputText value="#{wage_empBB.xmgCount}"/>
+	       	<c:verbatim>人，</c:verbatim>
+	       	<c:verbatim>兼职教师</c:verbatim>
+	       	<h:outputText value="#{wage_empBB.jzCount}"/>
+	       	<c:verbatim>人</c:verbatim>
+	       </h:panelGroup> 
+	    </h:panelGrid>
 		<h:panelGrid columns="1" align="left">
 			<h:panelGroup>
 				<h:commandButton styleClass="button01" value="添加" onclick="return adduser();"/>
@@ -84,10 +94,10 @@
 	            <h:commandButton styleClass="button01" value="导入" action="#{wage_empBB.uploadFile}" onclick="return checkSubmit();"/>
 	        </h:panelGroup>
 		 </h:panelGrid>
-		<h:panelGrid columns="1" align="left">
+		<h:panelGrid columns="1" align="right">
 			<h:panelGroup>
-				<h:commandButton styleClass="button01" value="加入项目工至帐套" onclick="return confirm('确定加入帐套吗?');" action="#{wage_empBB.addProToWageset}"/>
-				<h:commandButton styleClass="button01" value="加入兼职教师至帐套" onclick="return confirm('确定加入兼职教师帐套吗?');" action="#{wage_empBB.addTeaToWageset}"/>
+				<h:commandButton styleClass="button01" value="加入项目工至帐套" onclick="return confirm('工资不为0的人将被加入帐套');" action="#{wage_empBB.addProToWageset}"/>
+				<h:commandButton styleClass="button01" value="加入兼职教师至帐套" onclick="return confirm('工资不为0的人将被加入帐套');" action="#{wage_empBB.addTeaToWageset}"/>
 				<h:outputText value="  "/>
 				<h:commandButton styleClass="button01" value="导出现金工资" onclick="return exportCash();"/>
 				<h:outputText value="  "/>
@@ -172,6 +182,12 @@
 					<h:outputText value="是否发现金" />
 				</f:facet>
 				<h:outputText value="#{list.hasCash}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="所在帐套" />
+				</f:facet>
+				<h:outputText value="#{list.setName}"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">

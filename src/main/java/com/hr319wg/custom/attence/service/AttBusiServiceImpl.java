@@ -1186,7 +1186,6 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			sql += "a236200=nvl(a236200,0)-" + doubleDays * 8;
 		} else if (type.equals("-1")) {
 			sql += "a236200=nvl(a236200,0)+" + Double.parseDouble(days) * 8;
-
 		}
 			sql += " where id='" + personId + "'";
 			this.jdbcTemplate.execute(sql);
@@ -1218,18 +1217,21 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	 */
 	@Override
 	public Map<String, Object> getUndoneDays(String personId) {
-		String sql = "select leave_type as type,sum(apply_days) as day from att_leave a "
+		String sql = "select leave_type ,sum(apply_days) as days from att_leave a "
 				+ "where person_id='"
 				+ personId
-				+ "' and a.status='1' group by person_id,leave_type";
+				+ "' and a.status='1' group by leave_type order by leave_type";
 		List<Map<String, Object>> list = this.jdbcTemplate.queryForList(sql);
 		Map<String, Object> map = new HashMap<String, Object>();
-		// 添加各种带薪假类型3 4 5 6 7依次为婚，丧，病，产，难产
-		for (int i = 3; i < 8; i++) {
+		// 添加各种带薪假类型3 4 5 6 7 9依次为婚，丧，病，产，难产，双胞胎
+		for (int i = 3; i < 10; i++) {
+			if(i==8){
+				continue;
+			}
 			for (int j = 0; j < list.size(); j++) {
 				Map<String, Object> tempMap = list.get(j);
-				if (tempMap.get("type").equals(i + "")) {
-					map.put("a" + i, tempMap.get("day"));
+				if (tempMap.get("leave_type").equals(i + "")) {
+					map.put("a" + i, tempMap.get("days"));
 					break;
 				}
 			}
@@ -2500,7 +2502,6 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			if (postLevel != null && !postLevel.equals("")) {
 				keyId = AttConstants.getAttFlowKey(postLevel);// 流程KEY
 				if (keyId != null && !keyId.equals("")) {
-
 					// 为流程配置参数
 					int leaderType = this.selPersonTool.getLeaderType(userId);
 					AttLeaveBO bo = this.findAttLeaveBOById(leaveId);
@@ -2674,8 +2675,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 				this.rollbackLeaveDays(leave.getLeaveType(),
 						days, leave.getPersonId());
 			}else{
-				this.rollbackLeaveDays(leave.getLeaveType(),
-						String.valueOf(leave.getApplyDays()), leave.getPersonId());
+				this.rollbackLeaveDays(leave.getLeaveType(), String.valueOf(leave.getApplyDays()), leave.getPersonId());
 			}
 			this.attBusiDAO.deleteBo(AttLeaveBO.class, id);
 		} catch (Exception e) {

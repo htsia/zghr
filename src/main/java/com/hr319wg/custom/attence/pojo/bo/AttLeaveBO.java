@@ -9,7 +9,8 @@ public class AttLeaveBO implements Comparable<AttLeaveBO>{
 	private String leaveType;
 	private String beginTime;
 	private String endTime;
-	private double applyDays;//请假单包含的实际工作日
+	private double applyDays;//实际工作日除所有产假外
+	private String totalDays;//自然天所有产假
 	private String reason;
 	private String applyTime;
 	private String status;
@@ -24,7 +25,6 @@ public class AttLeaveBO implements Comparable<AttLeaveBO>{
 	private String deptName;
 	private String isBack;//1 已销假 其他 未销假
 	private String leaveBackDate;//销假日期B
-	private String totalDays;//请假单跨越的日子数
 	private boolean isAppro;// 是否有审批
 	private String beginMonthDays; //第一个月带薪假天数
 	private String nextMonthDays;  //第二个月带薪假天数

@@ -94,37 +94,7 @@ public class SelPersonsToolService {
 		}
 		return list;
 	}
-	
-	/**
-	 * 根据二级部门编号获取符合条件人员
-	 * @param secDeptCode
-	 * @return
-	 */
-	public List getPersonIdsBySecDeptCode(String secDeptCode){
-		List list=null;
-		try {
-			String postId = AttConstants.getPostIdBySecDeptCode(secDeptCode);
-			if(postId!=null){
-				String sql = "select id person_id from a001 where a001715='"+postId+"'";
-				list=this.jdbcTemplate.query(sql,new PersonIdRowMapper());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-	
-	/**
-	 * 返回团队标识
-	 * @param personId 用户标识
-	 * @return
-	 * @throws SysException
-	 */
-	public String getGroupCodeByPersonId(String personId)throws SysException{
-		String sql="select A001750 from A001 where id='"+personId+"'";
-		return activePageAPI.queryForString(sql);
-	}
-	
+
 	/**
 	 * 获得岗位级别
 	 * @param personId 用户标识

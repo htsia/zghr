@@ -1,10 +1,7 @@
 package com.hr319wg.custom.attence.util;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.faces.model.SelectItem;
 
@@ -62,15 +59,12 @@ public class AttConstants {
 		SelectItem si7=new SelectItem();
 		si7.setLabel("带薪事假");
 		si7.setValue("7");
-//		SelectItem si8=new SelectItem();
-//		si8.setLabel("带薪病假");
-//		si8.setValue("8");
-//		SelectItem si9=new SelectItem();
-//		si9.setLabel("流产假");
-//		si9.setValue("9");
-//		SelectItem si10=new SelectItem();
-//		si10.setLabel("双胞胎产假");
-//		si10.setValue("10");
+		SelectItem si8=new SelectItem();
+		si8.setLabel("流产产假");
+		si8.setValue("8");
+		SelectItem si9=new SelectItem();
+		si9.setLabel("双胞胎产假");
+		si9.setValue("9");
 		list.add(si1);
 		list.add(si2);
 		list.add(si3);
@@ -80,28 +74,7 @@ public class AttConstants {
 		list.add(si7);
 //		list.add(si8);
 //		list.add(si9);
-//		list.add(si10);
+		
 		return list;
 	}
-	
-	public static String getPostIdBySecDeptCode(String secDeptCode) throws Exception{
-		String base = AttConstants.class.getResource("/").toString().replaceAll("file:/", "");
-		Properties p = new Properties();
-		base+="flowDeptId.properties";
-		InputStream in = new FileInputStream(base);
-		p.load(in);
-		Object[]keys= p.keySet().toArray();
-		if(keys!=null && keys.length>0){
-			for(int i=0;i<keys.length;i++){
-				String[]deptIds=p.get(keys[i]).toString().split(",");
-				for(int j =0;j<deptIds.length;j++){
-					if(secDeptCode.equals(deptIds[j])){
-						return keys[i].toString();
-					}					
-				}
-			}
-		}
-		return null;
-	}
-
 }

@@ -14,7 +14,6 @@ import jxl.read.biff.BiffException;
 
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 
-import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.BaseBackingBean;
@@ -894,7 +893,6 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} catch (SysException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

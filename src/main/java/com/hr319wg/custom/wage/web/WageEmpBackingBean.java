@@ -22,7 +22,9 @@ import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.custom.wage.pojo.bo.WageEmpBO;
 import com.hr319wg.custom.wage.service.IWageDataService;
+import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.util.CodeUtil;
+import com.hr319wg.util.CommonFuns;
 
 public class WageEmpBackingBean extends BaseBackingBean {
 	private PageVO mypage = new PageVO();
@@ -37,15 +39,39 @@ public class WageEmpBackingBean extends BaseBackingBean {
 	private String wage;
 	private String other;
 	private String importType;
-	private boolean hasWage=true;
-	private boolean noWage=true;
-	private boolean hasCash=true;
-	private boolean hasNoCash=true;
+	private boolean hasWage=true, noWage=true, hasCash=true, hasNoCash=true;
 	private UploadedFile excelFile;
 	private String filename;
 	private List<Map> list;
 	private IWageDataService wageDataService;
 	private UserBO user = new UserBO();
+	private ActivePageAPI pageAPI;
+	private int xmgCount, jzCount;
+	
+	
+	public int getXmgCount() {
+		return xmgCount;
+	}
+
+	public void setXmgCount(int xmgCount) {
+		this.xmgCount = xmgCount;
+	}
+
+	public int getJzCount() {
+		return jzCount;
+	}
+
+	public void setJzCount(int jzCount) {
+		this.jzCount = jzCount;
+	}
+
+	public ActivePageAPI getPageAPI() {
+		return pageAPI;
+	}
+
+	public void setPageAPI(ActivePageAPI pageAPI) {
+		this.pageAPI = pageAPI;
+	}
 
 	public String getImportType() {
 		return importType;
@@ -266,9 +292,15 @@ public class WageEmpBackingBean extends BaseBackingBean {
 			this.mypage.setCurrentPage(1);
 		}
 		try {
+			String sql="select count(*) from wage_set_pers_r w,a001 a where a.id=w.id and a.a001054='0135700572'";
+			this.xmgCount=this.pageAPI.queryForInt(sql);
+			sql="select count(*) from wage_set_pers_r w,a001 a where a.id=w.id and a.a001054='0135700574'";
+			this.jzCount=this.pageAPI.queryForInt(sql);
+			
 			this.list = new ArrayList();
 			List list1 = this.wageDataService.getAllWageEmpUserBO(mypage, hasWage, noWage, hasCash, hasNoCash, orgID, personType, nameStr);
 			if(list1!=null){
+				String setName;
 				for(int i=0;i<list1.size();i++){
 					Object[]obj=(Object[])list1.get(i);
 					UserBO bo = (UserBO)obj[0];
@@ -288,6 +320,9 @@ public class WageEmpBackingBean extends BaseBackingBean {
 					}
 					m.put("wage", wbo.getWage());
 					m.put("other", wbo.getOther());
+					sql="select s.set_name from wage_set_pers_r w,wage_set s where w.a815700=s.set_id and w.id='"+bo.getUserID()+"'";
+					setName = this.pageAPI.queryForString(sql);
+					m.put("setName", CommonFuns.filterNull(setName));
 					this.list.add(m);
 				}
 			}
@@ -300,6 +335,16 @@ public class WageEmpBackingBean extends BaseBackingBean {
 	public void addProToWageset(){
 		try {
 			int result = this.wageDataService.addToWageset("0135700572", "10212", super.getUserInfo().getOrgId());
+			super.showMessageDetail("成功添加"+result+"个");
+		} catch (SysException e) {
+			super.showMessageDetail("添加失败");
+			e.printStackTrace();
+		}
+	}
+	//项目工加入帐套(单人)
+	public void addToWageset(){
+		try {
+			int result = this.wageDataService.addToWageset(this.operUserID, super.getUserInfo().getOrgId());
 			super.showMessageDetail("成功添加"+result+"个");
 		} catch (SysException e) {
 			super.showMessageDetail("添加失败");

@@ -124,7 +124,7 @@ public class WageDataServiceImpl implements IWageDataService{
 		this.activeapi.executeSql(sql);
 		//判断帐套是否已经建立
 		int result=-1;
-		sql="select count(*) from dba_tables t,sys_parameter p where owner=p.para_value and p.para_key='SYS_DATABASE' and tablespace_name='DATA' and table_name='A815_SET_"+wageSetID+"'";
+		sql="select count(*) from sysobjects where name='A815_SET_"+wageSetID+"'";
 		result=this.activeapi.queryForInt(sql);
 		if(result==1){
 			sql = "delete from A815_SET_"+wageSetID+" where id in (select id from a001 where a001054='"+personType+"')";
@@ -154,6 +154,11 @@ public class WageDataServiceImpl implements IWageDataService{
 		return this.activeapi.queryForInt(sql);
 	}
 	
+	@Override
+	public int addToWageset(String userID, String unitID) throws SysException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	//保存项目工兼职教师人员
 	public void saveWageEmpPerson(UserBO user, String wage, String other) throws SysException{

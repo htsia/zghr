@@ -88,7 +88,15 @@
                  <h:outputText value="带薪事假"/>
 	       		 <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selLeave7}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryLeave7}"/>
                  <h:outputText value="  "/>
-                
+                 <h:outputText value="流产产假"/>
+	       		 <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selLeave8}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryLeave8}"/>
+                 <h:outputText value="  "/>
+                 <h:outputText value="双胞胎产假"/>
+	       		 <h:selectBooleanCheckbox value="#{attLeaveApplyBB.selLeave9}" onclick="submit();" valueChangeListener="#{attLeaveApplyBB.qryLeave9}"/>
+		      </h:panelGroup>
+	    </h:panelGrid>
+	    <h:panelGrid align="right" columns="1">
+	       <h:panelGroup>
 	          <h:outputText value="记录数:#{attLeaveApplyBB.mypage.totalRecord}"/>
 		       <h:outputText value="  "/>
 		       <h:outputText value="页数:#{attLeaveApplyBB.mypage.totalPage}"/>
