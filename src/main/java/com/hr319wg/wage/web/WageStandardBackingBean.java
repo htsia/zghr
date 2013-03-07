@@ -67,7 +67,7 @@ public List getCodeSet() {
 			List<CodeSetBO> setList1 = setDao.queryCodeSets(true);
 		  	if(setList1!=null){
 		  		for(CodeSetBO set : setList1){
-		  			if(super.getUserInfo().getOrgId().equals(set.getCreateUnit())){
+		  			if(super.getUserInfo().getOrgId().equals(set.getCreateUnit()) || "1".equals(set.getPublicFlag())){
 		  				SelectItem si = new SelectItem();
 		  	            si.setValue(set.getSetId());
 		  	            si.setLabel(set.getSetName());
@@ -309,16 +309,34 @@ public void setCodeSet(List codeSet) {
         this.stdVO = new WageStandardVO();
         ArrayList h_list = (ArrayList)this.wagestandarducc.queryStdItemByType(stdId, "0");
         this.stdVO.setH_item(h_list);
-
+        if(h_list!=null && h_list.size()>0){
+        	WageStdItemBO std = (WageStdItemBO)h_list.get(0);
+        	String codeSet=std.getCodeSetId();
+        	CodeSetBO set= SysCacheTool.findCodeSet(codeSet);
+        	if(set.getCreateUnit()!=null){
+        		this.hCode=codeSet;
+        	}
+        }
+        
         ArrayList v_list = (ArrayList)this.wagestandarducc.queryStdItemByType(stdId, "1");
         this.stdVO.setV_item(v_list);
-
+        if(v_list!=null && v_list.size()>0){
+        	WageStdItemBO std = (WageStdItemBO)v_list.get(0);
+        	String codeSet=std.getCodeSetId();
+        	CodeSetBO set= SysCacheTool.findCodeSet(codeSet);
+        	if(set.getCreateUnit()!=null){
+        		this.vCode=codeSet;
+        	}
+        }
+        
         ArrayList r_list = (ArrayList)this.wagestandarducc.queryStdItemByType(stdId, "2");
         this.stdVO.setR_item(r_list);
 
         WageStdItemBO bo = (WageStdItemBO)r_list.get(0);
         InfoItemBO infoitem = SysCacheTool.findInfoItem(bo.getTable(), bo.getField());
         this.standard.setName(infoitem.getItemName());
+        List vList= this.stdVO.getV_item();
+        
         
         super.getHttpSession().setAttribute("stdVO", this.stdVO);
       } else if (this.stdVO == null) {
@@ -343,25 +361,9 @@ public void setCodeSet(List codeSet) {
     this.stdVO.setR_item(handleItem(rItemIds, "2", this.stdVO.getR_item()));
     if (vItemIds != null) {
       this.stdVO.setV_item(handleItem(vItemIds, "1", this.stdVO.getV_item()));
-    }else if(this.vCode!=null && !"-1".equals(this.vCode)){
-    	WageStdItemBO item = new WageStdItemBO();
-    	item.setType("1");
-    	item.setDataType("6");
-    	item.setCodeSetId(this.vCode);
-    	ArrayList list = new ArrayList();
-    	list.add(item);
-    	this.stdVO.setV_item(list);
     }
     if (hItemIds != null) {
     	this.stdVO.setH_item(handleItem(hItemIds, "0", this.stdVO.getH_item()));
-    }else if(this.hCode!=null && !"-1".equals(this.hCode)){
-    	WageStdItemBO item = new WageStdItemBO();
-    	item.setType("0");
-    	item.setDataType("6");
-    	item.setCodeSetId(this.hCode);
-    	ArrayList list = new ArrayList();
-    	list.add(item);
-    	this.stdVO.setH_item(list);
     }
     super.getHttpSession().setAttribute("stdVO", this.stdVO);
     return "editCode";
@@ -370,33 +372,27 @@ public void setCodeSet(List codeSet) {
   private ArrayList handleItem(String[] item, String type, ArrayList list) {
     ArrayList newList = new ArrayList();
     if ((item != null) && (item.length > 0)) {
-      Hashtable hash = new Hashtable();
-      if ((list != null) && (list.size() > 0)) {
-        int size = list.size();
-        for (int i = 0; i < size; i++) {
-          WageStdItemBO stm = (WageStdItemBO)list.get(i);
-          hash.put(stm.getField(), stm);
-        }
-      }
       for (int i = 0; i < item.length; i++) {
         InfoItemBO infoitem = SysCacheTool.findInfoItem(item[i].substring(0, 4), item[i]);
-        if (hash.containsKey(infoitem.getItemId())) {
-          newList.add(hash.get(infoitem.getItemId()));
-        } else {
           WageStdItemBO stditem = new WageStdItemBO();
           stditem.setType(type);
           stditem.setTable(item[i].substring(0, 4));
           stditem.setField(infoitem.getItemId());
           stditem.setDataType(infoitem.getItemDataType());
           stditem.setCodeSetId(infoitem.getItemCodeSet());
+          
+          if("1".equals(type) && this.vCode!=null && !"-1".equals(this.vCode)){
+        	  stditem.setCodeSetId(this.vCode);
+          }
+          if("0".equals(type) && this.hCode!=null && !"-1".equals(this.hCode)){
+        	  stditem.setCodeSetId(this.hCode);
+          }
+          
           newList.add(stditem);
-
+          
           if (type.equals("2"))
             this.standard.setName(infoitem.getItemName() + "±ê×¼");
-        }
-      }
-      hash.clear();
-      hash = null;
+         }
     }
     return newList;
   }

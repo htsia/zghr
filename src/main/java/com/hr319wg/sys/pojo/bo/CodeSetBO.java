@@ -20,6 +20,15 @@ public class CodeSetBO extends CloneablePO {
 	private String setScaleName;
 	private String scaleCode;
 	private String createUnit;
+	private String publicFlag;
+
+	public String getPublicFlag() {
+		return publicFlag;
+	}
+
+	public void setPublicFlag(String publicFlag) {
+		this.publicFlag = publicFlag;
+	}
 
 	public String getCreateUnit() {
 		return createUnit;

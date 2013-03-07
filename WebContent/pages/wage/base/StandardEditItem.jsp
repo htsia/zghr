@@ -271,18 +271,18 @@
 
 <script type="text/javascript" language="javascript">
     function checkSubmit(form1) {
-//         if (form1.HItemIds.options.length == 0 && form1.VItemIds.options.length == 0) {
-//             alert("横向指标、纵向指标不能同时为空！");
-//             return false;
-//         } else if (form1.RItemIds.value == "" || form1.RItemIds.value == null) {
-//             alert("结果指标不能为空！");
-//             return false;
-//         } else {
+    	if (form1.RItemIds.value == "" || form1.RItemIds.value == null) {
+            alert("结果指标不能为空！");
+            return false;
+        }else if (form1.VItemIds.options.length == 0) {
+            alert("横向指标不能为空！");
+            return false;
+        } else {
             selectTotal(form1.HItemIds);
             selectTotal(form1.VItemIds);
             form1.RItemIds.value =form1.RItemIds.code
             return true;
-//         }
+        }
     }
 </script>
 
