@@ -66,9 +66,8 @@ BEGIN
         where base.A754002=orgID;
 
         --更新A243主键
-        update sys_sequence s set s.cur_value=(select isnull(max(cast(subid as int)),0) from a243);
+        update sys_sequence s set s.cur_value=(select isnull(max(cast(subid as int)),0) from a243) where s.seq_name = 'A243';
     else
-       insert into a_2 values (setID,wageDate,orgID,userIDs);
       --删除垃圾数据
        delete from a243 where A243211=setID and A243200=wageDate and instr(userIDs,','||id ||',')=0;
        --之前数据置为非当前
@@ -124,6 +123,6 @@ BEGIN
         where base.A754002=orgID and instr(userIDs,','||base.id ||',')=0;
 
         --更新A243主键
-        update sys_sequence s set s.cur_value=(select isnull(max(cast(subid as int)),0) from a243);
+        update sys_sequence s set s.cur_value=(select isnull(max(cast(subid as int)),0) from a243) where s.seq_name = 'A243';
     end if;
 END;
