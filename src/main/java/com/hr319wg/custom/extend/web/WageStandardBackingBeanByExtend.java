@@ -86,7 +86,7 @@ public class WageStandardBackingBeanByExtend extends WageStandardBackingBean {
 	        	WageStdItemBO std = (WageStdItemBO)h_list.get(0);
 	        	String codeSet=std.getCodeSetId();
 	        	CodeSetBO set= SysCacheTool.findCodeSet(codeSet);
-	        	if(set.getCreateUnit()!=null){
+	        	if(set.getCreateUnit()!=null || "1".equals(set.getPublicFlag())){
 	        		this.hCode=codeSet;
 	        	}
 	        }
@@ -97,7 +97,7 @@ public class WageStandardBackingBeanByExtend extends WageStandardBackingBean {
 	        	WageStdItemBO std = (WageStdItemBO)v_list.get(0);
 	        	String codeSet=std.getCodeSetId();
 	        	CodeSetBO set= SysCacheTool.findCodeSet(codeSet);
-	        	if(set.getCreateUnit()!=null){
+	        	if(set.getCreateUnit()!=null || "1".equals(set.getPublicFlag())){
 	        		this.vCode=codeSet;
 	        	}
 	        }

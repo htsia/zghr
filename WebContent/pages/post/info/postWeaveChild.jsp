@@ -12,7 +12,7 @@
         }
         function forAdQry(){
              doAdvanceQuery("C","ORG","111","Y","","C001.C001730 = '00900'","Y","<%=Constants.DEFAULT_QUERY_POST%>","Y","1");
-         }
+        }
         function OpenRpt(){
             if (!checkMutilSelect(document.forms(0).chk)){
                 alert("请先选择人员！");
@@ -40,11 +40,25 @@
             window.open(url);
             return false;
         }
+        function forWeave(){
+        	var superID=document.getElementById("form1:superID").value;
+        	if(superID==''){
+        		alert("请查询岗位");
+        		return false;
+        	}
+        	
+        	x = document.body.clientWidth / 2 - 150;
+            y = document.body.clientHeight / 2;
+            document.all('processbar').style.top = y;
+            document.all('processbar').style.left = x;
+            document.all('processbar').style.display = "";
+        	return true;
+        }
     </script>
 
 <h:form id="form1">
     <h:inputHidden value="#{post_PostWeaveBB.postList}"/>
-    <h:inputHidden value="#{post_PostWeaveBB.superId}"/>
+    <h:inputHidden id="superID" value="#{post_PostWeaveBB.superId}"/>
 <f:verbatim>
     <input type="hidden" name="sessionFlag" value="2">
 
@@ -66,7 +80,7 @@
                 <h:commandButton value=" 查询 " styleClass="button01"
                                  action="#{post_PostWeaveBB.queryPost}"/>
                 <h:commandButton value="高级查询" onclick="javascript:return forAdQry();" styleClass="button01" />
-                <h:commandButton value="核算"  styleClass="button01" onclick="showProcessBar()" action="#{post_PostWeaveBB.calc}"/>
+                <h:commandButton value="核算"  styleClass="button01" onclick="return forWeave();" action="#{post_PostWeaveBB.calc}"/>
                 <h:commandButton value="导出" styleClass="button01" type="button" onclick="doExport();"></h:commandButton>
 <f:verbatim>
             </td>
@@ -75,8 +89,7 @@
         <tr>
             <td colspan=2 >
                 <jsp:include page="/pages/common/activepage/ActiveList.jsp">
-                        <jsp:param name="hasOperSign" value="true"/>
-                        <jsp:param name="operSignType" value="checkbox"/>
+                        <jsp:param name="hasOperSign" value="false"/>
                         <jsp:param name="hasEdit" value="true"/>
                         <jsp:param name="isEditList" value="false"/>
                         <jsp:param name="isCheckRight" value="true"/>
@@ -105,13 +118,3 @@
             <td></td>
         </tr></table>
 </marquee>
-
-<script type="text/javascript">
-     function showProcessBar() {
-        x = document.body.clientWidth / 2 - 150;
-        y = document.body.clientHeight / 2;
-        document.all('processbar').style.top = y;
-        document.all('processbar').style.left = x;
-        document.all('processbar').style.display = "";
-    }
-</script>
