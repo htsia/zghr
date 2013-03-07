@@ -299,6 +299,7 @@
         <property name="setStatus" column="SET_STATUS"/>
         <property name="layerLength" column="LAYER_LENGTH"/>
         <property name="scaleCode" column="SCALE_CODE" />
+        <property name="createUnit" column="create_unit" />
     </class>
     
     <class name="com.hr319wg.sys.pojo.bo.FriendLinkBO" table = "sys_friendlink">

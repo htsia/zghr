@@ -42,7 +42,6 @@
         rowNum *= ((String[]) VCode.get(i)).length;
         VRowRep.put(String.valueOf(i), String.valueOf(rowNum));
     }
-    System.out.println("HCode:"+HCode.size()+"VCode:"+VCode.size());
 %>
 
 <h:inputHidden id="unitId" value="#{wage_standardBB.standard.unitId}"/>
