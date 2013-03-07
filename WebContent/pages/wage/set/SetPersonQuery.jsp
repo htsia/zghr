@@ -36,6 +36,17 @@
         }
         return false;
     }
+    function setValue(){
+    	var clipText = window.clipboardData.getData('Text');
+    	clipRows = clipText.split(String.fromCharCode(13));
+    	var v="";
+    	for (i=0; i<clipRows.length; i++) {
+    		v+=clipRows[i].split(String.fromCharCode(9))+",";
+    	}
+    	v=v.substring(0, v.length-1);
+    	document.getElementById("username").value=v;
+    	return false;
+    }
 </script>
 
 
@@ -55,7 +66,8 @@
             </h:panelGrid>
             <h:panelGrid align="left" columns="10" cellspacing="0">
                 <h:outputText escape="false" value="<strong>姓名或员工编号</strong>"/>
-                <c:verbatim><input type="text" alt="姓名|0" name="form1:nameStr" onkeypress ="enterKeyDown('form1:queryPerson');"></c:verbatim>
+                <c:verbatim><input id="username" type="text" size="50" alt="姓名|0" name="form1:nameStr" onkeypress ="enterKeyDown('form1:queryPerson');"></c:verbatim>
+                <h:commandButton styleClass="button01" value="粘贴excel数据" onclick="return setValue();"/>
                 <h:commandButton id="queryPerson" styleClass="button01" value="查询" action="#{wage_personQueryBB.queryPersonByName}" onclick="return forsubmit(form1);"/>
                 <h:commandButton styleClass="button01" value="自定义查询"
                                  action="#{wage_personQueryBB.queryAdvance}"
