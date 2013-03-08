@@ -10,6 +10,9 @@ import com.hr319wg.custom.wage.pojo.bo.WageDataSetBO;
 
 public interface IWageDataService {
 
+	//设置加入帐套人员顺序
+	public void batchUpdateWageSetPersonSort(String setID, String[]personIDs);
+	
 	public void updateWageSetInputDate(List<Map> list, String[]itemID, String setID) throws SysException;
 	
 	public void setOAEmail(String userID1, String userID2, String userID3, String url, String soa, String onoff) throws SysException;
