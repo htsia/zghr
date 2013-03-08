@@ -562,7 +562,7 @@
 
     <managed-bean>
         <managed-bean-name>wage_setPersonBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.wage.web.WageSetPersonBackingBean</managed-bean-class>
+        <managed-bean-class>com.hr319wg.custom.extend.web.WageSetPersonBackingBeanByExtend</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
         <managed-property>
             <property-name>wagesetpersonucc</property-name>
@@ -600,6 +600,10 @@
         <managed-property>
             <property-name>userapi</property-name>
             <value>#{user_pmsAPI}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>dataService</property-name>
+            <value>#{wage_dataserviceImpl}</value>
         </managed-property>
     </managed-bean>
 
