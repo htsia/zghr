@@ -760,4 +760,17 @@ public class WageDataServiceImpl implements IWageDataService{
 		String sql = "update sys_oa_email set userid1='"+userID1+"',userid2='"+userID2+"',userid3='"+userID3+"',url='"+url+"',soa='"+soa+"',onoff='"+onoff+"'";
 		this.jdbcTemplate.execute(sql);
 	}
+	
+	public void updateWageSetInputDate(List<Map> list, String[]itemID, String setID) throws SysException {
+		String sql=null;
+		for(Map m : list){
+			sql="update a815_set_"+setID +" set ";
+			for(int i=0;i<itemID.length;i++){
+				sql+=itemID[i]+"='"+m.get(itemID[i])+"',";
+			}
+			sql=sql.substring(0, sql.length()-1);
+			sql+=" where id='"+m.get("id")+"'";
+			this.jdbcTemplate.execute(sql);
+		}
+	}
 }

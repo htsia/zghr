@@ -417,7 +417,7 @@ public String getClassId()
     return null;
   }
   
-    //增加教职工
+    //增加员工
 	public String createPerson() {
 		try {
 			User user = getUserInfo();
@@ -593,6 +593,7 @@ public String getClassId()
 				sql = "update emp_probation set status='5',plan_passdate='"+planDate+"' where person_id='"+personId+"'";
 				api.executeSql(sql);
 			}
+			
 			showMessageDetail("增加人员成功!");
 			return "edit";
 		} catch (Exception e) {

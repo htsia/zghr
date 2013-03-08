@@ -803,7 +803,14 @@
             <property-name>inputtemp</property-name>
             <value>#{sys_inputtempUCC}</value>
         </managed-property>
-        
+        <managed-property>
+            <property-name>jdbcTemplate</property-name>
+            <value>#{jdbcTemplate}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>dataService</property-name>
+            <value>#{wage_dataservice}</value>
+        </managed-property>
      </managed-bean>
 
     <managed-bean>

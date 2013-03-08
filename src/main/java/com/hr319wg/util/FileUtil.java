@@ -913,7 +913,7 @@ public class FileUtil {
     /**
      * 将错误信息记录到错误日志中
      */
-    private static void addErrorFormatLabel(BufferedWriter bw, int row, int col, String error) {
+    public static void addErrorFormatLabel(BufferedWriter bw, int row, int col, String error) {
         try {
             bw.write(FileUtil.addCsvField("第 " + row + " 行,第 " + (col+1) + " 列 " + error));
             bw.newLine();
