@@ -775,19 +775,25 @@ public class WageDataServiceImpl implements IWageDataService{
 	}
 
 	//设置加入帐套人员顺序
-	public void batchUpdateWageSetPersonSort(String setID, String[] personIDs) {
-		String sql="select isnull(max(a001745),0) from a001 where id in (select id from wage_set_pers_r w where w.a815700='"+setID+"')";
-		int currSort=this.jdbcTemplate.queryForInt(sql);
-		List list = new ArrayList();
-		for(int i=0;i<personIDs.length;i++){
-			String sql1="update a001 set A001745= case when len("+currSort+"+10)<4 then (lpad("+currSort+"+10,4,0)) else "+currSort+"+10||'' end where id='"+personIDs[i]+"'";
-			list.add(sql1);
-			currSort+=10;
-		}
-		try {
-			this.activeapi.batchExecuteSql(list);
-		} catch (SysException e) {
-			e.printStackTrace();
+	public void batchUpdateWageSetPersonSort(String setID, String personIDs, String personCode) {
+		if(personCode!=null && !"".equals(personCode)){
+			String sql="select isnull(max(a001745),0) from a001 where id in (select id from wage_set_pers_r w where w.a815700='"+setID+"')";
+			int currSort=this.jdbcTemplate.queryForInt(sql); 
+			List list = new ArrayList();
+			String[]codes=personCode.split(",");
+			for(int i=0;i<codes.length;i++){
+				PersonBO p=SysCacheTool.findPersonByCode(codes[i]);
+				if(p!=null && personIDs.indexOf(p.getPersonId())!=-1){
+					String sql1="update a001 set A001745= case when len("+currSort+"+10)<4 then (lpad("+currSort+"+10,4,0)) else "+currSort+"+10||'' end where id='"+p.getPersonId()+"'";
+					list.add(sql1);
+					currSort+=10;
+				}
+			}
+			try {
+				this.activeapi.batchExecuteSql(list);
+			} catch (SysException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

@@ -85,7 +85,7 @@
     <h:inputHidden id="setId" value="#{wage_setPersonBB.setId}"/>
     <h:inputHidden id="setName" value="#{wage_setPersonBB.setName}"/>
     <h:inputHidden id="unitId" value="#{wage_setPersonBB.unitId}"/>
-    <h:inputHidden id="personStr" value=""/>
+    <h:inputHidden id="personStr" value="#{wage_setPersonBB.personStr}"/>
     <h:inputHidden id="ManyPerson" value="#{wage_setPersonBB.manyPerson}"/>
     <c:verbatim>
     <table height=98% width=100%>

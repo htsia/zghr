@@ -27,9 +27,10 @@
                     if (form1.chk[i].checked)
                         revalue += form1.chk[i].value + ",";
                 }
-            } else
+            } else{
                 revalue = form1.chk.value;
-            window.returnValue = revalue;
+            }
+            window.returnValue = revalue+"--"+document.getElementById("form1:nameStr").value;
             window.close();
         } else {
             alert("请选择人员！");
@@ -44,7 +45,7 @@
     		v+=clipRows[i].split(String.fromCharCode(9))+",";
     	}
     	v=v.substring(0, v.length-1);
-    	document.getElementById("username").value=v;
+    	document.getElementById("form1:nameStr").value=v;
     	return false;
     }
 </script>
@@ -66,7 +67,7 @@
             </h:panelGrid>
             <h:panelGrid align="left" columns="10" cellspacing="0">
                 <h:outputText escape="false" value="<strong>姓名或员工编号</strong>"/>
-                <c:verbatim><input id="username" type="text" size="50" alt="姓名|0" name="form1:nameStr" onkeypress ="enterKeyDown('form1:queryPerson');"></c:verbatim>
+                <h:inputText id="nameStr" value="#{wage_personQueryBB.nameStr}"  size="50" styleClass="input" onkeypress ="enterKeyDown('form1:queryPerson');"/>
                 <h:commandButton styleClass="button01" value="粘贴excel数据" onclick="return setValue();"/>
                 <h:commandButton id="queryPerson" styleClass="button01" value="查询" action="#{wage_personQueryBB.queryPersonByName}" onclick="return forsubmit(form1);"/>
                 <h:commandButton styleClass="button01" value="自定义查询"

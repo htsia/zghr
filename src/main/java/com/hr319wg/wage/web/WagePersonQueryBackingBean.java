@@ -44,7 +44,16 @@ public class WagePersonQueryBackingBean extends BaseBackingBean {
 	private String personTypeDesc;
 	private String insPageInit;
 	private String searchStr;
+	private String nameStr;
 	private String orgID;
+
+	public String getNameStr() {
+		return nameStr;
+	}
+
+	public void setNameStr(String nameStr) {
+		this.nameStr = nameStr;
+	}
 
 	public String getOrgID() {
 		return orgID;
