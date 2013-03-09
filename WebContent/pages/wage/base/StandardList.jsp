@@ -32,10 +32,8 @@
         <h:panelGrid columns="2" width="100%">
             <h:outputText value="发薪单位：#{wage_standardBB.unitName}"/>
             <h:panelGrid align="right" columns="4" cellspacing="2">
-                <h:commandButton styleClass="button01" value="新建标准表" rendered="#{wage_standardBB.operRight}"
-                                 action="#{wage_standardBB.step1_create}"/>
-                <h:commandButton styleClass="button01" value="删除标准表" rendered="#{wage_standardBB.operRight}"
-                                 action="#{wage_standardBB.delete}"
+                <h:commandButton styleClass="button01" value="新建标准表" action="#{wage_standardBB.step1_create}"/>
+                <h:commandButton styleClass="button01" value="删除标准表" action="#{wage_standardBB.delete}"
                                  onclick="return confirmDel('确定要删除吗?');"/>
             </h:panelGrid>
         </h:panelGrid>
@@ -43,7 +41,7 @@
                      headerClass="td_top"
                      columnClasses="td_middle_center,td_middle_center,td_middle,td_middle_center,td_middle_center,td_middle_center"
                      styleClass="table03" width="100%">
-            <h:column rendered="#{wage_standardBB.operRight}">
+            <h:column>
                 <c:facet name="header">
                     <c:verbatim escape="false">
                         <input type="checkbox" name="chkAll" onclick="selectAll(document.form1.chkAll,document.form1.selectItem)">全选
