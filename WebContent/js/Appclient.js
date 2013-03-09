@@ -438,7 +438,7 @@ function PopUpCodeDlgTwoControlSelectAll(codec, valuec, dict_num, rootCodeId) {
  *       useRightFlag 权限方式 0-不使用 1-使用查询权限过滤,2-使用维护权限过滤；
  *       rootOrgId根节点的机构编号，可以用“，”分隔
  */
-function PopUpOrgDlg(obj, useRightFlag, rootOrgId) {
+function PopUpOrgDlg(obj, useRightFlag, rootOrgId, onlyOrg) {
     var ctrlobj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
@@ -451,6 +451,7 @@ function PopUpOrgDlg(obj, useRightFlag, rootOrgId) {
     arg += "&value=" + ctrlobj.value;
     arg += "&rightFlag=" + useRightFlag;
     arg += "&rootId=" + rootOrgId;
+    arg += "&onlyOrg=" + onlyOrg;
 
     retval = window.showModalDialog("/pages/common/SelOrg.jsp?" + arg, "", "dialogWidth:300px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
     if (retval != null) {
