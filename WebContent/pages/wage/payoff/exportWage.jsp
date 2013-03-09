@@ -146,7 +146,9 @@
 							for(int j=0;j<cells3.length;j++){
 								if(cells3[j].getItemId().startsWith("A815")){
 									WritableCellFormat wcf = new WritableCellFormat();
-									Number num=new Number(j, index+1, Double.valueOf(cells3[j].getValue().replaceAll(" ", "")), wcf);
+									String v=cells3[j].getValue().replaceAll(" ", "");
+									v="".equals(v)?"0":v;
+									Number num=new Number(j, index+1, Double.valueOf(v), wcf);
 									sheet.addCell(num);
 								}else{
 									String v=cells3[j].getValue();
