@@ -41,29 +41,24 @@ public class WageStandardBackingBeanByExtend extends WageStandardBackingBean {
 	}
 
 	public List getCodeSet() {
-		if (this.codeSet == null) {
-			this.codeSet = new ArrayList();
-			SelectItem si0 = new SelectItem();
-			si0.setValue("-1");
-			si0.setLabel("--«Î—°‘Ò--");
-			this.codeSet.add(si0);
-			try {
-				CodeSetDAO setDao = (CodeSetDAO) SysContext.getBean("sys_CodeSetDAO");
-				List<CodeSetBO> setList1 = setDao.queryCodeSets(true);
-				if (setList1 != null) {
-					for (CodeSetBO set : setList1) {
-						if (super.getUserInfo().getOrgId().equals(set.getCreateUnit())
-								|| "1".equals(set.getPublicFlag())) {
-							SelectItem si = new SelectItem();
-							si.setValue(set.getSetId());
-							si.setLabel(set.getSetName());
-							this.codeSet.add(si);
-						}
-					}
+		this.codeSet = new ArrayList();
+		SelectItem si0 = new SelectItem();
+		si0.setValue("-1");
+		si0.setLabel("--«Î—°‘Ò--");
+		this.codeSet.add(si0);
+		try {
+			CodeSetDAO setDao = (CodeSetDAO) SysContext.getBean("sys_CodeSetDAO");
+			List<CodeSetBO> list1 = setDao.queryCodeSets(true, "wage", super.getUserInfo().getOrgId());
+			if(list1!=null){
+				for(CodeSetBO set : list1){
+					SelectItem si = new SelectItem();
+					si.setValue(set.getSetId());
+					si.setLabel(set.getSetName());
+					this.codeSet.add(si);
 				}
-			} catch (SysException e) {
-				e.printStackTrace();
 			}
+		} catch (SysException e) {
+			e.printStackTrace();
 		}
 		return this.codeSet;
 	}

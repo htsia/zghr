@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=GBK" language="java" %>
-<%@ include file="../include/taglib.jsp"%>
+<%@ include file="/pages/include/taglib.jsp"%>
 <%@ page import="com.hr319wg.sys.configuration.LanguageSupport" %>
 <%
     response.setHeader("progma", "no-cache");
@@ -15,10 +15,6 @@
             }
             return true;
         }
-
-        function doExportCode(){
-            window.showModalDialog("/system/CodeInfoToExport.jsf", null, "dialogWidth:400px; dialogHeight:500px;center:center;resizable:yes;status:no;scroll:yes;");
-        }
     </script>
 
 <x:saveState value="#{sys_codeSetListBB}"/>
@@ -30,19 +26,11 @@
             <td height=8 class="td_title">
 </f:verbatim>
                 <h:graphicImage value="/images/tips.gif" />
-                <f:verbatim>
-                    <%=LanguageSupport.getResource("XTGL-0900","系统管理")%> ->
-                    <%=LanguageSupport.getResource("XTGL-0910","代码管理")%>  
-                </f:verbatim>
-<f:verbatim>
-            </td>
-            <td class="td_title" height=8 align="right">
-</f:verbatim>
-              <h:commandButton styleClass="button01" onclick="doExportCode()" type="button" value="导出代码信息"></h:commandButton>
+                <f:verbatim>薪酬管理 -> 代码设置</f:verbatim>
 <f:verbatim>
             </td>
         </tr>
-        <tr><td height=8 colspan=2>
+        <tr><td height=8>
 </f:verbatim>
             <h:panelGrid columns="2" width="97%" cellpadding="0" 	align="center" border="0" >
                 <h:panelGroup>
@@ -56,7 +44,7 @@
                     <h:commandButton value="检 索" action="" styleClass="button01"  onclick="return forSearch(document.all('formCodeSetList:searchName').value)"  />
                     <h:commandButton value="新 建" action="add" styleClass="button01"  rendered="#{sys_codeSetListBB.operRight}" >
                     	<x:updateActionListener property="#{sys_codeSetEditBB.editStatus}" value="false"/>
-                    	<x:updateActionListener property="#{sys_codeSetEditBB.moudleID}" value=""/>
+                    	<x:updateActionListener property="#{sys_codeSetEditBB.moudleID}" value="wage"/>
                     </h:commandButton>
                     <h:commandButton value="删 除" action="#{sys_codeSetListBB.deleteCodeSets}" styleClass="button01"  rendered="#{sys_codeSetListBB.operRight}"  onclick="return checkBatchDelete('selectItem')" />
                     <h:commandButton value="启 用" action="#{sys_codeSetListBB.setStatusOpen}" onclick="return doCheckSelect();" styleClass="button01"  rendered="#{sys_codeSetListBB.operRight}"/>
@@ -66,7 +54,7 @@
 <f:verbatim>
            </td></tr>
 
-           <tr><td colspan=2>
+           <tr><td>
             <div style='width:100%;height:100%;overflow:auto' id=datatable>
 </f:verbatim>
                 <h:dataTable value="#{sys_codeSetListBB.codesets}" var="list" width="97%"   id="dateList"
@@ -92,33 +80,6 @@
                         </f:facet>
                         <h:outputText escape="false" value="#{list.setNameEx}" />
                     </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                             <f:verbatim>
-                    				<%=LanguageSupport.getResource("XTGL-1008","国标代码")%>  
-                            </f:verbatim>
-                        </f:facet>
-                        <h:outputText escape="false" value="#{list.setDesc}" />
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">
-                         <f:verbatim>
-                    				<%=LanguageSupport.getResource("XTGL-1003","范围")%>  
-                            </f:verbatim>
-                        </f:facet>
-                        <h:outputText escape="false" value="#{list.setScaleName}" />
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">
-                             <f:verbatim>
-                    				<%=LanguageSupport.getResource("XTGL-1010","录入标志")%>  
-                            </f:verbatim>
-                        </f:facet>
-                        <h:outputText escape="false" value="#{list.setLayer}" />
-                    </h:column>
-
                     <h:column>
                         <f:facet name="header">
                              <f:verbatim>
