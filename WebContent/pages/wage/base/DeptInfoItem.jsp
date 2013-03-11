@@ -16,7 +16,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/tree.js"></script>
 <script language="javascript">
     //定义树的图片对象
-    var images = new new getTreeImage();
+    var images = new getTreeImage();
     //初始化树
     var tree = new newtree(images, 16, dt);
     root = tree.root;
