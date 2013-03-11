@@ -804,6 +804,10 @@ public class WageSetBackingBean extends BaseBackingBean
     if (super.getRequestParameter("unitID") != null) {
       String unitId = super.getRequestParameter("unitID");
       this.wageset.initPara();
+      this.wageset.setRecMethod("2");
+      this.wageset.setRecMethod2("2");
+      this.wageset.setRecMethod3("2");
+      this.wageset.setFlowFlag("00900");
       this.wageset.setUnitId(unitId);
       this.baseFields = new ArrayList();
     }
