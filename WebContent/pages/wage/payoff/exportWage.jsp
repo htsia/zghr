@@ -1,3 +1,4 @@
+<%@page import="com.hr319wg.post.util.PostTool"%>
 <%@page import="java.util.regex.Matcher"%>
 <%@page import="java.util.regex.Pattern"%>
 <%@page import="jxl.format.Alignment"%>
@@ -28,7 +29,7 @@
 	response.setContentType("application/x-msdownload;charset=UTF-8");
 	String setId=request.getParameter("setId");
 	String exportField=request.getParameter("exportField");
-	exportField+=",A001735,A001001,A001743,A001242";
+	exportField+=",A001735,A001001,A001715,A001743,A001242";
 	String file="result";
 	Map setMap= SysCache.wageSetMap;
 	WageSetBO bo= (WageSetBO)setMap.get(setId);
@@ -69,15 +70,15 @@
 					TableVO totalTable=new TableVO();
 					TableVO totalTable2=new TableVO();
 					CellVO[]cells2=new CellVO[cellList.size()];
-					CellVO[]totalCell=new CellVO[cellList.size()-3];
-					CellVO[]totalCell2=new CellVO[cellList.size()-4];
+					CellVO[]totalCell=new CellVO[cellList.size()-4];
+					CellVO[]totalCell2=new CellVO[cellList.size()-5];
 					for(int i=0;i<cellList.size();i++){
 						cells2[i]=cellList.get(i);
 						String itemId=cellList.get(i).getItemId();
 						field+=itemId+",";
-						if(i==2 || itemId.startsWith("A815")){
+						if(i==3 || itemId.startsWith("A815")){
 							totalCell[index++]=cellList.get(i);
-							if(i==2){
+							if(i==3){
 								totalField+=itemId+",";
 							}else{
 								totalField+="sum(replace("+itemId+",' ','')) "+itemId+",";
@@ -115,11 +116,11 @@
 						
 						index=0;
 						CellVO[]first=data[0].getCell();
-						String wageDept=first[2].getValue();
+						String wageDept=first[3].getValue();
 						for(int i=0;i<data.length;i++){
 							//小计
 							CellVO[]cells3=data[i].getCell();
-							String wageDept2=cells3[2].getValue();
+							String wageDept2=cells3[3].getValue();
 							if(!wageDept.equals(wageDept2)){
 								WritableCellFormat wcf = new WritableCellFormat();
 								wcf.setAlignment(Alignment.CENTRE);
@@ -134,7 +135,7 @@
 										CellVO c=cell[j];
 										if(c.getItemId().startsWith("A815")){
 											wcf = new WritableCellFormat();
-											Number num=new Number(j+2, index+1, Double.valueOf(c.getValue().replaceAll(" ", "")), wcf);
+											Number num=new Number(j+3, index+1, Double.valueOf(c.getValue().replaceAll(" ", "")), wcf);
 											sheet.addCell(num);
 										}
 									}
@@ -152,7 +153,10 @@
 									sheet.addCell(num);
 								}else{
 									String v=cells3[j].getValue();
-									if(j==2){
+									if(j==2 && v!=null && !"".equals(v)){
+										v=PostTool.getPostName(v);
+									}
+									if(j==3){
 										String regEx = "[0-9]";
 								        Pattern p = Pattern.compile(regEx);
 								        Matcher m = p.matcher(v);
@@ -180,7 +184,7 @@
 								CellVO c=cell[j];
 								if(cell[j].getItemId().startsWith("A815")){
 									wcf = new WritableCellFormat();
-									Number num=new Number(j+2, index+1, Double.valueOf(c.getValue().replaceAll(" ", "")), wcf);
+									Number num=new Number(j+3, index+1, Double.valueOf(c.getValue().replaceAll(" ", "")), wcf);
 									sheet.addCell(num);
 								}
 							}
@@ -198,7 +202,7 @@
 						for(int j=0;j<total.length;j++){
 							CellVO c=total[j];
 							wcf = new WritableCellFormat();
-							Number num=new Number(j+3, index+1, Double.valueOf(c.getValue().replaceAll(" ", "")), wcf);
+							Number num=new Number(j+4, index+1, Double.valueOf(c.getValue().replaceAll(" ", "")), wcf);
 							sheet.addCell(num);
 						}
 					}
