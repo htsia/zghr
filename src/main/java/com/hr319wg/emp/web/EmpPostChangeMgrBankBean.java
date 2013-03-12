@@ -983,18 +983,25 @@ public IWageSetPersonUCC getWagesetpersonucc()
         for (int i = 0; i < ids.length; i++)
           if ((ids[i] != null) && (!ids[i].equals(""))) {
             EmpPostChangeBO bo = this.emppostchangeucc.findEmpPostChangeBOById(ids[i]);
+            
             bo.setHrValidDate(this.efictDate);
             bo.setAddResume(this.addResume);
             this.emppostchangeucc.personMessageChange(super.getUserInfo(), bo);
             bo.setStatus(EmpPostChangeBO.HUMANEFFICIRNT);
             this.emppostchangeucc.saveEmpPostChangeBO(bo);
+            if(bo.getOldPost()!=null){
+            	jdbcTemplate.execute("update c001 set c001735=c001735 where postid='"+bo.getOldPost()+"'");
+            }
+            if(bo.getNewPost()!=null){
+            	jdbcTemplate.execute("update c001 set c001735=c001735 where postid='"+bo.getNewPost()+"'");
+            }
+            
             WageAdjustBO adjust = this.adjustucc.getWageAdjustBOByLinkID(bo.getPostChangeId());
             adjust.setApproStatus("1");
             this.adjustucc.saveWageAdjustBO(adjust);
             if ("1".equals(bo.getLinkBeginMgr())) {
               linkAddBegin(bo);
             }
-
             if ("1".equals(Constants.EMP_POST_CHANGE_LINK)) {
               this.wagesetpersonucc.adjustWageDept(super.getUserInfo(), bo);
             }
