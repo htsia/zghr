@@ -25,6 +25,7 @@ $(function(){
 </script>
 <%
     //------------------------------  视图录入页面 ---------------------------------
+    String editFlag=request.getParameter("editFlag");
     //是否查看
     boolean isEdit = true;
     try {
@@ -397,18 +398,33 @@ $(function(){
                     out.println(msg);
                     out.println("</td>");
                 } else if (InfoItemBO.DATA_TYPE_POST.equals(cellType)) {//岗位型指标的处理
-                    input.append("<input name=\"")
-                            .append(itemId).append("\"")
-                            .append(" type=\"text\" class=\"input\" ")
-                            .append(" readonly ")
-                            .append(id)
-                            .append(next)
-                            .append(check)
-                            .append(event)
-                            .append(" dict=\"yes\"").append(" dict_num=\"").append(CommonFuns.filterNull(cell.getItemCodeSet())).append("\"")
-                            .append(" code=\"").append(realValue).append("\" ")
-                            .append(value)
-                            .append(">");
+                	if("0".equals(editFlag)){
+	                    input.append("<input name=\"")
+	                            .append(itemId).append("\"")
+	                            .append(" type=\"text\" class=\"input\" ")
+	                            .append(" readonly ")
+	                            .append(id)
+	                            .append(next)
+	                            .append(check)
+	                            .append(event)
+	                            .append(" dict=\"yes\"").append(" dict_num=\"").append(CommonFuns.filterNull(cell.getItemCodeSet())).append("\"")
+	                            .append(" code=\"").append(realValue).append("\" ")
+	                            .append(value)
+	                            .append(" style='border:none;'>");
+                	}else{
+	                    input.append("<input name=\"")
+	                            .append(itemId).append("\"")
+	                            .append(" type=\"text\" class=\"input\" ")
+	                            .append(" readonly ")
+	                            .append(id)
+	                            .append(next)
+	                            .append(check)
+	                            .append(event)
+	                            .append(" dict=\"yes\"").append(" dict_num=\"").append(CommonFuns.filterNull(cell.getItemCodeSet())).append("\"")
+	                            .append(" code=\"").append(realValue).append("\" ")
+	                            .append(value)
+	                            .append(" >");
+                	}
                     out.println("<td class='" + tdfontclass + "'  >" + itemName + "</td>");
                     out.print("<td class=" + tdclass + "  >");
                     out.print(input.toString());

@@ -25,6 +25,7 @@
         <td valign="top" height=1>
         <jsp:include page="/pages/common/activepage/ActiveDetail.jsp">
             <jsp:param name="isEdit" value="false"/>
+            <jsp:param name="editFlag" value="0"/>
         </jsp:include>
      </td></tr>
 
