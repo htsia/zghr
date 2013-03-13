@@ -58,10 +58,8 @@
                 <h:commandButton styleClass="button01" value="删除"  rendered="#{wage_setItemBB.operRight}"
                                  action="#{wage_setItemBB.delete}"
                                  onclick="return confirmDel();"/>
-                <h:commandButton styleClass="button01" value="确定显示顺序" rendered="#{wage_setItemBB.operRight}"
+                <h:commandButton styleClass="button01" value="设置顺序" rendered="#{wage_setItemBB.operRight}"
                                  action="#{wage_setItemBB.listShowItem}"/>
-                <h:commandButton styleClass="button01" value="确定计算顺序" rendered="#{wage_setItemBB.canAdjustSeq}"
-                                 action="#{wage_setItemBB.listFormulaItem}"/>
                 <h:commandButton styleClass="button01" value="返回" action="#{wage_setBB.list}">
                     <x:updateActionListener property="#{wage_setBB.wageset.unitId}" value="#{wage_setItemBB.unitId}"/>
                 </h:commandButton>

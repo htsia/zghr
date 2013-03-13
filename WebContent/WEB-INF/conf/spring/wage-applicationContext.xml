@@ -458,7 +458,7 @@
         <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
     </bean>
     <!--wage set item-->
-    <bean id="wage_SetItemDAO" class="com.hr319wg.wage.dao.WageSetItemDAO">
+    <bean id="wage_SetItemDAO" class="com.hr319wg.custom.extend.dao.WageSetItemDAOByExtend">
         <property name="hibernatetemplate">
             <ref bean="hibernateTemplate"/>
         </property>

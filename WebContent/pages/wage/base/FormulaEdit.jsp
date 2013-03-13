@@ -15,8 +15,8 @@
 <script type="text/javascript">
     <%
             User user = (User) session.getAttribute(Constants.USER_INFO);
-            out.print("      var useID='"+user.getUserId()+"';");
-            out.print("      var rsTableName='"+rsTableName+"';");
+            out.print("var useID='"+user.getUserId()+"';");
+            out.print("var rsTableName='"+rsTableName+"';");
     %>
 </script>
 
@@ -242,6 +242,8 @@
                 <input type="button" class="button01" style="width:80px" value="GetYear" onclick="spanOperation('GetYear(','GetYear(');">
                 &nbsp;&nbsp;
                 <input type="button" class="button01" style="width:80px" value="GetMonth" onclick="spanOperation('GetMonth(','GetMonth(');">
+                &nbsp;&nbsp;
+                <input type="button" class="button01" style="width:80px" value="GetDays" onclick="spanOperation('GetDays(','GetDays(');">
                 &nbsp;&nbsp;
                 <input type="button" class="button01" style="width:100px" value="GetSumByYear" onclick="spanOperation('GetSumByYear(','GetSumByYear(');">
                 &nbsp;&nbsp;
