@@ -126,7 +126,6 @@
 								wcf.setAlignment(Alignment.CENTRE);
 								Label label = new Label(0, index+1, "小计", wcf);
 								sheet.addCell(label);
-// 								sheet.mergeCells(0, index+1, 2, 0);
 								
 								CellVO[]cell=(CellVO[])totalMap.get(wageDept);
 								if(cell!=null){
@@ -135,7 +134,9 @@
 										CellVO c=cell[j];
 										if(c.getItemId().startsWith("A815")){
 											wcf = new WritableCellFormat();
-											Number num=new Number(j+3, index+1, Double.valueOf(c.getValue().replaceAll(" ", "")), wcf);
+											String v=c.getValue().replaceAll(" ", "");
+											v=(v==null || "".equals(v))?"0":v;
+											Number num=new Number(j+3, index+1, Double.valueOf(v), wcf);
 											sheet.addCell(num);
 										}
 									}
@@ -175,7 +176,6 @@
 						wcf.setAlignment(Alignment.CENTRE);
 						Label label = new Label(0, index+1, "小计", wcf);
 						sheet.addCell(label);
-// 						sheet.mergeCells(0, index+1, 2, 0);
 						
 						CellVO[]cell=(CellVO[])totalMap.get(wageDept);
 						if(cell!=null){
@@ -184,7 +184,9 @@
 								CellVO c=cell[j];
 								if(cell[j].getItemId().startsWith("A815")){
 									wcf = new WritableCellFormat();
-									Number num=new Number(j+3, index+1, Double.valueOf(c.getValue().replaceAll(" ", "")), wcf);
+									String v=c.getValue().replaceAll(" ", "");
+									v=(v==null || "".equals(v))?"0":v;
+									Number num=new Number(j+3, index+1, Double.valueOf(v), wcf);
 									sheet.addCell(num);
 								}
 							}
@@ -196,13 +198,14 @@
 						wcf.setAlignment(Alignment.CENTRE);
 						Label label2 = new Label(0, index+1, "合计", wcf);
 						sheet.addCell(label2);
-// 						sheet.mergeCells(0, index+1, 2, 0);
 						
 						wcf = new WritableCellFormat();
 						for(int j=0;j<total.length;j++){
 							CellVO c=total[j];
 							wcf = new WritableCellFormat();
-							Number num=new Number(j+4, index+1, Double.valueOf(c.getValue().replaceAll(" ", "")), wcf);
+							String v=c.getValue().replaceAll(" ", "");
+							v=(v==null || "".equals(v))?"0":v;
+							Number num=new Number(j+4, index+1, Double.valueOf(v), wcf);
 							sheet.addCell(num);
 						}
 					}
