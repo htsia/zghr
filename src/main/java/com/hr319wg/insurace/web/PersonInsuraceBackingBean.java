@@ -269,7 +269,7 @@ public class PersonInsuraceBackingBean extends BaseBackingBean {
 				}
 			}
 			this.insDataService.updateInsurceChangeInfo(this.perIds.split(","), this.changeType, this.changeDate, this.changeReason, this.depName, inputList1.split(","));
-			this.basesetucc.updateInsurceChangeInfo(this.perIds.split(","), this.changeType, this.changeDate, this.depName, inputList1.split(","));
+//			this.basesetucc.updateInsurceChangeInfo(this.perIds.split(","), this.changeType, this.changeDate, this.depName, inputList1.split(","));
 		    this.basesetucc.deleteInsurceBase(this.perIds.split(","), null);
 			getServletRequest().setAttribute("message", "处理业务成功!");
 		} catch (Exception e) {

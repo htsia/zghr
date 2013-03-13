@@ -182,32 +182,30 @@ public class InsDataServiceImpl implements IInsDataService {
 			if (po == null) {
 				continue;
 			}
-//			if("A755715".equals(field)){//养老
-//			}else if("A770710".equals(field)){//失业
-//			}else if("A765705".equals(field)){//工伤
-//			}else if("A760710".equals(field)){//医疗
-//			}else if("A775704".equals(field)){//生育
-//			}else if("A786700".equals(field)){//大额
-//			}else if("A780708".equals(field)){//公积金
+
 			for (int j = 0; j < inputInsurace.length; j++) {
 				String baseType = "";
-				if ("A755715".equals(inputInsurace[j])) {
+				if ("A755715".equals(inputInsurace[j]) || "A754010".equals(inputInsurace[j])) {
 					baseType = "224501";//养老
-				} else if ("A760710".equals(inputInsurace[j])) {
+				} else if ("A760710".equals(inputInsurace[j]) || "A754015".equals(inputInsurace[j])) {
 					baseType = "224502";//医疗
-				} else if ("A765705".equals(inputInsurace[j])) {
+				} else if ("A765705".equals(inputInsurace[j]) || "A754025".equals(inputInsurace[j])) {
 					baseType = "224503";//工伤
-				} else if ("A770710".equals(inputInsurace[j])) {
+				} else if ("A770710".equals(inputInsurace[j]) || "A754020".equals(inputInsurace[j])) {
 					baseType = "224504";//失业
-				} else if ("A775704".equals(inputInsurace[j])) {
+				} else if ("A775704".equals(inputInsurace[j]) || "A754030".equals(inputInsurace[j])) {
 					baseType = "224505";//生育
-				} else if ("A786700".equals(inputInsurace[j])) {
+				} else if ("A786700".equals(inputInsurace[j]) || "A754200".equals(inputInsurace[j])) {
 					baseType = "224506";//大额
-				} else if ("A780708".equals(inputInsurace[j])) {
+				} else if ("A780708".equals(inputInsurace[j]) || "A754035".equals(inputInsurace[j])) {
 					baseType = "224508";//公积金
 				}
-				String sql="insert into B731(orguid,subid,B731000,B731700,B731701,B731702,B731703,B731704,B731209) values " +
-						"('" + po.getOrgId() + "','" + CommonFuns.filterNull(SequenceGenerator.getKeyId("B731")) + "','" + "00900" + "','" + ids[i] + "','" + CommonFuns.filterNull(ChangeDate) + "','" + CommonFuns.filterNull(ChangeType) + "','"+CommonFuns.filterNull(DepName)+"','" + CommonFuns.filterNull(baseType) + "','"+CommonFuns.filterNull(changReason)+"')";
+
+				String sql="insert into B731(subid,B731000,orguid,B731700,B731701,B731702,B731703,B731704,B731209,B731205,B731213,B731203,B731204) values " +
+						"('" + CommonFuns.filterNull(SequenceGenerator.getKeyId("B731")) + "','" + "00900" + "','"+po.getOrgId()+"','" + ids[i] + "','" +
+						CommonFuns.filterNull(ChangeDate) + "','" + CommonFuns.filterNull(ChangeType) + "','"+CommonFuns.filterNull(DepName)+"','" + 
+						CommonFuns.filterNull(baseType) + "','"+CommonFuns.filterNull(changReason)+"','"+CommonFuns.filterNull(po.getPersonCode())+"','"+
+						CommonFuns.filterNull(po.getPersonType())+"','"+CommonFuns.filterNull(po.getOrgId())+"','"+CommonFuns.filterNull(po.getDeptId())+"')";
 				this.jdbcTemplate.execute(sql);
 			}
 		}
