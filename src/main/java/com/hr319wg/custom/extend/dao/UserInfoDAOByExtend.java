@@ -9,6 +9,7 @@ import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.sys.cache.SysCacheTool;
+import com.hr319wg.sys.pojo.bo.CodeItemBO;
 import com.hr319wg.user.dao.UserInfoDAO;
 import com.hr319wg.user.pojo.bo.RoleInfoBO;
 
@@ -113,6 +114,45 @@ public class UserInfoDAOByExtend extends UserInfoDAO {
 			}
 
 			return list;
+		} catch (Exception e) {
+			throw new SysException("", "读取数据错误！", e, UserInfoDAO.class);
+		}
+	}
+	
+	public Hashtable queryPmsCode(String userId, String flag)
+			throws SysException {
+		String sql=null;
+		String isSysManager = isSysManager(userId);
+		if ((MAJORDOMO.equals(isSysManager)) || (SUPERMAN.equals(isSysManager))) {
+			sql="select codeitem.setId,codeitem.itemId from CodeItemBO codeitem where codeitem.setId in ('0110','0135','0391') and codeitem.itemStatus='1' order by codeitem.setId,codeitem.treeId";
+		} else {
+			sql="select rorg.codeId,rorg.condId from  RoleOrgScaleBO rorg, UserRoleBO urole,CodeItemBO cb where cb.itemId=rorg.condId and rorg.roleId = urole.roleId and rorg.codeId<>'DEPT' and urole.personId='"+userId+
+					"' and rorg.scaleFlag='"+flag+"' and rorg.codeId in ('0110','0135','0391') order by rorg.codeId,cb.treeId";
+		}
+
+		Hashtable hash = new Hashtable();
+		try {
+			List tmplst = this.hibernatetemplate.find(sql);
+			if (tmplst == null)
+				return null;
+			int len = tmplst.size();
+			String setId = "";
+			List list = null;
+			for (int i = 0; i < len; i++) {
+				Object[] obj = (Object[]) (Object[]) tmplst.get(i);
+				String tmpSetId = (String) obj[0];
+				String tmpItemId = (String) obj[1];
+				if (!setId.equals(tmpSetId)) {
+					list = new ArrayList();
+					setId = tmpSetId;
+					hash.put(setId, list);
+				}
+
+				CodeItemBO cItem = SysCacheTool.findCodeItem(tmpSetId,
+						tmpItemId);
+				list.add(cItem);
+			}
+			return hash;
 		} catch (Exception e) {
 			throw new SysException("", "读取数据错误！", e, UserInfoDAO.class);
 		}
