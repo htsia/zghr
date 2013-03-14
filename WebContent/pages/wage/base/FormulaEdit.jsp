@@ -245,9 +245,12 @@
                 &nbsp;&nbsp;
                 <input type="button" class="button01" style="width:80px" value="GetDays" onclick="spanOperation('GetDays(','GetDays(');">
                 &nbsp;&nbsp;
-                <input type="button" class="button01" style="width:100px" value="GetSumByYear" onclick="spanOperation('GetSumByYear(','GetSumByYear(');">
+                <input type="button" class="button01" style="width:90px" value="GetWorkDays" onclick="spanOperation('GetWorkDays(','GetWorkDays(');">
                 &nbsp;&nbsp;
-                <input type="button" class="button01"  style="width:100px" value="MonthDiff" onclick="spanOperation('MonthDiff(','MonthDiff(');"><br><br>
+                <input type="button" class="button01"  style="width:90px" value="MonthDiff" onclick="spanOperation('MonthDiff(','MonthDiff(');">
+                &nbsp;&nbsp;
+                <input type="button" class="button01" style="width:100px" value="GetSumByYear" onclick="spanOperation('GetSumByYear(','GetSumByYear(');">
+                <br><br>
                 <input type="button" class="button01"  style="width:120px" value="GetSumByMonth" onclick="spanOperation('GetSumByMonth(','GetSumByMonth(');">
                 &nbsp;&nbsp;
                 <input type="button" class="button01"  style="width:160px" value="GetSumByMonth_LAST" onclick="spanOperation('GetSumByMonth_LAST(','GetSumByMonth_LAST(');"><br>

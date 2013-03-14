@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.sys.pojo.vo.TableVO" %>
 <%@ page import="com.hr319wg.common.Constants" %>
@@ -135,8 +137,16 @@ $(function(){
         }
 
         // 对指标进行循环
+//         User user =(User)session.getAttribute(Constants.USER_INFO);
+//         Map itemMap=user.getPmsInfoItem();
+//         if(itemMap==null){
+//         	itemMap=new HashMap();
+//         }
         for (int j = 0; j < colnum; j++) {
             CellVO cell = row[j];
+//             if(!itemMap.containsKey(cell.getItemId()) && cell.getItemId().startsWith(setId)){
+//             	continue;
+//             }
             if (boolSelf && !InfoItemBO.INFO_ITEM_SELF.equals(cell.getItemSelf())) {
                 continue;
             }

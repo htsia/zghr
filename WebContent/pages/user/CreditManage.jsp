@@ -25,7 +25,7 @@
             }else
                 magFlag="0";
            // alert(magFlag);
-            var pram = "paramid=" + document.all("formCreditManage:paramId").value + "&pageflag=" + document.all("formCreditManage:pageFlag").value;
+            var pram = "paramid=" + document.getElementById("formCreditManage:paramId").value + "&pageflag=" + document.getElementById("formCreditManage:pageFlag").value;
             pram +="&manageFlag="+ magFlag;
             switch (n) {
                 case 0:
@@ -48,6 +48,9 @@
                     break;
                 case 6:
                     document.infoiframe.location = "/user/CreditPostCode.jsf?"+pram;
+                    break;
+                case 7:
+                    document.infoiframe.location = "/report/ReportPowerMgr.jsf?act=init&roleID="+document.getElementById("formCreditManage:paramId").value;
                     break;
                 default:
                     break;
@@ -105,6 +108,7 @@
 <!--                             <td width="100" class="tab" onclick="secBoard(6)"><img src="/images/common/handtip.gif">&nbsp;党组织范围</td> -->
                             <td width="100" class="tab" onclick="secBoard(5)"><img src="/images/common/handtip.gif">&nbsp;人员范围</td>
                             <td width="100" class="tab" onclick="secBoard(6)"><img src="/images/common/handtip.gif">&nbsp;岗位分类</td>
+                            <td width="100" class="tab" onclick="secBoard(7)"><img src="/images/common/handtip.gif">&nbsp;表格显示</td>
                         </tr>
                     </table>
                 </td>
