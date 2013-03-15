@@ -772,6 +772,7 @@ public class WageSetInputItemBackingBean extends BaseBackingBean
     return "success";
   }
 
+  	//批量导入
 	public String uploadFile() {
 		this.showError=false;
 		if (!WageTools.addUploadOperCount()) {
@@ -801,11 +802,11 @@ public class WageSetInputItemBackingBean extends BaseBackingBean
 			for(int i=1;i<row;i++){
 				boolean pass=true;
 				Map m=new HashMap();
-				String pCode = st.getCell(0, i).getContents();
+				String pCode = st.getCell(0, i).getContents().trim();
 				if(pCode==null || "".equals(pCode)){
 					break;
 				}
-				PersonBO p = SysCacheTool.findPersonByCode(pCode.trim());
+				PersonBO p = SysCacheTool.findPersonByCode(pCode);
 				if(p==null){
 					FileUtil.addErrorFormatLabel(bw, i, 0, "人员编号"+pCode+"不存在");
 					pass=false;
@@ -829,9 +830,9 @@ public class WageSetInputItemBackingBean extends BaseBackingBean
 					}
 				}
 				for(int j=0;j<fieldLen;j++){
-					String v=st.getCell(j+2, i).getContents();
+					String v=st.getCell(j+2, i).getContents().trim();
 					double v1=0;
-					if(v!=null && !"".equals(v)){
+					if(v!=null && !"".equals(v) && !"null".equals(v)){
 						try {
 							v1=Double.valueOf(v);
 							m.put(this.inputField[j], v1);
@@ -840,6 +841,8 @@ public class WageSetInputItemBackingBean extends BaseBackingBean
 							pass=false;
 							this.showError=true;
 						}
+					}else{
+						m.put(this.inputField[j], v1);
 					}
 				}
 				if(pass){
