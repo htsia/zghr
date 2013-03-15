@@ -1,8 +1,9 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.sys.cache.SysCacheTool" %>
 <%@ page import="com.hr319wg.emp.pojo.bo.PersonBO" %>
 <%@ page import="com.hr319wg.util.CodeUtil" %>
-<%@ page import="java.util.HashMap" %>
 <%@ page import="com.hr319wg.sys.configuration.LanguageSupport" %>
 <%@ page import="java.util.Iterator" %>
 
@@ -12,7 +13,7 @@
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
     String []dealItem = (String[]) session.getAttribute("field");
-    HashMap hash = (HashMap) session.getAttribute("fileValue");
+    List<Map> list = (List) session.getAttribute("fileValue");
 %>
 
 <x:saveState value="#{emp_DataUploadBB}"></x:saveState>
@@ -26,7 +27,7 @@
                 <f:verbatim>
                   <%=LanguageSupport.getResource("JGGL-1095","数据记录数")%>:
                 </f:verbatim>
-                <c:verbatim><%=hash.size()%></c:verbatim>
+                <c:verbatim><%=list.size()%></c:verbatim>
                 <h:outputText value="     "/>
                 <f:verbatim>
                   <%=LanguageSupport.getResource("JGGL-1096","数据处理方式")%>:
@@ -57,8 +58,8 @@
 
     <c:verbatim>
         <%
-            if (hash != null && hash.size() > 0) {
-                int col = dealItem.length;
+        if (list != null && list.size() > 0) {
+        	int col = dealItem.length;
         %>
         <table width="95%" border="0" align="center" id="dataList" class="table03">
             <tr align="left" class="td_top">
@@ -76,22 +77,16 @@
                 %>
             </tr>
             <%
-                Iterator iterator = hash.values().iterator();
-                Iterator key = hash.keySet().iterator();
-
-                while (iterator.hasNext() && key.hasNext()) {
-                    // 处理多记录子集数据有多行的情况
-                    String []keyValue=((String) key.next()).split("\\|");
-                    PersonBO p = SysCacheTool.findPersonById(keyValue[0]);
+                for(Map m : list) {
+                    PersonBO p = SysCacheTool.findPersonById(m.get("id").toString());
             %>
             <tr>
                 <td class="td_middle"><%=p.getPersonCode()%></td>
                 <td class="td_middle"><%=p.getName()%></td>
                 <%
-                    String[] data = (String[]) iterator.next();
                     for (int c = 0; c < col; c++) {
                 %>
-                <td class="td_middle"><%=CodeUtil.interpertCode("", data[c])%></td>
+                <td class="td_middle"><%=m.get(dealItem[c])%></td>
                 <%
                     }
                 %>

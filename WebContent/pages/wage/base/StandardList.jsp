@@ -77,8 +77,7 @@
                 </h:commandButton>
                 <h:outputText value=" "/>
 
-                <h:commandButton styleClass="button01" action="#{wage_standardBB.step1_setItem}" value="修改"
-                                 rendered="#{wage_standardBB.operRight}">
+                <h:commandButton styleClass="button01" action="#{wage_standardBB.step1_setItem}" value="修改">
                     <x:updateActionListener property="#{wage_standardBB.standard.stdId}" value="#{list[0].stdId}"/>
                 </h:commandButton>
                 <h:commandButton styleClass="button01" action="#{wage_standardBB.saveCopy}" onclick="return showProcessBar();" value="另存副本">
