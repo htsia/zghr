@@ -155,7 +155,7 @@ public class WageStandardBackingBeanByExtend extends WageStandardBackingBean {
 	          if("0".equals(type) && "-1".equals(this.hCode)){
 	        	  InfoItemBO infoitem = SysCacheTool.findInfoItem(stm.getField().substring(0, 4), stm.getField());
 	        	  stm.setCodeSetId(infoitem.getItemCodeSet());
-	          }else if("1".equals(type) && this.hCode!=null && !"-1".equals(this.hCode)){
+	          }else if("0".equals(type) && this.hCode!=null && !"-1".equals(this.hCode)){
 	        	  stm.setCodeSetId(this.hCode);
 	          }
 	          hash.put(stm.getField(), stm);

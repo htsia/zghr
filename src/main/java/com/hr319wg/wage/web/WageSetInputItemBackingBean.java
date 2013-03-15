@@ -1,26 +1,20 @@
 package com.hr319wg.wage.web;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import jxl.Sheet;
 import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -831,18 +825,17 @@ public class WageSetInputItemBackingBean extends BaseBackingBean
 				}
 				for(int j=0;j<fieldLen;j++){
 					String v=st.getCell(j+2, i).getContents().trim();
-					double v1=0;
 					if(v!=null && !"".equals(v) && !"null".equals(v)){
 						try {
-							v1=Double.valueOf(v);
-							m.put(this.inputField[j], v1);
+							Double.valueOf(v);
+							m.put(this.inputField[j], v);
 						} catch (Exception e) {
 							FileUtil.addErrorFormatLabel(bw, i, j+1, "Ó¦ÎªÊý×Ö");
 							pass=false;
 							this.showError=true;
 						}
 					}else{
-						m.put(this.inputField[j], v1);
+						m.put(this.inputField[j], 0);
 					}
 				}
 				if(pass){

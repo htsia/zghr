@@ -99,6 +99,7 @@
                         <h:commandButton id="modify" styleClass="button01" action="edit"   value="维护代码集">
                             <x:updateActionListener property="#{sys_codeSetEditBB.setId}" value="#{list.setId}"/>
                             <x:updateActionListener property="#{sys_codeSetEditBB.editStatus}" value="true"/>
+                            <x:updateActionListener property="#{sys_codeSetEditBB.moudleID}" value="wage"/>
                         </h:commandButton>
                         <h:commandButton id="view" styleClass="button01" action="itemlist" value="维护代码项">
                             <x:updateActionListener property="#{sys_codeItemListBB.setId}" value="#{list.setId}"/>

@@ -13,25 +13,20 @@ import com.hr319wg.util.CommonFuns;
 
 public class CodeSetEditBackingBean extends BaseBackingBean {
 	private ICodeSetUCC codesetucc;
-	private String setName;
-	private String setDesc;
-	private String setLayer;
-	private String setStatus = "1";
-	private String publicFlag;
 	private String setId;
 	private String hintMsg;
 	private boolean editStatus;
-	private String scaleCode;
 	private String moudleID;
 	private boolean operRight;
 	private UserAPI userAPI;
+	private CodeSetBO cs;
 
-	public String getPublicFlag() {
-		return publicFlag;
+	public CodeSetBO getCs() {
+		return cs;
 	}
 
-	public void setPublicFlag(String publicFlag) {
-		this.publicFlag = publicFlag;
+	public void setCs(CodeSetBO cs) {
+		this.cs = cs;
 	}
 
 	public UserAPI getUserAPI() {
@@ -82,38 +77,6 @@ public class CodeSetEditBackingBean extends BaseBackingBean {
 		this.setId = setId;
 	}
 
-	public String getSetName() {
-		return this.setName;
-	}
-
-	public void setSetName(String setName) {
-		this.setName = setName;
-	}
-
-	public String getSetDesc() {
-		return this.setDesc;
-	}
-
-	public void setSetDesc(String setDesc) {
-		this.setDesc = setDesc;
-	}
-
-	public String getSetLayer() {
-		return this.setLayer;
-	}
-
-	public void setSetLayer(String setLayer) {
-		this.setLayer = setLayer;
-	}
-
-	public String getSetStatus() {
-		return this.setStatus;
-	}
-
-	public void setSetStatus(String setStatus) {
-		this.setStatus = setStatus;
-	}
-
 	public ICodeSetUCC getCodesetucc() {
 		return this.codesetucc;
 	}
@@ -122,18 +85,19 @@ public class CodeSetEditBackingBean extends BaseBackingBean {
 		this.codesetucc = codesetucc;
 	}
 
-	public String getScaleCode() {
-		return this.scaleCode;
-	}
-
-	public void setScaleCode(String scaleCode) {
-		this.scaleCode = scaleCode;
-	}
-
 	public String getPageInit() {
 		try {
 			this.operRight=userAPI.checkButtonOperate(super.getUserInfo(), "06200");
-			queryCodeSet();
+			if (this.setId == null || "".equals(this.setId)){
+				this.cs = new CodeSetBO();
+				this.cs.setSetStatus("1");
+				if("wage".equals(this.moudleID)){
+					this.cs.setScaleCode("1");
+				}
+			}else{
+				this.cs = this.codesetucc.queryCodeSet(this.setId);				
+			}
+			
 		} catch (Exception e) {
 			this.msg.setMainMsg(e, getClass());
 		}
@@ -143,32 +107,23 @@ public class CodeSetEditBackingBean extends BaseBackingBean {
 
 	public String saveCodeSet() {
 		try {
-			CodeSetBO cs = new CodeSetBO();
-			CommonFuns.copyProperties(cs, this);
-			
 			if (!this.editStatus) {
-				cs.setCreateUnit(super.getUserInfo().getOrgId());
-				if("1".equals(this.publicFlag)){
-					cs.setPublicFlag("1");
-				}
+				this.cs.setCreateUnit(super.getUserInfo().getOrgId());
 				String sId = this.codesetucc.getNewSetId();
-				cs.setSetId(sId);
+				this.cs.setSetId(sId);
 				this.codesetucc.createCodeSet(cs);
 
 				List list = new ArrayList();
-				list.add(cs);
+				list.add(this.cs);
 				SysCache.setMap(list, 1, 1);
 
 				showMessageDetail("添加成功!");
 			} else {
-				if("1".equals(this.publicFlag)){
-					cs.setPublicFlag("1");
-				}
-				cs.setSetId(this.setId);
-				this.codesetucc.updateCodeSet(cs);
+				this.cs.setSetId(this.setId);
+				this.codesetucc.updateCodeSet(this.cs);
 
 				List list = new ArrayList();
-				list.add(cs);
+				list.add(this.cs);
 				SysCache.setMap(list, 3, 1);
 				showMessageDetail("修改成功!");
 			}
@@ -178,10 +133,4 @@ public class CodeSetEditBackingBean extends BaseBackingBean {
 		return "setlist";
 	}
 
-	public void queryCodeSet() throws SysException {
-		if ((this.setId == null) || (this.setId == ""))
-			return;
-		CodeSetBO cs = this.codesetucc.queryCodeSet(this.setId);
-		CommonFuns.copyProperties(this, cs);
-	}
 }

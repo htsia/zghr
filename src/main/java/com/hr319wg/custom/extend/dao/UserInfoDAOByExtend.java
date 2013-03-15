@@ -152,6 +152,8 @@ public class UserInfoDAOByExtend extends UserInfoDAO {
 						tmpItemId);
 				list.add(cItem);
 			}
+			List list1=SysCacheTool.queryCodeItemBySetId("0188");
+			hash.put("0188", list1);
 			return hash;
 		} catch (Exception e) {
 			throw new SysException("", "¶ÁÈ¡Êý¾Ý´íÎó£¡", e, UserInfoDAO.class);

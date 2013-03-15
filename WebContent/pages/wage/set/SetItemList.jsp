@@ -96,7 +96,7 @@
                     <h:outputText escape="false" value="#{list.typeEx}"/>
                     <h:commandButton id="view" styleClass="button01" type="button" rendered="#{list.type=='1'}" value="查看" onclick="return viewFormula('#{list.linkId}')" />
                     <h:commandButton id="viewfchange" styleClass="button01" type="button" rendered="#{list.type=='1'}" value="查看变动日志" onclick="return viewFormulaChange('#{list.linkId}')" />
-                    <h:commandButton id="edit" styleClass="button01"  rendered="#{list.type=='1' && list.canModify}" value="修改" onclick="return editFormula('#{list.linkId}')" />
+                    <h:commandButton id="edit" styleClass="button01"  rendered="#{list.type=='1'}" value="修改" onclick="return editFormula('#{list.linkId}')" />
                     <h:commandButton id="viewStandard" styleClass="button01" type="button" rendered="#{list.type=='0'}" value="查看" onclick="return viewStandard('#{list.linkId}')" />
                     <h:commandButton id="viewTax" styleClass="button01"  type="button" rendered="#{list.field=='A815714'}" value="查看计税方法" onclick="return viewTax();" />
                     <h:commandButton id="viewYearTax" styleClass="button01"  type="button" rendered="#{list.field=='A815756'}" value="查看计税方法" onclick="return viewYearTax();" />
