@@ -27,6 +27,7 @@ import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.SysContext;
+import com.hr319wg.custom.common.service.ICommonService;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.ucc.IDataUploadUCC;
 import com.hr319wg.org.pojo.bo.OrgBO;
@@ -75,20 +76,28 @@ public class DataUploadBackingBean extends BaseBackingBean
   private String configname;
   private String configID;
   private String[]inputField;
-  private String[]inputField1;
+  private List uploadValueList;
+  private ICommonService commonService;
 
-  public String[] getInputField() {
+  public List getUploadValueList() {
+	return uploadValueList;
+}
+public void setUploadValueList(List uploadValueList) {
+	this.uploadValueList = uploadValueList;
+}
+public ICommonService getCommonService() {
+	return commonService;
+}
+public void setCommonService(ICommonService commonService) {
+	this.commonService = commonService;
+}
+public String[] getInputField() {
 	return inputField;
 }
 public void setInputField(String[] inputField) {
 	this.inputField = inputField;
 }
-public String[] getInputField1() {
-	return inputField1;
-}
-public void setInputField1(String[] inputField1) {
-	this.inputField1 = inputField1;
-}
+
 public String getCodeType()
   {
     return this.codeType;
@@ -552,7 +561,7 @@ public String getCodeType()
 			return null;
 		}
 		List list=new ArrayList();
-		List list1=new ArrayList();
+		this.uploadValueList=new ArrayList();
 		Long d=new Date().getTime();
 		String path=super.getRealPath("/")+"file\\emp\\"+d+".txt";
 		BufferedWriter bw = new BufferedWriter(new FileWriter(path));
@@ -562,33 +571,22 @@ public String getCodeType()
 			Map m1=new HashMap();
 			String pCode = st.getCell(0, i).getContents().trim();
 			String name=st.getCell(1, i).getContents().trim();
-			if(!"A001".equals(this.perSelSet)){
-				if(pCode==null || "".equals(pCode)){
-					break;
-				}				
-			}else{//如果是A001验证姓名
-				if(name==null || "".equals(name)){
-					break;
-				}else{
-					m.put("name", name);
-					m1.put("name", name);
-				}
-			}
-			
-			if(!"A001".equals(this.perSelSet)){
-				PersonBO p = SysCacheTool.findPersonByCode(pCode.trim());
-				if(p==null){
-					FileUtil.addErrorFormatLabel(bw, i, 0, "人员编号"+pCode+"不存在");
+			if(pCode==null || "".equals(pCode)){
+				break;
+			}				
+			PersonBO p = SysCacheTool.findPersonByCode(pCode.trim());
+			if(p==null){
+				FileUtil.addErrorFormatLabel(bw, i+1, 0, "人员编号"+pCode+"不存在");
+				pass=false;
+				this.showError=true;
+			}else{
+				if(!p.getName().equals(name)){
+					FileUtil.addErrorFormatLabel(bw, i+1, 1, "姓名不匹配,系统中为"+p.getName()+"此处为"+name);
 					pass=false;
 					this.showError=true;
 				}else{
-					if(!p.getName().equals(name)){
-						FileUtil.addErrorFormatLabel(bw, i, 1, "姓名不匹配,系统中为"+p.getName()+"此处为"+name);
-						pass=false;
-						this.showError=true;
-					}else{
-						m.put("id", p.getPersonId());
-					}
+					m.put("id", p.getPersonId());
+					m1.put("id", p.getPersonId());
 				}
 			}
 			
@@ -604,7 +602,7 @@ public String getCodeType()
                     if ("0".equals(this.codeType)){  // 按代码查询
                         CodeItemBO tmp = SysCacheTool.findCodeItem(setID, value);
                         if (tmp == null) {
-                        	FileUtil.addErrorFormatLabel(bw, i, j+2, "代码["+value+"]不存在");
+                        	FileUtil.addErrorFormatLabel(bw, i+1, j+2, "代码["+value+"]不存在");
                         	pass=false;
         					this.showError=true;
                         } else {
@@ -621,7 +619,7 @@ public String getCodeType()
                            }
                        }
                        if (newCode==null){
-                    	   FileUtil.addErrorFormatLabel(bw, i, j+2, "描述["+value+"]不存在对应代码");
+                    	   FileUtil.addErrorFormatLabel(bw, i+1, j+2, "描述["+value+"]不存在对应代码");
                     	   pass=false;
        					this.showError=true;
                        }
@@ -629,7 +627,7 @@ public String getCodeType()
                 } else if (InfoItemBO.DATA_TYPE_ORG.equals(colDataType)) {
                     OrgBO obj = SysCacheTool.findOrgByCode(value);
                     if (obj == null) {
-                        FileUtil.addErrorFormatLabel(bw, i, j+2, "机构["+value+"]不存在");
+                        FileUtil.addErrorFormatLabel(bw, i+1, j+2, "机构["+value+"]不存在");
                         pass=false;
     					this.showError=true;
                     } else {
@@ -638,7 +636,7 @@ public String getCodeType()
                 } else if (InfoItemBO.DATA_TYPE_POST.equals(colDataType)) {
                     PostBO obj = SysCacheTool.findPostByCode(value.trim());
                     if (obj == null) {
-                    	FileUtil.addErrorFormatLabel(bw, i, j+2, "岗位不存在");
+                    	FileUtil.addErrorFormatLabel(bw, i+1, j+2, "岗位不存在");
                     	pass=false;
     					this.showError=true;
                     } else {
@@ -658,7 +656,7 @@ public String getCodeType()
                     } catch (NumberFormatException e) {
                     	pass=false;
     					this.showError=true;
-                    	FileUtil.addErrorFormatLabel(bw, i, j+2, "数据格式错误，不是整型数据");
+                    	FileUtil.addErrorFormatLabel(bw, i+1, j+2, "数据格式错误不是整数");
                     }
                 } else if (InfoItemBO.DATA_TYPE_FLOAT.equals(colDataType)) {
                     try {
@@ -668,40 +666,42 @@ public String getCodeType()
                     } catch (NumberFormatException e) {
                     	pass=false;
     					this.showError=true;
-                    	FileUtil.addErrorFormatLabel(bw, i, j+2, "数据格式错误，不是整型数据");
+                    	FileUtil.addErrorFormatLabel(bw, i+1, j+2, "数据格式错误不是小数");
                     }
                 } else if (InfoItemBO.DATA_TYPE_DATE6.equals(colDataType)) {
-                	if (value.length() == 6) {
+                	if (value.length() == 7) {
                     	SimpleDateFormat fmt=new SimpleDateFormat("yyyy-MM");
                     	try {
-                    		fmt.format(value);							
+                    		fmt.parse(value);
 						} catch (Exception e) {
 							pass=false;
 							this.showError=true;
-	                    	FileUtil.addErrorFormatLabel(bw, i, j+2, "数据格式错误，不是六位日期");
+	                    	FileUtil.addErrorFormatLabel(bw, i+1, j+2, "数据格式错误，不是六位日期");
 						}
                     	newCode=value;
                     } else {
                     	pass=false;
     					this.showError=true;
-                    	FileUtil.addErrorFormatLabel(bw, i, j+2, "数据格式错误，不是六位日期");
+                    	FileUtil.addErrorFormatLabel(bw, i+1, j+2, "数据格式错误，不是六位日期");
                     }
                 } else if (InfoItemBO.DATA_TYPE_DATE.equals(colDataType)) {
-                	if (value.length() == 6) {
-                    	SimpleDateFormat fmt=new SimpleDateFormat("yyyy-MM");
+                	if (value.length() == 10) {
+                    	SimpleDateFormat fmt=new SimpleDateFormat("yyyy-MM-dd");
                     	try {
-                    		fmt.format(value);							
+                    		fmt.parse(value);
 						} catch (Exception e) {
 							pass=false;
 							this.showError=true;
-	                    	FileUtil.addErrorFormatLabel(bw, i, j+2, "数据格式错误，不是八位日期");
+	                    	FileUtil.addErrorFormatLabel(bw, i+1, j+2, "数据格式错误，不是八位日期");
 						}
                     	newCode=value;
                     } else {
                     	pass=false;
     					this.showError=true;
-                    	FileUtil.addErrorFormatLabel(bw, i, j+2, "数据格式错误，不是八位日期");
+                    	FileUtil.addErrorFormatLabel(bw, i+1, j+2, "数据格式错误，不是八位日期");
                     }
+                }else{
+                	newCode=value;
                 }
 				m.put(fieldID, value);
 				m1.put(fieldID, newCode);
@@ -710,7 +710,7 @@ public String getCodeType()
 			
 			if(pass){
 				list.add(m);
-				list1.add(m1);
+				this.uploadValueList.add(m1);
 			}
 		}
 		if(this.showError){
@@ -727,77 +727,14 @@ public String getCodeType()
 
   //保存导入
   public String saveFile() {
-    HashMap hash = (HashMap)super.getHttpSession().getAttribute("fileValue");
-    String[] itemId = (String[])(String[])super.getHttpSession().getAttribute("field");
-    Iterator key = hash.keySet().iterator();
-    int i = 0;
-    String[] persId = (String[])(String[])hash.keySet().toArray(new String[0]);
-
-    HashMap perHash = new HashMap();
-    for (int j = 0; j < persId.length; j++) {
-      String keyTemp = persId[j].split("\\|")[0];
-      if (perHash.get(keyTemp) == null) {
-        perHash.put(keyTemp, keyTemp);
-      }
-    }
-    persId = new String[perHash.size()];
-    int j = 0;
-    Iterator it = perHash.keySet().iterator();
-    while (it.hasNext()) {
-      persId[j] = ((String)it.next());
-      j++;
-    }
-    try
-    {
-      String set = "";
-      if ((this.orgSelSet != null) && (!this.orgSelSet.equals("")))
-        set = this.orgSelSet;
-      else {
-        set = this.perSelSet;
-      }
-
-      if ((set != null) && (!set.equals(""))) {
-        if ("0".equals(this.mode)) {
-          this.datauploaducc.updateInfoByCode(set, itemId, hash);
-        }
-        else {
-          this.datauploaducc.insertInfoByCode(set, itemId, hash);
-          InfoSetBO bo = SysCacheTool.findInfoSet(set);
-          if ((bo != null) && 
-            (bo.getSet_rsType().equals(InfoSetBO.RS_TYPE_MANY))) {
-            this.datauploaducc.updateCurSign(set, bo.getSetFk(), persId, "");
-          }
-
-        }
-
-        if ((!"".equals(Constants.UUM_SERVICE_NAME)) && (("A001".equals(set)) || (Constants.UUM_LINK_SETS.indexOf(set) >= 0))) {
-          try {
-            IUUManager uumanager = (IUUManager)SysContext.getBean(Constants.UUM_SERVICE_NAME);
-            if (uumanager != null) {
-              for (int k = 0; k < persId.length; k++)
-              {
-                String[] id = new String[1];
-                id[0] = persId[k];
-                SysCache.setMap(id, 3, 6);
-                uumanager.userModify(id[0], super.getUserInfo().getUserId(), "1");
-              }
-            }
-          }
-          catch (Exception e)
-          {
-          }
-        }
-      }
-      super.getHttpSession().removeAttribute("fileValue");
-      super.getHttpSession().removeAttribute("field");
-      super.showMessageDetail("保存成功");
-      return "upload";
-    } catch (SysException e) {
-      super.showMessageDetail("错误：" + e.getMessage());
-    } catch (Exception e) {
-      this.msg.setMainMsg(e, getClass());
-    }
-    return null;
+		try {
+			this.commonService.batchUpdateEmpUploadFile(this.perSelSet, this.mode, this.inputField, this.uploadValueList);
+			super.showMessageDetail("导入完成");
+		} catch (SysException e) {
+			super.showMessageDetail("导入失败");
+			e.printStackTrace();
+		}
+		return null;
   }
   
   public String saveFileBySet()

@@ -37,7 +37,7 @@
                 </h:selectOneMenu>
 
                 <h:outputText value=" "/>
-                <h:commandButton styleClass="button01" value="保存到数据库" action="#{emp_DataUploadBB.saveFile}"/>
+                <h:commandButton styleClass="button01" value="保存到数据库" onclick="process();" action="#{emp_DataUploadBB.saveFile}"/>
 
                 <h:outputText value=" "/>
                 <h:commandButton styleClass="button01" value="返回" action="upload"/>
@@ -100,6 +100,27 @@
         %>
     </c:verbatim>
 </h:form>
+<marquee id="processbar" style="position:absolute;display:none; border:1px solid #000000" direction="right" width="300"
+         scrollamount="5" scrolldelay="10"
+         bgcolor="#ECF2FF">
+    <table cellspacing="1" cellpadding="0">
+        <tr height=8>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+        </tr>
+    </table>
+</marquee>
 <script type="text/javascript">
    setDataTableOver("dataList");
+   function process(){
+		x = document.body.clientWidth / 2 - 150;
+		y = document.body.clientHeight / 2;
+		document.all('processbar').style.top = y;
+		document.all('processbar').style.left = x;
+		document.all('processbar').style.display = "";
+   }
 </script>
