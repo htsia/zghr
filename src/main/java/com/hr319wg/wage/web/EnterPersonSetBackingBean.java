@@ -168,25 +168,7 @@ public List getRegTableList()
     }
     return null;
   }
-  public void delete() {
-		String[] selectedIDs = this.ids.split(",");
-		this.ids=null;
-		String[] subIDs = new String[selectedIDs.length];
-		for (int i = 0; i < selectedIDs.length; i++) {
-			subIDs[i] = selectedIDs[i].split("-")[2];
-		}
-		String sql = "update b730 set B730201='00901' where " + CommonFuns.splitInSql(subIDs, "subid");
-		try {
-			JdbcTemplate jdbc = (JdbcTemplate) SysContext.getBean("jdbcTemplate");
-			this.ids = null;
-			super.showMessageDetail("É¾³ýÍê³É");
-			jdbc.execute(sql);
-		} catch (SysException e) {
-			this.ids = null;
-			super.showMessageDetail("É¾³ýÊ§°Ü");
-			e.printStackTrace();
-		}
-	}
+
   public void setDone(ValueChangeEvent event) {
 	  this.done = event.getNewValue().toString().equals("true");
   }
@@ -208,15 +190,7 @@ public List getRegTableList()
       if ((this.inputDate != null) && (!"".equals(this.inputDate))) {
         filter += " and B730701 like '" + this.inputDate + "%'";
       }
-      if(noDone && done){
-    	  filter+= " and 1=1 ";
-      }else if(done){
-    	  filter+= " and B730.B730201 = '00901' ";    	  
-      }else if(noDone){
-    	  filter+= " and B730.B730201 is null ";    	  
-      }else{
-    	  filter+=" and 1<>1";
-      }
+      
       List list = SysCacheTool.queryInfoItemBySetId("B730");
       for (int i = 0; i < list.size(); i++) {
         InfoItemBO in = (InfoItemBO)list.get(i);
@@ -455,17 +429,13 @@ public List getRegTableList()
       if ((this.ids != null) && (!"".equals(this.ids.trim()))) {
     	  String[] selectedIDs = this.ids.split(",");
     	  this.ids=null;
-  		String[] personId = new String[selectedIDs.length];
-  		for (int i = 0; i < selectedIDs.length; i++) {
-  			personId[i] = selectedIDs[i].split("-")[1];
-  		}
-        this.wagesetpersonucc.batchAddPerson(this.setId, personId);
-        this.wagesetpersonucc.batchAdd(super.getUserInfo().getUserId(), this.setId, personId);
-        for (int i = 0; i < personId.length; i++)
+        this.wagesetpersonucc.batchAddPerson(this.setId, selectedIDs);
+        this.wagesetpersonucc.batchAdd(super.getUserInfo().getUserId(), this.setId, selectedIDs);
+        for (int i = 0; i < selectedIDs.length; i++)
         {
           WFTransaction trans = new WFTransaction();
           trans.setUser(super.getUserInfo());
-          PersonBO pb = SysCacheTool.findPersonById(personId[i]);
+          PersonBO pb = SysCacheTool.findPersonById(selectedIDs[i]);
           if ((pb.getDegree() != null) && (Constants.EMP_CADRESCODE.indexOf(pb.getDegree() + ",") >= 0)) {
             trans.setWfType(WFTypeBO.RYGL_CAR_ENTER);
           }
@@ -473,7 +443,7 @@ public List getRegTableList()
             trans.setWfType(WFTypeBO.RYGL_WORK_ENTER);
           }
           trans.setOperID("0674");
-          trans.setLinkID(personId[i]);
+          trans.setLinkID(selectedIDs[i]);
           trans.setStatusValue("00901");
           this.wfservice.processTrans(trans);
         }

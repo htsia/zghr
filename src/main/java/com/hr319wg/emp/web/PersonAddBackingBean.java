@@ -458,7 +458,7 @@ public String getClassId()
 			this.wageapi.addPersonRelation(org.getOrgId(), personId);
 
 			if (("1".equals(Constants.WAGE_POST_LINK))
-					&& ("0".equals(Constants.EMP_ADD_AFTER_APPROVE))) {
+					&& ("0".equals(Constants.EMP_ADD_AFTER_APPROVE) || Constants.EMP_ADD_AFTER_APPROVE==null)) {
 				String set = this.wageapi.querySetByPersonPost(personId);
 				if ((set != null) && (!"".equals(set))) {
 					String[] pids = new String[1];
