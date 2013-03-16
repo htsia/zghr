@@ -1,5 +1,3 @@
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.Map"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.sys.pojo.vo.TableVO" %>
 <%@ page import="com.hr319wg.common.Constants" %>
@@ -20,14 +18,9 @@
 <%@ page import="com.hr319wg.emp.pojo.bo.PersonBO" %>
 
 <script language=javascript src="/js/hashtable.js"></script>
-<script language=javascript>
-$(function(){
-	$(":text,select").width("200px");
-});
-</script>
+
 <%
     //------------------------------  视图录入页面 ---------------------------------
-    String editFlag=request.getParameter("editFlag");
     //是否查看
     boolean isEdit = true;
     try {
@@ -137,16 +130,8 @@ $(function(){
         }
 
         // 对指标进行循环
-//         User user =(User)session.getAttribute(Constants.USER_INFO);
-//         Map itemMap=user.getPmsInfoItem();
-//         if(itemMap==null){
-//         	itemMap=new HashMap();
-//         }
         for (int j = 0; j < colnum; j++) {
             CellVO cell = row[j];
-//             if(!itemMap.containsKey(cell.getItemId()) && cell.getItemId().startsWith(setId)){
-//             	continue;
-//             }
             if (boolSelf && !InfoItemBO.INFO_ITEM_SELF.equals(cell.getItemSelf())) {
                 continue;
             }
@@ -408,7 +393,10 @@ $(function(){
                     out.println(msg);
                     out.println("</td>");
                 } else if (InfoItemBO.DATA_TYPE_POST.equals(cellType)) {//岗位型指标的处理
-                	if("0".equals(editFlag)){
+                	if ("readonly".equals(cellRight) || "A001".equals(setId)){
+                        input.append(maskValue);
+                        input.append("<input type='hidden' name='"+itemId+"' value='"+realValue+"'>");
+                    }else{
 	                    input.append("<input name=\"")
 	                            .append(itemId).append("\"")
 	                            .append(" type=\"text\" class=\"input\" ")
@@ -420,29 +408,18 @@ $(function(){
 	                            .append(" dict=\"yes\"").append(" dict_num=\"").append(CommonFuns.filterNull(cell.getItemCodeSet())).append("\"")
 	                            .append(" code=\"").append(realValue).append("\" ")
 	                            .append(value)
-	                            .append(" style='border:none;'>");
-                	}else{
-	                    input.append("<input name=\"")
-	                            .append(itemId).append("\"")
-	                            .append(" type=\"text\" class=\"input\" ")
-	                            .append(" readonly ")
-	                            .append(id)
-	                            .append(next)
-	                            .append(check)
-	                            .append(event)
-	                            .append(" dict=\"yes\"").append(" dict_num=\"").append(CommonFuns.filterNull(cell.getItemCodeSet())).append("\"")
-	                            .append(" code=\"").append(realValue).append("\" ")
-	                            .append(value)
-	                            .append(" >");
-                	}
+	                            .append(">");
+                    }
                     out.println("<td class='" + tdfontclass + "'  >" + itemName + "</td>");
                     out.print("<td class=" + tdclass + "  >");
                     out.print(input.toString());
-                    if (isEdit) {
+                    if (isEdit && !"A001".equals(setId)) {
 						if("A001".equals(setId)){
-							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" if onclick=\"fPopUpPostDlgRy('" + cell.getItemId().trim() + "')\">");
-						}else{						
-							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" if onclick=\"fPopUpPostDlg('" + cell.getItemId().trim() + "')\">");
+							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"fPopUpPostDlgRy('" + cell.getItemId().trim() + "')\">");
+						}else if("C001".equals(setId)){
+							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"fPopUpPostDlg('" + cell.getItemId().trim() + "')\">");
+						}else{
+							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"PopUpPostDlgByDept1('" + cell.getItemId().trim() + "',null,'A001705')\">");
 						}                        
                     }
                     out.println(msg);
@@ -473,6 +450,7 @@ $(function(){
                         input.append("<input name=\"")
                             .append(itemId).append("\"")
                             .append(" type=\"text\" class=\"input\" ")
+                            .append(" readonly ")
                             .append(id)
                             .append(next)
                             .append(check)
@@ -496,6 +474,7 @@ $(function(){
                       input.append("<input name=\"")
                             .append(itemId).append("\"")
                             .append(" type=\"text\" class=\"input\" ")
+                            .append(" readonly ")
                             .append(id)
                             .append(next)
                             .append(check)
@@ -535,27 +514,33 @@ $(function(){
                     out.println(msg);
                     out.println("</td>");
                 } else if (InfoItemBO.DATA_TYPE_ORG.equals(cellType)) { //机构型指标
-                    if ("readonly".equals(cellRight)){
+                	if((setId==null && "C001010".equals(cell.getItemId())) || !"readonly".equals(cellRight)){
+                		input.append("<input name=\"")
+                        .append(itemId).append("\"")
+                        .append(" type=\"text\" class=\"input\"")
+                        .append(" "+cellRight+" ")
+                        .append(id)
+                        .append(next)
+                        .append(check)
+                        .append(event)
+                        .append(" dict=\"yes\"").append(" dict_num=\"").append("OU").append("\"")
+                        .append(" code=\"").append(realValue).append("\" ").append(value)
+                        .append(">");
+                	}else if ("readonly".equals(cellRight)){
                         input.append(maskValue);
                         input.append("<input type='hidden' name='"+itemId+"' value='"+realValue+"'>");
                     }
-                    else{
-                        input.append("<input name=\"")
-                            .append(itemId).append("\"")
-                            .append(" type=\"text\" class=\"input\"")
-                            .append(" "+cellRight+" ")
-                            .append(id)
-                            .append(next)
-                            .append(check)
-                            .append(event)
-                            .append(" dict=\"yes\"").append(" dict_num=\"").append("OU").append("\"")
-                            .append(" code=\"").append(realValue).append("\" ").append(value)
-                            .append(">");
-                    }
+                    
                     out.println("<td  class='" + tdfontclass + "'  >" + itemName + "</td>");
                     out.print("<td  class=" + tdclass + "  >");
                     out.print(input.toString());
-                    if (isEdit && !"readonly".equals(cellRight)) {
+                    if(setId==null && "C001010".equals(cell.getItemId())){
+                    	if ("A001706".equals(cell.getItemId()) || "C001010".equals(cell.getItemId())) {  // 班组
+                            out.print("<input type=\"button\" class=\"button_select\" onclick=\"PopUpOrgDlgShowGroup('" + cell.getItemId().trim() + "',1,'')\">");
+                        } else {
+                            out.print("<input type=\"button\" class=\"button_select\" onclick=\"PopUpOrgDlg('" + cell.getItemId().trim() + "',1,'')\">");
+                        }
+                    }else if (isEdit && !"readonly".equals(cellRight)) {
                         if ("A001706".equals(cell.getItemId()) || "C001010".equals(cell.getItemId())) {  // 班组
                             out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"PopUpOrgDlgShowGroup('" + cell.getItemId().trim() + "',1,'')\">");
                         } else {
@@ -928,5 +913,3 @@ $(function(){
 	window.onresize=moveimg;
 	window.onscroll=moveimg;
 </script>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
