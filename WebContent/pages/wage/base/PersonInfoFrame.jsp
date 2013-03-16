@@ -88,7 +88,7 @@
         <td align="center" valign="top">
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center" valign="top" class="explorer" id="showTree" width="300">
+                    <td align="center" valign="top" class="explorer" id="showTree" width="230">
                         <table width="100%" border=0 cellpadding="0" cellspacing="0" valign="top">
                             <tr>
                                 <td>
