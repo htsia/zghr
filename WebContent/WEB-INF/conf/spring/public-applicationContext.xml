@@ -75,6 +75,7 @@
         <property name="properties">
             <props>
                 <prop key="create*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
+                <prop key="copyset">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
                 <prop key="update*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
                 <prop key="delete*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>
                 <prop key="batch*">PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT,-RollbackableException</prop>

@@ -104,9 +104,9 @@
                 <c:facet name="header"><h:outputText value="通用"/></c:facet>
                 <h:outputText value="#{list.usualFlag}"/>
             </h:column>
-
+            
             <h:column>
-                <c:facet name="header"><h:outputText value="建立单位"/></c:facet>
+                <c:facet name="header"><h:outputText value="所属单位"/></c:facet>
                 <h:outputText value="#{list.unitName}"/>
             </h:column>
 

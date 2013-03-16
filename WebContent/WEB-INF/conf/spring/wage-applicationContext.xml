@@ -478,7 +478,7 @@
             <ref bean="wage_StandardDAO"/>
         </property>
     </bean>
-    <bean id="wage_SetItemUccImpl" class="com.hr319wg.wage.ucc.impl.WageSetItemUCC">
+    <bean id="wage_SetItemUccImpl" class="com.hr319wg.custom.wage.ucc.WageSetItemUCCByExtends">
         <property name="wagesetitemservice" ref="wage_SetItemService"/>
         <property name="wagesetservice" ref="wage_SetService"/>
         <property name="wagecomputeservice" ref="wage_ComputeService"/>
