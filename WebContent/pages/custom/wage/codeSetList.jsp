@@ -42,13 +42,13 @@
                 <h:panelGrid align="right" columns="6">
                     <h:inputText value="" styleClass="input" id="searchName" />
                     <h:commandButton value="检 索" action="" styleClass="button01"  onclick="return forSearch(document.all('formCodeSetList:searchName').value)"  />
-                    <h:commandButton value="新 建" action="add" styleClass="button01"  rendered="#{sys_codeSetListBB.operRight}" >
+                    <h:commandButton value="新 建" action="add" styleClass="button01">
                     	<x:updateActionListener property="#{sys_codeSetEditBB.editStatus}" value="false"/>
                     	<x:updateActionListener property="#{sys_codeSetEditBB.moudleID}" value="wage"/>
                     </h:commandButton>
-                    <h:commandButton value="删 除" action="#{sys_codeSetListBB.deleteCodeSets}" styleClass="button01"  rendered="#{sys_codeSetListBB.operRight}"  onclick="return checkBatchDelete('selectItem')" />
-                    <h:commandButton value="启 用" action="#{sys_codeSetListBB.setStatusOpen}" onclick="return doCheckSelect();" styleClass="button01"  rendered="#{sys_codeSetListBB.operRight}"/>
-                    <h:commandButton value="禁 用" action="#{sys_codeSetListBB.setStatusBan}" onclick="return doCheckSelect();" styleClass="button01"  rendered="#{sys_codeSetListBB.operRight}"/>
+                    <h:commandButton value="删 除" action="#{sys_codeSetListBB.deleteCodeSets}" styleClass="button01" onclick="return checkBatchDelete('selectItem')" />
+                    <h:commandButton value="启 用" action="#{sys_codeSetListBB.setStatusOpen}" onclick="return doCheckSelect();" styleClass="button01"/>
+                    <h:commandButton value="禁 用" action="#{sys_codeSetListBB.setStatusBan}" onclick="return doCheckSelect();" styleClass="button01"/>
                 </h:panelGrid>
             </h:panelGrid>
 <f:verbatim>

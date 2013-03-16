@@ -65,16 +65,16 @@
              <td height=2>
 </c:verbatim>
                 <h:panelGroup>
-                    <h:commandButton value="显示代码树"  rendered="#{sys_codeItemListBB.operRight}" onclick="return changeCode();" styleClass="button01" type="button"/>
-                    <h:commandButton value="新 建" action="add" styleClass="button01"  rendered="#{sys_codeItemListBB.operRight}">
+                    <h:commandButton value="显示代码树"   onclick="return changeCode();" styleClass="button01" type="button"/>
+                    <h:commandButton value="新 建" action="add" styleClass="button01"  >
                         <x:updateActionListener property="#{sys_codeItemEditBB.setId}" value="#{sys_codeItemListBB.setId}"/>
                         <x:updateActionListener property="#{sys_codeItemEditBB.setName}" value="#{sys_codeItemListBB.setName}"/>
                         <x:updateActionListener property="#{sys_codeItemEditBB.editStatus}" value="false"/>
                         <x:updateActionListener property="#{sys_codeItemEditBB.itemSuper}" value="#{sys_codeItemListBB.curCode}"/>
                         </h:commandButton>
-                    <h:commandButton value="删 除" action="#{sys_codeItemListBB.deleteCodeItems}" rendered="#{sys_codeItemListBB.operRight}" onclick="return checkBatchDelete('selectItem')" styleClass="button01" />
-                    <h:commandButton value="启 用" action="#{sys_codeItemListBB.makeStatusOpen}" onclick="return doCheckSelect();" rendered="#{sys_codeItemListBB.operRight}" styleClass="button01" />
-                    <h:commandButton value="禁 用" action="#{sys_codeItemListBB.makeStatusBan}" onclick="return doCheckSelect();" rendered="#{sys_codeItemListBB.operRight}" styleClass="button01" />
+                    <h:commandButton value="删 除" action="#{sys_codeItemListBB.deleteCodeItems}"  onclick="return checkBatchDelete('selectItem')" styleClass="button01" />
+                    <h:commandButton value="启 用" action="#{sys_codeItemListBB.makeStatusOpen}" onclick="return doCheckSelect();"  styleClass="button01" />
+                    <h:commandButton value="禁 用" action="#{sys_codeItemListBB.makeStatusBan}" onclick="return doCheckSelect();"  styleClass="button01" />
                     <h:commandButton value="返 回" action="setlist" styleClass="button01"/>
                 </h:panelGroup>
 <c:verbatim>

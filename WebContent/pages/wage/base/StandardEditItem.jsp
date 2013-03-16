@@ -21,7 +21,7 @@
 <script language="javascript" src="/js/hashtable.js"></script>
 <script language="javascript" src="/js/selectItem.js"></script>
 
-<x:saveState value="#{wage_standardBB}"></x:saveState>
+<x:saveState value="#{wage_standardBB}"/>
 <h:form id="form1">
 <h:inputHidden value="wage_standardBB.standard.unitId"/>
 <h:inputHidden value="wage_standardBB.standard.stdId"/>

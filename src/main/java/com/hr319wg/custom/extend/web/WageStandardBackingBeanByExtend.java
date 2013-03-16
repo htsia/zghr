@@ -13,6 +13,7 @@ import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.dao.CodeSetDAO;
 import com.hr319wg.sys.pojo.bo.CodeSetBO;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
+import com.hr319wg.wage.pojo.bo.WageStandardBO;
 import com.hr319wg.wage.pojo.bo.WageStdItemBO;
 import com.hr319wg.wage.pojo.vo.WageStandardVO;
 import com.hr319wg.wage.web.WageStandardBackingBean;
@@ -67,6 +68,14 @@ public class WageStandardBackingBeanByExtend extends WageStandardBackingBean {
 		this.codeSet = codeSet;
 	}
 	
+	public String step1_create() {
+		WageStandardBO std = new WageStandardBO();
+		std.setUnitId(this.getStandard().getUnitId());
+		this.setStandard(std);
+		this.setCanEdit(true);
+		super.getServletRequest().removeAttribute("act");
+		return step1_setItem();
+	}
 	
 	public String step1_setItem()
 	  {
@@ -115,7 +124,8 @@ public class WageStandardBackingBeanByExtend extends WageStandardBackingBean {
 	    catch (SysException e) {
 	      super.showMessageDetail("´íÎó:" + e.getMessage());
 	    }
-
+	    super.getServletRequest().removeAttribute("act");
+	    this.setCanEdit(true);
 	    return "editItem";
 	  }
 	

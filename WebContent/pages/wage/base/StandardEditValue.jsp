@@ -11,9 +11,6 @@
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
-
-<x:saveState value="#{wage_standardBB}"></x:saveState>
-<h:form id="form1">
 <%
     String act=(String)request.getAttribute("act");
     String readonly=" ";
@@ -43,7 +40,8 @@
         VRowRep.put(String.valueOf(i), String.valueOf(rowNum));
     }
 %>
-
+<x:saveState value="#{wage_standardBB}"/>
+<h:form id="form1">
 <h:inputHidden id="unitId" value="#{wage_standardBB.standard.unitId}"/>
 <h:inputHidden id="stdId" value="#{wage_standardBB.standard.stdId}"/>
 <c:verbatim>
