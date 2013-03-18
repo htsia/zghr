@@ -403,7 +403,10 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 	//生效
 	public String doOK() {
 		try {
-			this.adjustucc.ValidateAdjust(super.getUserInfo(), this.itemID);
+			String message=this.adjustucc.ValidateAdjust(super.getUserInfo(), this.itemID);
+			if(!"".equals(message)){
+				super.showMessageDetail("以下人员存在多个帐套中请自行处理<br/>"+message);
+			}
 		} catch (Exception e) {
 		}
 		return "success";

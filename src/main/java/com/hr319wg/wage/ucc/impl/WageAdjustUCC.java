@@ -64,8 +64,8 @@ public class WageAdjustUCC
   public List getAdjustDetail(String itemID) throws SysException {
     return this.adjustservice.getAdjustDetail(itemID);
   }
-  public void ValidateAdjust(User user, String itemID) throws SysException {
-    this.adjustservice.ValidateAdjust(user, itemID);
+  public String ValidateAdjust(User user, String itemID) throws SysException {
+    return this.adjustservice.ValidateAdjust(user, itemID);
   }
   public WageAdjustBO getWageAdjustBOByLinkID(String linkID) throws SysException {
     return this.adjustservice.getWageAdjustBOByLinkID(linkID);

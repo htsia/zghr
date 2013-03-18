@@ -47,7 +47,7 @@ public abstract interface IWageAdjustUCC
   public abstract List getAdjustDetail(String paramString)
     throws SysException;
 
-  public abstract void ValidateAdjust(User paramUser, String paramString)
+  public abstract String ValidateAdjust(User paramUser, String paramString)
     throws SysException;
 
   public abstract WageAdjustBO getWageAdjustBOByLinkID(String paramString)

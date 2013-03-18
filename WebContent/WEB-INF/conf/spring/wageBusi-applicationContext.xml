@@ -10,7 +10,7 @@
         <property name="activeapi" ref="sys_activePageApi"/>
         <property name="wageapi" ref="wage_api"/>
         <property name="wagesetpersonservice" ref="wage_SetPersonService"/>
-
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     <bean id="wage_adjustDAO" class="com.hr319wg.wage.dao.WageAdjustDAO">
         <property name="hibernatetemplate">

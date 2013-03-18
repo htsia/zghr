@@ -25,6 +25,8 @@ import com.hr319wg.emp.pojo.bo.OrgPostChangeBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.ucc.IEmpBeginnerUCC;
 import com.hr319wg.emp.ucc.IEmpPostChangeUCC;
+import com.hr319wg.org.pojo.bo.OrgBO;
+import com.hr319wg.post.pojo.bo.PostBO;
 import com.hr319wg.post.util.PostTool;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
@@ -411,16 +413,30 @@ public IWageSetPersonUCC getWagesetpersonucc()
         {
           EmpPostChangeBO bo = (EmpPostChangeBO)this.empPostChangeList.get(i);
           bo.setPersonName(SysCacheTool.findPersonById(bo.getPersonId()).getName());
-          bo.setOldDept(SysCacheTool.findOrgById(bo.getOldDept()).getName());
-          bo.setNewDept(SysCacheTool.findOrgById(bo.getNewDept()).getName());
-          if ((bo.getOldPost() != null) && (!bo.getOldPost().equals("")))
-            bo.setOldPost(PostTool.getPostName(bo.getOldPost()));
-          if ((bo.getOldJob() != null) && (!bo.getOldJob().equals("")))
-            bo.setOldJob(CodeUtil.interpertCode(bo.getOldJob()));
-          if ((bo.getNewPost() != null) && (!bo.getNewPost().equals("")))
-            bo.setNewPost(PostTool.getPostName(bo.getNewPost()));
-          if ((bo.getNewJob() != null) && (!bo.getNewJob().equals("")))
-            bo.setNewJob(CodeUtil.interpertCode(bo.getNewJob()));
+          OrgBO org=SysCacheTool.findOrgById(bo.getOldDept());
+          if(org!=null){
+        	  bo.setOldDept(org.getName());        	  
+          }else{
+        	  bo.setOldDept(bo.getOldDept());
+          }
+          org=SysCacheTool.findOrgById(bo.getNewDept());
+          if(org!=null){
+        	  bo.setNewDept(org.getName());        	  
+          }else{
+        	  bo.setNewDept(bo.getOldDept());
+          }
+          PostBO post=SysCacheTool.findPost(bo.getOldPost());
+          if(post!=null){
+        	  bo.setOldPost(post.getName());        	  
+          }else{
+        	  bo.setOldPost(bo.getOldPost());      
+          }
+          post=SysCacheTool.findPost(bo.getNewPost());
+          if(post!=null){
+        	  bo.setNewPost(post.getName());        	  
+          }else{
+        	  bo.setNewPost(bo.getNewPost());      
+          }
           bo.setChangeReasonDes(CodeUtil.interpertCode(bo.getChangeReason()));
         }
       }
