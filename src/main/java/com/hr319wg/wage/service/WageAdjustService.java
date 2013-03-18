@@ -283,26 +283,45 @@ public class WageAdjustService{
 						}
 						this.activeapi.updatePageInfo(setId, user, adjust.getPersonID(), null, false, null, null, infoItems, itemValues);
 					}
-					//处理A815关联
-					if(wageList.size()>0){
-						String updateSql="";
-						for(WageAdjustDetailBO bo : wageList){
-							 updateSql+=bo.getFieldID()+"='"+bo.getNewValue()+"',";
-						}
-						updateSql=updateSql.substring(0, updateSql.length()-1);
-						sql="select a815700 from wage_set_pers_r where id='"+p.getPersonId()+"'";
-						String wageSet=this.activeapi.queryForString(sql);
-						if(sql!=null){//未暂停工资
-							sql="update wage_set_pers_r set "+updateSql +" where id='"+p.getPersonId()+"'";
-							this.jdbcTemplate.execute(sql);
-							
-						}else{
-							sql="update wage_set_pers_r_bak set "+updateSql +" where id='"+p.getPersonId()+"'";
-							this.jdbcTemplate.execute(sql);							
-						}
-					}
 				}//处理关联项目_end
 				
+				//处理A815关联
+				if(wageList.size()>0){
+					String updateSql="";
+					String updateSql2="";
+					String wageSet=String.valueOf(wageSetList.get(0));
+					for(WageAdjustDetailBO bo : wageList){
+						String fieldID=bo.getFieldID();
+						updateSql+=fieldID+"='"+(bo.getNewValue()==null?"0":bo.getNewValue())+"',";
+						sql="select count(*) from wage_set_item w where w.set_id='"+wageSet+"' and w.item_field='"+fieldID+"' and w.item_type='2'";
+						if(this.jdbcTemplate.queryForInt(sql)==1){//是否录入项
+							updateSql2+=fieldID+"='"+(bo.getNewValue()==null?"0":bo.getNewValue())+"',";
+						}
+					}
+					if(updateSql.length()>0){
+						updateSql=updateSql.substring(0, updateSql.length()-1);						
+					}
+					if(updateSql2.length()>0){
+						updateSql2=updateSql2.substring(0, updateSql2.length()-1);						
+					}
+					sql="select a815700 from wage_set_pers_r where id='"+p.getPersonId()+"'";
+					wageSet=this.activeapi.queryForString(sql);
+					if(wageSet!=null){//未暂停工资
+						if(updateSql2.length()>0){
+							sql="update wage_set_pers_r set "+updateSql2 +" where id='"+p.getPersonId()+"'";
+							this.jdbcTemplate.execute(sql);							
+						}
+						if(this.activeapi.isDBTable("A815_SET_"+wageSet) && updateSql.length()>0){
+							sql="update A815_SET_"+wageSet+" set "+updateSql +" where id='"+p.getPersonId()+"'";
+							this.jdbcTemplate.execute(sql);						
+						}
+					}else{
+						if(updateSql2.length()>0){
+							sql="update wage_set_pers_r_bak set "+updateSql2 +" where id='"+p.getPersonId()+"'";
+							this.jdbcTemplate.execute(sql);
+						}
+					}
+				}
 				adjust.setStatus(WageAdjustBO.STATUS_ADJUST);
 				adjust.setAdjustDate(CommonFuns.getSysDate("yyyy-MM-dd"));
 				saveWageAdjustBO(adjust);
