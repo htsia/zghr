@@ -813,7 +813,7 @@ public class PersonAddBackingBean extends BaseBackingBean {
   
 	public String getAddPageInit() {
 		try {
-			this.tableVO = this.orgucc.queryPageInfo("A001", "-1", "", super.getUserInfo());
+			this.tableVO = this.orgucc.queryPageInfo("A001", "-1", "", null);
 			String personCode= personucc.getNextPersonCode(user.getOrgId());
 			CellVO[] cell=this.tableVO.getHeader();
 			if(cell!=null){
