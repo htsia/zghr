@@ -1,6 +1,5 @@
 package com.hr319wg.custom.common.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +9,10 @@ import com.hr319wg.common.exception.SysException;
 import com.hr319wg.custom.dao.CommonDAO;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
+import com.hr319wg.sys.pojo.bo.InfoItemBO;
 import com.hr319wg.sys.pojo.bo.InfoSetBO;
+import com.hr319wg.sys.pojo.vo.CellVO;
+import com.hr319wg.sys.pojo.vo.TableVO;
 import com.hr319wg.util.CommonFuns;
 import com.hr319wg.util.SequenceGenerator;
 
@@ -88,5 +90,34 @@ public class CommonServiceImpl implements ICommonService{
 				}
 			}
 		}
+	}
+	
+	public String getChangeInfo(TableVO table, List showItems, String unitId, String filter) {
+		String fields = "ws.set_id||'-'||A001.ID||'-'||B730.subid AS ID,A001735,A001705";
+		CellVO[] cvs = new CellVO[showItems.size() + 4];
+		cvs[0] = new CellVO();
+		CommonFuns.copyProperties(cvs[0], SysCacheTool.findInfoItem("A001", "ID"));
+		cvs[1] = new CellVO();
+		CommonFuns.copyProperties(cvs[1], SysCacheTool.findInfoItem("A001", "A001735"));
+		cvs[2] = new CellVO();
+		CommonFuns.copyProperties(cvs[2], SysCacheTool.findInfoItem("A001", "A001705"));
+		for (int i = 0; i < showItems.size(); i++) {
+			InfoItemBO ib = (InfoItemBO) showItems.get(i);
+			cvs[(i + 3)] = new CellVO();
+			CommonFuns.copyProperties(cvs[(i + 3)], ib);
+			if (fields.equals("")) {
+				fields = ib.getSetId() + "." + ib.getItemId();
+			} else {
+				fields = fields + "," + ib.getSetId() + "." + ib.getItemId();
+			}
+		}
+		cvs[(showItems.size() + 3)] = new CellVO();
+		cvs[(showItems.size() + 3)].setItemId("set_name");
+		cvs[(showItems.size() + 3)].setItemName("Ð½×ÊÕËÌ×");
+		fields = fields + ",set_name";
+		table.setHeader(cvs);
+		String sql = "select " + fields + " from B730 left join A001 on B730.B730700=A001.ID left join wage_set_pers_r w on A001.id=w.id left join wage_set ws on w.A815700=ws.set_id where isnull(no_use,0)<>'1' and orguid='"
+				+ unitId + "' and " + filter + " order by B730701 desc";
+		return sql;
 	}
 }

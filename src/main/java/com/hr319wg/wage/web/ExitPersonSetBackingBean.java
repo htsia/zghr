@@ -11,6 +11,7 @@ import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.SysContext;
+import com.hr319wg.custom.common.service.ICommonService;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.ucc.IPersonUCC;
 import com.hr319wg.qry.pojo.vo.QueryVO;
@@ -36,6 +37,7 @@ public class ExitPersonSetBackingBean extends BaseBackingBean
   private boolean operRight = true;
   private IWageSetPersonUCC wagesetpersonucc;
   private IWagePersonQueryUCC wagepersonqueryucc;
+  private ICommonService commonService;
   private IQueryUCC queryucc;
   private IWageSetUCC wagesetucc;
   private IPersonUCC personucc;
@@ -45,6 +47,15 @@ public class ExitPersonSetBackingBean extends BaseBackingBean
   private String unitName;
   private String inputDate;
   private String ids;
+
+
+  public ICommonService getCommonService() {
+	return commonService;
+  }
+
+  public void setCommonService(ICommonService commonService) {
+	this.commonService = commonService;
+  }
 
   public WorkFlowService getWfservice()
   {
@@ -159,7 +170,7 @@ public class ExitPersonSetBackingBean extends BaseBackingBean
         }
       }
 
-      String sql = this.wagepersonqueryucc.getChangeInfo(table, list, super.getUserInfo().getOrgId(), filter);
+      String sql = this.commonService.getChangeInfo(table, list, super.getUserInfo().getOrgId(), filter);
       int pageNum = 1;
       if (super.getRequestParameter("pageNum") != null) {
         pageNum = Integer.parseInt(CommonFuns.filterNullToZero(super.getRequestParameter("pageNum")));

@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -22,18 +21,13 @@ import jxl.Workbook;
 
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 
-import com.hr319wg.ccp.pojo.bo.PartyBO;
-import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
-import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.common.service.ICommonService;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.ucc.IDataUploadUCC;
 import com.hr319wg.org.pojo.bo.OrgBO;
-import com.hr319wg.portal.IUUManager;
 import com.hr319wg.post.pojo.bo.PostBO;
-import com.hr319wg.sys.cache.SysCache;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.CodeItemBO;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
@@ -45,7 +39,6 @@ import com.hr319wg.sys.ucc.IInfoSetUCC;
 import com.hr319wg.sys.ucc.ISetshowItemsUCC;
 import com.hr319wg.util.CommonFuns;
 import com.hr319wg.util.FileUtil;
-import com.hr319wg.wage.pojo.bo.WageUnitBO;
 
 public class DataUploadBackingBean extends BaseBackingBean
 {
@@ -729,12 +722,14 @@ public String getCodeType()
   public String saveFile() {
 		try {
 			this.commonService.batchUpdateEmpUploadFile(this.perSelSet, this.mode, this.inputField, this.uploadValueList);
+			super.getHttpSession().removeAttribute("fileValue");
+	        super.getHttpSession().removeAttribute("field");
 			super.showMessageDetail("导入完成");
 		} catch (SysException e) {
 			super.showMessageDetail("导入失败");
 			e.printStackTrace();
 		}
-		return null;
+		return "upload";
   }
   
   public String saveFileBySet()
