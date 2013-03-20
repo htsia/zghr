@@ -57,7 +57,7 @@ function addOptionItem(obj, val, text) {
     var flag = true;
     for (j = 0; j < count; j++) {
         if (obj.options[j].value == val) {
-            alert(text + " 项目已经选择");
+//            alert(text + " 项目已经选择");
             flag = false;
             break;
         }
@@ -92,6 +92,7 @@ function forAddItem(dest, ori) {
             itemId = ori.options[i].value;
             itemName = ori.options[i].text;
             addOptionItem(dest, itemId, itemName);
+            ori.options[i].selected=false;
         }
     }
     return true;
