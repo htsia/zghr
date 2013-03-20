@@ -1,6 +1,5 @@
 package com.hr319wg.custom.extend.web;
 
-import com.hr319wg.common.Constants;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.vo.CellVO;
 import com.hr319wg.sys.pojo.vo.TableVO;
@@ -22,7 +21,7 @@ public class WageComputeBackingBeanByExtend extends WageComputeBackingBean {
 	      if (rowNum == 0)
 	        rowNum = Integer.parseInt(CommonFuns.filterNullToZero((String)super.getHttpSession().getAttribute("rowNum")));
 	      if (rowNum == 0)
-	        rowNum = Constants.ACTIVE_PAGE_SIZE;
+	        rowNum = 500;
 	      if (table == null)
 	        table = (TableVO)super.getHttpSession().getAttribute("OBJECT");
 	      if (sql == null) {
