@@ -9,6 +9,7 @@ import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.ins.dao.InsDataDAO;
 import com.hr319wg.custom.ins.pojo.bo.InsCalcSetBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
+import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CommonFuns;
@@ -209,5 +210,22 @@ public class InsDataServiceImpl implements IInsDataService {
 				this.jdbcTemplate.execute(sql);
 			}
 		}
+	}
+
+	public List getInsMonthPaySum(String setID, String wageDate, String orgID,
+			String personType, String nameStr) throws SysException {
+		String sql="select sum(A243201) A243201,sum(A243218) A243218,sum(A243202) A243202,sum(A243203) A243203,sum(A243204) A243204,sum(A243205) A243205,sum(A243206) A243206,sum(A243207) A243207,sum(A243208) A243208,sum(A243209) A243209,sum(A243210) A243210,sum(A243201+A243218+A243202+A243203+A243204+A243205+A243206+A243207+A243208+A243209+A243210) total  from a243 w,a001 a where a.id=w.id and a243211='"+setID+"' and a243200='"+wageDate+"'";
+		if(orgID!=null && !"".equals(orgID)){
+			OrgBO org = SysCacheTool.findOrgById(orgID);
+			sql+=" and (a001738 like '"+org.getTreeId()+"%') ";
+		}
+		if(personType!=null && !"".equals(personType)){
+			sql += " and "+CommonFuns.splitInSql(personType.split(","), "a001054");
+		}
+		
+		if(nameStr!=null && !"".equals(nameStr)){
+			sql += " and (a001001 like '%"+nameStr+"%' or a001735 like '%"+nameStr+"%' or u.a001002 like '%"+nameStr+"%')";
+		}
+		return this.jdbcTemplate.queryForList(sql);
 	}
 }

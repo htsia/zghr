@@ -60,6 +60,90 @@
 				<h:commandButton action="#{ins_dataBB.doQuery}" styleClass="button01" value="查询 "/>
 			</h:panelGroup>
 		</h:panelGrid>
+		
+		<h:panelGrid columns="1" align="right">
+			<h:panelGroup>
+				<h:outputText value="保险合计"/>
+			</h:panelGroup>
+		</h:panelGrid>
+		<x:dataTable value="#{ins_dataBB.monthPaySum}" align="right"
+			headerClass="td_top" rowIndexVar="index" var="item" id="dateList1"
+			styleClass="table03" border="1" width="98%"
+			columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="个人养老" />
+				</f:facet>
+				<h:outputText value="#{item.A243201}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="个人失业" />
+				</f:facet>
+				<h:outputText value="#{item.A243218}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="个人医疗" />
+				</f:facet>
+				<h:outputText value="#{item.A243202}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="大额医疗" />
+				</f:facet>
+				<h:outputText value="#{item.A243203}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="个人公积金" />
+				</f:facet>
+				<h:outputText value="#{item.A243204}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="单位养老" />
+				</f:facet>
+				<h:outputText value="#{item.A243205}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="单位失业" />
+				</f:facet>
+				<h:outputText value="#{item.A243206}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="单位工伤" />
+				</f:facet>
+				<h:outputText value="#{item.A243207}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="单位医疗" />
+				</f:facet>
+				<h:outputText value="#{item.A243208}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="单位生育" />
+				</f:facet>
+				<h:outputText value="#{item.A243209}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="单位公积金" />
+				</f:facet>
+				<h:outputText value="#{item.A243210}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="总计" />
+				</f:facet>
+				<h:outputText value="#{item.total}"/>
+			</h:column>
+		</x:dataTable>
+		
 		<h:panelGrid columns="1" align="right">
 			<h:panelGroup>
 				<h:outputText value="记录数:#{ins_dataBB.mypage.totalRecord}"></h:outputText>
@@ -85,7 +169,7 @@
 	<f:verbatim>
 		</td></tr><tr><td><div style='width:100%;height:98%;overflow:auto' id=datatable>
 	</f:verbatim>
-		<x:dataTable value="#{ins_dataBB.monthPayList}" align="center"
+		<x:dataTable value="#{ins_dataBB.monthPayList}" align="right"
 			headerClass="td_top" rowIndexVar="index" var="item" id="dateList"
 			styleClass="table03" border="1" width="98%"
 			columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center">
@@ -127,7 +211,7 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="社保编号" />
+					<h:outputText value="身份证" />
 				</f:facet>
 				<h:outputText value="#{item.insNO}"/>
 			</h:column>

@@ -53,10 +53,19 @@ public class InsDataBackingBean extends BaseBackingBean{
 	private IPersonUCC personucc;
 	private List<InsCalcSetBO> setList;
 	private List<InsMonthPayBO> monthPayList;
+	private List monthPaySum;
 	private InsCalcSetBO item;
 	private InsMonthPayBO monthPay;
 	private boolean containLock;
 	
+	public List getMonthPaySum() {
+		return monthPaySum;
+	}
+
+	public void setMonthPaySum(List monthPaySum) {
+		this.monthPaySum = monthPaySum;
+	}
+
 	public String getBacthValue() {
 		return bacthValue;
 	}
@@ -374,8 +383,10 @@ public class InsDataBackingBean extends BaseBackingBean{
 					bo.setPayAddress(CodeUtil.interpertCode(CodeUtil.TYPE_ORG, bo.getPayAddress()));
 					bo.setUserType(CodeUtil.interpertCode(bo.getUserType()));
 					bo.setSelfPay(CodeUtil.interpertCode(bo.getSelfPay()));
+					bo.setInsNO(p.getIdCard());
 				}
 			}
+			this.monthPaySum=this.insDataService.getInsMonthPaySum(this.operSetID, this.operWageDate, this.orgID, this.personType, this.nameStr);
 		} catch (SysException e) {
 			e.printStackTrace();
 		}
