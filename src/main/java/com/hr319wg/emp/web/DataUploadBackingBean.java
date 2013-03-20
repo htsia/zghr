@@ -543,7 +543,7 @@ public String getCodeType()
 
   //批量导入
   public String uploadFile() {
-	  this.showError=false;
+	this.showError=false;
     this.inputField = super.getServletRequest().getParameterValues("rsItem");
 	InfoItemBO[] cols = (InfoItemBO[])SysCacheTool.queryObject(4, null, this.inputField);
 	try {
