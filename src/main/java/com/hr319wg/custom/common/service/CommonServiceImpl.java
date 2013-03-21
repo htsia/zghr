@@ -120,4 +120,23 @@ public class CommonServiceImpl implements ICommonService{
 				+ unitId + "' and " + filter + " order by B730701 desc";
 		return sql;
 	}
+	
+	public void updateInfoItem(InfoItemBO item) throws SysException {
+		this.commonDAO.saveOrUpdateBo(item);
+		if("A815".equals(item.getSetId())){
+			String sql="select name from sysobjects where xtype='U' and name like 'A815_SET_%'";
+			List list = this.jdbcTemplate.queryForList(sql);
+			if(list!=null && list.size()>0){
+				for(int i=0;i<list.size();i++){
+					Map m =(Map)list.get(i);
+					sql="alter table "+m.get("name")+" modify "+item.getItemId()+" varchar2("+item.getItemDataLength()+")";
+					this.jdbcTemplate.execute(sql);
+				}
+			}
+			sql="alter table wage_set_pers_r modify "+item.getItemId()+" varchar2("+item.getItemDataLength()+")";
+			this.jdbcTemplate.execute(sql);
+			sql="alter table wage_set_pers_r_bak modify "+item.getItemId()+" varchar2("+item.getItemDataLength()+")";
+			this.jdbcTemplate.execute(sql);
+		}
+	}
 }

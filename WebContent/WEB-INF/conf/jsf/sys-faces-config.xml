@@ -438,12 +438,15 @@
             <property-name>infoitemucc</property-name>
             <value>#{sys_infoItemUCC}</value>
         </managed-property>
-             <managed-property>
-              <property-name>codesetucc</property-name>
-              <value>#{sys_codeSetUCC}</value>
-          </managed-property>
-          
-          </managed-bean>
+        <managed-property>
+        	<property-name>codesetucc</property-name>
+        	<value>#{sys_codeSetUCC}</value>
+        </managed-property>
+        <managed-property>
+        	<property-name>commonService</property-name>
+        	<value>#{commonservice}</value>
+        </managed-property>
+       </managed-bean>
 
     <managed-bean>
         <managed-bean-name>sys_SysLogOperBackingBean</managed-bean-name>
