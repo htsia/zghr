@@ -1,8 +1,12 @@
 package com.hr319wg.custom.wage.web;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +17,7 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
 import org.apache.myfaces.custom.fileupload.UploadedFile;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
@@ -26,6 +31,7 @@ import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CodeUtil;
 import com.hr319wg.util.CommonFuns;
+import com.hr319wg.util.FileUtil;
 
 public class WageDataOtherBackingBean extends BaseBackingBean {
 	private User user = super.getUserInfo();
@@ -63,7 +69,43 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 	private IWageDataService wageDataService;
 	private UploadedFile excelFile;
 	private String totalMoney = "0";
+	private String errorFileUrl;
+	private List uploadFileList;
+	private boolean showError; 
+	private JdbcTemplate jdbcTemplate;
 	
+	public String getErrorFileUrl() {
+		return errorFileUrl;
+	}
+
+	public void setErrorFileUrl(String errorFileUrl) {
+		this.errorFileUrl = errorFileUrl;
+	}
+
+	public List getUploadFileList() {
+		return uploadFileList;
+	}
+
+	public void setUploadFileList(List uploadFileList) {
+		this.uploadFileList = uploadFileList;
+	}
+
+	public boolean isShowError() {
+		return showError;
+	}
+
+	public void setShowError(boolean showError) {
+		this.showError = showError;
+	}
+
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
 	public String getTotalMoney() {
 		return totalMoney;
 	}
@@ -590,21 +632,28 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 		List userList= new ArrayList();
 		boolean pass=true;
 		for(int i=0;i<ids.length;i++){
-			int count;
 			try {
-				count = this.wageDataService.getWageDataSetUserCount(item.getID(), ids[i]);
-				if(count==0){
-					WageDataSetUserBO bo = new WageDataSetUserBO();
-					bo.setSetID(item.getID());
-					bo.setUserID(ids[i]);
-					bo.setRemark(item.getDesc());
-					userList.add(bo);
-				}else{
-					PersonBO p=SysCacheTool.findPersonById(ids[i]);
-					super.showMessageDetail("员工编号为"+p.getPersonCode()+"已经添加过");
+				PersonBO p=SysCacheTool.findPersonById(ids[i]);
+				String sql="select count(*) from (select id from wage_set_pers_r where id='"+p.getPersonId()+"' union select id from wage_set_pers_r_bak where id='"+p.getPersonId()+"')";
+				if(this.jdbcTemplate.queryForInt(sql)==0){
+					super.showMessageDetail("员工编号为"+p.getPersonCode()+"不在帐套中");
 					pass=false;
 					break;
+				}else{
+					int count = this.wageDataService.getWageDataSetUserCount(item.getID(), ids[i]);
+					if(count!=0){
+						super.showMessageDetail("员工编号为"+p.getPersonCode()+"已经添加过");
+						pass=false;
+						break;
+					}else{
+						WageDataSetUserBO bo = new WageDataSetUserBO();
+						bo.setSetID(item.getID());
+						bo.setUserID(ids[i]);
+						bo.setRemark(item.getDesc());
+						userList.add(bo);
+					}
 				}
+				
 			} catch (SysException e) {
 				e.printStackTrace();
 			}			
@@ -832,69 +881,107 @@ public class WageDataOtherBackingBean extends BaseBackingBean {
 		this.includeEnd = event.getNewValue().toString().equals("true");
 	}
 	
-	public void uploadFile(){
+	//批量上传文件
+	public String uploadFile(){
+		this.showError=false;
 		try {
 			Workbook wb = Workbook.getWorkbook(this.excelFile.getInputStream());
 			Sheet st=wb.getSheet(0);
-			int stRow=st.getRows();
-			int success=0;
-			int fail=0;
-			String errperson="";
-			
-			for(int i=1;i<stRow;i++){
-				String pCode = st.getCell(0, i).getContents();
+			int row=st.getRows();
+			if(row<=1){
+				super.showMessageDetail("上传文件工作薄没有内容");			
+				return null;
+			}
+			int col=st.getColumns();
+			if(col<4){
+				super.showMessageDetail("上传文件工作薄没有足够的列");				
+				return null;
+			}
+			this.uploadFileList=new ArrayList();
+			Long d=new Date().getTime();
+			String path=super.getRealPath("/")+"file\\wage\\upload\\"+d+".txt";
+			BufferedWriter bw = new BufferedWriter(new FileWriter(path));
+			for(int i=1;i<row;i++){
+				boolean pass=true;
+				Map uploadMap=new HashMap();
+				String pCode = st.getCell(0, i).getContents().trim();
+				String name=st.getCell(1, i).getContents().trim();
+				String wage=st.getCell(2, i).getContents().trim();
+				String remark=st.getCell(3, i).getContents().trim();
 				if(pCode==null || "".equals(pCode)){
 					break;
+				}				
+				PersonBO p = SysCacheTool.findPersonByCode(pCode.trim());
+				if(p==null){
+					FileUtil.addErrorFormatLabel(bw, i+1, 0, "人员编号"+pCode+"不存在");
+					pass=false;
+					this.showError=true;
+				}else if(pCode.startsWith("@")){
+					FileUtil.addErrorFormatLabel(bw, i+1, 0, "人员编号"+pCode+"为兼职人员不能导入");
+					pass=false;
+					this.showError=true;
 				}else{
-					PersonBO p = SysCacheTool.findPersonByCode(pCode.trim());
-					if(p!=null){
-						int count = this.wageDataService.getWageDataSetUserCount(item.getID(), p.getPersonId());
-						if(count>0){
-							continue;
-						}
-						String money = st.getCell(2, i).getContents();
-						double money1=0;
-						String remark = st.getCell(3, i).getContents();
-						if(money!=null || !"".equals(money)){
-							money1=Double.valueOf(money);
-						}
-						WageDataSetUserBO bo = new WageDataSetUserBO();
-						bo.setSetID(item.getID());
-						bo.setUserID(p.getPersonId());
-						bo.setMoney(money1+"");
-						bo.setRemark(remark);
-						try {
-							this.wageDataService.saveOrUpdateObject(bo);
-							success++;
-						} catch (SysException e) {
-							fail++;
-							e.printStackTrace();
-						}
+					if(!p.getName().equals(name)){
+						FileUtil.addErrorFormatLabel(bw, i+1, 1, "姓名不匹配,系统中为"+p.getName()+"此处为"+name);
+						pass=false;
+						this.showError=true;
 					}else{
-						fail++;
-						errperson+=pCode+",";
+						String sql="select count(*) from (select id from wage_set_pers_r where id='"+p.getPersonId()+"' union select id from wage_set_pers_r_bak where id='"+p.getPersonId()+"')";
+						if(this.jdbcTemplate.queryForInt(sql)==0){
+							FileUtil.addErrorFormatLabel(bw, i+1, 1, p.getName()+"不在帐套中");
+							pass=false;
+							this.showError=true;
+						}else{
+							int count = this.wageDataService.getWageDataSetUserCount(item.getID(), p.getPersonId());
+							if(count>0){
+								FileUtil.addErrorFormatLabel(bw, i+1, 1, p.getName()+"已经添加过");
+								pass=false;
+								this.showError=true;
+							}else{
+								uploadMap.put("id", p.getPersonId());
+								uploadMap.put("code", p.getPersonCode());
+								uploadMap.put("name", p.getName());
+								uploadMap.put("dept", CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId()));															
+							}
+						}
 					}
 				}
-			}
-			if(fail==0){
-				this.orgID=null;
-				setTotalMoney();
-				super.showMessageDetail("成功"+success+"个");				
-			}else{
-				setTotalMoney();
-				String err="成功"+success+"个失败"+fail+"个";
-				if(errperson.length()!=0){
-					err+=",其中人员编号"+errperson+"的人员不存在";
+				try {
+					Double.valueOf(wage);
+					uploadMap.put("wage", wage);
+				} catch (Exception e) {
+					FileUtil.addErrorFormatLabel(bw, i+1, 2, "数字格式错误");
+					pass=false;
+					this.showError=true;
 				}
-				super.showMessageDetail(err);								
+				uploadMap.put("remark", remark);
+				
+				if(pass){
+					this.uploadFileList.add(uploadMap);
+				}
 			}
-		} catch (BiffException e1) {
+			if(this.showError){
+				this.errorFileUrl=super.getServletRequest().getContextPath()+"\\file\\wage\\upload\\"+d+".txt";
+			}
+			super.getHttpSession().setAttribute("infoList", this.uploadFileList);
+			bw.close();
+		} catch (Exception e1) {
 			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		}
+		return "batchAddOtherWageList";
+	}
+	
+	//批量保存文件
+	public String saveFile(){
+		try {
+			this.wageDataService.batchAddOtherUser(this.uploadFileList, this.item.getID());
+			setTotalMoney();
+			super.getHttpSession().removeAttribute("infoList");
+			super.showMessageDetail("上传完成");
 		} catch (SysException e) {
+			super.showMessageDetail("上传失败");
 			e.printStackTrace();
 		}
-		
+		return "upload";
 	}
 }

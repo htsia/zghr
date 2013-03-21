@@ -7,6 +7,7 @@ import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.custom.wage.pojo.bo.WageDataSetBO;
+import com.hr319wg.custom.wage.pojo.bo.WageOthersDataSetUserBO;
 
 public interface IWageDataService {
 
@@ -72,7 +73,9 @@ public interface IWageDataService {
 	
 	public String getWageUserVerifyStatus(String datasetUserID, String yearMonth) throws SysException;
 	
+	public void batchAddOtherUser(List<Map> list, String setID) throws SysException;
 	//修改扣房租房补暖气费金额
+	public void batchModifyUserMoney(List<Map> list, String yearMonth, String itemType) throws SysException;
 	public void modifyUserMoney(String userID, String money, String yearMonth, String itemType) throws SysException;
 	//其他1项目已用总额
 	public String getWageDataOther1SumByID(String setID) throws SysException;

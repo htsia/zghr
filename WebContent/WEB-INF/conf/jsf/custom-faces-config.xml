@@ -2,6 +2,35 @@
 <!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
         "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
 <faces-config>
+	<navigation-rule>
+		<from-view-id>/custom/wage/wageDataOtherUserEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>batchAddOtherWageList</from-outcome>
+			<to-view-id>/custom/wage/batchAddOtherWageList.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/custom/wage/batchAddOtherWageList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>upload</from-outcome>
+			<to-view-id>/custom/wage/wageDataOtherUserEdit.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/custom/wage/wageDataSigleUserList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>batchAddSigleWageList</from-outcome>
+			<to-view-id>/custom/wage/batchAddSigleWageList.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/custom/wage/batchAddSigleWageList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>upload</from-outcome>
+			<to-view-id>/custom/wage/wageDataSigleUserList.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 
 	<managed-bean>
       <managed-bean-name>sys_surveyQueryBB</managed-bean-name>
@@ -52,6 +81,10 @@
 			<property-name>wageDataService</property-name>
 			<value>#{wage_dataservice}</value>
 		</managed-property>
+		<managed-property>
+			<property-name>jdbcTemplate</property-name>
+			<value>#{jdbcTemplate}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>wage_dataLitleBB</managed-bean-name>
@@ -78,6 +111,10 @@
 		<managed-property>
 			<property-name>wageDataService</property-name>
 			<value>#{wage_dataservice}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>jdbcTemplate</property-name>
+			<value>#{jdbcTemplate}</value>
 		</managed-property>
 	</managed-bean>
 	<managed-bean>

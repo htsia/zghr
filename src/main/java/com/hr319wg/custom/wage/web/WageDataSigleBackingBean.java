@@ -1,7 +1,10 @@
 package com.hr319wg.custom.wage.web;
 
-import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,10 +13,9 @@ import javax.faces.event.ValueChangeEvent;
 
 import jxl.Sheet;
 import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
@@ -25,6 +27,7 @@ import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CodeUtil;
 import com.hr319wg.util.CommonFuns;
+import com.hr319wg.util.FileUtil;
 
 public class WageDataSigleBackingBean extends BaseBackingBean {
 	private User user = super.getUserInfo();
@@ -45,7 +48,35 @@ public class WageDataSigleBackingBean extends BaseBackingBean {
 	private UploadedFile excelFile;
 	private String operUserID;
 	private String inself;
+	private String errorFileUrl;
+	private List uploadFileList;
+	private boolean showError; 
+	private JdbcTemplate jdbcTemplate; 
 	
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+	public String getErrorFileUrl() {
+		return errorFileUrl;
+	}
+	public void setErrorFileUrl(String errorFileUrl) {
+		this.errorFileUrl = errorFileUrl;
+	}
+	public List getUploadFileList() {
+		return uploadFileList;
+	}
+	public void setUploadFileList(List uploadFileList) {
+		this.uploadFileList = uploadFileList;
+	}
+	public boolean isShowError() {
+		return showError;
+	}
+	public void setShowError(boolean showError) {
+		this.showError = showError;
+	}
 	public String getInself() {
 		return inself;
 	}
@@ -167,26 +198,26 @@ public class WageDataSigleBackingBean extends BaseBackingBean {
 
 	public String first() {
 		mypage.setCurrentPage(1);
-		return "";
+		return null;
 	}
 
 	public String pre() {
 		if (mypage.getCurrentPage() > 1) {
 			mypage.setCurrentPage(mypage.getCurrentPage() - 1);
 		}
-		return "";
+		return null;
 	}
 
 	public String next() {
 		if (mypage.getCurrentPage() < mypage.getTotalPage()) {
 			mypage.setCurrentPage(mypage.getCurrentPage() + 1);
 		}
-		return "";
+		return null;
 	}
 
 	public String last() {
 		mypage.setCurrentPage(mypage.getTotalPage());
-		return "";
+		return null;
 	}
 	public String getPageInit() {
 		String act = super.getRequestParameter("act");		
@@ -302,50 +333,97 @@ public class WageDataSigleBackingBean extends BaseBackingBean {
 		}
 	}
 	
-	public void uploadFile(){
+	//批量上传文件
+	public String uploadFile(){
+		this.showError=false;
 		try {
-			String yearMonth = CommonFuns.getSysDate("yyyy-MM");
 			Workbook wb = Workbook.getWorkbook(this.excelFile.getInputStream());
 			Sheet st=wb.getSheet(0);
-			int stRow=st.getRows();
-			int success=0;
-			int fail=0;
-			String err ="其中人员编号为：";
-			
-			for(int i=1;i<stRow;i++){
-				String pCode = st.getCell(0, i).getContents();
+			int row=st.getRows();
+			if(row<=1){
+				super.showMessageDetail("上传文件工作薄没有内容");			
+				return null;
+			}
+			int col=st.getColumns();
+			if(col<3){
+				super.showMessageDetail("上传文件工作薄没有足够的列");				
+				return null;
+			}
+			this.uploadFileList=new ArrayList();
+			Long d=new Date().getTime();
+			String path=super.getRealPath("/")+"file\\wage\\upload\\"+d+".txt";
+			BufferedWriter bw = new BufferedWriter(new FileWriter(path));
+			for(int i=1;i<row;i++){
+				boolean pass=true;
+				Map uploadMap=new HashMap();
+				String pCode = st.getCell(0, i).getContents().trim();
+				String name=st.getCell(1, i).getContents().trim();
+				String wage=st.getCell(2, i).getContents().trim();
 				if(pCode==null || "".equals(pCode)){
 					break;
+				}				
+				PersonBO p = SysCacheTool.findPersonByCode(pCode.trim());
+				if(p==null){
+					FileUtil.addErrorFormatLabel(bw, i+1, 0, "人员编号"+pCode+"不存在");
+					pass=false;
+					this.showError=true;
+				}else if(pCode.startsWith("@")){
+					FileUtil.addErrorFormatLabel(bw, i+1, 0, "人员编号"+pCode+"为兼职人员不能导入");
+					pass=false;
+					this.showError=true;
 				}else{
-					PersonBO p = SysCacheTool.findPersonByCode(pCode.trim());
-					if(p!=null){
-						String money = st.getCell(2, i).getContents();
-						if(StringUtils.isNumeric(money.trim())){
-							try {
-								this.wageDataService.modifyUserMoney(p.getPersonId(), money.trim(), yearMonth, this.itemType);
-								success++;
-							} catch (SysException e) {
-								e.printStackTrace();
-							}		
-						}
+					if(!p.getName().equals(name)){
+						FileUtil.addErrorFormatLabel(bw, i+1, 1, "姓名不匹配,系统中为"+p.getName()+"此处为"+name);
+						pass=false;
+						this.showError=true;
 					}else{
-						fail++;
-						err+=pCode+",";
+						String sql="select count(*) from (select id from wage_set_pers_r where id='"+p.getPersonId()+"' union select id from wage_set_pers_r_bak where id='"+p.getPersonId()+"')";
+						if(this.jdbcTemplate.queryForInt(sql)==0){
+							FileUtil.addErrorFormatLabel(bw, i+1, 1, p.getName()+"不在帐套中");
+							pass=false;
+							this.showError=true;
+						}else{
+							uploadMap.put("id", p.getPersonId());
+							uploadMap.put("code", p.getPersonCode());
+							uploadMap.put("name", p.getName());
+							uploadMap.put("dept", CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId()));							
+						}
 					}
 				}
+				try {
+					Double.valueOf(wage);
+					uploadMap.put("wage", wage);
+				} catch (Exception e) {
+					FileUtil.addErrorFormatLabel(bw, i+1, 2, "数字格式错误");
+					pass=false;
+					this.showError=true;
+				}
+				
+				if(pass){
+					this.uploadFileList.add(uploadMap);
+				}
 			}
-			if(fail==0){
-				this.orgID=null;
-				super.showMessageDetail("成功"+success+"个");				
-			}else{
-				err=err.substring(0, err.length()-1);
-				super.showMessageDetail("成功"+success+"个失败"+fail+"个,"+err+"的人员不存在");								
+			if(this.showError){
+				this.errorFileUrl=super.getServletRequest().getContextPath()+"\\file\\wage\\upload\\"+d+".txt";
 			}
-		} catch (BiffException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
+			super.getHttpSession().setAttribute("infoList", this.uploadFileList);
+			bw.close();
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
+		return "batchAddSigleWageList";
+	}
+	
+	//批量保存文件
+	public String saveFile(){
+		try {
+			this.wageDataService.batchModifyUserMoney(this.uploadFileList, CommonFuns.getSysDate("yyyy-MM"), this.itemType);
+			super.getHttpSession().removeAttribute("infoList");
+			super.showMessageDetail("上传完成");
+		} catch (SysException e) {
+			super.showMessageDetail("上传失败");
+			e.printStackTrace();
+		}
+		return "upload";
 	}
 }

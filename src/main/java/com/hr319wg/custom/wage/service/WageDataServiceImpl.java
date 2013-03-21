@@ -154,9 +154,7 @@ public class WageDataServiceImpl implements IWageDataService{
 		return this.activeapi.queryForInt(sql);
 	}
 	
-	@Override
 	public int addToWageset(String userID, String unitID) throws SysException {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
@@ -293,6 +291,12 @@ public class WageDataServiceImpl implements IWageDataService{
 	public String getWageUserVerifyStatus(String datasetUserID, String yearMonth) throws SysException{
 		String sql ="select status from wage_dataset_verify v1 where v1.dataset_user_id='"+datasetUserID+"' and v1.yearmonth='"+yearMonth+"'";
 		return this.activeapi.queryForString(sql);
+	}
+	
+	public void batchModifyUserMoney(List<Map> list, String yearMonth, String itemType) throws SysException{
+		for(Map m : list){
+			modifyUserMoney(String.valueOf(m.get("id")), String.valueOf(m.get("wage")), yearMonth, itemType); 
+		}
 	}
 	
 	//修改扣房租房补暖气费金额
@@ -808,4 +812,15 @@ public class WageDataServiceImpl implements IWageDataService{
 		this.jdbcTemplate.execute(sql);
 	}
 
+	public void batchAddOtherUser(List<Map> list, String setID)
+			throws SysException {
+		for(Map m : list){
+			WageDataSetUserBO bo =new WageDataSetUserBO();
+			bo.setUserID(String.valueOf(m.get("id")));
+			bo.setMoney(String.valueOf(m.get("wage")));
+			bo.setRemark(String.valueOf(m.get("remark")));
+			bo.setSetID(setID);
+			this.saveOrUpdateObject(bo);
+		}
+	}
 }

@@ -4,7 +4,6 @@
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ include file="../../include/taglib.jsp"%>
 <script type="text/javascript">
-	
 	function modifyuser(userID,money){
 		window.showModalDialog(
 						"/custom/wage/wageDataSigleUserModify.jsf?userID="+userID+"&itemType="+document.all("form1:itemType").value+"&orgID="+document.all("form1:orgID").value+"&money="+money,
@@ -28,7 +27,15 @@
             alert("ÇëÑ¡ÔñxlsÎÄ¼þ£¡");
             return false;
         }
+        process();
 		return true;
+    }
+	function process(){
+		x = document.body.clientWidth / 2 - 150;
+		y = document.body.clientHeight / 2;
+		document.all('processbar').style.top = y;
+		document.all('processbar').style.left = x;
+		document.all('processbar').style.display = "";
     }
 </script>
 <x:saveState value="#{wage_dataSigleBB}" />
@@ -151,3 +158,17 @@
 		</h:panelGrid>
 	</h:panelGrid>
 </h:form>
+<marquee id="processbar" style="position:absolute;display:none; border:1px solid #000000" direction="right" width="300"
+         scrollamount="5" scrolldelay="10"
+         bgcolor="#ECF2FF">
+    <table cellspacing="1" cellpadding="0">
+        <tr height=8>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+        </tr>
+    </table>
+</marquee>

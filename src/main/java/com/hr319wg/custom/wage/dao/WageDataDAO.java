@@ -235,7 +235,6 @@ public class WageDataDAO extends BaseDAO{
 	public List getAllWageDataSetUserBOByInfo(PageVO vo, String yearMonth, String selectedItemIDs, String orgID, String itemType, String personType, String nameStr, String operUserID) throws SysException{
 		String hql = " from WageDataSetUserBO bo,UserBO u,WageDataSetBO s,User p where bo.userID=u.userID and p.userId=u.userID and p.status=1 and " +CommonFuns.splitInSql(selectedItemIDs.split(","), "s.ID")+
 				" and bo.setID=s.ID and s.status in (1,2) and s.itemType='"+itemType+"' and '"+yearMonth+"' between s.beginDate and s.endDate and nvl(instr(s.excludeDate,'"+yearMonth+"'),0)=0";
-						
 		if(orgID!=null && !"".equals(orgID)){
 			OrgBO org = SysCacheTool.findOrgById(orgID);
 			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
@@ -291,9 +290,9 @@ public class WageDataDAO extends BaseDAO{
 			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
 		//业务平台只能看到所管辖帐套人员
-		if(!"1".equals(inself)){
-			hql += " and bo.ID in ("+CommonUtil.getHQLAllWageSetPersonIDsByOperUserID(operUserID)+")";			
-		}
+//		if(!"1".equals(inself)){
+//			hql += " and bo.ID in ("+CommonUtil.getHQLAllWageSetPersonIDsByOperUserID(operUserID)+")";			
+//		}
 		String boHql = "select bo.ID,bo.money,bo.modifyMoney,bo.modifyDate "+hql +" order by u.secDeptID,u.deptId";;
 		String countHql = "select count(bo) "+hql;
 		return this.pageQuery(pageVo, countHql, boHql);

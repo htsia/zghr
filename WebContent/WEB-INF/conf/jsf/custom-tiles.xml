@@ -83,6 +83,9 @@
     <definition name="/custom/wage/wageDataOtherUserEdit.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/wage/wageDataOtherUserEdit.jsp"/>
     </definition>
+    <definition name="/custom/wage/batchAddOtherWageList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/batchAddOtherWageList.jsp"/>
+    </definition>
     <definition name="/custom/wage/wageDataDetail.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/wage/wageDataDetail.jsp"/>
     </definition>
@@ -107,6 +110,9 @@
     </definition>
     <definition name="/custom/wage/wageDataSigleUserList.tiles" extends="layout.busitemplate">
         <put name="body" value="/pages/custom/wage/wageDataSigleUserList.jsp"/>
+    </definition>
+    <definition name="/custom/wage/batchAddSigleWageList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/batchAddSigleWageList.jsp"/>
     </definition>
     <definition name="/custom/wage/wageDataSigleDetail.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/wage/wageDataSigleDetail.jsp"/>
