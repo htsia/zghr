@@ -52,6 +52,9 @@
                 case 7:
                     document.infoiframe.location = "/report/ReportPowerMgr.jsf?act=init&roleID="+document.getElementById("formCreditManage:paramId").value;
                     break;
+                case 8:
+                    document.infoiframe.location = "/report/ReportSetPowerMgr.jsf?roleID="+document.getElementById("formCreditManage:paramId").value;
+                    break;
                 default:
                     break;
             }
@@ -109,6 +112,7 @@
                             <td width="100" class="tab" onclick="secBoard(5)"><img src="/images/common/handtip.gif">&nbsp;人员范围</td>
                             <td width="100" class="tab" onclick="secBoard(6)"><img src="/images/common/handtip.gif">&nbsp;岗位分类</td>
                             <td width="100" class="tab" onclick="secBoard(7)"><img src="/images/common/handtip.gif">&nbsp;表格显示</td>
+                            <td width="100" class="tab" onclick="secBoard(8)"><img src="/images/common/handtip.gif">&nbsp;统计表表套</td>
                         </tr>
                     </table>
                 </td>

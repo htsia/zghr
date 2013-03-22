@@ -74,12 +74,10 @@
             <property-name>rptucc</property-name>
             <value>#{rpt_infoucc}</value>
         </managed-property>
-
-        <managed-property>
-            <property-name>usermanucc</property-name>
-            <value>#{user_userManageUccImpl}</value>
+		<managed-property>
+            <property-name>commonService</property-name>
+            <value>#{commonservice}</value>
         </managed-property>
-
     </managed-bean>
 
     <managed-bean>
@@ -164,7 +162,7 @@
             <property-name>rptucc</property-name>
             <value>#{rpt_infoucc}</value>
         </managed-property>
-                <managed-property>
+        <managed-property>
             <property-name>useruserManageUccImpl</property-name>
             <value>#{user_userManageUccImpl}</value>
         </managed-property>

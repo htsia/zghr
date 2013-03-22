@@ -139,4 +139,8 @@ public class CommonServiceImpl implements ICommonService{
 			this.jdbcTemplate.execute(sql);
 		}
 	}
+	
+	public List getRptList(String userID) throws SysException {
+		return this.commonDAO.getRptList(userID);
+	}
 }

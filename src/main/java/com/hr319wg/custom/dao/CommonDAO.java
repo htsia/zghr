@@ -102,4 +102,9 @@ public class CommonDAO extends BaseDAO{
 		hql += " order by bo.treeId";
 		return this.hibernatetemplate.find(hql);	
 	}
+	
+	public List getRptList(String userID) throws SysException {
+		String sql = "select bo from RptSetUserBO bo,RoleUserBO u where bo.roleID=u.roleID and u.personID='" + userID + "'";
+		return this.hibernatetemplate.find(sql);
+	}
 }

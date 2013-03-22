@@ -8,34 +8,21 @@
 %>
 <script type="text/javascript">
      function checkSave(){
-         if (document.all('form1:userID').value=='' || document.all('form1:userID').value=='-1'){
-             alert("请选择用户!")
-             return false;
-         }
          if (document.all('form1:rptSet').value=='' || document.all('form1:rptSet').value=='-1'){
-             alert("请选择表套!")
+             alert("请选择表套!");
              return false;
          }
-
          return true;
      }
 </script>
 <x:saveState value="#{Rpt_SetPowerMgrBB}" />
 <h:form id="form1">
-	<h:inputHidden  value="#{Rpt_SetPowerMgrBB.pageInit}"></h:inputHidden>
+	<h:inputHidden value="#{Rpt_SetPowerMgrBB.pageInit}"/>
+	<h:inputHidden id="roleID" value="#{Rpt_SetPowerMgrBB.roleID}"/>
 	<h:panelGrid width="98%" columns="1" align="center">
 		<h:panelGrid columns="9" align="left">
-			<h:outputText value="选择用户"></h:outputText>
-			<h:panelGroup>
-				<h:selectOneMenu onchange="submit();"   id="userID"
-					value="#{Rpt_SetPowerMgrBB.newDetailValue}"
-					valueChangeListener="#{Rpt_SetPowerMgrBB.changeDetailValue}">
-					<c:selectItems value="#{Rpt_SetPowerMgrBB.detailList}"></c:selectItems>
-				</h:selectOneMenu>
-			</h:panelGroup>
-
             <h:panelGroup>
-                <h:selectOneMenu   id="rptSet" value="#{Rpt_SetPowerMgrBB.rptSet}">
+                <h:selectOneMenu id="rptSet" value="#{Rpt_SetPowerMgrBB.rptSet}">
                     <c:selectItems value="#{Rpt_SetPowerMgrBB.rptSetList}"></c:selectItems>
                 </h:selectOneMenu>
                 <h:commandButton styleClass="button01"  value="添加" onclick="return checkSave();" action="#{Rpt_SetPowerMgrBB.save}" />
@@ -52,7 +39,7 @@
 
     <x:dataTable value="#{Rpt_SetPowerMgrBB.itemList}" id="dateList"
         headerClass="td_top" rowIndexVar="index" var="list"  align="center"
-        styleClass="table03" border="1" width="400"
+        styleClass="table03" border="1" width="98%"
         columnClasses="td_middle_center,td_middle_center,td_middle_left">
         <h:column >
             <c:facet name="header" >

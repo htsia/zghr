@@ -14,4 +14,6 @@ public interface ICommonService {
 	public String getChangeInfo(TableVO table, List showItems, String unitId, String filter);
 	
 	public void updateInfoItem(InfoItemBO item) throws SysException;
+
+	public List getRptList(String userID) throws SysException;
 }
