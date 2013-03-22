@@ -831,10 +831,18 @@ public class WageSetInputItemBackingBean extends BaseBackingBean
 				}
 				for(int j=0;j<fieldLen;j++){
 					String v=st.getCell(j+2, i).getContents().trim();
-					double v1=0;
 					if(v!=null && !"".equals(v) && !"null".equals(v)){
 						try {
-							v1=Double.valueOf(v);
+							Double.valueOf(v);
+							String v1="0";
+							String type=cols[j].getItemDataType();
+							if(InfoItemBO.DATA_TYPE_INT.equals(type)){
+								if (v.indexOf(".") > 0) {
+									v1 = v.substring(0, v.indexOf("."));
+								}								
+							}else if(InfoItemBO.DATA_TYPE_FLOAT.equals(type)){
+								v1= CommonFuns.formateItem(cols[j].getItemDataType(), cols[j].getItemPrecision(), v);								
+							}
 							m.put(this.inputField[j], v1);
 						} catch (Exception e) {
 							FileUtil.addErrorFormatLabel(bw, i, j+1, "Ó¦ÎªÊý×Ö");
@@ -842,7 +850,7 @@ public class WageSetInputItemBackingBean extends BaseBackingBean
 							this.showError=true;
 						}
 					}else{
-						m.put(this.inputField[j], v1);
+						m.put(this.inputField[j], "0");
 					}
 				}
 				if(pass){
