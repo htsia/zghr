@@ -6,7 +6,7 @@
 			<ref bean="jdbcTemplate"/>
 		</property>
     </bean>
-    <bean id="sys_activePageService" class="com.hr319wg.sys.service.ActivePageService">
+    <bean id="sys_activePageService" class="com.hr319wg.custom.extend.service.ActivePageServiceByExtend">
            <property name="activepagedao">
 			<ref bean="sys_activePageDAO"/>
 		</property>
