@@ -828,14 +828,23 @@ public class WageSetInputItemBackingBean extends BaseBackingBean
 					if(v!=null && !"".equals(v) && !"null".equals(v)){
 						try {
 							Double.valueOf(v);
-							m.put(this.inputField[j], v);
+							String v1="0";
+							String type=cols[j].getItemDataType();
+							if(InfoItemBO.DATA_TYPE_INT.equals(type)){
+								if (v.indexOf(".") > 0) {
+									v1 = v.substring(0, v.indexOf("."));
+								}								
+							}else if(InfoItemBO.DATA_TYPE_FLOAT.equals(type)){
+								v1= CommonFuns.formateItem(cols[j].getItemDataType(), cols[j].getItemPrecision(), v);								
+							}
+							m.put(this.inputField[j], v1);
 						} catch (Exception e) {
 							FileUtil.addErrorFormatLabel(bw, i, j+1, "Ó¦ÎªÊý×Ö");
 							pass=false;
 							this.showError=true;
 						}
 					}else{
-						m.put(this.inputField[j], 0);
+						m.put(this.inputField[j], "0");
 					}
 				}
 				if(pass){
