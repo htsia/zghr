@@ -13,14 +13,13 @@
 <%@ include file="../include/taglib.jsp" %>
 <%
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
-    String userID = request.getParameter("userID");
+    String roleID = request.getParameter("roleID");
     String operID = request.getParameter("operID");
     IRptInfoUCC rc=null;
     List list=null;
     try {
-    	System.out.println("值"+userID+" "+operID);
         rc = (IRptInfoUCC) SysContext.getBean("rpt_infoucc");
-        list = rc.getUserRptBO(userID,operID);
+        list = rc.getUserRptBO(roleID,operID);
     }
     catch (Exception e) {
 
@@ -179,8 +178,8 @@
         <br>
         <tr>
             <td class="td_top"  align="left">
-              <h:outputText value="每次移动位数:"></h:outputText>
-              <h:inputText id="step" value="" />
+              <h:outputText value="每次移动位数:"/>
+              <h:inputText id="step" value="1" />
             </td>
             <td class="td_top"   align="right">
 </c:verbatim>
