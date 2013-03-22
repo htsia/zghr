@@ -16,12 +16,12 @@ public class UserRptDAO extends BaseDAO {
 			
 			if ("SQL SERVER".equals(Constants.DB_TYPE)) {
 				sb.append(
-						"select r from UserRptVO r,RoleUserBO u where r.roleID=u.roleID and r.rptName is not null and r.rptName<>'' and r.personID='")
+						"select r from UserRptVO r,RoleUserBO u where r.roleID=u.roleID and r.rptName is not null and r.rptName<>'' and u.personID='")
 						.append(userID).append("' and r.operateID='")
 						.append(OperID).append("' order by r.showQue");
 			} else {
 				sb.append(
-						"select r from UserRptVO r,RoleUserBO u where r.roleID=u.roleID and r.rptName is not null  and r.personID='")
+						"select r from UserRptVO r,RoleUserBO u where r.roleID=u.roleID and r.rptName is not null  and u.personID='")
 						.append(userID).append("' and r.operateID='")
 						.append(OperID).append("' order by r.showQue");
 			}
@@ -46,7 +46,7 @@ public class UserRptDAO extends BaseDAO {
 			StringBuffer sb = new StringBuffer();
 			if ("SQL SERVER".equals(Constants.DB_TYPE)) {
 				sb.append(
-						"select r from UserRptVO r,RoleUserBO u where r.roleID=u.roleID and r.rptName is not null and r.rptName<>'' and r.personID='")
+						"select r from UserRptVO r,RoleUserBO u where r.roleID=u.roleID and r.rptName is not null and r.rptName<>'' and u.personID='")
 						.append(userID).append("' and r.operateID='")
 						.append(OperID).append("' and r.rpttype='")
 						.append(type).append("' order by r.showQue");
@@ -78,12 +78,12 @@ public class UserRptDAO extends BaseDAO {
 			StringBuffer sb = new StringBuffer();
 			if ("SQL SERVER".equals(Constants.DB_TYPE)) {
 				sb.append(
-						"select r from UserRptVO r,RoleUserBO u where r.roleID=u.roleID and r.rptName is not null and r.rptName<>'' and r.personID='")
+						"select r from UserRptVO r,RoleUserBO u where r.roleID=u.roleID and r.rptName is not null and r.rptName<>'' and u.personID='")
 						.append(userID).append("' and r.operateID='")
 						.append(OperID).append("' order by r.showQue");
 			} else {
 				sb.append(
-						"select r from UserRptVO r,RoleUserBO u where r.roleID=u.roleID and r.rptName is not null  and r.personID='")
+						"select r from UserRptVO r,RoleUserBO u where r.roleID=u.roleID and r.rptName is not null  and u.personID='")
 						.append(userID).append("' and r.operateID='")
 						.append(OperID).append("' order by r.showQue");
 			}
