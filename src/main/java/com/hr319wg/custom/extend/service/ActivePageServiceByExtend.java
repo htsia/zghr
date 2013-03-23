@@ -37,9 +37,12 @@ public class ActivePageServiceByExtend extends ActivePageService {
 		}
 
 		InfoItemBO[] items = this.queryInfoItem(infoSetId);
-		List itemList= this.getPmsapi().queryUserInfoItems(user, Arrays.asList(items), 2);
-		CellVO[] cells = new CellVO[itemList.size()];
-		CommonFuns.copyArrayObject(CellVO.class, cells, itemList.toArray(new InfoItemBO[0]));
+		if(user!=null){
+			List itemList= this.getPmsapi().queryUserInfoItems(user, Arrays.asList(items), 2);
+			items=(InfoItemBO[]) itemList.toArray(new InfoItemBO[0]);
+		}
+		CellVO[] cells = new CellVO[items.length];
+		CommonFuns.copyArrayObject(CellVO.class, cells, items);
 
 		if (user != null) {
 			this.getPmsapi().checkData(user, cells);
