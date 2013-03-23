@@ -43,7 +43,7 @@ public void setTableVO(TableVO tableVO) {
 
 public String getPageInit() {
 	try {
-		this.tableVO = this.orgucc.queryPageInfo("C001", "-1", "", super.getUserInfo());
+		this.tableVO = this.orgucc.queryPageInfo("C001", "-1", "", null);
 		getHttpSession().setAttribute("OBJECT_DETAIL", this.tableVO);
 	} catch (SysException e) {
 		e.printStackTrace();
