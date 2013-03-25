@@ -27,7 +27,7 @@
             </h:selectOneMenu>
 
             <h:outputText value="当前值" />
-            <h:inputText id="curname" value="#{wage_ConstBB.wcbo.constValue}" alt="当前值|0" size="40" maxlength="40"/>
+            <h:inputText id="curname" value="#{wage_ConstBB.wcbo.constValue}" alt="名称|0" size="40" maxlength="40"/>
         </h:panelGrid>
 
         <h:panelGrid columns="2" align="right" cellspacing="2">

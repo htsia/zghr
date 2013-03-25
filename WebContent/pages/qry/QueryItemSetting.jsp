@@ -264,17 +264,15 @@ function initShowItem(flag, itemId, itemName) {
         </tr>
     </table>
 </marquee>
+<h:form id="form1">
+<h:inputHidden value="#{qry_querySettingBB.initVO}"/>
 <c:verbatim>
 <table width="100%" border="0" style="margin:0;padding:0;" cellspacing="0" cellpadding="0">
     <tr>
         <td class="td_title"> <img src="/images/tips.gif" >设定查询项目 </td>
     </tr>
 </table>
-</c:verbatim>
-<h:form id="form1">
-<h:inputHidden value="#{qry_querySettingBB.initVO}"/>
-<c:verbatim>
-<table width="98%" height="360" style="margin:0;padding:0;" border="0" align="center">
+<table width="98%" height="100%" style="margin:0;padding:0;" border="0" align="center">
      <tr height="1" valign="top">
      <td width="230">&nbsp;</td>
      <td align="center" valign="middle">&nbsp;</td>

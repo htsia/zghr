@@ -10,7 +10,13 @@ public interface IInsDataService {
 
 	public Object getBOByID(Class c, String ID) throws SysException;
 
+	public String getLockUserIDs(String setID) throws SysException;
+
 	public void saveOrUpdateBO(Object bo) throws SysException;
+
+	public void updateMonthPayStatus(String itemID) throws SysException;
+
+	public void batchUpdateMonthPay(String setID, String itemID, String value) throws SysException;
 	
 	public void deleteBO(Class c, String ID) throws SysException;
 
@@ -25,6 +31,8 @@ public interface IInsDataService {
 	public List getAllInsCalcSetBO(PageVO pageVO, String createOrgID, String createUserID, String wageDate) throws SysException;
 	
 	public List getAllInsMonthPayBO(PageVO pageVO, String setID, String wageDate, String orgID, String personType, String nameStr) throws SysException;
+	
+	public List getInsMonthPaySum(String setID, String wageDate, String orgID, String personType, String nameStr) throws SysException;
 	
 	public void saveInsBaseData(String id,String tablename,String value, String date) throws SysException ;
 	

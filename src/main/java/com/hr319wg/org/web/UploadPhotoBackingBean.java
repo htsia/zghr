@@ -13,13 +13,17 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 
 import org.apache.myfaces.custom.fileupload.UploadedFile;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.common.Constants;
 import com.hr319wg.common.ucc.IAttachmentUCC;
 import com.hr319wg.common.web.BaseBackingBean;
+import com.hr319wg.emp.dao.PersonDAO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.ucc.IPersonUCC;
+import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.org.ucc.IOrgUCC;
+import com.hr319wg.sys.api.UserAPI;
 import com.hr319wg.sys.cache.SysCache;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
@@ -37,8 +41,15 @@ public class UploadPhotoBackingBean extends BaseBackingBean
   private IPersonUCC personucc;
   private IAttachmentUCC attachucc;
   private List modeList;
+  private UserAPI userAPI;
 
-  public String getFileName() {
+public UserAPI getUserAPI() {
+	return userAPI;
+}
+public void setUserAPI(UserAPI userAPI) {
+	this.userAPI = userAPI;
+}
+public String getFileName() {
 	return fileName;
 }
 public void setFileName(String fileName) {
@@ -220,15 +231,24 @@ public String getUrl()
           }
         }
         else if ("1".equals(this.mode)) {
-          List list = SysCache.findPersonByNameAndOrg(pid, super.getUserInfo().getOrgId());
-          if ((list == null) || (list.size() == 0)) {
+          PersonBO[] list = this.personucc.queryAllPerson(" and p.name='"+pid+"'");
+          
+          if ((list == null) || (list.length == 0)) {
             errorDes.add(pid + "找不到!");
-          }
-          else if (list.size() > 1) {
-            errorDes.add(pid + "有重名!");
-          }
-          else {
-            pb = (PersonBO)list.get(0);
+          }else{
+        	  List list1=new ArrayList();
+        	  for(PersonBO p : list){
+        		  OrgBO org=SysCacheTool.findOrgById(p.getOrgId());
+        		  int result= this.userAPI.checkOrgTreeId(super.getUserInfo(), org, "1");
+        		  if(result==0){
+        			  list1.add(p);
+        		  }
+        	  }
+        	  if(list1.size()>1){
+        		  errorDes.add(pid + "有重名!");
+        	  }else if(list1.size()==1){
+        		  pb=(PersonBO)list1.get(0);
+        	  }
           }
         }
         else if ("2".equals(this.mode)) {
@@ -247,6 +267,7 @@ public String getUrl()
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return "success";
   }

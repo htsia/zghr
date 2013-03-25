@@ -6,25 +6,7 @@
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
-<script type="text/javascript">
-	function forDel(){
-	    var item = document.getElementsByName("chkblltnId");
-	    var selId="";
-	    if(item.length>0){
-	        for(var i=0;i<item.length;i++){
-	            if(item[i].checked)
-	            {
-	            	selId+=item[i].value+",";    
-	            }
-	        }
-	    }
-	    if(selId==""){
-	    	alert("请选择新闻");
-	    	return false;
-	    }
-	    return confirm("确定删除吗");
-	}
-</script>
+
 <x:saveState value="#{sys_NewsListBackingBean}"/>
 <h:form id="form1">
        <h:panelGrid styleClass="td_title" width="100%" border="0" cellpadding="0" bgcolor="#FFFFFF" columns="2">
@@ -39,7 +21,7 @@
             <h:panelGrid columns="1"  cellpadding="2" align="right" 	border="0" >
                   <h:panelGroup>
                   <h:commandButton value="新增" action="sys_newsedit" styleClass="button01" />
-                  <h:commandButton value="删除" onclick="return forDel();" action="#{sys_NewsListBackingBean.delete}" styleClass="button01" />
+                  <h:commandButton value="删除" action="#{sys_NewsListBackingBean.delete}" styleClass="button01" />
                  </h:panelGroup>
             </h:panelGrid>
         </h:panelGrid>
@@ -49,23 +31,30 @@
         </f:verbatim>
 		<h:dataTable value="#{sys_NewsListBackingBean.newsList}" var="list" width="95%"
                      headerClass="td_top" id="dateList"
-                     styleClass="table03" columnClasses="td_middle_center,td_middle_center,td_middle,td_middle_center,td_middle,td_middle,td_middle_left" align="center">
-            <h:column>
-		        <f:facet name="header">
-		            <f:verbatim escape="false">
-		                <input type="checkbox" name="all"
-		                       onclick="selectAll(document.forms(0).all,document.forms(0).selectItem)"/>
-		            </f:verbatim>
-		        </f:facet>
-		        <f:verbatim escape="false">
-		            <div align="center"> <input type="checkbox" name="chkblltnId" value="</f:verbatim><h:outputText value="#{list.newId}"/><f:verbatim escape="false">"/></div></f:verbatim>
-		    </h:column>
+                     styleClass="table03" columnClasses="td_middle_center,td_middle,td_middle_center,td_middle,td_middle,td_middle_left" align="center">
 			<h:column>
 				<f:facet name="header">
-				     <f:verbatim>顺序</f:verbatim>
+				    <f:verbatim>
+                    	 <%=LanguageSupport.getResource("YXGL-1026","操作 ")%> 
+                    </f:verbatim>
 				</f:facet>
-				<h:outputText style="width:180px" value="#{list.itemOrder}" />
+				<h:commandLink  action="#{sys_NewsListBackingBean.editNews}">
+					<h:outputText value="修改"/>
+					<x:updateActionListener property="#{sys_NewsListBackingBean.idforEdit}" value="#{list.newId}"></x:updateActionListener>
+				</h:commandLink>
 			</h:column>
+            
+            <h:column>
+				<f:facet name="header">
+				</f:facet>
+				<f:verbatim escape="false">
+					<input type="checkbox" name="chkblltnId" value="
+				</f:verbatim>
+					<h:outputText value="#{list.newId}"/>
+				<f:verbatim>">
+				</f:verbatim>
+			</h:column>
+
 			<h:column>
 				<f:facet name="header">
 				     <f:verbatim>
@@ -112,17 +101,6 @@
                     </f:verbatim>
 				</f:facet>
 				<h:outputText value="#{list.organScope}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-				    <f:verbatim>
-                    	 <%=LanguageSupport.getResource("YXGL-1026","操作 ")%> 
-                    </f:verbatim>
-				</f:facet>
-				<h:commandLink  action="#{sys_NewsListBackingBean.editNews}">
-					<h:outputText value="修改"/>
-					<x:updateActionListener property="#{sys_NewsListBackingBean.idforEdit}" value="#{list.newId}"></x:updateActionListener>
-				</h:commandLink>
 			</h:column>
         </h:dataTable>
         <f:verbatim>

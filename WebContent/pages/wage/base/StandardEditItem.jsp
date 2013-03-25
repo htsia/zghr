@@ -21,7 +21,7 @@
 <script language="javascript" src="/js/hashtable.js"></script>
 <script language="javascript" src="/js/selectItem.js"></script>
 
-<x:saveState value="#{wage_standardBB}"></x:saveState>
+<x:saveState value="#{wage_standardBB}"/>
 <h:form id="form1">
 <h:inputHidden value="wage_standardBB.standard.unitId"/>
 <h:inputHidden value="wage_standardBB.standard.stdId"/>
@@ -60,13 +60,13 @@
 <table width="95%" border="0" align="center" cellpadding="2" cellspacing="0" class="table03">
 <tr>
     <td class="td_middle" ><strong>结果指标</strong></td>
-    <td class="td_middle" align=center colspan="2">
+    <td class="td_middle" align=center colspan="3">
         <input readonly alt="公式结果指标项|0|s" id="RItemIds" name="RItemIds" value="<%=codestr%>" code="<%=codestr%>" dict="yes" dict_num="INFOITEM"/>
         <input type="button" class="button_select" onclick="PopUpWageItemDlg(form1.RItemIds);" value=" " id="codebnt"/>
     </td>
 </tr>
 <tr align="center">
-    <td class="td_top" colspan="3" align="left"><strong>纵向指标设置</strong></td>
+    <td class="td_top" colspan="4" align="left"><strong>纵向指标设置</strong></td>
 </tr>
 <tr>
     <td align="center" class="td_middle">
@@ -104,6 +104,7 @@
       </td>
     <td class="td_middle">&nbsp;</td>
     <td align="center" class="td_middle">纵向指标</td>
+    <td align="center" class="td_middle">关联代码</td>
 </tr>
 <tr>
     <td  align="center" valign="top" class="td_middle">
@@ -122,17 +123,27 @@
                     Iterator vIterator = vItem.iterator();
                     while (vIterator.hasNext()) {
                         WageStdItemBO tmp = (WageStdItemBO) vIterator.next();
-                        String text = SysCacheTool.findInfoItem(tmp.getTable(), tmp.getField()).getItemName();
-            %>
-            <option value="<%=tmp.getField()%>"><%=text%></option>
-            <%
+                        String table=tmp.getTable();
+                        if(table!=null && !"".equals(table)){
+	                        String text = SysCacheTool.findInfoItem(table, tmp.getField()).getItemName();
+	                        %>
+	                        <option value="<%=tmp.getField()%>"><%=text%></option>
+	                        <%
+                        }
                     }
                 }
             %>
         </select></td>
+        <td align="center" class="td_middle">
+        	</c:verbatim>
+        	<h:selectOneMenu value="#{wage_standardBB.vCode}">
+               <c:selectItems value="#{wage_standardBB.codeSet}"/>
+            </h:selectOneMenu>
+        	<c:verbatim>
+        </td>
 </tr>
 <tr align="center">
-    <td class="td_top" colspan="3" align="left"><strong>横向指标设置</strong></td>
+    <td class="td_top" colspan="4" align="left"><strong>横向指标设置</strong></td>
 </tr>
 <tr>
     <td align="center" class="td_middle">
@@ -171,6 +182,7 @@
         </select></td>
     <td class="td_middle">&nbsp;</td>
     <td align="center" class="td_middle" align="left">横向指标</td>
+    <td align="center" class="td_middle">关联代码</td>
 </tr>
 
 <tr>
@@ -189,14 +201,24 @@
                     Iterator hIterator = hItem.iterator();
                     while (hIterator.hasNext()) {
                         WageStdItemBO tmp = (WageStdItemBO) hIterator.next();
-                        String text = SysCacheTool.findInfoItem(tmp.getTable(), tmp.getField()).getItemName();
-            %>
-            <option value="<%=tmp.getField()%>"><%=text%></option>
-            <%
+                        String table=tmp.getTable();
+                        if(table!=null && !"".equals(table)){
+	                        String text = SysCacheTool.findInfoItem(table, tmp.getField()).getItemName();
+	                        %>
+	                        <option value="<%=tmp.getField()%>"><%=text%></option>
+	                        <%
+                        }
                     }
                 }
             %>
         </select></td>
+        <td align="center" class="td_middle">
+        	</c:verbatim>
+        	<h:selectOneMenu value="#{wage_standardBB.hCode}">
+               <c:selectItems value="#{wage_standardBB.codeSet}"/>
+            </h:selectOneMenu>
+        	<c:verbatim>
+        </td>
 </tr>
 
 </table>
@@ -249,11 +271,11 @@
 
 <script type="text/javascript" language="javascript">
     function checkSubmit(form1) {
-        if (form1.HItemIds.options.length == 0 && form1.VItemIds.options.length == 0) {
-            alert("横向指标、纵向指标不能同时为空！");
-            return false;
-        } else if (form1.RItemIds.value == "" || form1.RItemIds.value == null) {
+    	if (form1.RItemIds.value == "" || form1.RItemIds.value == null) {
             alert("结果指标不能为空！");
+            return false;
+        }else if (form1.VItemIds.options.length == 0) {
+            alert("横向指标不能为空！");
             return false;
         } else {
             selectTotal(form1.HItemIds);

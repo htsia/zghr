@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
 import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
@@ -19,6 +21,7 @@ import com.hr319wg.emp.ucc.IPersonUCC;
 import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.sys.api.QueryAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
+import com.hr319wg.sys.pojo.bo.InfoItemBO;
 import com.hr319wg.sys.pojo.vo.CellVO;
 import com.hr319wg.sys.pojo.vo.TableVO;
 import com.hr319wg.util.CodeUtil;
@@ -40,22 +43,67 @@ public class InsDataBackingBean extends BaseBackingBean{
 	private String personTypeDesc;
 	private String wageDate;
 	private String operSetID;
+	private String operItemID;
 	private String operWageDate;
 	private String operStatus;
-	private String selectedUserIDs;
+	private String bacthItemID;
+	private String bacthValue;
+	private List<SelectItem> insItems;
 	private IInsDataService insDataService;
 	private IPersonUCC personucc;
 	private List<InsCalcSetBO> setList;
 	private List<InsMonthPayBO> monthPayList;
+	private List monthPaySum;
 	private InsCalcSetBO item;
 	private InsMonthPayBO monthPay;
+	private boolean containLock;
 	
-	public String getSelectedUserIDs() {
-		return selectedUserIDs;
+	public List getMonthPaySum() {
+		return monthPaySum;
 	}
 
-	public void setSelectedUserIDs(String selectedUserIDs) {
-		this.selectedUserIDs = selectedUserIDs;
+	public void setMonthPaySum(List monthPaySum) {
+		this.monthPaySum = monthPaySum;
+	}
+
+	public String getBacthValue() {
+		return bacthValue;
+	}
+
+	public void setBacthValue(String bacthValue) {
+		this.bacthValue = bacthValue;
+	}
+
+	public boolean isContainLock() {
+		return containLock;
+	}
+
+	public void setContainLock(boolean containLock) {
+		this.containLock = containLock;
+	}
+
+	public List<SelectItem> getInsItems() {
+		return insItems;
+	}
+
+	public void setInsItems(List<SelectItem> insItems) {
+		this.insItems = insItems;
+	}
+
+	public String getOperItemID() {
+		return operItemID;
+	}
+
+	public void setOperItemID(String operItemID) {
+		this.operItemID = operItemID;
+	}
+
+	public String getBacthItemID() {
+		return bacthItemID;
+	}
+
+	public void setBacthItemID(String bacthItemID) {
+		this.bacthItemID = bacthItemID;
 	}
 
 	public IPersonUCC getPersonucc() {
@@ -281,6 +329,16 @@ public class InsDataBackingBean extends BaseBackingBean{
 			this.operSetID=null;
 			this.operWageDate=null;
 			this.operStatus=null;
+			List<InfoItemBO> itemList=SysCacheTool.queryInfoItemBySetId("A243");
+			this.insItems=new ArrayList<SelectItem>();
+			if(itemList!=null){
+				for(InfoItemBO bo : itemList){
+					if("2".equals(bo.getItemDataType())){
+						SelectItem s=new SelectItem(bo.getItemId(), bo.getItemName());
+						this.insItems.add(s);
+					}
+				}
+			}
 		}
 		String orgID1=super.getRequestParameter("orgID");
 		if(orgID1!=null && !"".equals(orgID1)){
@@ -325,8 +383,10 @@ public class InsDataBackingBean extends BaseBackingBean{
 					bo.setPayAddress(CodeUtil.interpertCode(CodeUtil.TYPE_ORG, bo.getPayAddress()));
 					bo.setUserType(CodeUtil.interpertCode(bo.getUserType()));
 					bo.setSelfPay(CodeUtil.interpertCode(bo.getSelfPay()));
+					bo.setInsNO(p.getIdCard());
 				}
 			}
+			this.monthPaySum=this.insDataService.getInsMonthPaySum(this.operSetID, this.operWageDate, this.orgID, this.personType, this.nameStr);
 		} catch (SysException e) {
 			e.printStackTrace();
 		}
@@ -335,8 +395,14 @@ public class InsDataBackingBean extends BaseBackingBean{
 	//计算缴费金额
 	public void calc(){
 		try {
-			this.insDataService.calc(this.operSetID, this.operWageDate, user.getOrgId(), this.selectedUserIDs);
-			this.selectedUserIDs=null;
+			String userIDs="";
+			if(!this.containLock){
+				userIDs=this.insDataService.getLockUserIDs(this.operSetID);
+				if(userIDs!=null && !"".equals(userIDs)){
+					userIDs=","+userIDs+",";
+				}
+			}
+			this.insDataService.calc(this.operSetID, this.operWageDate, user.getOrgId(), userIDs);
 			super.showMessageDetail("计算完成");
 		} catch (SysException e) {
 			super.showMessageDetail("计算失败");
@@ -358,11 +424,28 @@ public class InsDataBackingBean extends BaseBackingBean{
 	
 	public String saveMonthPay(){
 		try {
+			this.monthPay.setStatus("1");
 			this.insDataService.saveOrUpdateBO(this.monthPay);
 			return "success";
 		} catch (SysException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public void updateMonthPayStatus(){
+		try {
+			this.insDataService.updateMonthPayStatus(this.operItemID);
+		} catch (SysException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void batchUpdateMonthPay(){
+		try {
+			this.insDataService.batchUpdateMonthPay(this.operSetID, this.bacthItemID, this.bacthValue);
+		} catch (SysException e) {
+			e.printStackTrace();
 		}
 	}
 	

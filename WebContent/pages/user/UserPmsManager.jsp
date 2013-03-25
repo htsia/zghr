@@ -342,7 +342,10 @@
    }
    function singleAssign() {
        var chitem = document.forms(0).selectItem;
-       if (chitem == null) return;
+       if (chitem == null){
+           alert('请先选泽用户！');    	   
+    	   return false;
+       }
        var chklen = 0;
        var perid;
        //  debugger;

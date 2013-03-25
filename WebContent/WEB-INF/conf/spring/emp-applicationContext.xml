@@ -113,7 +113,7 @@
         <property name="hibernatetemplate" ref="hibernateTemplate"></property>
     </bean>
 
-    <bean id="emp_personService" class="com.hr319wg.custom.extend.service.PersonServiceByExtend">
+   <bean id="emp_personService" class="com.hr319wg.emp.service.PersonService">
         <property name="conpostdao" ref="emp_conPostDAO"></property>
         <property name="persondao" ref="emp_personDAO"></property>
         <property name="cadresdao" ref="emp_CadresDAO"></property>

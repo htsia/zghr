@@ -134,7 +134,6 @@ public class NewsManageService {
 		String endDate = null;
 		String newEndDate = null;
 		String readerType = null;
-		String itemOrder = null;
 		try {
 			List parambolist = this.newsparamdao
 					.queryByCreatorRoleId(CreatorRoleId);
@@ -149,7 +148,6 @@ public class NewsManageService {
 					endDate = parambo.getEndDate();
 					newEndDate = parambo.getNewEndDate();
 					readerType = parambo.getReaderType();
-					itemOrder = parambo.getItemOrder();
 
 					map = new HashMap();
 					map.put("newId", newId);
@@ -159,7 +157,6 @@ public class NewsManageService {
 					map.put("startDate", startDate);
 					map.put("endDate", endDate);
 					map.put("newEndDate", newEndDate);
-					map.put("itemOrder", itemOrder);
 
 					scopebolist = this.newsscopedao.findByAnyString(
 							"NewsScopeBO", "newId", newId, "");

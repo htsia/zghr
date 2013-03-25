@@ -254,7 +254,7 @@ public class OrgBO extends NodeVO  implements Comparable<OrgBO>{
 
 	public int compareTo(OrgBO o) {
 		if(this.orgSort!=null && "".equals(this.orgSort) && o!=null && !"".equals(o.getOrgSort())){
-			return this.orgSort.compareTo(o.getOrgSort());	
+			return this.orgSort.compareTo(o.getOrgSort());			
 		}
 		return 0;
 	}

@@ -28,13 +28,24 @@
     	}
     	return true;
     }
+	function exportCash(){
+		window.open("/pages/custom/wage/exportEmpWage.jsp");
+	}
 	function checkSubmit() {
         var filename = document.all("form1:excelFile").value;
         if (filename.substr(filename.length - 3).toLowerCase() != 'xls') {
             alert("请选择xls文件");
             return false;
         }
+        process();
 		return true;
+    }
+    function process(){
+		x = document.body.clientWidth / 2 - 150;
+		y = document.body.clientHeight / 2;
+		document.all('processbar').style.top = y;
+		document.all('processbar').style.left = x;
+		document.all('processbar').style.display = "";
     }
 </script>
 <x:saveState value="#{wage_empBB}" />
@@ -61,18 +72,25 @@
 				<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{wage_empBB.doQuery}"/>
 				<h:commandButton styleClass="button01" value="查询" action="#{wage_empBB.doQuery}"/>
 				<h:outputText value=" "/>
-				<h:outputLink value="/pages/custom/wage/import.xls" target="_new">
+				<h:outputLink value="/pages/custom/wage/importEmp.xls" target="_new">
 					<h:outputText value="下载模板  " />
 				</h:outputLink>
 	            <x:inputFileUpload id="excelFile" styleClass="input" value="#{wage_empBB.excelFile}" storage="file" size="5"/>
+	            <h:outputText value="导入类别"/>
+	            <h:selectOneMenu value="#{wage_empBB.importType}" >
+		        	<c:selectItem itemLabel="兼职教师" itemValue="0135700574"/>
+		        	<c:selectItem itemLabel="项目工" itemValue="0135700572"/>
+		        </h:selectOneMenu>
 	            <h:commandButton styleClass="button01" value="导入" action="#{wage_empBB.uploadFile}" onclick="return checkSubmit();"/>
-				<h:outputText value=" "/>
-				<h:commandButton styleClass="button01" value="加入帐套" action="#{wage_empBB.addToWageset}"/>
-				<h:commandButton styleClass="button01" value="导出现金工资" onclick="return exportCash();"/>
-		    </h:panelGroup>
+	        </h:panelGroup>
 		 </h:panelGrid>
-		 <h:panelGrid columns="1" align="right">
+		<h:panelGrid columns="1" align="left">
 			<h:panelGroup>
+				<h:commandButton styleClass="button01" value="加入项目工至帐套" onclick="return confirm('确定加入帐套吗?');" action="#{wage_empBB.addProToWageset}"/>
+				<h:commandButton styleClass="button01" value="加入兼职教师至帐套" onclick="return confirm('确定加入兼职教师帐套吗?');" action="#{wage_empBB.addTeaToWageset}"/>
+				<h:outputText value="  "/>
+				<h:commandButton styleClass="button01" value="导出现金工资" onclick="return exportCash();"/>
+				<h:outputText value="  "/>
 				<h:outputText value="记录数:#{wage_empBB.mypage.totalRecord}"/>
 				<h:outputText value="  "/>
 				<h:outputText value="页数:#{wage_empBB.mypage.totalPage}"/>
@@ -168,3 +186,17 @@
 		</h:panelGrid>
 	</h:panelGrid>
 </h:form>
+<marquee id="processbar" style="position:absolute;display:none; border:1px solid #000000" direction="right" width="300"
+         scrollamount="5" scrolldelay="10"
+         bgcolor="#ECF2FF">
+    <table cellspacing="1" cellpadding="0">
+        <tr height=8>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+        </tr>
+    </table>
+</marquee>

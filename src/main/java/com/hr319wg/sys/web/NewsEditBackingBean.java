@@ -24,7 +24,6 @@ import com.hr319wg.sys.pojo.vo.NewsEditVO;
 import com.hr319wg.sys.ucc.INewsManageUCC;
 import com.hr319wg.user.pojo.bo.SelfLevelBO;
 import com.hr319wg.user.ucc.ISelfLevelUCC;
-import com.hr319wg.util.CodeUtil;
 import com.hr319wg.util.CommonFuns;
 import com.hr319wg.util.FileUtil;
 
@@ -164,19 +163,23 @@ public class NewsEditBackingBean extends BaseBackingBean {
 		if (req.getAttribute("idforEdit") != null) {
 			this.idforEdit = req.getAttribute("idforEdit").toString();
 			try {
-				this.newsParamBO = this.newsmanageucc.findNewsParamByNewsId(this.idforEdit);
+				this.newsParamBO = this.newsmanageucc
+						.findNewsParamByNewsId(this.idforEdit);
 				this.vo.setTopic(this.newsParamBO.getNewTopic());
 				this.vo.setStartDate(this.newsParamBO.getStartDate());
-				this.vo.setNewEndDate(this.newsParamBO.getNewEndDate());
 				this.vo.setEndDate(this.newsParamBO.getEndDate());
+				this.vo.setReaderType(this.newsParamBO.getReaderType());
 				this.vo.setNewId(this.idforEdit);
 				this.vo.setNewsSource(this.newsParamBO.getNewsSource());
+				this.vo.setPublicFlag(this.newsParamBO.getPublicFlag());
+				this.vo.setExpress(this.newsParamBO.getExpress());
 
 				if (this.newsParamBO.getInfoLevel() != null) {
 					this.vo.setInfoLevel(this.newsParamBO.getInfoLevel());
 					this.inputList = this.newsParamBO.getInfoLevel().split(",");
 				}
-				NewsContentBO contentbo = this.newsmanageucc.findContentBOByNewsId(this.idforEdit);
+				NewsContentBO contentbo = this.newsmanageucc
+						.findContentBOByNewsId(this.idforEdit);
 				if (contentbo != null) {
 					this.vo.setContent(contentbo.getNewContent());
 					this.vo.setNewsFile(contentbo.getNewsFile());
@@ -185,7 +188,8 @@ public class NewsEditBackingBean extends BaseBackingBean {
 				this.attList = this.newsmanageucc
 						.findNewsContentFile(this.idforEdit);
 
-				String[] scope = this.newsmanageucc.findNewsScopeByNewsId(this.idforEdit);
+				String[] scope = this.newsmanageucc
+						.findNewsScopeByNewsId(this.idforEdit);
 				String scopeNames = "";
 				String scopeIds = "";
 				OrgBO org = null;
@@ -202,10 +206,6 @@ public class NewsEditBackingBean extends BaseBackingBean {
 			} catch (Exception e) {
 				this.msg.setMainMsg(e, NewsEditBackingBean.class);
 			}
-		}else{
-			this.vo.setStartDate(CommonFuns.getSysDate("yyyy-MM-dd"));
-			this.vo.setScopeOrgIds(user.getOrgId());
-			this.vo.setScopeOrgNames(CodeUtil.interpertCode(CodeUtil.TYPE_ORG, user.getOrgId()));
 		}
 		return this.initPage;
 	}
@@ -231,21 +231,21 @@ public class NewsEditBackingBean extends BaseBackingBean {
 			FacesContext.getCurrentInstance().addMessage(null, this.fm);
 			return "";
 		}
-//		if ((this.inputList == null) || (this.inputList.length == 0)) {
-//			this.fm.setSeverity(FacesMessage.SEVERITY_INFO);
-//			this.fm.setDetail("必须设置可以查看本新闻的自助权限级别!");
-//			FacesContext.getCurrentInstance().addMessage(null, this.fm);
-//			return "";
-//		}
+		if ((this.inputList == null) || (this.inputList.length == 0)) {
+			this.fm.setSeverity(FacesMessage.SEVERITY_INFO);
+			this.fm.setDetail("必须设置可以查看本新闻的自助权限级别!");
+			FacesContext.getCurrentInstance().addMessage(null, this.fm);
+			return "";
+		}
 
-//		String power = "";
-//		for (int j = 0; j < this.inputList.length; ++j)
-//			if ("".equals(power)) {
-//				power = this.inputList[j];
-//			} else
-//				power = power + "," + this.inputList[j];
-//
-//		this.vo.setInfoLevel(power);
+		String power = "";
+		for (int j = 0; j < this.inputList.length; ++j)
+			if ("".equals(power)) {
+				power = this.inputList[j];
+			} else
+				power = power + "," + this.inputList[j];
+
+		this.vo.setInfoLevel(power);
 		try {
 			if (this.blobFile != null) {
 				ServletContext context = (ServletContext) FacesContext
@@ -257,12 +257,14 @@ public class NewsEditBackingBean extends BaseBackingBean {
 			}
 			String newsID = null;
 			if ((this.idforEdit == null) || (this.idforEdit.length() == 0)) {
-				newsID=this.newsmanageucc.createNews(this.vo, this.attList,this.AuthorId);
+				newsID=this.newsmanageucc.createNews(this.vo, this.attList,
+						this.AuthorId);
 			} else{
-				this.newsmanageucc.updateNews(this.vo, this.attList, this.AuthorId);
+				this.newsmanageucc.updateNews(this.vo, this.attList,
+						this.AuthorId);
 				newsID=this.vo.getNewId();
 			}
-			
+
 		} catch (Exception e) {
 			this.msg.setMainMsg(e, NewsEditBackingBean.class);
 		}

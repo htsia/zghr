@@ -51,14 +51,11 @@
                     <h:outputText value="显示公用公式"></h:outputText>
                 </h:panelGroup>
 
-                <h:commandButton styleClass="button01" value="新建公式" action="#{wage_formulaBB.create}"
-                                 rendered="#{wage_formulaBB.operRight}"/>
+                <h:commandButton styleClass="button01" value="新建公式" action="#{wage_formulaBB.create}"/>
 
-                <h:commandButton styleClass="button01" value="另存公式副本" action="#{wage_formulaBB.copy}"
-                                 rendered="#{wage_formulaBB.operRight}"/>
+                <h:commandButton styleClass="button01" value="另存公式副本" action="#{wage_formulaBB.copy}"/>
 
                 <h:commandButton styleClass="button01" value="删除公式" action="#{wage_formulaBB.delete}"
-                                 rendered="#{wage_formulaBB.operRight}"
                                  onclick="return confirmDel();"/>
                 <h:commandButton styleClass="button01" value="删除日志" onclick="showDeleteLog();" type="button"></h:commandButton>
                 <h:commandButton styleClass="button01" value="发送" action="#{wage_formulaBB.send}"></h:commandButton>
@@ -75,7 +72,7 @@
                      columnClasses="td_middle_center,td_middle_left,td_middle_left,td_middle_left,td_middle_center"
                      styleClass="table03"
                      width="100%">
-            <h:column rendered="#{wage_formulaBB.operRight}">
+            <h:column>
                 <c:facet name="header">
                     <c:verbatim escape="false">
                         <input type="checkbox" name="chkAll"
@@ -107,9 +104,9 @@
                 <c:facet name="header"><h:outputText value="通用"/></c:facet>
                 <h:outputText value="#{list.usualFlag}"/>
             </h:column>
-
+            
             <h:column>
-                <c:facet name="header"><h:outputText value="建立单位"/></c:facet>
+                <c:facet name="header"><h:outputText value="所属单位"/></c:facet>
                 <h:outputText value="#{list.unitName}"/>
             </h:column>
 

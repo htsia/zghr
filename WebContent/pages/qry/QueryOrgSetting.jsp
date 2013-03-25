@@ -62,7 +62,7 @@
 
 <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
     <tr>
-        <td height="350" align="center" style="border:1px #CCCCCC solid; background-color:#EEEEEE">
+        <td height="330" align="center" style="border:1px #CCCCCC solid; background-color:#EEEEEE">
             <table width="650" border="0" cellspacing="30" cellpadding="0">
                 <tr>
                     <td style="line-height:150%">
@@ -95,9 +95,8 @@
             </table>
         </td>
     </tr>
-
     <tr>
-        <td height="50">&nbsp;</td>
+        <td height="10">&nbsp;</td>
     </tr>
     <tr>
         <td align="center">

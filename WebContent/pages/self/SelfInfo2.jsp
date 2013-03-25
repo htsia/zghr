@@ -31,7 +31,7 @@
 	SysAPI api = (SysAPI) SysContext.getBean("sys_SysAPI");
 	List tools=api.getAllUseTools();
 	ActivePageAPI pageapi = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
-	String sql="select file_name from (select t.file_name from TRAIN_COURCEWAREITEM t where t.top=1) where rownum=1";
+	String sql="select t.file_name from TRAIN_COURCEWAREITEM t where to_date(t.start_date,'yyyy-MM-dd')< sysdate and sysdate <to_date(t.end_date,'yyyy-MM-dd')+1 and t.file_name is not null and rownum=1 order by t.item_id desc";
 	String videofile=pageapi.queryForString(sql);
 	String basepath = application.getRealPath("/");
 	String img = "/images/common/nophoto.JPG";
@@ -195,7 +195,7 @@
                 </tr>
               </table>
 			  
-			<table width="262" border="0" cellpadding="0" cellspacing="0" class="table02">
+			<table width="260" border="0" cellpadding="0" cellspacing="0" class="table02">
 			  <tr>
                   <td height="260" align="left" valign="top">
 			   <div id="box" style="margin-top:30px;">
@@ -214,7 +214,7 @@
 											<b>编号:</b><%=pb.getPersonCode()%><br/>
 											<b>姓名:</b><%=pb.getName()%><br/>
 											<b>部门:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, pb.getDeptId())%><br/>
-											<b>岗位:</b><%=CommonFuns.filterNull(CodeUtil.interpertCode(CodeUtil.TYPE_POST, pb.getPostId()))%><br/>
+											<b>岗位:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_POST, pb.getPostId())%><br/>
 										</td>
 									</tr>
 									<tr>
@@ -311,13 +311,13 @@
                     </td>
             </tr>
            </table>
-<!--           培训课件 -->
+<!--           学习园地 -->
             <table cellspacing=0 cellpadding=0 width="100%" style="margin-top:10px;">
                 <tr valign="top">                   
                     <td valign="top" bgcolor='<%=Constants.FRAMECOLOR%>'>
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                               <tr>
-                                <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>培训课件</b></font></td>
+                                <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>学习园地</b></font></td>
                                 <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"><div align="right"><a target="_blank" href="/train/CWMore.jsf">更多</a></div></td>
                                 <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
                               </tr>
@@ -395,7 +395,7 @@
 									<b>编号:</b><%=p.getPersonCode()%><br/>
 									<b>姓名:</b><%=p.getName()%><br/>
 									<b>部门:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId())%><br/>
-									<b>岗位:</b><%=CommonFuns.filterNull(CodeUtil.interpertCode(CodeUtil.TYPE_POST, p.getPostId()))%><br/>
+									<b>岗位:</b><%=CodeUtil.interpertCode(CodeUtil.TYPE_POST, p.getPostId())%><br/>
 								</td>
 							</tr>
 		              	  </table>

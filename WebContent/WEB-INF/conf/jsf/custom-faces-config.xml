@@ -365,8 +365,8 @@
 			<value>#{wage_dataservice}</value>
 		</managed-property>
 		<managed-property>
-			<property-name>pageAPI</property-name>
-			<value>#{sys_activePageApi}</value>
-		</managed-property>
-	</managed-bean>
+             <property-name>jdbcTemplate</property-name>
+             <value>#{jdbcTemplate}</value>
+        </managed-property>	</managed-bean>
+    
 </faces-config>

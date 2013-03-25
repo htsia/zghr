@@ -148,6 +148,12 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">
+                        <h:outputText value="岗位类别"/>
+                    </f:facet>
+                    <h:outputText escape="false" value="#{list.postType}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
                         <h:outputText value="自助级别"/>
                     </f:facet>
                     <h:outputText escape="false" value="#{list.infoLevel}"/>

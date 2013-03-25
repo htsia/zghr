@@ -50,6 +50,17 @@
     }
 </script>
 
+<!--修改1开始-->
+<script>
+var op = location.search;
+window.onload = function () {
+	if(op == "?op=ry"){
+		document.getElementById("form1:query").click();
+	}
+}
+</script>
+<!--修改1结束-->
+
   <x:saveState value="#{emp_PersonChangeBB}"/>
   <h:form id="form1">
   <h:inputHidden value="#{emp_PersonChangeBB.pageInit}"/>
@@ -82,11 +93,13 @@
         <td class="td_title" align="right"  height=8>
 </f:verbatim>
             <f:verbatim>
-              <%=LanguageSupport.getResource("RYGL-2417","查询时间")%>
+              <%=LanguageSupport.getResource("RYGL-2417","输入查询时间")%>
             </f:verbatim>
-            <h:inputText id="inputDate" readonly="true" styleClass="input Wdate" size="15" onclick="WdatePicker({startDate:'%y-%M',dateFmt:'yyyy-MM'})" onkeypress ="enterKeyDown('form1:queryPerson')" value="#{emp_PersonChangeBB.inputDate}"/>
+            <h:inputText id="inputDate" readonly="true" styleClass="input" value="#{emp_PersonChangeBB.inputDate}"/>
+            <c:verbatim>
+		    	<img onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM',alwaysUseStartDate:true,el:'form1:inputDate'})" src="../../images/search.gif" class="button_select" width="16" height="22" align="absmiddle">
+            </c:verbatim>
             <h:commandButton value="查询" id="query" styleClass="button01" onclick="return disPlayProcessBar();" action="#{emp_PersonChangeBB.query}"/>
-            <h:outputText value="  "/>
             <h:commandButton value="查看人员信息" styleClass="button01" type="button" onclick="return forSelPerson();"/>
             <h:commandButton value="导出" styleClass="button01" type="button" onclick="doExport();"/>
 <f:verbatim>

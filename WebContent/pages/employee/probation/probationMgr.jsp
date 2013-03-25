@@ -271,7 +271,7 @@ function showTable(changId){
                 <h:outputText value="#{list.personType}"/>
             </h:column>
              <h:column>
-                <c:facet name="header"><h:outputText value="入校时间"/></c:facet>
+                <c:facet name="header"><h:outputText value="入职时间"/></c:facet>
                 <h:outputText value="#{list.unitTime}"/>
             </h:column>
             <h:column>

@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
@@ -27,12 +29,20 @@ import com.hr319wg.wage.pojo.bo.WageAdjustRuleBO;
 import com.hr319wg.wage.pojo.bo.WageNoteBO;
 import com.hr319wg.wage.pojo.vo.AdjustVO;
 
-public class WageAdjustService
-{
+public class WageAdjustService{
   private WageAdjustDAO adjustdao;
   private ActivePageAPI activeapi;
   private WageSetPersonService wagesetpersonservice;
   private WageAPI wageapi;
+  private JdbcTemplate jdbcTemplate;
+
+  public JdbcTemplate getJdbcTemplate() {
+	return jdbcTemplate;
+  }
+
+  public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+	this.jdbcTemplate = jdbcTemplate;
+  }
 
   public WageSetPersonService getWagesetpersonservice()
   {
@@ -203,65 +213,121 @@ public class WageAdjustService
     this.adjustdao.createBo(bo);
   }
 
-  public void ValidateAdjust(User user, String itemIDs) throws SysException {
-	  String[]itemID2=itemIDs.split(",");
-	  for(int k=0;k<itemID2.length;k++){
-		  WageAdjustBO adjust = getWageAdjustBO(itemID2[k]);
-		    if (adjust != null) {
-		      List itemList = getAdjustDetail(itemID2[k]);
-
-		      List setList = new ArrayList();
-		      for (int i = 0; i < itemList.size(); i++) {
-		        WageAdjustDetailBO bo = (WageAdjustDetailBO)itemList.get(i);
-		        String setId = SysCacheTool.findInfoItem("", bo.getFieldID()).getSetId();
-		        if (!setList.contains(setId)) {
-		          setList.add(setId);
-		        }
-		      }
-		      for (int i = 0; i < setList.size(); i++) {
-		        String setId = (String)setList.get(i);
-		        List items = new ArrayList();
-		        for (int j = 0; j < itemList.size(); j++) {
-		          WageAdjustDetailBO bo = (WageAdjustDetailBO)itemList.get(j);
-		          String setid = SysCacheTool.findInfoItem("", bo.getFieldID()).getSetId();
-		          if ((setId.equals(setid)) && (!bo.getFieldID().equals(setId + "000"))) {
-		            items.add(bo);
-		          }
-		        }
-		        InfoSetBO setbo = SysCacheTool.findInfoSet(setId);
-		        if (setbo.getSet_rsType().equals("2")) {
-		          String[] infoItems = new String[items.size()];
-		          String[] itemValues = new String[items.size()];
-		          if (items.size() > 0) {
-		            for (int m = 0; m < items.size(); m++) {
-		              WageAdjustDetailBO bo = (WageAdjustDetailBO)items.get(m);
-		              infoItems[m] = bo.getFieldID();
-		              if ((bo.getNewValue() != null) && (!bo.getNewValue().equals("")))
-		                itemValues[m] = bo.getNewValue();
-		              else {
-		                itemValues[m] = "";
-		              }
-		            }
-		            this.activeapi.addPageInfo(setId, user, null, adjust.getPersonID(), true, infoItems, itemValues);
-		          }
-		        } else {
-		          if ((!setbo.getSet_rsType().equals("1")) || 
-		            (items.size() <= 0)) continue;
-		          String[] infoItems = new String[items.size()];
-		          String[] itemValues = new String[items.size()];
-		          for (int m = 0; m < items.size(); m++) {
-		            WageAdjustDetailBO bo = (WageAdjustDetailBO)items.get(m);
-		            infoItems[m] = bo.getFieldID();
-		            itemValues[m] = bo.getNewValue();
-		          }
-		          this.activeapi.updatePageInfo(setId, user, adjust.getPersonID(), null, false, null, null, infoItems, itemValues);
-		        }
-		      }
-		      adjust.setStatus(WageAdjustBO.STATUS_ADJUST);
-		      adjust.setAdjustDate(CommonFuns.getSysDate("yyyy-MM-dd"));
-		      saveWageAdjustBO(adjust);
-		      saveWageNoteBO(adjust.getPersonID(), itemID2[k]);
-		    }
-	  }
-  }
+	public String ValidateAdjust(User user, String itemIDs) throws SysException {
+		String message="";
+		String[] itemID2 = itemIDs.split(",");
+		//循环每个提醒
+		for (int k = 0; k < itemID2.length; k++) {
+			WageAdjustBO adjust = getWageAdjustBO(itemID2[k]);
+			PersonBO p=SysCacheTool.findPersonById(adjust.getPersonID());
+			if (adjust != null && p!=null) {
+				String sql="select a815700 from wage_set_pers_r where id='"+adjust.getPersonID()+"' union select a815700 from wage_set_pers_r_bak where id='"+adjust.getPersonID()+"'";
+				List wageSetList=this.jdbcTemplate.queryForList(sql);
+				if(wageSetList!=null && wageSetList.size()>1){
+					sql="select wm_concat(w.set_name) from (select a815700 from wage_set_pers_r where id='"+adjust.getPersonID()+"' union select a815700 from wage_set_pers_r_bak where id='"+adjust.getPersonID()+"') a,wage_set w where a.a815700=w.set_id";
+					message+=p.getName()+",所在帐套"+this.activeapi.queryForString(sql)+"<br/>";
+					continue;
+				}
+				//处理关联项目_begin
+				List itemList = getAdjustDetail(itemID2[k]);
+				List<WageAdjustDetailBO> wageList = new ArrayList<WageAdjustDetailBO>();
+				
+				List setList = new ArrayList();
+				for (int i = 0; i < itemList.size(); i++) {
+					WageAdjustDetailBO bo = (WageAdjustDetailBO) itemList.get(i);
+					String setId = SysCacheTool.findInfoItem("",bo.getFieldID()).getSetId();
+					if (!setList.contains(setId)) {
+						if(!"A815".equals(setId)){
+							setList.add(setId);							
+						}else{
+							wageList.add(bo);
+						}
+					}
+				}
+				for (int i = 0; i < setList.size(); i++) {
+					String setId = (String) setList.get(i);
+					List items = new ArrayList();
+					for (int j = 0; j < itemList.size(); j++) {
+						WageAdjustDetailBO bo = (WageAdjustDetailBO) itemList.get(j);
+						String setid = SysCacheTool.findInfoItem("",bo.getFieldID()).getSetId();
+						if ((setId.equals(setid)) && (!bo.getFieldID().equals(setId + "000"))) {
+							items.add(bo);
+						}
+					}
+					InfoSetBO setbo = SysCacheTool.findInfoSet(setId);
+					if (setbo.getSet_rsType().equals("2")) {
+						String[] infoItems = new String[items.size()];
+						String[] itemValues = new String[items.size()];
+						if (items.size() > 0) {
+							for (int m = 0; m < items.size(); m++) {
+								WageAdjustDetailBO bo = (WageAdjustDetailBO) items.get(m);
+								infoItems[m] = bo.getFieldID();
+								if ((bo.getNewValue() != null) && (!"".equals(bo.getNewValue()))){
+									itemValues[m] = bo.getNewValue();
+								}else {
+									itemValues[m] = "";
+								}
+							}
+							this.activeapi.addPageInfo(setId, user, null, adjust.getPersonID(), true, infoItems, itemValues);
+						}
+					} else {
+						if ((!setbo.getSet_rsType().equals("1")) || (items.size() <= 0)){
+							continue;
+						}
+						String[] infoItems = new String[items.size()];
+						String[] itemValues = new String[items.size()];
+						for (int m = 0; m < items.size(); m++) {
+							WageAdjustDetailBO bo = (WageAdjustDetailBO) items.get(m);
+							infoItems[m] = bo.getFieldID();
+							itemValues[m] = bo.getNewValue();
+						}
+						this.activeapi.updatePageInfo(setId, user, adjust.getPersonID(), null, false, null, null, infoItems, itemValues);
+					}
+				}//处理关联项目_end
+				
+				//处理A815关联
+				if(wageList.size()>0){
+					String updateSql="";
+					String updateSql2="";
+					String wageSet=String.valueOf(wageSetList.get(0));
+					for(WageAdjustDetailBO bo : wageList){
+						String fieldID=bo.getFieldID();
+						updateSql+=fieldID+"='"+(bo.getNewValue()==null?"0":bo.getNewValue())+"',";
+						sql="select count(*) from wage_set_item w where w.set_id='"+wageSet+"' and w.item_field='"+fieldID+"' and w.item_type='2'";
+						if(this.jdbcTemplate.queryForInt(sql)==1){//是否录入项
+							updateSql2+=fieldID+"='"+(bo.getNewValue()==null?"0":bo.getNewValue())+"',";
+						}
+					}
+					if(updateSql.length()>0){
+						updateSql=updateSql.substring(0, updateSql.length()-1);						
+					}
+					if(updateSql2.length()>0){
+						updateSql2=updateSql2.substring(0, updateSql2.length()-1);						
+					}
+					sql="select a815700 from wage_set_pers_r where id='"+p.getPersonId()+"'";
+					wageSet=this.activeapi.queryForString(sql);
+					if(wageSet!=null){//未暂停工资
+						if(updateSql2.length()>0){
+							sql="update wage_set_pers_r set "+updateSql2 +" where id='"+p.getPersonId()+"'";
+							this.jdbcTemplate.execute(sql);							
+						}
+						if(this.activeapi.isDBTable("A815_SET_"+wageSet) && updateSql.length()>0){
+							sql="update A815_SET_"+wageSet+" set "+updateSql +" where id='"+p.getPersonId()+"'";
+							this.jdbcTemplate.execute(sql);						
+						}
+					}else{
+						if(updateSql2.length()>0){
+							sql="update wage_set_pers_r_bak set "+updateSql2 +" where id='"+p.getPersonId()+"'";
+							this.jdbcTemplate.execute(sql);
+						}
+					}
+				}
+				adjust.setStatus(WageAdjustBO.STATUS_ADJUST);
+				adjust.setAdjustDate(CommonFuns.getSysDate("yyyy-MM-dd"));
+				saveWageAdjustBO(adjust);
+				saveWageNoteBO(adjust.getPersonID(), itemID2[k]);
+			}
+		}
+		return message;
+	}
 }

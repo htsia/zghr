@@ -9,6 +9,7 @@ import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.ins.dao.InsDataDAO;
 import com.hr319wg.custom.ins.pojo.bo.InsCalcSetBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
+import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.util.CommonFuns;
@@ -51,7 +52,23 @@ public class InsDataServiceImpl implements IInsDataService {
 	public void saveOrUpdateBO(Object bo) throws SysException {
 		this.insDataDAO.saveOrUpdateBo(bo);
 	}
+	
+	public void updateMonthPayStatus(String itemID) throws SysException {
+		String sql="update a243 set status=case when status=1 then null else 1 end where subid='"+itemID+"'";
+		this.jdbcTemplate.execute(sql);
+	}
 
+	public void batchUpdateMonthPay(String setID, String itemID, String value)
+			throws SysException {
+		String sql="update a243 set "+itemID+"='"+value+"' where a243211='"+setID+"'";
+		this.jdbcTemplate.execute(sql);
+	}
+	
+	public String getLockUserIDs(String setID) throws SysException {
+		String sql="select wm_concat(id) from a243 where status=1 and a243211='"+setID+"'";
+		return this.activeapi.queryForString(sql);
+	}
+	
 	public List getAllInsCalcSetBO(PageVO pageVO, String createOrgID, String createUserID, String wageDate) throws SysException{
 		return this.insDataDAO.getAllInsCalcSetBO(pageVO, createOrgID, createUserID, wageDate);
 	}
@@ -166,34 +183,49 @@ public class InsDataServiceImpl implements IInsDataService {
 			if (po == null) {
 				continue;
 			}
-//			if("A755715".equals(field)){//养老
-//			}else if("A770710".equals(field)){//失业
-//			}else if("A765705".equals(field)){//工伤
-//			}else if("A760710".equals(field)){//医疗
-//			}else if("A775704".equals(field)){//生育
-//			}else if("A786700".equals(field)){//大额
-//			}else if("A780708".equals(field)){//公积金
+
 			for (int j = 0; j < inputInsurace.length; j++) {
 				String baseType = "";
-				if ("A755715".equals(inputInsurace[j])) {
+				if ("A755715".equals(inputInsurace[j]) || "A754010".equals(inputInsurace[j])) {
 					baseType = "224501";//养老
-				} else if ("A760710".equals(inputInsurace[j])) {
+				} else if ("A760710".equals(inputInsurace[j]) || "A754015".equals(inputInsurace[j])) {
 					baseType = "224502";//医疗
-				} else if ("A765705".equals(inputInsurace[j])) {
+				} else if ("A765705".equals(inputInsurace[j]) || "A754025".equals(inputInsurace[j])) {
 					baseType = "224503";//工伤
-				} else if ("A770710".equals(inputInsurace[j])) {
+				} else if ("A770710".equals(inputInsurace[j]) || "A754020".equals(inputInsurace[j])) {
 					baseType = "224504";//失业
-				} else if ("A775704".equals(inputInsurace[j])) {
+				} else if ("A775704".equals(inputInsurace[j]) || "A754030".equals(inputInsurace[j])) {
 					baseType = "224505";//生育
-				} else if ("A786700".equals(inputInsurace[j])) {
+				} else if ("A786700".equals(inputInsurace[j]) || "A754200".equals(inputInsurace[j])) {
 					baseType = "224506";//大额
-				} else if ("A780708".equals(inputInsurace[j])) {
+				} else if ("A780708".equals(inputInsurace[j]) || "A754035".equals(inputInsurace[j])) {
 					baseType = "224508";//公积金
 				}
-				String sql="insert into B731(orguid,subid,B731000,B731700,B731701,B731702,B731703,B731704,B731209) values " +
-						"('" + po.getOrgId() + "','" + CommonFuns.filterNull(SequenceGenerator.getKeyId("B731")) + "','" + "00900" + "','" + ids[i] + "','" + CommonFuns.filterNull(ChangeDate) + "','" + CommonFuns.filterNull(ChangeType) + "','"+CommonFuns.filterNull(DepName)+"','" + CommonFuns.filterNull(baseType) + "','"+CommonFuns.filterNull(changReason)+"')";
+
+				String sql="insert into B731(subid,B731000,orguid,B731700,B731701,B731702,B731703,B731704,B731209,B731205,B731213,B731203,B731204) values " +
+						"('" + CommonFuns.filterNull(SequenceGenerator.getKeyId("B731")) + "','" + "00900" + "','"+po.getOrgId()+"','" + ids[i] + "','" +
+						CommonFuns.filterNull(ChangeDate) + "','" + CommonFuns.filterNull(ChangeType) + "','"+CommonFuns.filterNull(DepName)+"','" + 
+						CommonFuns.filterNull(baseType) + "','"+CommonFuns.filterNull(changReason)+"','"+CommonFuns.filterNull(po.getPersonCode())+"','"+
+						CommonFuns.filterNull(po.getPersonType())+"','"+CommonFuns.filterNull(po.getOrgId())+"','"+CommonFuns.filterNull(po.getDeptId())+"')";
 				this.jdbcTemplate.execute(sql);
 			}
 		}
+	}
+
+	public List getInsMonthPaySum(String setID, String wageDate, String orgID,
+			String personType, String nameStr) throws SysException {
+		String sql="select sum(A243201) A243201,sum(A243218) A243218,sum(A243202) A243202,sum(A243203) A243203,sum(A243204) A243204,sum(A243205) A243205,sum(A243206) A243206,sum(A243207) A243207,sum(A243208) A243208,sum(A243209) A243209,sum(A243210) A243210,sum(A243201+A243218+A243202+A243203+A243204+A243205+A243206+A243207+A243208+A243209+A243210) total  from a243 w,a001 a where a.id=w.id and a243211='"+setID+"' and a243200='"+wageDate+"'";
+		if(orgID!=null && !"".equals(orgID)){
+			OrgBO org = SysCacheTool.findOrgById(orgID);
+			sql+=" and (a001738 like '"+org.getTreeId()+"%') ";
+		}
+		if(personType!=null && !"".equals(personType)){
+			sql += " and "+CommonFuns.splitInSql(personType.split(","), "a001054");
+		}
+		
+		if(nameStr!=null && !"".equals(nameStr)){
+			sql += " and (a001001 like '%"+nameStr+"%' or a001735 like '%"+nameStr+"%' or u.a001002 like '%"+nameStr+"%')";
+		}
+		return this.jdbcTemplate.queryForList(sql);
 	}
 }

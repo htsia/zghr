@@ -252,6 +252,10 @@ public class BaseRateInputEditBackingBean extends BaseBackingBean {
 					.getAttribute("field");
 			int col = inputField.length;
 			int row = persId.length;
+			if("1".equals(addRecord)){
+				//添加变动记录
+				this.insDataService.updateInsurceChangeInfo(this.perIds.split(","), this.changeType, this.changeDate, null, this.depName, this.selectFields);
+			}
 			for (int i = 0; i < row; i++) {
 				for (int j = 0; j < col; j++) {
 					String id = persId[i].trim();
@@ -261,8 +265,6 @@ public class BaseRateInputEditBackingBean extends BaseBackingBean {
 					this.insDataService.saveInsBaseData(id, tablename, value, "1".equals(addRecord)?this.changeDate:CommonFuns.getSysDate("yyyy-MM-dd"));
 					//新增险种添加记录
 					if("1".equals(addRecord)){
-						//添加变动记录
-						this.insDataService.updateInsurceChangeInfo(this.perIds.split(","), this.changeType, this.changeDate, null, this.depName, this.selectFields);
 						JdbcTemplate jdbc = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
 						StringBuffer sql = new StringBuffer("update a754 set ");
 						for(int k=0;k<this.selectFields.length;k++){

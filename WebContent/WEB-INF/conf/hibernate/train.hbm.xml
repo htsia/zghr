@@ -71,8 +71,6 @@
         <property name="createor"   column="CREATEOR" />
         <property name="iconFile"   column="icon_file" />
         <property name="publicFlag"   column="public_flag" />
-        <property name="top"   column="top" />
-        <property name="itemOrder"   column="itemOrder" />
     </class>
 
     <class name="com.hr319wg.train.pojo.bo.TrainOrgBO" table="TRAIN_ORG">

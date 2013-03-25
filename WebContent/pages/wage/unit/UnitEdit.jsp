@@ -30,7 +30,7 @@
         <h:panelGrid cellspacing="2" columns="2">
             <h:inputText id="unitId" value="#{wage_unitBB.unit.unitId}" size="40"
                          code="" dict="yes" dict_num="OU" readonly="true" alt="·¢Ð½µ¥Î»|0"/>
-            <h:commandButton type="button" styleClass="button_select" id="bntorg" onclick="PopUpOrgDlg('form1:unitId','1',document.forms(0).all('form1:superId').code)"/>
+            <h:commandButton type="button" styleClass="button_select" id="bntorg" onclick="PopUpOrgDlg('form1:unitId','1','','1')"/>
         </h:panelGrid>
 
         <h:outputText value="ÃèÊö"/>

@@ -37,18 +37,18 @@ public class UUCustomManager implements IUUManager{
 		this.commonDAO = commonDAO;
 	}
 
-	public void organizationAdd(String arg0, String arg1, String arg2)
+	public void organizationAdd(String arg0, String userID, String arg2)
 			throws SysException {
 		//刷新代码集
 		SysCache.loadCodeSetMap();
         SysCache.loadCodeItemMap();
 	}
 
-	public void organizationModify(String arg0, String arg1, String arg2)
+	public void organizationModify(String arg0, String userID, String arg2)
 			throws SysException {
 	}
 	
-	public void organizationRemove(String arg0, String arg1, String arg2)
+	public void organizationRemove(String arg0, String userID, String arg2)
 			throws SysException {
 		//刷新代码集
 		SysCache.loadCodeSetMap();
@@ -57,36 +57,47 @@ public class UUCustomManager implements IUUManager{
 	
 	public void organizationSort(String arg0) throws SysException {
 		//刷新代码集
-//		SysCache.loadCodeSetMap();
-//        SysCache.loadCodeItemMap();
+		SysCache.loadCodeSetMap();
+        SysCache.loadCodeItemMap();
 	}
 	
 	//添加人员后
-	public void userAdd(String arg0, String arg1, String arg2)
+	public void userAdd(String arg0, String userID, String arg2)
 			throws SysException {
-		String aa=null;
-		System.out.println(aa);
+		//人员添加后执行存储过程
+		String sql="select count(*) from sys_parameter where para_key='USER_TRIGGER' and para_value like '%ADD%'";
+		int result=this.jdbcTemplate.queryForInt(sql);
+		if(result==1){
+			this.jdbcTemplate.execute("BEGIN PROC_USER_ADD('"+arg0+"', '"+userID+"', '"+arg2+"'); END;");
+		}
 	}
 	
-	public void userModify(String arg0, String arg1, String arg2)
+	public void userModify(String arg0, String userID, String arg2)
 			throws SysException {
-
+		//人员更新后执行存储过程
+		String sql="select count(*) from sys_parameter where para_key='USER_TRIGGER' and para_value like '%UPDATE%'";
+		int result=this.jdbcTemplate.queryForInt(sql);
+		if(result==1){
+			this.jdbcTemplate.execute("BEGIN PROC_USER_UPDATE('"+arg0+"', '"+userID+"', '"+arg2+"'); END;");
+		}
 	}
 
-	public void userModifyOrganization(String arg0, String arg1, String arg2)
+	public void userModifyOrganization(String arg0, String userID, String arg2)
 			throws SysException {
-		// TODO Auto-generated method stub
 		
 	}
 
-	public void userRemove(String arg0, String arg1, String arg2)
+	public void userRemove(String arg0, String userID, String arg2)
 			throws SysException {
-		// TODO Auto-generated method stub
-		
+		//人员更新后执行存储过程
+		String sql="select count(*) from sys_parameter where para_key='USER_TRIGGER' and para_value like '%DELETE%'";
+		int result=this.jdbcTemplate.queryForInt(sql);
+		if(result==1){
+			this.jdbcTemplate.execute("BEGIN PROC_USER_DELETE('"+arg0+"', '"+userID+"', '"+arg2+"'); END;");
+		}
 	}
 	
 	public void userSort(String arg0) throws SysException {
-		// TODO Auto-generated method stub
 		
 	}
 

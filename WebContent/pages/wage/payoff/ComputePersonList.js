@@ -70,8 +70,8 @@
             window.showModalDialog(url, null, "dialogWidth:500px; dialogHeight:400px;center:center;resizable:yes;status:no;scroll:yes;");
             return false;
         }
-        function doExport() {
-           window.open('/wage/payoff/SetSelectToExport.jsf','','toolbar=0,scrollbars=1,height='+screen.height*0.8+',width=500,top=40,left='+(screen.width-500)/2);
+        function doExport(setId) {
+           window.open('/wage/payoff/SetSelectToExport.jsf?setId='+setId,'','toolbar=0,scrollbars=1,height='+screen.height*0.8+',width=500,top=40,left='+(screen.width-500)/2);
         }
         function doReinforce(){
             var url="/wage/set/ReinForce.jsf?setid="+form1.all("form1:setId").value+"&unitid="+form1.all("form1:unitId").value;
@@ -133,7 +133,7 @@
             var unitId = form1.all("form1:unitId").value;
             var setId = form1.all("form1:setId").value;
             var arg = "act=selectSetInput" + "&setName=" + setName + "&unitId=" + unitId + "&setId=" + setId+"&showOnlyCheck=true";
-            var reval = window.showModalDialog("/wage/set/SetInputUpload.jsf?" + arg, null, "dialogWidth:1200px; dialogHeight:700px;center:center;resizable:yes;status:no;scroll:yes;");
+            var reval = window.showModalDialog("/wage/set/SetInputUpload.jsf?" + arg, null, "dialogWidth:800px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
             if (reval != null) {
                 return true;
             } else {

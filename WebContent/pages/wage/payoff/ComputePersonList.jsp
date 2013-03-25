@@ -238,7 +238,7 @@
                 </h:panelGroup>
             </h:panelGroup>
 
-            <h:commandButton value="导出" type="button" onclick="doExport();" styleClass="button01"/>
+            <h:commandButton value="导出" type="button" onclick="doExport('#{wage_computeBB.setId}');" styleClass="button01"/>
             <h:commandButton value="报税" type="button" onclick="doTaxExport();" styleClass="button01"/>
         </h:panelGrid>
 <c:verbatim>

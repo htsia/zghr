@@ -354,7 +354,7 @@ public class EmpTitleChangeMgrBackBean extends BaseBackingBean
 				if (!"".equals(item)){
 					this.adjustucc.createAdjustDetail(changebo.getPersonId(),adjust.getItemID(), item.split(","));
 				}
-//				CommonUtil.setWageAdjust(adjust.getItemID(), changebo.getPersonId(), null, false);
+				CommonUtil.setWageAdjust(adjust.getItemID(), changebo.getPersonId(), null, false);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

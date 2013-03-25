@@ -276,12 +276,14 @@
             <property-name>infosetucc</property-name>
             <value>#{sys_infoSetUccImpl}</value>
         </managed-property>
-
         <managed-property>
             <property-name>showitemucc</property-name>
             <value>#{sys_showitemsUCC}</value>
         </managed-property>
-
+        <managed-property>
+            <property-name>jdbcTemplate</property-name>
+            <value>#{jdbcTemplate}</value>
+        </managed-property>
     </managed-bean>
 
     <managed-bean>
@@ -299,6 +301,10 @@
         <managed-property>
             <property-name>showitemucc</property-name>
             <value>#{sys_showitemsUCC}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>commonService</property-name>
+            <value>#{commonservice}</value>
         </managed-property>
     </managed-bean>
 
@@ -437,6 +443,7 @@
             <property-name>personucc</property-name>
             <value>#{emp_personUCC}</value>
         </managed-property>
+
          <managed-property>
           <property-name>linkucc</property-name>
           <value>#{sys_inprocessUCC}</value>
@@ -477,10 +484,6 @@
 			<property-name>orgprobationucc</property-name>
 			<value>#{orgprobationucc}</value>
 		</managed-property>
-		<managed-property>
-            <property-name>orgucc</property-name>
-            <value>#{org_orgUCC}</value>
-        </managed-property>
     </managed-bean>
 
     <managed-bean>

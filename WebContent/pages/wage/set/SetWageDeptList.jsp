@@ -8,7 +8,7 @@
 %>
     <script type="text/javascript">
         function doCopyDetp(){
-            reval=window.showModalDialog("/wage/set/SetWageSet.jsf?UnitID="+document.all('form1:unitId').value+"&SetID="+document.all('form1:setId').value, null, "dialogWidth:320px; dialogHeight:150px;center:center;resizable:yes;status:yes;scroll:yes;");
+            reval=window.showModalDialog("/wage/set/SetWageSet.jsf?UnitID="+document.getElementById('form1:unitId').value+"&SetID="+document.getElementById('form1:setId').value, null, "dialogWidth:320px; dialogHeight:150px;center:center;resizable:yes;status:yes;scroll:yes;");
             if (reval != null && reval!="") {
                 form1.all("form1:curSetId").value = reval;
                 return true;
@@ -17,11 +17,11 @@
             }
         }
         function doAdd(){
-            window.showModalDialog("/wage/set/WageDeptEdit.jsf?setID="+document.all("form1:setId").value, null, "dialogWidth:330px; dialogHeight:480px;center:center;resizable:no;status:no;scroll:no;");
+            window.showModalDialog("/wage/set/WageDeptEdit.jsf?setID="+document.getElementById("form1:setId").value+"&size="+document.getElementById("form1:listSize").value, null, "dialogWidth:330px; dialogHeight:480px;center:center;resizable:no;status:no;scroll:no;");
             return true;
         }
         function forModify(id) {
-            window.showModalDialog("/wage/set/WageDeptEdit.jsf?itemID="+id+"&setID="+document.all("form1:setId").value, null, "dialogWidth:330px; dialogHeight:480px;center:center;resizable:no;status:no;scroll:no;");
+            window.showModalDialog("/wage/set/WageDeptEdit.jsf?itemID="+id+"&setID="+document.getElementById("form1:setId").value, null, "dialogWidth:330px; dialogHeight:480px;center:center;resizable:no;status:no;scroll:no;");
             return true;
         }
     </script>
@@ -32,6 +32,7 @@
     <h:inputHidden id="setId" value="#{wage_deptBB.setID}"/>
     <h:inputHidden id="unitId" value="#{wage_deptBB.unitId}"/>
     <h:inputHidden id="curSetId" value="#{wage_deptBB.curSetId}"/>
+    <h:inputHidden id="listSize" value="#{wage_deptBB.listSize}"/>
 
     <c:verbatim>
     <table height=96% width=98% align="center">
@@ -63,21 +64,6 @@
                 <h:dataTable value="#{wage_deptBB.list}" var="list" align="center" id="dateList"
                          headerClass="td_top tr_fixrow" columnClasses="td_middle_left,td_middle,td_middle_center,td_middle,td_middle,td_middle_center"
                          styleClass="table03" width="100%" >
-                    <h:column>
-                        <c:facet name="header"><h:outputText value="操作"/></c:facet>
-                        <h:commandButton value="修改"   styleClass="button01" onclick="return forModify('#{list.itemID}');">
-                        </h:commandButton>
-
-                        <h:commandButton value="删除" action="#{wage_depteditBB.delete}"   styleClass="button01" onclick="return confirm('确认删除？')">
-                            <x:updateActionListener property="#{wage_depteditBB.wdb.itemID}" value="#{list.itemID}"></x:updateActionListener>
-                        </h:commandButton>
-
-                        <h:commandButton value="数据同步"   styleClass="button01" action="#{wage_deptBB.updateData}">
-                            <x:updateActionListener property="#{wage_deptBB.itemID}" value="#{list.itemID}"></x:updateActionListener>
-                        </h:commandButton>
-
-                    </h:column>
-
                 <h:column>
                     <c:facet name="header"><h:outputText value="名称"/></c:facet>
                     <h:outputText value="#{list.name}"/>
@@ -127,7 +113,20 @@
                         <c:facet name="header"><h:outputText value="关联行政部门"/></c:facet>
                         <h:outputText value="#{list.linkOrgNames}"/>
                     </h:column>
+				<h:column>
+                        <c:facet name="header"><h:outputText value="操作"/></c:facet>
+                        <h:commandButton value="修改"   styleClass="button01" onclick="return forModify('#{list.itemID}');">
+                        </h:commandButton>
 
+                        <h:commandButton value="删除" action="#{wage_depteditBB.delete}"   styleClass="button01" onclick="return confirm('确认删除？')">
+                            <x:updateActionListener property="#{wage_depteditBB.wdb.itemID}" value="#{list.itemID}"></x:updateActionListener>
+                        </h:commandButton>
+
+                        <h:commandButton value="数据同步"   styleClass="button01" action="#{wage_deptBB.updateData}">
+                            <x:updateActionListener property="#{wage_deptBB.itemID}" value="#{list.itemID}"></x:updateActionListener>
+                        </h:commandButton>
+
+                    </h:column>
             </h:dataTable>
 <c:verbatim>
             </div>

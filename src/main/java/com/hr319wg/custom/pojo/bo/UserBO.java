@@ -16,7 +16,6 @@ public class UserBO {
 	private String ssDeptID;
 	private String sDeptID;
 	private String deptSort;
-	private String selfSort;
 	private String comeDate;
 	private String xueli;
 	private String xuewei;
@@ -31,12 +30,6 @@ public class UserBO {
 	private String OAName;
 	private boolean hasCash;
 	
-	public String getSelfSort() {
-		return selfSort;
-	}
-	public void setSelfSort(String selfSort) {
-		this.selfSort = selfSort;
-	}
 	public String getOAName() {
 		return OAName;
 	}
@@ -49,11 +42,9 @@ public class UserBO {
 	public void setHasCashStr(String hasCashStr) {
 		this.hasCashStr = hasCashStr;
 	}
+	
 	public boolean isHasCash() {
-		if("1".equals(hasCashStr)){
-			return true;
-		}
-		return false;
+		return hasCash;
 	}
 	public void setHasCash(boolean hasCash) {
 		this.hasCash = hasCash;

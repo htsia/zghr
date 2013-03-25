@@ -10,9 +10,12 @@ import com.hr319wg.custom.wage.pojo.bo.WageDataSetBO;
 
 public interface IWageDataService {
 
+	//设置加入帐套人员顺序
+	public void batchUpdateWageSetPersonSort(String setID, String personIDs, String personCode);
+	
 	public void updateWageSetInputDate(List<Map> list, String[]itemID, String setID) throws SysException;
 	
-	public void setOAEmail(String userID, String password, String toOAUserID, String onoff) throws SysException;
+	public void setOAEmail(String userID1, String userID2, String userID3, String url, String soa, String onoff) throws SysException;
 	
 	public void saveOrUpdateObject(Object obj) throws SysException;
 	
@@ -33,12 +36,12 @@ public interface IWageDataService {
 	public void calcClassWage() throws SysException;
 	
 	//加入到帐套
-	public void addToWageset() throws SysException;
+	public int addToWageset(String personType, String wageSetID, String unitID) throws SysException;
 	
 	//保存短期工人员
 	public void saveWageEmpPerson(UserBO user, String wage, String other) throws SysException;
-	//保存短期工人员
-	public void batchSaveWageEmpPerson(List<Map> list) throws SysException;
+	//导入短期工人员
+	public void batchSaveWageEmpPerson(List<Map> list, String importType) throws SysException;
 	//删除短期工人员
 	public void deleteWageEmpPerson(String userID) throws SysException;
 	

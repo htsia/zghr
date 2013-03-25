@@ -5,9 +5,8 @@
     response.setHeader("progma", "no-cache");
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
+    String size=request.getParameter("size");
 %>
-
-
 
 <x:saveState value="#{wage_depteditBB}"/>
 <h:form id="form1">
@@ -44,17 +43,11 @@
 
             <h:outputText value="参数2" />
             <h:inputText id="para2" value="#{wage_depteditBB.wdb.para2}" alt="参数2|1" size="20" maxlength="20"/>
-
-            <h:outputText value="薪资部门类型" />
-            <h:panelGroup>
-                <h:inputText id="a001758" value="#{wage_depteditBB.wdb.a001758}" code="" dict="yes" dict_num="2209" readonly="true" alt="薪资部门类型|1" size="20" maxlength="20"/>
-                <c:verbatim><input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:a001758')"></c:verbatim>
-            </h:panelGroup>
-
-            <h:outputText value="关联行政部门" />
+            
+            <h:outputText value="*关联行政部门" />
             <h:panelGroup>
                 <h:inputHidden id="orgIds" value="#{wage_depteditBB.wdb.linkOrgs}"></h:inputHidden>
-                <h:inputText id="orgNames" readonly="true" value="#{wage_depteditBB.wdb.linkOrgNames}"></h:inputText>
+                <h:inputText id="orgNames" readonly="true" value="#{wage_depteditBB.wdb.linkOrgNames}" alt="关联行政部门|0"></h:inputText>
                 <h:commandButton type="button" styleClass="button_select" onclick="PopUpMutilOrgTwoControl(document.forms(0).all('form1:orgIds'),document.forms(0).all('form1:orgNames'),0,'');"></h:commandButton>
             </h:panelGroup>
         </h:panelGrid>
@@ -70,4 +63,8 @@
 </h:form>
 <script type="text/javascript">
     interpret(document.forms(0));
+    var name=document.getElementById("form1:name").value;
+    if(name==''){
+    	document.getElementById("form1:name").value="<%=size%>";
+    }
 </script>

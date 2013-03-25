@@ -31,6 +31,7 @@
         else
           return true;
      }
+
     </script>
 
   <x:saveState value="#{wage_queryBB}"/>
@@ -54,7 +55,7 @@
                   <h:selectOneMenu id = "setId" value="#{wage_queryBB.setId}" >
                        <c:selectItems value="#{wage_queryBB.setList}"/>
                   </h:selectOneMenu>
-                  <h:outputText escape="false" value="<strong>  请输入姓名编号或简拼:</strong>" />
+                  <h:outputText escape="false" value="<strong>请录入要查询的姓名或员工编号:</strong>" />
                   <h:inputText  id="nameStr" value="#{wage_queryBB.nameStr}" style="width:140px"/>
                   <h:commandButton value="查询人员" onclick="return checkquery();" styleClass="button01" id="addMany" action="#{wage_queryBB.addMany}" />
       <f:verbatim>

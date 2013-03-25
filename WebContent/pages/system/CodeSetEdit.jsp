@@ -19,17 +19,17 @@
                  <f:verbatim>
 				   <%=LanguageSupport.getResource("XTGL-1009", "代码集名称")%>
 		         </f:verbatim>
-				<h:inputText value="#{sys_codeSetEditBB.setName}"   alt="代码集名称|0|s|50" styleClass="input" />
+				<h:inputText value="#{sys_codeSetEditBB.cs.setName}"   alt="代码集名称|0|s|50" styleClass="input" />
                  
                   <f:verbatim>
 				   <%=LanguageSupport.getResource("XTGL-1008", "国标代码")%>
 		         </f:verbatim>
-				<h:inputText value="#{sys_codeSetEditBB.setDesc}"  alt="国标代码|1|s|50" styleClass="input" />
+				<h:inputText value="#{sys_codeSetEditBB.cs.setDesc}"  alt="国标代码|1|s|50" styleClass="input" />
                 
 				 <f:verbatim>
 				   <%=LanguageSupport.getResource("XTGL-1010", "录入标识")%>
 		         </f:verbatim>
-				<h:selectOneMenu value="#{sys_codeSetEditBB.setLayer}">
+				<h:selectOneMenu value="#{sys_codeSetEditBB.cs.setLayer}">
 					<f:selectItem itemValue="0" itemLabel="录入到任意层次"   />
 					<f:selectItem itemValue="1" itemLabel="录入到最底层次" />
 				</h:selectOneMenu>
@@ -37,7 +37,7 @@
 				 <f:verbatim>
 				   <%=LanguageSupport.getResource("XTGL-1006", "启用/禁用")%>
 		         </f:verbatim>
-				<h:selectOneRadio value="#{sys_codeSetEditBB.setStatus}">
+				<h:selectOneRadio value="#{sys_codeSetEditBB.cs.setStatus}">
 					<f:selectItem itemValue="1" itemLabel="启用" />
 					<f:selectItem itemValue="0" itemLabel="禁用" />
 				</h:selectOneRadio>
@@ -45,7 +45,7 @@
                  <f:verbatim>
 				   <%=LanguageSupport.getResource("XTGL-1134", "是否区间编码")%>
 		         </f:verbatim>
-                <h:selectOneRadio value="#{sys_codeSetEditBB.scaleCode}">
+                <h:selectOneRadio value="#{sys_codeSetEditBB.cs.scaleCode}">
                       <c:selectItem itemValue="1" itemLabel="是"></c:selectItem>
                       <c:selectItem itemValue="0" itemLabel="否"></c:selectItem>
                 </h:selectOneRadio>

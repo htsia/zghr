@@ -11,7 +11,7 @@ function refreshload() {
 	setTimeout('myrefresh()', 1000);
 }
 function addDictionarys(){
-    var id=document.all('form1:userID').value;
+    var id=document.all('form1:roleID').value;
     var id1=document.all('form1:operID').value;
 	if (id == null || id == "") {
 		alert("请选择用户！");
@@ -34,7 +34,7 @@ function addDictionarys(){
 
    }
     function addDictionary(){
-        var id=document.all('form1:userID').value;
+        var id=document.all('form1:roleID').value;
         var id1=document.all('form1:operID').value;
     	if (id == null || id == "") {
     		alert("请选择用户！");
@@ -44,29 +44,21 @@ function addDictionarys(){
     		alert("请选择要设置的权限！");
     		return false;
     	}
-        window.showModalDialog("/report/ReportPowerMgrAddChildSort.jsf?userID="+id+"&operID="+id1, null, "dialogWidth:800px; dialogHeight:800px;center:center;resizable:no;status:no;scroll:no;");
+        window.showModalDialog("/report/ReportPowerMgrAddChildSort.jsf?roleID="+id+"&operID="+id1, null, "dialogWidth:800px; dialogHeight:800px;center:center;resizable:no;status:no;scroll:no;");
         document.all('form1:refresh1').click();
    }
     </script>
 <x:saveState value="#{Rpt_PowerMgrBB}" />
 <h:form id="form1">
+	<h:inputHidden id="superID" value="#{Rpt_PowerMgrBB.pageInit}"/>
+	<h:inputHidden id="roleID" value="#{Rpt_PowerMgrBB.roleID}"/>
+	<h:inputHidden id="operID" value="#{Rpt_PowerMgrBB.operID}"/>
 	<h:commandButton id="refresh1" value="刷新" style="display:none;"
-		onclick="refreshload()"></h:commandButton>
+		onclick="refreshload()"/>
 	<h:commandButton id="refresh" value="保存 " style="display:none;"
-		action="#{Rpt_PowerMgrBB.save}"></h:commandButton>
-	<h:inputHidden id="superID" value="#{Rpt_PowerMgrBB.pageInit}"></h:inputHidden>
-	<h:inputHidden id="userID" value="#{Rpt_PowerMgrBB.userID}"></h:inputHidden>
-	<h:inputHidden id="operID" value="#{Rpt_PowerMgrBB.operID}"></h:inputHidden>
+		action="#{Rpt_PowerMgrBB.save}"/>
 	<h:panelGrid width="98%" columns="1" align="center">
 		<h:panelGrid columns="9" align="left">
-			<h:outputText escape="false" value="<strong>选择用户:</strong>"></h:outputText>
-			<h:panelGroup>
-				<h:selectOneMenu onchange="disPlayProcessBar();submit();"
-					value="#{Rpt_PowerMgrBB.userID}"
-					valueChangeListener="#{Rpt_PowerMgrBB.changeDetailValue}">
-					<c:selectItems value="#{Rpt_PowerMgrBB.userList}"></c:selectItems>
-				</h:selectOneMenu>
-			</h:panelGroup>
 			<h:outputText escape="false" value="<strong>设置权限:</strong>"></h:outputText>
 			<h:panelGroup>
 				<h:selectOneMenu onchange="disPlayProcessBar();submit();"

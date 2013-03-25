@@ -58,12 +58,12 @@
             </c:facet>
         <h:commandButton value="录入新值"
             onclick="return modify('#{list.adjustID}')" styleClass="button01" action="#{wage_commonAdjustBB.refreshDetail}"></h:commandButton>
-<%--         <h:commandButton value="删除" onclick="return confirm('确定要删除吗?');" --%>
-<%--             action="#{wage_commonAdjustBB.delete}" styleClass="button01"> --%>
-<%--             <x:updateActionListener --%>
-<%--                 property="#{wage_commonAdjustBB.adjustId}" --%>
-<%--                 value="#{list.adjustID}" /> --%>
-<%--         </h:commandButton> --%>
+        <h:commandButton value="删除" rendered="false" onclick="return confirm('确定要删除吗?');"
+            action="#{wage_commonAdjustBB.delete}" styleClass="button01">
+            <x:updateActionListener
+                property="#{wage_commonAdjustBB.adjustId}"
+                value="#{list.adjustID}" />
+        </h:commandButton>
         </h:column>        
     </x:dataTable>
 

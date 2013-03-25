@@ -35,6 +35,7 @@
         <property name="companyShengyu" column="A243209"/>
         <property name="companyGongjijin" column="A243210"/>
         <property name="calcSetID" column="A243211"/>
+        <property name="status" column="status"/>
         <property name="orgID" column="A243212"/>
         <property name="secDeptID" column="A243213"/>
         <property name="userType" column="A243214"/>
@@ -253,7 +254,6 @@
         <property name="sDeptID" column="A001704"/>
         <property name="secDeptID" column="A001239"/>
         <property name="deptSort" column="A001738"/>
-        <property name="selfSort" column="A001746"/>
         <property name="cardNO" column="A001077"/>
         <property name="bankNO" column="A001242"/>
         <property name="mainDeptSort" column="A001728"/>

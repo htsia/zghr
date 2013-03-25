@@ -332,6 +332,10 @@
             <property-name>codesetucc</property-name>
             <value>#{sys_codeSetUCC}</value>
         </managed-property>
+         <managed-property>
+            <property-name>userAPI</property-name>
+            <value>#{user_pmsAPI}</value>
+        </managed-property>
     </managed-bean>
 
     <managed-bean>
@@ -434,12 +438,15 @@
             <property-name>infoitemucc</property-name>
             <value>#{sys_infoItemUCC}</value>
         </managed-property>
-             <managed-property>
-              <property-name>codesetucc</property-name>
-              <value>#{sys_codeSetUCC}</value>
-          </managed-property>
-          
-          </managed-bean>
+        <managed-property>
+        	<property-name>codesetucc</property-name>
+        	<value>#{sys_codeSetUCC}</value>
+        </managed-property>
+        <managed-property>
+        	<property-name>commonService</property-name>
+        	<value>#{commonservice}</value>
+        </managed-property>
+       </managed-bean>
 
     <managed-bean>
         <managed-bean-name>sys_SysLogOperBackingBean</managed-bean-name>
@@ -651,6 +658,52 @@
             <to-view-id>/system/CodeSetList.jsf</to-view-id>
         </navigation-case>
    </navigation-rule>
+<!--    薪酬 _begin-->
+   <navigation-rule>
+        <from-view-id>/custom/wage/wageCodeList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/custom/wage/codeSetEdit.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/custom/wage/codeSetEdit.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>itemlist</from-outcome>
+            <to-view-id>/custom/wage/codeItemList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/custom/wage/codeSetEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>setlist</from-outcome>
+            <to-view-id>/custom/wage/wageCodeList.jsf</to-view-id>
+        </navigation-case>
+   </navigation-rule>
+	<navigation-rule>
+        <from-view-id>/custom/wage/codeItemList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/custom/wage/codeItemEdit.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/custom/wage/codeItemEdit.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>setlist</from-outcome>
+            <to-view-id>/custom/wage/wageCodeList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/custom/wage/codeItemEdit.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>itemlist</from-outcome>
+            <to-view-id>/custom/wage/codeItemList.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+<!-- 薪酬 _end-->
 
 
     <navigation-rule>

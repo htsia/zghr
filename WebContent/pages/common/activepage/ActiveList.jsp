@@ -1,3 +1,6 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.hr319wg.common.pojo.vo.User"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.util.CommonFuns" %>
 <%@ page import="com.hr319wg.common.Constants" %>
@@ -316,8 +319,16 @@
             }
         }
 
+//         User user =(User)session.getAttribute(Constants.USER_INFO);
+//         Map itemMap=user.getPmsInfoItem();
+//         if(itemMap==null){
+//         	itemMap=new HashMap();
+//         }
         //画头部各列
         for (int i = 0; i < colnum; i++) {
+//         	if(!itemMap.containsKey(header[i].getItemId()) && header[i].getItemId().startsWith(header[i].getSetId())){
+//             	continue;
+//             }
             String fixstyle = "'locked_top " + fixrowstyle + "'";
             if (i < fixcol) {
                 fixstyle = "'locked_top " + fixcolstyle + " " + fixrowstyle + "' style='z-index: 3' ";   // 固定列
@@ -395,13 +406,16 @@
             String backValue = "";
             // 再按列
             for (int j = 0; j < colnum; j++) {
+                CellVO cell = row.getCell()[j];
+//             	if(!itemMap.containsKey(cell.getItemId()) && cell.getItemId().startsWith(cell.getSetId()) && !cell.getItemId().endsWith("000")){
+//                 	continue;
+//                 }
                 String fixstyle = "'td_middle'";
                 if (j < fixcol) {
                     fixstyle = "'td_relativemiddle " + fixcolstyle + "'";
                 }
                 fixstyle = fixstyle.trim();
 
-                CellVO cell = row.getCell()[j];
                 int right = cell.getPermission();//指标的权限
 
                 String idValue = "";
@@ -414,7 +428,7 @@
                 String value = CommonFuns.filterNull(cell.getValue());
                 switch (right) {
                     case 1:
-                        value = "*****";
+//                         value = "*****";
                         break;
                     case 2:
                     case 3:
@@ -442,7 +456,6 @@
                                 title+=" 临时发薪人员";
                             }
                         }
-
 
                         if (fixcol > 0) {
                             out.println("<td align=center style='position:relative' class='td_middle " + fixcolstyle + "' width=45px title='" + title + "'>");

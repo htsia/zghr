@@ -132,13 +132,13 @@
         </property>
     </bean>
 
-    <bean id="wage_deptservice" class="com.hr319wg.wage.service.WageDeptService">
+    <bean id="wage_deptservice" class="com.hr319wg.custom.extend.service.WageDeptServiceByExtend">
         <property name="wagedeptdao" ref="wage_deptDAO"/>
         <property name="wagedeptpowerdao" ref="wage_deptpowerDAO"/>
         <property name="wageapi" ref="wage_api"/>
         <property name="wageinputpowerdao" ref="wage_inputpowerDAO"/>
         <property name="insItempowerdao" ref="ins_itempowerDAO"/>
-<!--         <property name="attItempowerdao" ref="att_itempowerDAO"/> -->
+        <property name="attItempowerdao" ref="att_itempowerDAO"/>
         <property name="insdeptdao" ref="ins_DeptPowerDAO"/>
     </bean>
 
@@ -458,7 +458,7 @@
         <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
     </bean>
     <!--wage set item-->
-    <bean id="wage_SetItemDAO" class="com.hr319wg.wage.dao.WageSetItemDAO">
+    <bean id="wage_SetItemDAO" class="com.hr319wg.custom.extend.dao.WageSetItemDAOByExtend">
         <property name="hibernatetemplate">
             <ref bean="hibernateTemplate"/>
         </property>
@@ -478,7 +478,7 @@
             <ref bean="wage_StandardDAO"/>
         </property>
     </bean>
-    <bean id="wage_SetItemUccImpl" class="com.hr319wg.wage.ucc.impl.WageSetItemUCC">
+    <bean id="wage_SetItemUccImpl" class="com.hr319wg.custom.wage.ucc.WageSetItemUCCByExtends">
         <property name="wagesetitemservice" ref="wage_SetItemService"/>
         <property name="wagesetservice" ref="wage_SetService"/>
         <property name="wagecomputeservice" ref="wage_ComputeService"/>

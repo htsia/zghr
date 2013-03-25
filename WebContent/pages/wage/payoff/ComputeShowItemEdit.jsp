@@ -84,7 +84,7 @@
     <h:panelGrid columns="2" align="right" border="0">
         <h:panelGroup>
             <h:outputText value="每次移动位数:"></h:outputText>
-            <h:inputText id="step" value="" />
+            <h:inputText id="step" value="1" />
         </h:panelGroup>
 
         <h:panelGroup>

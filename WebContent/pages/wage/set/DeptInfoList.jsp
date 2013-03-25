@@ -42,7 +42,7 @@
           </tr>
           <tr><td colspan=2 height="10"></td></tr>
           <tr>
-              <td colspan=2>
+              <td colspan=2 height="400">
                   <jsp:include page="/pages/common/activepage/ShowTable.jsp">
                       <jsp:param name="para" value="true"/>
                   </jsp:include>

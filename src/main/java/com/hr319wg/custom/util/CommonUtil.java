@@ -175,62 +175,62 @@ public class CommonUtil {
 	 * @param isZhuanzheng
 	 * @throws SysException
 	 */
-//	public static void setWageAdjust(String itemID, String userID, EmpPostChangeBO bo, boolean isZhuanzheng) throws SysException{
-//		CommonDAO cDao = (CommonDAO)SysContext.getBean("commondao");
-//		ActivePageAPI activeapi = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
-//		List<WageAdjustDetailBO> detailList = cDao.getAllWageAdjustBO(itemID);
-//    	if(detailList!=null){
-//    		for(WageAdjustDetailBO dBo : detailList){
-//    			String fieldID = dBo.getFieldID();//	        			
-//    			if("A223200".equals(fieldID)){ //薪级
-//    				String sql = null;
-//    				if(bo==null){
-//    					sql = "select C001203 from a001 a,c001 c where a.A001715=c.postid and a.id='"+userID+"'";
-//    				}else{
-//    					sql = "select C001203 from c001 c where c.postid = '"+bo.getNewPost()+"'";    					
-//    				}
-//    				dBo.setNewValue(activeapi.queryForString(sql));
-//    			}else if("A223204".equals(fieldID)){//变动时间
+	public static void setWageAdjust(String itemID, String userID, EmpPostChangeBO bo, boolean isZhuanzheng) throws SysException{
+		CommonDAO cDao = (CommonDAO)SysContext.getBean("commondao");
+		ActivePageAPI activeapi = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
+		List<WageAdjustDetailBO> detailList = cDao.getAllWageAdjustBO(itemID);
+    	if(detailList!=null){
+    		for(WageAdjustDetailBO dBo : detailList){
+    			String fieldID = dBo.getFieldID();//	        			
+    			if("A223200".equals(fieldID)){ //薪级
+    				String sql = null;
+    				if(bo==null){
+    					sql = "select C001203 from a001 a,c001 c where a.A001715=c.postid and a.id='"+userID+"'";
+    				}else{
+    					sql = "select C001203 from c001 c where c.postid = '"+bo.getNewPost()+"'";    					
+    				}
+    				dBo.setNewValue(activeapi.queryForString(sql));
+    			}else if("A223204".equals(fieldID)){//变动时间
 //    				if(dBo.getOldValue()!=null){
 //    					dBo.setNewValue(dBo.getOldValue());
 //    				}else{
 //    					dBo.setNewValue(CommonFuns.getSysDate("yyyy-MM-dd"));
 //    				}
-//    			}else if("A223205".equals(fieldID)){//人员状态
-//    				if(isZhuanzheng){
-//    					dBo.setNewValue("0145700284");
-//    				}else{
-//    					if(dBo.getOldValue()!=null){
-//    						dBo.setNewValue(dBo.getOldValue());
-//    					}  					
-//    				}
-//    			}else{
-//    				if(dBo.getOldValue()!=null){
-//    					dBo.setNewValue(dBo.getOldValue());
-//    				}
-//    				if(bo!=null && "A223209".equals(fieldID)){
-//    					if(bo.getOldPost()!=null && !"".equals(bo.getOldPost())){
-//    						dBo.setOldValue("原岗位："+SysCacheTool.findPost(bo.getOldPost()).getName());
-//    					}
-//    					if(bo.getNewPost()!=null && !"".equals(bo.getNewPost())){
-//    						dBo.setNewValue("新岗位："+SysCacheTool.findPost(bo.getNewPost()).getName());
-//    					}
-//    				}
-//    			}
-//    			cDao.saveOrUpdateBo(dBo);
-//    		}
-//    	}
-//	}
+    			}else if("A223205".equals(fieldID)){//人员状态
+    				if(isZhuanzheng){
+    					dBo.setNewValue("0145700284");
+    				}else{
+    					if(dBo.getOldValue()!=null){
+    						dBo.setNewValue(dBo.getOldValue());
+    					}  					
+    				}
+    			}else{
+    				if(dBo.getOldValue()!=null){
+    					dBo.setNewValue(dBo.getOldValue());
+    				}
+    				if(bo!=null && "A223209".equals(fieldID)){
+    					if(bo.getOldPost()!=null && !"".equals(bo.getOldPost())){
+    						dBo.setOldValue("原岗位："+SysCacheTool.findPost(bo.getOldPost()).getName());
+    					}
+    					if(bo.getNewPost()!=null && !"".equals(bo.getNewPost())){
+    						dBo.setNewValue("新岗位："+SysCacheTool.findPost(bo.getNewPost()).getName());
+    					}
+    				}
+    			}
+    			cDao.saveOrUpdateBo(dBo);
+    		}
+    	}
+	}
 	
 	//添加工资变动子集记录
-//	public static void addWageChange(String userID, String currStatus) throws SysException{
-//		String sql = "select C001203 from a001 a,c001 c where a.A001715=c.postid and a.id='"+userID+"'";
-//		ActivePageAPI activeapi = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
-//		String xinji = activeapi.queryForString(sql);
-//		String subid = SequenceGenerator.getKeyId("A223");
-//		sql = "insert into a223 (id,subid,A223000,A223200,A223205) values ('"+userID+"','"+subid+"','00901','"+xinji+"','"+currStatus+"')";
-//		activeapi.executeSql(sql);
-//	}
+	public static void addWageChange(String userID, String currStatus) throws SysException{
+		String sql = "select C001203 from a001 a,c001 c where a.A001715=c.postid and a.id='"+userID+"'";
+		ActivePageAPI activeapi = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
+		String xinji = activeapi.queryForString(sql);
+		String subid = SequenceGenerator.getKeyId("A223");
+		sql = "insert into a223 (id,subid,A223000,A223200,A223205) values ('"+userID+"','"+subid+"','00901','"+xinji+"','"+currStatus+"')";
+		activeapi.executeSql(sql);
+	}
 	
 	//获取所有下级岗位
 	public static String getAllSubPostIDs(String operUserID) throws SysException{
@@ -274,9 +274,9 @@ public class CommonUtil {
 	}
 	
 	//获取所有在自助中的大模块
-	public static List<OperateBO> getAllModulesInSelf(String userID) throws SysException{
+	public static List<OperateBO> getAllModulesInSelf() throws SysException{
 		CommonDAO commonDAO = (CommonDAO)SysContext.getBean("commondao");
-		return commonDAO.getAllModulesInSelf(userID);
+		return commonDAO.getAllModulesInSelf();
 	}
 
 	//是否有审批

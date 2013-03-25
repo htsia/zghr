@@ -6,6 +6,7 @@
     	<property name="jdbcTemplate" ref="jdbcTemplate" />
     	<property name="activeapi" ref="sys_activePageApi" />
     </bean>
+    <bean id="busiProcess" class="com.hr319wg.emp.web.IBusiProcessImpl"/>
     
     <bean id="common_proemp" class="com.hr319wg.custom.util.CommonProcEmp">
     	<property name="activeapi" ref="sys_activePageApi" />
@@ -53,16 +54,35 @@
            <property name="activeapi" ref="sys_activePageApi" />
            <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
+
+<!--     common -->
+    <bean id="commonserviceImpl" class="com.hr319wg.custom.common.service.CommonServiceImpl">
+           <property name="commonDAO" ref="commondao" />
+           <property name="pageAPI" ref="sys_activePageApi" />
+           <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+    
+    <bean id="commonservice" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.custom.common.service.ICommonService</value>
+                </list>
+            </property>
+            <property name="target" ref="commonserviceImpl"/>
+            <property name="transactionManager" ref="transactionManager"/>
+            <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    
     <!-- 薪酬管理 -->
-<!--     <bean id="wageAdjustService" class="com.hr319wg.custom.emp.service.WageAdjustService"> -->
-<!--            <property name="commonDAO" ref="commondao" /> -->
-<!--            <property name="activeapi" ref="sys_activePageApi" /> -->
-<!--     </bean> -->
-<!--     <bean id="wage_datadao" class="com.hr319wg.custom.wage.dao.WageDataDAO"> -->
-<!-- 		<property name="hibernatetemplate" ref="hibernateTemplate"/> -->
-<!--     </bean> -->
+    <bean id="wageAdjustService" class="com.hr319wg.custom.emp.service.WageAdjustService">
+           <property name="commonDAO" ref="commondao" />
+           <property name="activeapi" ref="sys_activePageApi" />
+    </bean>
+    <bean id="wage_datadao" class="com.hr319wg.custom.wage.dao.WageDataDAO">
+		<property name="hibernatetemplate" ref="hibernateTemplate"/>
+    </bean>
     <bean id="wage_dataserviceImpl" class="com.hr319wg.custom.wage.service.WageDataServiceImpl">
-<!--            <property name="wageDataSetDAO" ref="wage_datadao" /> -->
+           <property name="wageDataSetDAO" ref="wage_datadao" />
            <property name="activeapi" ref="sys_activePageApi" />
            <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>

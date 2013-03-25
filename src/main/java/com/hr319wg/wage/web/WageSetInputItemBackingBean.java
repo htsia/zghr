@@ -1,26 +1,20 @@
 package com.hr319wg.wage.web;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import jxl.Sheet;
 import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -772,6 +766,7 @@ public class WageSetInputItemBackingBean extends BaseBackingBean
     return "success";
   }
 
+  	//批量导入
 	public String uploadFile() {
 		this.showError=false;
 		if (!WageTools.addUploadOperCount()) {
@@ -801,11 +796,11 @@ public class WageSetInputItemBackingBean extends BaseBackingBean
 			for(int i=1;i<row;i++){
 				boolean pass=true;
 				Map m=new HashMap();
-				String pCode = st.getCell(0, i).getContents();
+				String pCode = st.getCell(0, i).getContents().trim();
 				if(pCode==null || "".equals(pCode)){
 					break;
 				}
-				PersonBO p = SysCacheTool.findPersonByCode(pCode.trim());
+				PersonBO p = SysCacheTool.findPersonByCode(pCode);
 				if(p==null){
 					FileUtil.addErrorFormatLabel(bw, i, 0, "人员编号"+pCode+"不存在");
 					pass=false;
@@ -829,17 +824,27 @@ public class WageSetInputItemBackingBean extends BaseBackingBean
 					}
 				}
 				for(int j=0;j<fieldLen;j++){
-					String v=st.getCell(j+2, i).getContents();
-					double v1=0;
-					if(v!=null && !"".equals(v)){
+					String v=st.getCell(j+2, i).getContents().trim();
+					if(v!=null && !"".equals(v) && !"null".equals(v)){
 						try {
-							v1=Double.valueOf(v);
+							Double.valueOf(v);
+							String v1="0";
+							String type=cols[j].getItemDataType();
+							if(InfoItemBO.DATA_TYPE_INT.equals(type)){
+								if (v.indexOf(".") > 0) {
+									v1 = v.substring(0, v.indexOf("."));
+								}								
+							}else if(InfoItemBO.DATA_TYPE_FLOAT.equals(type)){
+								v1= CommonFuns.formateItem(cols[j].getItemDataType(), cols[j].getItemPrecision(), v);								
+							}
 							m.put(this.inputField[j], v1);
 						} catch (Exception e) {
 							FileUtil.addErrorFormatLabel(bw, i, j+1, "应为数字");
 							pass=false;
 							this.showError=true;
 						}
+					}else{
+						m.put(this.inputField[j], "0");
 					}
 				}
 				if(pass){

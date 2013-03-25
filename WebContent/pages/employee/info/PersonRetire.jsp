@@ -10,6 +10,13 @@
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
     String mode = request.getParameter("mode");     //支持的减员类别
     String afterType = CommonFuns.filterNull(request.getParameter("afterType"));     //支持的减员类别
+    String title = "";
+    if ("TOMCAT".equals(CommonFuns.getAppType())) {
+        title = CommonFuns.getParaFromURL(request.getQueryString(), "title");
+    } else {
+        title = request.getParameter("title");
+    }
+
 %>
     <script type="text/javascript">
         function hideChangeUnit(){
@@ -49,8 +56,9 @@
             <tr><td >
                  <strong>
                   <%
-                    out.println(LanguageSupport.getResource("RYGL-2371","需要办理人员："));
-                    out.println("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color='red'>");
+                    out.println(LanguageSupport.getResource("RYGL-2371","以下人员要办理"));
+                    out.println(title);
+                    out.println("&nbsp;&nbsp; <font color='red'>");
                     // 死亡不需要审批
                     if (!"0200221231".equals(mode) && ("1".equals(Constants.EMP_REDUCE_AFTER_APPROVE) || "2".equals(Constants.EMP_REDUCE_AFTER_APPROVE))){
                          out.println(LanguageSupport.getResource("RYGL-2372","注意只有审批后才生效"));
@@ -80,7 +88,7 @@
                 <td width="140" class=td_form01><%=LanguageSupport.getResource("RYGL-2373","减员类别") %></td>
                 <td class=td_form02>
 </f:verbatim>
-                    <h:inputText styleClass="input" id="A016010" readonly="true" code="" dict="yes" dict_num="0200"
+                    <h:inputText styleClass="input" id="A016010" code="" dict="yes" dict_num="0200"
                                  value="#{emp_PersonDismissBB.personchangevo.changeType}" alt="减员类别|0|s|50||"/>
 <f:verbatim>
                         <%
@@ -91,7 +99,7 @@
                 <td  width="140" class=td_form01><%=LanguageSupport.getResource("RYGL-2374","减员日期") %></td>
                 <td class=td_form02>
  </f:verbatim>
-                    <h:inputText styleClass="input" id="A016020" readonly="true" value="#{emp_PersonDismissBB.personchangevo.changeDate}"
+                    <h:inputText styleClass="input" id="A016020" value="#{emp_PersonDismissBB.personchangevo.changeDate}"
                                  alt="减员日期|0|s|50||"/>
  <f:verbatim>
                   <input type="button" class="button_date" onclick="selRetireTime();"></td>
@@ -101,7 +109,7 @@
                 <td  class=td_form01 ><%=LanguageSupport.getResource("RYGL-2368","变更后人员类别") %></td>
                 <td class=td_form02>
  </f:verbatim>
-                    <h:inputText styleClass="input" id="A001054" readonly="true" code="" dict="yes" dict_num="0135"
+                    <h:inputText styleClass="input" id="A001054" code="" dict="yes" dict_num="0135"
                                  value="#{emp_PersonDismissBB.afterType}" alt="变更后人员类别|0|s|50||"/>
  <f:verbatim>
                      <%
@@ -120,9 +128,9 @@
     </td>
      <td class='</f:verbatim><h:outputText value="td_form02" rendered="#{emp_PersonDismissBB.useA001725}"/><f:verbatim>'>
  </f:verbatim>
-        <h:inputText styleClass="input" id="A001725" readonly="true" code="" dict="yes" dict_num="0145" rendered="#{emp_PersonDismissBB.useA001725}"
+        <h:inputText styleClass="input" id="A001725" code="" dict="yes" dict_num="0145" rendered="#{emp_PersonDismissBB.useA001725}"
          value="#{emp_PersonDismissBB.afterStatus}" alt="变更后当前状态|0|s|50||"/>
-        <h:commandButton type="button"  styleClass="button_select" rendered="#{emp_PersonDismissBB.useA001725}" onclick="PopUpCodeDlgOneControl('form1:A001725')" />
+        <h:commandButton type="button" styleClass="button_select" rendered="#{emp_PersonDismissBB.useA001725}" onclick="PopUpCodeDlgOneControl('form1:A001725')" />
  <f:verbatim>
      </td>
      </tr>
@@ -131,7 +139,7 @@
      <td  class=td_form01 ><span id="changeLabel">离开单位</span></td>
      <td class=td_form02>
   </f:verbatim>
-         <h:inputText styleClass="input" id="changeUnit" value="#{emp_PersonDismissBB.personchangevo.changeUnit}"
+         <h:inputText styleClass="input" id="changeUnit" readonly="true" value="#{emp_PersonDismissBB.personchangevo.changeUnit}"
                       alt="离开单位|1|s|50||"/>
   <f:verbatim>
      </td>
@@ -142,12 +150,15 @@
              </td>
             <td class='</f:verbatim><h:outputText value="td_form02" rendered="#{sys_commonInfoBB.enableLeaveReason}"/><f:verbatim>'>
 </f:verbatim>
-               <h:inputText styleClass="input" id="reason" readonly="true" code="" dict="yes" dict_num="2237"  rendered="#{sys_commonInfoBB.enableLeaveReason}"
+               <h:inputText styleClass="input" id="reason" code="" dict="yes" dict_num="2237"  rendered="#{sys_commonInfoBB.enableLeaveReason}"
                 value="#{emp_PersonDismissBB.personchangevo.reason}" alt="离职原因|0|s|50||"/>
                <h:commandButton type="button" styleClass="button_select"  rendered="#{sys_commonInfoBB.enableLeaveReason}" onclick="PopUpCodeDlgOneControl('form1:reason')" />
 <f:verbatim>
             </td>
+
          </tr>
+
+
     <tr nowrap>
          <td  class=td_form01 >
     </f:verbatim>

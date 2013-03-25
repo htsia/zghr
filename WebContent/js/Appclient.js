@@ -354,7 +354,8 @@ function PopUpCalendarDlg_OnlyYear(obj) {   // 只选到年份
  *
  */
 function windowOpen(theURL, winName, features, width, hight, scrollbars, top, left, resizable) {
-    var parameter = features + " top=" + top + ",left=" + left + ",width=" + width + ",height=" + hight+"location=no";
+    var parameter = features + " top=" + top + ",left=" + left + ",width=" + width + ",height=" + hight;
+    //+"location=no";
     if (scrollbars == "no") {
         parameter += ",scrollbars=no";
     } else {
@@ -437,7 +438,7 @@ function PopUpCodeDlgTwoControlSelectAll(codec, valuec, dict_num, rootCodeId) {
  *       useRightFlag 权限方式 0-不使用 1-使用查询权限过滤,2-使用维护权限过滤；
  *       rootOrgId根节点的机构编号，可以用“，”分隔
  */
-function PopUpOrgDlg(obj, useRightFlag, rootOrgId) {
+function PopUpOrgDlg(obj, useRightFlag, rootOrgId, onlyOrg) {
     var ctrlobj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
@@ -450,6 +451,7 @@ function PopUpOrgDlg(obj, useRightFlag, rootOrgId) {
     arg += "&value=" + ctrlobj.value;
     arg += "&rightFlag=" + useRightFlag;
     arg += "&rootId=" + rootOrgId;
+    arg += "&onlyOrg=" + onlyOrg;
 
     retval = window.showModalDialog("/pages/common/SelOrg.jsp?" + arg, "", "dialogWidth:300px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
     if (retval != null) {
@@ -481,7 +483,7 @@ function PopUpOrgOnlyDlg(obj, useRightFlag, rootOrgId) { //   仅仅显示机构 useRi
     }
 }
 
-function PopUpOrgDlgShowGroup(obj, useRightFlag, rootOrgId) {    // 显示班组
+function PopUpOrgDlgShowGroup(obj, useRightFlag, rootOrgId, onlyOrg) {    // 显示班组
     var ctrlobj = document.getElementById(obj);
     showx = event.screenX - event.offsetX - 150;
     // + deltaX;
@@ -496,6 +498,7 @@ function PopUpOrgDlgShowGroup(obj, useRightFlag, rootOrgId) {    // 显示班组
     arg += "&value=" + ctrlobj.value;
     arg += "&rightFlag=" + useRightFlag;
     arg += "&rootId=" + rootOrgId;
+    arg += "&onlyOrg=" + onlyOrg;
     arg+="&showGroup=1";
 
     retval = window.showModalDialog("/pages/common/SelOrg.jsp?" + arg, "", "dialogWidth:300px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
@@ -1255,7 +1258,7 @@ function fPopUpPostDlg(obj1, obj2, superId) {
 *        obj2 描述控件ID
 *        superId 要查岗位的机构代码
 */
-function fPopUpPostDlgRy(obj1, obj2, orgId) {
+function fPopUpPostDlgRy(obj1, obj2, superId) {
     if (obj1 == null)
         return;
     if (obj1 != "[object]")
@@ -1267,10 +1270,14 @@ function fPopUpPostDlgRy(obj1, obj2, orgId) {
     else if (obj2 != null) {
         obj21 = obj2
     }
+    if (superId == null) {
+        superId = "";
+    }
 
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
-    retval = window.showModalDialog("/common/SelRyPost.jsf?fk=" + fk+"&orgId="+orgId, "", "dialogWidth:700px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
+
+    retval = window.showModalDialog("/common/SelRyPost.jsf?fk=" + fk, "", "dialogWidth:700px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
     if (retval != null) {
         rs = retval.split(",");
         if (obj2 != null) {
@@ -1298,41 +1305,8 @@ function PopUpPostDlgByDept(obj1, obj2, superId) {
     else if (obj2 != null) {
         obj21 = obj2
     }
-
-    showx = event.screenX - event.offsetX - 150;
-    showy = event.screenY - event.offsetY + 18;
-
-    retval = window.showModalDialog("/common/SelPostByDept.jsf?superId=" + superId, "", "dialogWidth:700px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
-    if (retval != null) {
-        rs = retval.split(",");
-        if (obj2 != null) {
-            obj11.value = rs[0];
-            obj21.value = rs[1];
-        } else {
-            obj11.value = rs[1];
-            obj11.code = rs[0];
-        }
-        return true;
-    } else {
-        return false;
-    }
-}
-function PopUpPostDlgByDept1(obj1, obj2, superId) {
-    if (obj1 == null)
-        return;
-    if (obj1 != "[object]")
-        obj11 = document.getElementById(obj1);
-    else
-        obj11 = obj1;
-    if (obj2 != "[object]" && obj2 != null)
-        obj21 = document.getElementById(obj2);
-    else if (obj2 != null) {
-        obj21 = obj2
-    }
-    superId=document.getElementById(superId).code;
-    if(superId==''){
-    	alert("请选择部门");
-    	return false;
+    if (superId == null) {
+        superId = "";
     }
 
     showx = event.screenX - event.offsetX - 150;

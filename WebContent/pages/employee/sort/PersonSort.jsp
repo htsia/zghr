@@ -128,6 +128,7 @@
               <h:outputText value="      "></h:outputText>
               <h:outputText value="每次移动位数:"></h:outputText>
               <h:inputText id="step" value="1" />
+    
 <c:verbatim>
             </td>
 

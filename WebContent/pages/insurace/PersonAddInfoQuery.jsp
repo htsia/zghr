@@ -40,9 +40,9 @@
                 	return false;
             } else {
                 alert("请选择人员");
-                return false;
+               	return false;
             }
-            return false;
+           	return false;
         }
         function forExport() {
             window.open('/pages/common/ExportToExcel.jsp?sessionKey=<%=Constants.OBJECT%>');
@@ -93,7 +93,7 @@
                 </td>
                 <td height=10 class="td_page">
       </f:verbatim>
-                    <h:commandButton value="录入基数" type="button" styleClass="button01" onclick="return doSelectInfoInput();" action="{emp_personListBB.queryPerson}"></h:commandButton>
+                    <h:commandButton value="录入基数" type="button" styleClass="button01" onclick="return doSelectInfoInput();"></h:commandButton>
       <f:verbatim>
                 </td>
             </tr>

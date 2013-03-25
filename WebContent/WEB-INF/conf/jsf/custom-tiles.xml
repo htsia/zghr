@@ -42,9 +42,7 @@
                 ]>
 
 <tiles-definitions>
-	<definition name="/employee/info/PersonSubSetQueryList.tiles" extends="layout.busitemplateSelf">
-        <put name="body" value="/pages/employee/info/personSubSetQueryList.jsp"/>
-    </definition>
+
 	<definition name="/common/SelRyPost.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/common/SelRyPost.jsp"/>
     </definition>
@@ -60,6 +58,19 @@
     </definition>
     
     <!-- 薪酬相关 -->
+    <definition name="/custom/wage/wageCodeList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/codeSetList.jsp"/>
+    </definition>
+    <definition name="/custom/wage/codeSetEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/codeSetEdit.jsp"/>
+    </definition>
+    <definition name="/custom/wage/codeItemList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/codeItemList.jsp"/>
+    </definition>
+    <definition name="/custom/wage/codeItemEdit.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/wage/codeItemEdit.jsp"/>
+    </definition>
+    
     <definition name="/custom/selPerson.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/selPerson.jsp"/>
     </definition>

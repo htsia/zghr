@@ -135,15 +135,15 @@
         <table width="95%"  >
             <tr><td align="right">
       </f:verbatim>
-                <h:outputText escape="false" value="<strong>开始日期<strong>"/>
+                <h:outputText escape="false" value="<strong>开始时间<strong>"/>
                 <h:panelGroup>
-                    <h:inputText value="#{wage_dateBB.startDate}" id="startDate" alt="开始日期|0|d"/>
+                    <h:inputText value="#{wage_dateBB.startDate}" id="startDate" alt="开始时间|0|d"/>
                     <h:outputText value=" "/>
                     <h:commandButton type="button" styleClass="button_date"  onclick="PopUpCalendarDialog('form1:startdate')"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="<strong>结束日期</strong>"/>
+                <h:outputText escape="false" value="<strong>结束时间</strong>"/>
                 <h:panelGroup>
-                    <h:inputText value="#{wage_dateBB.endDate}" id="endDate" alt="结束日期|0|d"/>
+                    <h:inputText value="#{wage_dateBB.endDate}" id="endDate" alt="结束时间|0|d"/>
                     <h:outputText value=" "/>
                     <h:commandButton type="button" styleClass="button_date" onclick="PopUpCalendarDialog('form1:endDate')"/>
                 </h:panelGroup>
@@ -179,7 +179,7 @@
             </h:column>
 
             <h:column>
-                <c:facet name="header"><h:outputText value="最后计算日期"/></c:facet>
+                <c:facet name="header"><h:outputText value="最后计算时间"/></c:facet>
                 <h:outputText value="#{list.calcDate}"/>
             </h:column>
 

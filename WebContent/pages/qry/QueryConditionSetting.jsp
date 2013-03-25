@@ -70,12 +70,11 @@
     }
 </script>
 <c:verbatim>
-<table width="100%" border="0" cellspacing="6" cellpadding="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td class="td_title"> <img src="/images/tips.gif" > 设定查询条件 </td>
     </tr>
 </table>
-
 <table width="98%" height="85%" border="0" align="center">
     <tr valign="top">
         <td width="25%" rowspan="2">
@@ -106,7 +105,7 @@
 
     <tr>
         <td align="left" valign="top">
-            <div style="height:340px; overflow-y:scroll;">
+            <div style="height:330px; overflow-y:scroll;">
                 <table width="100%" border="0" align="center" cellpadding="5" cellspacing="1" class="td02" id=PLList>
                     <tr class="td_top">
                         <td colspan="6" class="F08">查询条件列表：</td>

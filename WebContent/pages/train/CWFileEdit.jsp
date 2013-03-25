@@ -13,25 +13,11 @@
                 alert("请选择文件");
                 return false;
             }
-            
-            x = document.body.clientWidth / 2 - 150;
-			y = document.body.clientHeight / 2;
-			document.all('processbar').style.top = y;
-			document.all('processbar').style.left = x;
-			document.all('processbar').style.display = "";
             return true;
          }
          function doCheck(){
             if (document.all('form1:title').value==""){
                 alert("请录入标题!");
-                return false;
-            }
-            if (document.all('form1:startDate').value==""){
-                alert("请选择生效时间!");
-                return false;
-            }
-            if (document.all('form1:endDate').value==""){
-                alert("请选择结束时间!");
                 return false;
             }
             return true;
@@ -69,14 +55,6 @@
                 <td class="td_form02">
 </c:verbatim>
                     <h:inputText  id="title" value="#{train_courceeditbb.filebo.title}"></h:inputText>
-<c:verbatim>
-                </td>
-            </tr>
-            <tr>
-                <td class="td_form01">顺序</td>
-                <td class="td_form02">
-</c:verbatim>
-                    <h:inputText  id="itemOrder" value="#{train_courceeditbb.filebo.itemOrder}"></h:inputText>
 <c:verbatim>
                 </td>
             </tr>
@@ -119,21 +97,21 @@
                 </td>
             </tr>
             <tr>
-                 <td class="td_form01">是否公共</td>
+                 <td class="td_form01">观看方式</td>
                  <td class="td_form02">
 </c:verbatim>
-                     <h:selectOneMenu value="#{train_courceeditbb.filebo.publicFlag}">
-                         <c:selectItem itemValue="1" itemLabel="是"></c:selectItem>
-                         <c:selectItem itemValue="0" itemLabel="否"></c:selectItem>
+                     <h:selectOneMenu value="#{train_courceeditbb.filebo.action}">
+                         <c:selectItem itemValue="1" itemLabel="播放"></c:selectItem>
+                         <c:selectItem itemValue="2" itemLabel="链接"></c:selectItem>
                      </h:selectOneMenu>
 <c:verbatim>
                  </td>
             </tr>
             <tr>
-                 <td class="td_form01">是否置顶</td>
+                 <td class="td_form01">是否公共</td>
                  <td class="td_form02">
 </c:verbatim>
-                     <h:selectOneMenu value="#{train_courceeditbb.filebo.top}">
+                     <h:selectOneMenu value="#{train_courceeditbb.filebo.publicFlag}">
                          <c:selectItem itemValue="1" itemLabel="是"></c:selectItem>
                          <c:selectItem itemValue="0" itemLabel="否"></c:selectItem>
                      </h:selectOneMenu>
@@ -153,17 +131,3 @@
     </table>
 </c:verbatim>
 </h:form>
-<marquee id="processbar" style="position:absolute;display:none; border:1px solid #000000" direction="right" width="300"
-         scrollamount="5" scrolldelay="10"
-         bgcolor="#ECF2FF">
-    <table cellspacing="1" cellpadding="0">
-        <tr height=8>
-            <td bgcolor=#3388FF width=9></td>
-            <td></td>
-            <td bgcolor=#3388FF width=9></td>
-            <td></td>
-            <td bgcolor=#3388FF width=9></td>
-            <td></td>
-        </tr>
-    </table>
-</marquee>

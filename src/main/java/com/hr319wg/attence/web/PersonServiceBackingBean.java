@@ -11,6 +11,8 @@ public class PersonServiceBackingBean extends BaseBackingBean {
     private String groupName;
     private String personName;
     
+    
+    
 	public String getPersonName() {
 		return personName;
 	}

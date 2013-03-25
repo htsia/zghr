@@ -50,7 +50,7 @@
                 document.forms(1).method = "post";
                 var act;
                 if (document.all("form1:mode").value=="0200221231"){  // À¿Õˆ
-                   act="/employee/info/PersonDie.jsf?title="+document.all("form1:title").value+"&mode="+document.all("form1:mode").value+"&afterType="+document.all("form1:afterType").value;
+                   act="/employee/info/PersonDie.jsf?title="+document.all("form1:title").value+"&mode="+document.all("form1:mode").value+"&afterType="+document.all("form1:afterType").value; 
                 }
                 else{
                    act="/employee/info/PersonRetire.jsf?mode="+document.all("form1:mode").value+"&afterType="+document.all("form1:afterType").value+"&title="+document.all("form1:title").value;

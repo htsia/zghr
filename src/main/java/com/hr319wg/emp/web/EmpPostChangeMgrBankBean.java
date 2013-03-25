@@ -10,10 +10,13 @@ import java.util.Map;
 
 import javax.faces.event.ValueChangeEvent;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
+import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.util.CommonUtil;
 import com.hr319wg.emp.pojo.bo.EmpBeginnerBO;
 import com.hr319wg.emp.pojo.bo.EmpPostChangeBO;
@@ -22,6 +25,8 @@ import com.hr319wg.emp.pojo.bo.OrgPostChangeBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.ucc.IEmpBeginnerUCC;
 import com.hr319wg.emp.ucc.IEmpPostChangeUCC;
+import com.hr319wg.org.pojo.bo.OrgBO;
+import com.hr319wg.post.pojo.bo.PostBO;
 import com.hr319wg.post.util.PostTool;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
@@ -408,15 +413,30 @@ public IWageSetPersonUCC getWagesetpersonucc()
         {
           EmpPostChangeBO bo = (EmpPostChangeBO)this.empPostChangeList.get(i);
           bo.setPersonName(SysCacheTool.findPersonById(bo.getPersonId()).getName());
-          if ((bo.getOldPost() != null) && (!bo.getOldPost().equals("")))
-            bo.setOldPost(PostTool.getPostName(bo.getOldPost()));
-          if ((bo.getOldJob() != null) && (!bo.getOldJob().equals("")))
-            bo.setOldJob(CodeUtil.interpertCode(bo.getOldJob()));
-          bo.setNewDept(SysCacheTool.findOrgById(bo.getNewDept()).getName());
-          if ((bo.getNewPost() != null) && (!bo.getNewPost().equals("")))
-            bo.setNewPost(PostTool.getPostName(bo.getNewPost()));
-          if ((bo.getNewJob() != null) && (!bo.getNewJob().equals("")))
-            bo.setNewJob(CodeUtil.interpertCode(bo.getNewJob()));
+          OrgBO org=SysCacheTool.findOrgById(bo.getOldDept());
+          if(org!=null){
+        	  bo.setOldDept(org.getName());        	  
+          }else{
+        	  bo.setOldDept(bo.getOldDept());
+          }
+          org=SysCacheTool.findOrgById(bo.getNewDept());
+          if(org!=null){
+        	  bo.setNewDept(org.getName());        	  
+          }else{
+        	  bo.setNewDept(bo.getOldDept());
+          }
+          PostBO post=SysCacheTool.findPost(bo.getOldPost());
+          if(post!=null){
+        	  bo.setOldPost(post.getName());        	  
+          }else{
+        	  bo.setOldPost(bo.getOldPost());      
+          }
+          post=SysCacheTool.findPost(bo.getNewPost());
+          if(post!=null){
+        	  bo.setNewPost(post.getName());        	  
+          }else{
+        	  bo.setNewPost(bo.getNewPost());      
+          }
           bo.setChangeReasonDes(CodeUtil.interpertCode(bo.getChangeReason()));
         }
       }
@@ -559,7 +579,7 @@ public IWageSetPersonUCC getWagesetpersonucc()
 				if ((opo != null) && (opo.getWageItem() != null)&& (!opo.getWageItem().equals(""))){
 					this.adjustucc.createAdjustDetail(changbo.getPersonId(),adjust.getItemID(), opo.getWageItem().split(","));
 				}
-//				CommonUtil.setWageAdjust(adjust.getItemID(), changbo.getPersonId(), changbo, false);
+				CommonUtil.setWageAdjust(adjust.getItemID(), changbo.getPersonId(), changbo, false);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -975,21 +995,29 @@ public IWageSetPersonUCC getWagesetpersonucc()
     try {
       if ((this.personIds != null) && (!"".equals(this.personIds))) {
         String[] ids = this.personIds.split(",");
+        JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
         for (int i = 0; i < ids.length; i++)
           if ((ids[i] != null) && (!ids[i].equals(""))) {
             EmpPostChangeBO bo = this.emppostchangeucc.findEmpPostChangeBOById(ids[i]);
+            
             bo.setHrValidDate(this.efictDate);
             bo.setAddResume(this.addResume);
             this.emppostchangeucc.personMessageChange(super.getUserInfo(), bo);
             bo.setStatus(EmpPostChangeBO.HUMANEFFICIRNT);
             this.emppostchangeucc.saveEmpPostChangeBO(bo);
+            if(bo.getOldPost()!=null){
+            	jdbcTemplate.execute("update c001 set c001735=c001735 where postid='"+bo.getOldPost()+"'");
+            }
+            if(bo.getNewPost()!=null){
+            	jdbcTemplate.execute("update c001 set c001735=c001735 where postid='"+bo.getNewPost()+"'");
+            }
+            
             WageAdjustBO adjust = this.adjustucc.getWageAdjustBOByLinkID(bo.getPostChangeId());
             adjust.setApproStatus("1");
             this.adjustucc.saveWageAdjustBO(adjust);
             if ("1".equals(bo.getLinkBeginMgr())) {
               linkAddBegin(bo);
             }
-
             if ("1".equals(Constants.EMP_POST_CHANGE_LINK)) {
               this.wagesetpersonucc.adjustWageDept(super.getUserInfo(), bo);
             }

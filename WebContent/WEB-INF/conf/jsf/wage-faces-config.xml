@@ -360,7 +360,7 @@
 
     <managed-bean>
         <managed-bean-name>wage_standardBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.wage.web.WageStandardBackingBean</managed-bean-class>
+        <managed-bean-class>com.hr319wg.custom.extend.web.WageStandardBackingBeanByExtend</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
         <managed-property>
             <property-name>wagestandarducc</property-name>
@@ -562,7 +562,7 @@
 
     <managed-bean>
         <managed-bean-name>wage_setPersonBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.wage.web.WageSetPersonBackingBean</managed-bean-class>
+        <managed-bean-class>com.hr319wg.custom.extend.web.WageSetPersonBackingBeanByExtend</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
         <managed-property>
             <property-name>wagesetpersonucc</property-name>
@@ -600,6 +600,10 @@
         <managed-property>
             <property-name>userapi</property-name>
             <value>#{user_pmsAPI}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>dataService</property-name>
+            <value>#{wage_dataserviceImpl}</value>
         </managed-property>
     </managed-bean>
 
@@ -1218,6 +1222,7 @@
         
     </managed-bean>
     
+    
     <managed-bean>
         <managed-bean-name>wage_flowBB</managed-bean-name>
         <managed-bean-class>com.hr319wg.wage.web.WageFlowBackingBean</managed-bean-class>
@@ -1613,7 +1618,7 @@
 
     <managed-bean>
         <managed-bean-name>wage_computeBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.wage.web.WageComputeBackingBean</managed-bean-class>
+        <managed-bean-class>com.hr319wg.custom.extend.web.WageComputeBackingBeanByExtend</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
         <managed-property>
             <property-name>wagecomputeucc</property-name>
@@ -2694,7 +2699,7 @@
         <from-view-id>/wage/payoff/SetSelectToExport.jsp</from-view-id>
         <navigation-case>
             <from-outcome>toExcel</from-outcome>
-            <to-view-id>/pages/common/ExportToExcel.jsp</to-view-id>
+            <to-view-id>/pages//wage/payoff/exportWage.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
 

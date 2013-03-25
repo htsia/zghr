@@ -94,7 +94,6 @@
     <c:verbatim>
         <jsp:include page="/pages/common/activepage/ActiveDetail.jsp">
             <jsp:param name="isEdit" value="true"/>
-            <jsp:param name="setId" value="C001"/>
         </jsp:include>
     </c:verbatim>
 </h:form>

@@ -505,6 +505,10 @@
             <property-name>wfservice</property-name>
             <value>#{sys_wfservice}</value>
         </managed-property>
+        <managed-property>
+            <property-name>commonService</property-name>
+            <value>#{commonservice}</value>
+        </managed-property>
     </managed-bean>
     
     <managed-bean>

@@ -107,7 +107,7 @@
         <h:column>
             <f:facet name="header">
                <f:verbatim>
-                    <%=LanguageSupport.getResource("XTGL-1003","·¶Î§")%>  
+                    <%=LanguageSupport.getResource("XTGL-1003","¹ ‡ú")%>  
                 </f:verbatim>
             </f:facet>
             <h:outputText escape="false" value="#{list.setScaleName}"/>

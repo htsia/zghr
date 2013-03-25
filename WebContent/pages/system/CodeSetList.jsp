@@ -55,8 +55,9 @@
                     <h:inputText value="" styleClass="input" id="searchName" />
                     <h:commandButton value="检 索" action="" styleClass="button01"  onclick="return forSearch(document.all('formCodeSetList:searchName').value)"  />
                     <h:commandButton value="新 建" action="add" styleClass="button01"  rendered="#{sys_codeSetListBB.operRight}" >
-                     <x:updateActionListener property="#{sys_codeSetEditBB.editStatus}" value="false"/>
-                        </h:commandButton>
+                    	<x:updateActionListener property="#{sys_codeSetEditBB.editStatus}" value="false"/>
+                    	<x:updateActionListener property="#{sys_codeSetEditBB.moudleID}" value=""/>
+                    </h:commandButton>
                     <h:commandButton value="删 除" action="#{sys_codeSetListBB.deleteCodeSets}" styleClass="button01"  rendered="#{sys_codeSetListBB.operRight}"  onclick="return checkBatchDelete('selectItem')" />
                     <h:commandButton value="启 用" action="#{sys_codeSetListBB.setStatusOpen}" onclick="return doCheckSelect();" styleClass="button01"  rendered="#{sys_codeSetListBB.operRight}"/>
                     <h:commandButton value="禁 用" action="#{sys_codeSetListBB.setStatusBan}" onclick="return doCheckSelect();" styleClass="button01"  rendered="#{sys_codeSetListBB.operRight}"/>
@@ -137,6 +138,7 @@
                         <h:commandButton id="modify" styleClass="button01" action="edit"   value="维护代码集">
                             <x:updateActionListener property="#{sys_codeSetEditBB.setId}" value="#{list.setId}"/>
                             <x:updateActionListener property="#{sys_codeSetEditBB.editStatus}" value="true"/>
+                            <x:updateActionListener property="#{sys_codeSetEditBB.moudleID}" value=""/>
                         </h:commandButton>
                         <h:commandButton id="view" styleClass="button01" action="itemlist" value="维护代码项">
                             <x:updateActionListener property="#{sys_codeItemListBB.setId}" value="#{list.setId}"/>
