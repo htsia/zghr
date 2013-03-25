@@ -36,9 +36,12 @@ public class InsDataDAO extends BaseDAO{
 		if(nameStr!=null && !"".equals(nameStr)){
 			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}
-		String boHql = "select bo "+hql +" order by u.secDeptID,u.deptId";
+		String boHql = "select bo,u.personType "+hql +" order by u.secDeptID,u.deptId";
 		String countHql = "select count(bo) "+hql;
-		
-		return this.pageQuery(pageVO, countHql, boHql);
+		if(pageVO!=null){
+			return this.pageQuery(pageVO, countHql, boHql);			
+		}else{
+			return this.hibernatetemplate.find(boHql);
+		}
 	}
 }

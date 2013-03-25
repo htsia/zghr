@@ -16,7 +16,7 @@
 		window.showModalDialog("/custom/ins/insDataEdit.jsf?ID="+ID,null,"dialogWidth:470px; dialogHeight:300px;center:center;resizable:yes;status:no;scroll:yes;");
 	}
 	function viewInsPay(ID, wageDate, status) {
-		window.showModalDialog("/custom/ins/insDataQuery.jsf?ID="+ID+"&wageDate="+wageDate+"&status="+status,null,"dialogWidth:1400px; dialogHeight:700px;center:center;resizable:yes;status:no;scroll:yes;");
+		window.showModalDialog("/custom/ins/insDataQuery.jsf?ID="+ID+"&wageDate="+wageDate+"&status="+status,null,"dialogWidth:1400px; dialogHeight:600px;center:center;resizable:yes;status:no;scroll:yes;");
 	}
 </script>
 <x:saveState value="#{ins_dataBB}" />

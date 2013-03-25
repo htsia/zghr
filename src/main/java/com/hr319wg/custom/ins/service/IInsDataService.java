@@ -32,8 +32,6 @@ public interface IInsDataService {
 	
 	public List getAllInsMonthPayBO(PageVO pageVO, String setID, String wageDate, String orgID, String personType, String nameStr) throws SysException;
 	
-	public List getInsMonthPaySum(String setID, String wageDate, String orgID, String personType, String nameStr) throws SysException;
-	
 	public void saveInsBaseData(String id,String tablename,String value, String date) throws SysException ;
 	
 	public void updateInsurceChangeInfo(String[] ids, String ChangeType, String ChangeDate, String changReason, String DepName, String[] inputInsurace) throws SysException;

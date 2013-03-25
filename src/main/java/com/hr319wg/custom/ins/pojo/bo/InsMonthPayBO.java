@@ -3,7 +3,7 @@ package com.hr319wg.custom.ins.pojo.bo;
 public class InsMonthPayBO {
 
 	private String subID;
-	private String userID;	
+	private String userID;
 	private String wageDate;
 	private String personYlao;
 	private String personShiye;
@@ -27,7 +27,14 @@ public class InsMonthPayBO {
     private String payAddress;
     private String insNO;
     private String selfPay;
+    private String insOther;
 	
+	public String getInsOther() {
+		return insOther;
+	}
+	public void setInsOther(String insOther) {
+		this.insOther = insOther;
+	}
 	public String getStatus() {
 		return status;
 	}
