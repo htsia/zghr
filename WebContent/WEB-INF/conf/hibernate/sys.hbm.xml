@@ -493,6 +493,7 @@
        <property name="newsSource" type="string" column="news_source"/>
        <property name="publicFlag" type="string" column="PUBLIC_FLAG"/>
        <property name="express" column="IS_EXPRESS"/>
+       <property name="itemOrder" column="ITEMORDER"/>
    </class>
 
    <class name="com.hr319wg.sys.pojo.bo.NewsContentBO"
