@@ -9,7 +9,7 @@
 
 <script type="text/javascript">
     function forAdd() {
-        window.showModalDialog("/lead/LeadResourceEdit.jsf", null, "dialogWidth:430px; dialogHeight:250px;center:center;resizable:no;status:no;scroll:no;");
+        window.showModalDialog("/lead/LeadResourceEdit.jsf?act=init", null, "dialogWidth:430px; dialogHeight:250px;center:center;resizable:no;status:no;scroll:no;");
         return true;
     }
     function forModify(ID) {
@@ -28,12 +28,6 @@
         }
         return true;
     }
-    function toconfirm(){
-          if (confirm(' 确定要删除吗 ?'))
-             return true;
-          else
-             return false;
-        }
 </script>
 
   <x:saveState id="resmaintenanceBackingBean" value="#{resmaintenanceBackingBean}"/>
@@ -47,10 +41,6 @@
 
 	   <h:panelGrid align="right" columns="4">
            <h:commandButton id="id_add" value="增加" styleClass="button01"    onclick="forAdd()"  />
-           <h:outputText value="    " />
-
-           <h:commandButton id="id_dele" value="删除" styleClass="button01" onclick="return toconfirm();"   action="#{resmaintenanceBackingBean.deleTypeList}"  />
-           <h:outputText value="    " />
 	  </h:panelGrid>
 	</h:panelGrid>
 

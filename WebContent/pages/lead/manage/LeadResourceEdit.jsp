@@ -8,8 +8,7 @@
 
 <x:saveState value="#{resmaintenanceBackingBean}"/>
 <h:form id="form1">
-    <h:inputHidden id="resmaintenanceBackingBean" value="#{resmaintenanceBackingBean.beginEdit}"/>
-    <h:inputHidden  id="resId" value="#{resmaintenanceBackingBean.leadResBO.resId}"/>
+    <h:inputHidden value="#{resmaintenanceBackingBean.beginEdit}"/>
     <h:panelGrid align="center" width="90%">
         <h:panelGrid columns="2" width="100%" columnClasses="td_form01,td_form02" align="center" styleClass="table03">
             <h:outputText value="ДњТы" />
