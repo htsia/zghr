@@ -236,7 +236,7 @@
             <column name="CONTENTID" sql-type="varchar(32)"/>
             <generator class="uuid.hex"/>
         </id>
-        <property name="personID" column="PID"/>
+        <property name="roleID" column="RID"/>
         <property name="operateID" column="OID"/>
         <property name="rptCode" column="RPTID"/>
          <property name="rptName" column="RPTNAME"/>
@@ -254,11 +254,11 @@
             <column name="CONTENTID" sql-type="varchar(32)"/>
             <generator class="uuid.hex"/>
         </id>
-        <property name="personID" column="PERSON_ID"/>
         <property name="operateID" column="OPERATE_ID"/>
         <property name="rptCode" column="RPTCODE"/>
         <property name="showQue" column="SHOW_QUE"/>
         <property name="wageset" column="wage_sets"/>
+        <property name="roleID" column="role_id"/>
     </class>
 
     <class name="com.hr319wg.user.pojo.bo.SelfInfoPowerBO" table="SYS_SELF_INFOPOWER">

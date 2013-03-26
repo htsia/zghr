@@ -117,7 +117,7 @@
         </property>
     </bean>
 
-    <bean id="user_userInfoDAO" class="com.hr319wg.user.dao.UserInfoDAO">
+    <bean id="user_userInfoDAO" class="com.hr319wg.custom.extend.dao.UserInfoDAOByExtend">
         <property name="hibernatetemplate">
             <ref bean="hibernateTemplate"/>
         </property>
@@ -216,7 +216,7 @@
         </property>
     </bean>
 
-    <bean id="user_roleManageService" class="com.hr319wg.user.service.RoleManageService">
+    <bean id="user_roleManageService" class="com.hr319wg.custom.extend.service.RoleManageServiceByExtend">
         <property name="userroledao">
             <ref bean="user_userRoleDAO"/>
         </property>

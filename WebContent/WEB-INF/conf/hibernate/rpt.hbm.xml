@@ -89,7 +89,7 @@
 			<generator class="uuid.hex" />
 		</id>
 		<property name="setId" column="SET_ID" />
-		<property name="userId" column="USER_ID" />
+		<property name="roleID" column="ROLE_ID" />
     </class>
 
      <!-- 表样定义 -->

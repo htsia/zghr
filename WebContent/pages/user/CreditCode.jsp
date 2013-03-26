@@ -125,6 +125,9 @@
                               if(list1!=null && list1.size()!=0){
                                   for(int i=0;i<list1.size();i++){
                                       CodeItemBO item =(CodeItemBO) list1.get(i);
+                                      if(item.getSetId().equals("0188")){
+                                    	  continue;
+                                      }
                                       StringBuffer sf = new StringBuffer();
                                       sf.append("var qT")
                                       .append(item.getItemId()).append("=qTree.addChkNode(");
@@ -178,6 +181,9 @@
                               if(list2!=null && list2.size()!=0){
                                   for(int i=0;i<list2.size();i++){
                                       CodeItemBO item =(CodeItemBO) list2.get(i);
+                                      if(item.getSetId().equals("0188")){
+                                    	  continue;
+                                      }
                                       StringBuffer sf = new StringBuffer();
                                       sf.append("var oT")
                                       .append(item.getItemId()).append("=oTree.addChkNode(");
