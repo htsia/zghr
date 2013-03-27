@@ -1,36 +1,74 @@
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ include file="../../include/taglib.jsp"%>
-
-<script type="text/javascript">
-    function forAddRes() {
-        window.showModalDialog("/lead/ChartResEdit.jsf?resId="+document.all("form1:resId").value+"&GraphID="+document.all("form1:graphID").value, null, "dialogWidth:360px; dialogHeight:280px;center:center;resizable:no;status:no;scroll:no;");
-        return true;
-    }
-    function forModifyRes(ID) {
-        window.showModalDialog("/lead/ChartResEdit.jsf?resId="+document.all("form1:resId").value+"&itemID="+ID, null, "dialogWidth:360px; dialogHeight:280px;center:center;resizable:no;status:no;scroll:no;");
-        return true;
-    }
-    function forAddSQL() {
-        window.showModalDialog("/lead/LeadSQLEdit.jsf?resId="+document.all("form1:resId").value, null, "dialogWidth:430px; dialogHeight:320px;center:center;resizable:no;status:no;scroll:no;");
-        return true;
-    }
-    function forModifySQL(ID) {
-        window.showModalDialog("/lead/LeadSQLEdit.jsf?resId="+document.all("form1:resId").value+"&sqlID="+ID, null, "dialogWidth:430px; dialogHeight:320px;center:center;resizable:no;status:no;scroll:no;");
-        return true;
-    }
-</script>
-
 <%
     response.setHeader("progma", "no-cache");
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
 
+<script type="text/javascript">
+    function forAddRes() {
+        window.showModalDialog("/lead/ChartResEdit.jsf?resId="+document.getElementById("form1:resId").value+"&GraphID="+document.getElementById("form1:graphID").value, null, "dialogWidth:360px; dialogHeight:280px;center:center;resizable:no;status:no;scroll:no;");
+        return true;
+    }
+    function forModifyRes(ID) {
+        window.showModalDialog("/lead/ChartResEdit.jsf?resId="+document.getElementById("form1:resId").value+"&itemID="+ID, null, "dialogWidth:360px; dialogHeight:280px;center:center;resizable:no;status:no;scroll:no;");
+        return true;
+    }
+    function forAddSQL() {
+        window.showModalDialog("/lead/LeadSQLEdit.jsf?resId="+document.getElementById("form1:resId").value, null, "dialogWidth:430px; dialogHeight:320px;center:center;resizable:no;status:no;scroll:no;");
+        return true;
+    }
+    function forModifySQL(ID) {
+        window.showModalDialog("/lead/LeadSQLEdit.jsf?resId="+document.getElementById("form1:resId").value+"&sqlID="+ID, null, "dialogWidth:430px; dialogHeight:320px;center:center;resizable:no;status:no;scroll:no;");
+        return true;
+    }
+    function forsave(){
+    	var graphTitle=document.getElementById("form1:graphTitle").value;
+    	if(graphTitle==''){
+    		alert("请输入图标标题");
+    		return false;
+    	}
+        var labelTitleX=document.getElementById("form1:labelTitleX").value;
+        if(labelTitleX==''){
+    		alert("请输入X轴标题");
+    		return false;
+    	}
+        var labelTitleY=document.getElementById("form1:labelTitleY").value;
+        if(labelTitleY==''){
+    		alert("请输入Y轴标题");
+    		return false;
+    	}
+        var smallWidth=document.getElementById("form1:smallWidth").value;
+        if(smallWidth=='' || isNaN(smallWidth)){
+    		alert("小图宽为数字");
+    		return false;
+    	}
+        var smallHeight=document.getElementById("form1:smallHeight").value;
+        if(smallHeight=='' || isNaN(smallHeight)){
+    		alert("小图高为数字");
+    		return false;
+    	}
+        var largeWidth=document.getElementById("form1:largeWidth").value;
+        if(largeWidth=='' || isNaN(largeWidth)){
+    		alert("大图宽为数字");
+    		return false;
+    	}
+        var largeHeight=document.getElementById("form1:largeHeight").value;
+        if(largeHeight=='' || isNaN(largeHeight)){
+    		alert("大图高为数字");
+    		return false;
+    	}
+        return true;
+    }
+</script>
+
+
 <x:saveState value="#{leadfmtmaintenanceBackingBean}"/>
 	<h:form id="form1">
-    <h:inputHidden id="init" value="#{leadfmtmaintenanceBackingBean.runquery}"></h:inputHidden>
-    <h:inputHidden id="resId" value="#{leadfmtmaintenanceBackingBean.resId}"></h:inputHidden>
-    <h:inputHidden id="graphID" value="#{leadfmtmaintenanceBackingBean.gbo.graphID}"></h:inputHidden>
+    <h:inputHidden id="init" value="#{leadfmtmaintenanceBackingBean.runquery}"/>
+    <h:inputHidden id="resId" value="#{leadfmtmaintenanceBackingBean.resId}"/>
+    <h:inputHidden id="graphID" value="#{leadfmtmaintenanceBackingBean.graphID}"/>
     <h:panelGrid width="100%"  align="center" border="0" cellpadding="2" cellspacing="0" columns="2" styleClass="td_title">
         <h:panelGroup>
             <c:verbatim><strong></c:verbatim>
@@ -41,7 +79,7 @@
         </h:panelGroup>
 
 	   <h:panelGrid columns="2" align="center">
-		<h:commandButton value="保 存" styleClass="button01" action="#{leadfmtmaintenanceBackingBean.editChart}" />
+		<h:commandButton value="保 存" styleClass="button01" onclick="return forsave();" action="#{leadfmtmaintenanceBackingBean.editChart}" />
 		<h:commandButton value="取 消" type="reset" styleClass="button01" onclick="window.close();" />
 	  </h:panelGrid>
 	</h:panelGrid>
@@ -57,13 +95,13 @@
         <h:outputText value="大图高" style="width:55px"/>
         <h:outputText value="图类型" style="width:60px"/>
 
-        <h:inputText   value="#{leadfmtmaintenanceBackingBean.gbo.graphTitle}"  style="width:100px;" />
-        <h:inputText   value="#{leadfmtmaintenanceBackingBean.gbo.labelTitleX}"  style="width:100px;" />
-        <h:inputText   value="#{leadfmtmaintenanceBackingBean.gbo.labelTitleY}"  style="width:100px;" />
-        <h:inputText   value="#{leadfmtmaintenanceBackingBean.gbo.smallWidth}" style="width:55px"/>
-        <h:inputText   value="#{leadfmtmaintenanceBackingBean.gbo.smallHeight}" style="width:55px"/>
-        <h:inputText   value="#{leadfmtmaintenanceBackingBean.gbo.largeWidth}" style="width:55px"/>
-        <h:inputText   value="#{leadfmtmaintenanceBackingBean.gbo.largeHeight}" style="width:55px"/>
+        <h:inputText id="graphTitle" value="#{leadfmtmaintenanceBackingBean.gbo.graphTitle}"  style="width:100px;" />
+        <h:inputText id="labelTitleX" value="#{leadfmtmaintenanceBackingBean.gbo.labelTitleX}"  style="width:100px;" />
+        <h:inputText id="labelTitleY" value="#{leadfmtmaintenanceBackingBean.gbo.labelTitleY}"  style="width:100px;" />
+        <h:inputText id="smallWidth" value="#{leadfmtmaintenanceBackingBean.gbo.smallWidth}" style="width:55px"/>
+        <h:inputText id="smallHeight" value="#{leadfmtmaintenanceBackingBean.gbo.smallHeight}" style="width:55px"/>
+        <h:inputText id="largeWidth" value="#{leadfmtmaintenanceBackingBean.gbo.largeWidth}" style="width:55px"/>
+        <h:inputText id="largeHeight" value="#{leadfmtmaintenanceBackingBean.gbo.largeHeight}" style="width:55px"/>
         <h:selectOneMenu value="#{leadfmtmaintenanceBackingBean.gbo.graphType}" style="">
             <f:selectItems value="#{leadfmtmaintenanceBackingBean.graselects}"/>
         </h:selectOneMenu>
