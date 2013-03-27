@@ -5,7 +5,16 @@
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
-
+<script type="text/javascript">
+	function forsave(){
+		var sql=document.getElementById("form1:sql").value;
+		if(sql==''){
+			alert("请输入sql");
+			return false;
+		}
+		return true;
+	}
+</script>
 <x:saveState value="#{sqlmaintenanceBackingBean}"/>
 <h:form id="form1">
     <h:inputHidden id="sqlmaintenanceBackingBean" value="#{sqlmaintenanceBackingBean.pageInit}"/>
@@ -24,7 +33,7 @@
             </h:selectOneMenu>
 
             <h:outputText value="sql"/>
-            <h:inputTextarea rows="10"  value="#{sqlmaintenanceBackingBean.leadsqlbo.sqlstr}" />
+            <h:inputTextarea rows="10" id="sql" value="#{sqlmaintenanceBackingBean.leadsqlbo.sqlstr}" />
 
             <h:outputText value="计算顺序"/>
             <h:inputText  value="#{sqlmaintenanceBackingBean.leadsqlbo.paraOrder}" />
@@ -32,7 +41,7 @@
         </h:panelGrid>
 
         <h:panelGrid columns="2" align="right" cellspacing="2">
-            <h:commandButton styleClass="button01" value="保存" action="#{sqlmaintenanceBackingBean.save}" onclick="if(forsubmit(document.forms(0))){}else{return false;}"/>
+            <h:commandButton styleClass="button01" value="保存" action="#{sqlmaintenanceBackingBean.save}" onclick="return forsave();"/>
             <h:commandButton styleClass="button01" type="button" value="取消返回" onclick="window.close();return false;"/>
         </h:panelGrid>
     </h:panelGrid>
