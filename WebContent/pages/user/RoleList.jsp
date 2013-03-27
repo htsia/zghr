@@ -178,7 +178,7 @@
                         <x:updateActionListener property="#{user_editRoleBB.editStatus}" value="true"/>
                         <x:updateActionListener property="#{user_editRoleBB.roleId}" value="#{list.roleId}"/>
                     </h:commandButton>
-                    <h:commandButton styleClass="button01" action="setpms" value="ÉèÖÃ" rendered="#{list.canEdit}">
+                    <h:commandButton styleClass="button01" action="setpms" value="ÉèÖÃ" rendered="#{list.canEdit || list.roleId=='01'}">
                         <x:updateActionListener property="#{user_creditManageBB.pageFlag}" value="1"/>
                         <x:updateActionListener property="#{user_creditManageBB.paramId}" value="#{list.roleId}"/>
                         <x:updateActionListener property="#{user_creditManageBB.name}" value="#{list.roleName}"/>
@@ -204,5 +204,3 @@
 <script type="text/javascript">
    setDataTableOver("formRoleList:tbl_roleinfolist");
 </script>
-
-

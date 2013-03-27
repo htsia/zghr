@@ -13,54 +13,6 @@
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
     %>
-    <script language=javascript>
-        function secBoard(n){
-            for (i = 0; i < secTable.cells.length; i++)  secTable.cells[i].className = "tab";
-            secTable.cells[n].className = "activeTab";
-            // debugger;
-            var magFlag =document.all("formCreditManage:manageFlag").value;
-            //alert(magFlag);
-            if(magFlag=='是'){
-                magFlag="1";
-            }else
-                magFlag="0";
-           // alert(magFlag);
-            var pram = "paramid=" + document.getElementById("formCreditManage:paramId").value + "&pageflag=" + document.getElementById("formCreditManage:pageFlag").value;
-            pram +="&manageFlag="+ magFlag;
-            switch (n) {
-                case 0:
-                    document.infoiframe.location = "/user/CreditOperate.jsf?" + pram;
-                    break;
-                case 1:
-                    document.infoiframe.location = "/user/CreditSelfBusiPower.jsf?"+pram;
-                    break;
-                case 2:
-                    document.infoiframe.location = "/user/CreditDataIndex.jsf?" + pram;
-                    break;
-                case 3:
-                    document.infoiframe.location = "/user/CreditOrgScale.jsf?"+pram+"&scaleflag=0";
-                    break;
-                case 4:
-                    document.infoiframe.location = "/user/CreditOrgScale.jsf?"+pram+"&scaleflag=1";
-                    break;
-                case 5:
-                    document.infoiframe.location = "/user/CreditCode.jsf?"+pram;
-                    break;
-                case 6:
-                    document.infoiframe.location = "/user/CreditPostCode.jsf?"+pram;
-                    break;
-                case 7:
-                    document.infoiframe.location = "/report/ReportPowerMgr.jsf?act=init&roleID="+document.getElementById("formCreditManage:paramId").value;
-                    break;
-                case 8:
-                    document.infoiframe.location = "/report/ReportSetPowerMgr.jsf?roleID="+document.getElementById("formCreditManage:paramId").value;
-                    break;
-                default:
-                    break;
-            }
-        }
-        secBoard(0);
-    </script>
 
 <h:form id="formCreditManage">
     <h:inputHidden id="pageFlag" value="#{user_creditManageBB.pageFlag}"></h:inputHidden>
@@ -102,17 +54,17 @@
                 <td >
                     <table  border="0" cellpadding="0" cellspacing="0" id=secTable>
                         <tr align="center">
-                            <td width="100" height="25" class="activeTab" onclick="secBoard(0)"><img src="/images/common/handtip.gif">&nbsp;业务操作</td>
-                            <td width="110" height="25" class="tab" onclick="secBoard(1)"><img src="/images/common/handtip.gif">&nbsp;自助业务操作</td>
+                            <td width="100" height="25" class="activeTab hideflag" onclick="secBoard(0)"><img src="/images/common/handtip.gif">&nbsp;业务操作</td>
+                            <td width="110" height="25" class="tab hideflag" onclick="secBoard(1)"><img src="/images/common/handtip.gif">&nbsp;自助业务操作</td>
 <!--                             <td width="100" height="25" class="tab" onclick="secBoard(2)"><img src="/images/common/handtip.gif">&nbsp;自助操作</td> -->
-                            <td width="100" class="tab" onclick="secBoard(2)"><img src="/images/common/handtip.gif">&nbsp;信息项</td>
-                            <td width="100" class="tab" onclick="secBoard(3)"><img src="/images/common/handtip.gif">&nbsp;机构查询</td>
-                            <td width="100" class="tab" onclick="secBoard(4)"><img src="/images/common/handtip.gif">&nbsp;机构维护</td>
+                            <td width="100" class="tab hideflag" onclick="secBoard(2)"><img src="/images/common/handtip.gif">&nbsp;信息项</td>
+                            <td width="100" class="tab hideflag" onclick="secBoard(3)"><img src="/images/common/handtip.gif">&nbsp;机构查询</td>
+                            <td width="100" class="tab hideflag" onclick="secBoard(4)"><img src="/images/common/handtip.gif">&nbsp;机构维护</td>
 <!--                             <td width="100" class="tab" onclick="secBoard(6)"><img src="/images/common/handtip.gif">&nbsp;党组织范围</td> -->
-                            <td width="100" class="tab" onclick="secBoard(5)"><img src="/images/common/handtip.gif">&nbsp;人员范围</td>
-                            <td width="100" class="tab" onclick="secBoard(6)"><img src="/images/common/handtip.gif">&nbsp;岗位分类</td>
+                            <td width="100" class="tab hideflag" onclick="secBoard(5)"><img src="/images/common/handtip.gif">&nbsp;人员范围</td>
+                            <td width="100" class="tab hideflag" onclick="secBoard(6)"><img src="/images/common/handtip.gif">&nbsp;岗位分类</td>
                             <td width="100" class="tab" onclick="secBoard(7)"><img src="/images/common/handtip.gif">&nbsp;表格显示</td>
-                            <td width="100" class="tab" onclick="secBoard(8)"><img src="/images/common/handtip.gif">&nbsp;统计表表套</td>
+                            <td width="100" class="tab hideflag" onclick="secBoard(8)"><img src="/images/common/handtip.gif">&nbsp;统计表表套</td>
                         </tr>
                     </table>
                 </td>
@@ -129,6 +81,52 @@
             </tr>
         </table>
     <script type="text/javascript">
+	    function secBoard(n){
+	        for (i = 0; i < secTable.cells.length; i++)  secTable.cells[i].className = "tab";
+	        secTable.cells[n].className = "activeTab";
+	        // debugger;
+	        var magFlag =document.all("formCreditManage:manageFlag").value;
+	        //alert(magFlag);
+	        if(magFlag=='是'){
+	            magFlag="1";
+	        }else
+	            magFlag="0";
+	       // alert(magFlag);
+	        var pram = "paramid=" + document.getElementById("formCreditManage:paramId").value + "&pageflag=" + document.getElementById("formCreditManage:pageFlag").value;
+	        pram +="&manageFlag="+ magFlag;
+	        switch (n) {
+	            case 0:
+	                document.infoiframe.location = "/user/CreditOperate.jsf?" + pram;
+	                break;
+	            case 1:
+	                document.infoiframe.location = "/user/CreditSelfBusiPower.jsf?"+pram;
+	                break;
+	            case 2:
+	                document.infoiframe.location = "/user/CreditDataIndex.jsf?" + pram;
+	                break;
+	            case 3:
+	                document.infoiframe.location = "/user/CreditOrgScale.jsf?"+pram+"&scaleflag=0";
+	                break;
+	            case 4:
+	                document.infoiframe.location = "/user/CreditOrgScale.jsf?"+pram+"&scaleflag=1";
+	                break;
+	            case 5:
+	                document.infoiframe.location = "/user/CreditCode.jsf?"+pram;
+	                break;
+	            case 6:
+	                document.infoiframe.location = "/user/CreditPostCode.jsf?"+pram;
+	                break;
+	            case 7:
+	                document.infoiframe.location = "/report/ReportPowerMgr.jsf?act=init&roleID="+document.getElementById("formCreditManage:paramId").value;
+	                break;
+	            case 8:
+	                document.infoiframe.location = "/report/ReportSetPowerMgr.jsf?roleID="+document.getElementById("formCreditManage:paramId").value;
+	                break;
+	            default:
+	                break;
+	        }
+	    }
+	    
         if(document.all("formCreditManage:pageFlag").value=="1") {
             document.all("formCreditManage:btnBack2").style.display = "none";
         }
@@ -142,6 +140,13 @@
 
             }
         %>
+        var roleID=document.getElementById("formCreditManage:paramId").value;
+        if(roleID=='01'){
+        	$(".hideflag").hide();
+        	secBoard(7);
+        }else{
+        	secBoard(0);
+        }
     </script>
 </c:verbatim>
 </h:form>
