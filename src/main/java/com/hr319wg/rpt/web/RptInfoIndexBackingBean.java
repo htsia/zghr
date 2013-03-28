@@ -20,7 +20,8 @@ import com.hr319wg.rpt.pojo.bo.RptSetItemBO;
 import com.hr319wg.rpt.pojo.bo.RptSetUserBO;
 import com.hr319wg.rpt.pojo.vo.RptInfoVO;
 import com.hr319wg.rpt.ucc.IRptInfoUCC;
-import com.hr319wg.user.ucc.IUserManageUCC;
+import com.hr319wg.user.dao.UserRoleDAO;
+import com.hr319wg.user.pojo.bo.RoleInfoBO;
 import com.hr319wg.util.CodeUtil;
 import com.hr319wg.util.CommonFuns;
 
@@ -50,6 +51,15 @@ public class RptInfoIndexBackingBean extends BaseBackingBean {
 	private String initSelectMonth;
 	private List setList;
 	private ICommonService commonService;
+	private UserRoleDAO userRoleDAO;
+
+	public UserRoleDAO getUserRoleDAO() {
+		return userRoleDAO;
+	}
+
+	public void setUserRoleDAO(UserRoleDAO userRoleDAO) {
+		this.userRoleDAO = userRoleDAO;
+	}
 
 	public ICommonService getCommonService() {
 		return commonService;
@@ -402,27 +412,44 @@ public class RptInfoIndexBackingBean extends BaseBackingBean {
 				User user = super.getUserInfo();
 				this.unitId = user.getOrgId();
 				this.unitName = user.getOrgName();
-
-				List list = this.commonService.getRptList(user.getUserId());
 				this.setList = new ArrayList();
-				for (int i = 0; i < list.size(); i++) {
-					RptSetUserBO setuserbo = (RptSetUserBO) list.get(i);
-					RptSetBO setbo = this.rptucc.getRptSetBO(setuserbo
-							.getSetId());
-
-					SelectItem si = new SelectItem();
-					si.setLabel(setbo.getSetName());
-					si.setValue(setbo.getSetId());
-					this.setList.add(si);
+				
+				List<RoleInfoBO> roleList=this.userRoleDAO.queryUserRole(user.getUserId());
+				boolean isMAJORDOMO=false;
+				if(roleList!=null){
+					for(RoleInfoBO r : roleList){
+						if(r.getRoleId().equals(RoleInfoBO.MAJORDOMO_ROLE_ID)){
+							isMAJORDOMO=true;
+							break;
+						}
+					}
+				}
+				if(isMAJORDOMO){
+					List<RptSetBO> list=this.rptucc.getRptSetBOList();
+					for (RptSetBO set : list) {
+						SelectItem si = new SelectItem();
+						si.setLabel(set.getSetName());
+						si.setValue(set.getSetId());
+						this.setList.add(si);
+					}
+				}else{
+					List<RptSetUserBO> list=this.commonService.getRptList(user.getUserId());
+					for (RptSetUserBO setUser : list) {
+						RptSetBO setbo = this.rptucc.getRptSetBO(setUser.getSetId());
+						SelectItem si = new SelectItem();
+						si.setLabel(setbo.getSetName());
+						si.setValue(setbo.getSetId());
+						this.setList.add(si);
+					}
 				}
 
 				if (this.setList.size() > 0) {
-					this.setID = ((SelectItem) (SelectItem) this.setList.get(0))
-							.getValue().toString();
+					this.setID = ((SelectItem) (SelectItem) this.setList.get(0)).getValue().toString();
 				}
 				queryDateList();
 			}
-		} catch (Exception ee) {
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return this.pageInit;
 	}

@@ -47,7 +47,15 @@
         </managed-property>
     </managed-bean>
                   
-    <!-- **************************************************** -->
+           
+           
+           
+           
+           
+           
+           
+           
+           <!-- **************************************************** -->
     <managed-bean>
         <managed-bean-name>Rpt_defineBB</managed-bean-name>
         <managed-bean-class>com.hr319wg.rpt.web.RptDefineBackingBean</managed-bean-class>
@@ -66,9 +74,13 @@
             <property-name>rptucc</property-name>
             <value>#{rpt_infoucc}</value>
         </managed-property>
-        <managed-property>
+		<managed-property>
             <property-name>commonService</property-name>
             <value>#{commonservice}</value>
+        </managed-property>
+		<managed-property>
+            <property-name>userRoleDAO</property-name>
+            <value>#{user_userRoleDAO}</value>
         </managed-property>
     </managed-bean>
 
@@ -80,6 +92,7 @@
             <property-name>rptucc</property-name>
             <value>#{rpt_infoucc}</value>
         </managed-property>
+
     </managed-bean>
 
     <navigation-rule>
@@ -153,7 +166,7 @@
             <property-name>rptucc</property-name>
             <value>#{rpt_infoucc}</value>
         </managed-property>
-                <managed-property>
+        <managed-property>
             <property-name>useruserManageUccImpl</property-name>
             <value>#{user_userManageUccImpl}</value>
         </managed-property>
