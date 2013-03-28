@@ -117,7 +117,7 @@
         </property>
     </bean>
 
-    <bean id="user_userInfoDAO" class="com.hr319wg.user.dao.UserInfoDAO">
+    <bean id="user_userInfoDAO" class="com.hr319wg.custom.extend.dao.UserInfoDAOByExtend">
         <property name="hibernatetemplate">
             <ref bean="hibernateTemplate"/>
         </property>
