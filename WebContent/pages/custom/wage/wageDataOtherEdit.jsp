@@ -35,13 +35,18 @@
 
 	function setData(){
 		var excludeDate = document.all('form1:excludeDate').value;
-		PopUpCalendarDialog('form1:datestr');
+		PopUpCalendarDialog_wage('form1:datestr');
 		var ymd = document.all('form1:datestr').value.substring(0,7);
-		if (excludeDate != null && excludeDate != "") {
-			document.all('form1:excludeDate').value = excludeDate + "," + ymd;
-		} else {
-			document.all('form1:excludeDate').value = ymd;
+		if(ymd==-1){
+			document.all('form1:excludeDate').value = "";
+		}else if(ymd!=""){
+			if (excludeDate != null && excludeDate != "") {
+				document.all('form1:excludeDate').value = excludeDate + "," + ymd;
+			} else {
+				document.all('form1:excludeDate').value = ymd;
+			}
 		}
+		document.all('form1:datestr').value="";
 		return false;
 	}
 </script>

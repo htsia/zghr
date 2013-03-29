@@ -25,21 +25,6 @@
             for(var i=1;i<fl.length;i++){
                 var va=fl[i].split(",");
                 addOptionItem(form1.all('rsItem'), va[0], va[1]);
-                if (i==1){
-                    if (va[0]=="A001999"){
-                        document.all("form1:useold").checked=true;
-                    }
-                    else {
-                        document.all("form1:useold").checked=false;
-                    }
-                    if (va[0]=="A001077"){
-                        document.all("form1:useid").checked=true;
-                    }
-                    else {
-                        document.all("form1:useid").checked=false;
-                    }
-
-                }
             }
             document.all("form1:configname").value=document.all("form1:importconfig").options(document.all("form1:importconfig").selectedIndex).text;
        }
@@ -48,7 +33,7 @@
         function checkSubmit() {
             var filename = form1.all("form1:excelFile").value;
             var obj = form1.rsItem;
-            if (filename.substr(filename.length - 3).toLowerCase() == 'csv') {
+            if (filename.substr(filename.length - 3).toLowerCase() == 'xls') {
                 if (obj.options.length < 3) {
                     alert("请选择输入项！")
                     return false;
@@ -59,7 +44,7 @@
                     return true;
                 }
             } else {
-                alert("请选择CSV文件！");
+                alert("请选择XLS文件！");
                 return false;
             }
         }
@@ -110,28 +95,7 @@
             }
             return;
         }
-        function doSetUseOld(){
-            if (document.all("form1:useold").checked){
-                form1.all('rsItem').options[0].value="A001999";
-                form1.all('rsItem').options[0].text="旧系统人员编号";
-                document.all("form1:useid").checked=false;
-            }
-            else {
-                form1.all('rsItem').options[0].value="A001735";
-                form1.all('rsItem').options[0].text="人员编号";
-            }
-        }
-        function doSetUseID(){
-            if (document.all("form1:useid").checked){
-                form1.all('rsItem').options[0].value="A001077";
-                form1.all('rsItem').options[0].text="身份证";
-                document.all("form1:useold").checked=false;
-            }
-            else {
-                form1.all('rsItem').options[0].value="A001735";
-                form1.all('rsItem').options[0].text="人员编号";
-            }
-        }
+        
     function checkAddSave(){
         document.all("form1:configID").value="";
         return checkSave();
@@ -181,20 +145,15 @@
     </h:panelGrid>
     <h:panelGrid width="95%" columns="1" align="center" styleClass="table03" columnClasses="td_form01">
         <c:verbatim escape="false">
-           <%=LanguageSupport.getResource("RYGL-2240","1.导入文件的格式为CSV文件(Excel打开,选csv格式另存为即可)")%>
-           <br>
-           <%=LanguageSupport.getResource("RYGL-1008","2.选择的指标集和需要的导入的数据指标集一致，且按文件中各项的顺序选择数据项")%>
-          <br>
-           <%=LanguageSupport.getResource("RYGL-2241","3.电子表格的第一行为标题行，数据从第二行开始，电子表格的前两列固定为：人员编号、姓名.人员编号不能为空值")%>
-          <br>
-           <%=LanguageSupport.getResource("RYGL-1010","4.电子表格的所有列的数据格式设置为文本格式")%>
-              <br>
-           <%=LanguageSupport.getResource("RYGL-1011","6.如果是代码项，那么必须是代码值而不是代码名称。")%>
-         <br>
-           <%=LanguageSupport.getResource("RYGL-1012","7.如果是6位日期类型数据，数据格式为6位数字，如'200609',如果是8位日期类型数据，数据格式为8位数字，如'20060918'。")%> 
-           <br>
-            8. 源文件中代码字段有两种格式：代码形式和描述形式，请正确选择<br>
-         </c:verbatim>
+             <strong>上传文件格式说明： </strong><br>
+            1. 导入文件的格式为XLS文件。<br>
+            2. 电子表格的第一行为标题行，数据从第二行开始。<br>
+            3. 电子表格的第一列固定为：员工编号,姓名且不能为空。<br>
+        	4. 代码字段有两种格式：代码形式和描述形式，请正确选择。<br>
+            5. 为保证数据准确，请将电子表格的所有列的数据格式设置为文本格式。<br>
+        	6. 日期格式：如果为六位日期格式为：yyyy-MM,如果为八位格式为：yyyy-MM-dd。<br>
+            7. 在系统中所选择的项目必须与文件中准备的项目个数、顺序一致，否则系统不能准确导入。
+        </c:verbatim>
     </h:panelGrid>
     <c:verbatim escape="false"><br></c:verbatim>
     <h:panelGrid width="95%" columns="2" align="center" styleClass="table03"
@@ -210,8 +169,8 @@
         </h:panelGroup>
         <h:panelGroup>
             <h:selectOneRadio value="#{emp_DataUploadBB.codeType}">
-                <c:selectItem itemValue="0" itemLabel="代码形式"></c:selectItem>
                 <c:selectItem itemValue="1" itemLabel="描述形式"></c:selectItem>
+                <c:selectItem itemValue="0" itemLabel="代码形式"></c:selectItem>
             </h:selectOneRadio>
         </h:panelGroup>
     </h:panelGrid>
@@ -224,13 +183,6 @@
         <h:outputText value=" "/>
 
         <h:panelGroup>
-            <h:selectBooleanCheckbox id="useold" value="false"  onclick="doSetUseOld()" /> 
-            <f:verbatim>
-            <%=LanguageSupport.getResource("RYGL-2244","使用旧系统编号")%> 
-           </f:verbatim>
-
-            <h:selectBooleanCheckbox id="useid" value="false"  onclick="doSetUseID()" rendered="#{sys_commonInfoBB.enableImportByCard}"/>
-            <h:outputText value="使用身份证" rendered="#{sys_commonInfoBB.enableImportByCard}"></h:outputText>
             <h:selectOneMenu id="importconfig" onchange="forselect();">
                 <f:selectItems value="#{emp_DataUploadBB.selitem}"/>
             </h:selectOneMenu>

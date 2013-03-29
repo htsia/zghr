@@ -6,10 +6,10 @@
 //删除空格处理，供checkValidate调用
 function KillSpace(x) {
     while ((x.length > 0) && (x.charAt(0) == ' '))
-        x = x.substring(1, x.length)
+        x = x.substring(1, x.length);
     while ((x.length > 0) && (x.charAt(x.length - 1) == ' '))
-        x = x.substring(0, x.length - 1)
-    return x
+        x = x.substring(0, x.length - 1);
+    return x;
 }
 
 //判断是否整数，供checkValidate调用
@@ -29,7 +29,7 @@ function isNature(inputVal) {
 
 function count_char(str) {
     var len = 0;
-    for (i = 0; i < str.length; i++) {
+    for (var i = 0; i < str.length; i++) {
         var ech = escape(str.charAt(i));
         if (ech.length > 4) {
             //// 修改下面的数字，len + 1 表示2个字符代表一个中文字，len + 5 表示6个字符代表一个中文字
@@ -68,11 +68,11 @@ function LengthCheck(text, size) {
  */
 function checkValidate(element, discript, type, length, nullflag, maxs, mins, digit){
     if (element == "") {
-        window.alert("函数调用出错,请输入控件!")
+        window.alert("函数调用出错,请输入控件!");
         return(0);
     }
     if (discript == ""){
-        window.alert("函数调用出错,请输入控件描述!")
+        window.alert("函数调用出错,请输入控件描述!");
         return(0);
     }
 
@@ -90,7 +90,7 @@ function checkValidate(element, discript, type, length, nullflag, maxs, mins, di
                 if (element.value.indexOf("****") == -1) {
                     if (element.value.length != 0 && isNature(element.value) != true)
                     {
-                        window.alert(discript + "请输入整数!")
+                        window.alert(discript + "请输入整数!");
                         element.focus();
                         return(0);
                     }
@@ -102,13 +102,13 @@ function checkValidate(element, discript, type, length, nullflag, maxs, mins, di
                 var fvalue = element.value.replace(/\,/g, "");
                 if (fvalue.indexOf("****") == -1) {
                     if (fvalue.length != 0 && element.value.indexOf(",") != -1) {
-                        window.alert(discript + "请输入数字!")
+                        window.alert(discript + "请输入数字!");
                         element.focus();
                         return(0);
                     }
                     if (fvalue.length != 0 && isNaN(fvalue) == true)
                     {
-                        window.alert(discript + "请输入数字!")
+                        window.alert(discript + "请输入数字!");
                         element.focus();
                         return(0);
                     } else if (fvalue.length != 0 && isNaN(fvalue) == false) {
@@ -117,7 +117,7 @@ function checkValidate(element, discript, type, length, nullflag, maxs, mins, di
                             if (s.indexOf(".") != -1) {
                                 s = s.substr(s.indexOf(".") + 1);
                                 if (s.length > digit) {
-                                    window.alert(discript + "的小数点后面保留位数不对，应为" + digit + "位!")
+                                    window.alert(discript + "的小数点后面保留位数不对，应为" + digit + "位!");
                                     element.focus();
                                     return(0);
                                 }
@@ -134,7 +134,7 @@ function checkValidate(element, discript, type, length, nullflag, maxs, mins, di
                 if (element.value.indexOf("****") == -1) {
                     if (element.value.length != 0 && dateCheck(element.value) == false)
                     {
-                        window.alert(discript + "请输入有效日期!")
+                        window.alert(discript + "请输入有效日期!");
                         element.focus();
                         return(0);
                     } else {
@@ -151,7 +151,7 @@ function checkValidate(element, discript, type, length, nullflag, maxs, mins, di
                 if (element.value.indexOf("****") == -1) {
                     if (element.value.length != 0 && dateCheck(element.value + "-01") == false)
                     {
-                        window.alert(discript + "请输入有效日期!")
+                        window.alert(discript + "请输入有效日期!");
                         element.focus();
                         return(0);
                     } else {
@@ -212,11 +212,11 @@ function checkValidate(element, discript, type, length, nullflag, maxs, mins, di
 
 function checkValidate2(element, discript, type, length, nullflag, maxs, mins) {
     if (element == "") {
-        window.alert("函数调用出错,请输入控件!")
+        window.alert("函数调用出错,请输入控件!");
         return(0);
     }
     if (discript == "") {
-        window.alert("函数调用出错,请输入控件描述!")
+        window.alert("函数调用出错,请输入控件描述!");
         return(0);
     }
 
@@ -235,7 +235,7 @@ function checkValidate2(element, discript, type, length, nullflag, maxs, mins) {
             case "i":{
                 if (element.value.indexOf("****") == -1) {
                     if (element.value.length != 0 && isNature(element.value) != true) {
-                        window.alert(discript + "请输入整数!")
+                        window.alert(discript + "请输入整数!");
                         // element.focus();
                         forfocus(element);
                         return(0);
@@ -247,7 +247,7 @@ function checkValidate2(element, discript, type, length, nullflag, maxs, mins) {
             case "f":{
                 if (element.value.indexOf("****") == -1) {
                     if (element.value.length != 0 && isNaN(element.value) == true) {
-                        window.alert(discript + "请输入数字!")
+                        window.alert(discript + "请输入数字!");
                         // element.focus();
                         forfocus(element);
                         return(0);
@@ -261,7 +261,7 @@ function checkValidate2(element, discript, type, length, nullflag, maxs, mins) {
             case "d":{
                 if (element.value.indexOf("****") == -1) {
                     if (element.value.length != 0 && dateCheck(element.value) == false) {
-                        window.alert(discript + "请输入有效日期!")
+                        window.alert(discript + "请输入有效日期!");
                         // element.focus();
                         forfocus(element);
                         return(0);
@@ -606,7 +606,7 @@ function createQueryString(setId,form) {
     var queryString = "";
     var name = "";
     var svalue = "";
-    for (i = 0; i < form.length; i++) {
+    for (var i = 0; i < form.length; i++) {
         obj = form.elements[i];
         var para=obj.name.split(":");
         if (para.length>1){

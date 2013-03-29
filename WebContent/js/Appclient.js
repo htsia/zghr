@@ -279,7 +279,7 @@ function forsubmit(form1, flag) {
 
  // 弹出日历管理对话筐
 function PopUpCalendarDialog(obj) {
-    var ctrlobj
+    var ctrlobj;
     if (obj.tagName == null)
         ctrlobj = document.getElementById(obj);
     else
@@ -292,6 +292,22 @@ function PopUpCalendarDialog(obj) {
         ctrlobj.value = retval;
     } else {
     }
+}
+// 弹出日历管理对话筐
+function PopUpCalendarDialog_wage(obj) {
+	var ctrlobj;
+	if (obj.tagName == null)
+		ctrlobj = document.getElementById(obj);
+	else
+		ctrlobj = obj;
+	showx = event.screenX - event.offsetX - 160;
+	showy = event.screenY - event.offsetY + 18;
+	
+	retval = window.showModalDialog("/pages/common/CalendarDlg_wage.jsp?date=" + ctrlobj.value, "", "dialogWidth:280px; dialogHeight:210px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;");
+	if (retval != null) {
+		ctrlobj.value = retval;
+	} else {
+	}
 }
 function PopUpCalendarDlg_OnlyMonth(obj) {   // 只选到月份
     var ctrlobj
