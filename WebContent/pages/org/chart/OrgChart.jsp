@@ -32,10 +32,7 @@
     <script type="text/javascript" language="javascript" src="/js/Appclient.js"></script>
     <SCRIPT language=javascript>
         function exportToWord(){
-             //debugger;
-             document.all("content").value=chartTd.innerHTML;
-             document.all("exportType").value="WORD";
-             return true;
+        	
         }
         function exportToPDF(){
              document.all("content").value=chartTd.innerHTML;
@@ -192,9 +189,8 @@
             <input type="submit" class="button01"  value="<%=LanguageSupport.getResource("JGGL-1040","设置",lang)%>">
             <input type="hidden" id="content" name="content" value="">
             <input type="hidden" id="exportType" name="exportType" value="">
-            <input type="submit" id="exportWord" class="button01"  value="<%=LanguageSupport.getResource("JGGL-1041","导出WORD",lang)%>" onclick="return exportToWord();" style="display:none">
-            <input type="submit" id="exportPdf" class="button01"  value="<%=LanguageSupport.getResource("JGGL-1042","导出PDF",lang)%>" onclick="return exportToPDF();" style="display:none">
-            <input type="button" class="button01" onclick="print1()" value="<%=LanguageSupport.getResource("JGGL-1043","打印",lang)%>">
+            <a id="export" target="_blank" href="/pages/org/chart/exportOrg1.jsp"></a>
+            <input style="display: none;" type="button" class="button01" value="<%=LanguageSupport.getResource("JGGL-1041","导出WORD",lang)%>" onclick="exportToWord();">
         </td>
     </tr>
 </table>
@@ -234,38 +230,35 @@
     <%
        if (request.getParameter("content")!=null && !"".equals(request.getParameter("content"))){
           try{
-          String content="<link href='/css/style.css' rel='stylesheet' type='text/css'/>\n";
-          content+=request.getParameter("content");
-          String basePath=application.getRealPath("/");
-          String fileName="";
-          String exportPath="";
-          if ("WORD".equals(request.getParameter("exportType"))){
-               fileName=CommonFuns.getUUID()+".doc";
-               exportPath=application.getRealPath("/file/tmp/")+File.separator+fileName;
-
-               HtmlMHTCompiler ht=new HtmlMHTCompiler(content,basePath,"GBK",exportPath);
-               ht.compile();
-
-              session.setAttribute("SHOWFILE_URL","/file/tmp/"+fileName);
-              session.setAttribute("SHOWFILE_TITLE","机构图文件(WORD格式)");
-          }
-          else{
-               fileName=CommonFuns.getUUID();
-               exportPath=application.getRealPath("/file/tmp/")+File.separator+fileName+".html";
-               FileUtil.createFile(content.getBytes(),exportPath);
-               FileUtil.Html2Pdf(exportPath,basePath+File.separator+"pages"+File.separator+"common"+File.separator+"xhtml2fo.xsl");
-               session.setAttribute("SHOWFILE_URL","/file/tmp/"+fileName+".pdf");
-               session.setAttribute("SHOWFILE_TITLE","机构图文件(PDF格式)");
-          }
-          }
-          catch(Exception e){
-          
+	          String content="<link href='/css/style.css' rel='stylesheet' type='text/css'/>\n";
+	          content+=request.getParameter("content");
+	          String basePath=application.getRealPath("/");
+	          String fileName="";
+	          String exportPath="";
+// 	          if ("WORD".equals(request.getParameter("exportType"))){
+	              fileName=CommonFuns.getUUID()+".doc";
+	              exportPath=application.getRealPath("/file/tmp/")+File.separator+fileName;
+	
+	              HtmlMHTCompiler ht=new HtmlMHTCompiler(content,basePath,"GBK",exportPath);
+	              ht.compile();
+				  System.out.print(exportPath);
+	              session.setAttribute("SHOWFILE_URL","/file/tmp/"+fileName);
+	              session.setAttribute("SHOWFILE_TITLE","机构图文件(WORD格式)");
+// 	          }else{
+// 	               fileName=CommonFuns.getUUID();
+// 	               exportPath=application.getRealPath("/file/tmp/")+File.separator+fileName+".html";
+// 	               FileUtil.createFile(content.getBytes(),exportPath);
+// 	               FileUtil.Html2Pdf(exportPath,basePath+File.separator+"pages"+File.separator+"common"+File.separator+"xhtml2fo.xsl");
+// 	               session.setAttribute("SHOWFILE_URL","/file/tmp/"+fileName+".pdf");
+// 	               session.setAttribute("SHOWFILE_TITLE","机构图文件(PDF格式)");
+// 	          }
+          }catch(Exception e){
+              e.printStackTrace();
           }
      %>
-              showAllFile();
+//               showAllFile();
     <%
        }
     %>
 </script>
-
 </html>

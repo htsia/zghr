@@ -127,17 +127,10 @@ public class PersonUCCByExtend extends PersonUCC {
 	          sql.append(" and ").append(addConditon);
 	        }
 	        
-	        if(superId!=null && !"".equals(superId)){
-	        	  OrgBO bo=SysCacheTool.findOrgById(superId);
-	        	  List list= SysCacheTool.querySubObject(5, null, superId);
-	        	  if(list==null || list.size()==0){
-	        		  order="A001.A001746,"+order;
-	        	  }
-	          }
 	        if (!"".equals(order))
-	          sql.append(" order by ").append(order);
+	          sql.append(" order by A001.A001746,").append(order);
 	        else {
-	          sql.append(" order by ").append("A001.A001746");
+	          sql.append(" order by A001.A001746");
 	        }
 	      }
 	      this.getActivepageservice().querySql(table, sql.toString(), user, pageNum, rowNum, true);

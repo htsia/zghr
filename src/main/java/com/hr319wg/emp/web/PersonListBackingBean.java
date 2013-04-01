@@ -26,7 +26,6 @@ import com.hr319wg.emp.pojo.bo.EmpReduceBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.pojo.vo.PersonChangeVO;
 import com.hr319wg.emp.ucc.IPersonUCC;
-import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.org.ucc.IOrgUCC;
 import com.hr319wg.qry.pojo.vo.QueryVO;
 import com.hr319wg.qry.ucc.IQueryUCC;
@@ -244,7 +243,7 @@ public class PersonListBackingBean extends BaseBackingBean
           getHttpSession().setAttribute("activeSql", sql);
           getHttpSession().setAttribute("pageNum", String.valueOf(pageNum));
           getHttpSession().setAttribute("rowNum", String.valueOf(rowNum));
-          return "";
+          return null;
         } catch (Exception e) {
           e.printStackTrace();
           getHttpSession().removeAttribute("OBJECT");
@@ -284,6 +283,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return this.initRetireQuery;
   }
@@ -306,6 +306,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return this.reduceWorkFlow;
   }
@@ -322,6 +323,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return this.workFlow;
   }
@@ -342,6 +344,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return this.weaveWarn;
   }
@@ -426,6 +429,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return this.doBatchReduceAudit;
   }
@@ -462,6 +466,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return this.doReduceAudit;
   }
@@ -531,6 +536,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return "success";
   }
@@ -561,6 +567,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return "success";
   }
@@ -611,6 +618,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return "success";
   }
@@ -656,6 +664,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return "success";
   }
@@ -721,32 +730,33 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return "success";
   }
   public String auditfirst() {
     this.pagevo.setCurrentPage(1);
     doauditQuery();
-    return "";
+    return null;
   }
   public String auditlast() {
     this.pagevo.setCurrentPage(this.pagevo.getTotalPage());
     doauditQuery();
-    return "";
+    return null;
   }
   public String auditpre() {
     if (this.pagevo.getCurrentPage() >= 2) {
       this.pagevo.setCurrentPage(this.pagevo.getCurrentPage() - 1);
       doauditQuery();
     }
-    return "";
+    return null;
   }
   public String auditnext() {
     if (this.pagevo.getCurrentPage() < this.pagevo.getTotalPage()) {
       this.pagevo.setCurrentPage(this.pagevo.getCurrentPage() + 1);
       doauditQuery();
     }
-    return "";
+    return null;
   }
   public String downloadFile() {
     ServletContext context = BaseBackingBean.getServletContext();
@@ -787,8 +797,9 @@ public class PersonListBackingBean extends BaseBackingBean
       out.print(buf.toString());
       out.flush();
     } catch (Exception e) {
+    	e.printStackTrace();
     }
-    return "";
+    return null;
   }
 
   public String doauditQuery() {
@@ -823,31 +834,31 @@ public class PersonListBackingBean extends BaseBackingBean
     } catch (Exception ex) {
       this.msg.setMainMsg(ex, getClass());
     }
-    return "";
+    return null;
   }
   public String first() {
     this.pagevo.setCurrentPage(1);
     doQuery();
-    return "";
+    return null;
   }
   public String last() {
     this.pagevo.setCurrentPage(this.pagevo.getTotalPage());
     doQuery();
-    return "";
+    return null;
   }
   public String pre() {
     if (this.pagevo.getCurrentPage() >= 2) {
       this.pagevo.setCurrentPage(this.pagevo.getCurrentPage() - 1);
       doQuery();
     }
-    return "";
+    return null;
   }
   public String next() {
     if (this.pagevo.getCurrentPage() < this.pagevo.getTotalPage()) {
       this.pagevo.setCurrentPage(this.pagevo.getCurrentPage() + 1);
       doQuery();
     }
-    return "";
+    return null;
   }
 
   public List getReducingbos() {
@@ -975,8 +986,9 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
-    return "";
+    return null;
   }
   public String getCheckingPerson_audit() {
     try {
@@ -994,6 +1006,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return this.checkingPerson_audit;
   }
@@ -1050,6 +1063,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return this.checkingPerson;
   }
@@ -1279,6 +1293,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return setList;
   }
@@ -1313,6 +1328,7 @@ public class PersonListBackingBean extends BaseBackingBean
           rowNum = Integer.parseInt(rowNums);
         }
         User user = getUserInfo();
+        String[]sqls=sql.split("ORDER BY");
         this.personucc.querySql(table, sql, user, pageNum, rowNum);
         getHttpSession().setAttribute("OBJECT", table);
         getHttpSession().setAttribute("activeSql", sql);
@@ -1498,6 +1514,7 @@ public class PersonListBackingBean extends BaseBackingBean
       queryPerson();
     }
     catch (Exception e) {
+    	e.printStackTrace();
     }
   }
 
@@ -1644,6 +1661,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return "success";
   }
