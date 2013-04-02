@@ -432,14 +432,13 @@ public String getClassId()
 			if (this.personchangevo != null) {
 				this.personchangevo.setTractPerson(user.getUserId());
 			}
-			OrgBO org = OrgTool.getOrgByDept(CommonFuns
-					.filterNull(this.personvo.getDeptId()));
+			OrgBO org = OrgTool.getOrgByDept(CommonFuns.filterNull(this.personvo.getDeptId()));
 			if (org == null) {
 				showMessageDetail("所增人员的所在机构无法找到，不能增加此人!");
 				return null;
 			}
-			String personId = this.personucc.createPerson(this.personvo,
-					this.personchangevo, user, photo);
+			this.personvo.setPersonCode(this.personucc.getNextPersonCode(user.getOrgId()));
+			String personId = this.personucc.createPerson(this.personvo, this.personchangevo, user, photo);
 			getServletRequest().setAttribute("P_PERSONID", personId);
 			getServletRequest().setAttribute("P_FLAG", "show");
 			getHttpSession().removeAttribute("images");
