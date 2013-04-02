@@ -64,8 +64,6 @@ public class UUCustomManager implements IUUManager{
 	//添加人员后
 	public void userAdd(String arg0, String arg1, String arg2)
 			throws SysException {
-		String aa=null;
-		System.out.println(aa);
 	}
 	
 	public void userModify(String arg0, String arg1, String arg2)
