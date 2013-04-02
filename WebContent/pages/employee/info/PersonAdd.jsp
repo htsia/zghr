@@ -78,7 +78,17 @@ function forCheck() {
 
 function forSave() {
     if (forCheck()) {
-        return forsubmit(document.forms(0));
+        var pass= forsubmit(document.forms(0));
+        if(pass){
+        	x = document.body.clientWidth / 2 - 150;
+    		y = document.body.clientHeight / 2;
+    		document.all('processbar').style.top = y;
+    		document.all('processbar').style.left = x;
+    		document.all('processbar').style.display = "";
+        	return true;
+        }else{
+        	return false;
+        }
     }
     return false;
 }
@@ -196,28 +206,8 @@ function selAddTime() {
         <td class=f05 width=75%>
             <%= LanguageSupport.getResource("RYGL-2325", "基本信息")%>     
         </td>
-</f:verbatim>
-        <!-- <td class="td_form01" width="120">
-         <%= LanguageSupport.getResource("XTGL-1042", "员工编号")%>     
-        </td> -->
         <td class="td_form02">
-		<!-- 修改开始1 -->
-            <h:inputText styleClass="input" id="A001735" value="#{emp_personAddBB.personvo.personCode}"   readonly="true"  alt="员工编号|1|s|50||"  />
-		<!-- 修改结束1 -->
-<f:verbatim>
         </td>
-        <%
-            try{
-                IPersonUCC uu = (IPersonUCC) SysContext.getBean("emp_personUCC");
-                out.print("<script type=\"text/javascript\">");
-                out.print("document.all('form1:A001735').value=\""+uu.getNextPersonCode(user.getOrgId())+"\";");
-				out.print("document.all('form1:A001735').style.display='none';");
-                out.print("</script>");
-            }
-            catch(Exception e){
-
-            }
-        %>
     </tr>
 </table>
 <table width=95% align=center border=0 cellpadding=0 cellspacing=0 class="table03">
@@ -252,7 +242,7 @@ function selAddTime() {
     <td class=td_form02>
 </f:verbatim>
         <h:inputText styleClass="input" id="A001011"  size="21"  value="#{emp_personAddBB.personvo.birth}"
-                      alt="出生日期|1|d|50||"/>
+                     readonly="true" alt="出生日期|1|d|50||"/>
 <f:verbatim>
          <%if ("1".equals(Constants.AUTO_CACL_BIRTH)){%>
             从身份证号得到
@@ -263,18 +253,6 @@ function selAddTime() {
 </tr>
 
 <tr nowrap>
-    <!-- <td class="td_form01 "> <%=LanguageSupport.getResource("MSG-0013", "出生日期")%></td>
-    <td class=td_form02>
-</f:verbatim>
-        <h:inputText styleClass="input" id="A001011" value="#{emp_personAddBB.personvo.birth}"
-                      alt="出生日期|1|d|50||"/>
-<f:verbatim>
-         <%if ("1".equals(Constants.AUTO_CACL_BIRTH)){%>
-            从身份证号得到
-         <%}else{%>
-            <input type="button" class="button_select" onclick="PopUpCalendarDialog('form1:A001011')">
-         <%}%>
-    </td> -->
 	<td class="td_form01 td_form_required"><%=LanguageSupport.getResource("XTGL-1044", "员工类别")%></td>
     <td class=td_form02>
 </f:verbatim>
@@ -311,22 +289,12 @@ function selAddTime() {
         <input type="button" class="button_org" onclick="PopUpOrgDlgShowGroup('form1:A001705',2)">
     </td>
 
-<!--修改2开始  这段修改的代码，是从下面复制过来的。-->	
-<!-- <td class="td_form01 td_form_required"><%=unitTime.getItemName()%></td>
-    <td class=td_form02>
-</f:verbatim>
-        <h:inputText styleClass="input" id="A001044" value="#{emp_personAddBB.personvo.unitTime}"
-                      alt="来公司时间|1|d6|50||"/>
-<f:verbatim>
-        <input type="button" class="button_date" onclick="selUnitTime();"></td> -->
-<!--修改2结束-->
-
 <td class="td_form01 td_form_required"> <%=LanguageSupport.getResource("JGGL-1078", "岗位名称")%></td>
     <td class=td_form02>
 </f:verbatim>
         <h:inputText styleClass="input" id="A001715" code="" dict="yes" dict_num="PO"
-                     readonly="true"  size="21"   value="#{emp_personAddBB.personvo.postId}"
-                     alt="岗位|1|s|50||"/>
+                     readonly="true"  size="21" value="#{emp_personAddBB.personvo.postId}"
+                     alt="岗位|0|s|50||"/>
 <f:verbatim>
         <input type="button" class="button_post" onclick="selPost()">
     </td>
@@ -339,22 +307,12 @@ function selAddTime() {
     <td class=td_form02>
 </f:verbatim>
         <h:inputText styleClass="input" id="A001044" value="#{emp_personAddBB.personvo.unitTime}"
-                      alt="来公司时间|1|d6|50||"/>
+                     readonly="true" alt="来公司时间|1|d6|50||"/>
 <f:verbatim>
         <script type="text/javascript">
             document.all('form1:A001044').alt = "<%=unitTime.getItemName()%>|1|<%=InfoItemBO.getHtmlDataType(unitTime.getItemDataType())%>|50||";
         </script>
         <input type="button" class="button_date" onclick="selUnitTime();"></td>
-    <!-- <td class=td_form01> <%=LanguageSupport.getResource("JGGL-1078", "岗位名称")%></td>
-    <td class=td_form02>
-</f:verbatim>
-        <h:inputText styleClass="input" id="A001715" code="" dict="yes" dict_num="PO"
-                     readonly="true" value="#{emp_personAddBB.personvo.postId}"
-                     alt="岗位|1|s|50||"/>
-<f:verbatim>
-        <input type="button" class="button_post" onclick="selPost()">
-    </td> -->
-<!--修改3开始   把 td  隐藏掉-->
     <td id="td_postLevel" class="td_form01 td_form_required">当前状态</td>
     <td class=td_form02>
 </f:verbatim>
@@ -365,28 +323,15 @@ function selAddTime() {
        
     </td>
 </tr>
-<!--修改3结束-->
-
-<!--修改4开始  注释部分代码，复制到修改 2 处，未注释部分， 把tr 隐藏掉了。 -->
 <tr nowrap id = "hiddentr">
-	<!-- <td class="td_form01 td_form_required"><%=unitTime.getItemName()%></td>
-    <td class=td_form02>
-</f:verbatim>
-        <h:inputText styleClass="input" id="A001044" value="#{emp_personAddBB.personvo.unitTime}"
-              alt="来公司时间|1|d6|50||"/>
-<f:verbatim>
-       
-        <input type="button" class="button_date" onclick="selUnitTime();"></td> -->
-	
 		 <script type="text/javascript">
             document.getElementById("hiddentr").style.display = "none";
         </script>
-<!--修改4结束-->
     <td class="td_form01 "><%=sysTime.getItemName()%></td>
     <td class=td_form02>
 </f:verbatim>
         <h:inputText styleClass="input" id="A001781" value="#{emp_personAddBB.personvo.sysTime}"
-                      alt="进入本系统时间|1|d6|50||"/>
+                     readonly="true" alt="进入本系统时间|1|d6|50||"/>
 <f:verbatim>
     <script type="text/javascript">
         document.all('form1:A001781').alt = "<%=sysTime.getItemName()%>|1|<%=InfoItemBO.getHtmlDataType(sysTime.getItemDataType())%>|50||";
@@ -441,7 +386,7 @@ function selAddTime() {
         <td class="td_form01 td_form_required" width="120"><%=addTime.getItemName()%></td>
         <td class=td_form02>
 </f:verbatim>
-            <h:inputText styleClass="input" id="A016020" value="#{emp_personAddBB.personchangevo.changeDate}"  alt="增员时间|0|d6|50||"/>
+            <h:inputText styleClass="input" id="A016020" value="#{emp_personAddBB.personchangevo.changeDate}"  readonly="true" alt="增员时间|0|d6|50||"/>
             <h:commandButton type="button" styleClass="button_date" onclick="selAddTime();"/>
 <f:verbatim>
     <script type="text/javascript">
@@ -541,12 +486,18 @@ function selAddTime() {
             seryFilterDiv.style.top = event.y + document.body.scrollTop - dragClickY;
         }
     }
-<%--     <% --%>
-//        InfoItemBO A001716Item=SysCacheTool.findInfoItem("","A001716");
-//        if (A001716Item!=null && "1".equals(A001716Item.getItemNotNull())){
-//           out.println("document.all('form1:A001716').alt='岗位级别|0|s|50||';");
-//           out.println("document.all('td_postLevel').className='td_form01 td_form_required';");
-//        }
-<%--     %> --%>
-    
 </script>
+<marquee id="processbar" style="position:absolute;display:none; border:1px solid #000000" direction="right" width="300"
+         scrollamount="5" scrolldelay="10"
+         bgcolor="#ECF2FF">
+    <table cellspacing="1" cellpadding="0">
+        <tr height=8>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+        </tr>
+    </table>
+</marquee>

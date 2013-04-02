@@ -10,8 +10,6 @@ import java.util.Map;
 
 import javax.faces.model.SelectItem;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import com.hr319wg.college.ucc.ICollegeUCC;
 import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
@@ -501,8 +499,8 @@ public class PersonAddBackingBean extends BaseBackingBean {
 				showMessageDetail("所增人员的所在机构无法找到，不能增加此人!");
 				return null;
 			}
-			String personId = this.personucc.createPerson(this.personvo,
-					this.personchangevo, user, photo);
+			this.personvo.setPersonCode(this.personucc.getNextPersonCode(user.getOrgId()));
+			String personId = this.personucc.createPerson(this.personvo,this.personchangevo, user, photo);
 			getServletRequest().setAttribute("P_PERSONID", personId);
 			getServletRequest().setAttribute("P_FLAG", "show");
 			getHttpSession().removeAttribute("images");
