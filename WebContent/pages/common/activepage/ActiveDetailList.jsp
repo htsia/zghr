@@ -103,9 +103,7 @@
                     out.println("<input name=add type=button class=button01 value=新增 " + disable + " onclick=forAdd(document.forms(0),'1')>");
                     out.println("<input name=mod type=button class=button01 value=修改 " + disable + " onclick=forEdit(document.forms(0),'6')>");
                     out.println("<input name=del type=button class=button01 value=删除 " + disable + "  onclick=forDel(document.forms(0),'5')>");
-                    if(!"A010".equals(setId) && !"B200".equals(setId)){
-                    	out.println("<input name=del type=button class=button01 value=置为当前 " + disable + "  onclick=forCurrent(document.forms(0))>");                    	
-                    }
+                   	out.println("<input name=del type=button class=button01 value=置为当前 " + disable + "  onclick=forCurrent(document.forms(0))>");                    	
                 }
                 out.println("<input name=del type=button class=button01 value=导出Excel  onclick=forExport()>");
                 out.println("</td>");

@@ -451,13 +451,11 @@
                         }
 
                         // 画当前记录标记
-                        if(!"A010".equals(table.getSetId()) && !"B200".equals(table.getSetId())){
-	                        if (curIndex != -1) { // 有该列
-	                            CellVO curCV = row.getCell()[curIndex];
-	                            if ("00901".equals(curCV.getValue())) {
-	                                out.println("<img src='/images/arrow1.gif'>");
-	                            }
-	                        }
+                        if (curIndex != -1) { // 有该列
+                            CellVO curCV = row.getCell()[curIndex];
+                            if ("00901".equals(curCV.getValue())) {
+                                out.println("<img src='/images/arrow1.gif'>");
+                            }
                         }
 
                         if (wbo != null) { // 如果标记错误
