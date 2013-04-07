@@ -1901,7 +1901,7 @@
 
     <managed-bean>
         <managed-bean-name>wage_wageItemSetBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.wage.web.WageItemSetBackingBean</managed-bean-class>
+        <managed-bean-class>com.hr319wg.custom.extend.web.WageItemSetBackingBeanByExtend</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
         <managed-property>
             <property-name>wageitemsetucc</property-name>
