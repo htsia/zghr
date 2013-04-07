@@ -116,6 +116,8 @@
                     !"A001705".equals(head[i].getItemId()) &&
                     !"A001706".equals(head[i].getItemId()) &&
                     !"A001708".equals(head[i].getItemId()) &&
+                    !"A001735".equals(head[i].getItemId()) &&
+                    !"A001054".equals(head[i].getItemId()) &&
                     !"A001715".equals(head[i].getItemId())
                          ) {
                      if ("".equals(selectItem)){

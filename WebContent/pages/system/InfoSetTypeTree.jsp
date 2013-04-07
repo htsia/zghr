@@ -18,6 +18,7 @@
             if (list != null && list.size() != 0) {
                 for (int i = 0; i < list.size(); i++) {
                     CodeItemBO item = (CodeItemBO) list.get(i);
+                    
                     if ("true".equals(onlyUse) && !"1".equals(item.getItemStatus())){
                         continue;
                     }
@@ -25,6 +26,7 @@
                     sf.append("var t")
                             .append(item.getItemId()).append("=tree.add(");
                     String superId = item.getItemSuper();
+                    
                     if (superId.equals("-1")) {
                         sf.append("root,'last','")
                                 .append(item.getItemName())
@@ -49,7 +51,7 @@
             }
         }
         catch (Exception e) {
-
+			e.printStackTrace();
         }
     }
 %>
