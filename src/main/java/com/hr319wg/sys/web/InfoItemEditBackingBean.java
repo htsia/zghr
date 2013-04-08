@@ -52,6 +52,7 @@ public class InfoItemEditBackingBean extends BaseBackingBean {
 
 	private String itemProperty = "4";
 	private String itemIssue;
+	private String itemClass;
 	private List codeSetList;
 	private boolean editStatus;
 	private String set_sType;
@@ -61,6 +62,14 @@ public class InfoItemEditBackingBean extends BaseBackingBean {
 	private String initEdit;
 	private ICommonService commonService;
 	
+	public String getItemClass() {
+		return itemClass;
+	}
+
+	public void setItemClass(String itemClass) {
+		this.itemClass = itemClass;
+	}
+
 	public ICommonService getCommonService() {
 		return commonService;
 	}
