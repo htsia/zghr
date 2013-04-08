@@ -46,6 +46,7 @@ public class WageSetItemBackingBean extends BaseBackingBean
   private String setName;
   private String unitId;
   private String initView;
+  private String setWageItemInit;
   private String[] countSeq;
   private String[] showSeq;
   private List changebos;
@@ -57,6 +58,13 @@ public class WageSetItemBackingBean extends BaseBackingBean
   private List itemtypeList;
   private boolean canAdjustSeq;
 
+  public String getSetWageItemInit() {
+	  editPageList();
+	return setWageItemInit;
+  }
+  public void setSetWageItemInit(String setWageItemInit) {
+	this.setWageItemInit = setWageItemInit;
+  }
   public String getItemID()
   {
     return this.itemID;
@@ -366,9 +374,11 @@ public class WageSetItemBackingBean extends BaseBackingBean
       bo.setSetId(this.item.getSetId());
       this.wagesetitemucc.saveItemChange(bo);
 
-      String setId = this.item.getSetId();
-      this.item = new WageSetItemBO();
-      this.item.setSetId(setId);
+      WageSetItemBO item1=new WageSetItemBO();
+      item1.setSetId(this.item.getSetId());
+      item1.setCost(this.item.getCost());
+      item1.settype(this.item.gettype());
+      this.item=item1;
       
       super.showMessageDetail("添加薪资项成功");
     } catch (SysException e) {

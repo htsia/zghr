@@ -401,6 +401,7 @@
         <property name="jy1006bh" column="jy1006bh"/>
         <property name="jy1006name" column="jy1006name"/>
         <property name="gb14946" column="gb14946"/>
+        <property name="itemClass" column="ITEM_CLASS"/>
     </class>
 
     <class name="com.hr319wg.sys.pojo.bo.ParameterBO" table="sys_parameter">

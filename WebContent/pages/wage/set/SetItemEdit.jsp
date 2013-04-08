@@ -10,21 +10,21 @@
         function checkSubmit() {
             var value = form1.all('form1:type').value;
             if (value == "") {
-                alert("薪资项类别不能为空！")
+                alert("薪资项类别不能为空！");
                 return false;
             } else if (value == 0) {//standard
                 if (form1.all('form1:stdId').value == "") {
-                    alert("标准表不能为空！")
+                    alert("标准表不能为空！");
                     return false;
                 }
             } else if (value == 1) {// formula
                 if (form1.all('form1:formulaId').value == "") {
-                    alert("公式不能为空！")
+                    alert("公式不能为空！");
                     return false;
                 }
             } else if (value == 2) {// input
                 if (form1.all('form1:field').value == "") {
-                    alert("指标项不能为空！")
+                    alert("指标项不能为空！");
                     return false;
                 } else {
                     // element, discript, type, length, nullflag, maxs, mins
@@ -52,6 +52,7 @@
 <x:saveState value="#{wage_setItemBB}"/>
 <x:saveState value="#{wage_setBB}"/>
 <h:form id="form1">
+<h:inputHidden value="#{wage_setItemBB.setWageItemInit}"/>
     <c:verbatim escape="false"><br></c:verbatim>
     <h:panelGrid align="center" width="95%">
         <h:panelGrid columns="2" columnClasses="td_form01,td_form02" align="center" width="100%" styleClass="table03">

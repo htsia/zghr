@@ -323,7 +323,7 @@
     <!-- wage formula -->
     <!--********************************************************************************-->
 
-    <bean id="wage_FormulaDAO" class="com.hr319wg.wage.dao.WageFormulaDAO">
+    <bean id="wage_FormulaDAO" class="com.hr319wg.custom.extend.dao.WageFormulaDAOByExitend">
         <property name="hibernatetemplate">
             <ref bean="hibernateTemplate"/>
         </property>
