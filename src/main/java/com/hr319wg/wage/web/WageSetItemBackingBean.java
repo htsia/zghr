@@ -234,8 +234,9 @@ public class WageSetItemBackingBean extends BaseBackingBean
         }
       }
       this.standardList.add(0, first);
-
-      this.rsInfoItemList = new ArrayList();
+      if(this.rsInfoItemList==null){
+    	  this.rsInfoItemList = new ArrayList();    	  
+      }
     } catch (SysException e) {
       super.showMessageDetail("´íÎó£º" + e.getMessage());
     }
