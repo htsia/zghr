@@ -14,6 +14,7 @@
 <x:saveState value="#{wage_dateBB}"/>
 <h:form id="form1">
     <h:inputHidden value="#{wage_computeBB.pageInit}"/>
+    <h:inputHidden value="#{wage_computeBB.minusInit}"/>
     <h:inputHidden id="deptpower" value="#{wage_computeBB.deptpower}"/>
     <h:inputHidden id="setId" value="#{wage_computeBB.setId}"/>
     <h:inputHidden id="unitId" value="#{wage_computeBB.unitId}"/>
@@ -38,6 +39,10 @@
                    <h:outputText value="#{wage_computeBB.payoffDate}"/>
                    <c:verbatim>&nbsp;&nbsp;</c:verbatim>
                    <h:outputText escape="false" value="<font color=red>总计#{wage_computeBB.allCount}</font>"/>
+                   
+                   <h:outputLink  target="_blank" rendered="#{wage_computeBB.showMinus}" style="color:red;margin-left:20px;" value="/pages/custom/wage/showMinus.jsp">
+			       <h:outputText value="查看实发不大于零或无银行账号的数据"/>
+			       </h:outputLink>
                </h:panelGroup>
 
                <h:panelGrid  columns="3" align="right">
