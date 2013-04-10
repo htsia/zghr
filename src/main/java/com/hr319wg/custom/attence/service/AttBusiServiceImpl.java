@@ -1292,7 +1292,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public void saveRestAudit(String result, AttRestBO rest, String reason,
 			String taskId, String currentUserId) throws SysException {
-		// TODO Auto-generated method stub
+		
 		AttLogBO bo = new AttLogBO();
 		if (result != null && !result.equals("")) {
 
@@ -1332,7 +1332,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public void saveOvertimeAudit(String result, AttOvertimeBO overtime,
 			String reason, String taskId, String currentUserId)
 			throws SysException {
-		// TODO Auto-generated method stub
+		
 		AttLogBO bo = new AttLogBO();
 		if (result != null && !result.equals("")) {
 
@@ -1381,7 +1381,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public void saveOutAudit(String result, AttOutBO out, String reason,
 			String taskId, String currentUserId) throws SysException {
-		// TODO Auto-generated method stub
+		
 		AttLogBO bo = new AttLogBO();
 		if (result != null && !result.equals("")) {
 
@@ -1431,7 +1431,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	public String updateCalcAttData(String orgId, String beginDate,
 			String endDate, String year, String month, String dId)
 			throws SysException, ParseException {
-		// TODO Auto-generated method stub
+		
 		// 生成临时数据
 		updateCalcAttTempData(orgId, beginDate, endDate);
 
@@ -2032,7 +2032,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	@Override
 	public void cleanData1() throws SysException, ParseException {
-		// TODO Auto-generated method stub
+		
 		String sql = "update a236 a set a236200=0,a236201=0,a236202=5,a236203=3,a236204=3,a236205=98,a236206=15,a236207=3 where exists"
 				+ "(select 1 from a001 b where a.id=b.id and b.a001239<>'30531662' )";
 		this.activeapi.executeSql(sql);
@@ -2040,7 +2040,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	@Override
 	public void cleanData2() throws SysException, ParseException {
-		// TODO Auto-generated method stub
+		
 		String sql = "update a236 a set a236200=0,a236201=0,a236202=5,a236203=3,a236204=3,a236205=98,a236206=15,a236207=3 where exists"
 				+ "(select 1 from a001 b where a.id=b.id and b.a001239='30531662' )";
 		this.activeapi.executeSql(sql);
@@ -2048,7 +2048,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	@Override
 	public void modifyData(String userid) throws SysException, ParseException {
-		// TODO Auto-generated method stub
+		
 		// 根据员工编号获得员工id
 		PersonBO p = SysCacheTool.findPersonByCode(userid);
 		String sql = "update a236 set a236200=0,a236201=0,a236202=5,a236203=3,a236204=3,a236205=98,a236206=15,a236207=3 ";
@@ -2085,7 +2085,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public void getYearAttence(String beginDate, String endDate)
 			throws SysException, ParseException {
-		// TODO Auto-generated method stub
+		
 		// 年份按照结束日期的年份来
 		String year = endDate.substring(0, 4);
 		// 首先删除该年份的所有数据
@@ -2127,7 +2127,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public void updateResetData(String qryID) throws SysException,
 			ParseException {
-		// TODO Auto-generated method stub
+		
 		Hashtable hash = this.queryapi.getQuerySqlHash(null, qryID);
 		List userList = this.jdbcTemplate.queryForList((String) hash
 				.get("SQL_FULL"));
@@ -2149,7 +2149,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public void updateLeaveBackDate(String id, String date)
 			throws SysException, ParseException {
-		// TODO Auto-generated method stub
+		
 		String sql = "update att_leave a set is_back='1',back_date='" + date
 				+ "' where a.leave_id='" + id + "'";
 		this.activeapi.executeSql(sql);
@@ -2159,7 +2159,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public void updateDimissionDate(String subid, String dimission, String date)
 			throws SysException, ParseException {
-		// TODO Auto-generated method stub
+		
 		if (dimission.equals("1")) {
 			String sql = "update a810 a set a810217='1',a810218='" + date
 					+ "' where a.subid='" + subid + "'";
@@ -2176,7 +2176,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public void rollBackLeave(AttLeaveBO bo) throws SysException,
 			ParseException {
-		// TODO Auto-generated method stub
+		
 		if (bo.getStatus().equals("2")) {
 			// 如果是批准的假条，清除累加的请假天数 如果需要，要恢复带薪假的天数
 			String type = bo.getLeaveType();
@@ -2215,7 +2215,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	// 存休转为加班费
 	public void updateOvertimePay(String id, String hours, String selectMonth,String overtimePay)
 			throws SysException, ParseException {
-		// TODO Auto-generated method stub
+		
 		if(hours==null||Double.parseDouble(hours)==0){
 			return;
 		}
@@ -2247,7 +2247,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			String nameStr, String personType, String beginYearMonth,
 			String endYearMonth, String inself, String operUserID)
 			throws SysException {
-		// TODO Auto-generated method stub
+		
 		return this.attBusiDAO.getAndShowAllAttMonthBO(pageVO, orgID, nameStr,
 				personType, beginYearMonth, endYearMonth, inself, operUserID);
 	}
@@ -2288,7 +2288,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	@Override
 	public List<AttOutBO> queryOutAuditTask(String userId) throws SysException {
-		// TODO Auto-generated method stub
+		
 		List<AttOutBO> list = new ArrayList();
 		List taskList = activitiToolService.getTaskAssgineeByPersonId(userId);
 		if (taskList != null && taskList.size() > 0) {
@@ -2322,7 +2322,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public List<AttRestBO> queryRestAuditTask(String userId)
 			throws SysException {
-		// TODO Auto-generated method stub
+		
 		List<AttRestBO> list = new ArrayList();
 		List taskList = activitiToolService.getTaskAssgineeByPersonId(userId);
 		if (taskList != null && taskList.size() > 0) {
@@ -2356,7 +2356,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public List<AttLeaveBO> queryLeaveAuditTask(String userId)
 			throws SysException {
-		// TODO Auto-generated method stub
+		
 		List<AttLeaveBO> leaveList = new ArrayList();
 		List list = activitiToolService.getTaskAssgineeByPersonId(userId);
 		if (list != null && list.size() > 0) {
@@ -2796,7 +2796,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 	@Override
 	public String updateCalcAttTempData(String orgId, String beginDate,
 			String endDate) throws SysException, ParseException {
-		// TODO Auto-generated method stub
+		
 		// ///////////////////步骤1:构建临时表att_sign_detail,填充人员id，日期，8个时刻，班次类型和班次id,班次打卡类型///////////////////////
 		String err = "";
 		// 依据orgId获取所有符合条件班次 orgId空为所有（无实际意义）
@@ -3372,7 +3372,7 @@ public class AttBusiServiceImpl implements IAttBusiService {
 
 	@Override
 	public void updateToShow(String duraID) throws SysException {
-		// TODO Auto-generated method stub
+		
 		AttDurationBO bo=attBusiDAO.getAttDurationBOById(duraID);
 		String yearMonth="";
 		if(bo!=null){
@@ -3380,8 +3380,10 @@ public class AttBusiServiceImpl implements IAttBusiService {
 			//先删除月汇总显示自己的本月数据
 			String sql="delete from a245 a where a.a245200='"+yearMonth+"'";
 			this.activeapi.executeSql(sql);
+			sql="update a245 set a245000='00900'";
+			this.activeapi.executeSql(sql);
 			//插入新的本月数据
-			sql="insert into a245 select (select nvl(max(cast(subid as int)),0) from a245)+rownum,a.id,'00900',a.a810700,a.a810701,a.a810215,a.a810216,a.a810219" +
+			sql="insert into a245 select (select nvl(max(cast(subid as int)),0) from a245)+rownum,a.id,'00901',a.a810700,a.a810701,a.a810215,a.a810216,a.a810219" +
 					",a.a810220,a.a810213,a.a810214,a.a810704,a.a810706,a.a810707,a.a810708,a.a810221,a.a810709,a.a810710,a.a810714 from a810 a where a.a810700='"+yearMonth+"'";
 			this.activeapi.executeSql(sql);
 		}

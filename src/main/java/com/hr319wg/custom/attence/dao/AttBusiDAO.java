@@ -667,7 +667,7 @@ public class AttBusiDAO extends BaseDAO{
 	}
 
 	public AttDurationBO getAttDurationBOById(String id) {
-		// TODO Auto-generated method stub
+		
 		String hql="from AttDurationBO bo where bo.duraID='"+id+"'";
 		List list=this.hibernatetemplate.find(hql);
 		if(list.size()>0){

@@ -19,7 +19,7 @@ public class ValidateLoginEHRBackingBean {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 
 		HrSSOStub stub;
 		ValidateLoginEHRBackingBean backingBean = new ValidateLoginEHRBackingBean();
