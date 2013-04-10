@@ -14,6 +14,7 @@
 <x:saveState value="#{wage_dateBB}"/>
 <h:form id="form1">
     <h:inputHidden value="#{wage_computeBB.pageInit}"/>
+    <h:inputHidden value="#{wage_computeBB.minusInit}"/>
     <h:inputHidden id="deptpower" value="#{wage_computeBB.deptpower}"/>
     <h:inputHidden id="setId" value="#{wage_computeBB.setId}"/>
     <h:inputHidden id="unitId" value="#{wage_computeBB.unitId}"/>
@@ -57,6 +58,9 @@
                        </h:selectOneMenu>
                        <h:commandButton type="button" value="查询" styleClass="button01" onclick="showSpecialQuery();"></h:commandButton>
                     </h:panelGroup>
+                    <h:outputLink target="_blank" rendered="#{wage_computeBB.showMinus}" style="color:red;margin-left:10px;" value="/pages/custom/wage/showMinus.jsp">
+                    	<h:outputText value="查看实发不大于零的数据"/>
+                    </h:outputLink>
                </h:panelGroup>
 
                <h:panelGrid  columns="3" align="right">

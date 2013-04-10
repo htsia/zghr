@@ -1,5 +1,6 @@
 package com.hr319wg.custom.common.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -142,5 +143,21 @@ public class CommonServiceImpl implements ICommonService{
 	
 	public List getRptList(String userID) throws SysException {
 		return this.commonDAO.getRptList(userID);
+	}
+
+	public List getWageMinusList(String setID) throws SysException {
+		List list=null;
+		String sql="select s.para_value from sys_parameter s where s.para_key='WAGE_FIELD_SHIFA'";
+		String field=this.pageAPI.queryForString(sql);
+		if(field!=null && !"".equals(field)){
+			sql="select a.a001735 pCode,a001001 name,b.b001005 deptName,"+field+" wage from a001 a,b001 b,a815_set_"+setID+" s where a.a001705=b.orguid and a.id=s.id and "+field+"<=0 order by b.b001003,a.a001001";
+			list =this.jdbcTemplate.queryForList(sql);
+			if(list==null){
+				list=new ArrayList();
+			}
+		}else{
+			list=new ArrayList();
+		}
+		return list;
 	}
 }

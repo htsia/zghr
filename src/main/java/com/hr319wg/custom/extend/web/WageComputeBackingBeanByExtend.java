@@ -1,5 +1,9 @@
 package com.hr319wg.custom.extend.web;
 
+import java.util.List;
+
+import com.hr319wg.common.exception.SysException;
+import com.hr319wg.custom.common.service.ICommonService;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.vo.CellVO;
 import com.hr319wg.sys.pojo.vo.TableVO;
@@ -7,7 +11,47 @@ import com.hr319wg.util.CommonFuns;
 import com.hr319wg.wage.web.WageComputeBackingBean;
 
 public class WageComputeBackingBeanByExtend extends WageComputeBackingBean {
+	private String minusInit;
+	private boolean showMinus;
+	private ICommonService commonService;
 	
+	public ICommonService getCommonService() {
+		return commonService;
+	}
+
+	public void setCommonService(ICommonService commonService) {
+		this.commonService = commonService;
+	}
+	
+
+	public String getMinusInit() {
+		try {
+			List list =this.commonService.getWageMinusList(this.getSetId());
+			if(list.size()==0){
+				this.showMinus=false;
+				super.getServletRequest().getSession().removeAttribute("minusList");
+			}else{
+				this.showMinus=true;
+				super.getServletRequest().getSession().setAttribute("minusList", list);				
+			}
+		} catch (SysException e) {
+			e.printStackTrace();
+		}
+		return minusInit;
+	}
+
+	public void setMinusInit(String minusInit) {
+		this.minusInit = minusInit;
+	}
+
+	public boolean isShowMinus() {
+		return showMinus;
+	}
+
+	public void setShowMinus(boolean showMinus) {
+		this.showMinus = showMinus;
+	}
+
 	public String turnPageQuery(TableVO table, String sql, int pageNum, int rowNum) {
 	    try {
 	      if (pageNum == 0)
