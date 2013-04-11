@@ -9,12 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.SysContext;
+import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.dao.CodeSetDAO;
 import com.hr319wg.sys.pojo.bo.CodeSetBO;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
+import com.hr319wg.util.CodeUtil;
 import com.hr319wg.wage.pojo.bo.WageStandardBO;
 import com.hr319wg.wage.pojo.bo.WageStdItemBO;
+import com.hr319wg.wage.pojo.bo.WageUnitBO;
 import com.hr319wg.wage.pojo.vo.WageStandardVO;
 import com.hr319wg.wage.web.WageStandardBackingBean;
 
@@ -68,6 +71,75 @@ public class WageStandardBackingBeanByExtend extends WageStandardBackingBean {
 		this.codeSet = codeSet;
 	}
 	
+	public String getPageInit() {
+	    String act = super.getServletRequest().getParameter("act");
+	    String persId = super.getUserInfo().getUserId();
+	    PersonBO person = SysCacheTool.findPersonById(persId);
+	    String userUnitId = person.getGongZiGX();
+	    if ("list".equals(act)) {
+	      this.setUnitId(super.getServletRequest().getParameter("unitId"));
+
+	      WageUnitBO userUnit = SysCacheTool.findWageUnit(userUnitId);
+	      if (userUnit == null) {
+	        super.showMessageDetail("错误：用户没有发薪单位");
+	        return "";
+	      }
+
+	      this.setOperRight(this.getUnitId().equals(userUnit.getUnitId()));
+
+	      if (this.getStandard() == null){
+	    	  this.setStandard(new WageStandardBO());
+	      }
+	      this.getStandard().setUnitId(this.getUnitId());
+	      this.setStdList(queryStdList(this.getUnitId()));
+	      super.getHttpSession().removeAttribute("stdVO");
+	      this.setUnitName(CodeUtil.interpertCode("WAGE", this.getUnitId()));
+	    }
+	    return this.pageInit;
+	  }
+	private List queryStdList(String unitId) {
+	    List list = new ArrayList();
+	    try {
+	      List issueStd = this.getWagestandarducc().queryIssueStandard();
+	      if (issueStd != null) {
+	        int count = issueStd.size();
+	        for (int i = 0; i < count; i++) {
+	          WageStandardBO tmp = (WageStandardBO)issueStd.get(i);
+	          tmp.setPublicFlag(CodeUtil.interpertCode("", tmp.getPublicFlag()));
+	          Object[] obj = new Object[3];
+	          obj[0] = tmp;
+	          if (!unitId.equals(tmp.getUnitId())) {
+	            obj[1] = "disabled";
+	            obj[2] = new Boolean(false);
+	          } else {
+	            obj[1] = "";
+	            obj[2] = new Boolean(true);
+	          }
+	          list.add(obj);
+	        }
+	      }
+	      List unitStd = this.getWagestandarducc().queryStandardByUnitId(unitId);
+	      if (unitStd != null) {
+	        int count = unitStd.size();
+	        for (int i = 0; i < count; i++) {
+	          WageStandardBO tmp = (WageStandardBO)unitStd.get(i);
+	          if ("00900".equals(tmp.getPublicFlag())) {
+	            tmp.setPublicFlag(CodeUtil.interpertCode("", tmp.getPublicFlag()));
+	            Object[] obj = new Object[3];
+	            obj[0] = tmp;
+	            obj[1] = "";
+	            obj[2] = new Boolean(true);
+	            list.add(obj);
+	          }
+	        }
+	      }
+	      return list;
+	    }
+	    catch (SysException e) {
+	      super.showMessageDetail("错误:" + e.getMessage());
+	    }
+	    return list;
+	  }
 	public String step1_create() {
 		WageStandardBO std = new WageStandardBO();
 		std.setUnitId(this.getStandard().getUnitId());

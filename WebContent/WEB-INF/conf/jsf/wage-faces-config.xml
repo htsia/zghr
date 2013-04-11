@@ -389,7 +389,7 @@
 
     <managed-bean>
         <managed-bean-name>wage_formulaBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.wage.web.WageFormulaBackingBean</managed-bean-class>
+        <managed-bean-class>com.hr319wg.custom.extend.web.WageFormulaBackingBeanByExtend</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
         <managed-property>
             <property-name>wageformulaucc</property-name>
@@ -1009,7 +1009,7 @@
 
     <managed-bean>
         <managed-bean-name>wage_dateBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.wage.web.WageDateBackingBean</managed-bean-class>
+        <managed-bean-class>com.hr319wg.custom.extend.web.WageDateBackingBeanByExtend</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
         <managed-property>
             <property-name>wagesetucc</property-name>

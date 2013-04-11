@@ -1,3 +1,10 @@
+<%@page import="com.hr319wg.common.web.SysContext"%>
+<%@page import="com.hr319wg.sys.api.UserAPI"%>
+<%@page import="com.hr319wg.org.pojo.bo.OrgBO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.hr319wg.emp.pojo.bo.PersonBO"%>
+<%@page import="com.hr319wg.user.pojo.bo.RoleInfoBO"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.sys.cache.SysCacheTool" %>
 <%@ page import="com.hr319wg.common.Constants" %>
@@ -17,6 +24,39 @@
     } else {
         String userId = user.getUserId();
         String unitId = SysCacheTool.findPersonById(userId).getGongZiGX();
+        
+    	List list = new ArrayList();
+    	UserAPI userapi = (UserAPI) SysContext.getBean("user_pmsAPI");
+    	if (RoleInfoBO.ORGTYPE_OWN.equals(user.getprocessUnit())) {   // 本单位只需显示自己
+            PersonBO person = SysCacheTool.findPersonById(user.getUserId());
+            WageUnitBO unit = SysCacheTool.findWageUnit(person.getGongZiGX());
+            list.add(unit);
+        } else {
+            OrgBO[] os = (OrgBO[]) userapi.getTreeRoot("0", (User) session.getAttribute(Constants.USER_INFO));
+            if (os != null && os.length > 0) {
+                for (int i = 0; i < os.length; i++) {
+                    WageUnitBO wagebo=SysCacheTool.findWageUnit(os[i].getOrgId());
+                    if (wagebo!=null){
+                        list.add(wagebo);
+                    }
+                }
+            }
+        }
+    	WageUnitBO org = SysCacheTool.findWageUnit("-1");
+        List unitList = new ArrayList();
+        if (list != null) {
+            for (int i = 0; i < list.size(); i++) {
+                WageUnitBO o = (WageUnitBO) list.get(i);
+                // 权限判断
+                if (userapi.checkOrgTreeId(user,SysCacheTool.findOrgById(o.getUnitId()),"1")==1) continue;
+                if (o != null) {
+                	unitId=o.getUnitId();
+                	break;
+                }
+            }
+        }
+    	
+    	
         WageUnitBO unit=SysCacheTool.findWageUnit(unitId);
         if(unit==null) {
             out.println("<script language='javascript'>alert('错误：用户没有发薪单位')</script>");
