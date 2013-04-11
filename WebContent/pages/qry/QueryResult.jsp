@@ -51,7 +51,6 @@
         window.open(url);
         return false;
     }
-	//修改开始1
     function forView(frm,fk,other){
         var setType = '<%=setType%>';
         var url = "";
@@ -67,7 +66,6 @@
         //window.open(url,"","height=600,width=1000,status=yes,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,left=50,top=50");
 		}
     }
-	//修改结束1
 </script>
 
 

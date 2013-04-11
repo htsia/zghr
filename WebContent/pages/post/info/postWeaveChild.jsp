@@ -8,7 +8,7 @@
 
     <script type="text/javascript">
         function forView(form, id, type) {
-            windowOpen("/doc/PostIndex.jsf?postid="+id+"&fk="+id,"aa","","900","600","yes","10","100","yes");
+            windowOpen("/doc/PostIndex.jsf?postid="+id+"&fk="+id+"&where=typeof(A001054,'0135','013510')=1","aa","","900","600","yes","10","100","yes");
         }
         function forAdQry(){
              doAdvanceQuery("C","ORG","111","Y","","C001.C001730 = '00900'","Y","<%=Constants.DEFAULT_QUERY_POST%>","Y","1");

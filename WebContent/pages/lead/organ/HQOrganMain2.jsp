@@ -81,10 +81,7 @@
             <td width="30" >&nbsp;</td>
             <td width="40" ><img src="/images/maininterface/logo.jpg" align="left" alt="" height="58" valign="top"></td>
             <td  width="50" align="center">
-                <!--修改开始1 -->
-				<!-- <span style="font-size:30px; color:#ffffff; line-height:43px; font-weight:bold; padding-left:0px; padding-top:15px; height:43px;"><%=Constants.TITLE_NAME%></span> -->
 				<img src="/images/maininterface/title_name.png"/>
-				<!--修改结束1 -->
            </td>
             <td align="right" >
                 <font color="white"><%=user.getName()%>，您好！ 欢迎登录<% out.println(Constants.LEAD_SYSTEM_NAME);%><br>上次登录：<%=user.getLastLoginTime()%>这是您今天第<%=user.getTodayTimes()%>次登录本系统</font>

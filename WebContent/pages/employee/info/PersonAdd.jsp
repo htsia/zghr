@@ -201,9 +201,7 @@ function selAddTime() {
          <%= LanguageSupport.getResource("XTGL-1042", "员工编号")%>     
         </td> -->
         <td class="td_form02">
-		<!-- 修改开始1 -->
             <h:inputText styleClass="input" id="A001735" value="#{emp_personAddBB.personvo.personCode}"   readonly="true"  alt="员工编号|1|s|50||"  />
-		<!-- 修改结束1 -->
 <f:verbatim>
         </td>
         <%

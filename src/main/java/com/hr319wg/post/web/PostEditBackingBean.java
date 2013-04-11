@@ -76,6 +76,7 @@ public class PostEditBackingBean extends BaseBackingBean
       String fk = getServletRequest().getParameter("fk");
       String pk = getServletRequest().getParameter("pk");
       String flag = getServletRequest().getParameter("flag");
+      String where = getServletRequest().getParameter("where");
       if (flag == null) flag = "2";
       if ("2".equals(flag)) {
         TableVO table = (TableVO)getHttpSession().getAttribute(tableId);
@@ -102,6 +103,9 @@ public class PostEditBackingBean extends BaseBackingBean
 
         TableVO table = new TableVO();
         String addcontion = "A001715='" + fk + "'";
+        if(where!=null && !"".equals(where)){
+        	addcontion+=" and "+where;
+        }
         String sql = this.personucc.queryPersonList(table, "", "", "", 1, 100, "", null, "156", addcontion);
         getHttpSession().setAttribute("activeSql", sql);
         getHttpSession().setAttribute("pageNum", String.valueOf("1"));

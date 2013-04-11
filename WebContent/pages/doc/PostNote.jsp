@@ -2,7 +2,6 @@
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ include file="/pages/include/taglib.jsp" %>
 <x:saveState value="#{post_editPostBB}"/>
-<!-- 修改开始1  -->
 <script type="text/javascript">
 	var subw=null;
     function forView(form, id, type) {
@@ -15,7 +14,6 @@
         //window.showModalDialog("<%=Constants.LEAD_SHOW_PERSONURL%>?flag333=2&fk="+id+"&typeId=2001010000,2001010100&setId=A001", "", "dialogWidth:1000px; dialogHeight:600px; center:center; status:0;resizable:yes");
     }
 </script>
-<!-- 修改结束1  -->
 
 <h:form id="form1">
     <h:inputHidden value="#{post_editPostBB.table}"></h:inputHidden>

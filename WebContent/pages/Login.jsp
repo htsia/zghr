@@ -55,9 +55,6 @@
         <td width=5></td>
         <td>
             <INPUT type="radio" ID="Radio1" VALUE="Radio1" CHECKED NAME="RadioGroup"><font color=<%=Constants.LOGIN_FONT_COLOR%>>密码模式(Password)</font>
-            <!-- 修改开始2 -->
-			<!-- <INPUT type="radio" ID="Radio2" VALUE="Radio2"   NAME="RadioGroup" onclick="window.location.href='/LoginByCardI.jsf'"><font color=<%=Constants.LOGIN_FONT_COLOR%>>I型身份卡(ID Card)</font> -->
-			<!-- 修改结束2 -->
 		</td>
 		<td width=5></td>
     </tr>
@@ -90,7 +87,6 @@
     <tr>
     </table>
     <script type="text/javascript">
-//<!-- 修改开始1 -->
 		function setpos(){
 			var logintop=document.body.clientHeight/5*2+10;
 			var loginleft=document.body.clientWidth /3*2-20;
@@ -104,8 +100,6 @@
 
 		window.onresize=setpos;
 		document.all("form1:loginName").focus();
-		
-//<!-- 修改结束1 -->
     </script>
 
 </f:verbatim>
