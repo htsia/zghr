@@ -3,6 +3,7 @@ package com.hr319wg.emp.web;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
@@ -20,7 +21,6 @@ import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.util.CommonUtil;
-import com.hr319wg.emp.pojo.bo.EmpChangeTypeConfigBO;
 import com.hr319wg.emp.pojo.bo.EmpReduceBO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.pojo.vo.PersonChangeVO;
@@ -221,6 +221,19 @@ public class PersonListBackingBean extends BaseBackingBean
   {
     try
     {
+      User user=super.getUserInfo();
+      Map code= user.getPmsQueryCode();
+      if(code.get("0135")!=null){
+    	  List<CodeItemBO> codeList= (List<CodeItemBO>)code.get("0135");
+    	  String type="";
+    	  for(CodeItemBO item : codeList){
+    		  if(item.getItemSuper().startsWith("013510") && "1".equals(item.getItemStatus())){
+    			  type+=item.getItemId()+",";    			  
+    		  }
+    	  }
+    	  this.personType=type;
+    	  this.personTypeDesc=CodeUtil.interpertCode(this.personType);
+      }
       String pageFlag = getServletRequest().getParameter("pageFlag");
       if ("1".equals(pageFlag)) {
         try {
@@ -235,7 +248,6 @@ public class PersonListBackingBean extends BaseBackingBean
           if (rowNums != null) {
             rowNum = Integer.parseInt(rowNums);
           }
-          User user = getUserInfo();
           this.personucc.querySql(table, sql, user, pageNum, rowNum);
           getHttpSession().setAttribute("OBJECT", table);
           getHttpSession().setAttribute("activeSql", sql);
@@ -255,11 +267,6 @@ public class PersonListBackingBean extends BaseBackingBean
       if (super.getRequestParameter("mode") != null) {
         this.mode = super.getRequestParameter("mode");
         this.afterType = CommonFuns.filterNull(super.getRequestParameter("afterType"));
-        EmpChangeTypeConfigBO bo = this.personucc.getEmpChangeTypeConfigBO(this.mode);
-        if (bo != null) {
-          this.personType = bo.getChangingType();
-          this.personTypeDesc = CodeUtil.interpertCode(this.personType);
-        }
 
         String superOrg = getServletRequest().getParameter("superId");
         if ((superOrg != null) && (!"".equals(superOrg))) {
@@ -271,7 +278,6 @@ public class PersonListBackingBean extends BaseBackingBean
         if (rowNums != null) {
           rowNum = Integer.parseInt(rowNums);
         }
-        User user = getUserInfo();
         String sql = this.personucc.queryPersonListForRetire(table, this.name, this.personType, this.superId, 1, rowNum, "00900", user);
         getHttpSession().setAttribute("activeSql", sql);
         getHttpSession().setAttribute("pageNum", String.valueOf("1"));
@@ -281,6 +287,7 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return this.initRetireQuery;
   }
