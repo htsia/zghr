@@ -209,7 +209,9 @@ public class WageStandardBackingBeanByExtend extends WageStandardBackingBean {
 	    String[] vItemIds = request.getParameterValues("VItemIds");
 	    String[] hItemIds = request.getParameterValues("HItemIds");
 	    String[] rItemIds = request.getParameterValues("RItemIds");
-	    this.stdVO.setR_item(handleItem(rItemIds, "2", this.stdVO.getR_item()));
+	    if(rItemIds!=null){
+	    	this.stdVO.setR_item(handleItem(rItemIds, "2", this.stdVO.getR_item()));	    	
+	    }
 	    if (vItemIds != null) {
 	      this.stdVO.setV_item(handleItem(vItemIds, "1", this.stdVO.getV_item()));
 	    }

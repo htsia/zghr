@@ -56,9 +56,7 @@ public class UUCustomManager implements IUUManager{
 	}
 	
 	public void organizationSort(String arg0) throws SysException {
-		//刷新代码集
-		SysCache.loadCodeSetMap();
-        SysCache.loadCodeItemMap();
+
 	}
 	
 	//添加人员后
