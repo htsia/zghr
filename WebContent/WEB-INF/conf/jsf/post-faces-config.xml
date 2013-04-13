@@ -51,24 +51,6 @@
         </managed-property>
 
     </managed-bean>
-
-
-
-
-    <managed-bean>
-        <managed-bean-name>post_PostMapBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.post.web.PostMapBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>postucc</property-name>
-            <value>#{post_postUCC}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>userreportucc</property-name>
-            <value>#{user_userReportUccImpl}</value>
-        </managed-property>
-    </managed-bean>
-
     <managed-bean>
         <managed-bean-name>post_PostListBB</managed-bean-name>
         <managed-bean-class>com.hr319wg.post.web.PostListBackingBean</managed-bean-class>
