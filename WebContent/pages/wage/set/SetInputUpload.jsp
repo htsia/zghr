@@ -13,7 +13,7 @@
             var obj = form1.rsItem;
             if (filename.substr(filename.length - 3).toLowerCase() == 'xls') {
                 if (obj.options.length < 3) {
-                    alert("请选择输入项！")
+                    alert("请选择输入项！");
                     return false;
                 } else {
                     selectTotal(obj);
@@ -29,12 +29,12 @@
         }
         function checkSave() {
             if (document.all("form1:configname").value==""){
-                alert("请录入配置名称！")
+                alert("请录入配置名称！");
                 return false;
             }
             var obj = form1.rsItem;
             if (obj.options.length < 3) {
-                alert("请选择输入项！")
+                alert("请选择输入项！");
                 return false;
             } else {
                 selectTotal(obj);
@@ -46,7 +46,7 @@
         }
         function checkDelete(){
             if (document.all("form1:configname").value==""){
-                alert("请录入配置名称！")
+                alert("请录入配置名称！");
                 return false;
             }
             return true; 
@@ -55,7 +55,7 @@
         function removeAll(){
             var obj = form1.rsItem;
             var count = obj.options.length;
-            for (i = count - 1; i >= 0; i--) {
+            for (var i = count - 1; i >= 0; i--) {
                  obj.remove(i);
             }
         }
@@ -63,7 +63,7 @@
             var obj = form1.rsItem;
             //all("form1:inputField");
             var count = obj.options.length;
-            for (i = count - 1; i >= 0; i--) {
+            for (var i = count - 1; i >= 0; i--) {
                 if (obj.options[i].selected) {
                     if (obj.options[i].value == "A001735" || obj.options[i].value == "A001001" || obj.options[i].value == "A001705") {
                         obj.options[i].selected = false;
@@ -78,7 +78,7 @@
             var obj = form1.rsItem;
             //all("form1:inputField");
             var count = obj.options.length;
-            for (i = 0; i < count; i++) {
+            for (var i = 0; i < count; i++) {
                 if (obj.options[i].selected) {
                     if (i == 0 || i == 1) {
                         continue;
@@ -99,7 +99,7 @@
         function forDownInputItem() {
             var obj = form1.rsItem;
             var count = obj.options.length;
-            for (i = 0; i < count; i++) {
+            for (var i = 0; i < count; i++) {
                 if (obj.options[i].selected) {
                     if (i == count - 1 || i == 0 || i == 1) {
                         continue;
@@ -190,7 +190,6 @@
                     styleClass="table03" columnClasses="td_middle,td_middle,td_middle,td_middle">
         <h:panelGroup>
            <h:outputText value="备选输入项"/>
-           <h:selectBooleanCheckbox value="true" onclick="submit()"  valueChangeListener="#{wage_setInputBB.outputitem}" rendered="#{wage_setInputBB.showOnlyCheck}"/> <h:outputText value="仅选择录入项目" rendered="#{wage_setInputBB.showOnlyCheck}"></h:outputText>
         </h:panelGroup>
         <h:outputText value=""/>
         <h:panelGroup>
