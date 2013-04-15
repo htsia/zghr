@@ -29,6 +29,8 @@
 
     <c:verbatim>
     <table width=100% height=100% border=0 >
+    <tr><td><div style='width: 100%; height: 100%; overflow: auto' id=datatable>
+    <table width=100% height=100% border=0 >
     <tr><td height=8px>
     </c:verbatim>
         <h:panelGrid styleClass="td_title" columns="2" width="99%" align="center" style="height:20px">
@@ -246,6 +248,7 @@
             <h:commandButton value="±¨Ë°" type="button" onclick="doTaxExport();" styleClass="button01"/>
         </h:panelGrid>
 <c:verbatim>
+		</div>
         </td>
     </tr>
 
@@ -265,6 +268,7 @@
     </jsp:include>
     </td></tr>
     </table>
+    </div></td></tr></table>
 </c:verbatim>
 </h:form>
 <marquee id="processbar" style="position:absolute;display:none;border:1px solid #000000" direction="right" width="300"
