@@ -1,3 +1,5 @@
+<%@page import="com.hr319wg.custom.util.ComparatorWageUnitBO"%>
+<%@page import="java.util.Collections"%>
 <%@page import="net.sf.json.JSONArray"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
@@ -45,6 +47,9 @@
         }
     } else {
         list = SysCacheTool.querySubObject(SysCache.OBJ_WAGEUNIT, null, superId);
+    }
+    if(list!=null){
+    	Collections.sort(list, new ComparatorWageUnitBO());
     }
     WageUnitBO org = SysCacheTool.findWageUnit(superId);
     String childnum = "";

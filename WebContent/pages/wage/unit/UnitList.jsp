@@ -66,10 +66,6 @@
                 <h:outputText value="#{list.manageFlag}"/>
             </h:column>
             <h:column>
-                <c:facet name="header"><h:outputText value="ÏÔÊ¾Ë³Ðò"/></c:facet>
-                <h:outputText value="#{list.order}"/>
-            </h:column>
-            <h:column>
                 <c:facet name="header"><h:outputText value="²Ù×÷"/></c:facet>
                 <h:commandButton id="bnt" styleClass="button01" action="#{wage_unitBB.find}" value="ÐÞ¸Ä"
                                  rendered="#{wage_unitBB.operRight}">

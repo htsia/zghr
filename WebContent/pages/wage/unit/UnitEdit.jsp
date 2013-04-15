@@ -36,9 +36,6 @@
         <h:outputText value="描述"/>
         <h:inputText id="desc" value="#{wage_unitBB.unit.desc}" size="60"/>
 
-        <h:outputText value="显示顺序"/>
-        <h:inputText id="order" value="#{wage_unitBB.unit.order}" alt="显示顺序|0|i|3|0"/>
-
         <h:outputText value="是否管理机构"/>
         <h:selectOneRadio value="#{wage_unitBB.unit.manageFlag}" id="manageFlag" alt="是否管理机构|0">
             <c:selectItem itemValue="00901" itemLabel="是"/>
