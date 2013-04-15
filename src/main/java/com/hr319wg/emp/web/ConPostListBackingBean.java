@@ -61,24 +61,20 @@ public class ConPostListBackingBean extends BaseBackingBean {
 				}
 				if(cb.getConPostID1()!=null && !"".equals(cb.getConPostID1())){
 					cv.setConPostID1(cb.getConPostID1());
-					cv.setConPostID1Name(CodeUtil.interpertCode(
-							CodeUtil.TYPE_POST, cb.getConPostID1()));
+					cv.setConPostID1Name(SysCacheTool.findPost(cb.getConPostID1()).getName());
 					pb = SysCacheTool.findPersonById("@" + cb.getPersonID());
 					if (pb != null) {
 						cv.setConPostID1(pb.getPostId());
-						cv.setConPostID1Name(CodeUtil.interpertCode(
-								CodeUtil.TYPE_ORG, pb.getPostId()));
+						cv.setConPostID1Name(SysCacheTool.findPost(pb.getPostId()).getName());
 					}
 				}
 				if(cb.getConPostID2()!=null && !"".equals(cb.getConPostID2())){
 					cv.setConPostID2(cb.getConPostID2());
-					cv.setConPostID2Name(CodeUtil.interpertCode(
-							CodeUtil.TYPE_POST, cb.getConPostID2()));
+					cv.setConPostID2Name(SysCacheTool.findPost(cb.getConPostID2()).getName());
 					pb = SysCacheTool.findPersonById("@@" + cb.getPersonID());
 					if (pb != null) {
 						cv.setConPostID2(pb.getPostId());
-						cv.setConPostID2Name(CodeUtil.interpertCode(
-								CodeUtil.TYPE_ORG, pb.getPostId()));
+						cv.setConPostID2Name(SysCacheTool.findPost(pb.getPostId()).getName());
 					}
 				}
 				this.personList.add(cv);

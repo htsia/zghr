@@ -10,6 +10,24 @@ public class ConPostBO extends CloneablePO {
 	private String conOrguid2;
 	private String conPostID1;
 	private String conPostID2;
+	private String conPostID1Name;
+	private String conPostID2Name;
+
+	public String getConPostID1Name() {
+		return conPostID1Name;
+	}
+
+	public void setConPostID1Name(String conPostID1Name) {
+		this.conPostID1Name = conPostID1Name;
+	}
+
+	public String getConPostID2Name() {
+		return conPostID2Name;
+	}
+
+	public void setConPostID2Name(String conPostID2Name) {
+		this.conPostID2Name = conPostID2Name;
+	}
 
 	public String getConPostID1() {
 		return conPostID1;

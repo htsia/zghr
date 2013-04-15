@@ -279,6 +279,7 @@ public class ConPostEditBackingBean extends BaseBackingBean
       cb.setMainOrguid(this.cpvo.getMainOrguid());
       if ((this.cpvo.getConOrguid1() != null) && (!"".equals(this.cpvo.getConOrguid1()))) {
         cb.setConOrguid1(this.cpvo.getConOrguid1());
+        cb.setConPostID1(cb.getConPostID1());
         cb.setConPostID2(this.postID);
         if ((this.cpvo.getConOrguid2() == null) || ("".equals(this.cpvo.getConOrguid2()))) {
           cb.setConOrguid2(orgbo.getOrgId());
