@@ -83,7 +83,7 @@
                         <textarea rows="10" cols="80" name="orgNames" readonly><%=CommonFuns.filterNull(orgNames)%></textarea>
                         <% if ("ORG".equals(unitType)) {%>
                         <input name="Submit" type="button" class="button01" value="选择机构"
-                               onclick="PopUpMutilOrgTwoControl(document.forms(0).all('orgIds'),document.forms(0).all('orgNames'),<%=operFlag%>,'')">
+                               onclick="PopUpMutilOrgTwoControlQuery(document.forms(0).all('orgIds'),document.forms(0).all('orgNames'),<%=operFlag%>,'')">
                         <%} else if ("PARTY".equals(unitType)) {%>
                         <input name="Submit" type="button" class="button01" value="选择组织"
                                onclick="fPopUpMutilParty2(document.forms(0).all('orgIds'),document.forms(0).all('orgNames'),<%=operFlag%>,'')">

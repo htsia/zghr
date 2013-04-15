@@ -835,6 +835,36 @@ function PopUpMutilOrgTwoControl(codeField, nameField, useRightFlag, rootOrgId) 
     else
         return false;
 }
+//useRightFlag 0-不使用 1-使用权限过滤； rootOrgId根节点的机构编号
+function PopUpMutilOrgTwoControlQuery(codeField, nameField, useRightFlag, rootOrgId) {
+	if (codeField == null || nameField == null)
+		return false;
+	if (codeField != "[object]")
+		codeField = document.getElementById(codeField);
+	if (nameField != "[object]")
+		nameField = document.getElementById(nameField);
+	showx = event.screenX - event.offsetX - 160//+ 25; // + deltaX;
+	showy = event.screenY - event.offsetY + 18;
+	// + deltaY;
+	var arg = "dict_num=OU";
+	arg += "&curCode=" + codeField.value;
+	arg += "&value=" + nameField.value;
+	arg += "&rightFlag=" + useRightFlag;
+	arg += "&rootId=" + rootOrgId;
+	
+	retval = window.showModalDialog("/pages/common/SelMutilOrgQuery.jsp?" + arg, "", "dialogWidth:300px; dialogHeight:400px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;");
+	if(retval=="-1"){
+		codeField.value = "";
+		nameField.value = "";
+	}else if (retval != null) {
+		retval = retval.split("|");
+		codeField.value = retval[0];
+		nameField.value = retval[1];
+		return true;
+	}else{
+		return false;
+	}
+}
 function PopUpMutilOnlyOrgTwoControl(codeField, nameField, useRightFlag, rootOrgId) {
     if (codeField == null || nameField == null)
         return false;
