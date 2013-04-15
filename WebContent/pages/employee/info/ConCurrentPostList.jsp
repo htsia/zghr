@@ -39,7 +39,7 @@
 						</f:verbatim>
 						<h:dataTable value="#{emp_ConPostListBB.personList}" var="list"
 							align="center" id="dateList" headerClass="td_top tr_fixrow"
-							columnClasses="td_middle_center,td_middle,td_middle_center,td_middle,td_middle,td_middle_center"
+							columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center"
 							styleClass="table03" width="90%">
 							<h:column>
 								<c:facet name="header">
@@ -84,6 +84,12 @@
 								</c:facet>
 								<h:outputText value="#{list.conDeptid1Name}" />
 							</h:column>
+							<h:column>
+								<c:facet name="header">
+									<h:outputText value="兼职岗位1"/>
+								</c:facet>
+								<h:outputText value="#{list.conPostID1Name}" />
+							</h:column>
 
 							<h:column>
 								<c:facet name="header">
@@ -102,7 +108,13 @@
 								</c:facet>
 								<h:outputText value="#{list.conDeptid2Name}" />
 							</h:column>
-
+							<h:column>
+								<c:facet name="header">
+									<h:outputText value="兼职岗位2"/>
+								</c:facet>
+								<h:outputText value="#{list.conPostID2Name}" />
+							</h:column>
+							
 							<h:column>
 								<c:facet name="header">
 									 <f:verbatim>

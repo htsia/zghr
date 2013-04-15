@@ -7,8 +7,13 @@
 <%@ page import="com.hr319wg.common.Constants" %>
 <script type="text/javascript">
   function selPost(){
-    var deptId=document.all("form1:A016030").code;
-    PopUpPostDlgByDept(document.all("form1:A001715"),null,deptId);
+    var deptId=document.getElementById("form1:A016030").code;
+    if(deptId==''){
+    	alert("请选择部门");
+    	return false;
+    }
+    PopUpPostDlgByDept(document.getElementById("form1:A001715"),null,deptId);
+   	return false;
   }
 </script>
     <x:saveState value="#{emp_PersonDismissBB}"/>
@@ -61,7 +66,7 @@
                 readonly="true"    alt="新岗位|1|s|50||"/>
 
        <c:verbatim>
-               <input type="button" class="button_select" onclick="selPost()">
+               <input type="button" class="button_select" onclick="return selPost();">
            </td>
        </tr>
        </table>

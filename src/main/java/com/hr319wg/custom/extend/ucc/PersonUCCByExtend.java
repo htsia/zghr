@@ -3,6 +3,7 @@ package com.hr319wg.custom.extend.ucc;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.emp.ucc.impl.PersonUCC;
@@ -137,5 +138,13 @@ public class PersonUCCByExtend extends PersonUCC {
 	      } catch (Exception e) {
 			throw new SysException("", "≤È—Ø ß∞‹", e, getClass());
 	    }
+	  }
+	public void updatePersonCode(String perID, String add) throws SysException {
+		String[]params=add.split(",");
+	    String sql = "update a001 set A001735='" + params[0] + "'||A001735,A001715='"+params[1]+"' where id='" + perID + "'";
+	    if ("SQL SERVER".equals(Constants.DB_TYPE)) {
+	      sql = "update a001 set A001735='" + params[0] + "'+A001735,A001715='"+params[1]+"' where id='" + perID + "'";
+	    }
+	    this.getActivepageservice().executeSql(sql);
 	  }
 }

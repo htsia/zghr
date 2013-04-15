@@ -47,7 +47,7 @@
                                      align="center"  headerClass="td_top" rowClasses="td_middle" styleClass="table03">
                            <h:column>
                                <c:facet name="header"><h:outputText value="操作"/></c:facet>
-                               <c:verbatim><a class="cursor:hand" onclick="sel('</c:verbatim><h:outputText value="#{list.personId}"/><c:verbatim>','</c:verbatim><h:outputText value="#{list.name}"/><c:verbatim>')">选择</a></c:verbatim>
+                               <c:verbatim><a style="cursor:hand;" onclick="sel('</c:verbatim><h:outputText value="#{list.personId}"/><c:verbatim>','</c:verbatim><h:outputText value="#{list.name}"/><c:verbatim>')">选择</a></c:verbatim>
                             </h:column>
                             <h:column>
                                 <c:facet name="header"><h:outputText value="员工编号"/></c:facet>

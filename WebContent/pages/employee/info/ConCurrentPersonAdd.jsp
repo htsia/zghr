@@ -14,6 +14,15 @@
           document.all('form1:query').click();
       }
   }
+  function forpost(){
+	  var dept=document.getElementById("form1:deptid").code;
+	  if(dept==''){
+		  alert("请选择部门");
+		  return false;
+	  }
+	  PopUpPostDlgByDept(document.getElementById("form1:A001715"),null,dept);
+	  return true;
+  }
 </script>
 
   <x:saveState value="#{emp_ConPostEditBB}" />
@@ -63,6 +72,14 @@
                          alt="兼职部门|0|s|50||"></h:inputText>
                    <c:verbatim>
                      <input type="button" class="button_select" onclick="PopUpOrgDlg('form1:deptid',0)">
+                   </c:verbatim>
+               </h:panelGroup>
+               <h:outputText value="兼职岗位"/>
+               <h:panelGroup>
+               		<h:inputText styleClass="input" id="A001715" value="#{emp_ConPostEditBB.postID}" dict="yes" dict_num="PO"  code=""
+                            readonly="true"/>
+                   <c:verbatim>
+                     <input type="button" class="button_select" onclick="return forpost();">
                    </c:verbatim>
                </h:panelGroup>
            </h:panelGrid>
