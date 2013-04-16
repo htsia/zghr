@@ -445,6 +445,18 @@ public class WageComputeServiceByExtend extends WageComputeService {
 								.replaceAll("GetMonth\\(_A815.A815701\\)", "GetMonth('"+payoffDate+"')")
 								.replaceAll("GetYear\\(_A815.A815701\\)", "GetYear('"+payoffDate+"')")
 								.replaceAll("GetWorkDays\\(_A815.A815701\\)", "GetWorkDays('"+payoffDate+"')");
+						int index =express.indexOf("MaxIf(");
+						while(index!=-1){
+							String temp=express.substring(index);
+							int lkindex=temp.indexOf("(");
+							int dindex=temp.indexOf(",");
+							int rkindex=temp.indexOf(")");
+							String field=temp.substring(lkindex+1, dindex);
+							String num=temp.substring(dindex+1, rkindex);
+							String temp1="case when 0.0+"+field+" >= 0.0+"+num+" then 0.0+"+num+" else 0.0+"+field+" end";
+							express=express.substring(0, index)+temp1+temp.substring(rkindex+1);
+							index=express.indexOf("MaxIf(");
+						}
 						formula.setExpress(express);
 						expressHash.put(formula.getRsField(), formula);
 						flaCountOrder.add(formula.getRsField());

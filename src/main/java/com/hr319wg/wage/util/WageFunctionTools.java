@@ -39,6 +39,7 @@ public class WageFunctionTools
     try
     {
       input = replaceFunction(input, "Round\\([^,]*,{1}[0-9]{1}\\)");
+      input = replaceFunction(input, "MaxIf\\([^,]*,[0-9]+\\.{0,1}[0-9]{0,2}\\)");
       input = replaceFunction(input, "GetYear\\(.{13}\\)");
       input = replaceFunction(input, "GetMonth\\(.{13}\\)");
       input = replaceFunction(input, "GetDays\\(.{13}\\)");

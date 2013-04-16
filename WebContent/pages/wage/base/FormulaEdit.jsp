@@ -253,7 +253,9 @@
                 <br><br>
                 <input type="button" class="button01"  style="width:120px" value="GetSumByMonth" onclick="spanOperation('GetSumByMonth(','GetSumByMonth(');">
                 &nbsp;&nbsp;
-                <input type="button" class="button01"  style="width:160px" value="GetSumByMonth_LAST" onclick="spanOperation('GetSumByMonth_LAST(','GetSumByMonth_LAST(');"><br>
+                <input type="button" class="button01"  style="width:160px" value="GetSumByMonth_LAST" onclick="spanOperation('GetSumByMonth_LAST(','GetSumByMonth_LAST(');">
+                &nbsp;&nbsp;
+                <input type="button" class="button01"  style="width:80px" value="MaxIf" onclick="spanOperation('MaxIf(','MaxIf(');">
            </c:verbatim>
         </h:panelGroup>
 
