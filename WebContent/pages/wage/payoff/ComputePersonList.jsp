@@ -60,9 +60,6 @@
                        </h:selectOneMenu>
                        <h:commandButton type="button" value="查询" styleClass="button01" onclick="showSpecialQuery();"></h:commandButton>
                     </h:panelGroup>
-                    <h:outputLink target="_blank" rendered="#{wage_computeBB.showMinus}" style="color:red;margin-left:10px;" value="/pages/custom/wage/showMinus.jsp">
-                    	<h:outputText value="查看实发不大于零的数据"/>
-                    </h:outputLink>
                </h:panelGroup>
 
                <h:panelGrid  columns="3" align="right">
@@ -180,11 +177,6 @@
             <h:panelGroup>
                 <h:commandButton value="清空" styleClass="button01" rendered="#{wage_computeBB.canModifyData}"
                                  action="#{wage_computeBB.turnPageQuery}" onclick="return doClearZero()"/>
-                <h:commandButton value="基础信息" type="button" styleClass="button01" rendered="#{wage_computeBB.canModifyData}"
-                                 onclick="return doBaseInfoInput()"/>
-                <h:commandButton value="定标准" styleClass="button01" rendered="#{wage_computeBB.canModifyStandard}"
-                                 action="#{wage_computeBB.turnPageQuery}"
-                                 onclick="return doSetStandard()"/>
 
                 <h:commandButton value="选择录入" styleClass="button01" rendered="#{wage_computeBB.canModifyData}"
                                  action="#{wage_computeBB.turnPageQuery}"
@@ -206,9 +198,6 @@
 
 
             <h:panelGroup>
-                <h:commandButton value="清帐" styleClass="button01"  rendered="#{wage_computeBB.clearSheet}"
-                                 action="#{wage_computeBB.finishPerson}"
-                                 onclick="return doDelete();"/>
 
                 <h:panelGroup rendered="#{wage_computeBB.makeupPay}">
                 <h:commandButton value="加人" styleClass="button01"  rendered="#{wage_computeBB.canModifyData}"
