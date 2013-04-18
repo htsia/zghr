@@ -58,7 +58,17 @@
 
     function forSave() {
         if (forCheck()) {
-            return forsubmit(document.forms(0));
+            var pass= forsubmit(document.forms(0));
+            if(pass){
+            	x = document.body.clientWidth / 2 - 150;
+        		y = document.body.clientHeight / 2;
+        		document.all('processbar').style.top = y;
+        		document.all('processbar').style.left = x;
+        		document.all('processbar').style.display = "";
+        		return true;
+            }else{
+            	return false;
+            }
         }
         return false;
     }
@@ -218,3 +228,17 @@
      }
 %>
 </script>
+<marquee id="processbar" style="position:absolute;display:none; border:1px solid #000000" direction="right" width="300"
+         scrollamount="5" scrolldelay="10"
+         bgcolor="#ECF2FF">
+    <table cellspacing="1" cellpadding="0">
+        <tr height=8>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+            <td bgcolor=#3388FF width=9></td>
+            <td></td>
+        </tr>
+    </table>
+</marquee>

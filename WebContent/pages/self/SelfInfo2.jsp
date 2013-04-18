@@ -205,6 +205,9 @@
 							List<StarsBO> list=rc.getALLShow(user.getOrgId());
 							for(StarsBO sb : list){
 								PersonBO pb = SysCacheTool.findPersonById(sb.getPersID());
+								if(pb==null){
+									continue;
+								}
 								%>
 								<li style="height:180px;">
 								<table width="100%" height="180" width="100%" cellspacing="0" cellpadding="0">

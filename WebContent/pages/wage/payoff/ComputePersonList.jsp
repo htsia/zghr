@@ -29,7 +29,7 @@
 
     <c:verbatim>
     <table width=100% height=100% border=0 >
-    <tr><td><div style='width: 100%; height: 100%; overflow: auto' id=datatable>
+    <tr><td><div style='width: 100%; height: 100%; overflow: auto'>
     <table width=100% height=100% border=0 >
     <tr><td height=8px>
     </c:verbatim>
@@ -248,7 +248,6 @@
             <h:commandButton value="±¨Ë°" type="button" onclick="doTaxExport();" styleClass="button01"/>
         </h:panelGrid>
 <c:verbatim>
-		</div>
         </td>
     </tr>
 

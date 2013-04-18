@@ -416,11 +416,9 @@
                     if (isEdit && !"A001".equals(setId)) {
 						if("A001".equals(setId)){
 							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"fPopUpPostDlgRy('" + cell.getItemId().trim() + "')\">");
-						}else if("C001".equals(setId)){
-							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"fPopUpPostDlg('" + cell.getItemId().trim() + "')\">");
 						}else{
-							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"PopUpPostDlgByDept1('" + cell.getItemId().trim() + "',null,'A001705')\">");
-						}                        
+							out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"fPopUpPostDlg('" + cell.getItemId().trim() + "')\">");
+						}                     
                     }
                     out.println(msg);
                     out.println("</td>");

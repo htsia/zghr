@@ -63,5 +63,8 @@
     <definition name="/org/orgTemPost.tiles" extends="layout.busitemplateLogin">
         <put name="body" value="/pages/org/orgTemPost.jsp"/>
     </definition>
+    <definition name="/org/addPostByTemplate.tiles" extends="layout.busitemplateLogin">
+        <put name="body" value="/pages/org/addPostByTemplate.jsp"/>
+    </definition>
    
 </tiles-definitions>
