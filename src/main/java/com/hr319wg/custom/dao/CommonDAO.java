@@ -103,4 +103,9 @@ public class CommonDAO extends BaseDAO{
 		String sql = "select bo from RptSetUserBO bo,RoleUserBO u where bo.roleID=u.roleID and u.personID='" + userID + "'";
 		return this.hibernatetemplate.find(sql);
 	}
+	
+	public List getPostList(String orgID) throws SysException {
+		String sql="select bo from PostBO bo where bo.orgId='"+orgID+"' order by bo.postSort";
+		return this.hibernatetemplate.find(sql);
+	}
 }

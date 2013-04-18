@@ -11,7 +11,7 @@
         <property name="api" ref="sys_activePageApi"></property>
     </bean>
 
-    <bean id="post_postUCCImpl" class="com.hr319wg.post.ucc.impl.PostUCC">
+    <bean id="post_postUCCImpl" class="com.hr319wg.custom.extend.ucc.PostUCCByExtend">
         <property name="postservice" ref="post_postService"></property>
         <property name="activepageservice" ref="sys_activePageService"></property>
         <property name="queryapi" ref="qry_queryApi"></property>

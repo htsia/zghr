@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.custom.dao.CommonDAO;
+import com.hr319wg.post.pojo.bo.PostBO;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
@@ -145,5 +146,15 @@ public class CommonServiceImpl implements ICommonService{
 	
 	public List getRptList(String userID) throws SysException {
 		return this.commonDAO.getRptList(userID);
+	}
+	
+	public List getPostList(String orgID) throws SysException {
+		return this.commonDAO.getPostList(orgID);
+	}
+
+	public void updatePostSort(List<PostBO> list) throws SysException {
+		for(PostBO post : list){
+			this.commonDAO.saveOrUpdateBo(post);
+		}
 	}
 }

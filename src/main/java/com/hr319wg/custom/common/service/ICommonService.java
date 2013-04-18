@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hr319wg.common.exception.SysException;
+import com.hr319wg.post.pojo.bo.PostBO;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
 import com.hr319wg.sys.pojo.vo.TableVO;
 
@@ -16,4 +17,8 @@ public interface ICommonService {
 	public void updateInfoItem(InfoItemBO item) throws SysException;
 
 	public List getRptList(String userID) throws SysException;
+	
+	public List getPostList(String orgID) throws SysException;
+	
+	public void updatePostSort(List<PostBO> list) throws SysException;	
 }

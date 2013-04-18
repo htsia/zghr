@@ -4,6 +4,16 @@
 <faces-config>
 
 	<managed-bean>
+		<managed-bean-name>postSortBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.post.web.PostSortBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>commonService</property-name>
+			<value>#{commonservice}</value>
+		</managed-property>
+	</managed-bean>
+    
+	<managed-bean>
       <managed-bean-name>sys_surveyQueryBB</managed-bean-name>
       <managed-bean-class>com.hr319wg.sys.web.SurveyQueryBackingBean</managed-bean-class>
       <managed-bean-scope>request</managed-bean-scope>

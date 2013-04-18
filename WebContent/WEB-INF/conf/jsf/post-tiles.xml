@@ -94,4 +94,10 @@
     <definition name="/post/template/PostTempAdd.tiles" extends="layout.busitemplate">
         <put name="body" value="/pages/post/template/PostTempAdd.jsp"/>
     </definition>
+    <definition name="/post/sort/postSortIndex.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/post/sort/postSortIndex.jsp"/>
+    </definition>
+    <definition name="/post/sort/postSort.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/post/sort/postSort.jsp"/>
+    </definition>
 </tiles-definitions>
