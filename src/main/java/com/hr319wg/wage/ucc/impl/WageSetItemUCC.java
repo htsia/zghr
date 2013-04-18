@@ -3,6 +3,8 @@ package com.hr319wg.wage.ucc.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.util.CommonFuns;
@@ -39,22 +41,30 @@ public class WageSetItemUCC
   }
 
   public void createItem(WageSetItemBO item)
-    throws SysException
-  {
-    WageSetBO set = this.wagesetservice.findSetBySetId(item.getSetId());
-    String allItem = set.getAllField();
-    if (("A815714".equals(item.getField())) && (set.getCessID() != null) && (!"".equals(set.getCessID()))) {
-      throw new SysException("关联税率时不可以再增加为录入项目!");
-    }
-    if ((allItem != null) && (allItem.trim().length() > 0) && !"0".equals(item.gettype())) {
-      if (allItem.indexOf(item.getField()) > -1) {
-        throw new SysException("薪资项添加重复");
-      }
-      allItem = allItem + item.getField() + ",";
-    }
-    else {
-      allItem = item.getField() + ",";
-    }
+		  throws SysException
+		  {
+	  WageSetBO set = this.wagesetservice.findSetBySetId(item.getSetId());
+	  String allItem = set.getAllField();
+	  if (("A815714".equals(item.getField())) && (set.getCessID() != null) && (!"".equals(set.getCessID()))) {
+		  throw new SysException("关联税率时不可以再增加为录入项目!");
+	  }
+	  if ((allItem != null) && (allItem.trim().length() > 0) ) {
+		  List<WageSetItemBO>  wageSetItems =  wagesetitemservice.queryItemBySetId(item.getSetId());
+		  for(WageSetItemBO i : wageSetItems){
+			  //公式与查表项目，增加过的不能增加
+			  if(StringUtils.isNotBlank(item.getLinkId())  &&  item.getLinkId().equals(i.getLinkId())){
+				  throw new SysException("薪资项添加重复");
+			  }
+			  //录入项目增加过的不能增加
+			  if(StringUtils.isBlank(item.getLinkId())  &&  allItem.indexOf(item.getField()) > -1){
+				  throw new SysException("薪资项添加重复");
+			  }
+		  }
+		  allItem = allItem + item.getField() + ",";
+	  }
+	  else {
+		  allItem = item.getField() + ",";
+	  }
     set.setAllField(allItem);
     this.wagesetitemservice.createItem(item);
     this.wagesetservice.updateSet(set);

@@ -2,9 +2,11 @@ package com.hr319wg.custom.extend.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -398,8 +400,15 @@ public class WageComputeServiceByExtend extends WageComputeService {
 	public Vector batchHandleFormulaItem(boolean isTry, String setId, String dateId, String[] personId, String payoffDate, String unitId, boolean isInit) throws SysException
 	{
 		try {
+			//所有查表项目的字段取出，备用
+			List<WageSetItemBO> setStdItemList = this.getWagesetitemdao().getHibernatetemplate()
+					.find("from WageSetItemBO where item_type = '0' and set_id = '"+setId+"' order by count_sequence");
+			List<String> standItemFields = new ArrayList<String>();
+			for(WageSetItemBO i : setStdItemList){
+				standItemFields.add(i.getField());
+			}
+			
 			String maxItem = this.getWageapi().getMaxforDepSum(setId);
-
 			List formualList = null;//取出所有公式
 			if (!isInit) {
 				formualList = this.getWagesetitemdao().queryFormulaBySetId(setId);
@@ -702,13 +711,19 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				}
 
 				int size = flaCountOrder.size();
-
+				int cleared = 0;
 				String clearSql = "update " + flaCountTable + " set ";
 				for (int i = 0; i < size; i++) {
-					clearSql = clearSql + (String)flaCountOrder.get(i) + "='0.0',";
+					String field = (String)flaCountOrder.get(i);
+					if(!standItemFields.contains(field)){
+						clearSql = clearSql + field + "='0.0',";
+						cleared ++;
+					}
 				}
 				clearSql = clearSql.substring(0, clearSql.length() - 1);
-				sqlList.add(clearSql);
+				if(cleared >0 ){
+					sqlList.add(clearSql);
+				}
 				FNamelist.add("清除结果");
 
 				String idStr = CommonFuns.splitInSql(personId, "ID");
@@ -938,7 +953,9 @@ public class WageComputeServiceByExtend extends WageComputeService {
 
 				String field = "";
 				for (int i = 0; i < size; i++) {
-					field = field + (String)flaCountOrder.get(i) + ",";
+					if(field.indexOf((String)flaCountOrder.get(i))==-1){
+						field = field + (String)flaCountOrder.get(i) + ",";
+					}
 				}
 				idStr = CommonFuns.splitInSql(personId, tmpTable + "." + "ID");
 				field = field.substring(0, field.length() - 1);
@@ -1046,6 +1063,9 @@ public class WageComputeServiceByExtend extends WageComputeService {
 	      String setSql = "";
 	      for (int i = 0; i < list.size(); i++) {
 	        WageSetItemBO wb = (WageSetItemBO)list.get(i);
+	        if(setSql.contains(wb.getField())){
+	        	continue;
+	        }
 	        if ((!"2".equals(wb.gettype())) && (!"0".equals(wb.gettype()))) {
 	          InfoItemBO ib = SysCacheTool.findInfoItem("", wb.getField());
 	          if (("2".equals(ib.getItemPrecision())) && ("2".equals(ib.getItemDataType()))) {
