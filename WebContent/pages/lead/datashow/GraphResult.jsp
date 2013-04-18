@@ -43,10 +43,13 @@
                   <%
                       List list = (List) session.getAttribute("ChartList");
                       if (list != null && list.size() > 0) {
+                    	  int total=0;
                           for (int i = 0; i < list.size(); i++) {
                               GraphResultBO gb = (GraphResultBO) list.get(i);
-                              out.println("<tr><td class='td_middle_center'>" + CommonFuns.filterNull(gb.getGraphXLabel()) + "</td><td class='td_middle_center'>"+CommonFuns.filterNull(gb.getGraphYLabel())+"</td><td class='td_middle_right'>"+CommonFuns.filterNull(gb.getGraphValue())+"</td></tr>");
+                              total+=Integer.valueOf(gb.getGraphValue());
+                              out.println("<tr><td class='td_middle_center'>" + CommonFuns.filterNull(gb.getGraphXLabel()) + "</td><td class='td_middle_center'>"+CommonFuns.filterNull(gb.getGraphYLabel())+"</td><td class='td_middle_center'>"+CommonFuns.filterNull(gb.getGraphValue())+"</td></tr>");
                           }
+                          out.println("<tr><td colspan='2' class='td_middle_center'><strong>ºÏ¼Æ<strong></td><td class='td_middle_center'>"+total+"</td></tr>");
                       }
                   %>
               </table>
