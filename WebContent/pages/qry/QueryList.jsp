@@ -50,16 +50,9 @@
        window.showModalDialog("/qry/QueryJGJLSet.jsf", "", "dialogWidth:580px; dialogHeight:400px; status:0;resizable:no");
     }
 
-    function forQuery(){
-        pos= event.srcElement.parentElement.parentElement.rowIndex;
-        rowcount = event.srcElement.parentElement.parentElement.parentElement.parentElement.rows.length;
-        if(rowcount ==2){
-            document.all("qryId").value = document.all("qryIds").value;
-            return true;
-        }else{
-            document.all("qryId").value = document.all("qryIds")[pos-1].value;
-            return true;                 
-        }
+    function forQuery(qryID){
+        document.getElementById("qryID1").value = qryID;
+        return true;
     }
     function fordel(qryID){
         if(confirm('确定要删除吗')){
@@ -111,7 +104,7 @@
                     </h:column>
                     <h:column>
                         <c:facet name="header"><h:outputText value="操作"/></c:facet>
-                        <h:commandButton id="doQuery" action="#{qry_querySettingBB.doQuery}" onclick="return forQuery()" styleClass="button01" value="查询"/>
+                        <h:commandButton id="doQuery" action="#{qry_querySettingBB.doQuery}" onclick="return forQuery('#{list.qryId}')" styleClass="button01" value="查询"/>
                         <c:verbatim><input type="button" value="修改" class="button01" style="visibility:<%=vis%>;" onclick="forEdit('</c:verbatim><h:outputText value="#{list.qryId}"/><c:verbatim>')">&nbsp;</c:verbatim>
                         <c:verbatim><input type="hidden" name="qryIds" value="</c:verbatim><h:outputText value="#{list.qryId}"/><c:verbatim>"></c:verbatim>
                         <h:commandButton action="#{qry_querySettingBB.deleteQuery}" onclick="return fordel('#{list.qryId}');" styleClass="button01" value="删除"/>
@@ -126,7 +119,7 @@
     <input type="hidden" name="setType" value="<%=CommonFuns.filterNull(request.getParameter("setType"))%>">
     <input type="hidden" name="classId" value="<%=CommonFuns.filterNull(request.getParameter("classId"))%>">
     <input type="hidden" name="flag" value="querylist">
-    <input type="hidden" name="qryId" value="">
+    <input type="hidden" id="qryID1" name="qryId" value="">
 </c:verbatim>
 </h:form>
 <script type="text/javascript">
