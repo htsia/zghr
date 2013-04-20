@@ -19,6 +19,7 @@
 <%
 	String username = request.getParameter("username");
 	String id = request.getParameter("id");
+	id=id.replaceAll(" ", "+");
 	if(username==null || "".equals(username) || id==null || "".equals(id)){
 		request.getRequestDispatcher("/Login.jsf").forward(request, response);
 	}else{
