@@ -7,7 +7,6 @@
 <%
     try {
         String itemId = request.getParameter("itemId");
-        System.out.println(itemId);
         EvaKeyItemUCC ucc=(EvaKeyItemUCC)SysContext.getBean("eva_keyitemucc");
         EvaKeyItemBO bo=ucc.getEvaKeyItemBO(itemId);
         out.println(bo.getHighValue()+","+bo.getLowValue());

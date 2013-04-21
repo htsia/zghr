@@ -159,7 +159,6 @@ function exportToExcel() {
 						weekNumber=1;
 					}else if("二".equals(weekName)){
 						weekNumber=2;
-						System.out.println("查询值="+weekNumber);
 					}else if("三".equals(weekName)){
 						weekNumber=3;
 					}else if("四".equals(weekName)){
@@ -190,7 +189,6 @@ function exportToExcel() {
 					}
 				} else {
 					int m = 7 - p;
-					System.out.println("m=" + m);
 					for (int j = 0; j < m; j++) {
 						String b = "value,empty,empty,empty";
 						list2.add(b);

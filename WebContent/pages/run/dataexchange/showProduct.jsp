@@ -7,7 +7,6 @@
     try {
         String receiveId = request.getParameter("receiveId");
        	String filename="/file/tmp/"+receiveId+".csv";
-        System.out.println(filename);
         if (!"".equals(filename)){
            response.sendRedirect(filename);
         }

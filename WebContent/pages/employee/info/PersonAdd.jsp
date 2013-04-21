@@ -375,48 +375,6 @@ function selAddTime() {
 </tr>
 <!--修改3结束-->
 
-<!--修改4开始  注释部分代码，复制到修改 2 处，未注释部分， 把tr 隐藏掉了。 -->
-<tr nowrap id = "hiddentr">
-	<!-- <td class="td_form01 td_form_required"><%=unitTime.getItemName()%></td>
-    <td class=td_form02>
-</f:verbatim>
-        <h:inputText styleClass="input" id="A001044" value="#{emp_personAddBB.personvo.unitTime}"
-              alt="来公司时间|1|d6|50||"/>
-<f:verbatim>
-       
-        <input type="button" class="button_date" onclick="selUnitTime();"></td> -->
-	
-		 <script type="text/javascript">
-            document.getElementById("hiddentr").style.display = "none";
-        </script>
-<!--修改4结束-->
-    <td class="td_form01 "><%=sysTime.getItemName()%></td>
-    <td class=td_form02>
-</f:verbatim>
-        <h:inputText styleClass="input" id="A001781" value="#{emp_personAddBB.personvo.sysTime}"
-                      alt="进入本系统时间|1|d6|50||"/>
-<f:verbatim>
-    <script type="text/javascript">
-        document.all('form1:A001781').alt = "<%=sysTime.getItemName()%>|1|<%=InfoItemBO.getHtmlDataType(sysTime.getItemDataType())%>|50||";
-    </script>
-
-    <input type="button" class="button_date" onclick="selSysTime();">
-    </td>
-	<td class="td_form01 td_form_required">
-</f:verbatim>
-    <h:outputText value="#{sys_commonInfoBB.a001031des}" rendered="#{sys_commonInfoBB.a001031used}"></h:outputText>
-<f:verbatim>
-    </td>
-    <td class=td_form02>
-</f:verbatim>
-        <h:inputText styleClass="input" id="A001031" code="" dict="yes" dict_num="0140"  rendered="#{sys_commonInfoBB.a001031used}"
-                     readonly="true" value="#{emp_personAddBB.personvo.personIdentity}"
-                     alt="员工身份|0|s|50||"/>
-        <h:commandButton type="button" styleClass="button_select" onclick="PopUpCodeDlgOneControl('form1:A001031')" rendered="#{sys_commonInfoBB.a001031used}"/>
-<f:verbatim>
-    </td>
-</tr>
-
 <tr nowrap>
     <td class=td_form01><%=LanguageSupport.getResource("JGGL-1010", "备注")%></td>
     <td class=td_form02 colspan="3">

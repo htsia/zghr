@@ -13,7 +13,6 @@
 	String itemId=request.getParameter("itemId");
 	String applyId=request.getParameter("applyId");
     StringBuffer xml = new StringBuffer("<xml>\n");
-    System.out.println(itemId+"-------"+applyId);
     List list=null;
     if(itemId!=null&&!itemId.equals("")&&!itemId.equals("null")){
     	list=applyUcc.getAllApplyReportXMLVOByItemIds(itemId,null);

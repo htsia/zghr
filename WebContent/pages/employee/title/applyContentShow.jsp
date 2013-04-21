@@ -21,7 +21,6 @@
 %>
 <body>
    <%
-   	   //System.out.println(request.getContextPath());
        String templateId = request.getParameter("templateId");
    	   TitleContentSetUCC ucc=null;
    	   EmpTitleScoreTempBO templatebo=null;

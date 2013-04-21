@@ -82,7 +82,6 @@ a:hover {font-family:Verdana, Arial, Helvetica, sans-serif;font-size: 12px;color
                 out.println("<table  border='0' cellpadding='0' cellspacing='0' width='100%'  valign='top' ><tr>");
                 out.println("<td class='td_sec1'>");
                 User bo = (User) session.getAttribute(com.hr319wg.common.Constants.USER_INFO);
-                System.out.println(">>id:" + bo.getOrgId());
                 UserAPI pmsapi = (UserAPI) SysContext.getBean("user_pmsAPI");
                 if (pmsapi.checkIsHQUser(bo))
                     out.println("<a class='lead_white_link'  href=\"/pages/lead/organ/OrganMain.jsf\">");

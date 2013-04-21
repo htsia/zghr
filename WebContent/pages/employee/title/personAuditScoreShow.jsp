@@ -26,7 +26,6 @@
 %>
 <body>
    <%
-   	   //System.out.println(request.getContextPath());
        String templateId = request.getParameter("templateId");
        String itemId = request.getParameter("itemId");
    	   TitleContentSetUCC ucc=null;

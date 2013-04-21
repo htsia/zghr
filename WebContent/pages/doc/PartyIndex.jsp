@@ -181,7 +181,6 @@ a:hover {font-family:Verdana, Arial, Helvetica, sans-serif;font-size: 12px;color
         out.println("</table>");
     }   
     
-    //System.out.println(">>>sss");
     if(setId != null){
     	
         InfoSetBO bo = SysCacheTool.findInfoSet(setId);

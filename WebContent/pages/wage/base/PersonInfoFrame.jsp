@@ -12,8 +12,6 @@
     String str = request.getParameter("idStr");
     String persId = "";
     String height = "500";
-    System.out.println("str="+str);
-    System.out.println("id="+request.getParameter("id"));
     if (str == null) {
         persId = request.getParameter("id");
         // # 号被换成 ~传递信息

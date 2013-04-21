@@ -38,7 +38,6 @@
    		</td>
    		<%
    		String personId=(String)session.getAttribute("personId");
-   		System.out.println("111111111111111");
    		%>
    		</tr><tr><td align="right" height=8>
    		<a href="#" onclick="show('<%=personId%>')">日程管理</a>&nbsp;&nbsp;

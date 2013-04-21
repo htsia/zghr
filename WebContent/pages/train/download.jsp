@@ -7,7 +7,6 @@
     try {
         String attachmentId = request.getParameter("attachmentId");
        	String filename="/file/train/"+attachmentId+".doc";
-        System.out.println(filename);
         if (!"".equals(filename)){
            response.sendRedirect(filename);
         }

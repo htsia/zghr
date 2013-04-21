@@ -4,7 +4,6 @@
 	String num = request.getParameter("num");
 	String[] array = (String[]) request.getSession().getAttribute(
 			"array" + num);
-	System.out.println(num+":"+array);
 %>
 <script type="text/javascript">
         function doChange(){

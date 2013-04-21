@@ -15,7 +15,6 @@
     String inpart = "";
     if(map != null){
         List list = (List) map.get(Constants.SYS_SAVE_ABILITY_PERSON);
-        //System.out.println(list.size());
         if(list != null && !list.isEmpty()){
             for(int i=0;i<list.size();i++){
                 CodeItemBO code = (CodeItemBO) list.get(i);
@@ -25,7 +24,6 @@
             inpart = inpart.replaceAll(",","','");
             inpart = "'" + inpart;
             inpart = inpart.substring(0,inpart.length() -2);
-            //System.out.println("inpart" + inpart);
         }
     }
     if(inpart == null || inpart.length() <=0)

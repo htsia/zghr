@@ -36,16 +36,12 @@
             ht.put(QueryConstants.SQL_ORDER_PART, CommonFuns.filterNull((String) session.getAttribute(QueryConstants.SQL_ORDER_PART)));
             IQueryPersonListUCC qrypersonlistucc = (IQueryPersonListUCC) SysContext.getBean("emp_qryPersonListUCC");
             Vector vect = qrypersonlistucc.queryPersonList(sql, age, maxleng, ht);
-            System.out.println("@@@@@@@@");
             if (vect != null && vect.size() > 0) {
-                System.out.println("!!!!!!!!!!!");
                 ServletContext context = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-                System.out.println("############");
                 String path = context.getRealPath("/") + File.separator + "file" + File.separator + "emp" + File.separator + "download";
                 String[] heads = head.split(",");
                 List list = new ArrayList();
                 for (int i = 0; i < vect.size(); i++) {
-                    System.out.println("@@@@@" + vect.get(i));
                     PersonBO bo = (PersonBO) vect.get(i);
                     if (bo == null) {
                         list.add(new String[]{""});

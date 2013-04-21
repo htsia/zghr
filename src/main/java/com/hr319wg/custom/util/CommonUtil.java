@@ -222,16 +222,6 @@ public class CommonUtil {
     	}
 	}
 	
-	//添加工资变动子集记录
-	public static void addWageChange(String userID, String currStatus) throws SysException{
-		String sql = "select C001203 from a001 a,c001 c where a.A001715=c.postid and a.id='"+userID+"'";
-		ActivePageAPI activeapi = (ActivePageAPI)SysContext.getBean("sys_activePageApi");
-		String xinji = activeapi.queryForString(sql);
-		String subid = SequenceGenerator.getKeyId("A223");
-		sql = "insert into a223 (id,subid,A223000,A223200,A223205) values ('"+userID+"','"+subid+"','00901','"+xinji+"','"+currStatus+"')";
-		activeapi.executeSql(sql);
-	}
-	
 	//获取所有下级岗位
 	public static String getAllSubPostIDs(String operUserID) throws SysException{
 		String postIDs="";

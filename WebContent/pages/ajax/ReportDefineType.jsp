@@ -11,7 +11,6 @@
     response.setContentType("text/xml;charset=GBK");
 
     String superId = request.getParameter("superId");       
-    System.out.println(superId);
     // …œº∂
     out.println("<?xml version=\"1.0\" encoding=\"GBK\" ?>");
     out.println("<tree>");

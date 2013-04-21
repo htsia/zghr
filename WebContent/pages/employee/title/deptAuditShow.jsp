@@ -59,7 +59,6 @@
     		   }
     	   }
        }
-       System.out.println(scoreId+"====="+scoreId);
        List rowList=applyUcc.getAllEmpTitleScoreItemBOByScoreId(scoreId);
    %>
    
@@ -113,7 +112,6 @@
 						buff.append("</tr>");
 					}
 					out.println(buff.toString());
-					//System.out.println(buff.toString());
 					out.println(" </table>");
 				}else{
 					out.println("<table align='center' width='100%' >");

@@ -39,7 +39,6 @@
                 String cancel = o.getOrgCancel();
                 if (Constants.YES.equals(cancel))
                     continue;
-                //System.out.println(oa.getTreeId());
                 if (o.getTreeId().length() == 3 || o.getTreeId().startsWith("001651")) {
                     if (o.getTreeId().length() > 12)
                         continue;

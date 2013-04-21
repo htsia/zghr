@@ -14,7 +14,6 @@ response.setHeader("Expires","Tues,01 Jan 1980 00:00:00 GMT");
     u.setOrgId("10000");
     u.setUserId("10000001");
     session.setAttribute(Constants.USER_INFO, u);
-    //System.out.println(u.getOrgId());
 %>
 </body>
 <center>

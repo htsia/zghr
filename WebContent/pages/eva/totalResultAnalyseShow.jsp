@@ -191,7 +191,6 @@
 					    				EvaObjectsBO bo=objectucc.getEvaObjectsBOByPlanIdAndPersonId(plbo.getPlanId(),obj.getPersonID());
 			    						List codeList=scoreucc.getPersonType();
 					    				EvaSelectionResultSetBO setbo=objectucc.getEvaSelectionResultSetBOForResult(plbo.getPlanId());
-					    				System.out.println(setbo.getSetName());
 					    				for(int m=0;m<codeList.size();m++){
 											CodeItemBO codeItem=(CodeItemBO)codeList.get(m);
 											boolean isHave=scoreucc.isHaveTheTypeMasterByPlanId(plbo.getPlanId(),codeItem.getItemId());
@@ -277,7 +276,6 @@
 			    						EvaObjectsBO bo=objectucc.getEvaObjectsBOByPlanIdAndPersonId(plbo.getPlanId(),obj.getPersonID());
 			    						List codeList=scoreucc.getPersonType();
 					    				EvaSelectionResultSetBO setbo=objectucc.getEvaSelectionResultSetBOForResult(plbo.getPlanId());
-					    				System.out.println(setbo.getSetName());
 					    				for(int m=0;m<codeList.size();m++){
 											CodeItemBO codeItem=(CodeItemBO)codeList.get(m);
 											boolean isHave=scoreucc.isHaveTheTypeMasterByPlanId(plbo.getPlanId(),codeItem.getItemId());
@@ -361,7 +359,6 @@
 			    						EvaObjectsBO bo=objectucc.getEvaObjectsBOByPlanIdAndPersonId(plbo.getPlanId(),obj.getPersonId());
 			    						List codeList=scoreucc.getPersonType();
 					    				EvaSelectionResultSetBO setbo=objectucc.getEvaSelectionResultSetBOForResult(plbo.getPlanId());
-					    				System.out.println(setbo.getSetName());
 					    				for(int m=0;m<codeList.size();m++){
 											CodeItemBO codeItem=(CodeItemBO)codeList.get(m);
 											boolean isHave=scoreucc.isHaveTheTypeMasterByPlanId(plbo.getPlanId(),codeItem.getItemId());

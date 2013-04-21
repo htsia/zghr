@@ -53,7 +53,6 @@
                      else {
                        s="[''," + trees + "]";
                      }
-                     System.out.println(s);
                      out.print(s);
                    %>
     var targetTreeId = "";

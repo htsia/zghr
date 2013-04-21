@@ -38,7 +38,6 @@
 	    if(deptLst!=null && deptLst.size()>0){
 	    	for(int i=0;i<deptLst.size();i++){
 	    		OrgBO tObo=(OrgBO)deptLst.get(i);
-	    		//System.out.println(">>>>>ogrid:"+tObo.getTreeId()+">>>list.size:"+deptLst.size());
 	    		if(tObo.getTreeId().endsWith("001")){
 	    			//list=new ArrayList();
 	    			//list.add(tObo);
@@ -49,7 +48,6 @@
 	    	}
 	    }
     
-	    //System.out.println(">>>>>>>>>>>>2");
 		if(superId==null || "-1".equals(superId)){
 			if(tbo!=null)
 				list=new ArrayList();
@@ -64,7 +62,6 @@
 	    	}
 	    }
     }
-    //System.out.println(">>>>>>>>>>>>1");
     OrgBO org = SysCacheTool.findOrgById(superId);
     String icon = "";
     String childnum = "";
@@ -132,7 +129,6 @@
 				}
             condi.append(")");
         }
-        //System.out.println(">>>>5"+condi.toString());
         IPersonUCC ucc = (IPersonUCC) SysContext.getBean("emp_personUCC");
         PersonBO[] persons = ucc.queryAllPerson(condi.toString() + " order by p.sort");
 

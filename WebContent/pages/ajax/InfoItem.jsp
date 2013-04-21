@@ -100,7 +100,6 @@
 %>
 <%!
     public List parseSpecItem(List list) {
-        //System.out.println(((InfoItemBO)list.get(0)).getSetId());
         if (list != null && list.size() >= 1) {
             InfoItemBO bo = (InfoItemBO) list.get(0);
             if (bo != null) {

@@ -577,9 +577,7 @@
                             } else {
                                 if (!"".equals(linkDept) && linkDept != null && !QueryBO.LINK_DEPT_NO.equals(linkDept) && "A001705".equals(cell.getItemId())) {     // 部门显示处理
                                     OrgBO bo = SysCacheTool.findOrgById(value);
-                                    if (bo == null) {
-                                        System.out.println("Org " + value + " not exist!");
-                                    } else {
+                                    if (bo != null) {
                                         OrgBO superbo = SysCacheTool.findOrgById(bo.getSuperId());
                                         if (superbo != null && OrgBO.DEPTTYPE.equals(superbo.getorgType())) {
                                             out.println(CommonFuns.filterNull(superbo.getName() + bo.getName()));

@@ -183,7 +183,6 @@
                                         itempms = "2";
                                     //管理员权限
                                     int sysOperItemPms = Integer.parseInt(itempms);
-                                    //  System.out.println("指标集权限:" + itemId + dataList.get(itemId));
                                     //角色权限
                                     String roleItemPms;
                                     if (dataList.get(itemId) == null)

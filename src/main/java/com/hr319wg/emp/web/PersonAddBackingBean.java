@@ -568,8 +568,6 @@ public String getClassId()
 				}
 			}
 
-			//增加工资变动记录
-			CommonUtil.addWageChange(personId, this.personvo.getStatus());
 			importData(personId);
 //			api.executeSql("insert into sys_role_user_r (role_person_id ,role_id,person_id) values ((select nvl(max(cast(r.role_id as int)),0)+1 from sys_role_user_r r where len(r.role_person_id)<4),'08','"+personId+"')");
 			ActivePageAPI api = (ActivePageAPI)SysContext.getBean("sys_activePageApi");

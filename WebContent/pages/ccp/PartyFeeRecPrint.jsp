@@ -35,8 +35,6 @@
         String filePath = getServletConfig().getServletContext().getRealPath("/") + File.separator + "file" + File.separator + "party" + File.separator + "template" + File.separator + "receive.doc";
         File file = new File(filePath);
         
-     
-        System.out.println(file);
         if (file.exists()) {
             FileInputStream fis = new FileInputStream(filePath);
             byte[] fileContent = new byte[fis.available()];

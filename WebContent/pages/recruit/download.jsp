@@ -12,7 +12,6 @@ try {
     IAttachmentUCC ucc=(AttachmentUCC)SysContext.getBean("common_attachmentUCC");
    	String filename=application.getRealPath("/")+File.separator + "file" + File.separator
 	+ "eva"+File.separator+attachmentId+".doc";
-   	System.out.println("filename="+filename);
     if(FileUtil.fileExists(filename)){
     	response.sendRedirect("/file/eva/"+attachmentId+".doc");
     }else{

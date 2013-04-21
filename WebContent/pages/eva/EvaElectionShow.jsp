@@ -98,7 +98,6 @@
         					out.println("<td class='td_middle_center'>"+teamucc.findEmpTeamInfoBoById(obo.getPersonID()).getTeamName()+"</td>");
         				}
         				EvaScoreBO scorebo=(EvaScoreBO)scoreucc.getAllEvaScoreBOByObjIdAndMasterId(obo.getObjectID(),mbo.getMasterID()).get(0);
-        				System.out.println("++++++"+scorebo.getScoreID());
         				String gradeid=planUcc.findPlanById(planId).getPlanGrade();
         				List gardeList=gradeucc.getAllGradeItem(gradeid);
         				if(gardeList!=null&&gardeList.size()>0){

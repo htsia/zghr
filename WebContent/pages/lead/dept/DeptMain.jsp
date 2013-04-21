@@ -44,7 +44,6 @@
 <%
     User user = (User) session.getAttribute(Constants.USER_INFO);
     UserManageService us = (UserManageService) SysContext.getBean("user_userManageService");
-    System.out.print(us);
     Hashtable hashMenus = us.getSelfFunction(SelfOperateBO.BMJLZZ_MODULEID, user);
     menu = (MenuObj) hashMenus.get(SelfOperateBO.BMJLZZ_MODULEID);
 

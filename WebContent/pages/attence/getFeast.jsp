@@ -14,7 +14,6 @@
 	response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
 %>
 <%
-System.out.println("----------111111111111111111111111-----------");
 out.clear();
 User user = (User) (session.getAttribute(Constants.USER_INFO));
 String name=(String)request.getParameter("name");
