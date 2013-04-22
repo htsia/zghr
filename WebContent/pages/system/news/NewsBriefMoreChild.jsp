@@ -18,7 +18,6 @@
               <h:panelGroup>
                   <h:outputText value="请选择状态"></h:outputText>
                   <h:selectOneMenu value="#{sys_NewsBriefMoreBB.status}" onchange="submit()" valueChangeListener="#{sys_NewsBriefMoreBB.changeStatus}">
-                      <c:selectItem itemValue="-1" itemLabel="全部"></c:selectItem>
                       <c:selectItem itemValue="1" itemLabel="生效"></c:selectItem>
                       <c:selectItem itemValue="0" itemLabel="失效"></c:selectItem>
                   </h:selectOneMenu>

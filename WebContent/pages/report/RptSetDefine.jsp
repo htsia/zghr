@@ -8,7 +8,7 @@
 %>
 
 <script type="text/javascript">
-//删除报套
+//删除表套
 function deletedDictionary(){
     if (document.all("form1:currentID").value==null || document.all("form1:currentID").value==""){
         alert("请选择要删除的目录!");
@@ -21,12 +21,12 @@ function deletedDictionary(){
         return false;
     }
 }
-//新增报套"document.tree.location.href="/pages/report/ShowRptSetCodeList.jsp";" 操作完毕之后立即刷新，此时在页面内执行查询，与托管bean无管。
+//新增表套"document.tree.location.href="/pages/report/ShowRptSetCodeList.jsp";" 操作完毕之后立即刷新，此时在页面内执行查询，与托管bean无管。
 function rptDesigner(){
     window.showModalDialog("/report/RptSetEdit.jsf?ok=10000", null, "dialogWidth:500px; dialogHeight:200px;center:center;resizable:yes;status:no;scroll:yes;");
     document.tree.location.href="/pages/report/ShowRptSetCodeList.jsp";
 }
-//修改报套
+//修改表套
 function modifyDictionary(){
     if (document.all("form1:currentID").value==null || document.all("form1:currentID").value==""){
         alert("请选择要修改的目录!");
@@ -55,7 +55,7 @@ with (window) onload = onresize = function(){
 		align="center">
 		<h:panelGroup>
 			<h:graphicImage value="/images/tips.gif" />
-			<h:outputText value="报套定义" />
+			<h:outputText value="表套定义" />
 		</h:panelGroup>
 	</h:panelGrid>
 
@@ -70,7 +70,7 @@ with (window) onload = onresize = function(){
 					</tr>
 					<tr>
 						<td align="right"></c:verbatim> <h:commandButton styleClass="button01"
-							type="button" value="新增报套" onclick="rptDesigner();"></h:commandButton>
+							type="button" value="新增表套" onclick="rptDesigner();"></h:commandButton>
 						<h:commandButton styleClass="button01" type="button" value="修改"
 							onclick="modifyDictionary()"></h:commandButton> <h:commandButton
 							styleClass="button01" value="删除"

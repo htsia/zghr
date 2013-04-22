@@ -9,10 +9,15 @@
 
 <script type="text/javascript">
 function deletedDictionary(){
-    if (document.all("form1:currentID").value==null || document.all("form1:currentID").value==""){
+	var id=document.all("form1:currentID").value;
+	if(id==''){
         alert("请选择要删除的目录!");
-        return false;
-    }
+        return false;		
+	}
+	if(id<3){
+        alert("不能删除根目录!");
+        return false;				
+	}
     if (confirm("确定要删除吗?")){
         return true;
     }
@@ -80,7 +85,7 @@ function receiveRpt(){
         </c:verbatim>
                         <h:commandButton styleClass="button01" type="button" value="定义类别" onclick="rptDesigner();"></h:commandButton>
                         <h:commandButton styleClass="button01" type="button" value="修改" onclick="modifyDictionary()"></h:commandButton>
-                                               <h:commandButton styleClass="button01"  value="删除" action="#{Rpt_DefineListBB.DeleteType}" onclick="return deletedDictionary();"></h:commandButton>
+                        <h:commandButton styleClass="button01"  value="删除" action="#{Rpt_DefineListBB.DeleteType}" onclick="return deletedDictionary();"></h:commandButton>
 <c:verbatim>
                         </td>
                     </tr>
