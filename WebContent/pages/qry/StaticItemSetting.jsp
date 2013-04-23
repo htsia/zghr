@@ -44,10 +44,11 @@
         return flag;
     }
     function forSave() {
-        rt = window.prompt("请输入统计名称", document.all("qryName").value);
-        if (rt == "" || rt == null)
-            return false;
-        document.all("qryName").value = rt;
+    	var qname =  $.trim($("#qryName").val());
+        if (qname==''){
+        	alert("请输入统计名称");
+        	return false;
+        }
         return toSubmit();
     }
     function toSubmit() {
@@ -166,6 +167,8 @@
     </tr>
     <tr>
         <td colspan="5" align="center">
+        	统计名称
+            <input type="text" id="qryName" name="qryName" value="<%=qryName%>" class="input" style="width: 300px;">
             <input type="button" name="rest2" value="&nbsp;取消&nbsp;" class="button01"
                    onclick="forBack();">
 </c:verbatim>
@@ -183,7 +186,6 @@
 <input type="hidden" name="qsType" value="<%=qsType%>">
 <input type="hidden" name="setType" value="<%=setType%>">
 <input type="hidden" name="classId" value="<%=classId%>">
-<input type="hidden" name="qryName" value="<%=qryName%>">
 <input type="hidden" name="sysFlag" value="<%=sysFlag%>">
 <input type="hidden" name="qryId" value="<%=qryId%>">
 <input type="hidden" name="unitType" value="<%=unitType%>">

@@ -90,35 +90,44 @@
         }
         return true;
     }
+    var src1=null;
     function groupChange(src) {
         if (src.spanType == 'logic') {
+        	src1=null;
             if (src.innerText == '与')
                 src.innerText = '或';
             else
                 src.innerText = '与';
         } else {
-            tmp = prompt("请输入括号", src.innerText)
-            if (tmp == null)
-                tmp = "";
-            //过滤全角括号
-            while (tmp != tmp.replace("（", "(")) {
-                tmp = tmp.replace("（", "(");
-            }
-            while (tmp != tmp.replace("）", ")")) {
-                tmp = tmp.replace("）", ")");
-            }
-            if (src.spanType == "left_bracket") {
-                while (tmp != tmp.replace(")", "")) {
-                    tmp = " " + tmp.replace(")", "");
-                }
-            }
-            if (src.spanType == "right_bracket") {
-                while (tmp != tmp.replace("(", "")) {
-                    tmp = tmp.replace("(", "");
-                }
-            }
-            src.innerText = tmp;
+        	src1=src;
+        	$("#setCond").show();
+        	$("#condValue").val(src.innerText);
         }
+    }
+    function setCond(){
+    	var tmp = tmp=$("#condValue").val();
+        if (tmp == null)
+            tmp = "";
+        //过滤全角括号
+        while (tmp != tmp.replace("（", "(")) {
+            tmp = tmp.replace("（", "(");
+        }
+        while (tmp != tmp.replace("）", ")")) {
+            tmp = tmp.replace("）", ")");
+        }
+        if (src1.spanType == "left_bracket") {
+            while (tmp != tmp.replace(")", "")) {
+                tmp = " " + tmp.replace(")", "");
+            }
+        }
+        if (src1.spanType == "right_bracket") {
+            while (tmp != tmp.replace("(", "")) {
+                tmp = tmp.replace("(", "");
+            }
+        }
+        src1.innerText = tmp;
+        src1=null;
+        $("#setCond").hide();
     }
     var node = null;
 </script>
@@ -164,6 +173,13 @@
         </td>
         <td width="75%" align="left" valign="top">
             <table width="100%" border="0" align="left" cellpadding="5" cellspacing="1" class="td02">
+            	<tr id="setCond" class="td_top" align=center style="display:none;">
+                    <td width="65" height="25">输入括号</td>
+                    <td align="left" valign="middle">
+                    	<input id="condValue" value="" class="input" />
+                    	<input type="button" onclick="setCond();" value="确定" class="button01"/>
+                    </td>
+                </tr>
                 <tr class="td_top" align=center>
                     <td width="65"><strong>条件组合</strong></td>
                     <td align="left" id="groupField" valign="middle"></td>

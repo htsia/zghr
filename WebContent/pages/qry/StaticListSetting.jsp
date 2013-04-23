@@ -40,7 +40,6 @@
     <input type="hidden" name="qsType" value="<%=qsType%>">
     <input type="hidden" name="setType" value="<%=setType%>">
     <input type="hidden" name="classId" value="<%=classId%>">
-    <input type="hidden" name="qryName" value="<%=qryName%>">
     <input type="hidden" name="sysFlag" value="<%=sysFlag%>">
     <input type="hidden" name="qryId" value="<%=qryId%>">
     <input type="hidden" name="unitType" value="<%=unitType%>">
@@ -64,6 +63,8 @@
 
         <tr>
             <td align="right">
+            	统计名称
+            	<input type="text" id="qryName"  name="qryName" value="<%=qryName%>" class="input" style="width: 300px;">
                 <input type="button" name="rest2" value="返回" class="button01" onclick="forBack();">
 </c:verbatim>
                 <h:commandButton action="org" value="上一步:设置机构范围" id="toOrg" styleClass="button01"/>
@@ -140,13 +141,11 @@
         }
     }
     function forSave() {
-        var qname = window.prompt("请输入查询名称", document.forms(0).qryName.value);
-        if (qname == null)
-            return false;
-        if (qname == "")
-            forSave();
-
-        document.forms(0).qryName.value = qname;
+        var qname =  $.trim($("#qryName").val());
+        if (qname==''){
+        	alert("请输入统计名称");
+        	return false;
+        }
         return true;
     }
     function forBack(){
