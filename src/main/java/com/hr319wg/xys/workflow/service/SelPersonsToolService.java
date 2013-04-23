@@ -151,7 +151,7 @@ public class SelPersonsToolService {
 	public List getLeaderIds(String personId)throws SysException{
 		List list=null;
 		try {
-				String sql="select id person_id from a001 where a001715= ( select c.c001015 from a001 a,c001 c where a.A001715=c.postid and a.id = '"+personId+"')";
+				String sql="select id person_id from a001 where typeof(a001054, '0135', '013510')=1 and a001715= ( select c.c001015 from a001 a,c001 c where a.A001715=c.postid and a.id = '"+personId+"')";
 				list=this.jdbcTemplate.query(sql,new PersonIdRowMapper());
 		} catch (Exception e) {
 			e.printStackTrace();
