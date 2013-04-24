@@ -63,16 +63,16 @@
                 </td>
             </tr>
 
-            <tr>
-                <td width="40%" height="24" class="td_form02">自助信息查看级别</td>
-                <td width="60%" colspan="2" class="td_form02">
-</c:verbatim>
-                    <h:selectOneMenu value="#{user_userInfoBB.infoLevel}">
-                        <c:selectItems value="#{user_userInfoBB.selfLevel}"></c:selectItems>
-                    </h:selectOneMenu>
-<c:verbatim>
-                </td>
-            </tr>
+<!--             <tr> -->
+<!--                 <td width="40%" height="24" class="td_form02">自助信息查看级别</td> -->
+<!--                 <td width="60%" colspan="2" class="td_form02"> -->
+<%-- </c:verbatim> --%>
+<%--                     <h:selectOneMenu value="#{user_userInfoBB.infoLevel}"> --%>
+<%--                         <c:selectItems value="#{user_userInfoBB.selfLevel}"></c:selectItems> --%>
+<%--                     </h:selectOneMenu> --%>
+<%-- <c:verbatim> --%>
+<!--                 </td> -->
+<!--             </tr> -->
     
     <tr>
         <td width="40%" height="24" class="td_form02">

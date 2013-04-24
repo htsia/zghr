@@ -311,7 +311,7 @@
     </navigation-rule>
 
     <navigation-rule>
-            <from-view-id>/self/AddAdvices.jsp</from-view-id>
+            <from-view-id>*</from-view-id>
             <navigation-case>
                 <from-outcome>success</from-outcome>
                 <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>

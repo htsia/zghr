@@ -121,6 +121,10 @@
 		      	 <%=LanguageSupport.getResource("YXGL-1026","操作")%>
 	        </f:verbatim>      
             </f:facet>
+            <h:commandButton value="删除" onclick="return confirm('确定要删除吗');" action="#{self_advicesListBB.delete}"  styleClass="button01">
+				<x:updateActionListener value="#{list.advID}" property="#{self_advicesListBB.operID}"/>
+			</h:commandButton>
+			<h:outputText value="  "/>
             <h:commandButton value="回复" styleClass="button01" onclick="doReply('#{list.advID}')" rendered="#{list.advReplyed!='是'}"></h:commandButton>
         </h:column>
     </h:dataTable>

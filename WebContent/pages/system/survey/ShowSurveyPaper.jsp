@@ -43,14 +43,18 @@
       	List li=null;
         try{
             ISurveyUCC ucc=(ISurveyUCC)SysContext.getBean("self_surveyUCC");
+           	String orgID="-1";
+           	if(!user.ischo()){
+           		orgID=user.getOrgId();
+           	}
             if(moduleID!=null){
-            		li=ucc.getAllOwnPaperAndModuleid(user.getOrgId(),moduleID);
+            	li=ucc.getAllOwnPaperAndModuleid(orgID, moduleID);
 	        }else{
             	if (setId==null || setId.equals("")){
-	                li=ucc.getAllOwnPaper(user.getOrgId());
+	                li=ucc.getAllOwnPaper(orgID);
 	            }
 	             else{
-	                li=ucc.getAllOwnPaper(user.getOrgId());
+	                li=ucc.getAllOwnPaper(orgID);
 	            }
             }
         }

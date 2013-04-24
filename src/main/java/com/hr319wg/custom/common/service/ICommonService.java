@@ -18,4 +18,6 @@ public interface ICommonService {
 	public List getRptList(String userID) throws SysException;
 
 	public List getWageMinusList(String setID) throws SysException;
+	
+	public void deleteAdvice(String ID) throws SysException;
 }

@@ -62,6 +62,7 @@ public class CourceWareBackingBean extends BaseBackingBean
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return "";
   }
@@ -97,10 +98,11 @@ public class CourceWareBackingBean extends BaseBackingBean
 
   public List getManCourceList() {
     try {
-      this.manCourceList = this.courceUCC.getAllFileInfoByType(this.superID, super.getUserInfo().getUserId());
+    	this.manCourceList = this.courceUCC.getAllFileInfoByType(this.superID, super.getUserInfo());
     }
     catch (Exception e)
     {
+    	e.printStackTrace();
     }
     return this.manCourceList;
   }

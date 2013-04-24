@@ -24,9 +24,7 @@
          <tr><td height=8>
 </f:verbatim>
             <h:panelGrid border="0" columns="4"  align="center"	width="95%" >
-                 <f:verbatim>
-                        <%=LanguageSupport.getResource("XTGL-1240", " 操作员姓名")%>
-                 </f:verbatim>
+                <h:outputText value="编号或姓名"/>
                 <h:inputText value="#{sys_SysLogOperBackingBean.operName}" />
                 <f:verbatim>
                         <%=LanguageSupport.getResource("XTGL-1241", " 操作日期")%>

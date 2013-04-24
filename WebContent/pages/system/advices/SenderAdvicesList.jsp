@@ -22,10 +22,10 @@
         <h:panelGrid align="center" styleClass="td_title" width="100%" border="0" cellpadding="0" cellspacing="6" bgcolor="#FFFFFF" columns="2">
         <h:panelGroup>
           <h:graphicImage value="/images/tips.gif" />
-          <h:outputText value=" 建议列表"/>
+          <h:outputText value=" 建议列表2"/>
         </h:panelGroup>
 
-        <h:panelGrid columns="1"  cellpadding="2" align="right" 	border="0" >
+        <h:panelGrid columns="1"  cellpadding="2" align="right" border="0" >
               <h:panelGroup>
                   <h:selectBooleanCheckbox value="#{self_advicesListBB.all}" onclick="submit();" valueChangeListener="#{self_advicesListBB.changeAll}"></h:selectBooleanCheckbox>
                   <h:outputText escape="false" value="显示全部&nbsp;&nbsp;"></h:outputText>
@@ -37,7 +37,7 @@
     <c:verbatim>
             </td></tr>
 
-            <tr>
+            <tr valign="top">
                 <td>
     </c:verbatim>
         <div style='width:100%;height:100%;overflow:auto' id=datatable>
@@ -90,7 +90,9 @@
                 <f:facet name="header">
                     <h:outputText style="width:40px" value="操作" />
                 </f:facet>
-
+				<h:commandButton value="删除" onclick="return confirm('确定要删除吗');" action="#{self_advicesListBB.delete}"  styleClass="button01">
+					<x:updateActionListener value="#{list.advID}" property="#{self_advicesListBB.operID}"/>
+				</h:commandButton>
             </h:column>
         </h:dataTable>
         </div>

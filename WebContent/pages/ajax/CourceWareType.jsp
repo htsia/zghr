@@ -23,7 +23,7 @@
         list = rc.getAllChildType(superId);
     }
     catch (Exception e) {
-
+		e.printStackTrace();
     }
     // ·µ»Ø½á¹û
     if (list != null) {

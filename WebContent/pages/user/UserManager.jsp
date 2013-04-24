@@ -44,10 +44,11 @@
                     <h:panelGroup>
                         <h:commandButton value="启 用" action="#{user_userManagerBB.makeStatusOpen}" styleClass="button01"/>
                         <h:commandButton value="禁 用" action="#{user_userManagerBB.makeStatusBan}" styleClass="button01"/>
-                        <h:commandButton value="允许管理" action="#{user_userManagerBB.makeCurrentLevelUser}" styleClass="button01"/>
-                        <h:commandButton value="取消管理" action="#{user_userManagerBB.cancelCurrentLevelUser}" styleClass="button01"/>
-                        <h:commandButton value="强制取消" action="#{user_userManagerBB.cancelUser}" rendered="#{user_userManagerBB.sysman}" styleClass="button01"/>
-                        <h:commandButton value="修改自助级别"  action="#{user_userManagerBB.doQuery}" styleClass="button01" onclick="domodiLevel();"/>
+                        <h:outputText value="  "/>
+<%--                         <h:commandButton value="允许管理" action="#{user_userManagerBB.makeCurrentLevelUser}" styleClass="button01"/> --%>
+<%--                         <h:commandButton value="取消管理" action="#{user_userManagerBB.cancelCurrentLevelUser}" styleClass="button01"/> --%>
+<%--                         <h:commandButton value="强制取消" action="#{user_userManagerBB.cancelUser}" rendered="#{user_userManagerBB.sysman}" styleClass="button01"/> --%>
+<%--                         <h:commandButton value="修改自助级别"  action="#{user_userManagerBB.doQuery}" styleClass="button01" onclick="domodiLevel();"/> --%>
                         <h:commandButton value="修改用户信息" onclick="return editUserInfo()" rendered="#{sys_commonInfoBB.modiUserMode=='1'}" action="#{user_userManagerBB.doQuery}" styleClass="button01"/>
                         <h:commandButton value="修改登录名" onclick="return editLoginName();" rendered="#{sys_commonInfoBB.modiUserMode=='2'}" action="#{user_userManagerBB.doQuery}" styleClass="button01"/>
                         <h:commandButton value="修改用户密码" onclick="return editUserPassword()" type="button" styleClass="button01" rendered="#{sys_commonInfoBB.enableModiPass}"/>
@@ -79,7 +80,7 @@
          <div style='width:100%;height:100%;overflow:auto' id=datatable>    
 </f:verbatim>
               <h:dataTable value="#{user_userManagerBB.personList}" var="list" width="100%" id="dateList"
-                    styleClass="table03" headerClass="td_top tr_fixrow" columnClasses="td_middle_center,td_middle,td_middle_center,td_middle,td_middle,td_middle_center">
+                    styleClass="table03" headerClass="td_top tr_fixrow" columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center">
                 <h:column>
                     <f:facet name="header">
                         <f:verbatim escape="false">
@@ -112,12 +113,12 @@
                     <h:outputText escape="false" value="#{list.status}"/>
                 </h:column>
 
-                  <h:column>
-                      <f:facet name="header">
-                          <h:outputText value="登录验证模式"/>
-                      </f:facet>
-                      <h:outputText escape="false" value="#{list.loginTypeDes}"/>
-                  </h:column>
+<%--                   <h:column> --%>
+<%--                       <f:facet name="header"> --%>
+<%--                           <h:outputText value="登录验证模式"/> --%>
+<%--                       </f:facet> --%>
+<%--                       <h:outputText escape="false" value="#{list.loginTypeDes}"/> --%>
+<%--                   </h:column> --%>
 
                 <h:column>
                     <f:facet name="header">
@@ -125,13 +126,12 @@
                     </f:facet>
                     <h:outputText escape="false" value="#{list.personType}"/>
                 </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="管理该用户的角色"/>
-                    </f:facet>
-                    <h:outputText escape="false" value="#{list.belongRoleId}"/>
-                </h:column>
-
+<%--                 <h:column> --%>
+<%--                     <f:facet name="header"> --%>
+<%--                         <h:outputText value="管理该用户的角色"/> --%>
+<%--                     </f:facet> --%>
+<%--                     <h:outputText escape="false" value="#{list.belongRoleId}"/> --%>
+<%--                 </h:column> --%>
 
                 <h:column>
                     <f:facet name="header">
@@ -146,18 +146,18 @@
                     </f:facet>
                     <h:outputText escape="false" value="#{list.deptId}"/>
                 </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="岗位类别"/>
-                    </f:facet>
-                    <h:outputText escape="false" value="#{list.postType}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="自助级别"/>
-                    </f:facet>
-                    <h:outputText escape="false" value="#{list.infoLevel}"/>
-                </h:column>
+<%--                 <h:column> --%>
+<%--                     <f:facet name="header"> --%>
+<%--                         <h:outputText value="岗位类别"/> --%>
+<%--                     </f:facet> --%>
+<%--                     <h:outputText escape="false" value="#{list.postType}"/> --%>
+<%--                 </h:column> --%>
+<%--                 <h:column> --%>
+<%--                     <f:facet name="header"> --%>
+<%--                         <h:outputText value="自助级别"/> --%>
+<%--                     </f:facet> --%>
+<%--                     <h:outputText escape="false" value="#{list.infoLevel}"/> --%>
+<%--                 </h:column> --%>
             </h:dataTable>
 <f:verbatim>
          </div>

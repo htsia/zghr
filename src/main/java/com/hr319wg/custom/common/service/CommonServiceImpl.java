@@ -160,4 +160,9 @@ public class CommonServiceImpl implements ICommonService{
 		}
 		return list;
 	}
+	
+	public void deleteAdvice(String ID) throws SysException {
+		String sql="delete from self_advise a where a.adv_id='"+ID+"'";
+		this.jdbcTemplate.execute(sql);
+	}
 }
