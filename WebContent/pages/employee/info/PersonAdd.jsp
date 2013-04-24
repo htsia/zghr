@@ -171,7 +171,15 @@ function selAddTime() {
      }
     %>
 }
-
+<%
+	InfoItemBO item=SysCacheTool.findInfoItem("A001", "A001054");
+	String value= item.getItemDefaultValue();
+	if(value!=null && !"".equals(value)){
+		%>
+		document.getElementById("form1:A001054").value="<%=value%>";
+		<%
+	}
+%>
 
 </script>
 
