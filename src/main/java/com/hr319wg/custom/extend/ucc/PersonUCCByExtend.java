@@ -147,4 +147,17 @@ public class PersonUCCByExtend extends PersonUCC {
 	    }
 	    this.getActivepageservice().executeSql(sql);
 	  }
+	 public void ClearData(String pid) throws SysException {
+	    String sql = "delete from  sys_agent where agentfor='" + pid + "' or personid='" + pid + "'";
+	    this.getActivepageservice().executeSql(sql);
+
+	    sql = "delete from emp_chginfo where person_id='" + pid + "'";
+	    this.getActivepageservice().executeSql(sql);
+
+	    sql = "delete from emp_conpost where conpost_personid='" + pid + "'";
+	    this.getActivepageservice().executeSql(sql);
+
+	    sql = "delete from B730 where B730700='" + pid + "'";
+	    this.getActivepageservice().executeSql(sql);
+	  }
 }
