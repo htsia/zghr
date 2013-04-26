@@ -44,25 +44,10 @@
                    <c:verbatim>&nbsp;&nbsp;</c:verbatim>
                    <h:outputText escape="false" value="<font color=red>多段#{wage_computeBB.manyDeptCount}</font>"/>
                    <c:verbatim>&nbsp;&nbsp;</c:verbatim>
-                   <h:outputText  escape="false" value="<font color=red>问题数据#{wage_computeBB.errData}</font>"></h:outputText>
-
-                   <h:panelGroup rendered="#{wage_computeBB.specQuery}">
-                       <h:commandButton value="已解决" styleClass="button01" id="apply"  onclick="return modifyOk();" action="#{wage_computeBB.modifyOK}"></h:commandButton>
-                       <h:commandButton value="查询问题" id="queryquestion" style="display:none" action="#{wage_computeBB.queryQestion}"></h:commandButton>
-                       <h:commandButton value="查询问题" id="queryAllQestion" style="display:none" action="#{wage_computeBB.queryAllQestion}"></h:commandButton>
-                       <h:selectOneMenu id="SpecialQuery">
-                             <c:selectItem itemValue="-1" itemLabel="未解决问题"></c:selectItem>
-                             <c:selectItem itemValue="1" itemLabel="无卡人员"></c:selectItem>
-                             <c:selectItem itemValue="2" itemLabel="卡号重复人员"></c:selectItem>
-                             <c:selectItem itemValue="3" itemLabel="应发为零人员"></c:selectItem>
-                             <c:selectItem itemValue="4" itemLabel="薪资部门有误人员"></c:selectItem>
-                             <c:selectItem itemValue="5" itemLabel="薪资变动人员"></c:selectItem>
-                       </h:selectOneMenu>
-                       <h:commandButton type="button" value="查询" styleClass="button01" onclick="showSpecialQuery();"></h:commandButton>
-                    </h:panelGroup>
+                   
                </h:panelGroup>
 
-               <h:panelGrid  columns="3" align="right">
+               <h:panelGrid  columns="3" align="left">
                    <h:panelGroup>
                        <h:outputText escape="false" value="<font color='red'>底限报警:</font>" style=""></h:outputText>
                        <h:commandButton action="#{wage_computeBB.queryNagetive}" image="/images/common/unvalidate.gif" rendered="#{wage_computeBB.haveNegative}"></h:commandButton>
