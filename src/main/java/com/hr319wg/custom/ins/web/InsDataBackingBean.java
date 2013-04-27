@@ -271,7 +271,7 @@ public class InsDataBackingBean extends BaseBackingBean{
 			mypage.setCurrentPage(1);
 		}
 		try {
-			this.setList=this.insDataService.getAllInsCalcSetBO(mypage, user.getOrgId(), user.getUserId(), this.wageDate);
+			this.setList=this.insDataService.getAllInsCalcSetBO(mypage, super.getRequestParameter("superId"), user.getUserId(), this.wageDate);
 		} catch (SysException e) {
 			e.printStackTrace();
 		}
