@@ -13,7 +13,7 @@ import com.hr319wg.util.CommonFuns;
 public class InsDataDAO extends BaseDAO{
 	
 	public List getAllInsCalcSetBO(PageVO pageVO, String createOrgID, String createUserID, String wageDate) throws SysException{
-		String hql = " from InsCalcSetBO bo where (bo.createOrgID='"+createOrgID+"' or bo.createUserID='"+createUserID+"')";
+		String hql = " from InsCalcSetBO bo where (bo.createOrgID='"+createOrgID+"')";
 		if(wageDate!=null && !"".equals(wageDate)){
 			hql+=" and bo.wageDate='"+wageDate+"'";
 		}
