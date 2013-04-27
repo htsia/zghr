@@ -425,7 +425,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 			}
 
 			if ((formualList != null) && (formualList.size() > 0)) {//有公式时计算
-				HashMap expressHash = new HashMap();
+				List expressHash = new ArrayList();
 				List flaCountOrder = new ArrayList();
 				List fieldList = new ArrayList();
 				List sqlList = new ArrayList();
@@ -467,7 +467,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 							index=express.indexOf("MaxIf(");
 						}
 						formula.setExpress(express);
-						expressHash.put(formula.getRsField(), formula);
+						expressHash.add(formula);
 						flaCountOrder.add(formula.getRsField());
 
 						Vector fld = fCommonFuns.queryInfoItems(express);
@@ -715,7 +715,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				String clearSql = "update " + flaCountTable + " set ";
 				for (int i = 0; i < size; i++) {
 					String field = (String)flaCountOrder.get(i);
-					if(!standItemFields.contains(field)){
+					if(!standItemFields.contains(field) && !clearSql.contains(field)){
 						clearSql = clearSql + field + "='0.0',";
 						cleared ++;
 					}
@@ -735,7 +735,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				boolean haveA815713 = false;
 				for (int i = 0; i < size; i++) {
 					String rsField = flaCountOrder.get(i).toString();
-					WageFormulaBO formula = (WageFormulaBO)expressHash.get(rsField);
+					WageFormulaBO formula = (WageFormulaBO)expressHash.get(i);
 
 					if ((formula.getApplyMonth() != null) && (!"".equals(formula.getApplyMonth())) && (formula.getApplyMonth().indexOf("-1") < 0) && (payoffDate != null) && (payoffDate.length() >= 7))
 					{
