@@ -224,7 +224,7 @@ public class InsDataServiceImpl implements IInsDataService {
 		}
 		
 		if(nameStr!=null && !"".equals(nameStr)){
-			sql += " and (a001001 like '%"+nameStr+"%' or a001735 like '%"+nameStr+"%' or u.a001002 like '%"+nameStr+"%')";
+			sql += " and (a001001 like '%"+nameStr+"%' or a001735 like '%"+nameStr+"%' or a001002 like '%"+nameStr+"%')";
 		}
 		return this.jdbcTemplate.queryForList(sql);
 	}
