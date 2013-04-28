@@ -6,8 +6,11 @@ import java.util.List;
 import com.hr319wg.common.Constants;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.BaseBackingBean;
+import com.hr319wg.custom.common.service.ICommonService;
 import com.hr319wg.org.ucc.IOrgUCC;
+import com.hr319wg.sys.api.QueryAPI;
 import com.hr319wg.sys.api.UserAPI;
+import com.hr319wg.sys.pojo.vo.CellVO;
 import com.hr319wg.sys.pojo.vo.TableVO;
 import com.hr319wg.user.pojo.vo.UserRptVO;
 import com.hr319wg.user.ucc.IUserReportUCC;
@@ -27,6 +30,14 @@ public class OrgListBackingBean extends BaseBackingBean
   private List listTableList;
   private boolean showColEdit;
   private boolean showReport;
+  private QueryAPI queryAPI;
+  
+  public QueryAPI getQueryAPI() {
+	return queryAPI;
+  }
+  public void setQueryAPI(QueryAPI queryAPI) {
+	this.queryAPI = queryAPI;
+  }
 
   public IUserReportUCC getUserreportucc()
   {
@@ -130,7 +141,15 @@ public class OrgListBackingBean extends BaseBackingBean
           rowNum = Integer.parseInt(rowNums);
         }
         User user = getUserInfo();
-        String sql = this.orgucc.queryOrgList(table, this.orgName, this.superId, this.orgType, 1, rowNum, "00900", user, "1");
+        String sql=null;
+        String loaddata=super.getRequestParameter("loaddata");
+        if(!"0".equals(loaddata)){
+        	sql = this.orgucc.queryOrgList(table, this.orgName, this.superId, this.orgType, 1, rowNum, "00900", user, "1");        	
+        }else{
+        	CellVO[] c1 = queryAPI.queryInfoItem("135");
+	        table.setHeader(c1);
+	        table.setSetType("A");
+        }
         getHttpSession().setAttribute("activeSql", sql);
         getHttpSession().setAttribute("pageNum", String.valueOf("1"));
         getHttpSession().setAttribute("rowNum", String.valueOf(rowNum));

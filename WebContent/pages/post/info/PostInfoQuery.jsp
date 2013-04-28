@@ -11,7 +11,7 @@
             windowOpen("/post/info/PostEditInfo.jsf?pk="+id+"&type="+type,"aa","","900","600","no","10","100","yes");
         }
         function forAdQry(){
-             doAdvanceQuery("C","ORG","111","Y","","C001.C001730 = '00900'","Y","<%=Constants.DEFAULT_QUERY_POST%>","Y","1");
+             doAdvanceQuery("C","ORG","111","Y","","C001.C001730 = '00900'","Y","","Y","1");
          }
         function changeSuperOrg(){
             if (!checkMutilSelect(document.forms(0).chk)){
