@@ -50,7 +50,7 @@
 
         <td align="center" valign="top" class="explorer">
             <iframe name="list" frameborder="0" framespacing="0" scrolling="auto"  width="100%"
-                                src="/custom/ins/insCalculateList.jsf?act=init"></iframe>
+                                src="/custom/ins/insCalculateList.jsf?act=init&superId=<%=user.getOrgId()%>"></iframe>
        </td>
     </tr>
 </table>
