@@ -102,7 +102,7 @@
 					<h:outputText value="操作" />
 				</f:facet>
 				<h:commandButton styleClass="button01" onclick="return editItem('#{item.ID}');" value="修改" rendered="#{item.status==0}"/>
-				<h:commandButton styleClass="button01" onclick="return viewInsPay('#{item.ID}','#{item.wageDate}','#{item.status}');" value="查看"  type="button"/>
+				<h:commandButton styleClass="button01" type="button" onclick="return viewInsPay('#{item.ID}','#{item.wageDate}','#{item.status}');" value="查看"/>
 				<h:commandButton styleClass="button01" onclick="return confirm('归档后数据不可更改,确定归档吗?');" value="归档" action="#{ins_dataBB.endCalc}" rendered="#{item.status==0}">
 					<x:updateActionListener property="#{ins_dataBB.operSetID}" value="#{item.ID}" />		
 				</h:commandButton>
@@ -115,6 +115,7 @@
 		<f:verbatim>
 			</div></td></tr></table>
 		</f:verbatim>
+	
 	
 </h:form>
 <script type="text/javascript" language="javascript">
