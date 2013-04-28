@@ -1014,7 +1014,7 @@ textarea {
 td.locked_top, th.locked_top {
     background-color:#F3F3F3;
 	font-family: Tahoma;
-	FONT-SIZE: 11px;
+	FONT-SIZE: 12px;
 	color:#7C5618;
 	padding: 4px;
 	border-collapse:collapse;
@@ -1024,6 +1024,9 @@ td.locked_top, th.locked_top {
 	border-left: 1px solid #FFFFFF;
     position: relative;
     z-index: 1
+}
+td.locked_top a, th.locked_top a {
+	FONT-SIZE: 12px;
 }
 #datatable {
  position: absolute;

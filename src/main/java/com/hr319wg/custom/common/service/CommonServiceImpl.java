@@ -1,14 +1,18 @@
 package com.hr319wg.custom.common.service;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.common.exception.SysException;
+import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.custom.dao.CommonDAO;
+import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.sys.api.ActivePageAPI;
+import com.hr319wg.sys.api.QueryAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
 import com.hr319wg.sys.pojo.bo.InfoSetBO;
@@ -22,6 +26,14 @@ public class CommonServiceImpl implements ICommonService{
 	private CommonDAO commonDAO;
 	private JdbcTemplate jdbcTemplate;
 	private ActivePageAPI pageAPI;
+	private QueryAPI queryAPI;
+	
+	public QueryAPI getQueryAPI() {
+		return queryAPI;
+	}
+	public void setQueryAPI(QueryAPI queryAPI) {
+		this.queryAPI = queryAPI;
+	}
 	public CommonDAO getCommonDAO() {
 		return commonDAO;
 	}

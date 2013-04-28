@@ -15,7 +15,7 @@
 		windowOpen("/org/info/OrgEditInfo.jsf?pk="+id+"&type="+type, "aa", "", "900", "600", "no","10","100","yes");
     }
      function forAdQry(){
-         doAdvanceQuery("B","ORG","111","Y","","B001.B001730='00900'","Y","<%=Constants.DEFAULT_QUERY_ORG%>","Y","1");
+         doAdvanceQuery("B","ORG","111","Y","","B001.B001730='00900'","Y","","Y","1");
      }
     function OpenRpt(){
         if (document.all("form1:ReportID").value=="-1"){

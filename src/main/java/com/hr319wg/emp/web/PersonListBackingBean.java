@@ -26,8 +26,11 @@ import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.emp.pojo.vo.PersonChangeVO;
 import com.hr319wg.emp.ucc.IPersonUCC;
 import com.hr319wg.org.ucc.IOrgUCC;
+import com.hr319wg.qry.pojo.bo.QueryConditionBO;
+import com.hr319wg.qry.pojo.bo.QueryStaticBO;
 import com.hr319wg.qry.pojo.vo.QueryVO;
 import com.hr319wg.qry.ucc.IQueryUCC;
+import com.hr319wg.sys.api.QueryAPI;
 import com.hr319wg.sys.api.UserAPI;
 import com.hr319wg.sys.api.WageAPI;
 import com.hr319wg.sys.cache.SysCache;
@@ -38,6 +41,7 @@ import com.hr319wg.sys.pojo.bo.ShortMessageBO;
 import com.hr319wg.sys.pojo.bo.WFNodeBO;
 import com.hr319wg.sys.pojo.bo.WFProcessBO;
 import com.hr319wg.sys.pojo.bo.WFTypeBO;
+import com.hr319wg.sys.pojo.vo.CellVO;
 import com.hr319wg.sys.pojo.vo.TableVO;
 import com.hr319wg.sys.pojo.vo.WFTransaction;
 import com.hr319wg.sys.service.WorkFlowService;
@@ -125,6 +129,86 @@ public class PersonListBackingBean extends BaseBackingBean
   private String auditOpition;
   private String auditMessage = "您报送的人员已审批通过！";
   private boolean autoMessage = true;
+  private QueryAPI queryAPI;
+  private String oper;
+  private String fieldID;
+  private String fieldValue;
+  private List fieldList;
+  
+  public String getOper() {
+	return oper;
+  }
+  public void setOper(String oper) {
+	this.oper = oper;
+  }
+  public String getFieldValue() {
+	return fieldValue;
+  }
+  public void setFieldValue(String fieldValue) {
+	this.fieldValue = fieldValue;
+  }
+  public String getFieldID() {
+	return fieldID;
+  }
+  public void setFieldID(String fieldID) {
+	this.fieldID = fieldID;
+  }
+  public List getFieldList() {
+	fieldList=new ArrayList();
+	SelectItem s0=new SelectItem();
+	s0.setLabel("--请选择--");
+	s0.setValue("-1");
+	fieldList.add(s0);
+	List<InfoItemBO> list=SysCacheTool.queryInfoItemBySetId("A001");
+	for(InfoItemBO item : list){
+		//1、2数字 3字符 5、15日期 6代码
+		String type=item.getItemDataType();
+		if("1".equals(item.getItemStatus()) && !"1".equals(item.getItemProperty()) && ("1".equals(type) || "2".equals(type) || "2".equals(type) || "5".equals(type) || "6".equals(type) || "15".equals(type))){
+			SelectItem s=new SelectItem();
+			s.setLabel(item.getItemName());
+			s.setValue(item.getItemId());
+			fieldList.add(s);
+		}
+	}
+	return fieldList;
+  }
+  public void setFieldList(List fieldList) {
+	this.fieldList = fieldList;
+  }
+  public QueryAPI getQueryAPI() {
+	return queryAPI;
+  }
+  public void setQueryAPI(QueryAPI queryAPI) {
+	this.queryAPI = queryAPI;
+  }
+  public boolean isAutoMessage()
+  {
+    return this.autoMessage;
+  }
+  public void setAutoMessage(boolean b) {
+    this.autoMessage = b;
+  }
+
+  public String getAuditMessage() {
+    return this.auditMessage;
+  }
+  public void setAuditMessage(String ad) {
+    this.auditMessage = ad;
+  }
+
+  public String getAuditOpition() {
+    return this.auditOpition;
+  }
+  public void setAuditOpition(String ad) {
+    this.auditOpition = ad;
+  }
+
+  public String getAuditResult() {
+    return this.auditResult;
+  }
+  public void setAuditResult(String ad) {
+    this.auditResult = ad;
+  }
   
   public boolean isShowCard()
   {
@@ -1277,9 +1361,9 @@ public class PersonListBackingBean extends BaseBackingBean
         SelectItem item = new SelectItem();
         item.setLabel(role.getQryName());
         item.setValue(role.getQryID());
-        if ((role.getIsCurrent() != null) && (role.getIsCurrent().equals("1"))) {
-          this.defaultQry = role.getQryID();
-        }
+//        if ((role.getIsCurrent() != null) && (role.getIsCurrent().equals("1"))) {
+//          this.defaultQry = role.getQryID();
+//        }
         setList.add(item);
       }
     }
@@ -1297,6 +1381,7 @@ public class PersonListBackingBean extends BaseBackingBean
   }
 
   public String getPersonList() {
+	  
     if(this.personType==null || "".equals(this.personType)){
 		try {
 			this.personType=CommonUtil.getAllPersonTypes(super.getUserInfo());
@@ -1305,6 +1390,7 @@ public class PersonListBackingBean extends BaseBackingBean
 		}
 	}
     String pageFlag = getServletRequest().getParameter("pageFlag");
+    //通过列表查询
     if ("1".equals(pageFlag)) {
       try {
         String rowNums = getServletRequest().getParameter("rowNum");
@@ -1409,7 +1495,14 @@ public class PersonListBackingBean extends BaseBackingBean
           else if ("2".equals(backFlag))
             sql = this.personucc.queryPersonListForRetire(table, this.name, this.personType, this.superId, 1, rowNum, "00900", user);
           else {
-            sql = this.personucc.queryPersonList(table, this.name, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry);
+        	String loaddata=super.getRequestParameter("loaddata");
+        	if(!"0".equals(loaddata)){
+        		sql = this.personucc.queryPersonList(table, this.name, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry);        		
+        	}else{
+        		CellVO[] c1 = queryAPI.queryInfoItem("156");
+  		        table.setHeader(c1);
+  		        table.setSetType("A");
+        	}
           }
 
           getHttpSession().setAttribute("activeSql", sql);
@@ -1552,6 +1645,7 @@ public class PersonListBackingBean extends BaseBackingBean
     return null;
   }
 
+  //查询
   public String queryPerson() {
     String backFlag = getServletRequest().getParameter("backFlag");
     getHttpSession().removeAttribute("OBJECT");
@@ -1571,12 +1665,13 @@ public class PersonListBackingBean extends BaseBackingBean
       }
       User user = getUserInfo();
       String sql = "";
+      //1列表 2照片
       if ("1".equals(this.orgMode)) {
         if ("1".equals(backFlag)) {
           sql = this.personucc.queryPersonListBack(table, this.name, this.personType, this.superId, 1, rowNum, "00900", user);
-        }
-        else
+        }else{
           sql = this.personucc.queryPersonList(table, this.name, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry);
+        }
       }
       else
       {
@@ -1597,34 +1692,67 @@ public class PersonListBackingBean extends BaseBackingBean
     }
     return null;
   }
-
-  public boolean isAutoMessage()
-  {
-    return this.autoMessage;
+  
+  public String getPageInit(){
+	  this.oper=null;
+	  this.fieldID=null;
+	  this.fieldValue=null;
+	  return this.pageInit;
   }
-  public void setAutoMessage(boolean b) {
-    this.autoMessage = b;
-  }
-
-  public String getAuditMessage() {
-    return this.auditMessage;
-  }
-  public void setAuditMessage(String ad) {
-    this.auditMessage = ad;
-  }
-
-  public String getAuditOpition() {
-    return this.auditOpition;
-  }
-  public void setAuditOpition(String ad) {
-    this.auditOpition = ad;
-  }
-
-  public String getAuditResult() {
-    return this.auditResult;
-  }
-  public void setAuditResult(String ad) {
-    this.auditResult = ad;
+  //简单查询
+  public String queryPerson2() {
+	  String backFlag = getServletRequest().getParameter("backFlag");
+	  getHttpSession().removeAttribute("OBJECT");
+	  getHttpSession().removeAttribute("activeSql");
+	  getHttpSession().removeAttribute("pageNum");
+	  getHttpSession().removeAttribute("rowNum");
+	  try {
+		  String superOrg = getServletRequest().getParameter("superId");
+		  if ((superOrg != null) && (!"".equals(superOrg))) {
+			  this.superId = superOrg;
+		  }
+		  TableVO table = new TableVO();
+		  String rowNums = (String)getHttpSession().getAttribute("rowNum");
+		  int rowNum = Constants.ACTIVE_PAGE_SIZE;
+		  if (rowNums != null) {
+			  rowNum = Integer.parseInt(rowNums);
+		  }
+		  User user = getUserInfo();
+		  String where1 ="";
+		  try {
+			  QueryVO vo= this.queryucc.findQueryVO("queryforemp");
+			  QueryConditionBO cond=vo.getStatics()[0].getCondi()[0];
+			  cond.setValue(this.fieldValue);
+			  cond.setItemId(this.fieldID);
+			  cond.setOperator(this.oper);
+			  Map map= this.queryucc.buildQuerySqlHash(null, vo);
+			  where1=map.get("SQL_WHERE_PART").toString();
+		  } catch (SysException e1) {
+			  e1.printStackTrace();
+		  }
+		  String sql = "";
+		  //1列表 2照片
+		  if ("1".equals(this.orgMode)) {
+			  sql = this.personucc.queryPersonList(table, null, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry, where1);
+		  }
+		  else
+		  {
+			  String where = " A001.ID in (select PERSON_ID from EMP_TEAM_PERSON where TEAM_ID='" + this.superId + "')"+" and "+where1;
+			  sql = this.personucc.queryPersonList(table, null, this.personType, null, 1, rowNum, "00900", null, this.defaultQry, where);
+		  }
+		  getHttpSession().setAttribute("activeSql", sql);
+		  getHttpSession().setAttribute("pageNum", String.valueOf("1"));
+		  getHttpSession().setAttribute("rowNum", String.valueOf(rowNum));
+		  getHttpSession().setAttribute("OBJECT", table);
+	  } catch (Exception e) {
+		  e.printStackTrace();
+		  getHttpSession().removeAttribute("OBJECT");
+		  getHttpSession().removeAttribute("activeSql");
+		  getHttpSession().removeAttribute("pageNum");
+		  getHttpSession().removeAttribute("rowNum");
+		  this.msg.setMainMsg(e, getClass());
+	  }
+	  return null;
   }
 
   public String deleteInvalid() {

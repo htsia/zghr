@@ -712,13 +712,13 @@
                 
     }
     <%
-       if ("".equals(fixrowstyle)){
-          out.print("FixID=window.setInterval('setFix()', 700);");
-       }
-        // 列锁定
+//        if ("".equals(fixrowstyle)){
+//           out.print("FixID=window.setInterval('setFix()', 700);");
+//        }
+//         列锁定
         if (fixcol!=-1 && "".equals(fixcolstyle)){
            out.print("tableFixCol="+fixcol+";");
-           out.print("FixColID=window.setInterval('setFixCol()', 700);");
+           out.print("FixColID=window.setInterval('setFixCol()', 1);");
         }
 
     %>

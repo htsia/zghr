@@ -81,6 +81,10 @@
             <property-name>userreportucc</property-name>
             <value>#{user_userReportUccImpl}</value>
         </managed-property>
+        <managed-property>
+            <property-name>queryAPI</property-name>
+            <value>#{qry_queryApi}</value>
+        </managed-property>
     </managed-bean>
     
     <managed-bean>

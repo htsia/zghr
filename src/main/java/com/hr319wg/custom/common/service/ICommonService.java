@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hr319wg.common.exception.SysException;
+import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
 import com.hr319wg.sys.pojo.vo.TableVO;
 

@@ -1,8 +1,17 @@
+<%@page import="com.hr319wg.common.web.SysContext"%>
+<%@page import="com.hr319wg.sys.pojo.bo.ParameterBO"%>
+<%@page import="com.hr319wg.sys.dao.ParameterDAO"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.sys.configuration.LanguageSupport" %>
 <%@ include file="../../include/taglib.jsp" %>
 <%
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
+	String loaddata="0";
+	ParameterDAO dao = (ParameterDAO) SysContext.getBean("sys_parameterDAO");
+	ParameterBO bo = dao.getParameter("ORG_DATA_LOAD");
+	if(bo!=null && "1".equals(bo.getValue())){
+		loaddata="1";
+	}
 %>
     <script type="text/javascript">
         function refreshTree() {
@@ -36,7 +45,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td id="showTree" width="210">
-                 <iframe name="tree" height="400"  frameborder="0"  scrolling="auto" width="100%"    src="/pages/common/ShowOrgTree.jsp"></iframe>
+                 <iframe name="tree" height="400" frameborder="0" scrolling="auto" width="100%" src="/pages/common/ShowOrgTree.jsp"></iframe>
             </td>
             
             <td width="10" class="ctrlbar" valign="middle">
@@ -44,7 +53,7 @@
             </td>
 
             <td align="center" valign="top">
-                 <iframe name="main" height="100%"  frameborder="0"  scrolling="auto" width="100%"     src="/org/info/OrgInfoQuery.jsf?flag=1"></iframe>
+                 <iframe name="main" height="100%" frameborder="0" scrolling="auto" width="100%" src="/org/info/OrgInfoQuery.jsf?flag=1&loaddata=<%=loaddata%>"></iframe>
             </td>
         </tr>
     </table>

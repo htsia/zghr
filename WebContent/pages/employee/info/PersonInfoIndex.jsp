@@ -1,3 +1,8 @@
+<%@page import="com.hr319wg.sys.pojo.bo.ParameterBO"%>
+<%@page import="com.hr319wg.common.web.SysContext"%>
+<%@page import="com.hr319wg.sys.dao.ParameterDAO"%>
+<%@page import="com.hr319wg.sys.cache.SysCacheTool"%>
+<%@page import="com.hr319wg.sys.cache.SysCache"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.sys.configuration.LanguageSupport" %>
 <%@ page import="com.hr319wg.common.pojo.vo.User" %>
@@ -7,6 +12,13 @@
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
     User user = (User)session.getAttribute(Constants.USER_INFO);
     String rootid = user.getOrgId();
+    
+    String loaddata="0";
+    ParameterDAO dao = (ParameterDAO) SysContext.getBean("sys_parameterDAO");
+    ParameterBO bo = dao.getParameter("EMP_DATA_LOAD");
+    if(bo!=null && "1".equals(bo.getValue())){
+    	loaddata="1";
+    }
 %>
 <c:verbatim>
     <script type="text/javascript">
@@ -86,7 +98,7 @@
 
             <td align="center" valign="top" height="100%">
                  <iframe name="main" height="100%"  frameborder="0"  height="100%" scrolling="no" width="100%"
-                     src="/employee/info/PersonInfoQuery.jsf?superId=<%=user.getOrgId()%>"></iframe>
+                     src="/employee/info/PersonInfoQuery.jsf?superId=<%=user.getOrgId()%>&loaddata=<%=loaddata%>"></iframe>
             </td>
         </tr>
     </table>
