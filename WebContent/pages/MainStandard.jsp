@@ -1,3 +1,5 @@
+<%@page import="com.hr319wg.sys.pojo.bo.ParameterBO"%>
+<%@page import="com.hr319wg.sys.dao.ParameterDAO"%>
 <%@page import="com.hr319wg.custom.util.CommonUtil"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.common.Constants" %>
@@ -54,6 +56,13 @@
     }
     session.setAttribute("moduleId", moduleId);
     Hashtable hashMenus = user.getPmsMenus();
+    
+    String hide="0";
+    ParameterDAO dao = (ParameterDAO) SysContext.getBean("sys_parameterDAO");
+    ParameterBO bo = dao.getParameter("HIDE_FUNC_MENU");
+    if(bo!=null && "1".equals(bo.getValue())){
+    	hide="1";
+    }
 %>
 
 <h:form id="form1">
@@ -355,7 +364,7 @@
         <table width="100%" height="500" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
               <tr>
                 <%if (!"HOMEPAGE".equals(moduleId)){%>
-                      <td id="showTree" align="left" width="200" valign="top">
+                      <td id="showTree" align="left" width="200" valign="top" <%="1".equals(hide)?"style='display:none'":"" %>>
                             <iframe name="tree" height="400"  frameborder="no" border="0" marginwidth="0" marginheight="0" style="height:100%;width:100%;border:10px" src="/pages/ShowOperateTree.jsp"></iframe>
                       </td>
                       <td width="10" class="ctrlbar" valign="middle">
