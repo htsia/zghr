@@ -133,12 +133,10 @@
             <td align="right">
                 <input Class="button01" type="button" onclick="DoSelectAll(true);" value="全选">
                 <input Class="button01" type="button" onclick="DoSelectAll(false);" value="全撤">
-                <input Class="button01" type="button" onclick="OpenRpt();" value="先统计后显示">
-                <input Class="button01" type="button" onclick="DirectOpenRpt();" value="直接显示">
+                <input Class="button01" type="button" onclick="OpenRpt();" value="预览">
                 <input Class="button01" type="button" onclick="DoStatic();" value="统计">
                 <input Class="button01" type="button" onclick="DoCheck();" value="校验">
 </c:verbatim>
-                <h:commandButton onclick="return doShowStatus();" type="button" styleClass="button01" value="当前情况" />
                 <h:commandButton onclick="return doDocument();" type="button" styleClass="button01" value="归档"   rendered="true"  />
                 <h:commandButton styleClass="button01" action="#{Rpt_InfoIndexBB.endReprot}"  value="结束"  rendered="#{Rpt_InfoIndexBB.flowState}" />
                 <h:commandButton  styleClass="button01" value="返回" action="dateList" />
