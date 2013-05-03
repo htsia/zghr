@@ -62,6 +62,8 @@
                                     size="10" styleClass="input"  onkeypress ="enterKeyDown('form1:queryPerson')" />
                     <h:commandButton value="查询" id="queryPerson" onclick="javascript:return true;" styleClass="button01"
                                      action="#{emp_personListBB.queryPerson}"/>
+                    <h:commandButton value="清除" onclick="javascript:document.getElementById('form1:name').value='';" styleClass="button01"
+                                     action="#{emp_personListBB.queryPerson}"/>
                     <h:outputText value="  "/>
                     <h:inputHidden id="ManyPerson" value="#{emp_personListBB.nameStrs}"></h:inputHidden>
                     <h:commandButton value="多人查询" id="queryPerson2" onclick="return doQueryManyPerson()" styleClass="button01"

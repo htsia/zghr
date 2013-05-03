@@ -163,7 +163,7 @@ public class PersonListBackingBean extends BaseBackingBean
 	for(InfoItemBO item : list){
 		//1、2数字 3字符 5、15日期 6代码
 		String type=item.getItemDataType();
-		if("1".equals(item.getItemStatus()) && !"1".equals(item.getItemProperty()) && ("1".equals(type) || "2".equals(type) || "2".equals(type) || "5".equals(type) || "6".equals(type) || "15".equals(type))){
+		if("1".equals(item.getItemStatus()) && !"1".equals(item.getItemProperty()) && ("1".equals(type) || "3".equals(type) || "2".equals(type) || "5".equals(type) || "6".equals(type) || "15".equals(type))){
 			SelectItem s=new SelectItem();
 			s.setLabel(item.getItemName());
 			s.setValue(item.getItemId());
