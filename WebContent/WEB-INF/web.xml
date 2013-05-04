@@ -291,6 +291,12 @@
         <extension>xls</extension>
         <mime-type>application/vnd.ms-excel</mime-type>
     </mime-mapping>
+   
+    <mime-mapping>
+        <extension>xlsx</extension>
+        <mime-type>application/vnd.ms-excel</mime-type>
+    </mime-mapping>
+    
     <mime-mapping>
         <extension>csv</extension>
         <mime-type>application/vnd.ms-excel</mime-type>
@@ -305,6 +311,10 @@
         <extension>doc</extension>
         <mime-type>application/vnd.ms-word</mime-type>
     </mime-mapping>
+    <mime-mapping>
+        <extension>docx</extension>
+        <mime-type>application/vnd.ms-word</mime-type>
+    </mime-mapping>
 
     <mime-mapping>
             <extension>rtf</extension>
@@ -313,6 +323,11 @@
 
     <mime-mapping>
             <extension>ppt</extension>
+            <mime-type>application/vnd.ms-ppt</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+            <extension>pptx</extension>
             <mime-type>application/vnd.ms-ppt</mime-type>
     </mime-mapping>
 
