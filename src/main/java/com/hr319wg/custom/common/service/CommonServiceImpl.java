@@ -1,16 +1,17 @@
 package com.hr319wg.custom.common.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.common.exception.SysException;
-import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.custom.dao.CommonDAO;
-import com.hr319wg.org.pojo.bo.OrgBO;
+import com.hr319wg.custom.pojo.bo.SetFileBO;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.api.QueryAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
@@ -19,6 +20,7 @@ import com.hr319wg.sys.pojo.bo.InfoSetBO;
 import com.hr319wg.sys.pojo.vo.CellVO;
 import com.hr319wg.sys.pojo.vo.TableVO;
 import com.hr319wg.util.CommonFuns;
+import com.hr319wg.util.FileUtil;
 import com.hr319wg.util.SequenceGenerator;
 
 public class CommonServiceImpl implements ICommonService{
@@ -176,5 +178,39 @@ public class CommonServiceImpl implements ICommonService{
 	public void deleteAdvice(String ID) throws SysException {
 		String sql="delete from self_advise a where a.adv_id='"+ID+"'";
 		this.jdbcTemplate.execute(sql);
+	}
+	
+	public SetFileBO getSetFile(String setID, String itemID, String personID) throws SysException {
+		List<SetFileBO> list= this.commonDAO.getSetFile(setID, itemID, personID);
+		if(list!=null && list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
+
+	public String saveUpdateFile(UploadedFile file, String path, String pk, String setID, String itemID)
+			throws SysException, IOException {
+		String webpath="file\\setFile\\"+setID;
+		File dir=new File(path+webpath);
+		if(!dir.exists()){
+			dir.mkdirs();
+		}
+		String name=file.getName();
+		String extname=name.substring(name.lastIndexOf("."));
+		String realname=CommonFuns.getUUID()+extname;
+		webpath+="\\"+realname;
+		FileUtil.createFile(file.getBytes(), path+webpath);
+		SetFileBO bo=new SetFileBO();
+		bo.setFilename(file.getName().substring(0, file.getName().lastIndexOf(".")));
+		bo.setFilepath(webpath);
+		bo.setPersonID(pk);
+		bo.setSetID(setID);
+		bo.setItemID(itemID);
+		this.commonDAO.saveOrUpdateBo(bo);
+		return webpath;
+	}
+
+	public void deleteSetFile(String ID) throws SysException {
+		this.commonDAO.deleteBo(SetFileBO.class, ID);
 	}
 }

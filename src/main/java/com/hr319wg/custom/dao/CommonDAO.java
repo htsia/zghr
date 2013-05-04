@@ -107,4 +107,9 @@ public class CommonDAO extends BaseDAO{
 		String sql = "select bo from RptSetUserBO bo,RoleUserBO u where bo.roleID=u.roleID and u.personID='" + userID + "'";
 		return this.hibernatetemplate.find(sql);
 	}
+	
+	public List getSetFile(String setID, String itemID, String personID) throws SysException{
+		String sql="select bo from SetFileBO bo where bo.setID='"+setID+"' and bo.itemID='"+itemID+"' and bo.personID='"+personID+"'";
+		return this.hibernatetemplate.find(sql);
+	}
 }

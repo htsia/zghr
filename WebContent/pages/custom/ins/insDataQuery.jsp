@@ -15,7 +15,7 @@ String ID = request.getParameter("ID");
 %>
 <script type="text/javascript">
         function refreshList(orgId) {
-            document.main.location.href = "/custom/ins/insDataQueryList.jsf?act=init&ID=<%=ID%>&operWageDate=<%=wageDate%>&operStatus=<%=status%>&orgID=" + orgId;
+            document.main.location.href = "/custom/ins/insDataQueryList.jsf?act=init&ID=<%=ID%>&operWageDate=<%=wageDate%>&operStatus=<%=status%>&orgID=3053" + orgId;
         }
         with (window) onload = onresize = function(){
             var mainHeight = document.body.offsetHeight - 34;
@@ -35,7 +35,7 @@ String ID = request.getParameter("ID");
         <tr>
             <td id="showTree" width="210">
                         <iframe name="tree" height="400"  frameborder="0" framespacing="0" scrolling="auto" width="100%"
-                               src="/pages/common/ShowOrgTree.jsp"></iframe>
+                               src="/pages/common/ShowOrgTree_sec.jsp"></iframe>
             </td>
             <td width="10" class="ctrlbar" valign="middle">
                 <img id=ctrlBnt src="/images/button_1.gif" onclick="ctrlbar()"></td>

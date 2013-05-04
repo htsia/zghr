@@ -1,10 +1,13 @@
 package com.hr319wg.custom.common.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.myfaces.custom.fileupload.UploadedFile;
+
 import com.hr319wg.common.exception.SysException;
-import com.hr319wg.common.pojo.vo.User;
+import com.hr319wg.custom.pojo.bo.SetFileBO;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
 import com.hr319wg.sys.pojo.vo.TableVO;
 
@@ -21,4 +24,10 @@ public interface ICommonService {
 	public List getWageMinusList(String setID) throws SysException;
 	
 	public void deleteAdvice(String ID) throws SysException;
+	
+	public SetFileBO getSetFile(String setID, String itemID, String personID) throws SysException;
+	
+	public String saveUpdateFile(UploadedFile file, String path, String pk, String setID, String itemID) throws SysException, IOException;
+
+	public void deleteSetFile(String ID) throws SysException;
 }

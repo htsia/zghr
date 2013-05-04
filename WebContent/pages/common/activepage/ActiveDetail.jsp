@@ -110,7 +110,7 @@
 
         String formula = null;
         String datatype = null;
-
+        
         //修改参数
         RecordVO[] rows = table.getRowData();
 
@@ -323,7 +323,24 @@
                         out.println("<a href='/pages/common/photo.jsp?id=" + imageValue + "' target='_blank'>查看</a>");
                     }
                     out.println("</td>");
-                } else if (InfoItemBO.DATA_TYPE_CODE.equals(cellType)) {//代码型指标处理
+                }else if (InfoItemBO.DATA_TYPE_FILE.equals(cellType)) {//附件型指标处理
+                    input.append("<input name=\"")
+                    .append(itemId).append("\"")
+                    .append(" "+cellRight+" ")
+                    .append(id)
+                    .append(next)
+                    .append(check)
+                    .append(event)
+                    .append(" type=\"hidden\" class=\"input\" value='" + maskValue + "'>");
+		            out.println("<td class=td_form01 >" + itemName + "</td>");
+		            out.print(input.toString());
+		            
+		            out.print("<td  class=td_form02 nowrap valign=top>");
+		            if (isEdit) {
+		                out.print("<iframe name=" + itemId + " frameBorder=0 width=\"100%\" height=22 scrolling=no src='/custom/uploadFile.jsf?pk=" + pk + "&setID="+setId+"&itemID=" + itemId + "'/></iframe>");
+		            }
+		            out.println("</td>");
+		        }else if (InfoItemBO.DATA_TYPE_CODE.equals(cellType)) {//代码型指标处理
                     if ("1".equals(cell.getItemIsSelect())) {
                         out.println("<td class='" + tdfontclass + "' >" + itemName + "</td>");
                         out.print("<td class=" + tdclass + "  >");

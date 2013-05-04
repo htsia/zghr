@@ -3,6 +3,18 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+    <class name="com.hr319wg.custom.pojo.bo.SetFileBO" table="SET_FILE">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="nvarchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="setID" column="setID"/>
+        <property name="itemID" column="itemID"/>
+        <property name="filepath" column="filepath"/>
+        <property name="filename" column="filename"/>
+        <property name="personID" column="person_id"/>
+    </class>
+	
 <!-- 保险 -->
     <class name="com.hr319wg.custom.ins.pojo.bo.InsCalcSetBO" table="ins_calc_set">
         <id name="ID" type="string" unsaved-value="null">
