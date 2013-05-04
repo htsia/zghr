@@ -26,8 +26,7 @@ public class InsDataDAO extends BaseDAO{
 	public List getAllInsMonthPayBO(PageVO pageVO, String setID, String wageDate, String orgID, String personType, String nameStr) throws SysException{
 		String hql = " from InsMonthPayBO bo,UserBO u where bo.userID=u.userID and bo.calcSetID='"+setID+"' and bo.wageDate='"+wageDate+"' ";
 		if(orgID!=null && !"".equals(orgID)){
-			OrgBO org = SysCacheTool.findOrgById(orgID);
-			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
+			hql+=" and (bo.secDeptID = '"+orgID+"') ";
 		}
 		if(personType!=null && !"".equals(personType)){
 			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
