@@ -56,14 +56,13 @@
 
 				<h:outputText value=" 姓名/编号/简拼"/>
 				<h:inputText value="#{ins_dataBB.nameStr}" styleClass="input" size="10"/>
-				<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{ins_dataBB.doQuery}"/>
 				<h:commandButton action="#{ins_dataBB.doQuery}" styleClass="button01" value="查询 "/>
 			</h:panelGroup>
 		</h:panelGrid>
 		
-		<h:panelGrid columns="1" align="right">
+		<h:panelGrid columns="1" align="left">
 			<h:panelGroup>
-				<h:outputText value="保险合计"/>
+				<h:outputText value="当前所选机构保险合计"/>
 			</h:panelGroup>
 		</h:panelGrid>
 		<x:dataTable value="#{ins_dataBB.monthPaySum}" align="right"

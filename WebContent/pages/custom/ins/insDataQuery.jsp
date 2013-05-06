@@ -14,8 +14,12 @@ String wageDate = request.getParameter("wageDate");
 String ID = request.getParameter("ID");
 %>
 <script type="text/javascript">
-        function refreshList(orgId) {
-            document.main.location.href = "/custom/ins/insDataQueryList.jsf?act=init&ID=<%=ID%>&operWageDate=<%=wageDate%>&operStatus=<%=status%>&orgID=3053" + orgId;
+        function refreshList(orgId,pId) {
+        	var id = "";
+        	if(pId != null){//根节点不传值，后台查询所有
+        		id = "3053"+orgId;
+        	}
+            document.main.location.href = "/custom/ins/insDataQueryList.jsf?act=init&ID=<%=ID%>&operWageDate=<%=wageDate%>&operStatus=<%=status%>&orgID=" + id;
         }
         with (window) onload = onresize = function(){
             var mainHeight = document.body.offsetHeight - 34;
