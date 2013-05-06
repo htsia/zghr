@@ -43,6 +43,9 @@
 
 <tiles-definitions>
 
+	<definition name="/custom/uploadFile.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/uploadFile.jsp"/>
+    </definition>
 	<definition name="/common/SelRyPost.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/common/SelRyPost.jsp"/>
     </definition>

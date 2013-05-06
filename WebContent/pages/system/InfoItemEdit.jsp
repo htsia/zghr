@@ -201,6 +201,7 @@
         <f:selectItem itemValue="13" itemLabel="薪资机构"/>
         <f:selectItem itemValue="23" itemLabel="薪资部门"/>
         <f:selectItem itemValue="14" itemLabel="图片"/>
+        <f:selectItem itemValue="18" itemLabel="附件"/>
     </h:selectOneMenu>
 
     <f:verbatim>

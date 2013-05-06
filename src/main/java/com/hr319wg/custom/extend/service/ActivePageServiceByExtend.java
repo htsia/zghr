@@ -36,7 +36,7 @@ public class ActivePageServiceByExtend extends ActivePageService {
 			this.getPmsapi().checkTable(user, table, id);
 		}
 
-		InfoItemBO[] items = this.queryInfoItem(infoSetId);
+		InfoItemBO[] items = this.queryInfoItem(infoSetId, pkValue);
 		if(user!=null){
 			List itemList= this.getPmsapi().queryUserInfoItems(user, Arrays.asList(items), 2);
 			items=(InfoItemBO[]) itemList.toArray(new InfoItemBO[0]);
@@ -53,13 +53,13 @@ public class ActivePageServiceByExtend extends ActivePageService {
 		return table;
 	}
 
-	private InfoItemBO[] queryInfoItem(String setId) {
+	private InfoItemBO[] queryInfoItem(String setId, String pkValue) {
 		List items = new ArrayList();
 		List bos = SysCacheTool.queryInfoItemBySetId(setId);
 		if (bos != null) {
 			for (int i = 0; i < bos.size(); i++) {
 				InfoItemBO bo = (InfoItemBO) bos.get(i);
-				if (InfoItemBO.STATUS_OPEN.equals(bo.getItemStatus())) {
+				if ((InfoItemBO.STATUS_OPEN.equals(bo.getItemStatus()) && !InfoItemBO.DATA_TYPE_FILE.equals(bo.getItemDataType())) || pkValue!=null) {
 					items.add(bo);
 				}
 			}
