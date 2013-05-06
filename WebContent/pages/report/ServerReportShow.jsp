@@ -8,7 +8,6 @@
 <%@ page import="com.hr319wg.common.Constants"%>
 <%@ page import="com.hr319wg.common.web.SysContext"%>
 <%@ page import="com.hr319wg.util.CommonFuns" %>
-
 <%
     // 对应薪资发放中的excel打开按纽
     // 以excel格式显示表格
@@ -58,7 +57,7 @@
     // 输出文件
     response.reset();
     response.resetBuffer();
-    response.setContentType("application/vnd.ms-excel;charset=GBK");
+    
     String ff = "";
     try {
         ff = strFileName.substring(strFileName.lastIndexOf("\\") + 1);
@@ -68,6 +67,7 @@
         long lint = Math.abs(rd.nextLong());
         ff = "r" + Long.toString(lint) + ".xls";
     }
+    response.setContentType("application/vnd.ms-excel;charset=GBK");
     response.setHeader("Content-disposition", "inline;filename=" + ff);
 
     //创建文件对象
@@ -85,6 +85,7 @@
 
         //关闭读文件对象
         objFileReader.close();
+        objFile.delete();
     } else { //文件不存在
         out.println("下列文件不存在：" + strFileName);
     }

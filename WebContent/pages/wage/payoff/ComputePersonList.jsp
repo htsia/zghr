@@ -119,7 +119,8 @@
                      <c:selectItems value="#{wage_computeBB.reportList}"/>
                  </h:selectOneMenu>
                  <h:commandButton value="Excel显示" type="button" styleClass="button01" onclick="return OpenRpt();"></h:commandButton>
-                 <h:commandButton value="直接打开" type="button" styleClass="button01" onclick="return OpenRptByControl();"></h:commandButton>
+<%--                  <h:commandButton value="直接打开" type="button" styleClass="button01" onclick="return OpenRptByControl();"></h:commandButton> --%>
+			     <h:outputText value="  "/>
                  <h:commandButton value="分部门打印" type="button" styleClass="button01" onclick="return OpenRptByDept();"></h:commandButton>
                  <h:commandButton value="薪酬变动" type="button" styleClass="button01" onclick="return openChangeRecord();"></h:commandButton>
              </h:panelGroup>
