@@ -61,9 +61,9 @@
 			</h:panelGroup>
 		</h:panelGrid>
 		
-		<h:panelGrid columns="1" align="right">
+		<h:panelGrid columns="1" align="left">
 			<h:panelGroup>
-				<h:outputText value="保险合计"/>
+				<h:outputText value="当前所选机构保险合计"/>
 			</h:panelGroup>
 		</h:panelGrid>
 		<x:dataTable value="#{ins_dataBB.monthPaySum}" align="right"

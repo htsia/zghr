@@ -59,7 +59,7 @@
 						}
 					}
 				},onClick: function(event, treeId, treeNode){
-					parent.refreshList(treeNode.id);
+					parent.refreshList(treeNode.id,treeNode.pId );
 				}
 			}
 		};

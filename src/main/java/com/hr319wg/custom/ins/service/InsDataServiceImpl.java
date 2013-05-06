@@ -216,7 +216,7 @@ public class InsDataServiceImpl implements IInsDataService {
 			String personType, String nameStr) throws SysException {
 		String sql="select sum(A243201) A243201,sum(A243218) A243218,sum(A243202) A243202,sum(A243203) A243203,sum(A243204) A243204,sum(A243205) A243205,sum(A243206) A243206,sum(A243207) A243207,sum(A243208) A243208,sum(A243209) A243209,sum(A243210) A243210,sum(A243201+A243218+A243202+A243203+A243204+A243205+A243206+A243207+A243208+A243209+A243210) total  from a243 w,a001 a where a.id=w.id and a243211='"+setID+"' and a243200='"+wageDate+"'";
 		if(orgID!=null && !"".equals(orgID)){
-			sql+=" and (A243213 = '"+orgID+"') ";
+			sql+=" and (A243213 = '"+orgID+"' or  A243212='"+orgID.substring(4)+"') ";
 		}
 		if(personType!=null && !"".equals(personType)){
 			sql += " and "+CommonFuns.splitInSql(personType.split(","), "a001054");
