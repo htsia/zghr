@@ -28,10 +28,6 @@ public class InsDataDAO extends BaseDAO{
 		if(orgID!=null && !"".equals(orgID)){
 			hql+=" and (bo.secDeptID = '"+orgID+"' or bo.orgID ='"+orgID.substring(4)+"') ";
 		}
-		if(personType!=null && !"".equals(personType)){
-			hql += " and "+CommonFuns.splitInSql(personType.split(","), "u.personType");
-		}
-		
 		if(nameStr!=null && !"".equals(nameStr)){
 			hql += " and (u.name like '%"+nameStr+"%' or u.personSeq like '%"+nameStr+"%' or u.shortName like '%"+nameStr+"%')";
 		}

@@ -56,7 +56,6 @@
 
 				<h:outputText value=" 姓名/编号/简拼"/>
 				<h:inputText value="#{ins_dataBB.nameStr}" styleClass="input" size="10"/>
-				<h:commandButton styleClass="button01" value="人员类别" onclick="return forSel();" action="#{ins_dataBB.doQuery}"/>
 				<h:commandButton action="#{ins_dataBB.doQuery}" styleClass="button01" value="查询 "/>
 			</h:panelGroup>
 		</h:panelGrid>

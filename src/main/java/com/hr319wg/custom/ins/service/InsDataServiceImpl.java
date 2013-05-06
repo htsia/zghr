@@ -218,9 +218,6 @@ public class InsDataServiceImpl implements IInsDataService {
 		if(orgID!=null && !"".equals(orgID)){
 			sql+=" and (A243213 = '"+orgID+"' or  A243212='"+orgID.substring(4)+"') ";
 		}
-		if(personType!=null && !"".equals(personType)){
-			sql += " and "+CommonFuns.splitInSql(personType.split(","), "a001054");
-		}
 		
 		if(nameStr!=null && !"".equals(nameStr)){
 			sql += " and (a001001 like '%"+nameStr+"%' or a001735 like '%"+nameStr+"%' or a001002 like '%"+nameStr+"%')";
