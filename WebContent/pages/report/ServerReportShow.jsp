@@ -67,29 +67,10 @@
         long lint = Math.abs(rd.nextLong());
         ff = "r" + Long.toString(lint) + ".xls";
     }
-    response.setContentType("application/vnd.ms-excel;charset=GBK");
-    response.setHeader("Content-disposition", "inline;filename=" + ff);
-
-    //创建文件对象
-    objFile = new java.io.File(strFileName);
-    //--------------返回结果------------------
-    //判断文件是否存在
-    if (objFile.exists()) {//文件存在
-        //创建读文件对象
-        objFileReader = new java.io.FileInputStream(objFile);
-        //读文件内容
-        while ((intLength = objFileReader.read(chrBuffer)) != -1) {
-            //输出
-            os.write(chrBuffer, 0, intLength);
-        }
-
-        //关闭读文件对象
-        objFileReader.close();
-        objFile.delete();
-    } else { //文件不存在
-        out.println("下列文件不存在：" + strFileName);
-    }
-    os.flush();
-    os.close();
+	%>
+	<script type="text/javascript">
+		location.href="/pages/cache/<%=ff%>";
+	</script>
+	<%
 %>
 
