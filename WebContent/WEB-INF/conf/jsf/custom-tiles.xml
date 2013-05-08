@@ -42,7 +42,18 @@
                 ]>
 
 <tiles-definitions>
+	
 
+	<definition name="/custom/empTypeChangeIndex.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/emp/empTypeChangeIndex.jsp"/>
+    </definition>
+	<definition name="/custom/empTypeChangeQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/emp/empTypeChangeQuery.jsp"/>
+    </definition>
+	<definition name="/custom/empTypeChangeMgr.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/emp/empTypeChangeMgr.jsp"/>
+    </definition>
+    
 	<definition name="/custom/uploadFile.tiles" extends="layout.busitemplate">
         <put name="body" value="/pages/custom/uploadFile.jsp"/>
     </definition>

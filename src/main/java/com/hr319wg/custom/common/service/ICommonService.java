@@ -30,4 +30,6 @@ public interface ICommonService {
 	public String saveUpdateFile(UploadedFile file, String path, String pk, String setID, String itemID) throws SysException, IOException;
 
 	public void deleteSetFile(String ID) throws SysException;
+	
+	public void saveType(String userIDs, String newType) throws SysException;
 }

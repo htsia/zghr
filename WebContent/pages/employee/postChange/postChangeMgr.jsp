@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=GBK" language="java"%>
-<%@ include file="../../include/taglib.jsp"%>
+<%@ include file="/pages/include/taglib.jsp"%>
 <%@ page import="com.hr319wg.sys.configuration.LanguageSupport"%>
 <%@ page import="com.hr319wg.sys.pojo.bo.WFTypeBO" %>
 <%
