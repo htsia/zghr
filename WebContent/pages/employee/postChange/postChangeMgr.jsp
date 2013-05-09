@@ -154,12 +154,6 @@ function showFlowDefine(){
                                     <h:selectBooleanCheckbox value="#{emppostChangeMgrBB.efficent}"
 									onclick="submit();"
 									valueChangeListener="#{emppostChangeMgrBB.queryEfficent}" />
-                                    <h:outputText	value=" " />
-                                <f:verbatim>
-									<%=LanguageSupport.getResource("RYGL-2036", "工资调整")%>
-								</f:verbatim> <h:selectBooleanCheckbox
-									value="#{emppostChangeMgrBB.wageChange}" onclick="submit();"
-									valueChangeListener="#{emppostChangeMgrBB.queryWageChange}" />
 								<h:outputText value=" "
 									rendered="#{emppostChangeMgrBB.mustApprov}" /> <h:outputText
 									value="退回" rendered="#{emppostChangeMgrBB.mustApprov}" />

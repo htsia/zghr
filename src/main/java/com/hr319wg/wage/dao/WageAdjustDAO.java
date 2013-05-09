@@ -44,16 +44,18 @@ public class WageAdjustDAO extends BaseDAO {
 				}
 			}
 			sql += " and ("+where+")";
-			where = "";
-			for (int i = 0; i < noList.size(); i++) {
-				OrgBO b = (OrgBO) noList.get(i);
-				if ("".equals(where)) {
-					where = "u.deptSort not like '" + b.getTreeId() + "%'";
-				} else {
-					where += " and u.deptSort not like '" + b.getTreeId() + "%'";
+			if(noList!=null && noList.size()>0){
+				where = "";
+				for (int i = 0; i < noList.size(); i++) {
+					OrgBO b = (OrgBO) noList.get(i);
+					if ("".equals(where)) {
+						where = "u.deptSort not like '" + b.getTreeId() + "%'";
+					} else {
+						where += " and u.deptSort not like '" + b.getTreeId() + "%'";
+					}
 				}
+				sql += " and ("+where+")";
 			}
-			sql += " and ("+where+")";
 		}
 		if(isAppro && isNotAppro){
 			sql += " and bo.status in ('0','4')";

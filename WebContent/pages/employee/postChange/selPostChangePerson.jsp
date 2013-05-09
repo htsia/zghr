@@ -56,8 +56,8 @@
             <td class=td_form01> <%=LanguageSupport.getResource("XTGL-1352", "人员姓名")%></td>
             <td class=td_form02 colspan="3">
 </c:verbatim> 
-			   <h:inputTextarea value="#{emppostChangeMgrBB.personNames}" rows="3" cols="50"></h:inputTextarea>
-			   <h:inputHidden id="personIds" value="#{emppostChangeMgrBB.personIds}"></h:inputHidden>
+			   <h:inputTextarea value="#{emppostChangeMgrBB.personNames}" rows="3" cols="50" readonly="true"/>
+			   <h:inputHidden id="personIds" value="#{emppostChangeMgrBB.personIds}"/>
                <h:commandButton styleClass="button01" value="选择" rendered="#{emppostChangeMgrBB.enableSelect}" onclick="return selectPerson()" action="#{emppostChangeMgrBB.selPerson}" />
                <h:commandButton styleClass="button01" value="清空" onclick="return confirm('确定清空吗')" action="#{emppostChangeMgrBB.clearPerson}" />
 <c:verbatim>

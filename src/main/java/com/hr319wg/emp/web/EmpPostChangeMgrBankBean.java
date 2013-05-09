@@ -587,7 +587,7 @@ public IWageSetPersonUCC getWagesetpersonucc()
 	}
 	
   public void selPerson() {
-    PersonBO[] pbos = (PersonBO[])(PersonBO[])super.getHttpSession().getAttribute(Constants.SELPERSON_SESSION);
+    PersonBO[] pbos = (PersonBO[])super.getHttpSession().getAttribute(Constants.SELPERSON_SESSION);
     if (pbos != null && pbos.length > 0) {
     	for(PersonBO p : pbos){
     		if(!selMap.containsKey(p.getPersonId())){
