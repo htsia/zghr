@@ -8,7 +8,6 @@ import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.org.pojo.bo.OrgBO;
-import com.hr319wg.user.pojo.bo.RoleInfoBO;
 import com.hr319wg.wage.pojo.bo.WageAdjustBO;
 import com.hr319wg.wage.pojo.vo.AdjustVO;
 
@@ -31,17 +30,27 @@ public class WageAdjustDAO extends BaseDAO {
 
 	public List getAdjustList(PageVO pagevo, boolean isAppro, boolean isNotAppro, User user) throws SysException {
 		String sql = " from WageAdjustBO bo,UserBO u where bo.personID=u.userID and bo.approStatus='1' and bo.adjustType in ('岗位调整','转正')";
-		if (RoleInfoBO.ORGTYPE_OWN.equals(user.getprocessUnit())) {
-			sql += " and bo.orgID='" + user.getOrgId() + "'";
-		} else if (RoleInfoBO.ORGTYPE_USD.equals(user.getprocessUnit())) {
-			List list = user.getHaveOperateOrgScale();
+		if (!user.ischo()) {
+			List hasList = user.getHaveOperateOrgScale();
+			List noList = user.getHaveNoOperateOrgScale();
+			
 			String where = "";
-			for (int i = 0; i < list.size(); i++) {
-				OrgBO b = (OrgBO) list.get(i);
+			for (int i = 0; i < hasList.size(); i++) {
+				OrgBO b = (OrgBO) hasList.get(i);
 				if ("".equals(where)) {
-					where = "bo.orgID='" + b.getOrgId() + "'";
+					where = "u.deptSort like '" + b.getTreeId() + "%'";
 				} else {
-					where += " or bo.orgID='" + b.getOrgId() + "'";
+					where += " or u.deptSort like '" + b.getTreeId() + "%'";
+				}
+			}
+			sql += " and ("+where+")";
+			where = "";
+			for (int i = 0; i < noList.size(); i++) {
+				OrgBO b = (OrgBO) noList.get(i);
+				if ("".equals(where)) {
+					where = "u.deptSort not like '" + b.getTreeId() + "%'";
+				} else {
+					where += " and u.deptSort not like '" + b.getTreeId() + "%'";
 				}
 			}
 			sql += " and ("+where+")";

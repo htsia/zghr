@@ -60,7 +60,7 @@ public class ActivePageServiceByExtend extends ActivePageService {
 			for (int i = 0; i < bos.size(); i++) {
 				InfoItemBO bo = (InfoItemBO) bos.get(i);
 				InfoSetBO setBO= SysCacheTool.findInfoSet(setId);
-				if ((InfoItemBO.STATUS_OPEN.equals(bo.getItemStatus()) && !InfoItemBO.DATA_TYPE_FILE.equals(bo.getItemDataType())) || (pkValue!=null && !InfoSetBO.RS_TYPE_SINGLE.equals(setBO.getSet_rsType()))) {
+				if (InfoItemBO.STATUS_OPEN.equals(bo.getItemStatus()) && (!InfoItemBO.DATA_TYPE_FILE.equals(bo.getItemDataType()) || (pkValue!=null && !InfoSetBO.RS_TYPE_SINGLE.equals(setBO.getSet_rsType())))) {
 					items.add(bo);
 				}
 			}
