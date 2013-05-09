@@ -172,7 +172,7 @@
 						</f:verbatim>
 						<h:dataTable value="#{wage_dateBB.dateList}" var="list"
 							align="center" id="dateList" headerClass="td_top tr_fixrow"
-							columnClasses="td_middle_center,td_middle,td_middle_center,td_middle,td_middle,td_middle_center"
+							columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center"
 							styleClass="table03" width="100%">
 							<h:column>
 								<c:facet name="header">
@@ -210,13 +210,6 @@
 									value="<font color=red>#{list.status}</font>" />
 							</h:column>
 
-							<h:column rendered="#{wage_dateBB.name0651!=''}">
-								<c:facet name="header">
-									<h:outputText value="#{wage_dateBB.name0651}" />
-								</c:facet>
-								<h:outputText value="#{list.checkContent}" />
-							</h:column>
-
 							<h:column rendered="#{wage_dateBB.name0659!=''}">
 								<c:facet name="header">
 									<h:outputText value="#{wage_dateBB.name0659}" />
@@ -244,14 +237,7 @@
 								</c:facet>
 								<h:outputText value="#{list.groupPayoffStatusDes}" />
 							</h:column>
-
-							<h:column>
-								<c:facet name="header">
-									<h:outputText value="#{wage_dateBB.name0654}" />
-								</c:facet>
-								<h:outputText value="#{list.approveContent}" />
-							</h:column>
-
+							
 							<h:column>
 								<c:facet name="header">
 									<h:outputText value="²Ù×÷" />

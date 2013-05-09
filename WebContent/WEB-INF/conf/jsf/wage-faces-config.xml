@@ -1684,6 +1684,10 @@
             <property-name>commonService</property-name>
             <value>#{commonservice}</value>
         </managed-property>
+        <managed-property>
+            <property-name>parameterDAO</property-name>
+            <value>#{sys_parameterDAO}</value>
+        </managed-property>
     </managed-bean>
 
     <managed-bean>

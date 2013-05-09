@@ -1,20 +1,36 @@
 package com.hr319wg.custom.extend.web;
 
 import java.util.List;
+import java.util.Vector;
 
+import com.hr319wg.common.exception.RollbackableException;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.custom.common.service.ICommonService;
+import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.sys.cache.SysCacheTool;
+import com.hr319wg.sys.dao.ParameterDAO;
+import com.hr319wg.sys.pojo.bo.ParameterBO;
 import com.hr319wg.sys.pojo.vo.CellVO;
 import com.hr319wg.sys.pojo.vo.TableVO;
 import com.hr319wg.util.CommonFuns;
+import com.hr319wg.wage.pojo.bo.WageComputeHisBO;
+import com.hr319wg.wage.util.WageTools;
 import com.hr319wg.wage.web.WageComputeBackingBean;
 
 public class WageComputeBackingBeanByExtend extends WageComputeBackingBean {
 	private String minusInit;
 	private boolean showMinus;
 	private ICommonService commonService;
+	private ParameterDAO parameterDAO;
 	
+	public ParameterDAO getParameterDAO() {
+		return parameterDAO;
+	}
+
+	public void setParameterDAO(ParameterDAO parameterDAO) {
+		this.parameterDAO = parameterDAO;
+	}
+
 	public ICommonService getCommonService() {
 		return commonService;
 	}
@@ -98,4 +114,129 @@ public class WageComputeBackingBeanByExtend extends WageComputeBackingBean {
 		}
 		return null;
 	}
+	
+	//选择计算
+	public String computePart()
+	  {
+	    String[] pid = super.getServletRequest().getParameterValues("chk");
+	    try {
+	      if (WageTools.addWageOperCount())
+	      {
+	        this.getWagecomputeucc().preProcess(false, this.getSetId());
+	        Vector vec = this.getWagecomputeucc().batchComputePartPerson(this.getSetId(), this.getDateId(), pid, this.getPayoffDate(), this.getUnitId());
+	        String msg = "";
+	        if ((vec != null) && (vec.size() > 0)) {
+	          msg = "以下人员对应数据项有误：";
+	          for (int i = 0; i < vec.size(); i++) {
+	            String perId = ((String)vec.get(i)).split(",")[0];
+	            String itemId = ((String)vec.get(i)).split(",")[1];
+	            msg = msg + SysCacheTool.findPersonById(perId).getName() + "[" + SysCacheTool.interpertCode("INFOITEM", itemId) + "];";
+	          }
+	        }
+	        initNegative();
+
+	        if (!msg.equals(""))
+	          super.showMessageDetail(msg);
+	        else
+	          super.showMessageDetail("计算成功");
+	      } else {
+	        super.showMessageDetail("在线薪资计算、发放人数过多，请稍候计算。");
+	      }
+	    } catch (SysException e) {
+	      super.showMessageDetail("计算失败：请检查薪资项或者人员数据！" + e.getSysMsg().getMessage());
+	    } catch (Exception e) {
+	      super.showMessageDetail("计算失败：请检查薪资项或者人员数据！");
+	    } finally {
+	      WageTools.reduceWageOperCount();
+	    }
+	    turnPageQuery(null, null, 0, 0);
+	    saveTempData();
+	    return "personlist";
+	  }
+
+	  //全部计算
+	  public String computeAll() {
+	    try {
+	      if (WageTools.addWageOperCount())
+	      {
+	        this.getWagecomputeucc().preProcess(false, this.getSetId());
+
+	        Vector vec = this.getWagecomputeucc().batchComputeAllPerson(this.getSetId(), this.getDateId(), this.getPayoffDate(), this.getUnitId());
+	        String msg = "";
+	        if ((vec != null) && (vec.size() > 0)) {
+	          msg = "以下人员对应数据项有误：";
+	          for (int i = 0; i < vec.size(); i++) {
+	            String perId = ((String)vec.get(i)).split(",")[0];
+	            String itemId = ((String)vec.get(i)).split(",")[1];
+	            msg = msg + SysCacheTool.findPersonById(perId).getName() + "[" + SysCacheTool.interpertCode("INFOITEM", itemId) + "];";
+	          }
+	        }
+	        else
+	        {
+	          this.getWagecomputeucc().GatherCalc(this.getSetId(), this.getDateId(), this.getUnitId());
+	          if ("1".equals(this.getWagesetucc().findSetBySetId(this.getSetId()).getBothParent())) {
+	            OrgBO me = SysCacheTool.findOrgById(this.getUnitId());
+	            OrgBO parent = SysCacheTool.findOrgById(me.getSuperId());
+	            if (parent != null) {
+	              this.getWagecomputeucc().GatherCalcByChild(parent.getOrgId(), this.getPayoffDate());
+	            }
+
+	          }
+
+	          this.getWagecomputeucc().recordChange(this.getSetId(), this.getPayoffDate().substring(0, 7));
+	        }
+
+	        WageComputeHisBO hisbo = new WageComputeHisBO();
+	        hisbo.setDateID(this.getDateId());
+	        hisbo.setOperID(super.getUserInfo().getUserId());
+	        hisbo.setComputeDate(CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss"));
+	        hisbo.setLoginIP(super.getServletRequest().getRemoteAddr());
+	        this.getWagecomputeucc().saveComputeHis(hisbo);
+	        initNegative();
+	        if (!msg.equals(""))
+	          super.showMessageDetail(msg);
+	        else
+	          super.showMessageDetail("计算成功");
+	      } else {
+	        super.showMessageDetail("在线薪资计算、发放人数过多，请稍候计算。");
+	      }
+	    } catch (RollbackableException be) {
+	      String msg = CommonFuns.filterNull(be.getMessage()).replaceAll("\n", "").replaceAll("\r", "");
+	      super.showMessageDetail(msg);
+	    } catch (SysException e) {
+	      String msg = CommonFuns.filterNull(e.getMessage()).replaceAll("\n", "").replaceAll("\r", "");
+	      super.showMessageDetail("计算失败：请检查薪资项或者人员数据！" + msg);
+	    } catch (Exception e) {
+	      String msg = CommonFuns.filterNull(e.getMessage()).replaceAll("\n", "").replaceAll("\r", "");
+	      super.showMessageDetail("计算失败：请检查薪资项或者人员数据！" + msg);
+	    } finally {
+	      WageTools.reduceWageOperCount();
+	    }
+	    turnPageQuery(null, null, 0, 0);
+	    saveTempData();
+	    return "personList";
+	  }
+	  
+	  private void initNegative() {
+	    try {
+	      String[] pids = this.getWagepersonqueryucc().getNegativePerson(false, this.getSetId());
+	      if ((pids != null) && (pids.length > 0))
+	        this.setHaveNegative(true);
+	    }
+	    catch (Exception e)
+	    {
+	    	this.setHaveNegative(false);
+	    }
+	  }
+	  
+	  private void saveTempData(){
+		  ParameterBO temp=this.parameterDAO.getParameter("WAGE_FOR_STATISTIC");
+		  if(temp!=null && "1".equals(temp.getValue())){
+			  try {
+				this.commonService.saveTempData(this.getSetId(), this.getPayoffDate());
+			} catch (SysException e) {
+				e.printStackTrace();
+			}
+		  }
+	  }
 }

@@ -227,4 +227,29 @@ public class CommonServiceImpl implements ICommonService{
 			}
 		}
 	}
+	
+	public void saveTempData(String setID, String payoffDate)
+			throws SysException {
+		String table="A815_SET_"+setID;
+		//删除临时数据
+		String sql="delete from a815 where a815701 = '"+payoffDate+"' and tempflag='1' and id in (select id from "+table+")";
+		this.jdbcTemplate.execute(sql);
+		//清空当前状态
+		sql="update a815 set a815000='00900' where a815000='00901' and id in (select id from "+table+")";
+		this.jdbcTemplate.execute(sql);
+		//插入临时数据
+		List<InfoItemBO> list= SysCacheTool.queryInfoItemBySetId("A815");
+		String item="";
+		for(InfoItemBO bo : list){
+			if(!"SUBID".equals(bo.getItemId())){
+				item+=bo.getItemId()+",";				
+			}
+		}
+		sql="select max(cast(subid as int)) from a815";
+		int currSubID=this.jdbcTemplate.queryForInt(sql);
+		sql="insert into a815 (SUBID,"+item+"tempflag) select "+currSubID+"+rownum,"+item+"1 from "+table;
+		this.jdbcTemplate.execute(sql);
+		sql="update sys_sequence s set s.cur_value=(select max(cast(subid as int)) from a815) where s.seq_name='A815'";
+		this.jdbcTemplate.execute(sql);
+	}
 }
