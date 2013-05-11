@@ -19,6 +19,7 @@ public class EmpProbationDAO extends BaseDAO
     return this.hibernatetemplate.find(hsql);
   }
   public List findNoPassPerson(PageVO pagevo, String orgId, User user, List statuses, String time1, String time2, String name) throws SysException {
+
     String hql = "from EmpProbationBO bo,UserBO u where bo.personId=u.id ";
     OrgBO org=SysCacheTool.findOrgById(orgId);
     hql+=" and u.deptSort like '"+org.getTreeId()+"%'";
@@ -37,6 +38,7 @@ public class EmpProbationDAO extends BaseDAO
     }
     
     List noList = user.getHaveNoOperateOrgScale();
+
 	String where = "";
 	if(noList!=null && noList.size()>0){
 		for (int i = 0; i < noList.size(); i++) {
@@ -52,6 +54,7 @@ public class EmpProbationDAO extends BaseDAO
     
 	String counthql = "select count(*) "+hql;
     hql="select bo "+ hql +" order by u.comeDate desc, u.deptSort";
+
     return pageQuery(pagevo, counthql, hql);
   }
   public List findAllPerson(PageVO pagevo, String orgId, String operId, boolean selall, String filter) throws SysException {

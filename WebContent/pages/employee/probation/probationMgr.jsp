@@ -45,7 +45,11 @@
                		<h:outputText value="个月,见习期"/>
 					<h:outputText value="#{empprobastionmgrBB.passMonth2}"/>
 					<h:outputText value="个月  "/>
+<<<<<<< HEAD
 					<h:commandButton value="设置"  styleClass="button01" onclick="return setProbation()"/>
+=======
+					<h:commandButton value="设置"  styleClass="button01" onclick="return SetProbation()"/>
+>>>>>>> branch 'master' of https://bitbucket.org/htsi/zghr.git
                <f:verbatim>
                </td>
         </tr>
