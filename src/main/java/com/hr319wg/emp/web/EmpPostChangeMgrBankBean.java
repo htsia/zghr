@@ -465,6 +465,10 @@ public IWageSetPersonUCC getWagesetpersonucc()
         	  bo.setNewPost(bo.getNewPost());      
           }
           bo.setChangeReasonDes(CodeUtil.interpertCode(bo.getChangeReason()));
+          PersonBO p=SysCacheTool.findPersonById(bo.getApplyPersonID());
+          if(p!=null){
+        	  bo.setApplyPersonName(p.getName());
+          }
         }
       }
 
@@ -562,6 +566,8 @@ public IWageSetPersonUCC getWagesetpersonucc()
 					bo.setChangeLetterNO(this.emppostchangbo.getChangeLetterNO());
 					bo.setPersonId(ids[i]);
 					bo.setStatus(EmpPostChangeBO.APPLY);
+					bo.setApplyPersonID(super.getUserInfo().getUserId());
+					bo.setApplyPersonName(super.getUserInfo().getName());
 					if (this.enableBegin) {
 						bo.setLinkBeginMgr("1");
 						bo.setPassPost(this.emppostchangbo.getPassPost());
@@ -600,7 +606,6 @@ public IWageSetPersonUCC getWagesetpersonucc()
 				PersonBO pb = SysCacheTool.findPersonById(changbo.getPersonId());
 				adjust = new WageAdjustBO();
 				adjust.setPersonID(changbo.getPersonId());
-				adjust.setOrgID(pb.getOrgId());
 				adjust.setStatus(WageAdjustBO.STATUS_APPLY);
 				adjust.setApplyDate(CommonFuns.getSysDate("yyyy-MM-dd"));
 				adjust.setLinkID(changbo.getPostChangeId());
@@ -619,6 +624,7 @@ public IWageSetPersonUCC getWagesetpersonucc()
 	}
 	
   public void selPerson() {
+	this.selMap=new HashMap();
     PersonBO[] pbos = (PersonBO[])super.getHttpSession().getAttribute(Constants.SELPERSON_SESSION);
     if (pbos != null && pbos.length > 0) {
     	for(PersonBO p : pbos){

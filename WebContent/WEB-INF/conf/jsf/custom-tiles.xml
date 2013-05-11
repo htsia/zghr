@@ -42,18 +42,21 @@
                 ]>
 
 <tiles-definitions>
-	
+<!-- 	人员类别变动 -->
+	<definition name="/custom/emp/typeChangeMgr.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/emp/typeChangeMgr.jsp"/>
+    </definition>
+	<definition name="/custom/emp/typeChangeQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/custom/emp/typeChangeQuery.jsp"/>
+    </definition>
+	<definition name="/custom/emp/orgTypeChangeEdit.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/emp/orgTypeChangeEdit.jsp"/>
+    </definition>
+	<definition name="/custom/emp/selTypeChangePerson.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/emp/selTypeChangePerson.jsp"/>
+    </definition>
 
-	<definition name="/custom/empTypeChangeIndex.tiles" extends="layout.busitemplate">
-        <put name="body" value="/pages/custom/emp/empTypeChangeIndex.jsp"/>
-    </definition>
-	<definition name="/custom/empTypeChangeQuery.tiles" extends="layout.busitemplate">
-        <put name="body" value="/pages/custom/emp/empTypeChangeQuery.jsp"/>
-    </definition>
-	<definition name="/custom/empTypeChangeMgr.tiles" extends="layout.busitemplateSelf">
-        <put name="body" value="/pages/custom/emp/empTypeChangeMgr.jsp"/>
-    </definition>
-    
+<!--     上传附件 -->
 	<definition name="/custom/uploadFile.tiles" extends="layout.busitemplate">
         <put name="body" value="/pages/custom/uploadFile.jsp"/>
     </definition>

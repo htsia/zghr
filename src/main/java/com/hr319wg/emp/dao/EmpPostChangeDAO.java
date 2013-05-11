@@ -53,7 +53,7 @@ public class EmpPostChangeDAO extends BaseDAO
 		hql += " and ("+where+")";
 	}
 	
-	String counthql = "select count(bo) "+hql;
+	String counthql = "select count(*) "+hql;
     hql = "select bo "+hql+" order by bo.hrValidDate desc,u.deptSort";
     return pageQuery(pagevo, counthql, hql);
   }

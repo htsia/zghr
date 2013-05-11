@@ -54,7 +54,7 @@
            <property name="activeapi" ref="sys_activePageApi" />
            <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
-
+	
 <!--     common -->
     <bean id="commonserviceImpl" class="com.hr319wg.custom.common.service.CommonServiceImpl">
            <property name="commonDAO" ref="commondao" />
@@ -73,11 +73,29 @@
             <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
     </bean>
     
-    <!-- 薪酬管理 -->
-    <bean id="wageAdjustService" class="com.hr319wg.custom.emp.service.WageAdjustService">
-           <property name="commonDAO" ref="commondao" />
-           <property name="activeapi" ref="sys_activePageApi" />
+    <bean id="typeChangeDAO" class="com.hr319wg.custom.emp.dao.EmpTypeChangeDAO">
+		<property name="hibernatetemplate" ref="hibernateTemplate"/>
     </bean>
+    <bean id="typeChangeServiceImpl" class="com.hr319wg.custom.emp.service.EmpTypeChangeServiceImpl">
+           <property name="changeDAO" ref="typeChangeDAO" />
+           <property name="pageAPI" ref="sys_activePageApi" />
+           <property name="jdbcTemplate" ref="jdbcTemplate" />
+           <property name="adjustucc" ref="wage_adjustUCC" />
+    </bean>
+    
+    <bean id="typeChangeService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+            <property name="proxyInterfaces">
+                <list>
+                    <value>com.hr319wg.custom.emp.service.IEmpTypeChangeService</value>
+                </list>
+            </property>
+            <property name="target" ref="typeChangeServiceImpl"/>
+            <property name="transactionManager" ref="transactionManager"/>
+            <property name="transactionAttributeSource" ref="namingTransactionAttribute"/>
+    </bean>
+    
+    
+    <!-- 薪酬管理 -->
     <bean id="wage_datadao" class="com.hr319wg.custom.wage.dao.WageDataDAO">
 		<property name="hibernatetemplate" ref="hibernateTemplate"/>
     </bean>

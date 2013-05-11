@@ -214,19 +214,6 @@ public class CommonServiceImpl implements ICommonService{
 	public void deleteSetFile(String ID) throws SysException {
 		this.commonDAO.deleteBo(SetFileBO.class, ID);
 	}
-
-	public void saveType(String userIDs, String newType) throws SysException {
-		String[]IDs=userIDs.split(",");
-		for(int i=0;i<IDs.length;i++){
-			PersonBO p=SysCacheTool.findPersonById(IDs[i]);
-			if(p!=null){
-				String sql="begin proc_changeType('"+p.getPersonId()+"','"+p.getOrgId()+"', '"+p.getDeptId()+"', '"+p.getPersonType()+"', '"+newType+"', '"+p.getPostId()+"'); end;";
-				this.jdbcTemplate.execute(sql);
-				sql="update a001 set a001054='"+newType+"' where id='"+IDs[i]+"'";
-				this.jdbcTemplate.execute(sql);				
-			}
-		}
-	}
 	
 	public void saveTempData(String setID, String payoffDate)
 			throws SysException {

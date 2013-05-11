@@ -353,6 +353,8 @@
          <property name="wageValidDate"       column="wage_valid_date"/>
 
          <property name="linkBeginMgr"       column="linkBeginMgr"/>
+         <property name="applyPersonID"       column="apply_person_id"/>
+         <property name="applyPersonName"       column="apply_person_name"/>
      </class>
 
 

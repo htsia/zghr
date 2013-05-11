@@ -29,7 +29,7 @@ public class WageAdjustDAO extends BaseDAO {
 	}
 
 	public List getAdjustList(PageVO pagevo, boolean isAppro, boolean isNotAppro, User user) throws SysException {
-		String sql = " from WageAdjustBO bo,UserBO u where bo.personID=u.userID and bo.approStatus='1' and bo.adjustType in ('岗位调整','转正')";
+		String sql = " from WageAdjustBO bo,UserBO u where bo.personID=u.userID and bo.approStatus='1' and bo.adjustType in ('岗位调整','转正','人员类别调整')";
 		if (!user.ischo()) {
 			List hasList = user.getHaveOperateOrgScale();
 			List noList = user.getHaveNoOperateOrgScale();

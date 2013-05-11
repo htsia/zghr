@@ -3,6 +3,29 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+	
+    <class name="com.hr319wg.custom.emp.pojo.bo.OrgPersonTypeChangeBO" table="ORG_TYPECHANGE">
+        <id name="orgID" type="string" unsaved-value="null">
+            <column name="orgUid" sql-type="varchar(32)"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="wageItem" column="wage_item"/>
+    </class>
+    <class name="com.hr319wg.custom.emp.pojo.bo.EmpPersonTypeChangeBO" table="emp_typeChange">
+         <id name="typeChangeID" type="string" unsaved-value="null">
+             <column name="typeChange_id" sql-type="varchar(32)"/>
+             <generator class="uuid.hex"/>
+         </id>
+         <property name="personID" column="person_id" />
+         <property name="applyPersonID" column="apply_person_id" />
+         <property name="applyPersonName" column="apply_person_name" />
+         <property name="oldType" column="old_type" />
+         <property name="newType" column="new_type" />
+         <property name="changeDate" column="change_date" />
+         <property name="changedDate" column="changed_date" />
+         <property name="status" column="status" />
+         <property name="linkAdjustID" column="linkAdjustID" />
+     </class>
     <class name="com.hr319wg.custom.pojo.bo.SetFileBO" table="SET_FILE">
         <id name="ID" type="string" unsaved-value="null">
             <column name="ID" sql-type="nvarchar(32)"/>

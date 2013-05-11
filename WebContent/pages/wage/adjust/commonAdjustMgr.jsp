@@ -12,7 +12,7 @@
 <c:verbatim>
     <script type="text/javascript">
         function refreshList(orgId) {
-        	document.main.location.href = "/employee/postChange/postChangeQuery.jsf?superId=" + orgId;
+        	document.main.location.href = "/custom/emp/typeChangeQuery.jsf?superId=" + orgId;
         }
         
         with (window) onload = onresize = function(){
@@ -20,8 +20,8 @@
             $("iframe[name=tree]").height(mainHeight);
             $("iframe[name=main]").height(mainHeight);
         }
-        function setPost() {
-            window.showModalDialog("/employee/postChange/orgPostChangeEdit.jsf", null, "dialogWidth:600px; dialogHeight:400px;center:center;resizable:no;status:no;scroll:yes;");
+        function setType() {
+            window.showModalDialog("/custom/emp/orgTypeChangeEdit.jsf?act=init", null, "dialogWidth:600px; dialogHeight:400px;center:center;resizable:no;status:no;scroll:yes;");
             return false;
         }
     </script>
@@ -32,11 +32,11 @@
     <table  width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
             <td class="td_title"><img src="/images/tips.gif">
-              	人员管理 -> 转岗管理
+              	人员管理 -> 人员类别变动
              </td>
              <td align="left" class=td_title>
               </f:verbatim>
-               		<h:commandButton value="薪酬变动项目设置" styleClass="button01"	onclick="return setPost()" />
+               		<h:commandButton value="薪酬变动项目设置" styleClass="button01"	onclick="return setType()" />
                <f:verbatim>
                </td>
         </tr>
@@ -55,7 +55,7 @@
 
             <td align="center" valign="top" height="100%">
                  <iframe name="main" height="100%"  frameborder="0"  height="100%" scrolling="no" width="100%"
-                     src="/employee/postChange/postChangeQuery.jsf?superId=<%=user.getOrgId()%>"></iframe>
+                     src="/custom/emp/typeChangeQuery.jsf?superId=<%=user.getOrgId()%>"></iframe>
             </td>
         </tr>
     </table>

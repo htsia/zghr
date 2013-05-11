@@ -8,8 +8,8 @@
       <managed-bean-class>com.hr319wg.custom.emp.web.EmpTypeChangeBackingBean</managed-bean-class>
       <managed-bean-scope>request</managed-bean-scope>
       	<managed-property>
-             <property-name>commonService</property-name>
-             <value>#{commonservice}</value>
+             <property-name>changeService</property-name>
+             <value>#{typeChangeService}</value>
        </managed-property>
     </managed-bean>
 	<managed-bean>

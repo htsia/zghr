@@ -31,7 +31,5 @@ public interface ICommonService {
 
 	public void deleteSetFile(String ID) throws SysException;
 	
-	public void saveType(String userIDs, String newType) throws SysException;
-	
 	public void saveTempData(String setID, String payoffDate) throws SysException;
 }

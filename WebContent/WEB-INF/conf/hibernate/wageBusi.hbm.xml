@@ -39,7 +39,6 @@
         <property name="audit3Date" column="AUDIT3_DATE"/>
         <property name="audit3Result" column="AUDIT3_RESULT"/>
         <property name="audit3Reason" column="AUDIT3_REASON"/>
-
     </class>
 
     <class name="com.hr319wg.wage.pojo.bo.WageAdjustDetailBO" table="WAGE_ADJUST_DETAIL">
