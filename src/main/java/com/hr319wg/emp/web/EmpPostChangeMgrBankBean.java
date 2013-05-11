@@ -27,7 +27,6 @@ import com.hr319wg.emp.ucc.IEmpBeginnerUCC;
 import com.hr319wg.emp.ucc.IEmpPostChangeUCC;
 import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.post.pojo.bo.PostBO;
-import com.hr319wg.post.util.PostTool;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
 import com.hr319wg.sys.pojo.bo.SysInProcessBO;
@@ -91,8 +90,36 @@ public class EmpPostChangeMgrBankBean extends BaseBackingBean
   private String addResume;
   private boolean enableSelect = true;
   private IWageAdjustUCC adjustucc;
+  private String name;
+  private String orgID;
+  private String orgName;
+  
 
-  public IWageAdjustUCC getAdjustucc() {
+  public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
+}
+
+public String getOrgID() {
+	return orgID;
+}
+
+public void setOrgID(String orgID) {
+	this.orgID = orgID;
+}
+
+public String getOrgName() {
+	return orgName;
+}
+
+public void setOrgName(String orgName) {
+	this.orgName = orgName;
+}
+
+public IWageAdjustUCC getAdjustucc() {
 	return adjustucc;
 }
 
@@ -406,7 +433,7 @@ public IWageSetPersonUCC getWagesetpersonucc()
         statuses.add(EmpPostChangeBO.REFUSE);
       if (this.wageChange)
         statuses.add(EmpPostChangeBO.WAGECHANGE);
-      this.empPostChangeList = this.emppostchangeucc.findAllEmpPostChangeBO(this.mypage, super.getUserInfo().getOrgId(), statuses, this.time, this.time2);
+      this.empPostChangeList = this.emppostchangeucc.findAllEmpPostChangeBO(this.mypage, this.orgID, super.getUserInfo(), this.name, statuses, this.time, this.time2);
       if ((this.empPostChangeList != null) && (this.empPostChangeList.size() > 0))
       {
         for (int i = 0; i < this.empPostChangeList.size(); i++)
@@ -450,6 +477,11 @@ public IWageSetPersonUCC getWagesetpersonucc()
 
   public String getPageInit()
   {
+	String orgID1=super.getRequestParameter("superId");
+	if(orgID1!=null && !"".equals(orgID1)){
+		this.orgID=orgID1;
+		this.orgName=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, this.orgID);
+	}
     queryEmpPostChangeList();
     return this.pageInit;
   }

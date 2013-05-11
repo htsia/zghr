@@ -352,6 +352,9 @@
     <definition name="/employee/probation/probationMgr.tiles" extends="layout.busitemplate" >
         <put name="body" value="/pages/employee/probation/probationMgr.jsp" />
     </definition>
+    <definition name="/employee/probation/probationQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/probation/probationQuery.jsp" />
+    </definition>
     <definition name="/employee/probation/selfProbation.tiles" extends="layout.busitemplate" >
         <put name="body" value="/pages/employee/probation/selfProbation.jsp" />
     </definition>
@@ -382,6 +385,9 @@
     </definition>
     <definition name="/employee/postChange/postChangeMgr.tiles" extends="layout.busitemplate" >
         <put name="body" value="/pages/employee/postChange/postChangeMgr.jsp" />
+    </definition>
+    <definition name="/employee/postChange/postChangeQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/postChange/postChangeQuery.jsp" />
     </definition>
     <definition name="/employee/postChange/selPostChangePerson.tiles" extends="layout.busitemplateSelf" >
         <put name="body" value="/pages/employee/postChange/selPostChangePerson.jsp" />

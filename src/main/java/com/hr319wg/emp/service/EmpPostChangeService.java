@@ -1,5 +1,7 @@
 package com.hr319wg.emp.service;
 
+import java.util.List;
+
 import com.hr319wg.common.Constants;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
@@ -23,10 +25,8 @@ import com.hr319wg.sys.service.IWFFunction;
 import com.hr319wg.util.CodeUtil;
 import com.hr319wg.util.CommonFuns;
 import com.hr319wg.util.SequenceGenerator;
-import java.util.List;
 
-public class EmpPostChangeService
-  implements IWFFunction
+public class EmpPostChangeService implements IWFFunction
 {
   private EmpPostChangeDAO emppostchangeDao;
   private ActivePageAPI activeapi;
@@ -46,8 +46,8 @@ public class EmpPostChangeService
   {
     return this.emppostchangeDao.findAllEmpPostChangeBO(personID); }
 
-  public List findAllEmpPostChangeBO(PageVO pagevo, String orgId, List status, String time, String time2) throws SysException {
-    return this.emppostchangeDao.findAllEmpPostChangeBO(pagevo, orgId, status, time, time2); }
+  public List findAllEmpPostChangeBO(PageVO pagevo, String orgId, User user, String name, List status, String time, String time2) throws SysException {
+    return this.emppostchangeDao.findAllEmpPostChangeBO(pagevo, orgId, user, name, status, time, time2); }
 
   public List findAllEmpPostChangeBO(PageVO pagevo, String orgId, String operId, boolean sellApply) throws SysException {
     return this.emppostchangeDao.findAllEmpPostChangeBO(pagevo, orgId, operId, sellApply); }

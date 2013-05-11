@@ -82,9 +82,21 @@ function forCopyPersonItem(){
 			   <f:verbatim>
                 <%=LanguageSupport.getResource("RYGL-2426", "试用期(月)")%>
                </f:verbatim>
-               <h:inputText id="probation" value="#{empprobastionmgrBB.probation}"/>
+               <h:inputText id="probation" value="#{empprobastionmgrBB.orgprobationbo.probation}"/>
+               <f:verbatim>
+                <%=LanguageSupport.getResource("RYGL-2220", "转正后人员类别")%>
+               </f:verbatim>
+			   <h:panelGroup>
+	               <h:inputText styleClass="input" id="A001054" code="" dict="yes" dict_num="0135"
+	                     readonly="true" value="#{empprobastionmgrBB.orgprobationbo.normailType}"
+	                     alt="员工类别|1|s|50||"/>
+	               <h:commandButton styleClass="button_select" type="button" onclick="PopUpCodeDlgOneControl('form1:A001054')"></h:commandButton>
+	               <f:verbatim>
+	               	<font color="red">人员类别为空时生效后人员类别不变</font>
+	               </f:verbatim>
+               </h:panelGroup>
                <h:outputText value="见习期(月)"/>
-               <h:inputText id="jianxi" value="#{empprobastionmgrBB.jianxi}"/>
+               <h:inputText id="jianxi" value="#{empprobastionmgrBB.orgprobationbo.jianxi}"/>
                <f:verbatim>
                <%=LanguageSupport.getResource("RYGL-2143", "薪资变动相关指标项")%>
                </f:verbatim>

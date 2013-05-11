@@ -21,6 +21,7 @@ import com.hr319wg.emp.ucc.IEmpProbationUCC;
 import com.hr319wg.org.pojo.bo.OrgProbationBO;
 import com.hr319wg.org.ucc.IOrgProbationUcc;
 import com.hr319wg.sys.cache.SysCacheTool;
+import com.hr319wg.sys.pojo.bo.CodeItemBO;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
 import com.hr319wg.sys.pojo.bo.SysInProcessBO;
 import com.hr319wg.sys.pojo.bo.WFTypeBO;
@@ -42,6 +43,7 @@ public class EmpProbationMangerBackBean extends BaseBackingBean
   private IUserReportUCC userreportucc;
   private ISysInProcessUCC linkucc;
   private String pageInit;
+  private String queryInit;
   private String passMonth;
   private String passMonth2;
   private List personList;
@@ -68,37 +70,45 @@ public class EmpProbationMangerBackBean extends BaseBackingBean
   private IWageSetUCC wagesetucc;
   private String unitId;
   private String setId;
-  private String probation;
-  private String jianxi;
   private String initPersonEdit;
   private EmpProbationBO empprobationbo = new EmpProbationBO();
   private String planDate;
+  private String orgID;
+  private String orgName;
+
+  public String getOrgID() {
+	return orgID;
+  }
+
+  public void setOrgID(String orgID) {
+	this.orgID = orgID;
+  }
+
+  public String getOrgName() {
+	return orgName;
+  }
+
+  public void setOrgName(String orgName) {
+	this.orgName = orgName;
+  }
 
   public String getPassMonth2() {
 	return passMonth2;
-}
+  }
 
-public void setPassMonth2(String passMonth2) {
+  public void setPassMonth2(String passMonth2) {
 	this.passMonth2 = passMonth2;
-}
+  }
 
-public boolean isNewProbation2() {
+  public boolean isNewProbation2() {
 	return newProbation2;
-}
+  }
 
-public void setNewProbation2(boolean newProbation2) {
+  public void setNewProbation2(boolean newProbation2) {
 	this.newProbation2 = newProbation2;
-}
+  }
 
-public String getJianxi() {
-	return jianxi;
-}
-
-public void setJianxi(String jianxi) {
-	this.jianxi = jianxi;
-}
-
-public String getName()
+  public String getName()
   {
     return this.name;
   }
@@ -288,54 +298,64 @@ public String getName()
     this.linkucc.saveProcessBO(sb);
   }
 
-  public String shengxiao() {
-    try {
-      String id = super.getRequestParameter("form1:personStr");
-      OrgProbationBO oo = this.orgprobationucc.findOrgProbationBOByOrgId(super.getUserInfo().getOrgId());
-      if(oo != null) {
-        if (id != null) {
-          String[] ids = id.split(",");
-          for (int i = 0; i < ids.length; i++) {
-            if ((ids[i] != null) && (!ids[i].equals(""))) {
-              EmpProbationBO bo = this.empprobationucc.findEmpProbationBOByPid(ids[i]);
-              long day = CommonFuns.betweenDays(bo.getPlanPassDate(), CommonFuns.getSysDate("yyyy-MM-dd"));
-              if (day > 0L) {
-                super.showMessageDetail("未到转正日期！");
-                break;
-              }
-              if (Constants.EMP_DIRECT_PROBATION.equals("1")) {
-                if (!bo.getStatus().equals(EmpProbationBO.PASS)) {
-                  bo.setStatus(EmpProbationBO.EFFICIRNT);
-                  this.empprobationucc.saveEmpProbationBO(bo);
-                  JdbcTemplate jdbcTemplate = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
-                  String sql = "update wage_adjust set approstatus='1' where adjust_type='转正' and person_id='"+ids[i]+"'";
-                  jdbcTemplate.execute(sql);
-                  notice(CodeUtil.interpertCode(CodeUtil.TYPE_PERSON, bo.getPersonId()));
-                } else {
-                  super.showMessageDetail("请选择转正状态的人员");
-                  break;
-                }
-              }
-              else if (EmpProbationBO.JIANXI.equals(bo.getStatus()) || EmpProbationBO.PROBATION.equals(bo.getStatus())) {
-                bo.setStatus(EmpProbationBO.EFFICIRNT);
-                this.empprobationucc.saveEmpProbationBO(bo);
-                notice(CodeUtil.interpertCode(CodeUtil.TYPE_PERSON, ids[i]));
-              } else {
-                super.showMessageDetail("请选择转正状态的人员");
-                break;
-              }
-            }
-          }
-        }
-      }else{
-        super.showMessageDetail("转正人员未设置");
-      }
-    }
-    catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
+	public String shengxiao() {
+		try {
+			String id = super.getRequestParameter("form1:personStr");
+			OrgProbationBO oo = this.orgprobationucc.findOrgProbationBOByOrgId(super.getUserInfo().getOrgId());
+			if (oo != null) {
+				if (id != null) {
+					String[] ids = id.split(",");
+					for (int i = 0; i < ids.length; i++) {
+						if ((ids[i] != null) && (!ids[i].equals(""))) {
+							EmpProbationBO bo = this.empprobationucc.findEmpProbationBOByPid(ids[i]);
+							long day = CommonFuns.betweenDays(bo.getPlanPassDate(), CommonFuns.getSysDate("yyyy-MM-dd"));
+							if (day > 0L) {
+								super.showMessageDetail("未到转正日期！");
+								break;
+							}
+							if (Constants.EMP_DIRECT_PROBATION.equals("1")) {
+								if (!bo.getStatus().equals(EmpProbationBO.PASS)) {
+									if (oo.getNormailType() != null && !"".equals(oo.getNormailType())) {
+										CodeItemBO item= SysCacheTool.findCodeItem("0135", oo.getNormailType());
+										if(item!=null){
+											this.empprobationucc.updatePersonType(ids[i], oo.getNormailType());											
+										}
+									}
+									bo.setStatus(EmpProbationBO.EFFICIRNT);
+									this.empprobationucc.saveEmpProbationBO(bo);
+									JdbcTemplate jdbcTemplate = (JdbcTemplate) SysContext.getBean("jdbcTemplate");
+									String sql = "update wage_adjust set approstatus='1' where adjust_type='转正' and person_id='" + ids[i] + "'";
+									jdbcTemplate.execute(sql);
+									notice(CodeUtil.interpertCode(CodeUtil.TYPE_PERSON, bo.getPersonId()));
+								} else {
+									super.showMessageDetail("请选择转正状态的人员");
+									break;
+								}
+							} else if (EmpProbationBO.JIANXI.equals(bo.getStatus()) || EmpProbationBO.PROBATION.equals(bo.getStatus())) {
+								if (oo.getNormailType() != null && !"".equals(oo.getNormailType())) {
+									CodeItemBO item= SysCacheTool.findCodeItem("0135", oo.getNormailType());
+									if(item!=null){
+										this.empprobationucc.updatePersonType(ids[i], oo.getNormailType());											
+									}
+								}
+								bo.setStatus(EmpProbationBO.EFFICIRNT);
+								this.empprobationucc.saveEmpProbationBO(bo);
+								notice(CodeUtil.interpertCode(CodeUtil.TYPE_PERSON, ids[i]));
+							} else {
+								super.showMessageDetail("请选择转正状态的人员");
+								break;
+							}
+						}
+					}
+				}
+			} else {
+				super.showMessageDetail("转正人员未设置");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
   public List getPersonList() {
     return this.personList;
@@ -407,7 +427,7 @@ public String getName()
     	  statuses.add(EmpProbationBO.JIANXI);
       }
       
-      this.personList = this.empprobationucc.findNoPassPerson(this.mypage, super.getUserInfo().getOrgId(), statuses, this.time, this.time2, this.name);
+      this.personList = this.empprobationucc.findNoPassPerson(this.mypage, this.orgID, super.getUserInfo(), statuses, this.time, this.time2, this.name);
       if ((this.personList != null) && (this.personList.size() > 0))
         for (int i = 0; i < this.personList.size(); i++) {
           EmpProbationBO bo = (EmpProbationBO)this.personList.get(i);
@@ -453,8 +473,33 @@ public String getName()
   }
 
   public String getPageInit() {
-    queryPersonList();
+    try {
+		OrgProbationBO bo = this.orgprobationucc.findOrgProbationBOByOrgId(super.getUserInfo().getOrgId());
+		if (bo != null) {
+			this.passMonth = bo.getProbation();
+			this.passMonth2=bo.getJianxi();
+		} else{
+			this.passMonth = Constants.DEFAULT_PROBATION;
+			this.passMonth2 = Constants.DEFAULT_PROBATION;
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
     return this.pageInit;
+  }
+
+  public String getQueryInit() {
+	String orgID1=super.getRequestParameter("superId");
+	if(orgID1!=null && !"".equals(orgID1)){
+		this.orgID=orgID1;
+		this.orgName=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, this.orgID);
+	}
+	queryPersonList();
+	return queryInit;
+  }
+
+  public void setQueryInit(String queryInit) {
+	this.queryInit = queryInit;
   }
 
   public void setPageInit(String pageInit) {
@@ -462,18 +507,6 @@ public String getName()
   }
 
 	public String getPassMonth() {
-		try {
-			OrgProbationBO bo = this.orgprobationucc.findOrgProbationBOByOrgId(super.getUserInfo().getOrgId());
-			if (bo != null) {
-				this.passMonth = bo.getProbation();
-				this.passMonth2=bo.getJianxi();
-			} else{
-				this.passMonth = Constants.DEFAULT_PROBATION;
-				this.passMonth2 = Constants.DEFAULT_PROBATION;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return this.passMonth;
 	}
 
@@ -481,14 +514,6 @@ public String getName()
     this.passMonth = passMonth;
   }
 
-  public String getProbation()
-  {
-    return this.probation;
-  }
-
-  public void setProbation(String probation) {
-    this.probation = probation;
-  }
   public String getUnitId() {
     this.unitId = super.getUserInfo().getOrgId();
     return this.unitId;
@@ -676,8 +701,6 @@ public String getName()
       else {
         this.orgprobationbo.setWageItems("");
       }
-      this.orgprobationbo.setProbation(this.probation);
-      this.orgprobationbo.setJianxi(this.jianxi);
       if ("new".equals(this.method))
         this.orgprobationucc.saveOrgProbationBO(this.orgprobationbo);
       else {
@@ -732,13 +755,6 @@ public String getName()
 
       if (this.orgprobationbo != null) {
         this.orgprobationbo.setOrgName(SysCacheTool.findOrgById(this.orgprobationbo.getOrgUid()).getName());
-
-        if (this.probation==null || "".equals(this.probation)) {
-          this.probation = this.orgprobationbo.getProbation();
-        }
-        if (this.jianxi==null || "".equals(this.jianxi)) {
-        	this.jianxi = this.orgprobationbo.getJianxi();
-        }
         this.method = "update";
         find();
       } else {
@@ -747,12 +763,6 @@ public String getName()
         this.orgprobationbo.setOrgName(SysCacheTool.findOrgById(super.getUserInfo().getOrgId()).getName());
 
         this.method = "new";
-      }
-      if (this.probation != null && !"".equals(this.probation)) {
-        this.orgprobationbo.setProbation(this.probation);
-      }
-      if (this.jianxi != null && !"".equals(this.jianxi)) {
-    	  this.orgprobationbo.setJianxi(this.jianxi);
       }
     }
     catch (Exception e)
