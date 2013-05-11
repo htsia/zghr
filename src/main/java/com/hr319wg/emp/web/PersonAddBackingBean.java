@@ -577,7 +577,7 @@ public String getClassId()
 				api.executeSql(sql);
 			}
 			if("014512".equals(curr)){
-				sql = "select normail_type from org_probation where orguid='"+super.getUserInfo().getOrgId()+"'";
+				sql = "select jianxi from org_probation where orguid='"+super.getUserInfo().getOrgId()+"'";
 				String jianxi = api.queryForString(sql);
 				if(jianxi==null || "".equals(jianxi)){
 					jianxi = Constants.DEFAULT_PROBATION;

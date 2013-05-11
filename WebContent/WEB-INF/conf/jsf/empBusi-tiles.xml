@@ -352,6 +352,9 @@
     <definition name="/employee/probation/probationMgr.tiles" extends="layout.busitemplate" >
         <put name="body" value="/pages/employee/probation/probationMgr.jsp" />
     </definition>
+    <definition name="/employee/probation/probationQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/probation/probationQuery.jsp" />
+    </definition>
     <definition name="/employee/probation/selfProbation.tiles" extends="layout.busitemplate" >
         <put name="body" value="/pages/employee/probation/selfProbation.jsp" />
     </definition>

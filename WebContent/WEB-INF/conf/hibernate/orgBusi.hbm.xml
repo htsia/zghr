@@ -29,8 +29,9 @@
             <generator class="assigned"/>
         </id>
         <property name="probation"	   column="probation"/>
-		<property name="jianxi"     column="normail_type"/>
+		<property name="jianxi"     column="jianxi"/>
 		<property name="wageItems"     column="wage_item"/>
+		<property name="normailType"     column="normail_type"/>
     </class>
 
     <class name="com.hr319wg.org.pojo.bo.OrgEnterBO" table="ORG_ENTER">
