@@ -55,7 +55,7 @@
         	return false;
         }
         window.showModalDialog("/custom/wage/batchValidateAdjust.jsf?act=init&IDs="+itemIDs+"-"+userIDs, null, "dialogWidth:600px; dialogHeight:500px;center:center;resizable:no;status:no;scroll:yes;");
-        return false;
+        return true;
     }
     function selperson3(){
     	var item = document.getElementsByName("selectItem");
@@ -91,20 +91,26 @@
             <table align="center" border="0" cellpadding="0" cellspacing="0" width=100% bgcolor="#FFFFFF">
             <tr>
                 <td class=td_title >
-        </c:verbatim>
-                    <h:graphicImage value="/images/tips.gif" />
-                    <h:outputText value="薪酬管理 -> 薪资调整"/>
-      				<f:verbatim>
+       			</c:verbatim>
+					<h:outputText escape="false" value="<strong>当前机构：#{wage_commonAdjustBB.orgName}</strong>"/>
+		            <h:outputText value="  姓名或编号："/>
+		            <h:inputText value="#{wage_commonAdjustBB.name}" size="15"/>
+					<h:outputText value="  申请时间从"/>
+					<h:inputText value="#{wage_commonAdjustBB.time}" id="time" styleClass="input Wdate" size="15"
+							readonly="true" alt="日期|1|d|50||" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:time'})"
+							onkeypress ="enterKeyDown('form1:time')"/>
+					<h:outputText value="至"/>
+					<h:inputText value="#{wage_commonAdjustBB.time2}" id="time2" styleClass="input Wdate" size="15"
+							readonly="true" alt="日期|1|d|50||" onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',el:'form1:time2'})"
+							onkeypress ="enterKeyDown('form1:time2')"/>
+				    <h:commandButton value="查询" styleClass="button01"  onclick="return disPlayProcessBar();"
+							action="#{wage_commonAdjustBB.doQuery}"></h:commandButton>
+   				<f:verbatim>
                </td>
                <td align="right" class=td_title >
-                        </f:verbatim>
-                        <h:outputText value="生效"/>
-                        <h:selectBooleanCheckbox value="#{wage_commonAdjustBB.appro}" onclick="submit();" valueChangeListener="#{wage_commonAdjustBB.setIsAppro}" />
-                        <h:outputText value="未生效"/>
-                        <h:selectBooleanCheckbox value="#{wage_commonAdjustBB.notAppro}" onclick="submit();" valueChangeListener="#{wage_commonAdjustBB.setIsNotAppro}" />
-                        <h:outputText value="  "/>
-                        <h:commandButton onclick="return selperson2();" action="#{wage_commonAdjustBB.doOK}" styleClass="button01" value="全部生效"/>
-                        <h:commandButton onclick="return selperson3();" action="#{wage_commonAdjustBB.doDelete}" styleClass="button01" value="全部删除"/>
+               </f:verbatim>
+	               <h:commandButton onclick="return selperson2();" action="#{wage_commonAdjustBB.doOK}" styleClass="button01" value="全部生效"/>
+	               <h:commandButton onclick="return selperson3();" action="#{wage_commonAdjustBB.doDelete}" styleClass="button01" value="全部删除"/>
       			<c:verbatim>
                </td>
             </tr>
@@ -112,6 +118,9 @@
         </c:verbatim>
         <h:panelGrid align="right" styleClass="locked_top">
          <h:panelGroup>
+             <h:outputText value="生效"/>
+             <h:selectBooleanCheckbox value="#{wage_commonAdjustBB.appro}" onclick="submit();" valueChangeListener="#{wage_commonAdjustBB.setIsAppro}" />
+             <h:outputText value="  "/>
              <h:outputText value="记录数:#{wage_commonAdjustBB.pagevo.totalRecord}"></h:outputText>
              <h:outputText value="  "></h:outputText>
              <h:outputText value="页数:#{wage_commonAdjustBB.pagevo.totalPage}"></h:outputText>

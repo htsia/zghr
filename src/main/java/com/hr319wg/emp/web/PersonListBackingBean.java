@@ -27,7 +27,6 @@ import com.hr319wg.emp.pojo.vo.PersonChangeVO;
 import com.hr319wg.emp.ucc.IPersonUCC;
 import com.hr319wg.org.ucc.IOrgUCC;
 import com.hr319wg.qry.pojo.bo.QueryConditionBO;
-import com.hr319wg.qry.pojo.bo.QueryStaticBO;
 import com.hr319wg.qry.pojo.vo.QueryVO;
 import com.hr319wg.qry.ucc.IQueryUCC;
 import com.hr319wg.sys.api.QueryAPI;

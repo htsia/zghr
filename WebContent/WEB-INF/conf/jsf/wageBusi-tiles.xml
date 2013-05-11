@@ -58,7 +58,10 @@
         <put name="body" value="/pages/wage/adjust/AuditAdjust.jsp"/>
     </definition>
     <definition name="/wage/adjust/CommonAdjust.tiles" extends="layout.busitemplate">
-        <put name="body" value="/pages/wage/adjust/CommonAdjust.jsp"/>
+        <put name="body" value="/pages/wage/adjust/commonAdjustMgr.jsp"/>
+    </definition>
+    <definition name="/wage/adjust/commonAdjustQuery.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/wage/adjust/commonAdjustQuery.jsp"/>
     </definition>
     <definition name="/wage/adjust/CommonAdjustEdit.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/wage/adjust/CommonAdjustEdit.jsp"/>

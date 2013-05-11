@@ -77,8 +77,8 @@ public class WageAdjustService{
     this.adjustdao = adjustdao;
   }
 
-  public List getAdjustList(PageVO pagevo, boolean isAppro, boolean isNotAppro, User user) throws SysException {
-    return this.adjustdao.getAdjustList(pagevo, isAppro, isNotAppro, user);
+  public List getAdjustList(PageVO pagevo, boolean isAppro, User user, String orgID, String name, String time, String time2) throws SysException {
+    return this.adjustdao.getAdjustList(pagevo, isAppro, user, orgID, name, time, time2);
   }
   public AdjustVO getAdjustVO(String itemID) throws SysException {
     WageAdjustBO adjustbo = getWageAdjustBO(itemID);

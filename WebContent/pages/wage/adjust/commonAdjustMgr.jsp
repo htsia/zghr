@@ -12,17 +12,13 @@
 <c:verbatim>
     <script type="text/javascript">
         function refreshList(orgId) {
-        	document.main.location.href = "/custom/emp/typeChangeQuery.jsf?superId=" + orgId;
+        	document.main.location.href = "/wage/adjust/commonAdjustQuery.jsf?superId=" + orgId;
         }
         
         with (window) onload = onresize = function(){
             var mainHeight = document.body.offsetHeight - 35;
             $("iframe[name=tree]").height(mainHeight);
             $("iframe[name=main]").height(mainHeight);
-        }
-        function setType() {
-            window.showModalDialog("/custom/emp/orgTypeChangeEdit.jsf?act=init", null, "dialogWidth:600px; dialogHeight:400px;center:center;resizable:no;status:no;scroll:yes;");
-            return false;
         }
     </script>
 </c:verbatim>
@@ -32,13 +28,8 @@
     <table  width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
             <td class="td_title"><img src="/images/tips.gif">
-              	人员管理 -> 人员类别变动
+              	薪酬管理 -> 薪资调整
              </td>
-             <td align="left" class=td_title>
-              </f:verbatim>
-               		<h:commandButton value="薪酬变动项目设置" styleClass="button01"	onclick="return setType()" />
-               <f:verbatim>
-               </td>
         </tr>
     </table>
 
@@ -55,7 +46,7 @@
 
             <td align="center" valign="top" height="100%">
                  <iframe name="main" height="100%"  frameborder="0"  height="100%" scrolling="no" width="100%"
-                     src="/custom/emp/typeChangeQuery.jsf?superId=<%=user.getOrgId()%>"></iframe>
+                     src="/wage/adjust/commonAdjustQuery.jsf?superId=<%=user.getOrgId()%>"></iframe>
             </td>
         </tr>
     </table>

@@ -8,6 +8,7 @@ import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.org.pojo.bo.OrgBO;
+import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.wage.pojo.bo.WageAdjustBO;
 import com.hr319wg.wage.pojo.vo.AdjustVO;
 
@@ -28,46 +29,39 @@ public class WageAdjustDAO extends BaseDAO {
 						+ itemID + "'");
 	}
 
-	public List getAdjustList(PageVO pagevo, boolean isAppro, boolean isNotAppro, User user) throws SysException {
-		String sql = " from WageAdjustBO bo,UserBO u where bo.personID=u.userID and bo.approStatus='1' and bo.adjustType in ('岗位调整','转正','人员类别调整')";
-		if (!user.ischo()) {
-			List hasList = user.getHaveOperateOrgScale();
-			List noList = user.getHaveNoOperateOrgScale();
-			
-			String where = "";
-			for (int i = 0; i < hasList.size(); i++) {
-				OrgBO b = (OrgBO) hasList.get(i);
+	public List getAdjustList(PageVO pagevo, boolean isAppro, User user, String orgID, String name, String time, String time2) throws SysException {
+		String hql = " from WageAdjustBO bo,UserBO u where bo.personID=u.userID and bo.approStatus='1' and bo.adjustType in ('岗位调整','转正','人员类别调整')";
+		OrgBO org=SysCacheTool.findOrgById(orgID);
+	    hql+=" and u.deptSort like '"+org.getTreeId()+"%'";
+	    if ((name != null) && (!"".equals(name))) {
+	    	hql += " and ( u.name like '%" + name + "%' or u.shortName like '%" + name + "%' or u.personSeq like '%" + name + "%') ";
+		}
+	    List noList = user.getHaveNoOperateOrgScale();
+		String where = "";
+		if(noList!=null && noList.size()>0){
+			for (int i = 0; i < noList.size(); i++) {
+				OrgBO b = (OrgBO) noList.get(i);
 				if ("".equals(where)) {
-					where = "u.deptSort like '" + b.getTreeId() + "%'";
+					where = "u.deptSort not like '" + b.getTreeId() + "%'";
 				} else {
-					where += " or u.deptSort like '" + b.getTreeId() + "%'";
+					where += " and u.deptSort not like '" + b.getTreeId() + "%'";
 				}
 			}
-			sql += " and ("+where+")";
-			if(noList!=null && noList.size()>0){
-				where = "";
-				for (int i = 0; i < noList.size(); i++) {
-					OrgBO b = (OrgBO) noList.get(i);
-					if ("".equals(where)) {
-						where = "u.deptSort not like '" + b.getTreeId() + "%'";
-					} else {
-						where += " and u.deptSort not like '" + b.getTreeId() + "%'";
-					}
-				}
-				sql += " and ("+where+")";
-			}
+			hql += " and ("+where+")";
 		}
-		if(isAppro && isNotAppro){
-			sql += " and bo.status in ('0','4')";
-		}else if(isAppro){
-			sql += " and bo.status ='4'";			
-		}else if(isNotAppro){
-			sql += " and bo.status ='0'";			
+		if(isAppro){
+			hql += " and bo.status in ('0','4')";
 		}else{
-			sql += " and 1=0";
+			hql += " and bo.status ='0'";			
 		}
-		String boSql = "select bo "+sql+" order by bo.applyDate desc,u.secDeptID,u.deptId";
-		String countSql="select count(bo) "+sql;
+		if ((time != null) && (!time.equals(""))) {
+			hql += " and bo.applyDate >='" + time + "'";
+	    }
+	    if ((time2 != null) && (!time2.equals(""))) {
+	    	hql += " and bo.applyDate <= '" + time2 + "'";
+	    }
+		String boSql = "select bo "+hql+" order by bo.applyDate desc,u.secDeptID,u.deptId";
+		String countSql="select count(bo) "+hql;
 		List list = pageQuery(pagevo, countSql, boSql);
 		List result = new ArrayList();
 		for (int i = 0; i < list.size(); i++) {

@@ -50,7 +50,52 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 	private List baseFields = new ArrayList();
 	private boolean isAppro;
 	private boolean isNotAppro=true;
+	private String time;
+	private String time2;
+	private String name;
+	private String orgID;
+	private String orgName;
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getOrgID() {
+		return orgID;
+	}
+
+	public void setOrgID(String orgID) {
+		this.orgID = orgID;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getTime2() {
+		return time2;
+	}
+
+	public void setTime2(String time2) {
+		this.time2 = time2;
+	}
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
 	public List getWageUserList() {
 		return wageUserList;
 	}
@@ -160,9 +205,10 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 	}
 
 	public String getPageInit() {
-		this.itemID=null;
-		if (super.getRequestParameter("Init") != null) {
-			first();
+		String orgID1=super.getRequestParameter("superId");
+		if(orgID1!=null && !"".equals(orgID1)){
+			this.orgID=orgID1;
+			this.orgName=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, this.orgID);
 		}
 		doQuery();
 		return null;
@@ -196,7 +242,7 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 		try {
 			if (this.pagevo.getCurrentPage() <= 0)
 				this.pagevo.setCurrentPage(1);
-			this.adjustList = this.adjustucc.getAdjustList(this.pagevo,this.isAppro, this.isNotAppro, super.getUserInfo());
+			this.adjustList = this.adjustucc.getAdjustList(this.pagevo,this.isAppro, super.getUserInfo(), this.orgID, this.name, this.time, this.time2);
 			for (int i = 0; i < this.adjustList.size(); i++) {
 				AdjustVO wb = (AdjustVO)this.adjustList.get(i);
 				PersonBO p = SysCacheTool.findPersonById(wb.getAdjustbo().getPersonID());
