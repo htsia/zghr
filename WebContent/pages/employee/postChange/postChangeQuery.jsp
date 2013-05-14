@@ -10,7 +10,7 @@
 
 <script type="text/javascript">
 function selPerson(){
-	window.showModalDialog("/employee/postChange/selPostChangePerson.jsf", null, "dialogWidth:600px; dialogHeight:330px;center:center;resizable:no;status:no;scroll:yes;");
+	window.showModalDialog("/employee/postChange/selPostChangePerson.jsf?act=init", null, "dialogWidth:600px; dialogHeight:330px;center:center;resizable:no;status:no;scroll:yes;");
     return true;
 }
 function selectPerson(){

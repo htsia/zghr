@@ -624,7 +624,6 @@ public IWageSetPersonUCC getWagesetpersonucc()
 	}
 	
   public void selPerson() {
-	this.selMap=new HashMap();
     PersonBO[] pbos = (PersonBO[])super.getHttpSession().getAttribute(Constants.SELPERSON_SESSION);
     if (pbos != null && pbos.length > 0) {
     	for(PersonBO p : pbos){
@@ -652,6 +651,13 @@ public IWageSetPersonUCC getWagesetpersonucc()
 
   public String getInitEdit()
   {
+	String act=super.getRequestParameter("act");
+	if("init".equals(act)){
+		this.selMap=new HashMap();
+		this.personNames = "";
+		this.personIds = "";	
+		super.getHttpSession().removeAttribute(Constants.SELPERSON_SESSION);
+	}
     if ("true".equals(super.getRequestParameter("isMe"))) {
       this.enableSelect = false;
       this.personNames = super.getUserInfo().getName();

@@ -28,7 +28,7 @@
     <tr>
         <td class="table01" id="showTree" width="200">
                     <iframe name="tree" height="400"  frameborder="0"  scrolling="yes" width="100%"
-                            height="465" src="/pages/common/ShowOrgTree.jsp?rootId=<%=rootId%>"></iframe>
+                            height="465" src="/pages/common/ShowOrgTree.jsp"></iframe>
         </td>
 
         <td width="5" class="ctrlbar" valign="middle">

@@ -9,7 +9,7 @@
         User user = (User)session.getAttribute(Constants.USER_INFO);
     %>
     function selectDept(){
-        PopUpOrgDlgShowGroup('form1:A016030',2,'<%=user.getOrgId()%>');
+        PopUpOrgDlgShowGroup('form1:A016030',2,'');
         return false
     }
     function selectPerson(){
