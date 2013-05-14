@@ -62,8 +62,6 @@
 <x:saveState value="#{wage_setBB}"/>
 <h:form id="form1">
     <h:inputHidden value="#{wage_setBB.initAddset}" />
-    <h:inputHidden value="#{wage_setBB.wageset.unitId}" id="unitId"/>
-    <h:inputHidden value="#{wage_setBB.wageset.setId}" id="setId"/>
     <h:inputHidden value="#{wage_setBB.copySet}" id="copySet"/>
     <h:panelGrid align="center" width="90%" columns="1">
         <h:outputText escape="false" value="<font color='blue'><strong>基本信息</strong></font>"></h:outputText>
