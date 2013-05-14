@@ -262,13 +262,13 @@
                 upper = Integer.parseInt(pageNum) - 10;
             }
             if (Integer.parseInt(pageNum) > 10 && Integer.parseInt(pageNum) < toalPageNum && toalPageNum > 10 && upper > 0) {
-                turnpage.append("<a style='cursor:hand' onclick=\"forpage('" + upper + "')\">上一篇</a>&nbsp;");
+                turnpage.append("<a style='cursor:hand' onclick=\"forpage('" + upper + "')\">上一页</a>&nbsp;");
             }
             for (int k = upper + 1; k <= toalPageNum && k < next; k++) {
                 turnpage.append("<a style='cursor:hand' onclick=\"forpage('" + k + "')\">" + k + "</a>&nbsp;");
             }
             if (Integer.parseInt(pageNum) > 0 && Integer.parseInt(pageNum) < toalPageNum && toalPageNum > 10 && next < toalPageNum) {
-                turnpage.append("<a style='cursor:hand' onclick=\"forpage('" + next + "')\">下一篇</a>&nbsp;");
+                turnpage.append("<a style='cursor:hand' onclick=\"forpage('" + next + "')\">下一页</a>&nbsp;");
             }
             out.println(turnpage.toString());
             out.println("</font></td>");
