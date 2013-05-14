@@ -126,12 +126,23 @@ public class EmpPostChangeService implements IWFFunction
     }
     this.personservice.synDeptInfo(bo.getPersonId());
 
+    //岗位变化子集
     sql = "update A017 set A017000='00900' where id='" + bo.getPersonId() + "'";
     this.activeapi.executeSql(sql);
-    sql = "insert into A017(subid,id,a017000,a017015,a017702,a017705,a017710,a017801,A017005,A017701,A017715,A017720) values('" + SequenceGenerator.getKeyId("A017") + "','" + bo.getPersonId() + "','00901','" + now + "','" + CommonFuns.filterNull(bo.getNewPost()) + "','" + bo.getOldDept() + "','" + bo.getNewDept() + "','" + CommonFuns.filterNull(bo.getOldPost()) + "','" + CommonFuns.filterNull(bo.getChangeType()) + "','" + CommonFuns.filterNull(bo.getChangeReason()) + "','" + CommonFuns.filterNull(bo.getChangeBase()) + "','" + CommonFuns.filterNull(bo.getChangeLetterNO()) + "')";
+    
+    OrgBO superOldOrg = OrgTool.getOrgByDept(bo.getOldDept());
+    String oldOrgID="";
+    if(superOldOrg!=null){
+    	oldOrgID=superOldOrg.getOrgId();
+    }
+    sql = "insert into A017(subid,id,a017000,a017015,a017702,a017705,a017710,a017801,A017005,A017701,A017715,A017720,A017200,A017201) values" +
+    		"('" + SequenceGenerator.getKeyId("A017") + "','" + bo.getPersonId() + "','00901','" + now + "','" + CommonFuns.filterNull(bo.getNewPost()) + "'," +
+    				"'" + bo.getOldDept() + "','" + bo.getNewDept() + "','" + CommonFuns.filterNull(bo.getOldPost()) + "','" + CommonFuns.filterNull(bo.getChangeType()) + "'," +
+    						"'" + CommonFuns.filterNull(bo.getChangeReason()) + "','" + CommonFuns.filterNull(bo.getChangeBase()) + "','" + CommonFuns.filterNull(bo.getChangeLetterNO()) + "','"+CommonFuns.filterNull(xt)+"','"+CommonFuns.filterNull(oldOrgID)+"')";
 
     this.activeapi.executeSql(sql);
 
+    //任职情况子集
     if ((bo.getNewJob() != null) && (!(bo.getNewJob().equals("")))) {
       sql = "update a705 set a705000='00900' where id='" + bo.getPersonId() + "' and a705000='00901'";
       this.activeapi.executeSql(sql);
@@ -140,6 +151,7 @@ public class EmpPostChangeService implements IWFFunction
       this.activeapi.executeSql(sql);
     }
 
+    //简历子集
     if ("1".equals(bo.getAddResume())) {
       sql = "update a019 set a019000='00900',a019010='" + now + "' where id='" + bo.getPersonId() + "' and a019000='00901'";
       this.activeapi.executeSql(sql);
