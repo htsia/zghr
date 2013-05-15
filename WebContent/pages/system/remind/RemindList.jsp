@@ -10,15 +10,15 @@
 <f:verbatim>
     <script type="text/javascript">
         function forAdd() {
-            window.showModalDialog("/system/RemindEdit.jsf", null, "dialogWidth:530px; dialogHeight:500px;center:center;resizable:no;status:no;");
+            window.showModalDialog("/system/RemindEdit.jsf", null, "dialogWidth:600px; dialogHeight:500px;center:center;resizable:no;status:no;");
             return true;
         }
         function forModify(id) {
-            window.showModalDialog("/system/RemindEdit.jsf?sys_remindid="+id, null, "dialogWidth:530px; dialogHeight:500px;center:center;resizable:no;status:no;");
+            window.showModalDialog("/system/RemindEdit.jsf?sys_remindid="+id, null, "dialogWidth:600px; dialogHeight:500px;center:center;resizable:no;status:no;");
             return true;
         }
         function forModifyScope(id) {
-            window.showModalDialog("/system/RemindScopeSet.jsf?sys_remindid="+id, null, "dialogWidth:530px; dialogHeight:450px;center:center;resizable:no;status:no;");
+            window.showModalDialog("/system/RemindScopeSet.jsf?sys_remindid="+id, null, "dialogWidth:600px; dialogHeight:450px;center:center;resizable:no;status:no;");
             return true;
         }
 

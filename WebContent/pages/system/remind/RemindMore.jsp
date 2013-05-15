@@ -9,7 +9,7 @@
     <script type="text/javascript">
        function showDetail(id,msg){
            arg="remindid="+id+"&remindmsg="+msg;
-           window.showModalDialog("/system/RemResultDetail.jsf?" + arg, null, "dialogWidth:600px; dialogHeight:400px;center:center;resizable:yes;status:no;scroll:yes;");
+           windowOpen("/system/RemResultDetail.jsf?" + arg, "aa", "", "900", "600", "no","10","1","yes");
            return false;
        }
    </script>
