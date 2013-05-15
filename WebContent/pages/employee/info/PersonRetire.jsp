@@ -1,3 +1,6 @@
+<%@page import="com.hr319wg.common.web.SysContext"%>
+<%@page import="com.hr319wg.sys.dao.ParameterDAO"%>
+<%@page import="com.hr319wg.sys.pojo.bo.ParameterBO"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.emp.pojo.bo.PersonBO"%>
 <%@ page import="com.hr319wg.sys.cache.SysCacheTool"%>
@@ -16,7 +19,6 @@
     } else {
         title = request.getParameter("title");
     }
-
 %>
     <script type="text/javascript">
         function hideChangeUnit(){
@@ -132,6 +134,21 @@
          value="#{emp_PersonDismissBB.afterStatus}" alt="变更后当前状态|0|s|50||"/>
         <h:commandButton type="button" styleClass="button_select" rendered="#{emp_PersonDismissBB.useA001725}" onclick="PopUpCodeDlgOneControl('form1:A001725')" />
  <f:verbatim>
+ 	 <%
+	 	 InfoItemBO item=SysCacheTool.findInfoItem("A001", "A001725");
+	     if(item!=null && "1".equals(item.getItemStatus())){
+	    	 ParameterDAO dao = (ParameterDAO) SysContext.getBean("sys_parameterDAO");
+	    	 ParameterBO bo = dao.getParameter("EMP_DEFAULT_AFTER_STATUS");
+	    	 System.out.println(bo);
+    	     if(bo!=null){
+    	    	%>
+    	    	<script type="text/javascript">
+    	    		document.getElementById("form1:A001725").value="<%=bo.getValue()%>";
+    	    	</script>
+    	    	<%
+    	     }
+	     }
+ 	 %>
      </td>
      </tr>
 

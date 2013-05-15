@@ -79,18 +79,18 @@ public class InsDataServiceImpl implements IInsDataService {
 
 	public String saveSet(InsCalcSetBO bo) throws SysException {
 		if(bo.getID()==null){//新建
-			String sql="select count(*) from ins_calc_set where createuserid='"+bo.getCreateUserID()+"' and status<>1";
+			String sql="select count(*) from ins_calc_set where createorgid='"+bo.getCreateOrgID()+"' and status<>1";
 			int c=this.jdbcTemplate.queryForInt(sql);
 			if(c>0){
 				return "上个计算未归档";
 			}
-			sql="select count(*) from ins_calc_set where createuserid='"+bo.getCreateUserID()+"' and wagedate='"+bo.getWageDate()+"'";
+			sql="select count(*) from ins_calc_set where createorgid='"+bo.getCreateOrgID()+"' and wagedate='"+bo.getWageDate()+"'";
 			c=this.jdbcTemplate.queryForInt(sql);
 			if(c>0){
 				return "已存在适用月份为"+bo.getWageDate()+"的计算";
 			}
 		}else{
-			String sql="select count(*) from ins_calc_set where createuserid='"+bo.getCreateUserID()+"' and wagedate='"+bo.getWageDate()+"' and id<>'"+bo.getID()+"'";
+			String sql="select count(*) from ins_calc_set where createorgid='"+bo.getCreateOrgID()+"' and wagedate='"+bo.getWageDate()+"' and id<>'"+bo.getID()+"'";
 			int c=this.jdbcTemplate.queryForInt(sql);
 			if(c>0){
 				return "已存在适用月份为"+bo.getWageDate()+"的计算";
@@ -126,7 +126,7 @@ public class InsDataServiceImpl implements IInsDataService {
 
 	public void calc(String setID, String wageDate, String orgID, String selectedUserIDs)
 			throws SysException {
-		this.jdbcTemplate.execute("BEGIN proc_calc_ins('"+setID+"','"+wageDate+"','"+orgID+"','"+selectedUserIDs+"'); END;");
+		this.jdbcTemplate.execute("BEGIN proc_calc_ins('"+setID+"','"+wageDate+"','"+selectedUserIDs+"'); END;");
 	}
 
 	public void saveInsBaseData(String id, String tablename, String value,
