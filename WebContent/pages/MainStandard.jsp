@@ -377,7 +377,7 @@
                 <td align="right" valign="top">
                     <iframe name="main" height="100%"  frameborder="0"  height=400 scrolling="no" width="100%" src="<%
                 if ("HOMEPAGE".equals(moduleId)){
-                     out.print("/MainInterface/FirstPage.jsf");
+                     out.print("/pages/index.jsp");
                 }
                 else if (funUrl!=null && !"".equals(funUrl)){
                     out.print(funUrl);

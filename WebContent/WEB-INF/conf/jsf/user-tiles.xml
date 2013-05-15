@@ -80,6 +80,10 @@
         <put name="body" value="/pages/FirstPage.jsp"/>
     </definition>
 
+    <definition name="/MainInterface/FirstPage_yl.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/FirstPage_yl.jsp"/>
+    </definition>
+
     <definition name="/user/NewRoleName.tiles" extends="layout.busitemplateSelf" >
         <put name="body" value="/pages/user/NewRoleName.jsp" />
     </definition>
