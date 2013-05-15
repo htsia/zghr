@@ -228,6 +228,7 @@ public class InsDataBackingBean extends BaseBackingBean{
 	}
 	public String getEditInit() {
 		String ID=super.getRequestParameter("ID");
+		String superId=super.getRequestParameter("superId");
 		if(ID!=null && !"".equals(ID)){
 			try {
 				this.item=(InsCalcSetBO) this.insDataService.getBOByID(InsCalcSetBO.class, ID);
@@ -236,7 +237,7 @@ public class InsDataBackingBean extends BaseBackingBean{
 			}
 		}else{
 			this.item=new InsCalcSetBO();
-			this.item.setCreateOrgID(user.getOrgId());
+			this.item.setCreateOrgID(superId);
 			this.item.setCreateUserID(user.getUserId());
 		}
 		return editInit;

@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 	function doAddItem() {
-		window.showModalDialog("/custom/ins/insDataEdit.jsf",null,"dialogWidth:470px; dialogHeight:300px;center:center;resizable:yes;status:no;scroll:yes;");
+		window.showModalDialog("/custom/ins/insDataEdit.jsf?superId=<%=request.getParameter("superId")%>",null,"dialogWidth:470px; dialogHeight:300px;center:center;resizable:yes;status:no;scroll:yes;");
 	}
 	function editItem(ID) {
 		window.showModalDialog("/custom/ins/insDataEdit.jsf?ID="+ID,null,"dialogWidth:470px; dialogHeight:300px;center:center;resizable:yes;status:no;scroll:yes;");
@@ -30,7 +30,7 @@
 	<h:panelGrid width="98%" columns="1" align="center">
 		<h:panelGrid columns="1" align="left">
 			<h:panelGroup>
-				<h:commandButton value="增加" styleClass="button01" onclick="doAddItem();"/>
+				<h:commandButton value="增加"  type="button"  styleClass="button01" onclick="doAddItem();"/>
 				<h:outputText value="  适用日期:"/>
 				<h:inputText id="wageDate" value="#{ins_dataBB.wageDate}" styleClass="input Wdate" size="15" onclick="WdatePicker({startDate:'%y-%M',dateFmt:'yyyy-MM',el:'form1:wageDate'})"/>
 				<h:commandButton action="#{ins_dataBB.doQuery}" styleClass="button01" value="查询 "/>
