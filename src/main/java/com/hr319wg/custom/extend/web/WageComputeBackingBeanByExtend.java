@@ -39,6 +39,29 @@ public class WageComputeBackingBeanByExtend extends WageComputeBackingBean {
 		this.commonService = commonService;
 	}
 	
+	public String getPageInit() {
+	    if (!"isPostBack".equals(this.pageInit)) {
+	      this.setOrderByName(true);
+	      this.setReadOnlyItem(false);
+	      try {
+	        this.setReportList(this.getUserreportucc().queryUserRptToWebInWage(super.getUserInfo().getUserId(), "0648", this.getSetId()));
+	      }
+	      catch (SysException ee) {
+	      }
+	      this.pageInit = "isPostBack";
+	    }
+
+	    super.getHttpSession().removeAttribute("activeSql2");
+	    super.getHttpSession().removeAttribute("rowNum2");
+	    super.getHttpSession().removeAttribute("pageNum2");
+	    super.getHttpSession().removeAttribute("OBJECT2");
+
+	    String pageFlag = super.getServletRequest().getParameter("pageFlag");
+	    if ("1".equals(pageFlag)) {
+	      turnPageQuery(null, null, 0, 0);
+	    }
+	    return this.pageInit;
+	  }
 
 	public String getMinusInit() {
 		try {

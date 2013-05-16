@@ -14,7 +14,6 @@
 <x:saveState value="#{wage_dateBB}"/>
 <h:form id="form1">
     <h:inputHidden value="#{wage_computeBB.pageInit}"/>
-<%--     <h:inputHidden value="#{wage_computeBB.minusInit}"/> --%>
     <h:inputHidden id="deptpower" value="#{wage_computeBB.deptpower}"/>
     <h:inputHidden id="setId" value="#{wage_computeBB.setId}"/>
     <h:inputHidden id="unitId" value="#{wage_computeBB.unitId}"/>
