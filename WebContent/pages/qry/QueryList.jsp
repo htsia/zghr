@@ -7,7 +7,6 @@
 
 <%@ include file="../include/taglib.jsp" %>
 <%
-    String vis = "hidden";
     String hideSave = "Y";
     User user = (User) session.getAttribute(Constants.USER_INFO);
     UserAPI api = (UserAPI) SysContext.getBean("user_pmsAPI");
@@ -21,7 +20,6 @@
     if("PRIVATE".equals(publicFlag) ||
        (api.checkIsHQUser(user) && user.isSysOper() && "PUBLIC".equals(request.getParameter("publicFlag"))) ||
         "QALEAD".equals(request.getParameter("classId"))){
-        vis = "visible";
         hideSave="";
     }
     String operFlag=request.getParameter("operFlag");
@@ -75,9 +73,9 @@
         <tr> <td align="right" height=8>
         </td></tr>
         <tr> <td align="right" height=8>
-        <span style="visibility:<%=vis%>;">
+        <span>
 </c:verbatim>
-            <h:commandButton type="button" value=" 新建 " styleClass="button01" onclick="forNew()"/>
+            <h:commandButton type="button" value=" 新建 " styleClass="button01" onclick="forNew()" rendered="#{qry_queryBB.hasQRight}"/>
             <h:commandButton value="设置总经理自助" styleClass="button01" onclick="forSetZJL()" type="button" rendered="#{qry_queryBB.classId=='QALEAD'}"/>
             <h:commandButton value="设置分支经理自助" styleClass="button01" onclick="forSetJGJL()" type="button" rendered="#{qry_queryBB.classId=='QALEAD'}"/>
 <c:verbatim> 
@@ -89,7 +87,7 @@
             <div style='width:100%;height:100%;overflow:auto' id=datatable>
             <input type="hidden" id="qryID" name="ids"/>
 </c:verbatim>
-                 <h:dataTable var="list" value="#{qry_queryBB.queryBo}" headerClass="td_top tr_fixrow" columnClasses="td_middle,td_middle_center,td_middle_center,td_middle_center" styleClass="table03" width="95%" border="0" align="center" id="dateList">
+                 <h:dataTable var="list" value="#{qry_queryBB.queryBo}" headerClass="td_top tr_fixrow" columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center" styleClass="table03" width="95%" border="0" align="center" id="dateList">
                     <h:column>
                         <c:facet name="header"><h:outputText value="名称"/></c:facet>
                         <h:outputText value="#{list.name}"/>
@@ -105,9 +103,9 @@
                     <h:column>
                         <c:facet name="header"><h:outputText value="操作"/></c:facet>
                         <h:commandButton id="doQuery" action="#{qry_querySettingBB.doQuery}" onclick="return forQuery('#{list.qryId}')" styleClass="button01" value="查询"/>
-                        <c:verbatim><input type="button" value="修改" class="button01" style="visibility:<%=vis%>;" onclick="forEdit('</c:verbatim><h:outputText value="#{list.qryId}"/><c:verbatim>')">&nbsp;</c:verbatim>
-                        <c:verbatim><input type="hidden" name="qryIds" value="</c:verbatim><h:outputText value="#{list.qryId}"/><c:verbatim>"></c:verbatim>
-                        <h:commandButton action="#{qry_querySettingBB.deleteQuery}" onclick="return fordel('#{list.qryId}');" styleClass="button01" value="删除"/>
+                        <h:outputText value="  "/>
+                        <h:commandButton rendered="#{qry_queryBB.hasQRight}" onclick="return forEdit('#{list.qryId}');" styleClass="button01" type="button" value="修改" />
+                        <h:commandButton rendered="#{qry_queryBB.hasQRight}" action="#{qry_querySettingBB.deleteQuery}" onclick="return fordel('#{list.qryId}');" styleClass="button01" value="删除"/>
                     </h:column>
                 </h:dataTable>
 <c:verbatim>

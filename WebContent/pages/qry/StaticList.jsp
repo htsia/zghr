@@ -57,6 +57,14 @@
             document.all("dbase").target="_self";
         return rt;
     }
+    function fordel(qryID){
+        if(confirm('确定要删除吗')){
+        	document.getElementById("qryID").value=qryID;
+            document.all("dbase").target="_self";
+	        return true;
+        }
+        return false;
+    }
 </script>
 
 
@@ -66,12 +74,11 @@
 <c:verbatim>
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr><td height=10></td></tr>
-    
+    <input type="hidden" id="qryID" name="ids"/>
     <tr><td align="right">
-        <span style="visibility:<%=vis%>;">
+        <span>
 </c:verbatim>
-            <h:commandButton type="button" value="新建" styleClass="button01" onclick="forNew()"/>
-            <h:commandButton value="删除" onclick="return del()" styleClass="button01" action="#{qry_querySettingBB.deleteQuery}"/>
+            <h:commandButton type="button" value="新建" styleClass="button01" onclick="forNew()" rendered="#{qry_queryBB.hasSRight}"/>
 <c:verbatim>
         </span>
     </td></tr>
@@ -79,11 +86,7 @@
 	<br>
     
 </c:verbatim>
-    <h:dataTable var="list" id="dateList" value="#{qry_queryBB.queryBo}" headerClass="td_top" rowClasses="td_middle" styleClass="table03" width="95%" border="1" align="center">
-        <h:column>
-            <c:facet name="header"><h:outputText value=""/></c:facet>
-            <c:verbatim><input type="checkbox" name="ids" value="</c:verbatim><h:outputText value="#{list.qryId}"/><c:verbatim>"></c:verbatim>
-        </h:column>
+    <h:dataTable var="list" id="dateList" value="#{qry_queryBB.queryBo}" headerClass="td_top" rowClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center" styleClass="table03" width="95%" border="1" align="center">
         <h:column>
             <c:facet name="header"><h:outputText value="名称"/></c:facet>
             <h:outputText value="#{list.name}"/>
@@ -99,8 +102,9 @@
         <h:column>
             <c:facet name="header"><h:outputText value="操作"/></c:facet>
             <h:commandButton id="doQuery" action="#{qry_staticSettingBB.doQuery}" onclick="return forQuery()" styleClass="button01" value="统计"/>
-            <c:verbatim><input type="button" value="修改" class="button01" style="visibility:<%=vis%>;" onclick="forEdit('</c:verbatim><h:outputText value="#{list.qryId}"/><c:verbatim>')">&nbsp;</c:verbatim>
-            <c:verbatim><input type="hidden" name="qryIds" value="</c:verbatim><h:outputText value="#{list.qryId}"/><c:verbatim>"></c:verbatim>            
+            <h:outputText value="  "/>
+            <h:commandButton rendered="#{qry_queryBB.hasSRight}" onclick="return forEdit('#{list.qryId}');" styleClass="button01" type="button" value="修改" />
+            <h:commandButton rendered="#{qry_queryBB.hasSRight}" action="#{qry_querySettingBB.deleteQuery}" onclick="return fordel('#{list.qryId}');" styleClass="button01" value="删除"/>
         </h:column>
     </h:dataTable>
 <c:verbatim>

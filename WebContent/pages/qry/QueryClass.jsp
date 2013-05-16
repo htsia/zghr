@@ -1,4 +1,3 @@
-<%@page import="com.hr319wg.sys.api.UserAPI"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.common.Constants" %>
 <%@ page import="com.hr319wg.common.pojo.vo.User" %>
@@ -28,13 +27,7 @@
 
     String typeName = ("S".equals(qsType) ? "统计" : "查询");
     String classID=CommonFuns.filterNull(request.getParameter("classID"));
-    
-    boolean hasPub=true;
-    if("S".equals(qsType)){
-    	hasPub=UserAPI.checkButtonOperate(user, "131301");
-    }else{
-    	hasPub=UserAPI.checkButtonOperate(user, "131201");    	
-    }
+
 %>
 <h:form id="form1">
     <h:inputHidden value="#{qry_queryClassBB.showTree}"/>
@@ -98,21 +91,16 @@ var root = tree.root;
    else{
 	   QueryClassBO[] bos=null;
 %>
+<%=publicTreeRoot%> = tree.add(root, "list", "公共<%=typeName%>", "<%=publicTreeRoot%>", "<%=publicTreeRoot%>", "PUBLIC", "find");
 <%
-	if(hasPub){
-		%><%=publicTreeRoot%> = tree.add(root, "list", "公共<%=typeName%>", "<%=publicTreeRoot%>", "<%=publicTreeRoot%>", "PRIVATE", "find");
-		<%
-		    bos = (QueryClassBO[]) request.getAttribute("classPublic");
-		    if(bos != null && bos.length > 0){
-		        for(int i=0;i<bos.length;i++){
-		            QueryClassBO bo = bos[i];
-		            String sc = bo.getClassId() + " = tree.add(" + bo.getSuperId() + ", 'last', '" + bo.getName() + "', '" + bo.getClassId() + "', '" + bo.getRootId() +"', 'PRIVATE', 'find');";
-		            out.println(sc);
-		        }
-		}
-		%>
-		<%
-	}
+    bos = (QueryClassBO[]) request.getAttribute("classPublic");
+    if(bos != null && bos.length > 0){
+        for(int i=0;i<bos.length;i++){
+            QueryClassBO bo = bos[i];
+            String sc = bo.getClassId() + " = tree.add(" + bo.getSuperId() + ", 'last', '" + bo.getName() + "', '" + bo.getClassId() + "', '" + bo.getRootId() +"', 'PUBLIC', 'find');";
+            out.println(sc);
+        }
+}
 %>
 
 <%=privateTreeRoot%> = tree.add(root, "list", "私有<%=typeName%>", "<%=privateTreeRoot%>", "<%=privateTreeRoot%>", "PRIVATE", "find");

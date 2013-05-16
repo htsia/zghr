@@ -308,7 +308,7 @@
                                 <x:dataTable id="newsList" width="100%" align="center" border="0"  value="#{self_selfnewsbb.newsList}"    var="newsList">
                                     <h:column>
                                         <h:graphicImage value="/images/self/gridcode.gif" />
-                                        <h:graphicImage alt="新新闻" value="/images/common/new.gif" rendered="#{newsList.newNews}"/>
+                                        <h:graphicImage alt="人事资讯" value="/images/common/new.gif" rendered="#{newsList.newNews}"/>
                                         <h:commandLink  title="#{newsList.display}" onclick="doShowNews('#{newsList.newId}')">
                                            <h:outputText value=" #{newsList.newTopic}"  />
                                         </h:commandLink>
