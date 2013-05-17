@@ -42,6 +42,10 @@
                 ]>
 
 <tiles-definitions>
+	<definition name="/custom/emp/empQueryItemSetting.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/emp/empQueryItemSetting.jsp"/>
+    </definition>
+
 <!-- 	人员类别变动 -->
 	<definition name="/custom/emp/typeChangeMgr.tiles" extends="layout.busitemplate">
         <put name="body" value="/pages/custom/emp/typeChangeMgr.jsp"/>

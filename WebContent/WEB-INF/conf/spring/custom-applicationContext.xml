@@ -60,6 +60,7 @@
            <property name="commonDAO" ref="commondao" />
            <property name="pageAPI" ref="sys_activePageApi" />
            <property name="jdbcTemplate" ref="jdbcTemplate" />
+           <property name="queryAPI" ref="qry_queryApi" />
     </bean>
     
     <bean id="commonservice" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">

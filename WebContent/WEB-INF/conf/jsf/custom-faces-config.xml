@@ -4,41 +4,75 @@
 <faces-config>
 
 	<managed-bean>
-      <managed-bean-name>empTypeChangeBB</managed-bean-name>
-      <managed-bean-class>com.hr319wg.custom.emp.web.EmpTypeChangeBackingBean</managed-bean-class>
-      <managed-bean-scope>request</managed-bean-scope>
-      	<managed-property>
-             <property-name>changeService</property-name>
-             <value>#{typeChangeService}</value>
-       </managed-property>
-    </managed-bean>
-	<managed-bean>
-      <managed-bean-name>uploadFileBB</managed-bean-name>
-      <managed-bean-class>com.hr319wg.custom.common.web.UploadFileBackingBean</managed-bean-class>
-      <managed-bean-scope>request</managed-bean-scope>
-      	<managed-property>
-             <property-name>commonService</property-name>
-             <value>#{commonservice}</value>
-       </managed-property>
-    </managed-bean>
-	<managed-bean>
-      <managed-bean-name>sys_surveyQueryBB</managed-bean-name>
-      <managed-bean-class>com.hr319wg.sys.web.SurveyQueryBackingBean</managed-bean-class>
-      <managed-bean-scope>request</managed-bean-scope>
-      	<managed-property>
-             <property-name>userapi</property-name>
-             <value>#{user_pmsAPI}</value>
-       </managed-property>
-       <managed-property>
-            <property-name>queryapi</property-name>
+        <managed-bean-name>emp_personListBB2</managed-bean-name>
+        <managed-bean-class>com.hr319wg.custom.emp.web.PersonListBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>personucc</property-name>
+            <value>#{emp_personUCC}</value>
+        </managed-property>
+         <managed-property>
+             <property-name>userqryucc</property-name>
+             <value>#{user_userQryUccImpl}</value>
+         </managed-property>
+         <managed-property>
+             <property-name>queryucc</property-name>
+             <value>#{qry_QueryUCCImpl}</value>
+         </managed-property>
+         <managed-property>
+             <property-name>userreportucc</property-name>
+             <value>#{user_userReportUccImpl}</value>
+         </managed-property>
+         <managed-property>
+            <property-name>userApi</property-name>
+            <value>#{user_pmsAPI}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>queryAPI</property-name>
             <value>#{qry_queryApi}</value>
         </managed-property>
         <managed-property>
+            <property-name>commonService</property-name>
+            <value>#{commonservice}</value>
+        </managed-property>
+    </managed-bean>
+    
+	<managed-bean>
+		<managed-bean-name>empTypeChangeBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.emp.web.EmpTypeChangeBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>changeService</property-name>
+			<value>#{typeChangeService}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>uploadFileBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.common.web.UploadFileBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>commonService</property-name>
+			<value>#{commonservice}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>sys_surveyQueryBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.sys.web.SurveyQueryBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>userapi</property-name>
+			<value>#{user_pmsAPI}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>queryapi</property-name>
+			<value>#{qry_queryApi}</value>
+		</managed-property>
+		<managed-property>
 			<property-name>queryucc</property-name>
 			<value>#{qry_queryUCC}</value>
 		</managed-property>
-    </managed-bean>
-	
+	</managed-bean>
+
 	<navigation-rule>
 		<from-view-id>/custom/*</from-view-id>
 		<navigation-case>
@@ -46,7 +80,7 @@
 			<to-view-id>/pages/common/SuccessClosePop.jsf</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>/custom/*</from-view-id>
 		<navigation-case>
@@ -54,8 +88,8 @@
 			<to-view-id>/custom/attence/successLeave.jsf</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
-    
+
+
 	<managed-bean>
 		<managed-bean-name>wage_dataOtherBB</managed-bean-name>
 		<managed-bean-class>com.hr319wg.custom.wage.web.WageDataOtherBackingBean</managed-bean-class>
@@ -110,7 +144,7 @@
 			<value>#{evawageservice}</value>
 		</managed-property>
 	</managed-bean>
-<!-- 	保险管理 -->
+	<!-- 保险管理 -->
 	<managed-bean>
 		<managed-bean-name>ins_dataBB</managed-bean-name>
 		<managed-bean-class>com.hr319wg.custom.ins.web.InsDataBackingBean</managed-bean-class>
@@ -120,9 +154,9 @@
 			<value>#{ins_dataservice}</value>
 		</managed-property>
 		<managed-property>
-            <property-name>personucc</property-name>
-            <value>#{emp_personUCC}</value>
-        </managed-property>
+			<property-name>personucc</property-name>
+			<value>#{emp_personUCC}</value>
+		</managed-property>
 	</managed-bean>
 	<navigation-rule>
 		<from-view-id>/custom/ins/BaseRateInputEdit2.jsp</from-view-id>
@@ -131,228 +165,228 @@
 			<to-view-id>/insurace/BaseRateInputEditSelect.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
-	
-	 <!-- 考勤管理 -->
-	 <managed-bean>
+
+
+	<!-- 考勤管理 -->
+	<managed-bean>
 		<managed-bean-name>att_logMrgBB</managed-bean-name>
 		<managed-bean-class>com.hr319wg.custom.attence.web.AttLogMgrBackingBean</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
-             <property-name>userapi</property-name>
-             <value>#{user_pmsAPI}</value>
-       </managed-property>
+			<property-name>userapi</property-name>
+			<value>#{user_pmsAPI}</value>
+		</managed-property>
 		<managed-property>
 			<property-name>attBusiService</property-name>
 			<value>#{attBusiService}</value>
 		</managed-property>
 	</managed-bean>
-    <managed-bean>
-        <managed-bean-name>attLeaveApplyBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.custom.attence.web.AttLeaveBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>activitiToolService</property-name>
-            <value>#{activitiToolService}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>selPersonsTool</property-name>
-            <value>#{selPersonTool}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>attBusiService</property-name>
-            <value>#{attBusiService}</value>
-        </managed-property>
-        <managed-property>
-             <property-name>userapi</property-name>
-             <value>#{user_pmsAPI}</value>
-       </managed-property>
-    </managed-bean>
-    
-    <managed-bean>
-        <managed-bean-name>attLeaveAuditBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.custom.attence.web.AttLeaveAuditBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>activitiToolService</property-name>
-            <value>#{activitiToolService}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>attBusiService</property-name>
-            <value>#{attBusiService}</value>
-        </managed-property>
-    </managed-bean>
-    <managed-bean>
-        <managed-bean-name>attOutApplyBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.custom.attence.web.AttOutBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>activitiToolService</property-name>
-            <value>#{activitiToolService}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>selPersonsTool</property-name>
-            <value>#{selPersonTool}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>attBusiService</property-name>
-            <value>#{attBusiService}</value>
-        </managed-property>
-        <managed-property>
-             <property-name>userapi</property-name>
-             <value>#{user_pmsAPI}</value>
-       </managed-property>
-    </managed-bean>
-    
-    <managed-bean>
-        <managed-bean-name>attOutAuditBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.custom.attence.web.AttOutAuditBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>activitiToolService</property-name>
-            <value>#{activitiToolService}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>attBusiService</property-name>
-            <value>#{attBusiService}</value>
-        </managed-property>
-    </managed-bean>
-    
-    <managed-bean>
-        <managed-bean-name>attOvertimeApplyBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.custom.attence.web.AttOvertimeBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>activitiToolService</property-name>
-            <value>#{activitiToolService}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>selPersonsTool</property-name>
-            <value>#{selPersonTool}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>attBusiService</property-name>
-            <value>#{attBusiService}</value>
-        </managed-property>
-        <managed-property>
-             <property-name>userapi</property-name>
-             <value>#{user_pmsAPI}</value>
-       </managed-property>
-    </managed-bean>
-    
-    <managed-bean>
-        <managed-bean-name>attOvertimeAuditBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.custom.attence.web.AttOvertimeAuditBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>activitiToolService</property-name>
-            <value>#{activitiToolService}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>attBusiService</property-name>
-            <value>#{attBusiService}</value>
-        </managed-property>
-    </managed-bean>
-    
-    <managed-bean>
-        <managed-bean-name>attRestApplyBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.custom.attence.web.AttRestBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>activitiToolService</property-name>
-            <value>#{activitiToolService}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>selPersonsTool</property-name>
-            <value>#{selPersonTool}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>attBusiService</property-name>
-            <value>#{attBusiService}</value>
-        </managed-property>
-        <managed-property>
-             <property-name>userapi</property-name>
-             <value>#{user_pmsAPI}</value>
-       </managed-property>
-    </managed-bean>
-    
-    <managed-bean>
-        <managed-bean-name>attRestAuditBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.custom.attence.web.AttRestAuditBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>activitiToolService</property-name>
-            <value>#{activitiToolService}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>attBusiService</property-name>
-            <value>#{attBusiService}</value>
-        </managed-property>
-    </managed-bean>
-    
-    <managed-bean>
-        <managed-bean-name>attMachineMgrBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.custom.attence.web.AttMachineMgrBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>attBusiService</property-name>
-            <value>#{attBusiService}</value>
-        </managed-property>
-    </managed-bean>
-    <managed-bean>
-        <managed-bean-name>attMachinePersonMgrBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.custom.attence.web.AttMachinePersonMgrBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>attBusiService</property-name>
-            <value>#{attBusiService}</value>
-        </managed-property>
-        <managed-property>
-             <property-name>userapi</property-name>
-             <value>#{user_pmsAPI}</value>
-       </managed-property>
-    </managed-bean>
-    <managed-bean>
-        <managed-bean-name>attCalcMgrBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.custom.attence.web.AttCalcMgrBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>attBusiService</property-name>
-            <value>#{attBusiService}</value>
-        </managed-property>
-        <managed-property>
-             <property-name>userapi</property-name>
-             <value>#{user_pmsAPI}</value>
-        </managed-property>
-        <managed-property>
-             <property-name>jdbcTemplate</property-name>
-             <value>#{jdbcTemplate}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>queryapi</property-name>
-            <value>#{qry_queryApi}</value>
-        </managed-property>
-    </managed-bean>
-    
-    <managed-bean>
-        <managed-bean-name>attPutoffMgrBB</managed-bean-name>
-        <managed-bean-class>com.hr319wg.custom.attence.web.AttPutoffMgrBackingBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
+	<managed-bean>
+		<managed-bean-name>attLeaveApplyBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.attence.web.AttLeaveBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>activitiToolService</property-name>
+			<value>#{activitiToolService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>selPersonsTool</property-name>
+			<value>#{selPersonTool}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userapi</property-name>
+			<value>#{user_pmsAPI}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>attLeaveAuditBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.attence.web.AttLeaveAuditBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>activitiToolService</property-name>
+			<value>#{activitiToolService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>attOutApplyBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.attence.web.AttOutBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>activitiToolService</property-name>
+			<value>#{activitiToolService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>selPersonsTool</property-name>
+			<value>#{selPersonTool}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userapi</property-name>
+			<value>#{user_pmsAPI}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>attOutAuditBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.attence.web.AttOutAuditBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>activitiToolService</property-name>
+			<value>#{activitiToolService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>attOvertimeApplyBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.attence.web.AttOvertimeBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>activitiToolService</property-name>
+			<value>#{activitiToolService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>selPersonsTool</property-name>
+			<value>#{selPersonTool}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userapi</property-name>
+			<value>#{user_pmsAPI}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>attOvertimeAuditBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.attence.web.AttOvertimeAuditBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>activitiToolService</property-name>
+			<value>#{activitiToolService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>attRestApplyBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.attence.web.AttRestBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>activitiToolService</property-name>
+			<value>#{activitiToolService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>selPersonsTool</property-name>
+			<value>#{selPersonTool}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userapi</property-name>
+			<value>#{user_pmsAPI}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>attRestAuditBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.attence.web.AttRestAuditBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>activitiToolService</property-name>
+			<value>#{activitiToolService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>attMachineMgrBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.attence.web.AttMachineMgrBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>attMachinePersonMgrBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.attence.web.AttMachinePersonMgrBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userapi</property-name>
+			<value>#{user_pmsAPI}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>attCalcMgrBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.attence.web.AttCalcMgrBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userapi</property-name>
+			<value>#{user_pmsAPI}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>jdbcTemplate</property-name>
+			<value>#{jdbcTemplate}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>queryapi</property-name>
+			<value>#{qry_queryApi}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>attPutoffMgrBB</managed-bean-name>
+		<managed-bean-class>com.hr319wg.custom.attence.web.AttPutoffMgrBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
 			<property-name>userqryucc</property-name>
 			<value>#{user_userQryUccImpl}</value>
 		</managed-property>
-        <managed-property>
-            <property-name>attBusiService</property-name>
-            <value>#{attBusiService}</value>
-        </managed-property>
-        <managed-property>
-             <property-name>userapi</property-name>
-             <value>#{user_pmsAPI}</value>
-        </managed-property>
-    </managed-bean>
-    
-    <managed-bean>
+		<managed-property>
+			<property-name>attBusiService</property-name>
+			<value>#{attBusiService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>userapi</property-name>
+			<value>#{user_pmsAPI}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
 		<managed-bean-name>wage_dataOthersBB</managed-bean-name>
 		<managed-bean-class>com.hr319wg.custom.wage.web.WageDataOthersBackingBean</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
@@ -361,7 +395,7 @@
 			<value>#{wage_dataservice}</value>
 		</managed-property>
 	</managed-bean>
-    <managed-bean>
+	<managed-bean>
 		<managed-bean-name>classWageBB</managed-bean-name>
 		<managed-bean-class>com.hr319wg.custom.wage.web.ClassWageBackingBean</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
@@ -374,7 +408,7 @@
 			<value>#{user_pmsAPI}</value>
 		</managed-property>
 	</managed-bean>
-    <managed-bean>
+	<managed-bean>
 		<managed-bean-name>oaemailBB</managed-bean-name>
 		<managed-bean-class>com.hr319wg.custom.common.web.OAEmailBackingBean</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
@@ -383,8 +417,9 @@
 			<value>#{wage_dataservice}</value>
 		</managed-property>
 		<managed-property>
-             <property-name>jdbcTemplate</property-name>
-             <value>#{jdbcTemplate}</value>
-        </managed-property>	</managed-bean>
-    
+			<property-name>jdbcTemplate</property-name>
+			<value>#{jdbcTemplate}</value>
+		</managed-property>
+	</managed-bean>
+
 </faces-config>

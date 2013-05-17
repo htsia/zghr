@@ -16,13 +16,11 @@
     String flag = CommonFuns.filterNull(request.getParameter("flag"));
     User user = (User) session.getAttribute(Constants.USER_INFO);
 %>
-      <x:saveState value="#{emp_personListBB}"/>
+
+      <x:saveState value="#{emp_personListBB2}"/>
       <h:form id="form1">
-        <h:inputHidden value="#{emp_personListBB.pageInit}"/>
-        <h:inputHidden value="#{emp_personListBB.personList}"/>
-        <h:inputHidden id="superId" value="#{emp_personListBB.superId}"/>
-        <h:inputHidden id="orgMode" value="#{emp_personListBB.orgMode}"/>  
-        <h:inputHidden id="fieldValue" value="#{emp_personListBB.fieldValue}"/>  
+        <h:inputHidden value="#{emp_personListBB2.pageInit}"/>
+        <h:inputHidden id="fieldValue" value="#{emp_personListBB2.fieldValue}"/>  
 <f:verbatim>
        <input type="hidden" name="sessionFlag" value="2">
        <input type="hidden" name="backFlag" value="<%=backFlag%>">
@@ -31,26 +29,31 @@
             <tr >
                 <td height="8" class="td_page" colspan="2">
                 	</f:verbatim>
-                	<h:outputText value="当前机构：#{emp_personListBB.superName}  "/>
+                	<h:outputText value="当前机构：#{emp_personListBB2.superName}  "/>
                 	<f:verbatim>
                     <input name="simple1" type="button" id=15 next=20 class="button01" value="<%=LanguageSupport.getResource("XTGL-1012","选择人员类别") %>"
                            onclick="forSel();">
 </f:verbatim>
-                    <h:inputHidden id="personType" value="#{emp_personListBB.personType}"/>
-                    <h:inputHidden id="personTypeValue" value="#{emp_personListBB.personTypeValue}"/>
-                    <h:outputText value=" "></h:outputText>
+                    <h:inputHidden id="personType" value="#{emp_personListBB2.personType}"/>
+                    <h:inputHidden id="personTypeValue" value="#{emp_personListBB2.personTypeValue}"/>
+                    <h:outputText value="  "/>
+                    <h:commandButton value="按列修改" onclick="return colEdit();" type="button" rendered="#{emp_personListBB2.modiPerson}"  styleClass="button01"/>
+					<h:outputText value="  "/>
+                    <h:commandButton value="维护多人" onclick="forSelPerson();" type="button"  rendered="#{emp_personListBB2.modiPerson}" styleClass="button01"/>
 <f:verbatim>
                 </td>
 				 <td height=8 class="td_page">
 </f:verbatim>
 					<h:outputText value="查询方案："/>
-					<h:selectOneMenu id="displaySet" value="#{emp_personListBB.defaultQry}" onchange="disPlayProcessBar();submit();" valueChangeListener="#{emp_personListBB.changeQuery}">
-                        <c:selectItems value="#{emp_personListBB.displaySetList}"></c:selectItems>
+					<h:selectOneMenu id="displaySet" value="#{emp_personListBB2.defaultQry}" onchange="disPlayProcessBar();submit();" valueChangeListener="#{emp_personListBB2.changeQuery}">
+                        <c:selectItems value="#{emp_personListBB2.displaySetList}"></c:selectItems>
                     </h:selectOneMenu>
                     <h:outputText value="  "/>
-                    <h:commandButton value="按列修改" onclick="return colEdit();" type="button" rendered="#{emp_personListBB.modiPerson}"  styleClass="button01"/>
-					<h:outputText value="  "/>
-                    <h:commandButton value="维护多人" onclick="forSelPerson();" type="button"  rendered="#{emp_personListBB.modiPerson}" styleClass="button01"/>
+                    <h:selectOneMenu id="ReportID" style="width:100px">
+                        <c:selectItems value="#{emp_personListBB2.regTableList}"/>
+                    </h:selectOneMenu>
+                    <h:commandButton styleClass="button01" type="button" value="显示表格" onclick="OpenRpt();"/>
+                    <h:outputText value="  "/>                    
                     <h:commandButton styleClass="button01" type="button" value="导出Excel" onclick="doExport();"></h:commandButton>
 <f:verbatim>
                 </td>
@@ -58,26 +61,28 @@
             <tr>
                 <td height="8" class="td_page" colspan="2"><%=LanguageSupport.getResource("XTGL-1056","姓名/编号/简拼") %>：
 </f:verbatim>
-                    <h:inputText id="name" value="#{emp_personListBB.name}"
+                    <h:inputText id="name" value="#{emp_personListBB2.name}"
                                     size="10" styleClass="input"  onkeypress ="enterKeyDown('form1:queryPerson')" />
-                    <h:commandButton value="查询" id="queryPerson" onclick="javascript:return true;" styleClass="button01"
-                                     action="#{emp_personListBB.queryPerson}"/>
-                    <h:commandButton value="清除" onclick="javascript:document.getElementById('form1:name').value='';" styleClass="button01"
-                                     action="#{emp_personListBB.queryPerson}"/>
+                    <h:commandButton value="查询" id="queryPerson" onclick="disPlayProcessBar();" styleClass="button01"
+                                     action="#{emp_personListBB2.queryPerson}"/>
+                    <h:commandButton value="清除" onclick="return clearQuery();" styleClass="button01"
+                                     action="#{emp_personListBB2.queryPerson}"/>
                     <h:outputText value="  "/>
-                    <h:inputHidden id="ManyPerson" value="#{emp_personListBB.nameStrs}"></h:inputHidden>
+                    <h:inputHidden id="ManyPerson" value="#{emp_personListBB2.nameStrs}"></h:inputHidden>
                     <h:commandButton value="多人查询" id="queryPerson2" onclick="return doQueryManyPerson()" styleClass="button01"
-                                     action="#{emp_personListBB.queryMultPerson}"/>
-                    <h:commandButton value="高级查询" onclick="javascript:return forAdQry();" styleClass="button01" />                 
+                                     action="#{emp_personListBB2.queryMultPerson}"/>
+                    <h:commandButton value="高级查询" onclick="javascript:return forAdQry();" styleClass="button01" /> 
 <f:verbatim>
                 </td>
 
                 <td height=8 class="td_page">
 </f:verbatim>
-                    <h:selectOneMenu id="fieldID" value="#{emp_personListBB.fieldID}" onchange="selField();">
-                        <c:selectItems value="#{emp_personListBB.fieldList}"/>
+					<h:commandButton value="设置显示项目" onclick="setItem();" styleClass="button01" rendered="#{emp_personListBB2.showSetItem}"/>
+                    <h:outputText value="  "/>
+                    <h:selectOneMenu id="fieldID" value="#{emp_personListBB2.fieldID}" onchange="selField();">
+                        <c:selectItems value="#{emp_personListBB2.fieldList}"/>
                     </h:selectOneMenu>
-                    <h:selectOneMenu id="oper" value="#{emp_personListBB.oper}">
+                    <h:selectOneMenu id="oper" value="#{emp_personListBB2.oper}">
                        <c:selectItem itemValue='equal' itemLabel="等于"/>
 	                   <c:selectItem itemValue='notequal' itemLabel="不等于"/>
 	                   <c:selectItem itemValue='morethan' itemLabel="大于"/>
@@ -100,29 +105,7 @@
 	                   <input id="selCode1" type="button" class="button_select" onclick="selCode11();" style="display: none;"/>
 	                </c:verbatim>
 	                <h:commandButton value="简单查询" onclick="return forQuery2();" styleClass="button01"
-                                     action="#{emp_personListBB.queryPerson2}" />
-<f:verbatim>
-                </td>
-
-             
-            </tr>
-            <tr>
-                <td height="8" class="td_page" colspan="2">
-</f:verbatim>
-                    <h:selectOneMenu id="ReportID" style="width:190px">
-                        <c:selectItems value="#{emp_personListBB.regTableList}"/>
-                    </h:selectOneMenu>
-                    <h:commandButton styleClass="button01" type="button" value="显示表格" onclick="OpenRpt();"></h:commandButton>
-<f:verbatim>
-                </td>
-
-                <td height=8 class="td_page">
-</f:verbatim>
-                    <h:selectOneMenu id="ListReportID" style="width:190px">
-                        <c:selectItems value="#{emp_personListBB.listTableList}"/>
-                    </h:selectOneMenu>
-                    <h:commandButton styleClass="button01" type="button" value="显示机构人员名册" onclick="OpenRosterRpt();"></h:commandButton>
-                   
+                                     action="#{emp_personListBB2.queryPerson2}" />
 <f:verbatim>
                 </td>
             </tr>
@@ -246,11 +229,14 @@
         var reval = window.showModalDialog("/common/ManyPersonCon.jsf", null, "dialogWidth:550px; dialogHeight:600px;center:center;resizable:no;status:no;scroll:yes;");
         if (reval != null && reval !="") {
             document.all('form1:ManyPerson').value = reval;
+            document.getElementById('form1:name').value='';
+			disPlayProcessBar();
             return true;
         } else {
             return false;
         }
     }
+    
     // pk 人员ID
     // type=1 只读
     function forView(form, id, type) {
@@ -399,5 +385,16 @@
     		 alert("请选择指标");
     		 return false;
     	 }
+     }
+     
+     function clearQuery(){
+ 		disPlayProcessBar();
+ 		document.getElementById('form1:name').value='';
+ 		return true;
+ 	 }
+     
+     function setItem(){
+    	 window.showModalDialog("/custom/emp/empQueryItemSetting.jsf", "", "dialogWidth:800px; dialogHeight:500px; status:0;");
+    	 disPlayProcessBar();
      }
 </script>
