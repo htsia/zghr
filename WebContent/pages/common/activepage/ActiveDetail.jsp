@@ -16,7 +16,9 @@
 <%@ page import="com.hr319wg.sys.pojo.bo.OrgCodeRelationBO" %>
 <%@ page import="com.hr319wg.common.pojo.vo.User" %>
 <%@ page import="com.hr319wg.emp.pojo.bo.PersonBO" %>
-
+<style>
+	.w1{width: 200px;}
+</style>
 <script language=javascript src="/js/hashtable.js"></script>
 
 <%
@@ -296,7 +298,7 @@
                 out.print("<input " + id.toString() + " "
                         + next.toString()
                         + " name=\"" + cell.getItemId()
-                        + "\" type=\"hidden\" class=\"input\" value='" + CommonFuns.filterNull(realValue) + "'>");
+                        + "\" type=\"hidden\" class=\"input w1\" value='" + CommonFuns.filterNull(realValue) + "'>");
             } else {
                 // 每行两个
                 if (count % 2 == 0) {
@@ -313,7 +315,7 @@
                             .append(next)
                             .append(check)
                             .append(event)
-                            .append(" type=\"hidden\" class=\"input\" value='" + imageValue + "'>");
+                            .append(" type=\"hidden\" class=\"input w1\" value='" + imageValue + "'>");
                     out.println("<td class=td_form01 >" + itemName + "</td>");
                     out.print(input.toString());
                     out.print("<td  class=td_form02  nowrap valign=top>");
@@ -331,7 +333,7 @@
                     .append(next)
                     .append(check)
                     .append(event)
-                    .append(" type=\"hidden\" class=\"input\" value='" + maskValue + "'>");
+                    .append(" type=\"hidden\" class=\"input w1\" value='" + maskValue + "'>");
 		            out.println("<td class=td_form01 >" + itemName + "</td>");
 		            out.print(input.toString());
 		            
@@ -375,7 +377,7 @@
                         else{
                              input.append("<input name=\"")
                                 .append(itemId).append("\"")
-                                .append(" type=\"text\" style=\"behavior:url('/js/mytextbox.htc');\" class=\"input\" ")
+                                .append(" type=\"text\" style=\"behavior:url('/js/mytextbox.htc');\" class=\"input w1\" ")
                                 .append(" readonly ")
                                 .append(id)
                                 .append(next)
@@ -416,7 +418,7 @@
                     }else{
 	                    input.append("<input name=\"")
 	                            .append(itemId).append("\"")
-	                            .append(" type=\"text\" class=\"input\" ")
+	                            .append(" type=\"text\" class=\"input w1\" ")
 	                            .append(" readonly ")
 	                            .append(id)
 	                            .append(next)
@@ -442,7 +444,7 @@
                 } else if (InfoItemBO.DATA_TYPE_COMPUTE.equals(cellType)) {//计算型指标
                     input.append("<input  name=\"")
                             .append(itemId).append("\"")
-                            .append(" type=\"text\" class=\"input\" ")
+                            .append(" type=\"text\" class=\"input w1\" ")
                             .append(" "+cellRight+" ")
                             .append(id)
                             .append(next)
@@ -464,7 +466,7 @@
                     else{
                         input.append("<input name=\"")
                             .append(itemId).append("\"")
-                            .append(" type=\"text\" class=\"input\" ")
+                            .append(" type=\"text\" class=\"input w1\" ")
                             .append(" readonly ")
                             .append(id)
                             .append(next)
@@ -488,7 +490,7 @@
                     else{
                       input.append("<input name=\"")
                             .append(itemId).append("\"")
-                            .append(" type=\"text\" class=\"input\" ")
+                            .append(" type=\"text\" class=\"input w1\" ")
                             .append(" readonly ")
                             .append(id)
                             .append(next)
@@ -513,7 +515,7 @@
                     else{
                         input.append("<input name=\"")
                             .append(itemId).append("\"")
-                            .append(" type=\"text\" class=\"input\" ")
+                            .append(" type=\"text\" class=\"input w1\" ")
                             .append(" "+cellRight+" ")
                             .append(id)
                             .append(next)
@@ -532,7 +534,7 @@
                 	if((setId==null && "C001010".equals(cell.getItemId())) || !"readonly".equals(cellRight)){
                 		input.append("<input name=\"")
                         .append(itemId).append("\"")
-                        .append(" type=\"text\" class=\"input\"")
+                        .append(" type=\"text\" class=\"input w1\"")
                         .append(" "+cellRight+" ")
                         .append(id)
                         .append(next)
@@ -572,7 +574,7 @@
                     else{
                         input.append("<input name=\"")
                             .append(itemId).append("\"")
-                            .append(" type=\"text\" class=\"input\"")
+                            .append(" type=\"text\" class=\"input w1\"")
                             .append(" "+cellRight+" ")
                             .append(id)
                             .append(next)
@@ -597,7 +599,7 @@
                     else{
                     input.append("<input name=\"")
                             .append(itemId).append("\"")
-                            .append(" type=\"text\" class=\"input\"")
+                            .append(" type=\"text\" class=\"input w1\"")
                             .append(id)
                             .append(next)
                             .append(check)
@@ -615,7 +617,7 @@
                 } else if (InfoItemBO.DATA_TYPE_PARTY.equals(cellType)) { //党组织指标
                     input.append("<input name=\"")
                             .append(itemId).append("\"")
-                            .append(" type=\"text\" class=\"input\"")
+                            .append(" type=\"text\" class=\"input w1\"")
                             .append(" "+cellRight+" ")
                             .append(id)
                             .append(next)
@@ -667,7 +669,7 @@
                     	if("A001077".equals(itemId)){
 	                        input.append("<input onblur='setBirth();' name=\"")
 	                                .append(itemId).append("\"")
-	                                .append(" type=\"text\" class=\"input\" ")
+	                                .append(" type=\"text\" class=\"input w1\" ")
 	                                .append(" "+cellRight+" ")
 	                                .append(id)
 	                                .append(next)
@@ -678,7 +680,7 @@
                     	}else{
 	                        input.append("<input name=\"")
 	                                .append(itemId).append("\"")
-	                                .append(" type=\"text\" class=\"input\" ")
+	                                .append(" type=\"text\" class=\"input w1\" ")
 	                                .append(" "+cellRight+" ")
 	                                .append(id)
 	                                .append(next)
@@ -696,7 +698,7 @@
                 } else if (InfoItemBO.DATA_TYPE_PERSON.equals(cellType)) { //人员型指标
                     input.append("<input name=\"")
                             .append(itemId).append("\"")
-                            .append(" type=\"text\" class=\"input\" readOnly")
+                            .append(" type=\"text\" class=\"input w1\" readOnly")
                             .append(id)
                             .append(next)
                             .append(check)
