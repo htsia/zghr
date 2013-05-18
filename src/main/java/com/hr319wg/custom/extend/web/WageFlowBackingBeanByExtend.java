@@ -37,7 +37,7 @@ public class WageFlowBackingBeanByExtend extends WageFlowBackingBean {
 		//添加工资发放记录
 		try {
 			JdbcTemplate jdbc = (JdbcTemplate)SysContext.getBean("jdbcTemplate");
-			String sql="select ID,A815701,A815473,A815211,A815200,A815406,A815267,A815321,A815308,A815202,A815209,A815208,A815219,A815708,A815713,A815235,A815234,A815218,A815201,A815379,A815203,A815221,A815223,A815291,A815334,A815224,A815204,A815205,A815314,A815206,A815207,A815710,A815714,A815720,A815721,A815486,A815216,A815711,A815715,A815716,A815717,A815718,A815736,A815739,A815741,A815755,A815756,A815758,A815748,A815750,A815751,A815752,A815753,A815754,A815735,A815737,A815738 from a815 where A815701 like '"+this.getDate().getDate().substring(0, 7)+"%'";
+			String sql="select w.ID,A815701,A815473,A815211,A815200,A815406,A815267,A815321,A815308,A815202,A815209,A815208,A815219,A815708,A815713,A815235,A815234,A815218,A815201,A815379,A815203,A815221,A815223,A815291,A815334,A815224,A815204,A815205,A815314,A815206,A815207,A815710,A815714,A815720,A815721,A815486,A815216,A815711,A815715,A815716,A815717,A815718,A815736,A815739,A815741,A815755,A815756,A815758,A815748,A815750,A815751,A815752,A815753,A815754,A815735,A815737,A815738,a.a001001 username,s.code_item_id type_no,s.code_item_name type_name,b.orguid dept_no,b.b001005 dept_name from a815 w,a001 a,b001 b,sys_code_item s where w.id=a.id and a.a001705=b.orguid and a.a001054=s.code_item_id and w.A815701 like '"+this.getDate().getDate().substring(0, 7)+"%'";
 			List list = jdbc.queryForList(sql); 
 			if(list!=null && list.size()>0){
 				for(int i=0;i<list.size();i++){
@@ -100,7 +100,12 @@ public class WageFlowBackingBeanByExtend extends WageFlowBackingBean {
 					b.append(m.get("A815754")+",");
 					b.append(m.get("A815735")+",");
 					b.append(m.get("A815737")+",");
-					b.append(m.get("A815738"));
+					b.append(m.get("A815738")+",");
+					b.append("'"+m.get("username")+"',");
+					b.append("'"+m.get("type_no")+"',");
+					b.append("'"+m.get("type_name")+"',");
+					b.append("'"+m.get("dept_no")+"',");
+					b.append("'"+m.get("dept_name")+"'");
 					SqlUtil.updateData(b.toString());
 				}
 			}
