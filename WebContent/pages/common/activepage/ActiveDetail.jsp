@@ -561,7 +561,11 @@
                         if ("A001706".equals(cell.getItemId()) || "C001010".equals(cell.getItemId())) {  // °à×é
                             out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"PopUpOrgDlgShowGroup('" + cell.getItemId().trim() + "',1,'')\">");
                         } else {
-                            out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"PopUpOrgDlg('" + cell.getItemId().trim() + "',1,'')\">");
+                        	if("2001010402".equals(SysCacheTool.findInfoSet(setId).getSet_sType())){
+	                            out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"PopUpOrgOnlyDlg('" + cell.getItemId().trim() + "',0,'')\">");                        		
+                        	}else{
+	                            out.print("<input type=\"button\" " + operRight + " class=\"button_select\" onclick=\"PopUpOrgDlg('" + cell.getItemId().trim() + "',1,'')\">");
+                        	}
                         }
                     }
                     out.println(msg);
