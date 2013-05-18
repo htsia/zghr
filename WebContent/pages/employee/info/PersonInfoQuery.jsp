@@ -366,6 +366,7 @@
     	 value=$.trim(value);
     	 if(fieldID!='-1'){
     		 if(oper1 == "isnull" || oper1 == "notisnull"){
+    			 disPlayProcessBar();
                  return true;
              }
     		 if(value.length>0){
@@ -376,6 +377,7 @@
    	             	alert("请输入数字");
    	                return false;
    	             }
+    			 disPlayProcessBar();
     			 return true;
     		 }else{
         		 alert("请输入查询条件");

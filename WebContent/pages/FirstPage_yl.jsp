@@ -245,7 +245,7 @@
                         </tr>
                       </table>
 
-                      <table width="99%" border="0" cellspacing="0" cellpadding="0" class="table_main" height="130">
+                      <table width="99%" border="0" cellspacing="0" cellpadding="0" class="table_main" height="240">
                           <td  valign="top" colspan="2">
             </f:verbatim>
                             <h:commandButton id="processMore" style="display:none" value="处理待办事宜"  action="#{sys_inProcessBB.doaciton_standard}"/>
@@ -301,12 +301,12 @@
                        </tr>
                      </table>
         
-                      <table  height=240 width="99%" border="0" cellspacing="0" cellpadding="0" class="table_main">
+                      <table  height=130 width="99%" border="0" cellspacing="0" cellpadding="0" class="table_main">
                           <tr>
                               <td  valign="top" colspan="2">
         </f:verbatim>
-                                <x:dataTable id="newsList" width="100%" align="center" border="0"  value="#{self_selfnewsbb.newsList}"    var="newsList">
-                                    <h:column>
+                                <x:dataTable id="newsList" width="100%" align="center" border="0" rowIndexVar="index"  value="#{self_selfnewsbb.newsList}"    var="newsList">
+                                    <h:column rendered="#{index<6}">
                                         <h:graphicImage value="/images/self/gridcode.gif" />
                                         <h:graphicImage alt="人事资讯" value="/images/common/new.gif" rendered="#{newsList.newNews}"/>
                                         <h:commandLink  title="#{newsList.display}" onclick="doShowNews('#{newsList.newId}')">

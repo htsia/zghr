@@ -349,7 +349,7 @@ public class CommonServiceImpl implements ICommonService {
 						}
 					}
 					listItem.add(item);
-					InfoItemBO infoItem=SysCacheTool.findInfoItem("A001", showItems[i]);
+					InfoItemBO infoItem=SysCacheTool.findInfoItem(showItems[i].substring(0, 4), showItems[i]);
 					CellVO cell = new CellVO();
 				    CommonFuns.copyProperties(cell, infoItem);
 				    cellList.add(cell);

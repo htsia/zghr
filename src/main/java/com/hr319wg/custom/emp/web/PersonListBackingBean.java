@@ -68,7 +68,16 @@ public class PersonListBackingBean extends BaseBackingBean {
 	private CellVO[] tableItem;
 	private List<EmpQueryItemBO> queryItemList;
 	private ICommonService commonService;
+	private String addWhere;
 	
+
+	public String getAddWhere() {
+		return addWhere;
+	}
+
+	public void setAddWhere(String addWhere) {
+		this.addWhere = addWhere;
+	}
 
 	public List<EmpQueryItemBO> getQueryItemList() {
 		return queryItemList;
@@ -439,9 +448,6 @@ public class PersonListBackingBean extends BaseBackingBean {
 	}
 
 	public String getPageInit() {
-		this.oper = null;
-		this.fieldID = null;
-		this.fieldValue = null;
 		String superId1 = super.getRequestParameter("superId");
 		if (superId1 != null && !"-1".equals(superId1)) {
 			this.superId = superId1;
@@ -476,6 +482,9 @@ public class PersonListBackingBean extends BaseBackingBean {
 		try {
 			this.tableItem=queryAPI.queryInfoItem(this.defaultQry);
 			for(CellVO cell : this.tableItem){
+				if("ID".equals(cell.getItemId())){
+					continue;
+				}
 				SelectItem si = new SelectItem();
 				si.setLabel(cell.getItemName());
 				si.setValue(cell.getItemId());
@@ -513,7 +522,7 @@ public class PersonListBackingBean extends BaseBackingBean {
 			User user = getUserInfo();
 			String sql = "";
 			if ("1".equals(this.orgMode)) {
-				sql = this.personucc.queryPersonList(table, this.nameStrs, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry);
+				sql = this.commonService.queryPersonList(table, this.nameStrs, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry, null, this.queryItemList, this.queryucc);
 			} else {
 				String where = " A001.ID in (select PERSON_ID from EMP_TEAM_PERSON where TEAM_ID='" + this.superId + "')";
 				sql = this.personucc.queryPersonList(table, this.name, this.personType, null, 1, rowNum, "00900", null, this.defaultQry, where);
@@ -574,7 +583,8 @@ public class PersonListBackingBean extends BaseBackingBean {
 				if ("1".equals(this.orgMode)) {
 					String loaddata = super.getRequestParameter("loaddata");
 					if (!"0".equals(loaddata) && "1".equals(this.orgFilter)) {
-						sql = this.commonService.queryPersonList(table, this.name, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry, null, this.queryItemList, this.queryucc);
+						sql = this.commonService.queryPersonList(table, this.name, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry, this.addWhere, this.queryItemList, this.queryucc);
+						this.addWhere=null;
 					} else {
 						table.setHeader(this.tableItem);
 						table.setSetType("A");
@@ -599,46 +609,20 @@ public class PersonListBackingBean extends BaseBackingBean {
 
 	// ºÚµ•≤È—Ø
 	public String queryPerson2() {
-		clearSession();
 		try {
-			String superOrg = getServletRequest().getParameter("superId");
-			if ((superOrg != null) && (!"".equals(superOrg))) {
-				this.superId = superOrg;
-			}
-			TableVO table = new TableVO();
-			String rowNums = (String) getHttpSession().getAttribute("rowNum");
-			int rowNum = Constants.ACTIVE_PAGE_SIZE;
-			if (rowNums != null) {
-				rowNum = Integer.parseInt(rowNums);
-			}
-			User user = getUserInfo();
-			String where1 = "";
-			try {
-				QueryVO vo = this.queryucc.findQueryVO("queryforemp");
-				QueryConditionBO cond = vo.getStatics()[0].getCondi()[0];
-				cond.setValue(this.fieldValue);
-				cond.setItemId(this.fieldID);
-				cond.setOperator(this.oper);
-				Map map = this.queryucc.buildQuerySqlHash(null, vo);
-				where1 = map.get("SQL_WHERE_PART").toString();
-			} catch (SysException e1) {
-				e1.printStackTrace();
-			}
-			String sql = "";
-			if ("1".equals(this.orgMode)) {
-				sql = this.personucc.queryPersonList(table, null, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry, where1);
-			} else {
-				String where = " A001.ID in (select PERSON_ID from EMP_TEAM_PERSON where TEAM_ID='" + this.superId + "')" + " and " + where1;
-				sql = this.personucc.queryPersonList(table, null, this.personType, null, 1, rowNum, "00900", null, this.defaultQry, where);
-			}
-			getHttpSession().setAttribute("activeSql", sql);
-			getHttpSession().setAttribute("pageNum", String.valueOf("1"));
-			getHttpSession().setAttribute("rowNum", String.valueOf(rowNum));
-			getHttpSession().setAttribute("OBJECT", table);
-		} catch (Exception e) {
-			e.printStackTrace();
-			clearSession();
-			this.msg.setMainMsg(e, getClass());
+			QueryVO vo = this.queryucc.findQueryVO("queryforemp");
+			QueryConditionBO cond = vo.getStatics()[0].getCondi()[0];
+			cond.setValue(this.fieldValue);
+			cond.setItemId(this.fieldID);
+			cond.setOperator(this.oper);
+			Map map = this.queryucc.buildQuerySqlHash(null, vo);
+			this.addWhere = map.get("SQL_WHERE_PART").toString();
+			
+			this.oper = null;
+			this.fieldID = null;
+			this.fieldValue = null;
+		} catch (SysException e1) {
+			e1.printStackTrace();
 		}
 		return null;
 	}
