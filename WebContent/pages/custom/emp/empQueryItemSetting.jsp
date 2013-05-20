@@ -77,31 +77,34 @@ function deleteItem(src) {
 function insertOrderItem(type) {
 	var options=form1.showItem.options;
 	var index=options.selectedIndex;
-	var itemId=options[index].value;
-	var itemName=options[index].text;
-    for (var n = 0; n < form1.orderItem.options.length; n++) {
-        tmp = form1.orderItem.options[n];
-        if (tmp.value.indexOf(itemId)>-1 ) {
-            return;
-        }
-    }
-    tmp = document.createElement("option");
-    tmp.value = itemId+"-"+type;
-    if (0 == type)
-        tmp.text = itemName + "    ÉýÐò";
-    else
-        tmp.text = itemName + "    ½µÐò";
-    form1.orderItem.add(tmp);
+	if(index!=-1){
+		var itemId=options[index].value;
+		var itemName=options[index].text;
+	    for (var n = 0; n < form1.orderItem.options.length; n++) {
+	        tmp = form1.orderItem.options[n];
+	        if (tmp.value.indexOf(itemId)>-1 ) {
+	            return;
+	        }
+	    }
+	    tmp = document.createElement("option");
+	    tmp.value = itemId+"-"+type;
+	    if (0 == type)
+	        tmp.text = itemName + "    ÉýÐò";
+	    else
+	        tmp.text = itemName + "    ½µÐò";
+	    form1.orderItem.add(tmp);
+	}
 }
 
 function insertShowItem() {
-	var options=form1.allItem.options;
-	var index=options.selectedIndex;
-	var itemId=options[index].value;
-	var itemName=options[index].text;
+	var showoptions=form1.showItem.options;
+	var alloptions=form1.allItem.options;
+	var index=alloptions.selectedIndex;
+	var itemId=alloptions[index].value;
+	var itemName=alloptions[index].text;
 	
-    for (var n = 0; n < form1.showItem.options.length; n++) {
-        tmp = options[n].value;
+    for (var n = 0; n < showoptions.length; n++) {
+        tmp = showoptions[n].value;
         if (tmp.indexOf(itemId) != -1) {
             return;
         }
