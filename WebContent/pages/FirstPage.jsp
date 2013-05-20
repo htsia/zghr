@@ -23,7 +23,7 @@
         }
         function showDetail(id,msg){
             arg="remindid="+id+"&remindmsg="+msg;
-            windowOpen("/system/RemResultDetail.jsf?" + arg, "aa", "", "900", "600", "no","10","1","yes");
+            windowOpen("/system/RemResultDetail.jsf?" + arg, "aa", "", "900", "600", "yes","10","1","yes");
             return false;
         }
         function doOpenShortMessage(){
