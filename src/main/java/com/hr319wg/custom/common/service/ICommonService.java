@@ -45,5 +45,5 @@ public interface ICommonService {
 
 	public void saveQueryItem(String userID, String[]showItems, String[]orderItems) throws SysException;
 	
-	public String queryPersonList(TableVO table, String name, String perType, String superId, int pageNum, int rowNum, String cancel, User user, String qryID, String addCondition, List<EmpQueryItemBO> queryItemList, IQueryUCC queryUCC) throws SysException;
+	public String queryPersonList(TableVO table, String name, String perType, String superId, int pageNum, int rowNum, String cancel, User user, String qryID, String addCondition, CellVO[]itemCells, List<EmpQueryItemBO> queryItemList, IQueryUCC queryUCC) throws SysException;
 }

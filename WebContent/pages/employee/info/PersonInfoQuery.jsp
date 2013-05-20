@@ -63,21 +63,21 @@
 </f:verbatim>
                     <h:inputText id="name" value="#{emp_personListBB2.name}"
                                     size="10" styleClass="input"  onkeypress ="enterKeyDown('form1:queryPerson')" />
-                    <h:commandButton value="查询" id="queryPerson" onclick="disPlayProcessBar();" styleClass="button01"
-                                     action="#{emp_personListBB2.queryPerson}"/>
-                    <h:commandButton value="清除" onclick="return clearQuery();" styleClass="button01"
-                                     action="#{emp_personListBB2.queryPerson}"/>
+                    <h:commandButton value="查询" id="queryPerson" onclick="disPlayProcessBar();" styleClass="button01" action="#{emp_personListBB2.queryPerson}"/>
+                    <h:commandButton value="取消查询" styleClass="button01"
+                                     action="#{emp_personListBB2.cancelQuery}"/>
                     <h:outputText value="  "/>
                     <h:inputHidden id="ManyPerson" value="#{emp_personListBB2.nameStrs}"></h:inputHidden>
-                    <h:commandButton value="多人查询" id="queryPerson2" onclick="return doQueryManyPerson()" styleClass="button01"
-                                     action="#{emp_personListBB2.queryMultPerson}"/>
-                    <h:commandButton value="高级查询" onclick="javascript:return forAdQry();" styleClass="button01" /> 
+                    <h:commandButton value="多人查询" id="queryPerson2" onclick="return doQueryManyPerson()" styleClass="button01" action="#{emp_personListBB2.queryPerson}"/>
+                    <h:commandButton value="高级查询" onclick="javascript:return forAdQry();" styleClass="button01" action="#{emp_personListBB2.queryPerson}">
+                    	<x:updateActionListener value="1" property="#{emp_personListBB2.advanceQuery}"/>
+                    </h:commandButton>
 <f:verbatim>
                 </td>
 
                 <td height=8 class="td_page">
 </f:verbatim>
-					<h:commandButton value="设置显示项目" onclick="setItem();" styleClass="button01" rendered="#{emp_personListBB2.showSetItem}"/>
+					<h:commandButton value="设置显示项目" onclick="setItem();" styleClass="button01" rendered="#{emp_personListBB2.showSetItem}" action="#{emp_personListBB2.queryPerson}"/>
                     <h:outputText value="  "/>
                     <h:selectOneMenu id="fieldID" value="#{emp_personListBB2.fieldID}" onchange="selField();">
                         <c:selectItems value="#{emp_personListBB2.fieldList}"/>

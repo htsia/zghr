@@ -121,9 +121,9 @@ public class PersonUCCByExtend extends PersonUCC {
 			String order = CommonFuns.filterNull((String) hash.get("SQL_ORDER_PART"));
 			StringBuffer sql = new StringBuffer();
 			if ((!"".equals(select)) && (!"".equals(from))) {
-				sql.append("SELECT ").append(select).append(" FROM ").append(from).append(",b001 ");
+				sql.append("SELECT ").append(select).append(" FROM ").append(from);
 				if ((!"".equals(condition)) || (!"".equals(scale)) || ((where != null) && (where.length() > 0))) {
-					sql.append(" WHERE a001705=orguid ");
+					sql.append(" WHERE 1=1 ");
 				}
 				if (!"".equals(condition)) {
 					sql.append(" and ").append(condition);
@@ -138,10 +138,10 @@ public class PersonUCCByExtend extends PersonUCC {
 					sql.append(" and ").append(addConditon);
 				}
 
-				if (!"".equals(order))
-					sql.append(" order by B001715,A001.A001746,A001.A001054,").append(order);
-				else {
-					sql.append(" order by B001715,A001.A001746,A001.A001054");
+				if("A001.A001003".equals(order)){
+					sql.append(" order by ").append("A001.deptempsort");					
+				}else{
+					sql.append(" order by ").append(order);					
 				}
 			}
 			this.getActivepageservice().querySql(table, sql.toString(), user, pageNum, rowNum, true);

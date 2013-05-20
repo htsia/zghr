@@ -35,10 +35,10 @@
 	     	   document.main.disPlayProcessBar();
 	        }
 	        if (document.getElementById("form1:displayMode").value=="2"){
-	            document.main.location.href = "/employee/info/PersonInfoPhotoQuery.jsf?superId=" + orgId+"&orgFilter="+orgFilter+"&orgMode="+document.getElementById("form1:orgMode").value;
+	            document.main.location.href = "/employee/info/PersonInfoPhotoQuery.jsf?act=init&superId=" + orgId+"&orgFilter="+orgFilter+"&orgMode="+document.getElementById("form1:orgMode").value;
 	        }
 	        else{
-	             document.main.location.href = "/employee/info/PersonInfoQuery.jsf?superId=" + orgId+"&orgFilter="+orgFilter+"&orgMode="+document.getElementById("form1:orgMode").value;
+	             document.main.location.href = "/employee/info/PersonInfoQuery.jsf?act=init&superId=" + orgId+"&orgFilter="+orgFilter+"&orgMode="+document.getElementById("form1:orgMode").value;
 	        }
         }
         function forChange() {
@@ -102,7 +102,7 @@
 
             <td align="center" valign="top" height="100%">
                  <iframe name="main" height="100%"  frameborder="0"  height="100%" scrolling="no" width="100%"
-                     src="/employee/info/PersonInfoQuery.jsf?superId=<%=user.getOrgId()%>&loaddata=<%=loaddata%>"></iframe>
+                     src="/employee/info/PersonInfoQuery.jsf?act=init&superId=<%=user.getOrgId()%>&loaddata=<%=loaddata%>"></iframe>
             </td>
         </tr>
     </table>

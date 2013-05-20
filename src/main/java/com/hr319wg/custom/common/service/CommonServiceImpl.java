@@ -275,7 +275,7 @@ public class CommonServiceImpl implements ICommonService {
 		this.commonDAO.saveOrUpdateBo(bo);
 	}
 
-	public String queryPersonList(TableVO table, String name, String perType, String superId, int pageNum, int rowNum, String cancel, User user, String qryID, String addCondition, List<EmpQueryItemBO> queryItemList, IQueryUCC queryucc) throws SysException {
+	public String queryPersonList(TableVO table, String name, String perType, String superId, int pageNum, int rowNum, String cancel, User user, String qryID, String addCondition, CellVO[]itemCells, List<EmpQueryItemBO> queryItemList, IQueryUCC queryucc) throws SysException {
 		try {
 			StringBuffer where = new StringBuffer();
 
@@ -311,17 +311,16 @@ public class CommonServiceImpl implements ICommonService {
 			if (!"".equals(cancel)) {
 				cancel1 = "A001730 = '" + cancel + "'";
 			}
-			CellVO[] c1 = queryAPI.queryInfoItem(qryID);
 			
-			table.setHeader(c1);
+			table.setHeader(itemCells);
 			table.setSetType("A");
 
 			QueryVO vo = queryucc.findQueryVO(qryID);
-//			if ((CommonFuns.filterNull(vo.getAddedCondition()).length() > 0) && (CommonFuns.filterNull(addCondition).length() > 0)) {
-//				vo.setAddedCondition(CommonFuns.filterNull(vo.getAddedCondition()) + " and " + CommonFuns.filterNull(addCondition));
-//			} else {
-//				vo.setAddedCondition(CommonFuns.filterNull(vo.getAddedCondition()) + CommonFuns.filterNull(addCondition));
-//			}
+			if (CommonFuns.filterNull(vo.getAddedCondition()).length() > 0 && CommonFuns.filterNull(addCondition).length() > 0) {
+				vo.setAddedCondition(CommonFuns.filterNull(vo.getAddedCondition()) + " and " + CommonFuns.filterNull(addCondition));
+			} else {
+				vo.setAddedCondition(CommonFuns.filterNull(vo.getAddedCondition()) + CommonFuns.filterNull(addCondition));
+			}
 			if ("156".equals(qryID) && queryItemList != null && queryItemList.size() == 1) {
 				List<QueryItemBO> listItem=new ArrayList<QueryItemBO>(); 
 				String[]showItems=queryItemList.get(0).getShowItem().split(",");
@@ -333,12 +332,10 @@ public class CommonServiceImpl implements ICommonService {
 			    cellList.add(IDCell);
 				for(int i=0;i<showItems.length;i++){
 					QueryItemBO item=new QueryItemBO();
-					item.setQryItemId(CommonFuns.getUUID());
 					item.setQryId("156");
 					item.setDefaultFlag(0);
 					item.setShowId(0);
 					item.setShowHistory(0);
-					item.setOrderFlag(String.valueOf(i));
 					item.setItemId(showItems[i]);
 					item.setSetId(showItems[i].substring(0, 4));
 					for(int j=0;j<orderItems.length;j++){
@@ -388,17 +385,11 @@ public class CommonServiceImpl implements ICommonService {
 				if ((addCondition != null) && (!"".equals(addCondition))) {
 					sql.append(" and ").append(addCondition);
 				}
-
-				if (!"".equals(order))
-					sql.append(" order by ").append(order);
-				else {
-					sql.append(" order by ").append("A001.A001746");
+				if("A001.A001003".equals(order)){
+					sql.append(" order by ").append("A001.deptempsort");					
+				}else{
+					sql.append(" order by ").append(order);					
 				}
-				// if (!"".equals(order))
-				// sql.append(" order by B001715,A001.A001746,A001.A001054,").append(order);
-				// else {
-				// sql.append(" order by B001715,A001.A001746,A001.A001054");
-				// }
 			}
 			this.queryAPI.querySql(table, sql.toString(), user, pageNum, rowNum, true);
 			return sql.toString();
