@@ -529,15 +529,17 @@ public class PersonListBackingBean extends BaseBackingBean {
 				super.getHttpSession().setAttribute("queryItemList", this.queryItemList);
 				
 				//设置默认查询的默认字段
-				List<CellVO> cellList=new ArrayList<CellVO>();
-				String[]showItems=this.queryItemList.get(0).getShowItem().split(",");
-				for(int i=0;i<showItems.length;i++){
-					InfoItemBO infoItem=SysCacheTool.findInfoItem(showItems[i].substring(0, 4), showItems[i]);
-					CellVO cell = new CellVO();
-				    CommonFuns.copyProperties(cell, infoItem);
-				    cellList.add(cell);
+				if(this.queryItemList!=null && this.queryItemList.size()==1 && this.queryItemList.get(0).getShowItem()!=null){
+					List<CellVO> cellList=new ArrayList<CellVO>();
+					String[]showItems=this.queryItemList.get(0).getShowItem().split(",");
+					for(int i=0;i<showItems.length;i++){
+						InfoItemBO infoItem=SysCacheTool.findInfoItem(showItems[i].substring(0, 4), showItems[i]);
+						CellVO cell = new CellVO();
+						CommonFuns.copyProperties(cell, infoItem);
+						cellList.add(cell);
+					}
+					this.tableItem=cellList.toArray(new CellVO[0]);					
 				}
-				this.tableItem=cellList.toArray(new CellVO[0]);
 			} catch (SysException e) {
 				e.printStackTrace();
 			}
