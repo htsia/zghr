@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=GBK" language="java" %>
-<%@ page import="com.hr319wg.common.pojo.vo.User" %>
 <%@ page import="com.hr319wg.common.Constants" %>
 <%@ include file="/pages/include/taglib.jsp" %>
 <%@ page import="com.hr319wg.sys.configuration.LanguageSupport" %>
@@ -31,6 +30,10 @@
         }
         function selPost(){
             var deptId=document.all("form1:A016030").code;
+            if(deptId==''){
+            	alert("请选选择机构");
+            	return;
+            }
             PopUpPostDlgByDept(document.all("form1:A001715"),null,deptId);
         }
         var xmlHttp;
@@ -154,7 +157,7 @@
                      <h:inputText styleClass="input" id="A016030" value="#{emp_engageBB.chgs}" dict="yes" dict_num="OU"  code=""
                              readonly="true"    alt="调入部门|0|s|50||"/>
 <c:verbatim>
-                     <input type="button" class="button_org" onclick="PopUpOrgDlgShowGroup('form1:A016030',2,'<% User user=(User)session.getAttribute(Constants.USER_INFO);out.print(user.getOrgId());%>')">
+                     <input type="button" class="button_org" onclick="PopUpOrgDlgShowGroup('form1:A016030',2,'')">
                 </td>
             </tr>
 
