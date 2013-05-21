@@ -40,7 +40,7 @@
             <h:commandButton value="¹Ø±Õ" type="button" styleClass="button01" onclick="window.close();"></h:commandButton>
         </h:panelGrid>
     </h:panelGrid>
-
+	<f:verbatim>
 		<%
             User userbo = (User) session.getAttribute(Constants.USER_INFO);
             if (userbo != null) {
@@ -120,17 +120,15 @@
                             out.println("<table border='1'  width='95%' class='table' align='center'>");
                             for (int i = 0; i < len; i++) {
                                 RemResultBO tempbo = (RemResultBO) list.get(i);
-                                tempbo.setRemRslt(tempbo.getRemRslt().replace('|', ','));
-                                String[] strRslt = tempbo.getRemRslt().split(",");
-                                if (i % 2 == 0)
-                                    out.println("<tr>");
-                                else
-                                    out.println("<tr>");
+                                String[] strRslt = tempbo.getRemRslt().replace("    ", "&nbsp;").replace("|", ",").split(",");
+                                if (i % 2 == 0){
+                                    out.println("<tr>");                                	
+                                }else{
+                                    out.println("<tr>");                                	
+                                }
 
                                 for (int j = 0; j < strRslt.length; j++) {
-                                    out.println("<td class='td_sec2'>");
-                                    out.println(strRslt[j]);
-                                    out.println("</td >");
+                                    out.println("<td class='td_sec2'>"+strRslt[j]+"</td>");
                                 }
                                 out.println("</tr>");
                             }
@@ -141,6 +139,7 @@
                 }
             }
         %>
+        </f:verbatim>
 </h:form>
 
 
