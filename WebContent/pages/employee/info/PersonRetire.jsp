@@ -90,7 +90,7 @@
                 <td width="140" class=td_form01><%=LanguageSupport.getResource("RYGL-2373","减员类别") %></td>
                 <td class=td_form02>
 </f:verbatim>
-                    <h:inputText styleClass="input" id="A016010" code="" dict="yes" dict_num="0200"
+                    <h:inputText readonly="true" styleClass="input" id="A016010" code="" dict="yes" dict_num="0200"
                                  value="#{emp_PersonDismissBB.personchangevo.changeType}" alt="减员类别|0|s|50||"/>
 <f:verbatim>
                         <%
@@ -101,7 +101,7 @@
                 <td  width="140" class=td_form01><%=LanguageSupport.getResource("RYGL-2374","减员日期") %></td>
                 <td class=td_form02>
  </f:verbatim>
-                    <h:inputText styleClass="input" id="A016020" value="#{emp_PersonDismissBB.personchangevo.changeDate}"
+                    <h:inputText readonly="true" styleClass="input" id="A016020" value="#{emp_PersonDismissBB.personchangevo.changeDate}"
                                  alt="减员日期|0|s|50||"/>
  <f:verbatim>
                   <input type="button" class="button_date" onclick="selRetireTime();"></td>
@@ -111,7 +111,7 @@
                 <td  class=td_form01 ><%=LanguageSupport.getResource("RYGL-2368","变更后人员类别") %></td>
                 <td class=td_form02>
  </f:verbatim>
-                    <h:inputText styleClass="input" id="A001054" code="" dict="yes" dict_num="0135"
+                    <h:inputText readonly="true" styleClass="input" id="A001054" code="" dict="yes" dict_num="0135"
                                  value="#{emp_PersonDismissBB.afterType}" alt="变更后人员类别|0|s|50||"/>
  <f:verbatim>
                      <%
@@ -130,7 +130,7 @@
     </td>
      <td class='</f:verbatim><h:outputText value="td_form02" rendered="#{emp_PersonDismissBB.useA001725}"/><f:verbatim>'>
  </f:verbatim>
-        <h:inputText styleClass="input" id="A001725" code="" dict="yes" dict_num="0145" rendered="#{emp_PersonDismissBB.useA001725}"
+        <h:inputText readonly="true" styleClass="input" id="A001725" code="" dict="yes" dict_num="0145" rendered="#{emp_PersonDismissBB.useA001725}"
          value="#{emp_PersonDismissBB.afterStatus}" alt="变更后当前状态|0|s|50||"/>
         <h:commandButton type="button" styleClass="button_select" rendered="#{emp_PersonDismissBB.useA001725}" onclick="PopUpCodeDlgOneControl('form1:A001725')" />
  <f:verbatim>
@@ -156,7 +156,7 @@
      <td  class=td_form01 ><span id="changeLabel">离开单位</span></td>
      <td class=td_form02>
   </f:verbatim>
-         <h:inputText styleClass="input" id="changeUnit" readonly="true" value="#{emp_PersonDismissBB.personchangevo.changeUnit}"
+         <h:inputText styleClass="input" id="changeUnit" value="#{emp_PersonDismissBB.personchangevo.changeUnit}"
                       alt="离开单位|1|s|50||"/>
   <f:verbatim>
      </td>
@@ -167,7 +167,7 @@
              </td>
             <td class='</f:verbatim><h:outputText value="td_form02" rendered="#{sys_commonInfoBB.enableLeaveReason}"/><f:verbatim>'>
 </f:verbatim>
-               <h:inputText styleClass="input" id="reason" code="" dict="yes" dict_num="2237"  rendered="#{sys_commonInfoBB.enableLeaveReason}"
+               <h:inputText readonly="true" styleClass="input" id="reason" code="" dict="yes" dict_num="2237"  rendered="#{sys_commonInfoBB.enableLeaveReason}"
                 value="#{emp_PersonDismissBB.personchangevo.reason}" alt="离职原因|0|s|50||"/>
                <h:commandButton type="button" styleClass="button_select"  rendered="#{sys_commonInfoBB.enableLeaveReason}" onclick="PopUpCodeDlgOneControl('form1:reason')" />
 <f:verbatim>
@@ -198,8 +198,8 @@
          </td>
         <td colspan="3" class=td_form02>
     </f:verbatim>
-                <h:inputText styleClass="input" id="toDept" code="" dict="yes" dict_num="OU"
-                     readonly="true" value="#{emp_PersonDismissBB.personchangevo.toDept}"
+                <h:inputText readonly="true" styleClass="input" id="toDept" code="" dict="yes" dict_num="OU"
+                     value="#{emp_PersonDismissBB.personchangevo.toDept}"
                      alt="所在机构|1|s|50||"/>
     <f:verbatim>
                 <input type="button" class="button_select" onclick="PopUpOrgDlgShowGroup('form1:toDept',2)">
