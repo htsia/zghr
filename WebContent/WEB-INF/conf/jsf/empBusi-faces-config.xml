@@ -392,7 +392,7 @@
 
     <managed-bean>
        <managed-bean-name>emp_PersonDismissBB</managed-bean-name>
-       <managed-bean-class>com.hr319wg.emp.web.PersonDismissBackingBean</managed-bean-class>
+       <managed-bean-class>com.hr319wg.custom.extend.web.PersonDismissBackingBeanByExtend</managed-bean-class>
        <managed-bean-scope>request</managed-bean-scope>
        <managed-property>
            <property-name>personucc</property-name>
@@ -437,7 +437,6 @@
             <property-name>wagesetucc</property-name>
             <value>#{wage_SetUcc}</value>
         </managed-property>
-
    </managed-bean>
 	
     <managed-bean>

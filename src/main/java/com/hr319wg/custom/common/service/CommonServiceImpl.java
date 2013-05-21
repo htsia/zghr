@@ -10,12 +10,15 @@ import java.util.Map;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.hr319wg.common.exception.RollbackableException;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.custom.dao.CommonDAO;
 import com.hr319wg.custom.emp.pojo.bo.EmpQueryItemBO;
 import com.hr319wg.custom.pojo.bo.SetFileBO;
+import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.org.pojo.bo.OrgBO;
+import com.hr319wg.org.util.OrgTool;
 import com.hr319wg.qry.pojo.bo.QueryBO;
 import com.hr319wg.qry.pojo.bo.QueryItemBO;
 import com.hr319wg.qry.pojo.vo.QueryVO;
@@ -263,7 +266,7 @@ public class CommonServiceImpl implements ICommonService {
 			showItem += showItems[i] + ",";
 		}
 		String orderItem = "";
-		if(orderItems!=null && orderItems.length>0){
+		if (orderItems != null && orderItems.length > 0) {
 			for (int i = 0; i < orderItems.length; i++) {
 				orderItem += orderItems[i] + ",";
 			}
@@ -275,7 +278,7 @@ public class CommonServiceImpl implements ICommonService {
 		this.commonDAO.saveOrUpdateBo(bo);
 	}
 
-	public String queryPersonList(TableVO table, String name, String perType, String superId, int pageNum, int rowNum, String cancel, User user, String qryID, String addCondition, CellVO[]itemCells, List<EmpQueryItemBO> queryItemList, IQueryUCC queryucc) throws SysException {
+	public String queryPersonList(TableVO table, String name, String perType, String superId, int pageNum, int rowNum, String cancel, User user, String qryID, String addCondition, CellVO[] itemCells, List<EmpQueryItemBO> queryItemList, IQueryUCC queryucc) throws SysException {
 		try {
 			StringBuffer where = new StringBuffer();
 
@@ -311,7 +314,7 @@ public class CommonServiceImpl implements ICommonService {
 			if (!"".equals(cancel)) {
 				cancel1 = "A001730 = '" + cancel + "'";
 			}
-			
+
 			table.setHeader(itemCells);
 			table.setSetType("A");
 
@@ -322,45 +325,45 @@ public class CommonServiceImpl implements ICommonService {
 				vo.setAddedCondition(CommonFuns.filterNull(vo.getAddedCondition()) + CommonFuns.filterNull(addCondition));
 			}
 			if ("156".equals(qryID) && queryItemList != null && queryItemList.size() == 1) {
-				List<QueryItemBO> listItem=new ArrayList<QueryItemBO>(); 
-				String[]showItems=queryItemList.get(0).getShowItem().split(",");
-				String[]orderItems=queryItemList.get(0).getOrderItem()!=null?queryItemList.get(0).getOrderItem().split(","):new String[]{};
-				List<CellVO> cellList=new ArrayList<CellVO>();
-				InfoItemBO IDItem=SysCacheTool.findInfoItem("A001", "ID");
+				List<QueryItemBO> listItem = new ArrayList<QueryItemBO>();
+				String[] showItems = queryItemList.get(0).getShowItem().split(",");
+				String[] orderItems = queryItemList.get(0).getOrderItem() != null ? queryItemList.get(0).getOrderItem().split(",") : new String[] {};
+				List<CellVO> cellList = new ArrayList<CellVO>();
+				InfoItemBO IDItem = SysCacheTool.findInfoItem("A001", "ID");
 				CellVO IDCell = new CellVO();
-			    CommonFuns.copyProperties(IDCell, IDItem);
-			    cellList.add(IDCell);
-				for(int i=0;i<showItems.length;i++){
-					QueryItemBO item=new QueryItemBO();
+				CommonFuns.copyProperties(IDCell, IDItem);
+				cellList.add(IDCell);
+				for (int i = 0; i < showItems.length; i++) {
+					QueryItemBO item = new QueryItemBO();
 					item.setQryId("156");
 					item.setDefaultFlag(0);
 					item.setShowId(0);
 					item.setShowHistory(0);
 					item.setItemId(showItems[i]);
 					item.setSetId(showItems[i].substring(0, 4));
-					for(int j=0;j<orderItems.length;j++){
-						if(orderItems[j].startsWith(showItems[i])){
-							String orderFlag=orderItems[j].substring(8, 9);
+					for (int j = 0; j < orderItems.length; j++) {
+						if (orderItems[j].startsWith(showItems[i])) {
+							String orderFlag = orderItems[j].substring(8, 9);
 							item.setOrderFlag(orderFlag);
 							break;
 						}
 					}
 					listItem.add(item);
-					InfoItemBO infoItem=SysCacheTool.findInfoItem(showItems[i].substring(0, 4), showItems[i]);
+					InfoItemBO infoItem = SysCacheTool.findInfoItem(showItems[i].substring(0, 4), showItems[i]);
 					CellVO cell = new CellVO();
-				    CommonFuns.copyProperties(cell, infoItem);
-				    cellList.add(cell);
+					CommonFuns.copyProperties(cell, infoItem);
+					cellList.add(cell);
 				}
-				CellVO[]cells=cellList.toArray(new CellVO[0]);
+				CellVO[] cells = cellList.toArray(new CellVO[0]);
 				table.setHeader(cells);
-				QueryItemBO[]items=listItem.toArray(new QueryItemBO[0]);
+				QueryItemBO[] items = listItem.toArray(new QueryItemBO[0]);
 				vo.setItem(items);
 			}
-			
+
 			QueryUtil qu = new QueryUtil();
-		    QueryBO bo = new QueryBO();
-		    CommonFuns.copyProperties(bo, vo);
-		    
+			QueryBO bo = new QueryBO();
+			CommonFuns.copyProperties(bo, vo);
+
 			Hashtable hash = qu.buildQuerySql(user, vo.getItem(), vo.getStatics()[0], bo);
 			String select = CommonFuns.filterNull((String) hash.get("SQL_SELECT_PART"));
 			String from = CommonFuns.filterNull((String) hash.get("SQL_FROM_PART"));
@@ -385,10 +388,10 @@ public class CommonServiceImpl implements ICommonService {
 				if ((addCondition != null) && (!"".equals(addCondition))) {
 					sql.append(" and ").append(addCondition);
 				}
-				if("A001.A001003".equals(order)){
-					sql.append(" order by ").append("A001.deptempsort");					
-				}else{
-					sql.append(" order by ").append(order);					
+				if ("A001.A001003".equals(order)) {
+					sql.append(" order by ").append("A001.deptempsort");
+				} else {
+					sql.append(" order by ").append(order);
 				}
 			}
 			this.queryAPI.querySql(table, sql.toString(), user, pageNum, rowNum, true);
@@ -397,5 +400,4 @@ public class CommonServiceImpl implements ICommonService {
 			throw new SysException("", "²éÑ¯Ê§°Ü", e, getClass());
 		}
 	}
-
 }
