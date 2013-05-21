@@ -151,7 +151,7 @@ public class AttBusiDAO extends BaseDAO{
 	}
 	
 	public List<UserBO> getAllCurrApprover(String[]userIDs) throws SysException{
-		String hql = "select bo from UserBO bo where "+CommonFuns.splitInSql(userIDs, "bo.userID");
+		String hql = "select bo from UserBO bo where typeof(bo.personType, '0135', '013510')=1 and "+CommonFuns.splitInSql(userIDs, "bo.userID");
 		return this.hibernatetemplate.find(hql);
 	}
 	
