@@ -102,7 +102,7 @@
 
             <td align="center" valign="top" height="100%">
                  <iframe name="main" height="100%"  frameborder="0"  height="100%" scrolling="no" width="100%"
-                     src="/employee/info/PersonInfoQuery.jsf?act=init&superId=<%=user.getOrgId()%>&loaddata=<%=loaddata%>"></iframe>
+                     src="/employee/info/PersonInfoQuery.jsf?act=init&superId=<%=user.getOrgId()%>&loaddata=<%=loaddata%>&orgFilter=<%=checked%>"></iframe>
             </td>
         </tr>
     </table>
