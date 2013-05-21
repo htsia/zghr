@@ -10,15 +10,12 @@ import java.util.Map;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.hr319wg.common.exception.RollbackableException;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.custom.dao.CommonDAO;
 import com.hr319wg.custom.emp.pojo.bo.EmpQueryItemBO;
 import com.hr319wg.custom.pojo.bo.SetFileBO;
-import com.hr319wg.emp.pojo.bo.PersonBO;
 import com.hr319wg.org.pojo.bo.OrgBO;
-import com.hr319wg.org.util.OrgTool;
 import com.hr319wg.qry.pojo.bo.QueryBO;
 import com.hr319wg.qry.pojo.bo.QueryItemBO;
 import com.hr319wg.qry.pojo.vo.QueryVO;
@@ -399,5 +396,29 @@ public class CommonServiceImpl implements ICommonService {
 		} catch (Exception e) {
 			throw new SysException("", "≤È—Ø ß∞‹", e, getClass());
 		}
+	}
+
+	public String getAdjustInfo(TableVO table, String orgID, String filter) throws SysException {
+		String fields = "ID";
+	    List li = SysCacheTool.queryInfoItemBySetId("B733");
+	    CellVO[] cvs = new CellVO[li.size() + 1];
+	    cvs[0] = new CellVO();
+	    CommonFuns.copyProperties(cvs[0], SysCacheTool.findInfoItem("A001", "ID"));
+	    for (int i = 0; i < li.size(); i++) {
+	      InfoItemBO ib = (InfoItemBO)li.get(i);
+	      cvs[(i + 1)] = new CellVO();
+	      CommonFuns.copyProperties(cvs[(i + 1)], ib);
+	      fields = fields + "," + ib.getItemId();
+	    }
+	    table.setHeader(cvs);
+	    
+	    OrgBO org=SysCacheTool.findOrgById(orgID);
+	    
+	    String sql = "select " + fields + " from B733 left join A001 on B733.B733001=A001.ID where A001.a001738 like '"+org.getOrgSort()+"%' ";
+	    if (filter != null && !"".equals(filter)) {
+	      sql = sql + "and " + filter;
+	    }
+	    sql = sql + " order by B733702 desc";
+	    return sql;
 	}
 }

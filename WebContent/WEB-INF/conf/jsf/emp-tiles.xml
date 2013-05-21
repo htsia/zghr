@@ -43,7 +43,10 @@
 
 <tiles-definitions>
     <definition name="/employee/PersonAdjustInfo.tiles" extends="layout.busitemplate" >
-        <put name="body" value="/pages/employee/PersonAdjustInfo.jsp" />
+        <put name="body" value="/pages/employee/personAdjustInfo.jsp" />
+    </definition>
+    <definition name="/employee/personAdjustInfoQuery.tiles" extends="layout.busitemplate" >
+        <put name="body" value="/pages/employee/personAdjustInfoQuery.jsp" />
     </definition>
     <definition name="/employee/PersonChangeInfo.tiles" extends="layout.busitemplate" >
         <put name="body" value="/pages/employee/PersonChangeInfo.jsp" />

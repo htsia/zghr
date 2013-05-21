@@ -30,9 +30,8 @@
         <td class="td_title" height=8>
    </f:verbatim>
             <h:graphicImage value="/images/tips.gif" />
-            <h:outputText value="#{emp_PersonAdjustBB.unitName}"/>
+            <h:outputText value="当前机构：#{emp_PersonAdjustBB.unitName}"/>
    <f:verbatim>
-       <%=LanguageSupport.getResource("RYGL-0306","内部人员调动情况 ")%> 
         </td>
         <td class="td_title" align="right" height=8>
    </f:verbatim>
