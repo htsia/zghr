@@ -15,19 +15,14 @@
 	        showy = event.screenY - event.offsetY + 18;
 	        var obj = document.forms(0).chk ;
 	        var ids = "";
-	        if (obj.length == null) {
-	            ids = obj.value + ",";
-	        }else {
-	            for (i = 0; i < obj.length; i++) {
-	                if (obj[i].checked) {
-	                    ids += parseInt(obj[i].value) + ",";
-	                }
-	            }
-	        }
+            for (i = 0; i < obj.length; i++) {
+                if (obj[i].checked) {
+                    ids += obj[i].value.split("|")[0] + ",";
+                }
+            }
 	        ids = ids.substr(0, ids.length - 1);
 	        if(ids.indexOf(",")==-1){
-	        	
-	        	forModifyPersonDetail(parseInt(ids));
+	        	forModifyPersonDetail(ids);
 	        }else{
 		        windowOpen("","plist","","1000","600","no","10","0","yes");
 		        document.forms(1).perids.value = ids;

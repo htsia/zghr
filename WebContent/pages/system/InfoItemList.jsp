@@ -34,7 +34,7 @@
     <h:inputHidden value="#{sys_infoItemListBB.set_sType}"></h:inputHidden>
     <h:inputHidden value="#{sys_infoItemListBB.setName}"></h:inputHidden>
     <c:verbatim>
-    <table height=98% width=660>
+    <table height=98% width=100%>
         <tr>
             <td height=8 align=left>
     </c:verbatim>
@@ -91,7 +91,7 @@
         <div style='width:100%;height:100%;overflow:auto' id=datatable>
 </c:verbatim>
             <h:dataTable value="#{sys_infoItemListBB.iItems}" var="list" id="dateList"
-                     headerClass="td_top tr_fixrow" rowClasses="td_middle" styleClass="table03"   columnClasses="td_middle_left,td_middle_left"
+                     headerClass="td_top tr_fixrow" rowClasses="td_middle" styleClass="table03"   columnClasses="td_middle_left,td_middle_left,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center"
                      border="0" align="left" width="100%">
             <h:column>
                 <f:facet name="header">
@@ -136,10 +136,24 @@
             <h:column>
                 <f:facet name="header">
                      <f:verbatim>
+					    <%=LanguageSupport.getResource("XTGL-1199","代码集")%> 
+				    </f:verbatim>
+                </f:facet>
+                <h:outputText escape="false" value="#{list.itemCodeSet}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                     <f:verbatim>
 					    <%=LanguageSupport.getResource("XTGL-1199","数据类型")%> 
 				    </f:verbatim>
                 </f:facet>
                 <h:outputText escape="false" value="#{list.itemDataType}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="小数位数"/>
+                </f:facet>
+                <h:outputText escape="false" value="#{list.itemPrecision}"/>
             </h:column>
 
             <h:column>
