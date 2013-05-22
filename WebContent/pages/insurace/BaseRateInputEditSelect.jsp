@@ -75,10 +75,10 @@
             <tr>
                 <td nowrap class="td_top" align="center"><strong>员工编号</strong></td>
                 <td nowrap class="td_top" align="center"><strong>姓名</strong></td>
-                <%if (col>1) { %>
+<%--                 <%if (col>1) { %> --%>
                   <td nowrap class="td_top" align="center"><strong>基数</strong></td>
                 <%
-                    }
+//                     }
                     for (int j = 0; j < col; j++) {
                         out.println("<td class=td_top align=\"center\"><strong>" + CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM, field[j]) + "</strong></td>");
                     }
@@ -93,14 +93,14 @@
                         if (j == -1) {
                             out.println("<td width='80px' class=td_top>" + pb.getPersonCode() + "</td>");
                             out.println("<td width='80px' class=td_top>" + pb.getName()+ "</td>");
-                            if (col>1){
+//                             if (col>1){
                                 out.println("<td width='120px' class=td_top>");
                                 out.println("<input name='Base_" + pb.getPersonId() + "' type='text' value='' class='input' size=10>");
                                 out.println("<input type='button' class='button01' value='设置' onclick='doSetValue(\""+pb.getPersonId()+"\")'>");
                                 setAllCommond+="document.all('Base_"+pb.getPersonId()+"').value=document.all('form1:allrate').value;\r\n";
                                 setAllCommond+="doSetValue('"+pb.getPersonId()+"');\r\n";
                                 out.println("</td>");
-                            }
+//                             }
                         } else {
                             String fldname = persId[i] + "|" + field[j];
                             InfoItemBO item = SysCacheTool.findInfoItem("", field[j]);
