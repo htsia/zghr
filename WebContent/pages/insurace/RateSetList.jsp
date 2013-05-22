@@ -19,130 +19,49 @@
             for(i=0;i<td.length;i++) td[i].style.display="none";
         }
         function doCheck(){
-            //debugger;
             if (document.all('form1:name').innerText=="单位名称:"){
                 alert("没有选择单位!");
                 return false;
             }
-
-            if (document.all('form1:precise_end').value==""){
-                alert("没有选择养老保险计算精度!");
-                return false;
-            }
-            if (document.all('form1:precise_med').value==""){
-                alert("没有选择医疗保险计算精度!");
-                return false;
-            }
-            if (document.all('form1:precise_unemployment').value==""){
-                alert("没有选择失业保险计算精度!");
-                return false;
-            }
-            if (document.all('form1:precise_procreate').value==""){
-                alert("没有选择生育保险计算精度!");
-                return false;
-            }
-            if (document.all('form1:precise_compo').value==""){
-                alert("没有选择工伤保险计算精度!");
-                return false;
-            }
-            if (document.all('form1:precise_housing').value==""){
-                alert("没有选择工伤保险计算精度!");
-                return false;
-            }
-
-            if (document.all('form1:endowment_unit').value==""){
-                alert("没有录入养老保险单位交费比例!");
-                return false;
-            }
-            if (document.all('form1:endowment_person').value==""){
-                alert("没有录入养老保险个人交费比例!");
-                return false;
-            }
-            if (document.all('form1:maxRate').value==""){
-                alert("没有录入养老保险上限!");
-                return false;
-            }
-            if (document.all('form1:minRate').value==""){
-                alert("没有录入养老保险下限!");
-                return false;
-            }
-
-
-            if (document.all('form1:medicare_unit').value==""){
-                alert("没有录入医疗保险单位交费比例!");
-                return false;
-            }
-            if (document.all('form1:medicare_person').value==""){
-                alert("没有录入医疗保险个人交费比例!");
-                return false;
-            }
-            if (document.all('form1:medicare_max').value==""){
-                alert("没有录入医疗保险上限!");
-                return false;
-            }
-            if (document.all('form1:medicare_min').value==""){
-                alert("没有录入医疗保险下限!");
-                return false;
-            }
-
-
-            if (document.all('form1:unemployment_unit').value==""){
-                alert("没有录入失业保险单位交费比例!");
-                return false;
-            }
-            if (document.all('form1:unemployment_person').value==""){
-                alert("没有录入失业保险单位个人交费比例!");
-                return false;
-            }
-            if (document.all('form1:unemp_max').value==""){
-                alert("没有录入失业保险上限!");
-                return false;
-            }
-            if (document.all('form1:unemp_min').value==""){
-                alert("没有录入失业保险下限!");
-                return false;
-            }
-
-            if (document.all('form1:compo_unit').value==""){
-                alert("没有录入工伤保险单位交费比例!");
-                return false;
-            }
-            if (document.all('form1:compo_max').value==""){
-                alert("没有录入工伤保险上限!");
-                return false;
-            }
-            if (document.all('form1:compo_min').value==""){
-                alert("没有录入工伤保险下限!");
-                return false;
-            }
-
-            if (document.all('form1:housing_unit').value==""){
-                alert("没有录入住房公积金单位交费比例!");
-                return false;
-            }
-            if (document.all('form1:compo_max').value==""){
-                alert("没有录入工伤保险上限!");
-                return false;
-            }
-            if (document.all('form1:compo_min').value==""){
-                alert("没有录入工伤保险下限!");
-                return false;
-            }
-
-            if (document.all('form1:housing_person').value==""){
-                alert("没有录入住房公积金个人交费比例!");
-                return false;
-            }
-            if (document.all('form1:housing_max').value==""){
-                alert("没有录入住房公积金上限!");
-                return false;
-            }
-            if (document.all('form1:housing_min').value==""){
-                alert("没有录入住房公积金下限!");
-                return false;
-            }
-
-            return true; 
+			
+            var wrong=false;
+            var ratetr=$(".table03 tr");
+            ratetr.each(function(tr, trdate){
+            	if(tr>1 && !wrong){
+            		var ratetd=$(trdate).find("td:visible");
+            		var insname=null;
+            		ratetd.each(function(td, tddate){
+            			if(td==0){
+            				insname=$(tddate).html();
+            			}else if(td==1){
+            				if($(tddate).find("select").val()==-1){
+            					alert("请选择"+insname+"计算精度");
+            					wrong=true;
+            					return false;
+            				}
+            			}else if(td>1){
+            				var v=$(tddate).find("input").val().trim();
+            				$(tddate).find("input").val(v);
+            				var title="";
+            				if(td==2){
+            					title="单位交费比例";
+            				}else if(td==3){
+            					title="个人交费比例";            					
+            				}else if(td==4){
+            					title="上限";            					
+            				}else if(td==5){
+            					title="下限";            					
+            				}
+            				if(v=='' || isNaN(v)){
+            					alert(insname+title+"应为数字");
+            					wrong=true;
+            					return false;
+            				}
+            			}
+            		});
+            	}
+            });
+            return !wrong;
         }
    </script>
 
@@ -178,20 +97,20 @@
             </tr>
 
             <tr>
-                <td id='c02020001' width="100" align="center" class="td_top">单位交费比例(%)</td>
-                <td id='c02020001' width="100" align="center" class="td_top">个人交费比例(%)</td>
-                <td id='c02020001' width="100" align="center" class="td_top">上限<br>(元)</td>
-                <td id='c02020001' width="100" align="center" class="td_top">下限<br>(元)</td>
+                <td id='c02020001' width="100" align="center" class="td_top">单位交费比例</td>
+                <td id='c02020001' width="100" align="center" class="td_top">个人交费比例</td>
+                <td id='c02020001' width="100" align="center" class="td_top">上限(元)</td>
+                <td id='c02020001' width="100" align="center" class="td_top">下限(元)</td>
 
-                <td id='c02020002' width="100" align="center" class="td_top">单位交费比例(%)</td>
-                <td id='c02020002' width="100" align="center" class="td_top">个人交费比例(%)</td>
-                <td id='c02020002' width="100" align="center" class="td_top">上限<br>(元)</td>
-                <td id='c02020002' width="100" align="center" class="td_top">下限<br>(元)</td>
+                <td id='c02020002' width="100" align="center" class="td_top">单位交费比例</td>
+                <td id='c02020002' width="100" align="center" class="td_top">个人交费比例</td>
+                <td id='c02020002' width="100" align="center" class="td_top">上限(元)</td>
+                <td id='c02020002' width="100" align="center" class="td_top">下限(元)</td>
 
-                <td align="center" width="100" id='c02020003' class="td_top">单位交费比例(%)</td>
-                <td align="center" width="100" id='c02020003' class="td_top">个人交费比例(%)</td>
-                <td align="center" width="100" id='c02020003'class="td_top">上限<br>(元)</td>
-                <td align="center" width="100" id='c02020003' class="td_top">下限<br>(元)</td>
+                <td align="center" width="100" id='c02020003' class="td_top">单位交费比例</td>
+                <td align="center" width="100" id='c02020003' class="td_top">个人交费比例</td>
+                <td align="center" width="100" id='c02020003'class="td_top">上限(元)</td>
+                <td align="center" width="100" id='c02020003' class="td_top">下限(元)</td>
            </tr>
 
             <tr>
@@ -199,7 +118,7 @@
                 <td width="80px">
             </f:verbatim>
                     <h:selectOneMenu id="precise_end"  value="#{wage_unitBB.unit.precise_end}">
-                        <c:selectItem itemValue="" itemLabel="--请选择--"></c:selectItem>
+                        <c:selectItem itemValue="-1" itemLabel="--请选择--"></c:selectItem>
                         <c:selectItem itemValue="0" itemLabel="元"></c:selectItem>
                         <c:selectItem itemValue="1" itemLabel="角"></c:selectItem>
                         <c:selectItem itemValue="2" itemLabel="分"></c:selectItem>
@@ -274,7 +193,7 @@
                 <td>
 </f:verbatim>
                     <h:selectOneMenu id="precise_med"  value="#{wage_unitBB.unit.precise_med}">
-                        <c:selectItem itemValue="" itemLabel="--请选择--"></c:selectItem>
+                        <c:selectItem itemValue="-1" itemLabel="--请选择--"></c:selectItem>
                         <c:selectItem itemValue="0" itemLabel="元"></c:selectItem>
                         <c:selectItem itemValue="1" itemLabel="角"></c:selectItem>
                         <c:selectItem itemValue="2" itemLabel="分"></c:selectItem>
@@ -349,7 +268,7 @@
                 <td>
 </f:verbatim>
                     <h:selectOneMenu id="precise_unemployment"  value="#{wage_unitBB.unit.precise_unemployment}">
-                        <c:selectItem itemValue="" itemLabel="--请选择--"></c:selectItem>
+                        <c:selectItem itemValue="-1" itemLabel="--请选择--"></c:selectItem>
                         <c:selectItem itemValue="0" itemLabel="元"></c:selectItem>
                         <c:selectItem itemValue="1" itemLabel="角"></c:selectItem>
                         <c:selectItem itemValue="2" itemLabel="分"></c:selectItem>
@@ -423,7 +342,7 @@
                 <td>
  </f:verbatim>
                     <h:selectOneMenu id="precise_procreate"  value="#{wage_unitBB.unit.precise_procreate}">
-                        <c:selectItem itemValue="" itemLabel="--请选择--"></c:selectItem>
+                        <c:selectItem itemValue="-1" itemLabel="--请选择--"></c:selectItem>
                         <c:selectItem itemValue="0" itemLabel="元"></c:selectItem>
                         <c:selectItem itemValue="1" itemLabel="角"></c:selectItem>
                         <c:selectItem itemValue="2" itemLabel="分"></c:selectItem>
@@ -491,7 +410,7 @@
                 <td>
 </f:verbatim>
                     <h:selectOneMenu id="precise_compo"  value="#{wage_unitBB.unit.precise_compo}">
-                        <c:selectItem itemValue="" itemLabel="--请选择--"></c:selectItem>
+                        <c:selectItem itemValue="-1" itemLabel="--请选择--"></c:selectItem>
                         <c:selectItem itemValue="0" itemLabel="元"></c:selectItem>
                         <c:selectItem itemValue="1" itemLabel="角"></c:selectItem>
                         <c:selectItem itemValue="2" itemLabel="分"></c:selectItem>
@@ -559,7 +478,7 @@
                 <td>
 </f:verbatim>
                     <h:selectOneMenu id="precise_housing"  value="#{wage_unitBB.unit.precise_housing}">
-                        <c:selectItem itemValue="" itemLabel="--请选择--"></c:selectItem>
+                        <c:selectItem itemValue="-1" itemLabel="--请选择--"></c:selectItem>
                         <c:selectItem itemValue="0" itemLabel="元"></c:selectItem>
                         <c:selectItem itemValue="1" itemLabel="角"></c:selectItem>
                         <c:selectItem itemValue="2" itemLabel="分"></c:selectItem>
