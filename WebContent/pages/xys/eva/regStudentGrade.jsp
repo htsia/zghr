@@ -21,7 +21,7 @@
        <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <tr>
             <td class="td_title"><img src="/images/tips.gif">
-                 绩效管理 ->录入学生评价
+                 绩效管理 ->录入其他评价
            </td>
         </tr>
     </table>

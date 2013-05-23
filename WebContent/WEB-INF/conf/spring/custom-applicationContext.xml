@@ -117,7 +117,7 @@
     </bean>
     
     
-    <!-- 考勤管理
+    <!-- 考勤管理-->
     <bean id="attbusidao" class="com.hr319wg.custom.attence.dao.AttBusiDAO">
 		<property name="hibernatetemplate" ref="hibernateTemplate"/>
     </bean>
@@ -165,7 +165,6 @@
     <property name="activitiToolService" ref="activitiToolService"/>
     <property name="attBusiService" ref="attBusiService"/>
     </bean>
-     -->
     
     <bean id="user_loginBB" class="com.hr319wg.user.web.LoginBackingBean">
     <property name="userucc" ref="user_userManageUccImpl"/>    

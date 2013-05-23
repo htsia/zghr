@@ -49,8 +49,8 @@
             /WEB-INF/conf/jsf/coalsafe-faces-config.xml,
             /WEB-INF/conf/jsf/college-faces-config.xml,
             /WEB-INF/conf/jsf/title-faces-config.xml,
-            /WEB-INF/conf/jsf/custom-faces-config.xml
-<!--             /WEB-INF/conf/jsf/xys-faces-config.xml -->
+            /WEB-INF/conf/jsf/custom-faces-config.xml,
+            /WEB-INF/conf/jsf/xys-faces-config.xml
         </param-value>
         <description>Comma separated list of URIs of (additional) faces config files.
             (e.g. /WEB-INF/my-config.xml)
@@ -105,8 +105,8 @@
             /WEB-INF/conf/jsf/coalsafe-tiles.xml,
             /WEB-INF/conf/jsf/college-tiles.xml,
             /WEB-INF/conf/jsf/title-tiles.xml,
-            /WEB-INF/conf/jsf/custom-tiles.xml
-<!--             /WEB-INF/conf/jsf/xys-tiles.xml -->
+            /WEB-INF/conf/jsf/custom-tiles.xml,
+            /WEB-INF/conf/jsf/xys-tiles.xml
         </param-value>
     </context-param>
 
