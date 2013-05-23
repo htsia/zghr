@@ -31,49 +31,44 @@ import com.hr319wg.wage.util.WageFunctionTools;
 
 public class WageComputeServiceByExtend extends WageComputeService {
 
-	  public Vector computePerson(boolean isTry, String setId, String dateId, String[] personId, String payoffDate, String unitId)
-	    throws SysException
-	  {
-	    this.getWagesetdao().initProcess(setId);
-	    try
-	    {
-	      batchHandleStandardItem(isTry, setId, personId, payoffDate);
-	    } catch (SysException e) {
-	      throw new RollbackableException("", "计算标准项出错；" + e.getSysMsg().getMessage(), e, getClass());
-	    }
+	public Vector computePerson(boolean isTry, String setId, String dateId, String[] personId, String payoffDate, String unitId) throws SysException {
+		this.getWagesetdao().initProcess(setId);
+		try {
+			batchHandleStandardItem(isTry, setId, personId, payoffDate);
+		} catch (SysException e) {
+			throw new RollbackableException("", "计算标准项出错；" + e.getSysMsg().getMessage(), e, getClass());
+		}
 
-	    Vector vt = null;
-	    try {
-	      vt = batchHandleFormulaItem(isTry, setId, dateId, personId, payoffDate, unitId, false);
-	    }
-	    catch (RollbackableException be) {
-	      throw be;
-	    } catch (SysException e) {
-	      throw new RollbackableException("", "计算公式项出错；" + e.getSysMsg().getMessage(), e, getClass());
-	    }
+		Vector vt = null;
+		try {
+			vt = batchHandleFormulaItem(isTry, setId, dateId, personId, payoffDate, unitId, false);
+		} catch (RollbackableException be) {
+			throw be;
+		} catch (SysException e) {
+			throw new RollbackableException("", "计算公式项出错；" + e.getSysMsg().getMessage(), e, getClass());
+		}
 
-	    try
-	    {
-	      computeAnnu(isTry, setId, dateId, personId, payoffDate, unitId);
-	    } catch (SysException e) {
-	      throw new RollbackableException("", "计算年金出错；" + e.getSysMsg().getMessage(), e, getClass());
-	    }
+		try {
+			computeAnnu(isTry, setId, dateId, personId, payoffDate, unitId);
+		} catch (SysException e) {
+			throw new RollbackableException("", "计算年金出错；" + e.getSysMsg().getMessage(), e, getClass());
+		}
 
-	    try
-	    {
-	      if ("1".equals(Constants.WAGE_DATA_FORMAT))
-	        adjustDataFormat(setId);
-	    }
-	    catch (SysException e) {
-	      throw new RollbackableException("", "调整格式出错；" + e.getSysMsg().getMessage(), e, getClass());
-	    }
+		try {
+			if ("1".equals(Constants.WAGE_DATA_FORMAT))
+				adjustDataFormat(setId);
+		} catch (SysException e) {
+			throw new RollbackableException("", "调整格式出错；" + e.getSysMsg().getMessage(), e, getClass());
+		}
 
-	    String sql = "update wage_payoff set cacl_date='" + CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss") + "' where payoff_id='" + dateId + "'";
-	    this.getApi().executeSql(sql);
-	    return vt;
-	  }
+		String sql = "update wage_payoff set cacl_date='" + CommonFuns.getSysDate("yyyy-MM-dd HH:mm:ss") + "' where payoff_id='" + dateId + "'";
+		this.getApi().executeSql(sql);
+		return vt;
+	}
+
 	/**
 	 * 计算标准表,一次把该帐套中所有标准表计算完成
+	 * 
 	 * @param isTry
 	 * @param setId
 	 * @param personId
@@ -82,18 +77,18 @@ public class WageComputeServiceByExtend extends WageComputeService {
 	 */
 	@SuppressWarnings("unchecked")
 	public void batchHandleStandardItem(boolean isTry, String setId, String[] personId, String payoffDate) throws SysException {
-		//List<WageSetItemBO> setStdItemList = this.getWagesetitemdao().querySetItemByType(setId, "0");//要查表的工资项目信息
-		List<WageSetItemBO> setStdItemList = this.getWagesetitemdao().getHibernatetemplate()
-				.find("from WageSetItemBO where item_type = '0' and set_id = '"+setId+"' order by count_sequence");
-		if ((setStdItemList != null) && (setStdItemList.size() > 0)) { //有元素才计算
-			List<WageStdItemBO> stdItemList = new ArrayList<WageStdItemBO>(); //当前帐套中的所有工资项目
-			List<String> stdValue = new ArrayList();//记录要查表的项目是根据哪两个其它项目查出来的
+		// List<WageSetItemBO> setStdItemList =
+		// this.getWagesetitemdao().querySetItemByType(setId, "0");//要查表的工资项目信息
+		List<WageSetItemBO> setStdItemList = this.getWagesetitemdao().getHibernatetemplate().find("from WageSetItemBO where item_type = '0' and set_id = '" + setId + "' order by count_sequence");
+		if ((setStdItemList != null) && (setStdItemList.size() > 0)) { // 有元素才计算
+			List<WageStdItemBO> stdItemList = new ArrayList<WageStdItemBO>(); // 当前帐套中的所有工资项目
+			List<String> stdValue = new ArrayList();// 记录要查表的项目是根据哪两个其它项目查出来的
 
-			List<String> sqlList = new ArrayList<String>();//保存要执行的SQL，最后一起执行
+			List<String> sqlList = new ArrayList<String>();// 保存要执行的SQL，最后一起执行
 
-			HashMap numberList = new HashMap();//进一步把stdValue转换成对象,x/y轴对应的字段对象
+			HashMap numberList = new HashMap();// 进一步把stdValue转换成对象,x/y轴对应的字段对象
 
-			StringBuffer select = new StringBuffer(" select A001.ID ");//查询本帐套人员的SQL
+			StringBuffer select = new StringBuffer(" select A001.ID ");// 查询本帐套人员的SQL
 			StringBuffer from = new StringBuffer(" from wage_set_pers_r left join A001 ");
 			from.append(" on wage_set_pers_r.ID=A001.ID");
 
@@ -105,21 +100,19 @@ public class WageComputeServiceByExtend extends WageComputeService {
 
 			int count = setStdItemList.size();
 
-			for (int i = 0; i < count; i++) {//循环处理要查表的工资项目
-				WageSetItemBO setStdItem = (WageSetItemBO)setStdItemList.get(i);
+			for (int i = 0; i < count; i++) {// 循环处理要查表的工资项目
+				WageSetItemBO setStdItem = (WageSetItemBO) setStdItemList.get(i);
 				String stdId = setStdItem.getLinkId();
-				//对应标准表
-				WageStandardBO wsbo = (WageStandardBO)this.getWagestandarddao().findBoById(WageStandardBO.class, stdId);
-				//适用月份不是本月不处理
-				if ((wsbo.getApplyMonth() != null) && (!"".equals(wsbo.getApplyMonth())) && (wsbo.getApplyMonth().indexOf("-1") < 0) && (payoffDate != null) && (payoffDate.length() >= 7))
-				{
+				// 对应标准表
+				WageStandardBO wsbo = (WageStandardBO) this.getWagestandarddao().findBoById(WageStandardBO.class, stdId);
+				// 适用月份不是本月不处理
+				if ((wsbo.getApplyMonth() != null) && (!"".equals(wsbo.getApplyMonth())) && (wsbo.getApplyMonth().indexOf("-1") < 0) && (payoffDate != null) && (payoffDate.length() >= 7)) {
 					String month = payoffDate.substring(5, 7);
-					if (wsbo.getApplyMonth().indexOf(month) < 0)
-					{
+					if (wsbo.getApplyMonth().indexOf(month) < 0) {
 						continue;
 					}
 				}
-				//处理标准表中设置的过虑条件
+				// 处理标准表中设置的过虑条件
 				if ((wsbo.getFilterField() != null) && (!"".equals(wsbo.getFilterField())) && (!"-1".equals(wsbo.getFilterField()))) {
 					if (from.indexOf("A796") < 0) {
 						from.append(" left join A796 B on B.id=A001.id");
@@ -135,36 +128,33 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				String h_item = "";
 				String v_item = "";
 				int len = tmp.size();
-				for (int k = 0; k < len; k++) {//处理标准表的三个指标：纵，横，结果
-					WageStdItemBO stdItem = (WageStdItemBO)tmp.get(k);
-					if ("2".equals(stdItem.getType())) {//2横坐标
+				for (int k = 0; k < len; k++) {// 处理标准表的三个指标：纵，横，结果
+					WageStdItemBO stdItem = (WageStdItemBO) tmp.get(k);
+					if ("2".equals(stdItem.getType())) {// 2横坐标
 						r_item = stdItem.getField();
-					} else if ("0".equals(stdItem.getType())) {//0指标项,结果要保存的字段
+					} else if ("0".equals(stdItem.getType())) {// 0指标项,结果要保存的字段
 						h_item = h_item + stdItem.getField() + ",";
 						InfoItemBO itembo = SysCacheTool.findInfoItem("", stdItem.getField());
-						if ((("2".equals(itembo.getItemDataType())) || ("1".equals(itembo.getItemDataType()))) && 
-								(numberList.get(itembo.getItemId()) == null)) {
+						if ((("2".equals(itembo.getItemDataType())) || ("1".equals(itembo.getItemDataType()))) && (numberList.get(itembo.getItemId()) == null)) {
 							numberList.put(itembo.getItemId(), itembo);
 						}
-					}
-					else if ("1".equals(stdItem.getType())) {//1竖坐标
+					} else if ("1".equals(stdItem.getType())) {// 1竖坐标
 						v_item = v_item + stdItem.getField() + ",";
 						InfoItemBO itembo = SysCacheTool.findInfoItem("", stdItem.getField());
-						if ((("2".equals(itembo.getItemDataType())) || ("1".equals(itembo.getItemDataType()))) && 
-								(numberList.get(itembo.getItemId()) == null)) {
+						if ((("2".equals(itembo.getItemDataType())) || ("1".equals(itembo.getItemDataType()))) && (numberList.get(itembo.getItemId()) == null)) {
 							numberList.put(itembo.getItemId(), itembo);
 						}
 					}
 
 					stdItemList.add(stdItem);
 				}
-				stdValue.add(r_item+":"+stdId + "|" + h_item + "|" + v_item);
-			}//end for，预处理每个要查表的工资顶结束
+				stdValue.add(r_item + ":" + stdId + "|" + h_item + "|" + v_item);
+			}// end for，预处理每个要查表的工资顶结束
 
 			int size = stdItemList.size();
 
 			for (int j = 0; j < size; j++) {
-				WageStdItemBO stdItem = (WageStdItemBO)stdItemList.get(j);
+				WageStdItemBO stdItem = (WageStdItemBO) stdItemList.get(j);
 				if (select.indexOf(stdItem.getField()) < 0) {
 					select.append("," + stdItem.getField());
 					InfoSetBO infoset = SysCacheTool.findInfoSet(stdItem.getTable());
@@ -175,14 +165,12 @@ public class WageComputeServiceByExtend extends WageComputeService {
 						if (InfoSetBO.RS_TYPE_MANY.equals(infoset.getSet_rsType())) {
 							from.append(" left join (select ID," + stdItem.getField() + " from " + stdItem.getTable() + " where " + stdItem.getTable() + "000='" + "00901" + "') A" + j);
 							from.append(" on A" + j + ".ID=A001.ID");
-						}
-						else if (!"A001".equals(stdItem.getTable())) {
+						} else if (!"A001".equals(stdItem.getTable())) {
 							from.append(" left join ").append(stdItem.getTable());
 							from.append(" on  " + stdItem.getTable() + ".ID=A001.ID");
 						}
 
-					}
-					else if (InfoSetBO.RS_TYPE_MANY.equals(infoset.getSet_rsType())) {
+					} else if (InfoSetBO.RS_TYPE_MANY.equals(infoset.getSet_rsType())) {
 						int index = from.indexOf("from " + stdItem.getTable());
 						from.insert(index, "," + stdItem.getField() + " ");
 					}
@@ -196,8 +184,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 			if ("ORACLE".equals(Constants.DB_TYPE)) {
 				createTableSql.append("create table ").append(stdCountTable).append(" as ");
 				createTableSql.append(select.toString()).append(from.toString()).append(where.toString());
-			}
-			else {
+			} else {
 				createTableSql.append("select * into ").append(stdCountTable).append(" from (");
 				createTableSql.append(select.toString()).append(from.toString()).append(where.toString());
 				createTableSql.append(") aaa");
@@ -216,31 +203,28 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				while (it.hasNext()) {
 					sqlList.add("update " + stdCountTable + " set changed=0");
 					WageStdItemBO sibo = (WageStdItemBO) it.next();
-					WageStandardBO wsbo = (WageStandardBO)this.getWagestandarddao().findBoById(WageStandardBO.class, sibo.getStdId());
+					WageStandardBO wsbo = (WageStandardBO) this.getWagestandarddao().findBoById(WageStandardBO.class, sibo.getStdId());
 					if (sibo != null) {
 						List codeList = SysCacheTool.queryCodeItemBySetId(sibo.getCodeSetId());
 						for (int k = 0; k < codeList.size(); k++) {
-							CodeItemBO cb = (CodeItemBO)codeList.get(k);
+							CodeItemBO cb = (CodeItemBO) codeList.get(k);
 							String codeSql = "";
 							if ("SQL SERVER".equals(Constants.DB_TYPE)) {
 								if ((cb.getHighValue() != null) && (!"".equals(cb.getHighValue()))) {
-									codeSql = "update " + stdCountTable + " set changed=1," + sibo.getField() + "='" + cb.getItemId() + "' where changed=0 and cast(" + sibo.getField()  + " as numeric(20,2))>=" + cb.getLowValue() + " and cast(" + sibo.getField()  + " as numeric(20,2))<" + cb.getHighValue();
-								}
-								else {
-									codeSql = "update " + stdCountTable + " set changed=1," +  sibo.getField()  + "='" + cb.getItemId() + "' where changed=0 and cast(" + sibo.getField()  + " as numeric(20,2))>=" + cb.getLowValue();
+									codeSql = "update " + stdCountTable + " set changed=1," + sibo.getField() + "='" + cb.getItemId() + "' where changed=0 and cast(" + sibo.getField() + " as numeric(20,2))>=" + cb.getLowValue() + " and cast(" + sibo.getField() + " as numeric(20,2))<" + cb.getHighValue();
+								} else {
+									codeSql = "update " + stdCountTable + " set changed=1," + sibo.getField() + "='" + cb.getItemId() + "' where changed=0 and cast(" + sibo.getField() + " as numeric(20,2))>=" + cb.getLowValue();
 								}
 
+							} else if ((cb.getHighValue() != null) && (!"".equals(cb.getHighValue()))) {
+								codeSql = "update " + stdCountTable + " set changed=1," + sibo.getField() + "='" + cb.getItemId() + "' where changed=0 and 0.0+" + sibo.getField() + ">=" + cb.getLowValue() + " and 0.0+" + sibo.getField() + "<" + cb.getHighValue();
+							} else {
+								codeSql = "update " + stdCountTable + " set changed=1," + sibo.getField() + "='" + cb.getItemId() + "' where changed=0 and 0.0+" + sibo.getField() + ">=" + cb.getLowValue();
 							}
-							else if ((cb.getHighValue() != null) && (!"".equals(cb.getHighValue()))) {
-								codeSql = "update " + stdCountTable + " set changed=1," + sibo.getField()  + "='" + cb.getItemId() + "' where changed=0 and 0.0+" + sibo.getField()  + ">=" + cb.getLowValue() + " and 0.0+" + sibo.getField()  + "<" + cb.getHighValue();
-							}
-							else {
-								codeSql = "update " + stdCountTable + " set changed=1," + sibo.getField()  + "='" + cb.getItemId() + "' where changed=0 and 0.0+" + sibo.getField()  + ">=" + cb.getLowValue();
-							}
-						      
+
 							if ((wsbo.getFilterField() != null) && (!"".equals(wsbo.getFilterField()))) {
 								codeSql += " and " + wsbo.getFilterSql();
-					        }
+							}
 							sqlList.add(codeSql);
 						}
 					}
@@ -250,7 +234,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 			String field = "";
 			for (String emn : stdValue) {
 				String key = emn.split(":")[0];
-				if(!field.contains(key)){
+				if (!field.contains(key)) {
 					field = field + key + ",";
 				}
 				String value = emn.split(":")[1];
@@ -259,7 +243,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 
 				String h_item = rs[1];
 				String v_item = rs[2];
-				WageStandardBO wsbo = (WageStandardBO)this.getWagestandarddao().findBoById(WageStandardBO.class, stdId);
+				WageStandardBO wsbo = (WageStandardBO) this.getWagestandarddao().findBoById(WageStandardBO.class, stdId);
 				if ((h_item != null) && (h_item.length() > 0)) {
 					h_item = h_item.substring(0, h_item.length() - 1);
 					h_item = h_item.replaceAll(",", " || ',' || tmp.");
@@ -281,7 +265,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				}
 
 				StringBuffer tmpsql = new StringBuffer("update ").append(stdCountTable).append("  set ").append(key).append("=(").append(sb).append(") where exists (").append(sb).append(")");
-				
+
 				sqlList.add(tmpsql.toString());
 
 				if ((wsbo.getSaveAsField() != null) && (!"".equals(wsbo.getSaveAsField()))) {
@@ -290,8 +274,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 					if (InfoSetBO.RS_TYPE_SINGLE.equals(isb.getSet_rsType())) {
 						String write = "update " + isb.getSetId() + "  set " + iib.getItemId() + "=(select " + key + " from " + stdCountTable + " bbb  where " + isb.getSetId() + ".id=bbb.id) where id in (select id from " + stdCountTable + ")";
 						sqlList.add(write);
-					}
-					else {
+					} else {
 						String write = "update " + isb.getSetId() + "  set " + iib.getItemId() + "=(select " + key + " from " + stdCountTable + " bbb  where " + isb.getSetId() + ".id=bbb.id) where id in (select id from " + stdCountTable + ") and " + isb.getSetId() + "000='00901'";
 						sqlList.add(write);
 					}
@@ -317,16 +300,13 @@ public class WageComputeServiceByExtend extends WageComputeService {
 					updateCountTable.append(" where (").append(idStr).append(")");
 				else
 					updateCountTable.append(" where exists ").append("(").append("select " + field + " from " + stdCountTable + " where " + tmpTable + ".ID=" + stdCountTable + ".ID").append(")");
-			}
-			else
-			{
+			} else {
 				String[] fs = field.split(",");
 				String set = "";
 				for (int i = 0; i < fs.length; i++) {
 					if ("".equals(set)) {
 						set = fs[i] + "=" + stdCountTable + "." + fs[i];
-					}
-					else {
+					} else {
 						set = set + "," + fs[i] + "=" + stdCountTable + "." + fs[i];
 					}
 				}
@@ -352,16 +332,13 @@ public class WageComputeServiceByExtend extends WageComputeService {
 					updateRlatTable.append(" where (" + rlaTable + "." + "A815700" + "='" + setId + "' and " + idStr + ")");
 				else
 					updateRlatTable.append(" where(" + rlaTable + "." + "A815700" + "='" + setId + "')");
-			}
-			else
-			{
+			} else {
 				String[] fs = field.split(",");
 				String set = "";
 				for (int i = 0; i < fs.length; i++) {
 					if ("".equals(set)) {
 						set = fs[i] + "=" + stdCountTable + "." + fs[i];
-					}
-					else {
+					} else {
 						set = set + "," + fs[i] + "=" + stdCountTable + "." + fs[i];
 					}
 				}
@@ -381,50 +358,42 @@ public class WageComputeServiceByExtend extends WageComputeService {
 			int index = 0;
 			try {
 				for (; index < sqlList.size(); index++)
-					this.getApi().executeSql((String)sqlList.get(index));
-			}
-			catch (SysException e) {
+					this.getApi().executeSql((String) sqlList.get(index));
+			} catch (SysException e) {
 				throw new RollbackableException("计算标准表出错");
 			} finally {
-				if (this.getApi().isDBTable(stdCountTable)){
+				if (this.getApi().isDBTable(stdCountTable)) {
 					this.getApi().executeSql(dropsql);
 				}
 			}
 		}
 	}
 
-
-
-
-	//计算公式项
-	public Vector batchHandleFormulaItem(boolean isTry, String setId, String dateId, String[] personId, String payoffDate, String unitId, boolean isInit) throws SysException
-	{
+	// 计算公式项
+	public Vector batchHandleFormulaItem(boolean isTry, String setId, String dateId, String[] personId, String payoffDate, String unitId, boolean isInit) throws SysException {
 		try {
-			//所有查表项目的字段取出，备用
-			List<WageSetItemBO> setStdItemList = this.getWagesetitemdao().getHibernatetemplate()
-					.find("from WageSetItemBO where item_type = '0' and set_id = '"+setId+"' order by count_sequence");
+			// 所有查表项目的字段取出，备用
+			List<WageSetItemBO> setStdItemList = this.getWagesetitemdao().getHibernatetemplate().find("from WageSetItemBO where item_type = '0' and set_id = '" + setId + "' order by count_sequence");
 			List<String> standItemFields = new ArrayList<String>();
-			for(WageSetItemBO i : setStdItemList){
+			for (WageSetItemBO i : setStdItemList) {
 				standItemFields.add(i.getField());
 			}
-			
+
 			String maxItem = this.getWageapi().getMaxforDepSum(setId);
-			List formualList = null;//取出所有公式
+			List formualList = null;// 取出所有公式
 			if (!isInit) {
 				formualList = this.getWagesetitemdao().queryFormulaBySetId(setId);
-			}
-			else {
+			} else {
 				formualList = this.getWagesetinitdao().getFormularBySetId(setId);
 			}
 
-			boolean computeTax = false;//是否计算税
+			boolean computeTax = false;// 是否计算税
 			WageSetBO sb = this.getWagesetdao().findSetBySetId(setId);
-			if (((sb.getCessID() != null) && (!"".equals(sb.getCessID()))) || ((sb.getCessID2() != null) && (!"".equals(sb.getCessID2()))))
-			{
+			if (((sb.getCessID() != null) && (!"".equals(sb.getCessID()))) || ((sb.getCessID2() != null) && (!"".equals(sb.getCessID2())))) {
 				computeTax = true;
 			}
 
-			if ((formualList != null) && (formualList.size() > 0)) {//有公式时计算
+			if ((formualList != null) && (formualList.size() > 0)) {// 有公式时计算
 				List expressHash = new ArrayList();
 				List flaCountOrder = new ArrayList();
 				List fieldList = new ArrayList();
@@ -443,28 +412,23 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				WageFormulaTools fCommonFuns = new WageFormulaTools();
 				Hashtable consttable = fCommonFuns.queryConstTable();
 				boolean calcYearTax = false;
-				for (int i = 0; i < count; i++) {//循环每一个公式，填充公式中的变量,生成参与计算的字段列表
-					WageFormulaBO formula = (WageFormulaBO)formualList.get(i);
-					try
-					{
+				for (int i = 0; i < count; i++) {// 循环每一个公式，填充公式中的变量,生成参与计算的字段列表
+					WageFormulaBO formula = (WageFormulaBO) formualList.get(i);
+					try {
 						String express = fCommonFuns.formulaConstSet(formula.getExpress(), consttable);
 
-						express = express.replaceAll("~", "'")
-								.replaceAll("GetDays\\(_A815.A815701\\)", "GetDays('"+payoffDate+"')")
-								.replaceAll("GetMonth\\(_A815.A815701\\)", "GetMonth('"+payoffDate+"')")
-								.replaceAll("GetYear\\(_A815.A815701\\)", "GetYear('"+payoffDate+"')")
-								.replaceAll("GetWorkDays\\(_A815.A815701\\)", "GetWorkDays('"+payoffDate+"')");
-						int index =express.indexOf("MaxIf(");
-						while(index!=-1){
-							String temp=express.substring(index);
-							int lkindex=temp.indexOf("(");
-							int dindex=temp.indexOf(",");
-							int rkindex=temp.indexOf(")");
-							String field=temp.substring(lkindex+1, dindex);
-							String num=temp.substring(dindex+1, rkindex);
-							String temp1="case when 0.0+"+field+" >= 0.0+"+num+" then 0.0+"+num+" else 0.0+"+field+" end";
-							express=express.substring(0, index)+temp1+temp.substring(rkindex+1);
-							index=express.indexOf("MaxIf(");
+						express = express.replaceAll("~", "'").replaceAll("GetDays\\(_A815.A815701\\)", "GetDays('" + payoffDate + "')").replaceAll("GetMonth\\(_A815.A815701\\)", "GetMonth('" + payoffDate + "')").replaceAll("GetYear\\(_A815.A815701\\)", "GetYear('" + payoffDate + "')").replaceAll("GetWorkDays\\(_A815.A815701\\)", "GetWorkDays('" + payoffDate + "')");
+						int index = express.indexOf("MaxIf(");
+						while (index != -1) {
+							String temp = express.substring(index);
+							int lkindex = temp.indexOf("(");
+							int dindex = temp.indexOf(",");
+							int rkindex = temp.indexOf(")");
+							String field = temp.substring(lkindex + 1, dindex);
+							String num = temp.substring(dindex + 1, rkindex);
+							String temp1 = "case when 0.0+" + field + " >= 0.0+" + num + " then 0.0+" + num + " else 0.0+" + field + " end";
+							express = express.substring(0, index) + temp1 + temp.substring(rkindex + 1);
+							index = express.indexOf("MaxIf(");
 						}
 						formula.setExpress(express);
 						expressHash.add(formula);
@@ -485,12 +449,12 @@ public class WageComputeServiceByExtend extends WageComputeService {
 					} catch (Exception e) {
 						throw new RollbackableException("", "计算公式'" + formula.getName() + "'时出错；", e, getClass());
 					}
-				}//循环每一个公式，填充公式中的变量完成
+				}// 循环每一个公式，填充公式中的变量完成
 
-				if (calcYearTax) {//年税
+				if (calcYearTax) {// 年税
 					boolean have = false;
 					for (int i = 0; i < fieldList.size(); i++) {
-						if (((String)fieldList.get(i)).equals("_A815.A815713")) {
+						if (((String) fieldList.get(i)).equals("_A815.A815713")) {
 							have = true;
 							break;
 						}
@@ -500,8 +464,8 @@ public class WageComputeServiceByExtend extends WageComputeService {
 					}
 
 				}
-				
-				//生成查找帐套中人员ID的SQL
+
+				// 生成查找帐套中人员ID的SQL
 				count = fieldList.size();
 				StringBuffer select = new StringBuffer(" select A001.ID ");
 				StringBuffer from = new StringBuffer(" from  (select * from wage_set_pers_r").append(" where wage_set_pers_r.A815700='" + setId + "') ");
@@ -518,12 +482,11 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				String[] allField = new String[count];
 				for (int i = 0; i < count; i++) {
 					try {
-						String[] tmp = ((String)fieldList.get(i)).split("\\.");
+						String[] tmp = ((String) fieldList.get(i)).split("\\.");
 						String infoSetId = tmp[0].substring(1);
 						String field = tmp[1];
 
-						if ((infoSetId.equals("A815PREV")) && 
-								(!field.endsWith("PREV"))) {
+						if ((infoSetId.equals("A815PREV")) && (!field.endsWith("PREV"))) {
 							field = field + "PREV";
 						}
 
@@ -532,8 +495,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 							InfoItemBO ibo = SysCacheTool.findInfoItem("", field.replaceAll("PREV", ""));
 							if ("6".equals(ibo.getItemDataType())) {
 								select.append(",isnull(" + field + ",'0') as " + field);
-							}
-							else {
+							} else {
 								select.append(",isnull(" + field + ",'0.0') as " + field);
 							}
 							InfoSetBO infoset = null;
@@ -542,68 +504,54 @@ public class WageComputeServiceByExtend extends WageComputeService {
 							else {
 								infoset = SysCacheTool.findInfoSet(infoSetId);
 							}
-							if (!"A815".equals(infoSetId))
-							{
+							if (!"A815".equals(infoSetId)) {
 								if (from.indexOf(infoSetId) < 0) {
 									if (InfoSetBO.RS_TYPE_MANY.equals(infoset.getSet_rsType())) {
 										if (infoSetId.equals("A815PREV")) {
 											String lastdateid = this.getWageapi().getLastDateID(setId, dateId);
 											from.append(" left join (select wage_pers_rela_history.pers_id as ID," + field.substring(0, 7) + " as " + field + " from A815 left join wage_pers_rela_history on A815.id=replace(wage_pers_rela_history.pers_id,'@','') and payoff_id='" + lastdateid + "' where a815702='" + lastdateid + "') A" + i);
 											from.append(" on A" + i + ".ID=A001.ID");
-										}
-										else if (infoSetId.equals("B732")) {
+										} else if (infoSetId.equals("B732")) {
 											from.append(" left join (select A001.ID," + field.substring(0, 7) + " as " + field + "  from BBBB left join a001 on BBBB.id=a001.id left join B732 on a001743=b732700 and B732001='" + dateId + "') A" + i);
 											from.append(" on A" + i + ".ID=A001.ID");
-										}
-										else if (infoSetId.equals("B026")) {
+										} else if (infoSetId.equals("B026")) {
 											from.append(" left join (select A001.ID," + field.substring(0, 7) + " as " + field + "  from CCCC left join a001 on CCCC.id=a001.id left join B026 on a001701=orguid and B026701=substr(a815701,1,7)) A" + i);
 											from.append(" on A" + i + ".ID=A001.ID");
-										}
-										else if (infoSetId.equals("C018")) {
+										} else if (infoSetId.equals("C018")) {
 											from.append(" left join (select A001.ID," + field.substring(0, 7) + " as " + field + " from DDDD left join a001 on DDDD.id=a001.id left join C018 on C018.postid=A001.A001715 and C018000='00901') A" + i);
 											from.append(" on A" + i + ".ID=A001.ID");
-										}
-										else if (infoSetId.equals("A003")) {
+										} else if (infoSetId.equals("A003")) {
 											from.append(" left join (select ID," + field.substring(0, 7) + " as " + field + "  from A003 where A003001='" + dateId + "') A" + i);
 											from.append(" on A" + i + ".ID=A001.ID");
-										}
-										else {
+										} else {
 											from.append(" left join (select ID," + field + " from " + infoSetId + " where " + infoSetId + "000='" + "00901" + "') A" + i);
 											from.append(" on A" + i + ".ID=A001.ID");
 										}
-									}
-									else if (!"A001".equals(infoSetId)) {
+									} else if (!"A001".equals(infoSetId)) {
 										from.append(" left join ").append(infoSetId);
 										from.append(" on " + infoSetId + ".ID=A001.ID");
 									}
 
-								}
-								else if (InfoSetBO.RS_TYPE_MANY.equals(infoset.getSet_rsType()))
+								} else if (InfoSetBO.RS_TYPE_MANY.equals(infoset.getSet_rsType()))
 									if (infoSetId.equals("A815PREV")) {
 										int index = from.indexOf("from A815");
 										from.insert(index, "," + field.substring(0, 7) + " as " + field + " ");
-									}
-									else if (infoSetId.equals("B732")) {
+									} else if (infoSetId.equals("B732")) {
 										int index = from.indexOf("from BBBB ");
 										from.insert(index, "," + field + " ");
-									}
-									else if (infoSetId.equals("B026")) {
+									} else if (infoSetId.equals("B026")) {
 										int index = from.indexOf("from CCCC ");
 										from.insert(index, "," + field + " ");
-									}
-									else if (infoSetId.equals("C018")) {
+									} else if (infoSetId.equals("C018")) {
 										int index = from.indexOf("from DDDD ");
 										from.insert(index, "," + field + " ");
-									}
-									else {
+									} else {
 										int index = from.indexOf("from " + infoSetId);
 										from.insert(index, "," + field + " ");
 									}
 							}
 						}
-					}
-					catch (Exception e)
-					{
+					} catch (Exception e) {
 						throw new RollbackableException("", "计算公式项'" + allField[i] + "'时出错；", e, getClass());
 					}
 				}
@@ -612,17 +560,14 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				StringBuffer sql = new StringBuffer();
 				if ("ORACLE".equals(Constants.DB_TYPE)) {
 					sql.append("create table ").append(flaCountTable).append(" as ").append(select.toString()).append(from.toString()).append(where.toString());
-				}
-				else
-				{
+				} else {
 					sql.append("select * into ").append(flaCountTable).append(" from  ( ").append(select.toString()).append(from.toString()).append(where.toString()).append(" ) aaa");
 				}
 
 				String createSql = "";
 				if (isTry) {
 					createSql = sql.toString().replaceAll("BBBB", "A815_TRY_" + setId).replaceAll("CCCC", "A815_TRY_" + setId).replaceAll("DDDD", "A815_TRY_" + setId);
-				}
-				else {
+				} else {
 					createSql = sql.toString().replaceAll("BBBB", "A815_SET_" + setId).replaceAll("CCCC", "A815_SET_" + setId).replaceAll("DDDD", "A815_SET_" + setId);
 				}
 
@@ -647,8 +592,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				if (calcYearTax) {
 					if ("ORACLE".equals(Constants.DB_TYPE)) {
 						this.getApi().executeSql("alter table " + flaCountTable + " add YEARBASE number(20,2)");
-					}
-					else {
+					} else {
 						this.getApi().executeSql("alter table " + flaCountTable + " add YEARBASE NUMERIC(20,2)");
 					}
 				}
@@ -664,7 +608,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 						this.getApi().executeSql("alter table " + flaCountTable + " alter column A810702 nvarchar(100)  null");
 					}
 					for (int i = 0; i < vt.size(); i++) {
-						CellVO[] row = (CellVO[])(CellVO[])vt.get(i);
+						CellVO[] row = (CellVO[]) (CellVO[]) vt.get(i);
 						String id = row[0].getValue().replaceAll("#", "");
 
 						tmpsql = "update " + flaCountTable + " set A810702=(select isnull(A810791,isnull(A810702,'0.0')) from A810 where id='" + id + "' and A810000='00901') where id='#" + id + "'";
@@ -676,8 +620,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 					this.getApi().executeSql("update " + flaCountTable + " set A810702='0.00' where A810702 is null or A810702=''");
 				}
 
-				if (computeTax)
-				{
+				if (computeTax) {
 					String taxAddTable = "hr319#_" + CommonFuns.getRandomNum(6);
 					if (this.getApi().isDBTable(taxAddTable)) {
 						this.getApi().executeSql("drop table " + taxAddTable);
@@ -685,8 +628,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 					FNamelist.add("生成多次交税临时表");
 					if ("SQL SERVER".equals(Constants.DB_TYPE)) {
 						sqlList.add("select ID, sum(cast(A815714 as NUMERIC(20,2))) taxSum,sum(cast(A815713 as NUMERIC(20,2))) wageSum  into " + taxAddTable + " from A815  where  id in (select id from " + flaCountTable + ") and A815701 like '" + payoffDate.substring(0, 7) + "%' group by ID");
-					}
-					else {
+					} else {
 						sqlList.add("create table " + taxAddTable + " as select ID, sum(A815714) as taxSum,sum(A815713) as wageSum   from A815  where  id in (select id from " + flaCountTable + ") and A815701 like '" + payoffDate.substring(0, 7) + "%' group by ID");
 					}
 
@@ -714,14 +656,14 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				int cleared = 0;
 				String clearSql = "update " + flaCountTable + " set ";
 				for (int i = 0; i < size; i++) {
-					String field = (String)flaCountOrder.get(i);
-					if(!standItemFields.contains(field) && !clearSql.contains(field)){
+					String field = (String) flaCountOrder.get(i);
+					if (!standItemFields.contains(field) && !clearSql.contains(field)) {
 						clearSql = clearSql + field + "='0.0',";
-						cleared ++;
+						cleared++;
 					}
 				}
 				clearSql = clearSql.substring(0, clearSql.length() - 1);
-				if(cleared >0 ){
+				if (cleared > 0) {
 					sqlList.add(clearSql);
 				}
 				FNamelist.add("清除结果");
@@ -735,10 +677,9 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				boolean haveA815713 = false;
 				for (int i = 0; i < size; i++) {
 					String rsField = flaCountOrder.get(i).toString();
-					WageFormulaBO formula = (WageFormulaBO)expressHash.get(i);
+					WageFormulaBO formula = (WageFormulaBO) expressHash.get(i);
 
-					if ((formula.getApplyMonth() != null) && (!"".equals(formula.getApplyMonth())) && (formula.getApplyMonth().indexOf("-1") < 0) && (payoffDate != null) && (payoffDate.length() >= 7))
-					{
+					if ((formula.getApplyMonth() != null) && (!"".equals(formula.getApplyMonth())) && (formula.getApplyMonth().indexOf("-1") < 0) && (payoffDate != null) && (payoffDate.length() >= 7)) {
 						String month = payoffDate.substring(5, 7);
 						if (formula.getApplyMonth().indexOf(month) < 0) {
 							continue;
@@ -790,8 +731,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 					String sbTmp = "";
 					if ("ORACLE".equals(Constants.DB_TYPE)) {
 						sbTmp = "update " + flaCountTable + " set " + field + "=concat('0'," + field + ") where " + field + " like '.%'";
-					}
-					else {
+					} else {
 						sbTmp = "update " + flaCountTable + " set " + field + "='0'+" + field + " where " + field + " like '.%'";
 					}
 					sqlList.add(sbTmp);
@@ -808,8 +748,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 						if ("1".equals(setbo.getMergeTax())) {
 							if ("ORACLE".equals(Constants.DB_TYPE)) {
 								sqlList.add("update " + flaCountTable + " set A815713=A815713+A815996 ");
-							}
-							else {
+							} else {
 								sqlList.add("update " + flaCountTable + " set A815713=cast(A815713 as numeric(18,2))+cast(A815996 as numeric(18,2)) ");
 							}
 							FNamelist.add("合并计税");
@@ -821,8 +760,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 								FNamelist.add("第一税率表计算");
 								if ("ORACLE".equals(Constants.DB_TYPE)) {
 									sqlList.add("update " + flaCountTable + " set A815714=round((0+A815714)/2,2) where id in (select id from a796 where A796712='00901')");
-								}
-								else {
+								} else {
 									sqlList.add("update " + flaCountTable + " set A815714=round(cast(A815714 as numeric(20,2))/2,2) where id in (select id from a796 where A796712='00901')");
 								}
 								FNamelist.add("第一税率表残疾人减半");
@@ -837,8 +775,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 
 								if ("ORACLE".equals(Constants.DB_TYPE)) {
 									sqlList.add("update " + flaCountTable + " set A815714=round((0+A815714)/2,2) where id in (select id from a796 where A796712='00901')");
-								}
-								else {
+								} else {
 									sqlList.add("update " + flaCountTable + " set A815714=round(cast(A815714 as numeric(20,2))/2,2) where id in (select id from a796 where A796712='00901')");
 								}
 								FNamelist.add("第二税率表残疾人减半");
@@ -852,8 +789,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 
 								if ("ORACLE".equals(Constants.DB_TYPE)) {
 									sqlList.add("update " + flaCountTable + " set A815714=round((0+A815714)/2,2) where id in (select id from a796 where A796712='00901')");
-								}
-								else {
+								} else {
 									sqlList.add("update " + flaCountTable + " set A815714=round(cast(A815714 as numeric(20,2))/2,2) where id in (select id from a796 where A796712='00901')");
 								}
 								FNamelist.add("第三税率表残疾人减半");
@@ -863,8 +799,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 						if ("1".equals(setbo.getMergeTax())) {
 							if ("ORACLE".equals(Constants.DB_TYPE)) {
 								sqlList.add("update " + flaCountTable + " set A815714=A815714-A815997");
-							}
-							else {
+							} else {
 								sqlList.add("update " + flaCountTable + " set A815714=cast(A815714 as numeric(18,2))-cast(A815997 as numeric(18,2))");
 							}
 							FNamelist.add("合并计税");
@@ -893,8 +828,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 						if (haveA815713) {
 							if ("ORACLE".equals(Constants.DB_TYPE)) {
 								sqlList.add("update " + flaCountTable + " set A815712=0+A815713-A815714+A815711 where A815711>0");
-							}
-							else {
+							} else {
 								sqlList.add("update " + flaCountTable + " set A815712=cast(A815713 as NUMERIC(18,2))-cast(A815714 as NUMERIC(18,2))+cast(A815711 as NUMERIC(18,2)) where cast(A815711 as NUMERIC(18,2))>0 ");
 							}
 							FNamelist.add("计算实发");
@@ -911,8 +845,7 @@ public class WageComputeServiceByExtend extends WageComputeService {
 								if (!"".equals(taxSql)) {
 									if ("ORACLE".equals(Constants.DB_TYPE)) {
 										taxSql = taxSql + " where A815711>0";
-									}
-									else {
+									} else {
 										taxSql = taxSql + " where cast(A815711 as NUMERIC(18,2))>0";
 									}
 									sqlList.add(taxSql);
@@ -921,13 +854,11 @@ public class WageComputeServiceByExtend extends WageComputeService {
 							}
 							if ("ORACLE".equals(Constants.DB_TYPE)) {
 								sqlList.add("update " + flaCountTable + " set A815710=0+A815708-A815713 where A815711>0");
-							}
-							else {
+							} else {
 								sqlList.add("update " + flaCountTable + " set A815710=cast(A815708 as NUMERIC(18,2))-cast(A815713 as NUMERIC(18,2)) where cast(A815711 as NUMERIC(18,2))>0");
 							}
 							FNamelist.add("计算不含税所得反算应发");
-						}
-						else {
+						} else {
 							if ((setbo.getActCessID() != null) && (!"".equals(setbo.getActCessID()))) {
 								String resql = this.getWageapi().RerserveTaxCount(setId, setbo.getActCessID(), setbo.getCessID(), flaCountTable, "A815711");
 								if ((resql != null) && (!"".equals(resql))) {
@@ -953,8 +884,8 @@ public class WageComputeServiceByExtend extends WageComputeService {
 
 				String field = "";
 				for (int i = 0; i < size; i++) {
-					if(field.indexOf((String)flaCountOrder.get(i))==-1){
-						field = field + (String)flaCountOrder.get(i) + ",";
+					if (field.indexOf((String) flaCountOrder.get(i)) == -1) {
+						field = field + (String) flaCountOrder.get(i) + ",";
 					}
 				}
 				idStr = CommonFuns.splitInSql(personId, tmpTable + "." + "ID");
@@ -977,17 +908,14 @@ public class WageComputeServiceByExtend extends WageComputeService {
 						updateData = updateData + " where (" + idStr + ")";
 					else
 						updateData = updateData + " where exists (select " + field + " from " + flaCountTable + " where " + flaCountTable + ".id=" + tmpTable + ".id)";
-				}
-				else
-				{
+				} else {
 					updateData = "update " + tmpTable + " set ";
 					String[] fs = field.split(",");
 					String set = "";
 					for (int j = 0; j < fs.length; j++) {
 						if (j == 0) {
 							set = fs[j] + "=aaa." + fs[j];
-						}
-						else {
+						} else {
 							set = set + "," + fs[j] + "=aaa." + fs[j];
 						}
 					}
@@ -1009,18 +937,14 @@ public class WageComputeServiceByExtend extends WageComputeService {
 				String tempsql = "";
 				for (int j = 0; j < sqlList.size(); j++) {
 					try {
-						tempsql = (String)sqlList.get(j);
+						tempsql = (String) sqlList.get(j);
 
-						if ("DeptSum".equals(tempsql))
-						{
+						if ("DeptSum".equals(tempsql)) {
 							batchHandleWageDept(allField, setId, flaCountTable, dateId, unitId);
-						}
-						else
+						} else
 							this.getApi().update(tempsql);
-					}
-					catch (SysException e)
-					{
-						String err = "批量处理公式[" + (String)FNamelist.get(j) + "]失败,SQL:" + tempsql + ",原因:" + e.getSysMsg().getMessage();
+					} catch (SysException e) {
+						String err = "批量处理公式[" + (String) FNamelist.get(j) + "]失败,SQL:" + tempsql + ",原因:" + e.getSysMsg().getMessage();
 						System.out.println(err);
 						throw new RollbackableException("", err, e, getClass());
 					}
@@ -1034,105 +958,91 @@ public class WageComputeServiceByExtend extends WageComputeService {
 		}
 		return null;
 	}
-	
-	
 
-	  private void adjustDataFormat(String set) throws SysException {
-	    String fun = "";
-	    String fun1 = "";
+	private void adjustDataFormat(String set) throws SysException {
+		String fun = "";
+		String fun1 = "";
 
-	    if ("ORACLE".equals(Constants.DB_TYPE)) {
-	      fun = "FormateMoney";
-	    }
-	    else {
-	      fun = "dbo.FormateMoney";
-	    }
+		if ("ORACLE".equals(Constants.DB_TYPE)) {
+			fun = "FormateMoney";
+		} else {
+			fun = "dbo.FormateMoney";
+		}
 
-	    if ("ORACLE".equals(Constants.DB_TYPE)) {
-	      fun1 = "FormateMoneyOne";
-	    }
-	    else {
-	      fun1 = "dbo.FormateMoneyOne";
-	    }
+		if ("ORACLE".equals(Constants.DB_TYPE)) {
+			fun1 = "FormateMoneyOne";
+		} else {
+			fun1 = "dbo.FormateMoneyOne";
+		}
 
-	    List list = this.getWagesetitemdao().querySetItemBySetId(set);
+		List list = this.getWagesetitemdao().querySetItemBySetId(set);
 
-	    if (list.size() > 0) {
-	      String sql = "update A815_set_" + set + " set ";
-	      boolean have = false;
-	      String setSql = "";
-	      for (int i = 0; i < list.size(); i++) {
-	        WageSetItemBO wb = (WageSetItemBO)list.get(i);
-	        if(setSql.contains(wb.getField())){
-	        	continue;
-	        }
-	        if ((!"2".equals(wb.gettype())) && (!"0".equals(wb.gettype()))) {
-	          InfoItemBO ib = SysCacheTool.findInfoItem("", wb.getField());
-	          if (("2".equals(ib.getItemPrecision())) && ("2".equals(ib.getItemDataType()))) {
-	            have = true;
-	            if ("".equals(setSql)) {
-	              setSql = setSql + wb.getField() + "=" + fun + "(" + wb.getField() + ")";
-	            }
-	            else {
-	              setSql = setSql + "," + wb.getField() + "=" + fun + "(" + wb.getField() + ")";
-	            }
-	          }
-	          else if (("1".equals(ib.getItemPrecision())) && ("2".equals(ib.getItemDataType()))) {
-	            have = true;
-	            if ("".equals(setSql)) {
-	              setSql = setSql + wb.getField() + "=" + fun1 + "(" + wb.getField() + ")";
-	            }
-	            else {
-	              setSql = setSql + "," + wb.getField() + "=" + fun1 + "(" + wb.getField() + ")";
-	            }
-	          }
+		if (list.size() > 0) {
+			String sql = "update A815_set_" + set + " set ";
+			boolean have = false;
+			String setSql = "";
+			for (int i = 0; i < list.size(); i++) {
+				WageSetItemBO wb = (WageSetItemBO) list.get(i);
+				if (setSql.contains(wb.getField())) {
+					continue;
+				}
+				if ((!"2".equals(wb.gettype())) && (!"0".equals(wb.gettype()))) {
+					InfoItemBO ib = SysCacheTool.findInfoItem("", wb.getField());
+					if (("2".equals(ib.getItemPrecision())) && ("2".equals(ib.getItemDataType()))) {
+						have = true;
+						if ("".equals(setSql)) {
+							setSql = setSql + wb.getField() + "=" + fun + "(" + wb.getField() + ")";
+						} else {
+							setSql = setSql + "," + wb.getField() + "=" + fun + "(" + wb.getField() + ")";
+						}
+					} else if (("1".equals(ib.getItemPrecision())) && ("2".equals(ib.getItemDataType()))) {
+						have = true;
+						if ("".equals(setSql)) {
+							setSql = setSql + wb.getField() + "=" + fun1 + "(" + wb.getField() + ")";
+						} else {
+							setSql = setSql + "," + wb.getField() + "=" + fun1 + "(" + wb.getField() + ")";
+						}
+					}
 
-	          if ("A815713".equals(ib.getItemId())) {
-	            InfoItemBO A815714 = SysCacheTool.findInfoItem("", "A815714");
-	            if (("2".equals(A815714.getItemPrecision())) && ("2".equals(A815714.getItemDataType()))) {
-	              have = true;
-	              if ("".equals(setSql)) {
-	                setSql = setSql + "A815714=" + fun + "(A815714)";
-	              }
-	              else {
-	                setSql = setSql + ",A815714=" + fun + "(A815714)";
-	              }
-	            }
-	            else if (("1".equals(A815714.getItemPrecision())) && ("2".equals(A815714.getItemDataType()))) {
-	              have = true;
-	              if ("".equals(setSql)) {
-	                setSql = setSql + "A815714=" + fun1 + "(A815714)";
-	              }
-	              else {
-	                setSql = setSql + ",A815714=" + fun1 + "(A815714)";
-	              }
-	            }
-	          }
-	          else if ("A815755".equals(ib.getItemId())) {
-	            InfoItemBO A815756 = SysCacheTool.findInfoItem("", "A815756");
-	            if (("2".equals(A815756.getItemPrecision())) && ("2".equals(A815756.getItemDataType()))) {
-	              have = true;
-	              if ("".equals(setSql)) {
-	                setSql = setSql + "A815756=" + fun + "(A815756)";
-	              }
-	              else {
-	                setSql = setSql + ",A815756=" + fun + "(A815756)";
-	              }
-	            }
-	            else if (("1".equals(A815756.getItemPrecision())) && ("2".equals(A815756.getItemDataType()))) {
-	              have = true;
-	              if ("".equals(setSql)) {
-	                setSql = setSql + "A815756=" + fun1 + "(A815756)";
-	              }
-	              else
-	                setSql = setSql + ",A815756=" + fun1 + "(A815756)";
-	            }
-	          }
-	        }
-	      }
-	      if (have)
-	        this.getApi().executeSql(sql + setSql);
-	    }
-	  }
+					if ("A815713".equals(ib.getItemId())) {
+						InfoItemBO A815714 = SysCacheTool.findInfoItem("", "A815714");
+						if (("2".equals(A815714.getItemPrecision())) && ("2".equals(A815714.getItemDataType()))) {
+							have = true;
+							if ("".equals(setSql)) {
+								setSql = setSql + "A815714=" + fun + "(A815714)";
+							} else {
+								setSql = setSql + ",A815714=" + fun + "(A815714)";
+							}
+						} else if (("1".equals(A815714.getItemPrecision())) && ("2".equals(A815714.getItemDataType()))) {
+							have = true;
+							if ("".equals(setSql)) {
+								setSql = setSql + "A815714=" + fun1 + "(A815714)";
+							} else {
+								setSql = setSql + ",A815714=" + fun1 + "(A815714)";
+							}
+						}
+					} else if ("A815755".equals(ib.getItemId())) {
+						InfoItemBO A815756 = SysCacheTool.findInfoItem("", "A815756");
+						if (("2".equals(A815756.getItemPrecision())) && ("2".equals(A815756.getItemDataType()))) {
+							have = true;
+							if ("".equals(setSql)) {
+								setSql = setSql + "A815756=" + fun + "(A815756)";
+							} else {
+								setSql = setSql + ",A815756=" + fun + "(A815756)";
+							}
+						} else if (("1".equals(A815756.getItemPrecision())) && ("2".equals(A815756.getItemDataType()))) {
+							have = true;
+							if ("".equals(setSql)) {
+								setSql = setSql + "A815756=" + fun1 + "(A815756)";
+							} else
+								setSql = setSql + ",A815756=" + fun1 + "(A815756)";
+						}
+					}
+				}
+			}
+			if (have)
+				this.getApi().executeSql(sql + setSql);
+		}
+	}
 
 }

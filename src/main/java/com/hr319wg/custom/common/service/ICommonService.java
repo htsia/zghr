@@ -21,32 +21,34 @@ import com.hr319wg.util.CommonFuns;
 
 public interface ICommonService {
 
-	public void batchUpdateEmpUploadFile(String setID, String mode, String[]fields, List<Map> list) throws SysException;
-	
+	public void batchUpdateEmpUploadFile(String setID, String mode, String[] fields, List<Map> list) throws SysException;
+
 	public String getChangeInfo(TableVO table, List showItems, String unitId, String filter);
-	
+
 	public void updateInfoItem(InfoItemBO item) throws SysException;
 
 	public List getRptList(String userID) throws SysException;
 
 	public List getWageMinusList(String setID) throws SysException;
-	
+
 	public void deleteAdvice(String ID) throws SysException;
-	
+
 	public SetFileBO getSetFile(String setID, String itemID, String personID) throws SysException;
-	
+
 	public String saveUpdateFile(UploadedFile file, String path, String pk, String setID, String itemID) throws SysException, IOException;
 
 	public void deleteSetFile(String ID) throws SysException;
-	
+
 	public void saveTempData(String setID, String payoffDate) throws SysException;
+
+	public void batchUpdateInsMonth(String setID, String payoffDate) throws SysException;
 
 	public List getEmpQueryItem(String userID) throws SysException;
 
-	public void saveQueryItem(String userID, String[]showItems, String[]orderItems) throws SysException;
-	
-	public String queryPersonList(TableVO table, String name, String perType, String superId, int pageNum, int rowNum, String cancel, User user, String qryID, String addCondition, CellVO[]itemCells, List<EmpQueryItemBO> queryItemList, IQueryUCC queryUCC) throws SysException;
-	
+	public void saveQueryItem(String userID, String[] showItems, String[] orderItems) throws SysException;
+
+	public String queryPersonList(TableVO table, String name, String perType, String superId, int pageNum, int rowNum, String cancel, User user, String qryID, String addCondition, CellVO[] itemCells, List<EmpQueryItemBO> queryItemList, IQueryUCC queryUCC) throws SysException;
+
 	public String getAdjustInfo(TableVO table, String orgID, String filter) throws SysException;
-	
+
 }

@@ -400,25 +400,31 @@ public class CommonServiceImpl implements ICommonService {
 
 	public String getAdjustInfo(TableVO table, String orgID, String filter) throws SysException {
 		String fields = "ID";
-	    List li = SysCacheTool.queryInfoItemBySetId("B733");
-	    CellVO[] cvs = new CellVO[li.size() + 1];
-	    cvs[0] = new CellVO();
-	    CommonFuns.copyProperties(cvs[0], SysCacheTool.findInfoItem("A001", "ID"));
-	    for (int i = 0; i < li.size(); i++) {
-	      InfoItemBO ib = (InfoItemBO)li.get(i);
-	      cvs[(i + 1)] = new CellVO();
-	      CommonFuns.copyProperties(cvs[(i + 1)], ib);
-	      fields = fields + "," + ib.getItemId();
-	    }
-	    table.setHeader(cvs);
-	    
-	    OrgBO org=SysCacheTool.findOrgById(orgID);
-	    
-	    String sql = "select " + fields + " from B733 left join A001 on B733.B733001=A001.ID where A001.a001738 like '"+org.getOrgSort()+"%' ";
-	    if (filter != null && !"".equals(filter)) {
-	      sql = sql + "and " + filter;
-	    }
-	    sql = sql + " order by B733702 desc";
-	    return sql;
+		List li = SysCacheTool.queryInfoItemBySetId("B733");
+		CellVO[] cvs = new CellVO[li.size() + 1];
+		cvs[0] = new CellVO();
+		CommonFuns.copyProperties(cvs[0], SysCacheTool.findInfoItem("A001", "ID"));
+		for (int i = 0; i < li.size(); i++) {
+			InfoItemBO ib = (InfoItemBO) li.get(i);
+			cvs[(i + 1)] = new CellVO();
+			CommonFuns.copyProperties(cvs[(i + 1)], ib);
+			fields = fields + "," + ib.getItemId();
+		}
+		table.setHeader(cvs);
+
+		OrgBO org = SysCacheTool.findOrgById(orgID);
+
+		String sql = "select " + fields + " from B733 left join A001 on B733.B733001=A001.ID where A001.a001738 like '" + org.getOrgSort() + "%' ";
+		if (filter != null && !"".equals(filter)) {
+			sql = sql + "and " + filter;
+		}
+		sql = sql + " order by B733702 desc";
+		return sql;
+	}
+
+	public void batchUpdateInsMonth(String setID, String payoffDate) throws SysException {
+		payoffDate=payoffDate.substring(0, 7);
+		String sql = "update a243 set a243000=case when a243200='" + payoffDate + "' then '00901' else '00900' end where id in (select id from a815_set_" + setID + ")";
+		this.jdbcTemplate.execute(sql);
 	}
 }
