@@ -441,6 +441,12 @@
 
         <property name="precise_large_med" column="precise_large_med" />
         <property name="large_med_unit" column="large_med_unit" />
+        
+        <property name="precise_ylj" column="precise_ylj" />
+        <property name="ylj_unit" column="ylj_unit" />
+        <property name="ylj_person" column="ylj_person" />
+        <property name="maxRate_ylj" column="maxRate_ylj" />
+        <property name="minRate_ylj" column="minRate_ylj" />
 
     </class>
 
