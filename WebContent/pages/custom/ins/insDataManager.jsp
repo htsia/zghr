@@ -49,7 +49,7 @@
 
                     <td align="center" valign="top" class="explorer">
                                     <iframe name="main" frameborder="0" height="400" scrolling="no" width="100%"
-                                            src="/custom/ins/insDataManagerQueryList.jsf?act=init"></iframe>
+                                            src="/custom/ins/insDataManagerQueryList.jsf?act=init&orgID=<%=user.getOrgId()%>"></iframe>
                     </td>
                 </tr>
             </table>

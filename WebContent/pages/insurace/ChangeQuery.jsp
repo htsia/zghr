@@ -1,7 +1,13 @@
+<%@page import="com.hr319wg.common.Constants"%>
+<%@page import="com.hr319wg.common.pojo.vo.User"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ include file="../include/taglib.jsp" %>
 <%
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");
+	User user = (User) session.getAttribute(Constants.USER_INFO);
+	if (user == null) {
+	    response.sendRedirect("/pages/overtime.jsp");
+	}
 %>
 
     <script type="text/javascript">
@@ -34,7 +40,7 @@
             </td>
 
             <td align="center" valign="top">
-                  <iframe name="main" height="100%"  frameborder="0"  scrolling="no" width="100%"   src="/insurace/ChangeQueryRight.jsf" >
+                  <iframe name="main" height="100%"  frameborder="0"  scrolling="no" width="100%"   src="/insurace/ChangeQueryRight.jsf?superId=<%=user.getOrgId()%>" >
                   </iframe>
             </td>
         </tr>
