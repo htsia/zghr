@@ -322,9 +322,9 @@ public class CommonServiceImpl implements ICommonService {
 				vo.setAddedCondition(CommonFuns.filterNull(vo.getAddedCondition()) + CommonFuns.filterNull(addCondition));
 			}
 			if ("156".equals(qryID) && queryItemList != null && queryItemList.size() == 1) {
-				List<QueryItemBO> listItem = new ArrayList<QueryItemBO>();
 				String[] showItems = queryItemList.get(0).getShowItem().split(",");
 				String[] orderItems = queryItemList.get(0).getOrderItem() != null ? queryItemList.get(0).getOrderItem().split(",") : new String[] {};
+				List<QueryItemBO> listItem = new ArrayList<QueryItemBO>();
 				List<CellVO> cellList = new ArrayList<CellVO>();
 				InfoItemBO IDItem = SysCacheTool.findInfoItem("A001", "ID");
 				CellVO IDCell = new CellVO();
