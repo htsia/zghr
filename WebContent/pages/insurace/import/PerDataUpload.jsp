@@ -215,7 +215,7 @@
 				|| selValue.lastIndexOf("A775")!=-1 //生育保险参数子集
 				|| selValue.lastIndexOf("A770")!=-1 //失业保险参数子集
 				|| selValue.lastIndexOf("A755")!=-1 //基本养老保险参数子集
-				|| selValue.lastIndexOf("A786")!=-1 //大额医疗互助
+				|| selValue.lastIndexOf("A786")!=-1 //医疗商业
 				|| selValue.lastIndexOf("A780")!=-1 //住房公积金参数子集
 				|| selValue.lastIndexOf("A755")!=-1 //基本养老保险参数子集
 				|| selValue.lastIndexOf("A785")!=-1 //企业年金参数子集

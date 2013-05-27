@@ -77,8 +77,9 @@
         <property name="companyGongshang" column="A243207"/>
         <property name="companyYliao" column="A243208"/>
         <property name="companyShengyu" column="A243209"/>
+        <property name="companyDaejin" column="A243211"/>
         <property name="companyGongjijin" column="A243210"/>
-        <property name="calcSetID" column="A243211"/>
+        <property name="calcSetID" column="calc_set_id"/>
         <property name="status" column="status"/>
         <property name="orgID" column="A243212"/>
         <property name="secDeptID" column="A243213"/>

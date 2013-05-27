@@ -68,7 +68,7 @@
 		<x:dataTable value="#{ins_dataBB.monthPaySum}" align="right"
 			headerClass="td_top" rowIndexVar="index" var="item" id="dateList1"
 			styleClass="table03" border="1" width="98%"
-			columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center">
+			columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="个人养老" />
@@ -89,7 +89,7 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="大额医疗" />
+					<h:outputText value="个人医疗商业" />
 				</f:facet>
 				<h:outputText value="#{item.A243203}"/>
 			</h:column>
@@ -128,6 +128,12 @@
 					<h:outputText value="单位生育" />
 				</f:facet>
 				<h:outputText value="#{item.A243209}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="单位医疗商业" />
+				</f:facet>
+				<h:outputText value="#{item.A243211}"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">
@@ -171,7 +177,7 @@
 		<x:dataTable value="#{ins_dataBB.monthPayList}" align="right"
 			headerClass="td_top" rowIndexVar="index" var="item" id="dateList"
 			styleClass="table03" border="1" width="98%"
-			columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center">
+			columnClasses="td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center,td_middle_center">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="序号" />
@@ -246,7 +252,7 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="大额医疗" />
+					<h:outputText value="个人医疗商业" />
 				</f:facet>
 				<h:outputText value="#{item.personDaejin}"/>
 			</h:column>
@@ -285,6 +291,12 @@
 					<h:outputText value="单位生育" />
 				</f:facet>
 				<h:outputText value="#{item.companyShengyu}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="单位医疗商业" />
+				</f:facet>
+				<h:outputText value="#{item.companyDaejin}"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">

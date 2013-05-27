@@ -60,12 +60,12 @@ public class InsDataServiceImpl implements IInsDataService {
 
 	public void batchUpdateMonthPay(String setID, String itemID, String value)
 			throws SysException {
-		String sql="update a243 set "+itemID+"='"+value+"' where a243211='"+setID+"'";
+		String sql="update a243 set "+itemID+"='"+value+"' where calc_set_id='"+setID+"'";
 		this.jdbcTemplate.execute(sql);
 	}
 	
 	public String getLockUserIDs(String setID) throws SysException {
-		String sql="select wm_concat(id) from a243 where status=1 and a243211='"+setID+"'";
+		String sql="select wm_concat(id) from a243 where status=1 and calc_set_id='"+setID+"'";
 		return this.activeapi.queryForString(sql);
 	}
 	
@@ -95,7 +95,7 @@ public class InsDataServiceImpl implements IInsDataService {
 			if(c>0){
 				return "已存在适用月份为"+bo.getWageDate()+"的计算";
 			}
-			sql="update a243 set a243200='"+bo.getWageDate()+"' where a243211='"+bo.getID()+"'";
+			sql="update a243 set a243200='"+bo.getWageDate()+"' where calc_set_id='"+bo.getID()+"'";
 			this.jdbcTemplate.execute(sql);
 		}
 		this.insDataDAO.saveOrUpdateBo(bo);
@@ -104,16 +104,16 @@ public class InsDataServiceImpl implements IInsDataService {
 	
 	public void deleteSet(String ID, String wageDate)
 			throws SysException {
-		String sql = "delete from a243 where A243211 ='"+ID+"'";
+		String sql = "delete from a243 where calc_set_id ='"+ID+"'";
 		this.jdbcTemplate.execute(sql);
 		sql = "delete from ins_calc_set where id ='"+ID+"'";
 		this.jdbcTemplate.execute(sql);
 	}
 
 	public void endSet(String ID) throws SysException{
-		String sql="update a243 set a243000='00900' where id in (select id from a243 where a243211='"+ID+"')";
+		String sql="update a243 set a243000='00900' where id in (select id from a243 where calc_set_id='"+ID+"')";
 		this.jdbcTemplate.execute(sql);
-		sql="update a243 set a243000='00901' where a243211='"+ID+"'";
+		sql="update a243 set a243000='00901' where calc_set_id='"+ID+"'";
 		this.jdbcTemplate.execute(sql);
 		sql="update ins_calc_set set status=1 where id='"+ID+"'";
 		this.jdbcTemplate.execute(sql);
@@ -214,7 +214,7 @@ public class InsDataServiceImpl implements IInsDataService {
 
 	public List getInsMonthPaySum(String setID, String wageDate, String orgID,
 			String personType, String nameStr) throws SysException {
-		String sql="select sum(A243201) A243201,sum(A243218) A243218,sum(A243202) A243202,sum(A243203) A243203,sum(A243204) A243204,sum(A243205) A243205,sum(A243206) A243206,sum(A243207) A243207,sum(A243208) A243208,sum(A243209) A243209,sum(A243210) A243210,sum(A243201+A243218+A243202+A243203+A243204+A243205+A243206+A243207+A243208+A243209+A243210) total  from a243 w,a001 a where a.id=w.id and a243211='"+setID+"' and a243200='"+wageDate+"'";
+		String sql="select sum(A243201) A243201,sum(A243218) A243218,sum(A243202) A243202,sum(A243203) A243203,sum(A243204) A243204,sum(A243205) A243205,sum(A243206) A243206,sum(A243207) A243207,sum(A243208) A243208,sum(A243209) A243209,sum(A243211) A243211,sum(A243210) A243210,sum(A243201+A243218+A243202+A243203+A243204+A243205+A243206+A243207+A243208+A243209+A243211+A243210) total  from a243 w,a001 a where a.id=w.id and calc_set_id='"+setID+"' and a243200='"+wageDate+"'";
 		if(orgID!=null && !"".equals(orgID)){
 			sql+=" and (A243213 = '"+orgID+"' or  A243212='"+orgID.substring(4)+"') ";
 		}
