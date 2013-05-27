@@ -87,7 +87,7 @@
 
             <table width=95% align=center border=0 cellpadding=0 cellspacing=0>
             <tr nowrap>
-                <td width="140" class=td_form01><%=LanguageSupport.getResource("RYGL-2373","减员类别") %></td>
+                <td width="140" class="td_form01 td_form_required"><%=LanguageSupport.getResource("RYGL-2373","减员类别") %></td>
                 <td class=td_form02>
 </f:verbatim>
                     <h:inputText readonly="true" styleClass="input" id="A016010" code="" dict="yes" dict_num="0200"
@@ -98,7 +98,7 @@
                         %>
 
                 </td>
-                <td  width="140" class=td_form01><%=LanguageSupport.getResource("RYGL-2374","减员日期") %></td>
+                <td  width="140" class="td_form01 td_form_required"><%=LanguageSupport.getResource("RYGL-2374","减员日期") %></td>
                 <td class=td_form02>
  </f:verbatim>
                     <h:inputText readonly="true" styleClass="input" id="A016020" value="#{emp_PersonDismissBB.personchangevo.changeDate}"
@@ -108,7 +108,7 @@
             </tr>
 
             <tr nowrap>
-                <td  class=td_form01 ><%=LanguageSupport.getResource("RYGL-2368","变更后人员类别") %></td>
+                <td  class="td_form01 td_form_required" ><%=LanguageSupport.getResource("RYGL-2368","变更后人员类别") %></td>
                 <td class=td_form02>
  </f:verbatim>
                     <h:inputText readonly="true" styleClass="input" id="A001054" code="" dict="yes" dict_num="0135"
@@ -123,12 +123,12 @@
                       }
                      %>
                 </td>
-     <td  class='</f:verbatim><h:outputText value="td_form01" rendered="#{emp_PersonDismissBB.useA001725}"/><f:verbatim>' >
+     <td  class='</f:verbatim><h:outputText value="td_form01 td_form_required" rendered="#{emp_PersonDismissBB.useA001725}"/><f:verbatim>' >
 </f:verbatim>
      <h:outputText value="变更后当前状态" rendered="#{emp_PersonDismissBB.useA001725}"/>
 <f:verbatim>
     </td>
-     <td class='</f:verbatim><h:outputText value="td_form02" rendered="#{emp_PersonDismissBB.useA001725}"/><f:verbatim>'>
+     <td class="</f:verbatim><h:outputText value='td_form02' rendered="#{emp_PersonDismissBB.useA001725}"/><f:verbatim>">
  </f:verbatim>
         <h:inputText readonly="true" styleClass="input" id="A001725" code="" dict="yes" dict_num="0145" rendered="#{emp_PersonDismissBB.useA001725}"
          value="#{emp_PersonDismissBB.afterStatus}" alt="变更后当前状态|0|s|50||"/>
@@ -160,12 +160,12 @@
                       alt="离开单位|1|s|50||"/>
   <f:verbatim>
      </td>
-             <td  class='</f:verbatim><h:outputText value="td_form01" rendered="#{sys_commonInfoBB.enableLeaveReason}"/><f:verbatim>' >
+             <td  class='</f:verbatim><h:outputText value="td_form01 td_form_required" rendered="#{sys_commonInfoBB.enableLeaveReason}"/><f:verbatim>' >
         </f:verbatim>
              <h:outputText value="离职原因" rendered="#{sys_commonInfoBB.enableLeaveReason}"/>
         <f:verbatim>
              </td>
-            <td class='</f:verbatim><h:outputText value="td_form02" rendered="#{sys_commonInfoBB.enableLeaveReason}"/><f:verbatim>'>
+            <td class="</f:verbatim><h:outputText value='td_form02' rendered="#{sys_commonInfoBB.enableLeaveReason}"/><f:verbatim>">
 </f:verbatim>
                <h:inputText readonly="true" styleClass="input" id="reason" code="" dict="yes" dict_num="2237"  rendered="#{sys_commonInfoBB.enableLeaveReason}"
                 value="#{emp_PersonDismissBB.personchangevo.reason}" alt="离职原因|0|s|50||"/>

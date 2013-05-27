@@ -187,31 +187,27 @@
     }
 
     function OpenRpt(){
-        if (document.all("form1:ReportID").value=="-1"){
+        if (document.getElementById("form1:ReportID").value=="-1"){
             alert("请先选择表格样式！");
             return false;
         }
-
+		
         if (checkMutilSelect(form1.chk)) {
-            count = form1.chk.length;
-            var perID = "";
-            if (count != null) {
-                var num = 0;
-                for (i = 0; i < count; i++)
-                    if (form1.chk[i].checked) {
-                        perID = form1.chk[i].value;   // 取第一个
-                        break;
-                    }
-            } else
-                perID = form1.chk.value;
-            var url="/pages/report/ServerReportShow.jsp?RptCode="+document.all("form1:ReportID").value+"&ID="+perID+"&ORGUID="+document.all("form1:superId").value+"&Parameter=&Title=";
-            window.open(url);
-        } else {
-            var url="/pages/report/ServerReportShow.jsp?RptCode="+document.all("form1:ReportID").value+"&ID=&ORGUID="+document.all("form1:superId").value+"&Parameter=&Title=";
-            window.open(url);
+        	var count = form1.chk.length;
+	        var perID='';
+        	for (var i = 0; i < count; i++){
+                if (form1.chk[i].checked) {
+                    perID = form1.chk[i].value;   // 取第一个
+                    break;
+                }        		
+        	}
+	        window.open("/pages/report/ServerReportShow.jsp?RptCode="+document.all("form1:ReportID").value+"&ID="+perID);
+        }else{
+        	alert("请选择人员");
         }
-       return false;
-   }
+        return false;
+    }
+    
     function OpenRosterRpt(){
         if (document.all("form1:ListReportID").value=="-1"){
             alert("请先选择表格样式！");
