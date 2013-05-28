@@ -16,13 +16,6 @@ function setFix() {
                 obj[i].style.top = itop;
         }
     }
-    try {
-        var wh=document.all("list").scrollWidth;
-        document.all("paget").style.width = "" + wh + "px";
-    } 
-    catch(err)
-    {}
-
 }
 function setFixCol(){
     try{
