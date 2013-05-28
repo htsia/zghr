@@ -173,7 +173,7 @@
         <tr>
             <td class="td_top"  align="left">
               <h:outputText value="每次移动位数:"></h:outputText>
-              <h:inputText id="step" value="" />
+              <h:inputText id="step" value="1" />
             </td>
             <td class="td_top"   align="right">
 </c:verbatim>

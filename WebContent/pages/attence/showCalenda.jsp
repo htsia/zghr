@@ -33,20 +33,20 @@ String time=df.format(now);
 String year=time.substring(0,4);
 String month=time.substring(5,7);
 String day=time.substring(8,10);
-AttenceSetUCC ucc1=(AttenceSetUCC)SysContext.getBean("att_setUCC");
-List flagcharlists=ucc1.getAllAttItemSetDetailBO(user.getOrgId());
-String flagcharvalues="";
-if(flagcharlists!=null && flagcharlists.size()>0){
-    for(int w=0;w<flagcharlists.size();w++){
-    	AttItemSetDetailBO attitemsetdetailbo=(AttItemSetDetailBO)flagcharlists.get(w);
-        if("01".equals(attitemsetdetailbo.getItemCode())){
-        	if(attitemsetdetailbo.getFlagChar()!=null && !"".equals(attitemsetdetailbo.getFlagChar())){
-        		flagcharvalues=attitemsetdetailbo.getFlagChar();
-        		break;
-        	}
- 	   }
-    }
-}
+// AttenceSetUCC ucc1=(AttenceSetUCC)SysContext.getBean("att_setUCC");
+// List flagcharlists=ucc1.getAllAttItemSetDetailBO(user.getOrgId());
+// String flagcharvalues="";
+// if(flagcharlists!=null && flagcharlists.size()>0){
+//     for(int w=0;w<flagcharlists.size();w++){
+//     	AttItemSetDetailBO attitemsetdetailbo=(AttItemSetDetailBO)flagcharlists.get(w);
+//         if("01".equals(attitemsetdetailbo.getItemCode())){
+//         	if(attitemsetdetailbo.getFlagChar()!=null && !"".equals(attitemsetdetailbo.getFlagChar())){
+//         		flagcharvalues=attitemsetdetailbo.getFlagChar();
+//         		break;
+//         	}
+//  	   }
+//     }
+// }
 %>  
 <html>
 <head>
@@ -64,7 +64,7 @@ var today;
 var xmlhttp;
 //var isFeaste="<%=isFeaste%>";
 var isFeaste="";
-var flagcharvalues="<%=flagcharvalues%>";
+<%-- var flagcharvalues="<%=flagcharvalues%>"; --%>
 var userId="<%=personID%>";
 var workCalenderThing="";
 document.writeln("<div id='Calendar'></div>");
@@ -126,9 +126,9 @@ function newCalendar() {
     var tableCal = document.all.calendar;
     var intDaysInMonth =getDays(newCal.getMonth(), newCal.getFullYear());
     var parseMonth1=(parseMonth+1);
-    xmlhttp.onreadystatechange=getresultback;
-    xmlhttp.open("GET","/pages/attence/getFeast2.jsp?yearvalue="+parseYear+"&monthvalue="+parseMonth+"&name="+name,true);
-    xmlhttp.send(null);
+//     xmlhttp.onreadystatechange=getresultback;
+//     xmlhttp.open("GET","/pages/attence/getFeast2.jsp?yearvalue="+parseYear+"&monthvalue="+parseMonth+"&name="+name,true);
+//     xmlhttp.send(null);
     //alert("你将要查看的是【"+parseYear+"年度"+parseMonth+"月份】倒班情况");
     var tableCals = document.all.calendars;
     var cellvalue = tableCals.rows[0].cells[0];

@@ -439,4 +439,4 @@
     setDataTableOver("form1:linkList");
 </script>
 
-
+<jsp:include page="/pages/system/shortmessage/checknew.jsp"></jsp:include>

@@ -413,7 +413,7 @@
                                   </x:dataTable>
           <f:verbatim>
                               </td>
-                              <td background="/images/maininterface/hd_main_70.gif"><img src="/images/maininterface/hd_spacer.gif" width="1" height="1"></td>
+                              <td background="/images/maininterface/hd_main_72.gif"><img src="/images/maininterface/hd_spacer.gif" width="1" height="1"></td>
                           </tr>
 
               <tr>
@@ -439,4 +439,4 @@
     setDataTableOver("form1:linkList");
 </script>
 
-
+<jsp:include page="/pages/system/shortmessage/checknew.jsp"></jsp:include>
