@@ -1,3 +1,5 @@
+<%@page import="com.hr319wg.org.pojo.bo.OrgBO"%>
+<%@page import="java.util.List"%>
 <%@page import="com.hr319wg.sys.pojo.bo.ParameterBO"%>
 <%@page import="com.hr319wg.common.web.SysContext"%>
 <%@page import="com.hr319wg.sys.dao.ParameterDAO"%>
@@ -24,7 +26,11 @@
     if(bo!=null && "1".equals(bo.getValue())){
     	checked="1";
     }
-    
+    String superID=user.getOrgId();
+    List<OrgBO> orgList= user.getHaveOperateOrgScale();
+    if(orgList!=null && orgList.size()>0){
+    	superID=orgList.get(0).getOrgId();
+    }
 %>
 <c:verbatim>
     <script type="text/javascript">
@@ -102,7 +108,7 @@
 
             <td align="center" valign="top" height="100%">
                  <iframe name="main" height="100%"  frameborder="0"  height="100%" scrolling="no" width="100%"
-                     src="/employee/info/PersonInfoQuery.jsf?act=init&superId=<%=user.getOrgId()%>&loaddata=<%=loaddata%>&orgFilter=<%=checked%>"></iframe>
+                     src="/employee/info/PersonInfoQuery.jsf?act=init&superId=<%=superID %>&loaddata=<%=loaddata%>&orgFilter=<%=checked%>"></iframe>
             </td>
         </tr>
     </table>

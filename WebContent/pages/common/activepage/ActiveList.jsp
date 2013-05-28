@@ -712,9 +712,9 @@
                 
     }
     <%
-//        if ("".equals(fixrowstyle)){
-//           out.print("FixID=window.setInterval('setFix()', 700);");
-//        }
+       if ("".equals(fixrowstyle)){
+          out.print("FixID=window.setInterval('setFix()', 1);");
+       }
 //         ÁÐËø¶¨
         if (fixcol!=-1 && "".equals(fixcolstyle)){
            out.print("tableFixCol="+fixcol+";");
