@@ -21,6 +21,7 @@
       <h:form id="form1">
         <h:inputHidden value="#{emp_personListBB2.pageInit}"/>
         <h:inputHidden id="fieldValue" value="#{emp_personListBB2.fieldValue}"/>  
+        <h:inputHidden id="superId" value="#{emp_personListBB2.superId}"/>  
 <f:verbatim>
        <input type="hidden" name="sessionFlag" value="2">
        <input type="hidden" name="backFlag" value="<%=backFlag%>">
@@ -323,7 +324,11 @@
     	 dateType=null;
     	 document.getElementById("form1:fieldValue").value='';
     	 document.getElementById("fieldValue1").value='';
-    	 if(fieldID!=-1){
+
+    	 if(fieldID=='A001715'){
+    		 $("#selCode1").show();
+		     document.getElementById("fieldValue1").readOnly =true;
+    	 }else if(fieldID!=-1){
         	 $.post("/pages/custom/getFieldType.jsp?field="+fieldID, function(e){
         	 	var v=e.split("|");
         	 	dateType=v[0];
@@ -343,7 +348,15 @@
      }
      function selCode11(){
     	 var oper1=document.getElementById("form1:oper").value;
-    	 if(dateType==5){
+    	 var fieldID=document.getElementById("form1:fieldID").value;
+
+    	 if(fieldID=='A001715'){
+    		 if (oper1=='in' || oper1=='notin'){
+    			 fPopUpMutiPostDlg(document.getElementById("form1:fieldValue"), document.getElementById("fieldValue1"), document.getElementById("form1:superId").value);        			 
+     		 }else{
+     			 fPopUpPostDlg(document.getElementById("form1:fieldValue"), document.getElementById("fieldValue1"), document.getElementById("form1:superId").value);        	        	
+     	     }
+    	 }else if(dateType==5){
     		 PopUpCalendarDialog(document.getElementById("fieldValue1"));
     	 }else if(dateType==15){
     		 PopUpCalendarDlg_OnlyMonth(document.getElementById("fieldValue1"));
@@ -366,7 +379,8 @@
                  return true;
              }
     		 if(value.length>0){
-    			 if(dateType!=6){
+    			 var fieldID=document.getElementById("form1:fieldID").value;
+    			 if(dateType!=6 && fieldID!='A001715'){
 	    			 document.getElementById("form1:fieldValue").value=value;
     			 }
     			 if ((dateType == 1 || dateType == 2) && isNaN(value)) {

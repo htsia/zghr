@@ -516,7 +516,7 @@ public class PersonListBackingBean extends BaseBackingBean {
 			this.tableItem = queryAPI.queryInfoItem(this.defaultQry);
 			for (CellVO cell : this.tableItem) {
 				String datatype = cell.getItemDataType();
-				if (!"ID".equals(cell.getItemId()) && (InfoItemBO.DATA_TYPE_CODE.equals(datatype) || InfoItemBO.DATA_TYPE_STRING.equals(datatype) || InfoItemBO.DATA_TYPE_DATE.equals(datatype) || InfoItemBO.DATA_TYPE_DATE6.equals(datatype) || InfoItemBO.DATA_TYPE_INT.equals(datatype) || InfoItemBO.DATA_TYPE_FLOAT.equals(datatype))) {
+				if (!"ID".equals(cell.getItemId()) && (InfoItemBO.DATA_TYPE_CODE.equals(datatype) || InfoItemBO.DATA_TYPE_STRING.equals(datatype) || InfoItemBO.DATA_TYPE_DATE.equals(datatype) || InfoItemBO.DATA_TYPE_DATE6.equals(datatype) || InfoItemBO.DATA_TYPE_INT.equals(datatype) || InfoItemBO.DATA_TYPE_FLOAT.equals(datatype) || InfoItemBO.DATA_TYPE_POST.equals(datatype))) {
 					SelectItem si = new SelectItem();
 					si.setLabel(cell.getItemName());
 					si.setValue(cell.getItemId());
