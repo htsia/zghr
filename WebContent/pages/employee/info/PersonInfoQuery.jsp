@@ -121,6 +121,7 @@
                 <jsp:param name="isRow" value="true"/>
                 <jsp:param name="rowFuncName" value="forView"/>
                 <jsp:param name="isPage" value="true"/>
+                <jsp:param name="fixcol" value="4"/>
             </jsp:include>
             </td>    
             </tr>
