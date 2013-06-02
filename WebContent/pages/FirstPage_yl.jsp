@@ -60,6 +60,7 @@
 <h:form id="form1">
     <h:inputHidden id="pageInit" value="#{self_selfbulletinbb.pageInit}"/>
     <h:inputHidden id="pageInit2" value="#{self_selfnewsbb.pageInit}"/>
+    <h:inputHidden value="#{uploadReportBB.pageInit}"/>
 
     <f:verbatim>
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -127,7 +128,8 @@
                  </table>
 
               <br>
-              <img src="/images/maininterface/worklog.jpg" alt="">
+              <a target='_blank' href='/pages/custom/showSchedule.jsp'>
+              <img src="/images/maininterface/worklog.jpg" alt="日程查看" style="border:none;"></a>
               <table border="0" cellspacing="1" cellpadding="0" bgcolor="#CCCCCC">
                       <tr>
                         <td bgcolor="#FFFFFF">
@@ -234,9 +236,9 @@
 
 <!-- 中间部分 -->
           <td width=58% valign="top">
-            <table align="center" width="100%" cellpadding="0" cellspacing="0">
+            <table align="center" width="100%" cellpadding="0" cellspacing="0" height="100%">
               <tr>
-                  <td valign="top" width=50% style="padding-top:10px;">
+                  <td valign="top" width=33%>
                   	<table width="99%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                           <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>待办事宜</b></font></td>
@@ -245,7 +247,7 @@
                         </tr>
                       </table>
 
-                      <table width="99%" border="0" cellspacing="0" cellpadding="0" class="table_main" height="240">
+                      <table width="99%" border="0" cellspacing="0" cellpadding="0" class="table_main" height="120">
                           <td  valign="top" colspan="2">
             </f:verbatim>
                             <h:commandButton id="processMore" style="display:none" value="处理待办事宜"  action="#{sys_inProcessBB.doaciton_standard}"/>
@@ -286,13 +288,46 @@
                   </td>
                   
               </tr>
-
+			  <tr>
+			  	<td height="5"></td>
+			  </tr>
                <tr>
-                  <td colspan=3 height=10 ></td>
+                  <td height="33%" >
+                     <table width="99%" border="0" cellspacing="0" cellpadding="0">
+                       <tr>
+                         <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>报表</b></font></td>
+                         <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"><div align="right"><img src="/images/maininterface/hd_main_30.gif" alt="">&nbsp;<a target="_blank" href="/custom/report/upFileQuery.jsf"><%=LanguageSupport.getResource("COMM-0025","更多")%></a></div></td>
+                         <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
+                       </tr>
+                     </table>
+        
+                      <table  height=120 width="99%" border="0" cellspacing="0" cellpadding="0" class="table_main">
+                          <tr>
+                              <td  valign="top" colspan="2">
+        </f:verbatim>
+                                <x:dataTable width="100%" align="center" border="0" style="margin-left:5px;" rowIndexVar="index" value="#{uploadReportBB.list}" var="rpt">
+                                    <h:column rendered="#{index<5}">
+                                        <h:graphicImage value="/images/self/gridcode.gif" />
+                                        <f:verbatim>
+                                        	<a target="_blank" href="\</f:verbatim><h:outputText value="#{rpt.path}"/><f:verbatim>">
+                                        	</f:verbatim>
+                                        	<h:outputText value="#{rpt.name}"/>
+                                        	<f:verbatim>
+                                        	</a>
+                                        </f:verbatim>
+                                    </h:column>
+                                </x:dataTable>
+         <f:verbatim>
+                              </td>
+                          </tr>
+                      </table>
+                  </td>
                </tr>
-
+			   <tr>
+			  	<td height="5"></td>
+			   </tr>
                <tr>
-                  <td colspan=3 >
+                  <td>
                      <table width="99%" border="0" cellspacing="0" cellpadding="0">
                        <tr>
                          <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b><%=CodeUtil.interpertCode(CodeUtil.TYPE_OPERATER, "0952")%></b></font></td>
@@ -301,12 +336,12 @@
                        </tr>
                      </table>
         
-                      <table  height=130 width="99%" border="0" cellspacing="0" cellpadding="0" class="table_main">
+                      <table  height=120 width="99%" border="0" cellspacing="0" cellpadding="0" class="table_main">
                           <tr>
                               <td  valign="top" colspan="2">
         </f:verbatim>
-                                <x:dataTable id="newsList" width="100%" align="center" border="0" rowIndexVar="index"  value="#{self_selfnewsbb.newsList}"    var="newsList">
-                                    <h:column rendered="#{index<6}">
+                                <x:dataTable id="newsList" width="100%" align="center" border="0" style="margin-left:5px;" rowIndexVar="index"  value="#{self_selfnewsbb.newsList}"    var="newsList">
+                                    <h:column rendered="#{index<5}">
                                         <h:graphicImage value="/images/self/gridcode.gif" />
                                         <h:graphicImage alt="人事资讯" value="/images/common/new.gif" rendered="#{newsList.newNews}"/>
                                         <h:commandLink  title="#{newsList.display}" onclick="doShowNews('#{newsList.newId}')">

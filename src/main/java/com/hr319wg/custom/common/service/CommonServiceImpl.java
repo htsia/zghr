@@ -12,8 +12,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
+import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.dao.CommonDAO;
 import com.hr319wg.custom.emp.pojo.bo.EmpQueryItemBO;
+import com.hr319wg.custom.pojo.bo.ReportBO;
 import com.hr319wg.custom.pojo.bo.SetFileBO;
 import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.qry.pojo.bo.QueryBO;
@@ -423,8 +425,37 @@ public class CommonServiceImpl implements ICommonService {
 	}
 
 	public void batchUpdateInsMonth(String setID, String payoffDate) throws SysException {
-		payoffDate=payoffDate.substring(0, 7);
+		payoffDate = payoffDate.substring(0, 7);
 		String sql = "update a243 set a243000=case when a243200='" + payoffDate + "' then '00901' else '00900' end where id in (select id from a815_set_" + setID + ")";
 		this.jdbcTemplate.execute(sql);
+	}
+
+	public void saveReport(UploadedFile file, String path, ReportBO bo) throws Exception{
+		if(file!=null){//Ìí¼Ó
+			String webpath = "file\\report\\";
+			File dir = new File(path + webpath);
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}
+			String name = file.getName();
+			String extname = name.substring(name.lastIndexOf("."));
+			String realname = CommonFuns.getUUID() + extname;
+			webpath += realname;
+			FileUtil.createFile(file.getBytes(), path + webpath);
+			bo.setPath(webpath);
+		}
+		this.commonDAO.saveOrUpdateBo(bo);		
+	}
+
+	public void deleteReport(String ID) throws SysException {
+		this.commonDAO.deleteBo(ReportBO.class, ID);
+	}
+
+	public List getReportBO(PageVO myPage, String typeID) throws SysException {
+		return this.commonDAO.getReportBO(myPage, typeID);
+	}
+
+	public Object getObjBO(Class c, String ID) throws SysException {
+		return this.commonDAO.findBoById(c, ID);
 	}
 }

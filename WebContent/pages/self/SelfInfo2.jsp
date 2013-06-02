@@ -408,7 +408,7 @@
 				<!--           日程管理 -->
              <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor='<%=Constants.FRAMECOLOR%>' style="margin-top:10px;">
                 <tr>
-                  <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>日程管理</b></font></td>
+                  <td align="left" valign="middle" background="/images/maininterface/desktop_bar_bg.gif"><img src="/images/maininterface/desktop_bar_left.gif" width="6" height="25" align="absmiddle"><img src="/images/maininterface/radio_blue.gif" width="16" height="16" align="absmiddle">&nbsp;<font color="#0a66a0"><b>日程管理</b></font><span style='margin-left:170px;color:#0a66a0;'><a target='_blank' href='/pages/custom/showSchedule.jsp'>查看</a></span></td>
                   <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;"></td>
                   <td background="/images/maininterface/desktop_bar_bg.gif" style=" line-height:25px;" width="5"><div align="right"><img src="/images/maininterface/desktop_bar_right.gif" width="5" height="25"></div></td>
                 </tr>

@@ -1,7 +1,6 @@
 package com.hr319wg.custom.common.service;
 
 import java.io.IOException;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -9,15 +8,14 @@ import org.apache.myfaces.custom.fileupload.UploadedFile;
 
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
+import com.hr319wg.common.web.PageVO;
 import com.hr319wg.custom.emp.pojo.bo.EmpQueryItemBO;
+import com.hr319wg.custom.pojo.bo.ReportBO;
 import com.hr319wg.custom.pojo.bo.SetFileBO;
-import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.qry.ucc.IQueryUCC;
-import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
 import com.hr319wg.sys.pojo.vo.CellVO;
 import com.hr319wg.sys.pojo.vo.TableVO;
-import com.hr319wg.util.CommonFuns;
 
 public interface ICommonService {
 
@@ -51,4 +49,11 @@ public interface ICommonService {
 
 	public String getAdjustInfo(TableVO table, String orgID, String filter) throws SysException;
 
+	public void saveReport(UploadedFile file, String path, ReportBO bo) throws Exception;
+
+	public void deleteReport(String ID) throws SysException;
+	
+	public List getReportBO(PageVO myPage, String typeID) throws SysException;
+
+	public Object getObjBO(Class c, String ID) throws SysException;
 }

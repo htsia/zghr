@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.hr319wg.common.dao.BaseDAO;
 import com.hr319wg.common.exception.SysException;
+import com.hr319wg.common.web.PageVO;
 import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.custom.pojo.bo.WageSetPersonBO;
@@ -116,5 +117,11 @@ public class CommonDAO extends BaseDAO{
 	public List getEmpQueryItem(String userID) throws SysException {
 		String sql="select bo from EmpQueryItemBO bo where bo.personID='"+userID+"'";
 		return this.hibernatetemplate.find(sql);
+	}
+	
+	public List getReportBO(PageVO myPage, String typeID) throws SysException {
+		String sql="select bo from ReportBO bo order by bo.sort desc";
+		String countsql="select count(bo) from ReportBO bo";
+		return this.pageQuery(myPage, countsql, sql);
 	}
 }

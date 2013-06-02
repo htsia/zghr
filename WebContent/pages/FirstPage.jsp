@@ -127,7 +127,8 @@
                  </table>
 
               <br>
-              <img src="/images/maininterface/worklog.jpg" alt="">
+              <a target='_blank' href='/pages/custom/showSchedule.jsp'>
+              <img src="/images/maininterface/worklog.jpg" alt="日程查看" style="border:none;"></a>
               <table border="0" cellspacing="1" cellpadding="0" bgcolor="#CCCCCC">
                       <tr>
                         <td bgcolor="#FFFFFF">

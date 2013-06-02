@@ -4,6 +4,15 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	
+    <class name="com.hr319wg.custom.pojo.bo.ReportBO" table="lead_report">
+        <id name="ID" type="string" unsaved-value="null">
+            <column name="ID" sql-type="varchar(32)"/>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="name" column="name"/>
+        <property name="path" column="path"/>
+        <property name="sort" column="sort"/>
+    </class>
     <class name="com.hr319wg.custom.emp.pojo.bo.EmpQueryItemBO" table="EMP_QUERY_ITEM">
         <id name="ID" type="string" unsaved-value="null">
             <column name="ID" sql-type="varchar(32)"/>
