@@ -8,6 +8,10 @@
 	function editRpt(ID) {
 		window.showModalDialog("/custom/report/upFileEdit.jsf?rptID="+ID,null,"dialogWidth:470px; dialogHeight:300px;center:center;resizable:yes;status:no;scroll:yes;");
 	}
+	function forModifyScope(id) {
+        window.showModalDialog("/custom/report/leadRptScope.jsf?itemID="+id, null, "dialogWidth:600px; dialogHeight:450px;center:center;resizable:no;status:no;");
+        return true;
+    }
 </script>
 
 <x:saveState value="#{uploadReportBB}" />
@@ -68,6 +72,8 @@
 		<h:commandButton styleClass="button01" value="删除" onclick="return confirm('确定删除吗');" action="#{item.delete}">
 			<x:updateActionListener value="#{item.ID}" property="#{uploadReportBB.operID}"/>
 		</h:commandButton>
+		<h:outputText value="  "/>
+		<h:commandButton styleClass="button01" type="button" value="设置权限" onclick="forModifyScope('#{item.ID}')"/>
 		</h:column>
     </h:dataTable>
     </h:panelGrid>

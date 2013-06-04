@@ -53,7 +53,11 @@ public interface ICommonService {
 
 	public void deleteReport(String ID) throws SysException;
 	
-	public List getReportBO(PageVO myPage, String typeID) throws SysException;
+	public List getReportBO(User user, String typeID) throws SysException;
+	
+	public List getAllReportBO(PageVO myPage, String typeID) throws SysException;
 
 	public Object getObjBO(Class c, String ID) throws SysException;
+	
+	public void saveRptScope(String itemID, String scopeType, String userID, String roleID) throws SysException;
 }

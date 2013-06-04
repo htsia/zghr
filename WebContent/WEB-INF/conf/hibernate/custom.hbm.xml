@@ -12,6 +12,9 @@
         <property name="name" column="name"/>
         <property name="path" column="path"/>
         <property name="sort" column="sort"/>
+        <property name="scopeType" column="scope_type"/>
+        <property name="userID" column="user_id"/>
+        <property name="roleID" column="role_id"/>
     </class>
     <class name="com.hr319wg.custom.emp.pojo.bo.EmpQueryItemBO" table="EMP_QUERY_ITEM">
         <id name="ID" type="string" unsaved-value="null">

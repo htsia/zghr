@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.hr319wg.common.dao.BaseDAO;
 import com.hr319wg.common.exception.SysException;
+import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.pojo.bo.UserBO;
@@ -119,9 +120,26 @@ public class CommonDAO extends BaseDAO{
 		return this.hibernatetemplate.find(sql);
 	}
 	
-	public List getReportBO(PageVO myPage, String typeID) throws SysException {
-		String sql="select bo from ReportBO bo order by bo.sort desc";
-		String countsql="select count(bo) from ReportBO bo";
-		return this.pageQuery(myPage, countsql, sql);
+	public List getReportBO(User user, String typeID) throws SysException {
+		String boHql=" from ReportBO bo where (scope_type='0' and instr(',' || user_id, ',"+user.getUserId()+",')>0) or (scope_type='1' and ";
+		
+		String roleID=user.getBelongRoleId();
+		if(roleID!=null && !"".equals(roleID)){
+			String[]roleIDs=roleID.split(",");
+			boHql+="(";
+			for(int i=0;i<roleIDs.length;i++){
+				boHql+=" instr(',' || role_id, ',"+roleIDs[i]+",')>0 ";
+			}
+			boHql+=")";
+		}else{
+			boHql+=" 1=0 ";
+		}
+		boHql+=") order by bo.sort desc";
+		return this.hibernatetemplate.find(boHql);
+	}
+	public List getAllReportBO(PageVO myPage, String typeID) throws SysException {
+		String boHql="select bo from ReportBO bo order by bo.sort desc";
+		String countHql="select count(bo) from ReportBO bo";
+		return this.pageQuery(myPage, countHql, boHql);
 	}
 }

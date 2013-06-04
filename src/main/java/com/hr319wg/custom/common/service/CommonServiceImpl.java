@@ -451,11 +451,20 @@ public class CommonServiceImpl implements ICommonService {
 		this.commonDAO.deleteBo(ReportBO.class, ID);
 	}
 
-	public List getReportBO(PageVO myPage, String typeID) throws SysException {
-		return this.commonDAO.getReportBO(myPage, typeID);
+	public List getReportBO(User user, String typeID) throws SysException {
+		return this.commonDAO.getReportBO(user, typeID);
+	}
+	
+	public List getAllReportBO(PageVO myPage, String typeID) throws SysException {
+		return this.commonDAO.getAllReportBO(myPage, typeID);
 	}
 
 	public Object getObjBO(Class c, String ID) throws SysException {
 		return this.commonDAO.findBoById(c, ID);
+	}
+
+	public void saveRptScope(String itemID, String scopeType, String userID, String roleID) throws SysException {
+		String sql="update lead_report set scope_type='"+scopeType+"', user_id='"+userID+"', role_id='"+roleID+"' where id='"+itemID+"'";
+		this.jdbcTemplate.execute(sql);
 	}
 }

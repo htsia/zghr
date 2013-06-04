@@ -60,7 +60,6 @@
 <h:form id="form1">
     <h:inputHidden id="pageInit" value="#{self_selfbulletinbb.pageInit}"/>
     <h:inputHidden id="pageInit2" value="#{self_selfnewsbb.pageInit}"/>
-    <h:inputHidden value="#{uploadReportBB.pageInit}"/>
 
     <f:verbatim>
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -68,10 +67,8 @@
           <td height=5 colspan=3></td>
         </tr>
         <tr>
-          <td width=5></td>
-
-          <td width=19%  valign="top" align="center">
-              <table  border="0" cellspacing="0" cellpadding="0">
+          <td width=20%  valign="top" align="center">
+              <table border="0" cellspacing="0" cellpadding="0">
                   <tr>
                       <td height="20" colspan="3" class="f143"><img src="<%=LanguageSupport.getImg("../images/maininterface/","office.jpg")%>"  align="middle" alt="功能"></td>
                   </tr>
@@ -85,7 +82,7 @@
                   <tr >
                       <td background="/images/maininterface/hd_main_70.gif"><img src="/images/maininterface/hd_spacer.gif" width="1" height="1"></td>
                       <td class="td06">
-                          <table height="170" width="100%" border="0" cellspacing="4" cellpadding="0">
+                          <table height="150" width="100%" border="0" cellspacing="4" cellpadding="0">
                               <tr>
                                   <td>
                                     <a onclick="doShowDownload();" target="_blank" >
@@ -305,7 +302,7 @@
                           <tr>
                               <td  valign="top" colspan="2">
         </f:verbatim>
-                                <x:dataTable width="100%" align="center" border="0" style="margin-left:5px;" rowIndexVar="index" value="#{uploadReportBB.list}" var="rpt">
+                                <x:dataTable width="100%" align="center" border="0" style="margin-left:5px;" rowIndexVar="index" value="#{uploadReportBB.list2}" var="rpt">
                                     <h:column rendered="#{index<5}">
                                         <h:graphicImage value="/images/self/gridcode.gif" />
                                         <f:verbatim>
@@ -359,20 +356,12 @@
              </table>
           </td>
 
-
+<!-- 	右边部分 -->
           <td valign="top" width=22% align="center">
-              <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                <td height="25" align="left">
-                    <img src="<%=LanguageSupport.getImg("/images/maininterface/","user.jpg")%>"  align="absmiddle">
-                </td>
-                <td align="left">    
-                    <a href="javascript:doModifyLanguage();"><% if ("1".equals(Constants.LANGUAGE_SUPPORT)) out.print(LanguageSupport.getResource("COMM-0002","语言设置"));%></a>
-                </td>
-                </tr>
-              </table>
-
-              <table width="248" border="0" cellspacing="0" cellpadding="0">
+              <table width="250" border="0" cellspacing="0" cellpadding="0">
+		            <tr>
+		            	<img src="<%=LanguageSupport.getImg("/images/maininterface/","user.jpg")%>"  align="absmiddle">
+		            </tr>
                     <tr>
                       <td width="5"><img src="/images/maininterface/hd_main_65.gif" width="5" height="5"></td>
                       <td background="/images/maininterface/hd_main_66.gif"><img src="/images/maininterface/hd_spacer.gif" width="1" height="1"></td>
@@ -382,7 +371,7 @@
                     <tr>
                       <td background="/images/maininterface/hd_main_70.gif"><img src="/images/maininterface/hd_spacer.gif" width="1" height="1"></td>
                       <td class="td06">
-                          <table width="100%" border="0" cellspacing="4" cellpadding="0">
+                          <table width="100%" border="0" cellspacing="4" cellpadding="0" height="150">
                           <tr>
                             <td align="left" style="line-height:18px;"><%=user.getName()%>,<br>
                               <% String str=LanguageSupport.getResource("MSG-0001","欢迎使用")+LanguageSupport.getParaValue("SYSTEM_NAME");out.print(str);%><br>
@@ -412,8 +401,8 @@
                       <td><img src="/images/maininterface/hd_main_82.gif" width="5" height="5"></td>
                     </tr>
                   </table>
-
-              <table  width="248" border="0" cellspacing="0" cellpadding="0">
+                  
+              <table width="250" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                       <td colspan="3">
                           <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -433,7 +422,7 @@
 
                           <tr>
                               <td background="/images/maininterface/hd_main_70.gif"><img src="/images/maininterface/hd_spacer.gif" width="1" height="1"></td>
-                              <td height=135 valign="top">
+                              <td height=160 valign="top">
           </f:verbatim>
                                   <x:dataTable value="#{sys_RemindResultBackingBean.remBriefList}"
                                                var="briefList" columnClasses="left_y2">
@@ -457,10 +446,8 @@
                 <td><img src="/images/maininterface/hd_main_82.gif" width="5" height="5"></td>
               </tr>
 
-                      </table>
+            </table>
           </td>
-
-          <td>&nbsp</td>
         </tr>
     </table>
     </f:verbatim>

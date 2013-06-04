@@ -48,6 +48,9 @@
 	<definition name="/custom/report/upFileEdit.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/report/upFileEdit.jsp"/>
     </definition>
+	<definition name="/custom/report/leadRptScope.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/report/leadRptScope.jsp"/>
+    </definition>
 	<definition name="/custom/report/upFileQuery.tiles" extends="layout.busitemplate">
         <put name="body" value="/pages/custom/report/upFileQuery.jsp"/>
     </definition>
