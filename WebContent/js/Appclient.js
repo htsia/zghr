@@ -115,8 +115,9 @@ function pageCodeExchange(form) {
     //debugger;
     for (var num = 0; num < form.length; num++) {
         var obj = form.elements[num];
-        if (obj.value != "" && obj.code != "" && obj.dict == "yes") {
-            obj.value = obj.code;
+        obj=$(obj);
+        if (obj.val() != "" && obj.attr("code") != "" && obj.attr("dict") == "yes") {
+            obj.val(obj.attr("code"));
         }
     }
     return true;
@@ -375,6 +376,7 @@ function windowOpen(theURL, winName, features, width, hight, scrollbars, top, le
 //    flag ÊÇ·ñÑ¡ÔòÒ¶ flag=0,Ö»ÔÊÐíÑ¡ÔñÒ¶£¬flag=1,ÔÊÐíÑ¡ÔñÖ¦ ,²»´«»òÕß=2£¬¸ù¾ÝÊý¾Ý¿âÀïµÄÊôÐÔÅÐ¶ÏÒªÑ¡ÔñÖ¦»¹ÊÇÒ¶
 function PopUpCodeDlgOneControl(obj, rootCodeId, flag) {
     var ctrlobj = document.getElementById(obj);
+    ctrlobj=$(ctrlobj);
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
 
@@ -382,16 +384,16 @@ function PopUpCodeDlgOneControl(obj, rootCodeId, flag) {
         rootCodeId = "";
     if (flag == null || flag == "")
         flag = "2";
-    var arg = "dict_num=" + ctrlobj.dict_num;
-    arg += "&curCode=" + ctrlobj.code;
-    arg += "&value=" + ctrlobj.value;
+    var arg = "dict_num=" + ctrlobj.attr("dict_num");
+    arg += "&curCode=" + ctrlobj.attr("code");
+    arg += "&value=" + ctrlobj.val();
     arg += "&rootId=" + rootCodeId;
     arg += "&flag=" + flag;
     retval = window.showModalDialog("/pages/common/SelCode.jsp?" + arg, "", "dialogWidth:300px; dialogHeight:400px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
     if (retval != null) {
         rs = retval.split(",");
-        ctrlobj.value = rs[1];
-        ctrlobj.code = rs[0];
+        ctrlobj.val(rs[1]);
+        ctrlobj.attr("code", rs[0]);
     }
 }
 //  codec ´úÂë
@@ -440,15 +442,16 @@ function PopUpCodeDlgTwoControlSelectAll(codec, valuec, dict_num, rootCodeId) {
  */
 function PopUpOrgDlg(obj, useRightFlag, rootOrgId, onlyOrg) {
     var ctrlobj = document.getElementById(obj);
+    ctrlobj=$(ctrlobj);
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
     if (useRightFlag == null)
         useRightFlag = 0;
     if (rootOrgId == null)
         rootOrgId = "";
-    var arg = "dict_num=" + ctrlobj.dict_num;
-    arg += "&curCode=" + ctrlobj.code;
-    arg += "&value=" + ctrlobj.value;
+    var arg = "dict_num=" + ctrlobj.attr("dict_num");
+    arg += "&curCode=" + ctrlobj.attr("code");
+    arg += "&value=" + ctrlobj.val();
     arg += "&rightFlag=" + useRightFlag;
     arg += "&rootId=" + rootOrgId;
     arg += "&onlyOrg=" + onlyOrg;
@@ -456,35 +459,37 @@ function PopUpOrgDlg(obj, useRightFlag, rootOrgId, onlyOrg) {
     retval = window.showModalDialog("/pages/common/SelOrg.jsp?" + arg, "", "dialogWidth:300px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
     if (retval != null) {
         rs = retval.split(",");
-        ctrlobj.value = rs[1];
-        ctrlobj.code = rs[0];
+        ctrlobj.val(rs[1]);
+        ctrlobj.attr("code", rs[0]);
     }
 }
 
 function PopUpOrgOnlyDlg(obj, useRightFlag, rootOrgId) { //   ½ö½öÏÔÊ¾»ú¹¹ useRightFlag 0-²»Ê¹ÓÃ 1-Ê¹ÓÃ²éÑ¯È¨ÏÞ¹ýÂË,2-Ê¹ÓÃÎ¬»¤È¨ÏÞ¹ýÂË£»rootOrgId¸ù½ÚµãµÄ»ú¹¹±àºÅ£¬¿ÉÒÔÓÃ¡°£¬¡±·Ö¸ô
     var ctrlobj = document.getElementById(obj);
+    ctrlobj=$(ctrlobj);
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
     if (useRightFlag == null)
         useRightFlag = 0;
     if (rootOrgId == null)
         rootOrgId = "";
-    var arg = "dict_num=" + ctrlobj.dict_num;
-    arg += "&curCode=" + ctrlobj.code;
-    arg += "&value=" + ctrlobj.value;
+    var arg = "dict_num=" + ctrlobj.attr("dict_num");
+    arg += "&curCode=" + ctrlobj.attr("code");
+    arg += "&value=" + ctrlobj.val();
     arg += "&rightFlag=" + useRightFlag;
     arg += "&rootId=" + rootOrgId;
     arg+="&onlyOrg=1";
     retval = window.showModalDialog("/pages/common/SelOrg.jsp?" + arg, "", "dialogWidth:300px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
     if (retval != null) {
         rs = retval.split(",");
-        ctrlobj.value = rs[1];
-        ctrlobj.code = rs[0];
+        ctrlobj.val(rs[1]);
+        ctrlobj.attr("code", rs[0]);
     }
 }
 
 function PopUpOrgDlgShowGroup(obj, useRightFlag, rootOrgId, onlyOrg) {    // ÏÔÊ¾°à×é
     var ctrlobj = document.getElementById(obj);
+    ctrlobj=$(ctrlobj);
     showx = event.screenX - event.offsetX - 150;
     // + deltaX;
     showy = event.screenY - event.offsetY + 18;
@@ -493,9 +498,9 @@ function PopUpOrgDlgShowGroup(obj, useRightFlag, rootOrgId, onlyOrg) {    // ÏÔÊ
         useRightFlag = 0;
     if (rootOrgId == null)
         rootOrgId = "";
-    var arg = "dict_num=" + ctrlobj.dict_num;
-    arg += "&curCode=" + ctrlobj.code;
-    arg += "&value=" + ctrlobj.value;
+    var arg = "dict_num=" + ctrlobj.attr("dict_num");
+    arg += "&curCode=" + ctrlobj.attr("code");
+    arg += "&value=" + ctrlobj.val();
     arg += "&rightFlag=" + useRightFlag;
     arg += "&rootId=" + rootOrgId;
     arg += "&onlyOrg=" + onlyOrg;
@@ -504,8 +509,8 @@ function PopUpOrgDlgShowGroup(obj, useRightFlag, rootOrgId, onlyOrg) {    // ÏÔÊ
     retval = window.showModalDialog("/pages/common/SelOrg.jsp?" + arg, "", "dialogWidth:300px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
     if (retval != null) {
         rs = retval.split(",");
-        ctrlobj.value = rs[1];
-        ctrlobj.code = rs[0];
+        ctrlobj.val(rs[1]);
+        ctrlobj.attr("code", rs[0]);
     }
 }
 
@@ -1342,15 +1347,18 @@ function PopUpPostDlgByDept(obj1, obj2, superId) {
     showx = event.screenX - event.offsetX - 150;
     showy = event.screenY - event.offsetY + 18;
 
+    obj11=$(obj11);
+    obj21=$(obj21);
+    
     retval = window.showModalDialog("/common/SelPostByDept.jsf?superId=" + superId, "", "dialogWidth:700px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
     if (retval != null) {
         rs = retval.split(",");
         if (obj2 != null) {
-            obj11.value = rs[0];
-            obj21.value = rs[1];
+            obj11.val(rs[0]);
+            obj21.val(rs[1]);
         } else {
-            obj11.value = rs[1];
-            obj11.code = rs[0];
+            obj11.val(rs[1]);
+            obj11.attr("code", rs[0]);
         }
         return true;
     } else {

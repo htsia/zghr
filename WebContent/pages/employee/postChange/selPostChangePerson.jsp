@@ -10,38 +10,38 @@
     %>
     function selectDept(){
         PopUpOrgDlgShowGroup('form1:A016030',2,'');
-        return false
+        return false;
     }
     function selectPerson(){
          return  fPopUpBackPerTreeDlg('<%=user.getOrgId()%>');
     }
     function checkData(){
-    	var personIds=document.all("form1:personIds").value;
+    	var personIds=document.getElementById("form1:personIds").value;
 		if(personIds==null || personIds==''){
 			alert("请选择人员");
 			return false;
 		}
-		if(document.all("form1:A016030").value==""){
+		if(document.getElementById("form1:A016030").value==""){
 			alert("新机构不能为空");
 			return false;
 		}else{
-			if(document.all("form1:postId").value!=null&&document.all("form1:postId").value!=""){
-				document.all("form1:A001715").value=document.all("form1:postId").value;
+			if(document.getElementById("form1:postId").value!=null&&document.getElementById("form1:postId").value!=""){
+				document.getElementById("form1:A001715").value=document.getElementById("form1:postId").value;
 			}
-			return forsubmit(document.forms(0))
+			return forsubmit(document.forms(0));
 		}
 	}
 	function selPost(){
-		var deptId=document.all("form1:A016030").code;
+		var deptId=document.getElementById("form1:A016030").code;
 		if(deptId==null || deptId==''){
 			alert("请选择机构");
 			return false;
 		}
-		PopUpPostDlgByDept(document.all("form1:postId"),document.all("form1:A001715"),deptId);
+		PopUpPostDlgByDept(document.getElementById("form1:postId"),document.getElementById("form1:A001715"),deptId);
 	}
     function selAfterPost(){
-        var deptId=document.all("form1:A016030").code;
-        PopUpPostDlgByDept(document.all("form1:AfterA001715"),null,deptId);
+        var deptId=document.getElementById("form1:A016030").code;
+        PopUpPostDlgByDept(document.getElementById("form1:AfterA001715"),null,deptId);
     }
 
 </script>
@@ -69,7 +69,7 @@
                 <td class=td_form02 colspan="3">
 </c:verbatim>
                     <h:inputText styleClass="input" id="A016030" value="#{emppostChangeMgrBB.emppostchangbo.newDept}" dict="yes" dict_num="OU"  code=""
-                            readonly="true"    alt="调入部门|1|s|50||"/>
+                            readonly="true" alt="调入部门|1|s|50||"/>
 <c:verbatim>
                     <input type="button" class="button_org" onclick="return selectDept();">
                     <font color=red><strong>请选择末级部门</strong></font>
@@ -81,13 +81,13 @@
                 <td class=td_form02 colspan="3">
 </c:verbatim>
                     <h:inputText styleClass="input" id="A001715" value="#{emppostChangeMgrBB.emppostchangbo.newPost}" dict="yes" dict_num="PO"  code=""
-                            readonly="true"    alt="新岗位|1|s|50||"/>
+                            readonly="true" alt="新岗位|1|s|50||"/>
 <c:verbatim>
                     <input type="button" class="button_post" onclick="return selPost()">
                     <h:outputText escape="false" value="<strong>新职务</strong>" rendered="#{sys_commonInfoBB.postChangeUseTitle}"></h:outputText>
 </c:verbatim>
                     <h:inputText styleClass="input" rendered="#{sys_commonInfoBB.postChangeUseTitle}" id="A705705" value="#{emppostChangeMgrBB.emppostchangbo.newJob}" dict="yes" dict_num="0160"  code=""
-                            readonly="true"    alt="新职务|1|s|50||"/>
+                            readonly="true" alt="新职务|1|s|50||"/>
                     <h:commandButton type="button" styleClass="button_post" rendered="#{sys_commonInfoBB.postChangeUseTitle}" onclick="PopUpCodeDlgOneControl('form1:A705705')"/>
 <c:verbatim>
                 </td>
@@ -98,7 +98,7 @@
         <td class=td_form02 colspan="3">
 </c:verbatim>
             <h:inputText styleClass="input" id="changeType" value="#{emppostChangeMgrBB.emppostchangbo.changeType}" dict="yes" dict_num="0205"  code=""
-                    readonly="true"    alt="变动类别|1|s|50||"/>
+                    readonly="true" alt="变动类别|1|s|50||"/>
 <c:verbatim>
             <input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:changeType');">
         </td>
@@ -109,7 +109,7 @@
         <td class=td_form02 colspan="3">
 </c:verbatim>
             <h:inputText styleClass="input" id="changeReason" value="#{emppostChangeMgrBB.emppostchangbo.changeReason}" dict="yes" dict_num="0210"  code=""
-                    readonly="true"    alt="变动原因|1|s|50||"/>
+                    readonly="true" alt="变动原因|1|s|50||"/>
 <c:verbatim>
             <input type="button" class="button_select" onclick="PopUpCodeDlgOneControl('form1:changeReason');">
         </td>
