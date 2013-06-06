@@ -452,7 +452,9 @@ public class CommonServiceImpl implements ICommonService {
 	}
 
 	public List getReportBO(User user, String typeID) throws SysException {
-		return this.commonDAO.getReportBO(user, typeID);
+		String sql="select wm_concat(r.role_id) from sys_role_user_r r where r.person_id='"+user.getUserId()+"'";
+		String roleID=this.pageAPI.queryForString(sql);
+		return this.commonDAO.getReportBO(user, roleID, typeID);
 	}
 	
 	public List getAllReportBO(PageVO myPage, String typeID) throws SysException {

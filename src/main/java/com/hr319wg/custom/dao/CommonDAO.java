@@ -120,15 +120,19 @@ public class CommonDAO extends BaseDAO{
 		return this.hibernatetemplate.find(sql);
 	}
 	
-	public List getReportBO(User user, String typeID) throws SysException {
+	public List getReportBO(User user, String roleID, String typeID) throws SysException {
+		
 		String boHql=" from ReportBO bo where (scope_type='0' and instr(',' || user_id, ',"+user.getUserId()+",')>0) or (scope_type='1' and ";
 		
-		String roleID=user.getBelongRoleId();
 		if(roleID!=null && !"".equals(roleID)){
 			String[]roleIDs=roleID.split(",");
 			boHql+="(";
 			for(int i=0;i<roleIDs.length;i++){
-				boHql+=" instr(',' || role_id, ',"+roleIDs[i]+",')>0 ";
+				if(i==0){
+					boHql+=" instr(',' || role_id, ',"+roleIDs[i]+",')>0 ";					
+				}else{
+					boHql+=" or instr(',' || role_id, ',"+roleIDs[i]+",')>0 ";										
+				}
 			}
 			boHql+=")";
 		}else{
