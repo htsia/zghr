@@ -35,8 +35,10 @@
             return false;
         }
         function doOpenForum(){
-            window.showModalDialog("/system/ForumList.jsf", null, "dialogWidth:"+screen.width*0.85+"px; dialogHeight:"+screen.height*0.75+"px;center:center;resizable:yes;status:no;scroll:yes;");
-            return false;
+        	var userID="<%=user.getLoginName()%>";
+            $.post("/bbs/generateRandom.jsp?userID="+userID, function(e){
+            	self.open("/bbs/valLogin.jsp?userID="+userID+"&random="+e);
+            });
         }
         function doOpenUseForum(){
             window.showModalDialog("/system/help/ForumList.jsf", null, "dialogWidth:"+screen.width*0.85+"px; dialogHeight:"+screen.height*0.75+"px;center:center;resizable:yes;status:no;scroll:yes;");

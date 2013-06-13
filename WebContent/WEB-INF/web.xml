@@ -171,7 +171,7 @@
         <init-param>
             <param-name>unfilterPath</param-name>
             <param-value>
-                    /pages/cache,/services,/pages/include,/file/bulletin,/file/news,/pages/uum,/pages/custom/attence/attassist</param-value>
+                    /pages/cache,/services,/pages/include,/file/bulletin,/file/news,/pages/uum,/pages/custom/attence/attassist,/bbs,/forums</param-value>
         </init-param>
     </filter>
 
