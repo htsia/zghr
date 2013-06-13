@@ -11,7 +11,9 @@ import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.pojo.bo.UserBO;
 import com.hr319wg.custom.pojo.bo.WageSetPersonBO;
 import com.hr319wg.emp.pojo.bo.EmpPostChangeBO;
+import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.sys.api.ActivePageAPI;
+import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.user.pojo.bo.OperateBO;
 import com.hr319wg.util.CommonFuns;
 import com.hr319wg.wage.pojo.bo.WageAdjustDetailBO;
@@ -145,5 +147,15 @@ public class CommonDAO extends BaseDAO{
 		String boHql="select bo from ReportBO bo order by bo.sort desc";
 		String countHql="select count(bo) from ReportBO bo";
 		return this.pageQuery(myPage, countHql, boHql);
+	}
+	
+	public List getAllConPostBO(String orgID) throws SysException {
+		String hql = " from ConPostBO bo,UserBO u where bo.personID=u.userID ";
+		if(orgID!=null && !"".equals(orgID)){
+			OrgBO org = SysCacheTool.findOrgById(orgID);
+			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
+		}
+		String boHql = "select bo.conPostID,u "+hql +" order by u.secDeptID,u.deptId,replace(bo.personID,'@',''),u.name";
+		return this.hibernatetemplate.find(boHql);
 	}
 }

@@ -42,6 +42,9 @@
                 ]>
 
 <tiles-definitions>
+	<definition name="/custom/emp/conPostAdd.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/custom/emp/conPostAdd.jsp"/>
+    </definition>
 	<definition name="/custom/report/upFileIndex.tiles" extends="layout.busitemplate">
         <put name="body" value="/pages/custom/report/upFileIndex.jsp"/>
     </definition>

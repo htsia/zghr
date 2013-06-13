@@ -324,7 +324,7 @@
         <put name="body" value="/pages/employee/info/PersonList.jsp" />
     </definition>
     <definition name="/employee/info/ConCurrentPostList.tiles" extends="layout.busitemplate" >
-      <put name="body" value="/pages/employee/info/ConCurrentPostList.jsp" />
+      <put name="body" value="/pages/custom/emp/conPostList.jsp" />
     </definition>
     <definition name="/employee/info/ConCurrentPost.tiles" extends="layout.busitemplateLogin" >
       <put name="body" value="/pages/employee/info/ConCurrentPost.jsp" />

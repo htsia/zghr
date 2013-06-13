@@ -17,7 +17,10 @@ import com.hr319wg.custom.dao.CommonDAO;
 import com.hr319wg.custom.emp.pojo.bo.EmpQueryItemBO;
 import com.hr319wg.custom.pojo.bo.ReportBO;
 import com.hr319wg.custom.pojo.bo.SetFileBO;
+import com.hr319wg.emp.pojo.bo.ConPostBO;
+import com.hr319wg.emp.ucc.IPersonUCC;
 import com.hr319wg.org.pojo.bo.OrgBO;
+import com.hr319wg.org.util.OrgTool;
 import com.hr319wg.qry.pojo.bo.QueryBO;
 import com.hr319wg.qry.pojo.bo.QueryItemBO;
 import com.hr319wg.qry.pojo.vo.QueryVO;
@@ -40,6 +43,15 @@ public class CommonServiceImpl implements ICommonService {
 	private JdbcTemplate jdbcTemplate;
 	private ActivePageAPI pageAPI;
 	private QueryAPI queryAPI;
+	private IPersonUCC personUCC;
+
+	public IPersonUCC getPersonUCC() {
+		return personUCC;
+	}
+
+	public void setPersonUCC(IPersonUCC personUCC) {
+		this.personUCC = personUCC;
+	}
 
 	public QueryAPI getQueryAPI() {
 		return queryAPI;
@@ -430,8 +442,8 @@ public class CommonServiceImpl implements ICommonService {
 		this.jdbcTemplate.execute(sql);
 	}
 
-	public void saveReport(UploadedFile file, String path, ReportBO bo) throws Exception{
-		if(file!=null){//Ìí¼Ó
+	public void saveReport(UploadedFile file, String path, ReportBO bo) throws Exception {
+		if (file != null) {// Ìí¼Ó
 			String webpath = "file\\report\\";
 			File dir = new File(path + webpath);
 			if (!dir.exists()) {
@@ -444,7 +456,7 @@ public class CommonServiceImpl implements ICommonService {
 			FileUtil.createFile(file.getBytes(), path + webpath);
 			bo.setPath(webpath);
 		}
-		this.commonDAO.saveOrUpdateBo(bo);		
+		this.commonDAO.saveOrUpdateBo(bo);
 	}
 
 	public void deleteReport(String ID) throws SysException {
@@ -452,11 +464,11 @@ public class CommonServiceImpl implements ICommonService {
 	}
 
 	public List getReportBO(User user, String typeID) throws SysException {
-		String sql="select wm_concat(r.role_id) from sys_role_user_r r where r.person_id='"+user.getUserId()+"'";
-		String roleID=this.pageAPI.queryForString(sql);
+		String sql = "select wm_concat(r.role_id) from sys_role_user_r r where r.person_id='" + user.getUserId() + "'";
+		String roleID = this.pageAPI.queryForString(sql);
 		return this.commonDAO.getReportBO(user, roleID, typeID);
 	}
-	
+
 	public List getAllReportBO(PageVO myPage, String typeID) throws SysException {
 		return this.commonDAO.getAllReportBO(myPage, typeID);
 	}
@@ -466,7 +478,45 @@ public class CommonServiceImpl implements ICommonService {
 	}
 
 	public void saveRptScope(String itemID, String scopeType, String userID, String roleID) throws SysException {
-		String sql="update lead_report set scope_type='"+scopeType+"', user_id='"+userID+"', role_id='"+roleID+"' where id='"+itemID+"'";
+		String sql = "update lead_report set scope_type='" + scopeType + "', user_id='" + userID + "', role_id='" + roleID + "' where id='" + itemID + "'";
+		this.jdbcTemplate.execute(sql);
+	}
+
+	public List getAllConPostBO(String orgID) throws SysException {
+		return this.commonDAO.getAllConPostBO(orgID);
+	}
+
+	public void saveConPost(User user, String personID, String orgID, String postID) throws SysException {
+		String sql = "select count(*) from a001 where id like '%@" + personID + "'";
+		int count = this.jdbcTemplate.queryForInt(sql);
+		String conPersonID = null;
+		String flag = null;
+		if (count == 0) {
+			conPersonID = "@" + personID;
+		} else {
+			sql = "select max(id) from a001 where  id like '%@" + personID + "'";
+			conPersonID = "@" + this.pageAPI.queryForString(sql);
+		}
+		flag = conPersonID.replace(personID, "");
+		this.personUCC.CopyPerson(personID, conPersonID, orgID);
+		this.personUCC.insertAllSingleSet(user, conPersonID);
+		this.personUCC.updatePersonCode(conPersonID, flag);
+		String conpostID=CommonFuns.getUUID().replaceAll("-", "");
+		sql="insert into emp_conpost (conpost_id,conpost_personid) values ('"+conpostID+"', '"+conPersonID+"')";
+		this.jdbcTemplate.execute(sql);
+		
+		OrgBO orgbo = OrgTool.getOrgByDept(orgID);
+		sql = "update a704 set a704000='00900' where id='" + personID + "'";
+		this.jdbcTemplate.execute(sql);
+		sql = "insert into a704 (subid,id,a704000,A704701,A704702,A704703,A704705,conpostid) values('" + SequenceGenerator.getKeyId("A704") + "','" + personID + "','00901','" + orgbo.getOrgId() + "','" + orgID + "','" + CommonFuns.getSysDate("yyyy-MM-dd") + "','" + postID + "','" + conpostID + "')";
+		this.jdbcTemplate.execute(sql);
+	}
+
+	public void updateCancelConPost(String conPostID, String personID) throws SysException {
+		this.personUCC.DeletePerson(personID);
+		String sql="delete from emp_conpost s where s.conpost_id='"+conPostID+"'";
+		this.jdbcTemplate.execute(sql);
+		sql="update a704 set A704704='"+CommonFuns.getSysDate("yyyy-MM-dd")+"' where conpostid='"+conPostID+"'";
 		this.jdbcTemplate.execute(sql);
 	}
 }

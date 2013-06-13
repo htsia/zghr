@@ -311,20 +311,20 @@
         <property name="sDeptID" column="A001704"/>
         <property name="secDeptID" column="A001239"/>
         <property name="deptSort" column="A001738"/>
-        <property name="cardNO" column="A001077"/>
-        <property name="bankNO" column="A001242"/>
+<!--         <property name="cardNO" column="A001077"/> -->
+<!--         <property name="bankNO" column="A001242"/> -->
         <property name="mainDeptSort" column="A001728"/>
         <property name="comeDate" column="A001044"/>
-        <property name="xueli" column="A001221"/>
-        <property name="xuewei" column="A001222"/>
-        <property name="zhicheng" column="A001240"/>
-        <property name="zhichengLevel" column="A001243"/>
-        <property name="zhichengXulie" column="A001244"/>
+<!--         <property name="xueli" column="A001221"/> -->
+<!--         <property name="xuewei" column="A001222"/> -->
+<!--         <property name="zhicheng" column="A001240"/> -->
+<!--         <property name="zhichengLevel" column="A001243"/> -->
+<!--         <property name="zhichengXulie" column="A001244"/> -->
         <property name="a001730" column="A001730"/>
         <property name="a001753" column="A001753"/>
-        <property name="leixing" column="a001218"/>
-        <property name="hasCashStr" column="A001201"/>
-        <property name="OAName" column="A001230"/>
+<!--         <property name="leixing" column="a001218"/> -->
+<!--         <property name="hasCashStr" column="A001201"/> -->
+<!--         <property name="OAName" column="A001230"/> -->
     </class>
 	
     <!-- 考勤管理 -->

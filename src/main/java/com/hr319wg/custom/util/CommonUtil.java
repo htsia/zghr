@@ -271,4 +271,12 @@ public class CommonUtil {
 			ex.printStackTrace();
 		} 
 	}
+	public static void main(String[] args) {
+		try {
+			System.out.println(CommonFuns.md5("410181198510181523"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

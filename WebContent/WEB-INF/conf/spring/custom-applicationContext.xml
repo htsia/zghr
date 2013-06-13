@@ -61,6 +61,7 @@
            <property name="pageAPI" ref="sys_activePageApi" />
            <property name="jdbcTemplate" ref="jdbcTemplate" />
            <property name="queryAPI" ref="qry_queryApi" />
+           <property name="personUCC" ref="emp_personUCC"/>
     </bean>
     
     <bean id="commonservice" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">

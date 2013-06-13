@@ -463,6 +463,25 @@ function PopUpOrgDlg(obj, useRightFlag, rootOrgId, onlyOrg) {
         ctrlobj.attr("code", rs[0]);
     }
 }
+function PopUpOrgDlg_1(obj, useRightFlag, rootOrgId, onlyOrg) {
+	var ctrlobj = document.getElementById(obj);
+	ctrlobj=$(ctrlobj);
+	showx = event.screenX - event.offsetX - 150;
+	showy = event.screenY - event.offsetY + 18;
+	if (useRightFlag == null)
+		useRightFlag = 0;
+	if (rootOrgId == null)
+		rootOrgId = "";
+	var arg = "dict_num=" + ctrlobj.attr("dict_num");
+	arg += "&curCode=" + ctrlobj.attr("code");
+	arg += "&value=" + ctrlobj.val();
+	arg += "&rightFlag=" + useRightFlag;
+	arg += "&rootId=" + rootOrgId;
+	arg += "&onlyOrg=" + onlyOrg;
+	
+	retval = window.showModalDialog("/pages/common/SelOrg.jsp?" + arg, "", "dialogWidth:300px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
+	return retval;
+}
 
 function PopUpOrgOnlyDlg(obj, useRightFlag, rootOrgId) { //   仅仅显示机构 useRightFlag 0-不使用 1-使用查询权限过滤,2-使用维护权限过滤；rootOrgId根节点的机构编号，可以用“，”分隔
     var ctrlobj = document.getElementById(obj);
@@ -1364,6 +1383,13 @@ function PopUpPostDlgByDept(obj1, obj2, superId) {
     } else {
         return false;
     }
+}
+function PopUpPostDlgByDept_1(superId) {	
+	showx = event.screenX - event.offsetX - 150;
+	showy = event.screenY - event.offsetY + 18;
+
+	retval = window.showModalDialog("/common/SelPostByDept.jsf?superId=" + superId, "", "dialogWidth:700px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
+	return retval;
 }
 //多选择岗位 obj1存岗位id,obj2存岗位名称,obj3存所在机构名称
 function fPopUpMutiPostDlg(obj1, obj2, obj3) {

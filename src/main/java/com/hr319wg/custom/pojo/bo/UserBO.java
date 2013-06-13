@@ -10,6 +10,7 @@ public class UserBO {
 	private String deptId;
 	private String secDeptID;
 	private String postId;
+	private String postName;
 	private String cardNO;
 	private String bankNO;
 	private String personType;
@@ -30,6 +31,12 @@ public class UserBO {
 	private String OAName;
 	private boolean hasCash;
 	
+	public String getPostName() {
+		return postName;
+	}
+	public void setPostName(String postName) {
+		this.postName = postName;
+	}
 	public String getOAName() {
 		return OAName;
 	}

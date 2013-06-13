@@ -60,4 +60,10 @@ public interface ICommonService {
 	public Object getObjBO(Class c, String ID) throws SysException;
 	
 	public void saveRptScope(String itemID, String scopeType, String userID, String roleID) throws SysException;
+	
+	public List getAllConPostBO(String orgID) throws SysException;
+	
+	public void saveConPost(User user, String personID, String orgID, String postID) throws SysException;
+	
+	public void updateCancelConPost(String conPostID, String personID) throws SysException;
 }

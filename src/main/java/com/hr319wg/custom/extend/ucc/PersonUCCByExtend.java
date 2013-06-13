@@ -138,10 +138,10 @@ public class PersonUCCByExtend extends PersonUCC {
 					sql.append(" and ").append(addConditon);
 				}
 
-				if("A001.A001003".equals(order)){
-					sql.append(" order by ").append("A001.deptempsort");					
-				}else{
-					sql.append(" order by ").append(order);					
+				if ("A001.A001003".equals(order)) {
+					sql.append(" order by ").append("A001.deptempsort");
+				} else {
+					sql.append(" order by ").append(order);
 				}
 			}
 			this.getActivepageservice().querySql(table, sql.toString(), user, pageNum, rowNum, true);
@@ -152,10 +152,9 @@ public class PersonUCCByExtend extends PersonUCC {
 	}
 
 	public void updatePersonCode(String perID, String add) throws SysException {
-		String[] params = add.split(",");
-		String sql = "update a001 set A001735='" + params[0] + "'||A001735,A001715='" + params[1] + "' where id='" + perID + "'";
+		String sql = "update a001 set A001735='" + add + "'||A001735 where id='" + perID + "'";
 		if ("SQL SERVER".equals(Constants.DB_TYPE)) {
-			sql = "update a001 set A001735='" + params[0] + "'+A001735,A001715='" + params[1] + "' where id='" + perID + "'";
+			sql = "update a001 set A001735='" + add + "'+A001735 where id='" + perID + "'";
 		}
 		this.getActivepageservice().executeSql(sql);
 	}
@@ -204,13 +203,13 @@ public class PersonUCCByExtend extends PersonUCC {
 						}
 						// 机构人员流动
 						String b730subid = SequenceGenerator.getKeyId("B730");
-						list.add("insert into B730(orguid,subid,B730000,B730700,B730701,B730702,B730703,B730706) values('" + po.getOrgId() + "','" + CommonFuns.filterNull(b730subid) + "','" + "00900" + "','" + ids[i] + "','" + personchangevo.getChangeDate() + "','" + personchangevo.getChangeType() + "','" + superOrg.getName() + "','"+changeinfo.getFromOperator()+"')");
+						list.add("insert into B730(orguid,subid,B730000,B730700,B730701,B730702,B730703,B730706) values('" + po.getOrgId() + "','" + CommonFuns.filterNull(b730subid) + "','" + "00900" + "','" + ids[i] + "','" + personchangevo.getChangeDate() + "','" + personchangevo.getChangeType() + "','" + superOrg.getName() + "','" + changeinfo.getFromOperator() + "')");
 						// 增减情况子集
 						list.add("insert into A016(id,subid,A016010,A016020,A016030,A016040,A016045,A016050) values('" + ids[i] + "','" + SequenceGenerator.getKeyId("A016") + "','" + PersonChangeVO.CHANGE_TYPE_OUT + "','" + CommonFuns.filterNull(changeinfo.getApplyDate()) + "','" + CommonFuns.filterNull(CodeUtil.interpertCode(CodeUtil.TYPE_ORG, changeinfo.getFromOrgId())) + "','" + CommonFuns.filterNull(changeinfo.getApplyDate()) + "','" + CommonFuns.filterNull(changeinfo.getFromOperator()) + "','" + b730subid + "')");
 
 						OrgBO or = SysCacheTool.findOrgById(po.getOrgId());
 						b730subid = SequenceGenerator.getKeyId("B730");
-						list.add("insert into B730(orguid,subid,B730000,B730700,B730701,B730702,B730703,B730706) values('" + xt + "','" + b730subid + "','" + "00900" + "','" + ids[i] + "','" + personchangevo.getChangeDate() + "','0200300008','" + or.getName() + "','"+changeinfo.getFromOperator()+"')");
+						list.add("insert into B730(orguid,subid,B730000,B730700,B730701,B730702,B730703,B730706) values('" + xt + "','" + b730subid + "','" + "00900" + "','" + ids[i] + "','" + personchangevo.getChangeDate() + "','0200300008','" + or.getName() + "','" + changeinfo.getFromOperator() + "')");
 
 						list.add("insert into A016(id,subid,A016010,A016020,A016030,A016040,A016045,A016050,A016200,A016201,A016202,A016203,A016204,A016205) values" + "('" + ids[i] + "','" + SequenceGenerator.getKeyId("A016") + "','" + PersonChangeVO.CHANGE_TYPE_IN + "','" + CommonFuns.filterNull(personchangevo.getChangeDate()) + "'," + "'" + CommonFuns.filterNull(superOrg.getName()) + "','" + CommonFuns.filterNull(personchangevo.getTractDate()) + "','" + CommonFuns.filterNull(personchangevo.getTractPerson()) + "','" + b730subid + "','" + po.getOrgId() + "','" + xt + "','" + po.getDeptId() + "','" + orgx.getOrgId() + "','" + po.getPostId() + "','" + postID + "')");
 						// 工作简历子集
