@@ -12,6 +12,7 @@
         }
         function forAdQry(){
              doAdvanceQuery("C","ORG","111","Y","","C001.C001730 = '00900'","Y","","Y","1");
+             
          }
         function changeSuperOrg(){
             if (!checkMutilSelect(document.forms(0).chk)){
@@ -98,7 +99,7 @@
                         <jsp:param name="operSignType" value="checkbox"/>
                         <jsp:param name="hasEdit" value="true"/>
                         <jsp:param name="isEditList" value="false"/>
-                        <jsp:param name="isCheckRight" value="true"/>
+                        <jsp:param name="isCheckRight" value="false"/>
                         <jsp:param name="isForward" value="true"/>
                         <jsp:param name="isRow" value="true"/>
                         <jsp:param name="rowFuncName" value="forView"/>

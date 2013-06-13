@@ -99,7 +99,7 @@
                     <jsp:param name="operSignType" value="checkbox"/>
                     <jsp:param name="hasEdit" value="true"/>
                     <jsp:param name="isEditList" value="false"/>
-                    <jsp:param name="isCheckRight" value="true"/>
+                    <jsp:param name="isCheckRight" value="false"/>
                     <jsp:param name="isForward" value="true"/>
                     <jsp:param name="isRow" value="true"/>
                     <jsp:param name="rowFuncName" value="forView"/>
