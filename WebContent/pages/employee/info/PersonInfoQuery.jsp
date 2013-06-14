@@ -22,6 +22,7 @@
         <h:inputHidden value="#{emp_personListBB2.pageInit}"/>
         <h:inputHidden id="fieldValue" value="#{emp_personListBB2.fieldValue}"/>  
         <h:inputHidden id="superId" value="#{emp_personListBB2.superId}"/>  
+        <h:inputHidden id="hisSet" value="#{emp_personListBB2.hisSet}"/>  
 <f:verbatim>
        <input type="hidden" name="sessionFlag" value="2">
        <input type="hidden" name="backFlag" value="<%=backFlag%>">
@@ -45,6 +46,10 @@
                 </td>
 				 <td height=8 class="td_page">
 </f:verbatim>
+					<h:outputText value="包含历史记录子集："/>
+					<h:inputText size="15" styleClass="input" id="hisSetName" value="#{emp_personListBB2.hisSetName}"/>
+                    <h:commandButton styleClass="button_select" type="button" onclick="return hisSet();"/>
+                    <c:verbatim><br/></c:verbatim>
 					<h:outputText value="查询方案："/>
 					<h:selectOneMenu id="displaySet" value="#{emp_personListBB2.defaultQry}" onchange="disPlayProcessBar();submit();" valueChangeListener="#{emp_personListBB2.changeQuery}">
                         <c:selectItems value="#{emp_personListBB2.displaySetList}"></c:selectItems>
@@ -410,4 +415,16 @@
     	 window.showModalDialog("/custom/emp/empQueryItemSetting.jsf", "", "dialogWidth:800px; dialogHeight:500px; status:0;");
     	 disPlayProcessBar();
      }
+     
+     function hisSet() {
+    	showx = event.screenX - event.offsetX - 160//+ 25; // + deltaX;
+    	showy = event.screenY - event.offsetY + 18;
+   	    retval = window.showModalDialog("/pages/qry/InfoSetTree.jsp?setType=A", "", "dialogWidth:300px; dialogHeight:400px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;");
+   	    if (retval != null) {
+   	        retval = retval.split("|");
+   	     	document.getElementById('form1:hisSet').value=retval[0];
+   	     	document.getElementById('form1:hisSetName').value=retval[1];
+   	    }
+   	    return false;
+   	}
 </script>

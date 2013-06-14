@@ -289,7 +289,7 @@ public class CommonServiceImpl implements ICommonService {
 		this.commonDAO.saveOrUpdateBo(bo);
 	}
 
-	public String queryPersonList(TableVO table, String name, String perType, String superId, int pageNum, int rowNum, String cancel, User user, String qryID, String addCondition, CellVO[] itemCells, List<EmpQueryItemBO> queryItemList, IQueryUCC queryucc) throws SysException {
+	public String queryPersonList(TableVO table, String name, String perType, String superId, int pageNum, int rowNum, String cancel, User user, String qryID, String addCondition, CellVO[] itemCells, List<EmpQueryItemBO> queryItemList, IQueryUCC queryucc, String hisSet) throws SysException {
 		try {
 			StringBuffer where = new StringBuffer();
 
@@ -330,6 +330,9 @@ public class CommonServiceImpl implements ICommonService {
 			table.setSetType("A");
 
 			QueryVO vo = queryucc.findQueryVO(qryID);
+			if(hisSet!=null && !"".equals(hisSet)){
+				vo.setHistorySet(hisSet);
+			}
 			if (CommonFuns.filterNull(vo.getAddedCondition()).length() > 0 && CommonFuns.filterNull(addCondition).length() > 0) {
 				vo.setAddedCondition(CommonFuns.filterNull(vo.getAddedCondition()) + " and " + CommonFuns.filterNull(addCondition));
 			} else {

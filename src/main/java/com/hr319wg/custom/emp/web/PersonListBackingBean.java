@@ -73,6 +73,24 @@ public class PersonListBackingBean extends BaseBackingBean {
 	private List<EmpQueryItemBO> queryItemList;
 	private ICommonService commonService;
 	private String addWhere;
+	private String hisSet;
+	private String hisSetName;
+
+	public String getHisSetName() {
+		return hisSetName;
+	}
+
+	public void setHisSetName(String hisSetName) {
+		this.hisSetName = hisSetName;
+	}
+
+	public String getHisSet() {
+		return hisSet;
+	}
+
+	public void setHisSet(String hisSet) {
+		this.hisSet = hisSet;
+	}
 
 	public String getAdvanceQuery() {
 		return advanceQuery;
@@ -601,8 +619,10 @@ public class PersonListBackingBean extends BaseBackingBean {
 				if ("1".equals(this.orgMode)) {
 					String loaddata = super.getRequestParameter("loaddata");
 					if (!"0".equals(loaddata) && "1".equals(this.orgFilter) && !cancelQuery) {
-						sql = this.commonService.queryPersonList(table, nameStr, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry, this.addWhere, this.tableItem, this.queryItemList, this.queryucc);
+						sql = this.commonService.queryPersonList(table, nameStr, this.personType, this.superId, 1, rowNum, "00900", user, this.defaultQry, this.addWhere, this.tableItem, this.queryItemList, this.queryucc, this.hisSet);
 						this.addWhere = null;
+						this.hisSet=null;
+						this.hisSetName=null;
 					} else {
 						table.setHeader(this.tableItem);
 						table.setSetType("A");
