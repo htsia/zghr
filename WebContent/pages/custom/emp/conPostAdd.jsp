@@ -21,7 +21,7 @@
 		  return false;
 	  }
 	  var v= PopUpPostDlgByDept_1(dept);
-	  if(v!=','){
+	  if(v!=',' && v!='' && v!=undefined){
 		  var v1=v.split(",");
 		  document.getElementById("form1:postID").value=v1[0];
 		  document.getElementById("form1:a001715").value=v1[1];
@@ -30,7 +30,7 @@
   }
   function fordept(){
 	  var v=PopUpOrgDlg_1('form1:deptid',0);
-	  if(v!=','){
+	  if(v!=',' && v!='' && v!= undefined ){
 		  var v1=v.split(",");
 		  document.getElementById("form1:deptID").value=v1[0];
 		  document.getElementById("form1:a001705").value=v1[1];

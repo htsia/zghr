@@ -13,11 +13,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.PageVO;
+import com.hr319wg.common.web.SysContext;
 import com.hr319wg.custom.dao.CommonDAO;
 import com.hr319wg.custom.emp.pojo.bo.EmpQueryItemBO;
 import com.hr319wg.custom.pojo.bo.ReportBO;
 import com.hr319wg.custom.pojo.bo.SetFileBO;
-import com.hr319wg.emp.pojo.bo.ConPostBO;
 import com.hr319wg.emp.ucc.IPersonUCC;
 import com.hr319wg.org.pojo.bo.OrgBO;
 import com.hr319wg.org.util.OrgTool;
@@ -28,6 +28,7 @@ import com.hr319wg.qry.ucc.IQueryUCC;
 import com.hr319wg.qry.util.QueryUtil;
 import com.hr319wg.sys.api.ActivePageAPI;
 import com.hr319wg.sys.api.QueryAPI;
+import com.hr319wg.sys.api.SysAPI;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.pojo.bo.InfoItemBO;
 import com.hr319wg.sys.pojo.bo.InfoSetBO;
@@ -330,7 +331,7 @@ public class CommonServiceImpl implements ICommonService {
 			table.setSetType("A");
 
 			QueryVO vo = queryucc.findQueryVO(qryID);
-			if(hisSet!=null && !"".equals(hisSet)){
+			if (hisSet != null && !"".equals(hisSet)) {
 				vo.setHistorySet(hisSet);
 			}
 			if (CommonFuns.filterNull(vo.getAddedCondition()).length() > 0 && CommonFuns.filterNull(addCondition).length() > 0) {
@@ -501,13 +502,14 @@ public class CommonServiceImpl implements ICommonService {
 			conPersonID = "@" + this.pageAPI.queryForString(sql);
 		}
 		flag = conPersonID.replace(personID, "");
-		this.personUCC.CopyPerson(personID, conPersonID, orgID);
-		this.personUCC.insertAllSingleSet(user, conPersonID);
-		this.personUCC.updatePersonCode(conPersonID, flag);
-		String conpostID=CommonFuns.getUUID().replaceAll("-", "");
-		sql="insert into emp_conpost (conpost_id,conpost_personid) values ('"+conpostID+"', '"+conPersonID+"')";
+
+		copyPerson(personID, conPersonID, orgID, postID, flag);
+		insertAllSingleSet(conPersonID);
+	
+		String conpostID = CommonFuns.getUUID().replaceAll("-", "");
+		sql = "insert into emp_conpost (conpost_id,conpost_personid) values ('" + conpostID + "', '" + conPersonID + "')";
 		this.jdbcTemplate.execute(sql);
-		
+
 		OrgBO orgbo = OrgTool.getOrgByDept(orgID);
 		sql = "update a704 set a704000='00900' where id='" + personID + "'";
 		this.jdbcTemplate.execute(sql);
@@ -515,11 +517,70 @@ public class CommonServiceImpl implements ICommonService {
 		this.jdbcTemplate.execute(sql);
 	}
 
-	public void updateCancelConPost(String conPostID, String personID) throws SysException {
-		this.personUCC.DeletePerson(personID);
-		String sql="delete from emp_conpost s where s.conpost_id='"+conPostID+"'";
+	public void copyPerson(String perID, String copyPerID, String dept, String post, String flag) throws SysException {
+		OrgBO org = OrgTool.getOrgByDept(dept);
+		OrgBO deptbo = SysCacheTool.findOrgById(dept);
+		String sql = "insert into A001(&) select # from A001 where id='" + perID + "'";
+		List list = SysCacheTool.queryInfoItemBySetId("A001");
+		String field = "ID";
+		String value = " '" + copyPerID + "' as ID";
+		for (int i = 0; i < list.size(); i++) {
+			InfoItemBO ib = (InfoItemBO) list.get(i);
+			if (ib.getItemId().equals("ID")) {
+				continue;
+			}
+			field = field + "," + ib.getItemId();
+			if (ib.getItemId().equals("A001701")) {
+				value = value + ",'" + org.getOrgId() + "' as A001701";
+			} else if (ib.getItemId().equals("A001705")) {
+				value = value + ",'" + deptbo.getOrgId() + "' as A001705";
+			} else if (ib.getItemId().equals("A001728")) {
+				value = value + ",'" + org.getTreeId() + "' as A001728";
+			} else if (ib.getItemId().equals("A001738")) {
+				value = value + ",'" + deptbo.getTreeId() + "' as A001738";
+			} else if (ib.getItemId().equals("A001715")) {
+				value = value + ",'" + post + "' as A001715";
+			} else if (ib.getItemId().equals("A001735")) {
+				value = value + ",'" + flag + "' || A001735 as A001735";
+			} else {
+				value = value + "," + ib.getItemId();
+			}
+		}
+		sql = sql.replaceAll("&", field);
+		sql = sql.replaceAll("#", value);
 		this.jdbcTemplate.execute(sql);
-		sql="update a704 set A704704='"+CommonFuns.getSysDate("yyyy-MM-dd")+"' where conpostid='"+conPostID+"'";
+
+		sql = "insert into sys_user_info(person_id,login_name,login_pwd) select '" + copyPerID + "' as person_id,'" + copyPerID + "' as login_name,login_pwd from sys_user_info where person_id='" + perID + "'";
+		this.jdbcTemplate.execute(sql);
+	}
+
+	public void insertAllSingleSet(String perId) throws SysException {
+		SysAPI sysApi = (SysAPI) SysContext.getBean("sys_SysAPI");
+		InfoSetBO[] setList = sysApi.queryCascadeInfoSet("A001");
+		if (setList != null) {
+			String sql=null;
+			for(InfoSetBO set : setList){
+				if (!InfoSetBO.RS_TYPE_MANY.equalsIgnoreCase(set.getSet_rsType())) {
+					sql="select count(*) from "+set.getSetId()+" where id='"+perId+"'";
+					int count=this.pageAPI.queryForInt(sql);
+					if(count==0){
+						sql="insert into "+set.getSetId()+" (id) values ('"+perId+"')";
+						this.jdbcTemplate.execute(sql);						
+					}
+				}
+			}
+		}
+	}
+
+	public void updateCancelConPost(String conPostID, String personID) throws SysException {
+		String sql = "delete from A001 where id='" + personID + "'";
+	    this.jdbcTemplate.execute(sql);
+
+	    sql = "delete from sys_role_user_r where person_id='" + personID + "'";
+	    this.jdbcTemplate.execute(sql);
+		sql = "delete from emp_conpost s where s.conpost_id='" + conPostID + "'";
+		this.jdbcTemplate.execute(sql);
+		sql = "update a704 set A704704='" + CommonFuns.getSysDate("yyyy-MM-dd") + "' where conpostid='" + conPostID + "'";
 		this.jdbcTemplate.execute(sql);
 	}
 }
