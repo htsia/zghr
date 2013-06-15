@@ -1348,16 +1348,18 @@ function fPopUpPostDlgRy(obj1, obj2, superId) {
 }
 
 function PopUpPostDlgByDept(obj1, obj2, superId) {
-    if (obj1 == null)
-        return;
-    if (obj1 != "[object]")
-        obj11 = document.getElementById(obj1);
-    else
-        obj11 = obj1;
+    if (obj1 == null){
+    	return;    	
+    }
+    if (obj1 != "[object]"){
+    	obj11 = document.getElementById(obj1);    	
+    }else{
+    	obj11 = obj1;    	    	
+    }
     if (obj2 != "[object]" && obj2 != null)
         obj21 = document.getElementById(obj2);
     else if (obj2 != null) {
-        obj21 = obj2
+        obj21 = obj2;
     }
     if (superId == null) {
         superId = "";
@@ -1367,8 +1369,9 @@ function PopUpPostDlgByDept(obj1, obj2, superId) {
     showy = event.screenY - event.offsetY + 18;
 
     obj11=$(obj11);
-    obj21=$(obj21);
-    
+    if(obj2 != null){
+    	obj21=$(obj21);    	
+    }
     retval = window.showModalDialog("/common/SelPostByDept.jsf?superId=" + superId, "", "dialogWidth:700px; dialogHeight:500px; dialogLeft:" + showx + "px; dialogTop:" + showy + "px; status:0;resizable:yes");
     if (retval != null) {
         rs = retval.split(",");
