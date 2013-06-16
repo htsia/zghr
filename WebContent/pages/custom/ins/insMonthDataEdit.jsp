@@ -41,8 +41,8 @@
 			<h:inputText id="personShiye" dict="个人失业" value="#{ins_dataBB.monthPay.personShiye}" styleClass="input"/>
 			<h:outputText value="个人医疗"/>
 			<h:inputText id="personYliao" dict="个人医疗" value="#{ins_dataBB.monthPay.personYliao}" styleClass="input"/>
-			<h:outputText value="大额医疗"/>
-			<h:inputText id="personDaejin" dict="大额医疗" value="#{ins_dataBB.monthPay.personDaejin}" styleClass="input"/>
+			<h:outputText value="个人医疗商业"/>
+			<h:inputText id="personDaejin" dict="个人医疗商业" value="#{ins_dataBB.monthPay.personDaejin}" styleClass="input"/>
 			<h:outputText value="个人公积金"/>
 			<h:inputText id="personGongjijin" value="#{ins_dataBB.monthPay.personGongjijin}" styleClass="input"/>
 			<h:outputText value="单位养老"/>
@@ -55,6 +55,8 @@
 			<h:inputText id="companyYliao" dict="单位医疗" value="#{ins_dataBB.monthPay.companyYliao}" styleClass="input"/>
 			<h:outputText value="单位生育"/>
 			<h:inputText id="companyShengyu" dict="单位生育" value="#{ins_dataBB.monthPay.companyShengyu}" styleClass="input"/>
+			<h:outputText value="单位医疗商业"/>
+			<h:inputText id="companyDaejin" dict="单位个人医疗商业" value="#{ins_dataBB.monthPay.companyDaejin}" styleClass="input"/>
 			<h:outputText value="单位公积金"/>
 			<h:inputText id="companyGongjijin" dict="单位公积金" value="#{ins_dataBB.monthPay.companyGongjijin}" styleClass="input"/>
 		</h:panelGrid>
