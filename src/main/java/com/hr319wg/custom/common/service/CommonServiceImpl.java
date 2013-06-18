@@ -490,7 +490,7 @@ public class CommonServiceImpl implements ICommonService {
 		return this.commonDAO.getAllConPostBO(orgID);
 	}
 
-	public void saveConPost(User user, String personID, String orgID, String postID) throws SysException {
+	public void saveConPost(User user, String personID, String orgID, String postID, String conDate) throws SysException {
 		String sql = "select count(*) from a001 where id like '%@" + personID + "'";
 		int count = this.jdbcTemplate.queryForInt(sql);
 		String conPersonID = null;
@@ -507,13 +507,13 @@ public class CommonServiceImpl implements ICommonService {
 		insertAllSingleSet(conPersonID);
 	
 		String conpostID = CommonFuns.getUUID().replaceAll("-", "");
-		sql = "insert into emp_conpost (conpost_id,conpost_personid) values ('" + conpostID + "', '" + conPersonID + "')";
+		sql = "insert into emp_conpost (conpost_id,conpost_personid, condate) values ('" + conpostID + "', '" + conPersonID + "', '"+conDate+"')";
 		this.jdbcTemplate.execute(sql);
 
 		OrgBO orgbo = OrgTool.getOrgByDept(orgID);
 		sql = "update a704 set a704000='00900' where id='" + personID + "'";
 		this.jdbcTemplate.execute(sql);
-		sql = "insert into a704 (subid,id,a704000,A704701,A704702,A704703,A704705,conpostid) values('" + SequenceGenerator.getKeyId("A704") + "','" + personID + "','00901','" + orgbo.getOrgId() + "','" + orgID + "','" + CommonFuns.getSysDate("yyyy-MM-dd") + "','" + postID + "','" + conpostID + "')";
+		sql = "insert into a704 (subid,id,a704000,A704701,A704702,A704703,A704705,conpostid) values('" + SequenceGenerator.getKeyId("A704") + "','" + personID + "','00901','" + orgbo.getOrgId() + "','" + orgID + "','" + conDate + "','" + postID + "','" + conpostID + "')";
 		this.jdbcTemplate.execute(sql);
 	}
 

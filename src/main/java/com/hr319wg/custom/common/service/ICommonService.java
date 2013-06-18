@@ -63,7 +63,7 @@ public interface ICommonService {
 	
 	public List getAllConPostBO(String orgID) throws SysException;
 	
-	public void saveConPost(User user, String personID, String orgID, String postID) throws SysException;
+	public void saveConPost(User user, String personID, String orgID, String postID, String conDate) throws SysException;
 	
 	public void updateCancelConPost(String conPostID, String personID) throws SysException;
 }

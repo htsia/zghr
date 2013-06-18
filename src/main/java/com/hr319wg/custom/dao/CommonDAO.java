@@ -155,7 +155,7 @@ public class CommonDAO extends BaseDAO{
 			OrgBO org = SysCacheTool.findOrgById(orgID);
 			hql+=" and (u.deptSort like '"+org.getTreeId()+"%') ";
 		}
-		String boHql = "select bo.conPostID,u "+hql +" order by u.secDeptID,u.deptId,replace(bo.personID,'@',''),u.name";
+		String boHql = "select bo,u "+hql +" order by u.secDeptID,u.deptId,replace(bo.personID,'@',''),u.name";
 		return this.hibernatetemplate.find(boHql);
 	}
 }

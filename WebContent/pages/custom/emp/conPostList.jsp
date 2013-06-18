@@ -68,6 +68,12 @@
 							</h:column>
 							<h:column>
 								<c:facet name="header">
+								<h:outputText value="兼职日期"/>
+								</c:facet>
+								<h:outputText value="#{list.conDate}" />
+							</h:column>
+							<h:column>
+								<c:facet name="header">
 								<h:outputText value="操作"/>
 								</c:facet>
 								<h:commandButton value="取消兼职" styleClass="button01"

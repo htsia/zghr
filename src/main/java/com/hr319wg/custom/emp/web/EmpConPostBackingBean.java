@@ -9,7 +9,9 @@ import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.custom.common.service.ICommonService;
 import com.hr319wg.custom.pojo.bo.UserBO;
+import com.hr319wg.emp.pojo.bo.ConPostBO;
 import com.hr319wg.util.CodeUtil;
+import com.hr319wg.util.CommonFuns;
 
 public class EmpConPostBackingBean extends BaseBackingBean {
 
@@ -19,10 +21,19 @@ public class EmpConPostBackingBean extends BaseBackingBean {
 	private String personID;
 	private String deptID;
 	private String postID;
+	private String conDate;
 	private String operUserID;
 	private String operConPostID;
 	private ICommonService commonService;
 	private List list;
+
+	public String getConDate() {
+		return conDate;
+	}
+
+	public void setConDate(String conDate) {
+		this.conDate = conDate;
+	}
 
 	public String getOperConPostID() {
 		return operConPostID;
@@ -54,6 +65,7 @@ public class EmpConPostBackingBean extends BaseBackingBean {
 			this.personID = null;
 			this.deptID = null;
 			this.postID = null;
+			this.conDate=CommonFuns.getSysDate("yyyy-MM-dd");
 		}
 		return editInit;
 	}
@@ -124,10 +136,11 @@ public class EmpConPostBackingBean extends BaseBackingBean {
 			}
 			for (int i = 0; i < list.size(); i++) {
 				Object[] obj = (Object[]) list.get(i);
-				String conPostID = obj[0].toString();
+				ConPostBO post = (ConPostBO)obj[0];
 				UserBO user = (UserBO) obj[1];
 				Map m = new HashMap();
-				m.put("conPostID", conPostID);
+				m.put("conPostID", post.getConPostID());
+				m.put("conDate", post.getConDate());
 				m.put("id", user.getUserID());
 				m.put("name", user.getName());
 				m.put("pCode", user.getPersonSeq());
@@ -143,7 +156,7 @@ public class EmpConPostBackingBean extends BaseBackingBean {
 
 	public String save() {
 		try {
-			this.commonService.saveConPost(super.getUserInfo(), personID, deptID, postID);
+			this.commonService.saveConPost(super.getUserInfo(), personID, deptID, postID, this.conDate);
 			return "success";
 		} catch (SysException e) {
 			e.printStackTrace();

@@ -1,3 +1,5 @@
+<%@page import="com.hr319wg.sys.pojo.bo.ParameterBO"%>
+<%@page import="com.hr319wg.sys.dao.ParameterDAO"%>
 <%@page import="java.io.File"%>
 <%@page import="com.hr319wg.common.ucc.impl.AttachmentUCC"%>
 <%@page import="com.hr319wg.sys.configuration.LanguageSupport"%>
@@ -46,6 +48,13 @@
     if(!f.exists()){
     	img = "/images/common/nophoto.JPG";
     }
+    
+    String forumUrl=null;
+    ParameterDAO dao = (ParameterDAO) SysContext.getBean("sys_parameterDAO");
+    ParameterBO bo1 = dao.getParameter("SYS_FIRSTPAGE");
+    if(bo1!=null){
+    	forumUrl="1";
+    }
 %>
     <c:verbatim>
     <script type="text/javascript" language="JavaScript1.2" src="<%=request.getContextPath()%>/js/menu.js"></script>
@@ -89,8 +98,16 @@
            return true;
         }
         function doOpenForum(){
-            window.showModalDialog("/system/ForumList.jsf", null, "dialogWidth:"+screen.width*0.75+"px; dialogHeight:"+screen.height*0.75+"px;center:center;resizable:yes;status:no;scroll:yes;");
-            return false;
+        	var f="<%=forumUrl%>";
+        	if(f==1){
+        		var userID="<%=user.getLoginName()%>";
+                $.post("/bbs/generateRandom.jsp?userID="+userID, function(e){
+                	self.open("/bbs/valLogin.jsp?userID="+userID+"&random="+e);
+                });
+        	}else{
+	            window.showModalDialog("/system/ForumList.jsf", null, "dialogWidth:"+screen.width*0.75+"px; dialogHeight:"+screen.height*0.75+"px;center:center;resizable:yes;status:no;scroll:yes;");
+	            return false;
+        	}
         }
         function doshowMoreStars(){
             window.showModalDialog("/self/StarsList.jsf", null, "dialogWidth:500px; dialogHeight:300px;center:center;resizable:yes;status:no;scroll:yes;");

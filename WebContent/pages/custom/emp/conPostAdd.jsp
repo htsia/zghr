@@ -41,6 +41,7 @@
 
   <x:saveState value="#{emp_conPostBB}" />
   <h:form id="form1">
+      <h:inputHidden value="#{emp_conPostBB.editInit}"></h:inputHidden>
       <h:inputHidden id="personID" value="#{emp_conPostBB.personID}"></h:inputHidden>
       <h:inputHidden id="deptID" value="#{emp_conPostBB.deptID}"></h:inputHidden>
       <h:inputHidden id="postID" value="#{emp_conPostBB.postID}"></h:inputHidden>
@@ -69,16 +70,23 @@
                </f:verbatim>
                <h:panelGroup>
                    <h:inputText styleClass="input" id="a001705" 
-                         readonly="true" alt="兼职部门|0|s|50||"></h:inputText>
+                         readonly="true" alt="兼职部门|0|s|50||"/>
                    <c:verbatim>
                      <input type="button" class="button_select" onclick="return fordept();">
                    </c:verbatim>
                </h:panelGroup>
                <h:outputText value="兼职岗位"/>
                <h:panelGroup>
-               		<h:inputText styleClass="input" id="A001715" readonly="true"/>
+               		<h:inputText styleClass="input" id="A001715" readonly="true" alt="兼职岗位|0|s|50||"/>
                    <c:verbatim>
                      <input type="button" class="button_select" onclick="return forpost();">
+                   </c:verbatim>
+               </h:panelGroup>
+               <h:outputText value="兼职日期"/>
+               <h:panelGroup>
+               		<h:inputText styleClass="input" id="A001044" value="#{emp_conPostBB.conDate}" readonly="true" alt="兼职日期|0|d|50||"/>
+                   <c:verbatim>
+                     <input type="button" class="button_select" onclick="PopUpCalendarDialog('form1:A001044')">
                    </c:verbatim>
                </h:panelGroup>
            </h:panelGrid>

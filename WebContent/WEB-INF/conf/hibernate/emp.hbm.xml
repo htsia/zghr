@@ -354,11 +354,7 @@
             <generator class="uuid.hex"/>
         </id>
         <property name="personID"	   column="CONPOST_PERSONID"/>
-        <property name="mainOrguid"     column="MAIN_ORGUID"/>
-        <property name="conOrguid1"	   column="CON_ORGUID1"/>
-        <property name="conOrguid2"	   column="CON_ORGUID2"/>
-        <property name="conPostID1"	   column="CON_POSTID1"/>
-        <property name="conPostID2"	   column="CON_POSTID2"/>
+        <property name="conDate"	   column="condate"/>
     </class>
 
 </hibernate-mapping>

@@ -5,83 +5,30 @@ import com.hr319wg.common.pojo.bo.CloneablePO;
 public class ConPostBO extends CloneablePO {
 	private String conPostID;
 	private String personID;
-	private String mainOrguid;
-	private String conOrguid1;
-	private String conOrguid2;
-	private String conPostID1;
-	private String conPostID2;
-	private String conPostID1Name;
-	private String conPostID2Name;
-
-	public String getConPostID1Name() {
-		return conPostID1Name;
-	}
-
-	public void setConPostID1Name(String conPostID1Name) {
-		this.conPostID1Name = conPostID1Name;
-	}
-
-	public String getConPostID2Name() {
-		return conPostID2Name;
-	}
-
-	public void setConPostID2Name(String conPostID2Name) {
-		this.conPostID2Name = conPostID2Name;
-	}
-
-	public String getConPostID1() {
-		return conPostID1;
-	}
-
-	public void setConPostID1(String conPostID1) {
-		this.conPostID1 = conPostID1;
-	}
-
-	public String getConPostID2() {
-		return conPostID2;
-	}
-
-	public void setConPostID2(String conPostID2) {
-		this.conPostID2 = conPostID2;
-	}
+	private String conDate;
 
 	public String getConPostID() {
-		return this.conPostID;
+		return conPostID;
 	}
 
-	public void setConPostID(String id) {
-		this.conPostID = id;
+	public void setConPostID(String conPostID) {
+		this.conPostID = conPostID;
 	}
 
 	public String getPersonID() {
-		return this.personID;
+		return personID;
 	}
 
-	public void setPersonID(String id) {
-		this.personID = id;
+	public void setPersonID(String personID) {
+		this.personID = personID;
 	}
 
-	public String getMainOrguid() {
-		return this.mainOrguid;
+	public String getConDate() {
+		return conDate;
 	}
 
-	public void setMainOrguid(String id) {
-		this.mainOrguid = id;
+	public void setConDate(String conDate) {
+		this.conDate = conDate;
 	}
 
-	public String getConOrguid1() {
-		return this.conOrguid1;
-	}
-
-	public void setConOrguid1(String id) {
-		this.conOrguid1 = id;
-	}
-
-	public String getConOrguid2() {
-		return this.conOrguid2;
-	}
-
-	public void setConOrguid2(String name) {
-		this.conOrguid2 = name;
-	}
 }
