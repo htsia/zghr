@@ -66,4 +66,6 @@ public interface ICommonService {
 	public void saveConPost(User user, String personID, String orgID, String postID, String conDate) throws SysException;
 	
 	public void updateCancelConPost(String conPostID, String personID) throws SysException;
+	
+	public void updateSelfDataPower(String orgID) throws SysException;	
 }

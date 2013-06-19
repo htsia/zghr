@@ -583,4 +583,12 @@ public class CommonServiceImpl implements ICommonService {
 		sql = "update a704 set A704704='" + CommonFuns.getSysDate("yyyy-MM-dd") + "' where conpostid='" + conPostID + "'";
 		this.jdbcTemplate.execute(sql);
 	}
+
+	public void updateSelfDataPower(String orgID) throws SysException {
+		String sql="select s.para_value from sys_parameter s where s.para_key='SELF_INFO_POWER_PROC'";
+		String proc =this.pageAPI.queryForString(sql);
+		if(proc!=null && !"".equals(proc)){
+			this.jdbcTemplate.execute("begin "+proc+"('"+orgID+"'); end;");
+		}
+	}
 }
