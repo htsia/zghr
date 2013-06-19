@@ -37,6 +37,7 @@ public class InsDataBackingBean extends BaseBackingBean{
 	private String dataInit;
 	private String editMonthInit;
 	private String orgID;
+	private String initOrgID;
 	private String nameStr;
 	private String personType;
 	private String personTypeValue;
@@ -58,6 +59,14 @@ public class InsDataBackingBean extends BaseBackingBean{
 	private InsMonthPayBO monthPay;
 	private boolean containLock;
 	
+	public String getInitOrgID() {
+		return initOrgID;
+	}
+
+	public void setInitOrgID(String initOrgID) {
+		this.initOrgID = initOrgID;
+	}
+
 	public List getMonthPaySum() {
 		return monthPaySum;
 	}
@@ -223,6 +232,10 @@ public class InsDataBackingBean extends BaseBackingBean{
 		this.insDataService = insDataService;
 	}
 	public String getPageInit() {
+		String orgID1= super.getRequestParameter("superId");
+		if(orgID1!=null && !"".equals(orgID1)){
+			this.initOrgID=orgID1;
+		}
 		doQuery();
 		return pageInit;
 	}
@@ -272,7 +285,7 @@ public class InsDataBackingBean extends BaseBackingBean{
 			mypage.setCurrentPage(1);
 		}
 		try {
-			this.setList=this.insDataService.getAllInsCalcSetBO(mypage, super.getRequestParameter("superId"), user.getUserId(), this.wageDate);
+			this.setList=this.insDataService.getAllInsCalcSetBO(mypage, this.initOrgID, user.getUserId(), this.wageDate);
 		} catch (SysException e) {
 			e.printStackTrace();
 		}
