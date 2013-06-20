@@ -84,11 +84,11 @@
             <h:outputText value="#{list.postName}"/>
         </h:column>
         <h:column>
-            <c:facet name="header"><h:outputText value="第一学期"/></c:facet>
+            <c:facet name="header"><h:outputText value="评价一得分"/></c:facet>
             <h:outputText value="#{list.score}"/>
         </h:column>
         <h:column>
-            <c:facet name="header"><h:outputText value="第二学期"/></c:facet>
+            <c:facet name="header"><h:outputText value="评价二得分"/></c:facet>
             <h:outputText value="#{list.score2}"/>
         </h:column>
         <h:column>

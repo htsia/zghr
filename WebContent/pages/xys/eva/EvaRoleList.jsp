@@ -114,7 +114,7 @@
             <h:outputText value="#{list.weight360}"/>
         </h:column>
         <h:column>
-            <c:facet name="header"><h:outputText value="学生评价(%)"/></c:facet>
+            <c:facet name="header"><h:outputText value="其他评价(%)"/></c:facet>
             <h:outputText value="#{list.weightXspj}"/>
         </h:column>
         

@@ -83,7 +83,8 @@ public class XysEvaObjDAO extends BaseDAO {
      * @param planId
      * @throws SysException
      */
-    public void caclEvaObjBOByPlanId(final String planId)throws SysException{
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public void caclEvaObjBOByPlanId(final String planId)throws SysException{
     	this.hibernatetemplate.execute(new HibernateCallback(){
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {

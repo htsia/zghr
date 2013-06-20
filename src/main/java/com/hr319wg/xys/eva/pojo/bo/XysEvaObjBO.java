@@ -8,6 +8,13 @@ public class XysEvaObjBO {
 	private String score360;
 	private String scoreXspj;
 	private String totalScore;
+	
+	private String scoreDeptAvg;
+	private String scoreDeptKpi;
+	private String scoreDeptKpiRecover;
+	private String adjustTotalScore;
+	
+	
 	private String natureSort;
 	private String natureGrade;
 	private String forceSort;
@@ -101,6 +108,30 @@ public class XysEvaObjBO {
 	}
 	public void setTotalScore(String totalScore) {
 		this.totalScore = totalScore;
+	}
+	public String getScoreDeptAvg() {
+		return scoreDeptAvg;
+	}
+	public void setScoreDeptAvg(String scoreDeptAvg) {
+		this.scoreDeptAvg = scoreDeptAvg;
+	}
+	public String getScoreDeptKpi() {
+		return scoreDeptKpi;
+	}
+	public void setScoreDeptKpi(String scoreDeptKpi) {
+		this.scoreDeptKpi = scoreDeptKpi;
+	}
+	public String getScoreDeptKpiRecover() {
+		return scoreDeptKpiRecover;
+	}
+	public void setScoreDeptKpiRecover(String scoreDeptKpiRecover) {
+		this.scoreDeptKpiRecover = scoreDeptKpiRecover;
+	}
+	public String getAdjustTotalScore() {
+		return adjustTotalScore;
+	}
+	public void setAdjustTotalScore(String adjustTotalScore) {
+		this.adjustTotalScore = adjustTotalScore;
 	}
 	
 	

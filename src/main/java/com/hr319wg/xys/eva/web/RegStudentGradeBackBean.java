@@ -163,7 +163,7 @@ public class RegStudentGradeBackBean extends BaseBackingBean {
 		this.selectAll = selectAll;
 	}
 
-	// 录入学生评价
+	// 录入其他评价
 	private String initIndex;
 	private String superId;
 	private String initInput;

@@ -28,7 +28,7 @@
       <h:panelGrid columns="1" styleClass="td_title" width="98%" align="center">
           <h:panelGroup>
               <h:graphicImage value="/images/tips.gif" />
-              <h:outputText value=" 绩效管理 ->录入学生评价"/>
+              <h:outputText value=" 绩效管理 ->录入其他评价"/>
           </h:panelGroup>
       </h:panelGrid>
       <h:panelGrid columns="1"  width="98%" align="left">

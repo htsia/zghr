@@ -32,8 +32,8 @@ public class RelSetDAO extends BaseDAO {
         if(orgId!=null&&!orgId.equals("")){
             OrgBO org= SysCacheTool.findOrgById(orgId);
             String treeId=org.getTreeId();
-            hql+=" and bo.orgTreeId like '%"+treeId+"%'";
-            countHql+=" and bo.orgTreeId like '%"+treeId+"%'";
+            hql+=" and bo.orgTreeId like '"+treeId+"%'";
+            countHql+=" and bo.orgTreeId like '"+treeId+"%'";
         }
         if(pagevo!=null){
             return this.pageQuery(pagevo,countHql,hql);

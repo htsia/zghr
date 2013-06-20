@@ -12,7 +12,7 @@
                return false;
             }else if(!checkValidate(form1.all('form1:weight360'), '360权重', 'i','',0)){
                 return false;
-            }else if(!checkValidate(form1.all('form1:weightXspj'), '学生评价权重', 'i')){
+            }else if(!checkValidate(form1.all('form1:weightXspj'), '其他评价权重', 'i')){
                return false;
             }else{
                return true;
@@ -36,7 +36,7 @@
               <h:inputText id="weightKpi" value="#{xys_evaRoleBB.roleBo.weightKpi}" />
                <h:outputText value="360权重（%）"/>
               <h:inputText id="weight360" value="#{xys_evaRoleBB.roleBo.weight360}" />
-               <h:outputText value="学生评价权重（%）"/>
+               <h:outputText value="其他评价权重（%）"/>
               <h:inputText id="weightXspj" value="#{xys_evaRoleBB.roleBo.weightXspj}" />
            </h:panelGrid>
 

@@ -45,9 +45,9 @@ public class PostEvaVO {
     	}
     	if(weightXspj!=null&&!weightXspj.equals("")){
     		if(des.equals("")){
-    			des+="<b>学生评价</b>("+weightXspj+"%)";
+    			des+="<b>其他评价</b>("+weightXspj+"%)";
     		}else{
-    			des+=",<b>学生评价</b>("+weightXspj+"%)";
+    			des+=",<b>其他评价</b>("+weightXspj+"%)";
     		}
     	}
     	weightDes=des;
