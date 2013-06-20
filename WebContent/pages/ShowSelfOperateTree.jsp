@@ -46,7 +46,7 @@
 				if (treeNode.key!=null){
 		            var url = treeNode.key;
 		 	       	if(url.indexOf("?")!=-1 && url.indexOf("/custom/")!=-1){
-		 	       		url+="&inself=1";
+		 	       		url+="&inself=0";
 		 	       	}else if(url.indexOf("/custom/")!=-1){
 		 	       		url+="?inself=1";
 		 	       	}
@@ -66,9 +66,6 @@
 		
          // 显示自助模块
         	if(ModuleID!=null){
-        		if("KQGL".equals(ModuleID)){
-               		operURL="/custom/attence/attLeaveQuery.jsf";
-            	}
         		out.println("zNodes.push({id:'"+moduleOperID+"',pId:-1,name:'"+SysCacheTool.findOperate(moduleOperID).getOperateName()+"',open:true,isParent:true})");
                 if("1".equals(subfolder)){//有二级菜单
 	                List<OperateBO> operList2 = cd.getAllSubOperateBOInSelf(moduleOperID, user.getUserId());
@@ -114,17 +111,6 @@
 	});
     if("<%=operURL%>"!=''){
     	var url = "<%=operURL%>";
-    	<%
-    		String approtype=String.valueOf(session.getAttribute("approtype"));
-    	    session.removeAttribute("approtype");
-    		if(approtype!=null && !"".equals(approtype) && !"null".equals(approtype)){
-    			String[]auditUrls={"attLeaveAudit","attOutAudit","attOvertimeAudit","attRestAudit"};
-    			int index=Integer.valueOf(approtype);
-    			%>
-    			url="/custom/attence/<%=auditUrls[index]%>.jsf";
-    			<%
-    		}
-    	%>
        	if(url.indexOf("?")!=-1 && url.indexOf("/custom/")!=-1){
        		url+="&inself=1";
        	}else if(url.indexOf("/custom/")!=-1){

@@ -86,6 +86,7 @@
             <td width="30" >&nbsp;</td>
             <td width="40" ><img src="/<%=CommonUtil.getSYS_INTERFACE()[1]%>" align="left" alt="" height="58" valign="top"></td>
             <td  width="500" align="center">
+				<img src="/images/maininterface/title_name.png"/>
            </td>
            <td align="right" >&nbsp;</td>
        </tr>
@@ -142,18 +143,12 @@
                           }
                       %>
                       <%
-                          List<OperateBO> moduleList = CommonUtil.getAllModulesInSelf();
+                          List<OperateBO> moduleList = CommonUtil.getAllModulesInSelf(user.getUserId());
                       	  if(moduleId!=null){
                       		  for(OperateBO bo : moduleList){
                       			  String moduleID=bo.getModuleID();
-                      			  String subfolder="1";
+                      			  String subfolder=null;
                       			  String bylevel=null;                      			  
-					              if("JXGL".equals(moduleID) || "XCGL".equals(moduleID)){
-					            	  subfolder="0";
-					              }
-					              if("JXGL".equals(moduleID)){
-					            	  bylevel="1";
-					              }
                       			  %>
                       			  	<td width=11 align="middle"><img src="/images/maininterface/top_menu_sp.jpg" /></td>
 					                <td align="center" id="_TD" class="<%="".equals(moduleId)?"maintabactive":"maintabinactive" %>" width="65">
