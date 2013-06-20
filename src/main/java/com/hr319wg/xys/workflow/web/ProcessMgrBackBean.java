@@ -9,6 +9,7 @@ import org.apache.myfaces.custom.fileupload.UploadedFile;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.xys.workflow.service.ActivitiToolsService;
 
+
 public class ProcessMgrBackBean extends BaseBackingBean {
 	private ActivitiToolsService activitiToolService;
 	private String pageInit;
