@@ -789,7 +789,20 @@
             <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
-    
+     <navigation-rule>
+        <from-view-id>/xys/eva/importDeptKpi.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/xys/eva/importPersKpi.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/common/SuccessClosePop.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
     
     
     <!-- 流程管理 -->
