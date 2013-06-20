@@ -45,7 +45,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <tr>
             <td class="td_title"><img src="/images/tips.gif">
-                 绩效管理 ->录入学生评价 &nbsp;&nbsp;&nbsp;&nbsp;
+                 绩效管理 ->录入其他评价 &nbsp;&nbsp;&nbsp;&nbsp;
             </td>
             <td class="td_title" align="right">
                  </c:verbatim>
@@ -53,7 +53,7 @@
                  <c:verbatim>
                  &nbsp;&nbsp;
                  </c:verbatim>
-                     <h:commandButton styleClass="button01" type="button" value="导入学生评价" onclick="uploadKeySet();"/>
+                     <h:commandButton styleClass="button01" type="button" value="导入其他评价" onclick="uploadKeySet();"/>
                  <c:verbatim>
            </td>
         </tr>

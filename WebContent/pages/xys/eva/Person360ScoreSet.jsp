@@ -239,7 +239,7 @@
                 	   if(tdList!=null&&tdList.size()>0){
                 		   out.println("<tr>");
 	                        out.println("<td valign='center' class='td_xys_top' align='center' rowspan='" + String.valueOf(nlList.size()) + "'>");
-	                        out.println("ÄÜÁ¦¿¼ºË");
+	                        out.println("Ì¬¶È¿¼ºË");
 	                        out.println("</td>");
 	                        Xys360ObjKeyBO key=(Xys360ObjKeyBO)tdList.get(0);
 	                        Xys360ObjScoreBO score=ucc.findEqualsXys360ObjScoreBO(sbj.getSbjId(),key.getKeyId());

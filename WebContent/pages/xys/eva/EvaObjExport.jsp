@@ -50,7 +50,7 @@
 						out.println("能力态度");
 						out.println("</td>");
 						out.println("<td>");
-						out.println("学生评价");
+						out.println("其他评价");
 						out.println("</td>");
 						out.println("<td>");
 						out.println("总分");

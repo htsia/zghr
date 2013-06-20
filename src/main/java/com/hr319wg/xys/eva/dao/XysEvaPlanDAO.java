@@ -64,7 +64,7 @@ public class XysEvaPlanDAO extends BaseDAO {
         String addWhere="";
         if(orgId!=null&&!orgId.equals("")){
             String treeId= SysCacheTool.findOrgById(orgId).getTreeId();
-            addWhere+=" and bo.orgTreeId like '%"+treeId+"%'";
+            addWhere+=" and bo.orgTreeId like '"+treeId+"%'";
         }
         if(planId!=null&&!planId.equals("")){
             if(showMode!=null&&showMode.equals("2")){

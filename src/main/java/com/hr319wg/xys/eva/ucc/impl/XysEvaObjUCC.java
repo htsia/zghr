@@ -11,8 +11,10 @@ import com.hr319wg.eva.service.EvaGradeService;
 import com.hr319wg.sys.cache.SysCacheTool;
 import com.hr319wg.sys.service.ActivePageService;
 import com.hr319wg.util.CommonFuns;
+import com.hr319wg.xys.eva.pojo.bo.Xys360ObjBO;
 import com.hr319wg.xys.eva.pojo.bo.XysEvaObjBO;
 import com.hr319wg.xys.eva.pojo.bo.XysEvaPlanBO;
+import com.hr319wg.xys.eva.service.Xys360Service;
 import com.hr319wg.xys.eva.service.XysEvaObjService;
 import com.hr319wg.xys.eva.ucc.IXysEvaObjUCC;
 
@@ -20,6 +22,15 @@ public class XysEvaObjUCC implements IXysEvaObjUCC {
 	private XysEvaObjService xysEvaObjService;
 	private ActivePageService activePageService;
 	private EvaGradeService evaGradeService;
+	private Xys360Service xys360Service;
+
+	public Xys360Service getXys360Service() {
+		return xys360Service;
+	}
+
+	public void setXys360Service(Xys360Service xys360Service) {
+		this.xys360Service = xys360Service;
+	}
 
 	public List getXysEvaObjBOByPlanId(PageVO pagevo, String planId,
 			String orgId, String showMode) throws SysException {
@@ -65,11 +76,11 @@ public class XysEvaObjUCC implements IXysEvaObjUCC {
 		List objList = this.getXysEvaObjBOByPlanId(null, planId, null, null);
 		XysEvaPlanBO plan = (XysEvaPlanBO) xysEvaObjService.getXysEvaObjDao()
 				.findBoById(XysEvaPlanBO.class, planId);
-		List list = this.evaGradeService.getAllGradeItem(plan.getPlanGrade());
+		List gradeList = this.evaGradeService.getAllGradeItem(plan.getPlanGrade());
 		Hashtable map = new Hashtable();
-		if (list != null && list.size() > 0) {
-			for (int i = 0; i < list.size(); i++) {
-				EvaGradeItemBO item = (EvaGradeItemBO) list.get(i);
+		if (gradeList != null && gradeList.size() > 0) {
+			for (int i = 0; i < gradeList.size(); i++) {
+				EvaGradeItemBO item = (EvaGradeItemBO) gradeList.get(i);
 				map.put(item.getItemID(), item);
 			}
 		}
@@ -78,47 +89,50 @@ public class XysEvaObjUCC implements IXysEvaObjUCC {
 		if (objList != null && objList.size() > 0) {
 			for (int i = 0; i < objList.size(); i++) {
 				XysEvaObjBO obj = (XysEvaObjBO) objList.get(i);
-				String[] infoItems = { "A746730", "A746735", "A746705",
+				Xys360ObjBO bo=this.xys360Service.findEqualsXys360ObjBO(planId, obj.getPersonId());
+				if(bo==null){
+					bo=new Xys360ObjBO();
+				}
+				String[] infoItems = {"A746735", "A746705",
 						"A746710", "A746715", "A746750", "A746702", "A746701",
-						"A746720", "A746740" };
+						"A746720", "A746740", "A746200", "A746201", "A746202", "A746203", "A746755", "A746730", "A746730"};
+				
 				EvaGradeItemBO item = null;
+				String sort=obj.getNatureSort();
 				if (obj.getNatureGrade() != null
 						&& !obj.getNatureGrade().equals("")) {
 					item = (EvaGradeItemBO) map.get(obj.getNatureGrade());
 				} else {
-					item = (EvaGradeItemBO) list.get(list.size() - 1);
+					item = (EvaGradeItemBO) gradeList.get(gradeList.size() - 1);
 				}
-				String[] infoValues = {
-						"",
-						CommonFuns.filterNull(item.getItemName()),
-						CommonFuns.filterNull(plan.getPlanType()),
-						CommonFuns.filterNull(plan.getBeginTime()),
-						CommonFuns.filterNull(plan.getEndTime()),
-						CommonFuns.filterNull(obj.getNatureSort()),
-						CommonFuns.filterNull(plan.getPlanId()),
-						CommonFuns.filterNull(plan.getPlanName()),
-						CommonFuns.filterNull(SysCacheTool.findOrgById(plan.getCreateOrg()).getName()),
-						CommonFuns.filterNull(item.getEvaRatio())};
+				
 				if (publicType.equals("2")) {
 					if (obj.getForceGrade() != null
 							&& !obj.getForceGrade().equals("")) {
 						item = (EvaGradeItemBO) map.get(obj.getForceGrade());
 					} else {
-						item = (EvaGradeItemBO) list.get(list.size() - 1);
+						item = (EvaGradeItemBO) gradeList.get(gradeList.size() - 1);
 					}
-				    String[]   infoValues2 = {
-							"",
-							CommonFuns.filterNull(item.getItemName()),
-							CommonFuns.filterNull(plan.getPlanType()),
-							CommonFuns.filterNull(plan.getBeginTime()),
-							CommonFuns.filterNull(plan.getEndTime()),
-							CommonFuns.filterNull(obj.getForceSort()),
-							CommonFuns.filterNull(plan.getPlanId()),
-							CommonFuns.filterNull(plan.getPlanName()),
-							CommonFuns.filterNull(SysCacheTool.findOrgById(plan.getCreateOrg()).getName()),
-							CommonFuns.filterNull(item.getEvaRatio())};
-				    infoValues=infoValues2;
+					sort=obj.getForceGrade();
 				}
+				String[] infoValues = {
+						CommonFuns.filterNull(item.getItemName()),
+						CommonFuns.filterNull(plan.getPlanType()),
+						CommonFuns.filterNull(plan.getBeginTime()),
+						CommonFuns.filterNull(plan.getEndTime()),
+						CommonFuns.filterNull(sort),
+						CommonFuns.filterNull(plan.getPlanId()),
+						CommonFuns.filterNull(plan.getPlanName()),
+						CommonFuns.filterNull(SysCacheTool.findOrgById(plan.getCreateOrg()).getName()),
+						CommonFuns.filterNull(item.getEvaRatio()),
+						CommonFuns.filterNull(bo.getScorePreLeader()),
+						CommonFuns.filterNull(bo.getScoreLeader()),
+						CommonFuns.filterNull(bo.getScoreOtherLeader()),
+						CommonFuns.filterNull(bo.getScoreVis()),
+						CommonFuns.filterNull(bo.getScoreOtherVis()),
+						CommonFuns.filterNull(bo.getScoreLower()),
+						CommonFuns.filterNull(bo.getScore())
+				};
 				this.activePageService.addPageInfo("A746", user, null, obj.getPersonId(), false, infoItems, infoValues);
 			}
 		}
