@@ -1,65 +1,65 @@
-COMM-0001|确定|確定|OK
-COMM-0002|语言设置|語言設置|Language
-COMM-0003|修改密码|修改密碼|Password
-COMM-0004|人事资讯|人事资讯|News
-COMM-0005|个人信息|個人資訊|User Infomation
-COMM-0006|首页|首頁|Home
-COMM-0007|友好链接|友好連結|Links
-COMM-0008|发起时间|發起時間|Time
-COMM-0009|发起人|發起人|Proposer
-COMM-0010|说明|說明|Memo
-COMM-0011|操作|操作|Operate
-COMM-0012|查看|查看|View
-COMM-0013|打开|打開|Open
-COMM-0014|暂时没有公告|暫時沒有公告|No Notices
-COMM-0015|暂时没有新闻|暫時沒有新聞|No News
-COMM-0016|暂时没有提醒项|暫時沒有提醒項|No Remind
-COMM-0017|登录名|登錄名|Login Name
-COMM-0018|使用语言|使用語言|Language
-COMM-0019|备忘录|備忘錄|Memo
-COMM-0020|常用软件|常用軟體|Tools
-COMM-0021|在线消息|線上消息|Messages
-COMM-0022|论坛中心|論壇中心|Forum
-COMM-0023|建议反馈|建議回饋|Advice
-COMM-0024|使用答疑|使用答疑|Q & A
-COMM-0025|更多|更多|More
-COMM-0026|发布|發佈|Publish
-COMM-0027|提醒信息|提醒資訊|Remind
-COMM-0028|常用查询|常用查詢|Query Settings
-COMM-0029|待办事宜|待辦事宜|Tasks
-COMM-0030|要求操作|要求操作|Operata
-COMM-0031|日程管理|日程管理|Calendar
-COMM-0032|本单位通讯录|本單位通訊錄|Address List
-COMM-1043|记录数|記錄數| Record
-COMM-1044|页数|頁數|Pages
-COMM-1045|每页有|每頁有|Per page
-COMM-1046|当前为第|當前為第|Current Is
-COMM-1047|页|頁|Page
-COMM-1048|共|共|Total
-COMM-1049|总页数|總頁數|Total
-MSG-0001|欢迎使用|歡迎使用|Welcome to
-MSG-0002|管理菜单|管理功能表|System Menu
-MSG-0003|基础模块|基礎模組|Foundation
-MSG-0004|业务模块|業務模組|Extension
-MSG-0005|决策支持|決策支援|BI
-MSG-0006|帮助中心|幫助中心|Help
-MSG-0007|上次登录时间|上次登錄時間|Last Login
-MSG-0008|当日登录次数|當日登錄次數|Today Login
-MSG-0009|操作成功|操作成功|Success
-MSG-0010|姓名|姓名|Name
-MSG-0011|办公电话|辦公電話|Office Tel
-MSG-0012|性别|性別|Sex
-MSG-0013|出生日期|出生日期|Birthday
-BUTTON-001|保存|保存|Save
-BUTTON-002|返回|返回|Return
-BUTTON-003|确定|確定|OK
-BUTTON-004|取消|取消|Cancel
-BUTTON-005|提交|提交|Submit
-BUTTON-006|首页|首頁|Top
-BUTTON-007|上页|上頁|Last
-BUTTON-008|下页|下頁|Next
-BUTTON-009|尾页|尾頁|Bottom
-BUTTON-010|导出Excel|匯出Excel|Export Exce
-BUTTON-011|右移|右移|Move right
-BUTTON-012|左移|左移|Move left
+COMM-0001|纭畾|纰哄畾|OK
+COMM-0002|璇█璁剧疆|瑾炶█瑷疆|Language
+COMM-0003|淇敼瀵嗙爜|淇敼瀵嗙⒓|Password
+COMM-0004|浜轰簨璧勮|浜轰簨璧勮|News
+COMM-0005|涓汉淇℃伅|鍊嬩汉璩囪▕|User Infomation
+COMM-0006|棣栭〉|棣栭爜|Home
+COMM-0007|鍙嬪ソ閾炬帴|鍙嬪ソ閫ｇ祼|Links
+COMM-0008|鍙戣捣鏃堕棿|鐧艰捣鏅傞枔|Time
+COMM-0009|鍙戣捣浜簗鐧艰捣浜簗Proposer
+COMM-0010|璇存槑|瑾槑|Memo
+COMM-0011|鎿嶄綔|鎿嶄綔|Operate
+COMM-0012|鏌ョ湅|鏌ョ湅|View
+COMM-0013|鎵撳紑|鎵撻枊|Open
+COMM-0014|鏆傛椂娌℃湁鍏憡|鏆檪娌掓湁鍏憡|No Notices
+COMM-0015|鏆傛椂娌℃湁鏂伴椈|鏆檪娌掓湁鏂拌仦|No News
+COMM-0016|鏆傛椂娌℃湁鎻愰啋椤箌鏆檪娌掓湁鎻愰啋闋厊No Remind
+COMM-0017|鐧诲綍鍚峾鐧婚寗鍚峾Login Name
+COMM-0018|浣跨敤璇█|浣跨敤瑾炶█|Language
+COMM-0019|澶囧繕褰晐鍌欏繕閷剕Memo
+COMM-0020|甯哥敤杞欢|甯哥敤杌熼珨|Tools
+COMM-0021|鍦ㄧ嚎娑堟伅|绶氫笂娑堟伅|Messages
+COMM-0022|璁哄潧涓績|璜栧涓績|Forum
+COMM-0023|寤鸿鍙嶉|寤鸿鍥為|Advice
+COMM-0024|浣跨敤绛旂枒|浣跨敤绛旂枒|Q & A
+COMM-0025|鏇村|鏇村|More
+COMM-0026|鍙戝竷|鐧间綀|Publish
+COMM-0027|鎻愰啋淇℃伅|鎻愰啋璩囪▕|Remind
+COMM-0028|甯哥敤鏌ヨ|甯哥敤鏌ヨ|Query Settings
+COMM-0029|寰呭姙浜嬪疁|寰呰睛浜嬪疁|Tasks
+COMM-0030|瑕佹眰鎿嶄綔|瑕佹眰鎿嶄綔|Operata
+COMM-0031|鏃ョ▼绠＄悊|鏃ョ▼绠＄悊|Calendar
+COMM-0032|鏈崟浣嶉�氳褰晐鏈柈浣嶉�氳▕閷剕Address List
+COMM-1043|璁板綍鏁皘瑷橀寗鏁竱 Record
+COMM-1044|椤垫暟|闋佹暩|Pages
+COMM-1045|姣忛〉鏈墊姣忛爜鏈墊Per page
+COMM-1046|褰撳墠涓虹|鐣跺墠鐐虹|Current Is
+COMM-1047|椤祙闋亅Page
+COMM-1048|鍏眧鍏眧Total
+COMM-1049|鎬婚〉鏁皘绺介爜鏁竱Total
+MSG-0001|娆㈣繋浣跨敤|姝¤繋浣跨敤|Welcome to
+MSG-0002|绠＄悊鑿滃崟|绠＄悊鍔熻兘琛▅System Menu
+MSG-0003|鍩虹妯″潡|鍩虹妯＄祫|Foundation
+MSG-0004|涓氬姟妯″潡|妤嫏妯＄祫|Extension
+MSG-0005|鍐崇瓥鏀寔|姹虹瓥鏀彺|BI
+MSG-0006|甯姪涓績|骞姪涓績|Help
+MSG-0007|涓婃鐧诲綍鏃堕棿|涓婃鐧婚寗鏅傞枔|Last Login
+MSG-0008|褰撴棩鐧诲綍娆℃暟|鐣舵棩鐧婚寗娆℃暩|Today Login
+MSG-0009|鎿嶄綔鎴愬姛|鎿嶄綔鎴愬姛|Success
+MSG-0010|濮撳悕|濮撳悕|Name
+MSG-0011|鍔炲叕鐢佃瘽|杈﹀叕闆昏┍|Office Tel
+MSG-0012|鎬у埆|鎬у垾|Sex
+MSG-0013|鍑虹敓鏃ユ湡|鍑虹敓鏃ユ湡|Birthday
+BUTTON-001|淇濆瓨|淇濆瓨|Save
+BUTTON-002|杩斿洖|杩斿洖|Return
+BUTTON-003|纭畾|纰哄畾|OK
+BUTTON-004|鍙栨秷|鍙栨秷|Cancel
+BUTTON-005|鎻愪氦|鎻愪氦|Submit
+BUTTON-006|棣栭〉|棣栭爜|Top
+BUTTON-007|涓婇〉|涓婇爜|Last
+BUTTON-008|涓嬮〉|涓嬮爜|Next
+BUTTON-009|灏鹃〉|灏鹃爜|Bottom
+BUTTON-010|瀵煎嚭Excel|鍖嚭Excel|Export Exce
+BUTTON-011|鍙崇Щ|鍙崇Щ|Move right
+BUTTON-012|宸︾Щ|宸︾Щ|Move left
 
