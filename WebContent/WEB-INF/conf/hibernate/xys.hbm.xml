@@ -504,7 +504,7 @@
         <property name="objId" column="obj_id"/>
     </class>
     
-    <class name="com.hr319wg.xys.eva.pojo.bo.XysEvaObjBO" table="xys_eva_obj">
+    <class name="com.hr319wg.xys.eva.pojo.bo.XysEvaObjBO"  table="xys_eva_obj">
         <id name="objId" type="string" unsaved-value="null">
             <column name="obj_id" sql-type="varchar(32)"/>
             <generator class="uuid.hex"/>
@@ -515,6 +515,16 @@
         <property name="score360" column="score_360"/>
         <property name="scoreXspj" column="score_xspj"/>
         <property name="totalScore" column="total_score"/>
+        
+        <!-- 部门内员工平均成绩 -->
+        <property name="scoreDeptAvg" column="score_dept_avg"/>
+      	<!-- 部门绩效考核成绩 -->
+         <property name="scoreDeptKpi" column="score_dept_kpi"/>
+      	 <!-- 部门还原后分数 -->
+         <property name="scoreDeptKpiRecover" column="score_dept_kpi_recover"/>
+          <!-- 调整后总分-->
+         <property name="adjustTotalScore" column="adjust_total_score"/>
+        
         <property name="natureSort" column="nature_sort"/>
         <property name="natureGrade" column="nature_grade"/>
         <property name="forceSort" column="force_sort"/>

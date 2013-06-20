@@ -774,7 +774,10 @@ public class XysEvaPlanCaclBackBean extends BaseBackingBean {
 				for(int i=0;i<objList.size();i++){
 					XysEvaObjBO obj=(XysEvaObjBO)objList.get(i);
 					obj.setNatureSort(String.valueOf(i+1));
-					double score=Double.parseDouble(obj.getTotalScore());
+					double score= 0;
+					if(obj.getTotalScore() != null && !obj.getTotalScore().equals("") ){
+						Double.parseDouble(obj.getTotalScore());
+					}
 					if(gradeList!=null&&gradeList.size()>0){
 						for(int j=0;j<gradeList.size();j++){
 							EvaGradeItemBO grade=(EvaGradeItemBO)gradeList.get(j);
