@@ -6,8 +6,18 @@
 <script type="text/javascript">
     // 用户/密码方式
     function doLogin(){
-        document.all("form1:loginMode").value="0";
-        return forsubmit(document.forms(0));
+    	var name=document.getElementById("form1:loginName").value;
+    	if(name==''){
+    		alert("请输入用户名");
+    		return false;
+    	}
+    	var name=document.getElementById("form1:password").value;
+    	if(name==''){
+    		alert("请输入密码");
+    		return false;
+    	}
+    	document.getElementById("form1:login").click();
+    	return false;
     }
 </script>
 
@@ -36,31 +46,16 @@
         <td width=5></td>
         <td>
 </f:verbatim>
-        <h:inputSecret id="password" styleClass="inputDark" alt="密码|0|s|50"     value="#{user_loginBB.password}"  tabindex="2"/>
+        <h:inputSecret id="password" styleClass="inputDark" alt="密码|1|s|50"     value="#{user_loginBB.password}"  tabindex="2"/>
 <f:verbatim>
        </td>
 	    <td valign="middle" align="center">
 </f:verbatim>
-            <h:inputHidden id="loginMode" value="#{user_loginBB.loginMode}"></h:inputHidden>
-            <h:commandButton  onclick="return doLogin();" styleClass="button01" value="#{user_loginBB.loginButton}"
-                    action="#{user_loginBB.login}" tabindex="3"/>
+            <h:commandButton onclick="return doLogin();" styleClass="button01" type="button" value="#{user_loginBB.loginButton}" tabindex="3"/>
+            <h:commandButton id="login" style="display:none;" action="#{user_loginBB.login}"/>
 <f:verbatim>
         </td>
     </tr>
-    <%
-       if ("1".equals(Constants.ENABLE_LOGINCARD)){
-    %>
-    <tr>
-        <td  align="right" ><font color=<%=Constants.LOGIN_FONT_COLOR%>>验证方式<br>Verify By</font></td>
-        <td width=5></td>
-        <td>
-            <INPUT type="radio" ID="Radio1" VALUE="Radio1" CHECKED NAME="RadioGroup"><font color=<%=Constants.LOGIN_FONT_COLOR%>>密码模式(Password)</font>
-		</td>
-		<td width=5></td>
-    </tr>
-    <%
-        }
-    %>
     </table>
 
     <table   id=bottom style='POSITION: absolute;' width='99%' cellspacing=0 cellpadding=0 border=0>
@@ -76,14 +71,6 @@
 <f:verbatim>
            </font>
      </td>
-    <tr>
-
-    <tr>
-    <td align="right">
-</f:verbatim>
-            <h:outputText  value="   授权情况:#{run_SystemInfoBackingBean.powerInfo}" rendered="#{run_SystemInfoBackingBean.powerInfo!=''}"/>
-<f:verbatim>
-    </td>
     <tr>
     </table>
     <script type="text/javascript">
