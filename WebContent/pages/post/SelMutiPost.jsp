@@ -12,6 +12,7 @@
     <title>Ñ¡Ôñ¸ÚÎ»</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css"/>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/Appclient.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.4.min.js"></script>
     <script type="text/javascript">
         function forsave(form1) {
 			var orgId = document.getElementById("form1:org").value;
