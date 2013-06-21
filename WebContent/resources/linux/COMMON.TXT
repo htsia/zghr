@@ -62,4 +62,3 @@ BUTTON-009|Î²Ò³|Î²í“|Bottom
 BUTTON-010|µ¼³öExcel|…R³öExcel|Export Exce
 BUTTON-011|ÓÒÒÆ|ÓÒÒÆ|Move right
 BUTTON-012|×óÒÆ|×óÒÆ|Move left
-
