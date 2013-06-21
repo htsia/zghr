@@ -178,7 +178,7 @@
                 	   
                 	   if(tdList!=null&&tdList.size()>0){
                 		   out.println("<tr>");
-	                        out.println("<td valign='center' class='td_middle_left' align='center' rowspan='" + String.valueOf(nlList.size()) + "'>");
+	                        out.println("<td valign='center' class='td_middle_left' align='center' rowspan='" + String.valueOf(tdList.size()) + "'>");
 	                        out.println("Ì¬¶È¿¼ºË");
 	                        out.println("</td>");
 	                        Xys360ObjKeyBO key=(Xys360ObjKeyBO)tdList.get(0);
