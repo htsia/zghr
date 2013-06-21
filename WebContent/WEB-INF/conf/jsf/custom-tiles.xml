@@ -42,6 +42,9 @@
                 ]>
 
 <tiles-definitions>
+	<definition name="/employee/info/PersonSubSetQueryList.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/employee/info/personSubSetQueryList.jsp"/>
+    </definition>
 	<definition name="/custom/emp/conPostAdd.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/custom/emp/conPostAdd.jsp"/>
     </definition>
