@@ -87,13 +87,13 @@ public class EmpPostChangeService implements IWFFunction
     if ((bo.getNewDept() != null) && (!(bo.getNewDept().equals("")))) {
       OrgBO newDeptBO = SysCacheTool.findOrgById(bo.getNewDept());
       if (OrgBO.GROUPTYPE.equals(newDeptBO.getorgType())) {
-        sql = "update A001 set A001706 = '" + newDeptBO.getOrgId() + "' where  id='" + bo.getPersonId() + "'";
-        this.activeapi.executeSql(sql);
+//        sql = "update A001 set A001706 = '" + newDeptBO.getOrgId() + "' where  id='" + bo.getPersonId() + "'";
+//        this.activeapi.executeSql(sql);
         orgx = OrgTool.getDeptByGroup(bo.getNewDept());
       }
       else {
-        sql = "update A001 set A001706 = '' where  id='" + bo.getPersonId() + "'";
-        this.activeapi.executeSql(sql);
+//        sql = "update A001 set A001706 = '' where  id='" + bo.getPersonId() + "'";
+//        this.activeapi.executeSql(sql);
         orgx = SysCacheTool.findOrgById(bo.getNewDept());
       }
 
