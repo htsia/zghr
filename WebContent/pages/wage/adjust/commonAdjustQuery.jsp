@@ -109,7 +109,7 @@
                </td>
                <td align="right" class=td_title >
                </f:verbatim>
-	               <h:commandButton onclick="return selperson2();" action="#{wage_commonAdjustBB.doOK}" styleClass="button01" value="全部生效"/>
+	               <h:commandButton onclick="return selperson2();" styleClass="button01" value="全部生效"/>
 	               <h:commandButton onclick="return selperson3();" action="#{wage_commonAdjustBB.doDelete}" styleClass="button01" value="全部删除"/>
       			<c:verbatim>
                </td>

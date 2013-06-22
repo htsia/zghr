@@ -49,13 +49,13 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 	private String infoItem;
 	private List baseFields = new ArrayList();
 	private boolean isAppro;
-	private boolean isNotAppro=true;
+	private boolean isNotAppro = true;
 	private String time;
 	private String time2;
 	private String name;
 	private String orgID;
 	private String orgName;
-	
+
 	public String getName() {
 		return name;
 	}
@@ -106,12 +106,12 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 
 	public String getInitUserValidate() {
 		String act = super.getRequestParameter("act");
-		if("init".equals(act)){
-			this.wageUserList=new ArrayList();
-			String[]IDs=super.getRequestParameter("IDs").split("-");
-			String[]userIDs=IDs[1].split(",");
-			this.itemID=IDs[0];
-			for(int i=0;i<userIDs.length;i++){
+		if ("init".equals(act)) {
+			this.wageUserList = new ArrayList();
+			String[] IDs = super.getRequestParameter("IDs").split("-");
+			String[] userIDs = IDs[1].split(",");
+			this.itemID = IDs[0];
+			for (int i = 0; i < userIDs.length; i++) {
 				PersonBO p = SysCacheTool.findPersonById(userIDs[i]);
 				Map m = new HashMap();
 				m.put("personCode", p.getPersonCode());
@@ -177,8 +177,7 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 
 	public boolean isFollowFlow() {
 		try {
-			this.followFlow = this.workflowservice.haveWorkFlow(super
-					.getUserInfo().getOrgId(), WFTypeBO.WAGE_ADJUST_AUDIT);
+			this.followFlow = this.workflowservice.haveWorkFlow(super.getUserInfo().getOrgId(), WFTypeBO.WAGE_ADJUST_AUDIT);
 		} catch (Exception e) {
 		}
 		return this.followFlow;
@@ -205,10 +204,10 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 	}
 
 	public String getPageInit() {
-		String orgID1=super.getRequestParameter("superId");
-		if(orgID1!=null && !"".equals(orgID1)){
-			this.orgID=orgID1;
-			this.orgName=CodeUtil.interpertCode(CodeUtil.TYPE_ORG, this.orgID);
+		String orgID1 = super.getRequestParameter("superId");
+		if (orgID1 != null && !"".equals(orgID1)) {
+			this.orgID = orgID1;
+			this.orgName = CodeUtil.interpertCode(CodeUtil.TYPE_ORG, this.orgID);
 		}
 		doQuery();
 		return null;
@@ -242,9 +241,9 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 		try {
 			if (this.pagevo.getCurrentPage() <= 0)
 				this.pagevo.setCurrentPage(1);
-			this.adjustList = this.adjustucc.getAdjustList(this.pagevo,this.isAppro, super.getUserInfo(), this.orgID, this.name, this.time, this.time2);
+			this.adjustList = this.adjustucc.getAdjustList(this.pagevo, this.isAppro, super.getUserInfo(), this.orgID, this.name, this.time, this.time2);
 			for (int i = 0; i < this.adjustList.size(); i++) {
-				AdjustVO wb = (AdjustVO)this.adjustList.get(i);
+				AdjustVO wb = (AdjustVO) this.adjustList.get(i);
 				PersonBO p = SysCacheTool.findPersonById(wb.getAdjustbo().getPersonID());
 				wb.getAdjustbo().setPersonCode(p.getPersonCode());
 				wb.getAdjustbo().setPersonName(p.getName());
@@ -258,8 +257,7 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 
 	public String selPerson() {
 		try {
-			PersonBO[] pbos = (PersonBO[]) (PersonBO[]) super.getHttpSession()
-					.getAttribute(Constants.SELPERSON_SESSION);
+			PersonBO[] pbos = (PersonBO[]) (PersonBO[]) super.getHttpSession().getAttribute(Constants.SELPERSON_SESSION);
 			if ((pbos != null) && (pbos.length > 0)) {
 				WageAdjustBO adjust;
 				Iterator it;
@@ -271,22 +269,17 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 					adjust.setApplyDate(CommonFuns.getSysDate("yyyy-MM-dd"));
 					this.adjustucc.saveWageAdjustBO(adjust);
 
-					PersonBO pb = SysCacheTool.findPersonById(adjust
-							.getPersonID());
-					WageAdjustRuleBO rule = this.adjustucc
-							.getWageAdjustRuleBO(pb.getOrgId());
+					PersonBO pb = SysCacheTool.findPersonById(adjust.getPersonID());
+					WageAdjustRuleBO rule = this.adjustucc.getWageAdjustRuleBO(pb.getOrgId());
 					if (rule != null) {
 						String[] personids = new String[1];
 						personids[0] = adjust.getPersonID();
-						HashMap hash = this.wagesetpersonucc
-								.queryPersonBaseItem(personids, rule
-										.getWageItems().split(","));
+						HashMap hash = this.wagesetpersonucc.queryPersonBaseItem(personids, rule.getWageItems().split(","));
 						if ((hash != null) && (hash.size() > 0)) {
 							for (it = hash.entrySet().iterator(); it.hasNext();) {
 								WageAdjustDetailBO bo = new WageAdjustDetailBO();
 								Map.Entry entry = (Map.Entry) it.next();
-								String[] para = entry.getKey().toString()
-										.split("\\|");
+								String[] para = entry.getKey().toString().split("\\|");
 								bo.setItemID(adjust.getItemID());
 								bo.setFieldID(para[1]);
 								bo.setOldValue(entry.getValue().toString());
@@ -314,8 +307,7 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 		try {
 			this.wageItemList = this.adjustucc.getAdjustDetail(this.itemID);
 			for (int i = 0; i < this.wageItemList.size(); i++) {
-				WageAdjustDetailBO wb = (WageAdjustDetailBO) this.wageItemList
-						.get(i);
+				WageAdjustDetailBO wb = (WageAdjustDetailBO) this.wageItemList.get(i);
 				InfoItemBO ibo = SysCacheTool.findInfoItem("", wb.getFieldID());
 				wb.setFieldName(ibo.getItemName());
 				if ("6".equals(ibo.getItemDataType())) {
@@ -402,14 +394,10 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 	public String getInitEdit() {
 		try {
 			if (super.getRequestParameter("adjustID") != null) {
-				this.detailbo = this.adjustucc.getWageAdjustDetailBO(super
-						.getRequestParameter("adjustID"));
-				this.detailbo.setFieldName(CodeUtil.interpertCode(
-						CodeUtil.TYPE_INFOITEM, this.detailbo.getFieldID()));
-				super.getHttpSession().setAttribute("filed",
-						this.detailbo.getFieldID());
-				super.getHttpSession().setAttribute("oldValue",
-						this.detailbo.getOldValue());
+				this.detailbo = this.adjustucc.getWageAdjustDetailBO(super.getRequestParameter("adjustID"));
+				this.detailbo.setFieldName(CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM, this.detailbo.getFieldID()));
+				super.getHttpSession().setAttribute("filed", this.detailbo.getFieldID());
+				super.getHttpSession().setAttribute("oldValue", this.detailbo.getOldValue());
 			}
 		} catch (Exception e) {
 		}
@@ -446,36 +434,35 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 		return doQuery();
 	}
 
-	//生效
+	// 生效
 	public String doOK() {
 		try {
-			String message=this.adjustucc.ValidateAdjust(super.getUserInfo(), this.itemID);
-			if(!"".equals(message)){
-				super.showMessageDetail("以下人员存在多个帐套中请自行处理<br/>"+message);
+			String message = this.adjustucc.ValidateAdjust(super.getUserInfo(), this.itemID);
+			if (!"".equals(message)) {
+				super.showMessageDetail("以下人员存在多个帐套中请自行处理\\n" + message);
+			} else {
+				return "success";
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return "success";
+		return null;
 	}
 
 	public String getInitSetRule() {
 		try {
 			if (super.getRequestParameter("Action") != null) {
-				this.wb = this.adjustucc.getWageAdjustRuleBO(super
-						.getUserInfo().getOrgId());
+				this.wb = this.adjustucc.getWageAdjustRuleBO(super.getUserInfo().getOrgId());
 				if (this.wb == null) {
 					this.wb = new WageAdjustRuleBO();
 					this.wb.setOrgID(super.getUserInfo().getOrgId());
 				}
-				this.wb.setOrgName(CodeUtil.interpertCode(CodeUtil.TYPE_ORG,
-						this.wb.getOrgID()));
+				this.wb.setOrgName(CodeUtil.interpertCode(CodeUtil.TYPE_ORG, this.wb.getOrgID()));
 				this.baseFields.clear();
-				if ((this.wb.getWageItems() != null)
-						&& (!"".equals(this.wb.getWageItems()))) {
+				if ((this.wb.getWageItems() != null) && (!"".equals(this.wb.getWageItems()))) {
 					String[] array = this.wb.getWageItems().split(",");
 					for (int i = 0; i < array.length; i++) {
-						this.baseFields.add(SysCacheTool.findInfoItem("",
-								array[i]));
+						this.baseFields.add(SysCacheTool.findInfoItem("", array[i]));
 					}
 				}
 			}
@@ -524,16 +511,14 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 	}
 
 	public String delfield() {
-		if ((this.infoItem != null) && (!"".equals(this.infoItem))
-				&& (this.baseFields != null)) {
+		if ((this.infoItem != null) && (!"".equals(this.infoItem)) && (this.baseFields != null)) {
 			int i = 0;
 
 			while (i < this.baseFields.size()) {
 				InfoItemBO ib = (InfoItemBO) this.baseFields.get(i);
 				if (this.infoItem.equals(ib.getItemId())) {
 					this.baseFields.remove(i);
-					if ((this.wb.getWageItems() == null)
-							|| ("".equals(this.wb.getWageItems())))
+					if ((this.wb.getWageItems() == null) || ("".equals(this.wb.getWageItems())))
 						break;
 					String items = "";
 					String[] fs = this.wb.getWageItems().split(",");
@@ -559,8 +544,7 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 	}
 
 	public String movePre() {
-		if ((this.infoItem != null) && (!"".equals(this.infoItem))
-				&& (this.baseFields != null)) {
+		if ((this.infoItem != null) && (!"".equals(this.infoItem)) && (this.baseFields != null)) {
 			int i = 0;
 			i = 0;
 
@@ -580,8 +564,7 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 	}
 
 	public String moveNext() {
-		if ((this.infoItem != null) && (!"".equals(this.infoItem))
-				&& (this.baseFields != null)) {
+		if ((this.infoItem != null) && (!"".equals(this.infoItem)) && (this.baseFields != null)) {
 			int i = 0;
 			i = 0;
 
@@ -605,20 +588,20 @@ public class CommonAdjustBackingBean extends BaseBackingBean {
 			this.wb.setWageItems("");
 			for (int i = 0; i < this.baseFields.size(); i++) {
 				if (i == 0)
-					this.wb.setWageItems(((InfoItemBO) this.baseFields.get(i))
-							.getItemId());
+					this.wb.setWageItems(((InfoItemBO) this.baseFields.get(i)).getItemId());
 				else
-					this.wb.setWageItems(this.wb.getWageItems() + ","
-							+ ((InfoItemBO) this.baseFields.get(i)).getItemId());
+					this.wb.setWageItems(this.wb.getWageItems() + "," + ((InfoItemBO) this.baseFields.get(i)).getItemId());
 			}
 			this.adjustucc.saveWageAdjustRuleBO(this.wb);
 		} catch (Exception e) {
 		}
 		return "success";
 	}
+
 	public void setIsAppro(ValueChangeEvent event) {
 		this.isAppro = event.getNewValue().toString().equals("true");
 	}
+
 	public void setIsNotAppro(ValueChangeEvent event) {
 		this.isNotAppro = event.getNewValue().toString().equals("true");
 	}

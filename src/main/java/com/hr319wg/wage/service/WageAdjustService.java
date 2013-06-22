@@ -225,7 +225,7 @@ public class WageAdjustService{
 				List wageSetList=this.jdbcTemplate.queryForList(sql);
 				if(wageSetList!=null && wageSetList.size()>1){
 					sql="select wm_concat(w.set_name) from (select a815700 from wage_set_pers_r where id='"+adjust.getPersonID()+"' union select a815700 from wage_set_pers_r_bak where id='"+adjust.getPersonID()+"') a,wage_set w where a.a815700=w.set_id";
-					message+=p.getName()+",所在帐套"+this.activeapi.queryForString(sql)+"<br/>";
+					message+=p.getName()+",所在帐套"+this.activeapi.queryForString(sql)+"\\n";
 					continue;
 				}
 				//处理关联项目_begin
