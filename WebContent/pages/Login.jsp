@@ -19,6 +19,12 @@
     	document.getElementById("form1:login").click();
     	return false;
     }
+    
+    function doLogin1(){
+    	if(event.keyCode==13){
+    		doLogin(); 
+    	}
+    }
 </script>
 
 <h:form id="form1">
@@ -35,8 +41,7 @@
         <td width=5></td>
         <td>
 </f:verbatim>
-           <h:inputText id="loginName" styleClass="inputDark" alt="用户名|0|s|50"
-                         value="#{user_loginBB.loginName}"  tabindex="1"/>
+           <h:inputText id="loginName" styleClass="inputDark" alt="用户名|0|s|50" value="#{user_loginBB.loginName}" tabindex="1" onkeypress ="return doLogin1();"/>
 <f:verbatim>
         </td>  
 		<td width=5></td>
@@ -46,7 +51,7 @@
         <td width=5></td>
         <td>
 </f:verbatim>
-        <h:inputSecret id="password" styleClass="inputDark" alt="密码|1|s|50"     value="#{user_loginBB.password}"  tabindex="2"/>
+        <h:inputSecret id="password" styleClass="inputDark" alt="密码|1|s|50" value="#{user_loginBB.password}" tabindex="2" onkeypress ="return doLogin1();"/>
 <f:verbatim>
        </td>
 	    <td valign="middle" align="center">
@@ -77,16 +82,16 @@
 		function setpos(){
 			var logintop=document.body.clientHeight/5*2+10;
 			var loginleft=document.body.clientWidth /3*2-20;
-			document.all("center").style.top=logintop;
-			document.all("center").style.left=loginleft;
+			document.getElementById("center").style.top=logintop;
+			document.getElementById("center").style.left=loginleft;
 
 			logintop=document.body.clientHeight*0.86;
-			document.all("bottom").style.top=logintop;
+			document.getElementById("bottom").style.top=logintop;
 		}
 		setpos();
 
 		window.onresize=setpos;
-		document.all("form1:loginName").focus();
+		document.getElementById("form1:loginName").focus();
     </script>
 
 </f:verbatim>
