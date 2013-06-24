@@ -61,7 +61,8 @@ public class XysKpiDeptDAO extends BaseDAO{
     public List getXysKpiDeptObjBOInSelf(String personId,String where)throws SysException{
         String hql="select bo from XysKpiDeptObjBO bo where 1=1";
         if(personId!=null&&!personId.equals("")){
-             hql+=" and bo.personId='"+personId+"'";
+             hql+=" and (bo.personId = '"+personId+"' or bo.personId = '@"+personId+"' or bo.personId like '%@"+personId+"')";
+             
         }
         if(where!=null&&!where.equals("")){
              hql+=where;
