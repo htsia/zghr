@@ -87,7 +87,12 @@
             <f:verbatim escape="false">
                 <div align="center"> <input type="checkbox" name="selectItem" value="</f:verbatim><h:outputText value="#{list.personId}"/><f:verbatim escape="false">"/></div></f:verbatim>
         </h:column>
-
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="岗位"/>
+            </f:facet>
+            <h:outputText escape="false" value="#{list.postId}"/>
+        </h:column>
         <h:column>
             <f:facet name="header">
                 <h:outputText value="姓名"/>
@@ -149,12 +154,6 @@
                 <h:outputText value="机构领导"/>
             </f:facet>
             <h:outputText escape="false" value="#{list.unitLeader}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <h:outputText value="部门领导"/>
-            </f:facet>
-            <h:outputText escape="false" value="#{list.deptLeader}"/>
         </h:column>
         <h:column>
             <f:facet name="header">
