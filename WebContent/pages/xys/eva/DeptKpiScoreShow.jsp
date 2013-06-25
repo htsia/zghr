@@ -129,6 +129,7 @@
                 	   out.println("<tr>");
                 	   out.println("<td class='td_middle'>指标名称</td>");
                 	   out.println("<td class='td_middle'>指标内容和工作计划</td>");
+                	   out.println("<td class='td_middle'>权重</td>");
                 	   out.println("<td class='td_middle'>目标值</td>");
                 	   out.println("<td class='td_middle'>评分标准</td>");
                 	   out.println("<td class='td_middle'>数据来源</td>");
@@ -147,7 +148,10 @@
 	                            XysKpiObjKeyBO itembo = (XysKpiObjKeyBO) items.get(0);
 	                            XysKpiDeptObjScoreBO score=ucc.findEqualsXysKpiDeptObjScoreBO(sbj.getSbjId(), itembo.getObjKeyId());
 	                            out.println("<td class='td_middle_left'>");
-	                            out.println(itembo.getKeyName() + "(" + itembo.getWeight() + "%)");
+	                            out.println(itembo.getKeyName());
+	                            out.println("</td>");
+	                            out.println("<td class='td_middle_left'>");
+	                            out.println(itembo.getWeight()  + "%");
 	                            out.println("</td>");
 	                            out.println("<td class='td_middle_left' >");
 	                            out.println(CommonFuns.filterNull(itembo.getAimValue()));
@@ -162,7 +166,7 @@
 	                            out.println(CommonFuns.filterNull(itembo.getExecution()));
 	                            out.println("</td>");
 	                            out.println("<td class='td_middle_left'>");
-	                            out.println("<input id='socre_"+itembo.getObjKeyId()+"' value='"+CommonFuns.filterNull(score.getScore())+"' name='"+itembo.getObjKeyId()+"' type='text' class='input' readonly='true'>");
+	                            out.println("<input size='5' id='socre_"+itembo.getObjKeyId()+"' value='"+CommonFuns.filterNull(score.getScore())+"' name='"+itembo.getObjKeyId()+"' type='text' class='input' readonly='true'>");
 	                            out.println("</td>");
 	                            out.println("</tr>");
 	                            for (int j = 1; j < items.size(); j++) {
@@ -170,7 +174,10 @@
 	                                score=ucc.findEqualsXysKpiDeptObjScoreBO(sbj.getSbjId(), itembo.getObjKeyId());
 	                                out.println("<tr>");
 	                                out.println("<td class='td_middle_left'>");
-	                                out.println(itembo.getKeyName() + "(" + itembo.getWeight() + "%)");
+	                                out.println(itembo.getKeyName());
+	                                out.println("</td>");
+	                                out.println("<td class='td_middle_left'>");
+	                                out.println( itembo.getWeight() + "%");
 	                                out.println("</td>");
 	                                out.println("<td class='td_middle_left'>");
 		                            out.println(CommonFuns.filterNull(itembo.getAimValue()));
@@ -185,7 +192,7 @@
 		                            out.println(CommonFuns.filterNull(itembo.getExecution()));
 		                            out.println("</td>");
 	                                out.println("<td class='td_middle_left'>");
-	                                out.println("<input id='socre_"+itembo.getObjKeyId()+"' name='"+itembo.getObjKeyId()+"' value='"+CommonFuns.filterNull(score.getScore())+"' type='text' class='input' readonly='true'>");
+	                                out.println("<input size='5' id='socre_"+itembo.getObjKeyId()+"' name='"+itembo.getObjKeyId()+"' value='"+CommonFuns.filterNull(score.getScore())+"' type='text' class='input' readonly='true'>");
 	                                out.println("</td>");
 	                                out.println("</tr>");
 	                            }
