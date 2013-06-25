@@ -773,11 +773,9 @@ public class XysKpiDeptSetBackBean extends BaseBackingBean {
 
 	public void queryKey() {
 		try {
-			XysKpiObjLibBO lib = this.xysKpiDeptUCC
-					.findXysKpiObjLibBOById(libId);
+			XysKpiObjLibBO lib = this.xysKpiDeptUCC.findXysKpiObjLibBOById(libId);
 			if (lib != null) {
-				XysKpiDeptObjBO obj = xysKpiDeptUCC.findXysKpiDeptObjBOById(lib
-						.getObjId());
+				XysKpiDeptObjBO obj = xysKpiDeptUCC.findXysKpiDeptObjBOById(lib.getObjId());
 				XysKpiPersonObjBO obj2 = xysKpiPersonUCC
 						.findXysKpiPersonObjBOById(lib.getObjId());
 				if (obj != null) {

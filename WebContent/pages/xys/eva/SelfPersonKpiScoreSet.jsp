@@ -133,6 +133,7 @@
                 	   out.println("<tr>");
                 	   out.println("<td class='td_top'>指标名称</td>");
                 	   out.println("<td class='td_top'>指标内容和工作计划</td>");
+                	   out.println("<td class='td_top'>权重</td>");
                 	   out.println("<td class='td_top'>目标值</td>");
                 	   out.println("<td class='td_top'>评分标准</td>");
                 	   out.println("<td class='td_top'>数据来源</td>");
@@ -150,7 +151,10 @@
 	                        if (items != null && items.size() > 0) {
 	                            XysKpiObjKeyBO itembo = (XysKpiObjKeyBO) items.get(0);
 	                            out.println("<td class='td_middle_left'>");
-	                            out.println(itembo.getKeyName() + "(" + itembo.getWeight() + "%)");
+	                            out.println(itembo.getKeyName());
+	                            out.println("</td>");
+	                            out.println("<td class='td_middle_left'>");
+	                            out.println(itembo.getWeight()+"%");
 	                            out.println("</td>");
 	                            out.println("<td class='td_middle_left' >");
 	                            out.println(CommonFuns.filterNull(itembo.getAimValue()));
@@ -165,14 +169,17 @@
 	                            out.println("<textarea rows='3' cols='50'  name='"+itembo.getObjKeyId()+"_execution'>"+CommonFuns.filterNull(itembo.getExecution())+"</textarea>");
 	                            out.println("</td>");
 	                            out.println("<td class='td_middle_left'>");
-	                            out.println("<input id='socre_"+itembo.getObjKeyId()+"' value='"+CommonFuns.filterNull(itembo.getSelfGrade())+"' name='"+itembo.getObjKeyId()+"' type='text' class='input' onchange=\"checkInputValue('"+itembo.getObjKeyId()+"')\">");
+	                            out.println("<input size='5' id='socre_"+itembo.getObjKeyId()+"' value='"+CommonFuns.filterNull(itembo.getSelfGrade())+"' name='"+itembo.getObjKeyId()+"' type='text' class='input' onchange=\"checkInputValue('"+itembo.getObjKeyId()+"')\">");
 	                            out.println("</td>");
 	                            out.println("</tr>");
 	                            for (int j = 1; j < items.size(); j++) {
 	                                itembo = (XysKpiObjKeyBO) items.get(j);
 	                                out.println("<tr>");
 	                                out.println("<td class='td_middle_left'>");
-	                                out.println(itembo.getKeyName() + "(" + itembo.getWeight() + "%)");
+	                                out.println(itembo.getKeyName() );
+	                                out.println("</td>");
+	                                out.println("<td class='td_middle_left'>");
+	                                out.println( itembo.getWeight() +"%");
 	                                out.println("</td>");
 	                                out.println("<td class='td_middle_left'>");
 		                            out.println(CommonFuns.filterNull(itembo.getAimValue()));
@@ -187,7 +194,7 @@
 		                            out.println("<textarea rows='3' cols='50'  name='"+itembo.getObjKeyId()+"_execution'>"+CommonFuns.filterNull(itembo.getExecution())+"</textarea>");
 		                            out.println("</td>");
 	                                out.println("<td class='td_middle_left'>");
-	                                out.println("<input id='socre_"+itembo.getObjKeyId()+"' name='"+itembo.getObjKeyId()+"' value='"+CommonFuns.filterNull(itembo.getSelfGrade())+"' type='text' class='input' onchange=\"checkInputValue('"+itembo.getObjKeyId()+"')\">");
+	                                out.println("<input size='5' id='socre_"+itembo.getObjKeyId()+"' name='"+itembo.getObjKeyId()+"' value='"+CommonFuns.filterNull(itembo.getSelfGrade())+"' type='text' class='input' onchange=\"checkInputValue('"+itembo.getObjKeyId()+"')\">");
 	                                out.println("</td>");
 	                                out.println("</tr>");
 	                            }

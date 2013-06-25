@@ -22,7 +22,7 @@
        <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <tr>
             <td class="td_title" height="10px"><img src="/images/tips.gif">
-                 绩效管理 ->部门KPI构建
+                 绩效管理 ->部门KPI自评录入
            </td>
            <td class="td_title">
                 </c:verbatim>

@@ -4,6 +4,8 @@
 <%@ page import="com.hr319wg.xys.eva.ucc.IXysKpiPersonUCC" %>
 <%@ page import="com.hr319wg.xys.eva.pojo.bo.*" %>
 <%@ page import="com.hr319wg.emp.pojo.bo.PersonBO" %>
+<%@ page import="com.hr319wg.post.pojo.bo.PostBO" %>
+<%@ page import="com.hr319wg.org.pojo.bo.OrgBO" %>
 <%@ page import="com.hr319wg.sys.cache.SysCacheTool" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Hashtable" %>
@@ -108,14 +110,13 @@
        catch (Exception e) {
 		   e.printStackTrace();
        }
+       PostBO pbo = SysCacheTool.findPost(obj.getPostId());
+       OrgBO obo = SysCacheTool.findOrgById(pbo.getOrgId());
        PersonBO pb=SysCacheTool.findPersonById(obj.getPersonId());
-       
    %>
        <tr>
            <td align="center" width="60%">
-               <span style="font-size:18px;font-weight:bold;" ><%=pb.getName()%>KPI¿¼ºË</span>
-              
-                
+               <span style="font-size:18px;font-weight:bold;" ><%=obo.getName()%>KPI¿¼ºË</span>
             </td>
            
        </tr>

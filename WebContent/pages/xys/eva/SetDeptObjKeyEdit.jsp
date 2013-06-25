@@ -27,20 +27,16 @@
       </h:panelGrid>
       <h:panelGrid columns="1"  width="98%" align="left">
            <h:panelGrid columns="2" columnClasses="td_form01,td_form02" align="center" styleClass="table03">
-               <h:outputText value="指标名称"></h:outputText>
-               <h:inputText value="#{xys_KpiDeptSetBB.keyBo.keyName}"/>
+               <h:outputText value="指标内容和工作计划"></h:outputText>
+               <h:inputTextarea  value="#{xys_KpiDeptSetBB.keyBo.keyName}" rows="5" cols="50"></h:inputTextarea>
                <h:outputText value="目标值"></h:outputText>
-               <h:inputText value="#{xys_KpiDeptSetBB.keyBo.aimValue}"/>
-               <h:outputText value="数据来源"></h:outputText>
+               <h:inputTextarea value="#{xys_KpiDeptSetBB.keyBo.aimValue}" rows="5" cols="50"></h:inputTextarea>
+               <h:outputText value="打分标准"></h:outputText>
+               <h:inputTextarea value="#{xys_KpiDeptSetBB.keyBo.gradeStd}" rows="5" cols="50"></h:inputTextarea>
+                <h:outputText value="数据来源"></h:outputText>
                <h:inputText value="#{xys_KpiDeptSetBB.keyBo.dataSource}"/>
                <h:outputText value="指标权重（%）"></h:outputText>
                <h:inputText id="weight" value="#{xys_KpiDeptSetBB.keyBo.weight}"/>
-               <h:outputText value="打分高限"></h:outputText>
-               <h:inputText value="#{xys_KpiDeptSetBB.keyBo.hiValue}"/>
-               <h:outputText value="打分低限"></h:outputText>
-               <h:inputText value="#{xys_KpiDeptSetBB.keyBo.lowValue}"/>
-               <h:outputText value="打分标准"></h:outputText>
-               <h:inputTextarea value="#{xys_KpiDeptSetBB.keyBo.gradeStd}" rows="5" cols="50"></h:inputTextarea>
            </h:panelGrid>
 
            <h:panelGrid align="right">
