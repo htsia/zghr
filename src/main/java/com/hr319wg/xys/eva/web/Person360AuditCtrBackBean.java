@@ -338,6 +338,7 @@ public class Person360AuditCtrBackBean extends BaseBackingBean {
 						Xys360SbjBO sbj = (Xys360SbjBO) sbjList.get(i);
 						PersonBO pbo = SysCacheTool.findPersonById(sbj
 								.getPersonId());
+						sbj.setPersonCode(pbo.getPersonCode());
 						sbj.setPersonName(pbo.getName());
 						sbj.setDeptName(SysCacheTool.findOrgById(pbo.getDeptId())
 								.getName());
@@ -622,6 +623,7 @@ public class Person360AuditCtrBackBean extends BaseBackingBean {
 						PersonBO pbo = SysCacheTool.findPersonById(sbj
 								.getPersonId());
 						sbj.setPersonName(pbo.getName());
+						sbj.setPersonCode(pbo.getPersonCode());
 						sbj.setDeptName(SysCacheTool.findOrgById(pbo.getDeptId())
 								.getName());
 						sbj.setPostName(PostTool.getPostName(sbj.getPostId()));

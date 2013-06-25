@@ -75,6 +75,8 @@
            <h:panelGrid align="right">
               <h:commandButton value="±£´æ"  styleClass="button01"  action="#{xys_PlanPostMgrBB.saveLevel}" onclick="return chkData();"/>
            </h:panelGrid>
+           
+          
       </h:panelGrid>
   </h:form>
 <script type="text/javascript">

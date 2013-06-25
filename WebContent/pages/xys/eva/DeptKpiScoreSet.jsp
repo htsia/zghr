@@ -172,16 +172,16 @@
 	               }
                    if(libList!=null&&libList.size()>0){
                 	   out.println("<tr>");
-                	   out.println("<td class='td_xys_top' width='10%' align='center'><b>一级指标名称</b></td>");
-                	   out.println("<td class='td_xys_top' width='15%' align='center'><b>二级指标名称</b></td>");
+                	   out.println("<td class='td_xys_top' width='5%' align='center'><b>指标名称</b></td>");
+                	   out.println("<td class='td_xys_top' width='20%' align='center'><b>指标内容和工作计划</b></td>");
                 	   out.println("<td class='td_xys_top' width='5%' align='center'><b>权重</b></td>");
-                	   out.println("<td class='td_xys_top' width='10%' align='center'><b>目标值</b></td>");
+                	   out.println("<td class='td_xys_top' width='20%' align='center'><b>目标值</b></td>");
                 	   out.println("<td class='td_xys_top' width='20%' align='center'><b>评分标准</b></td>");
-                	   out.println("<td class='td_xys_top' width='10%' align='center'><b>数据来源</b></td>");
+                	   out.println("<td class='td_xys_top' width='5%' align='center'><b>数据来源</b></td>");
                 	   out.println("<td class='td_xys_top' width='10%' align='center'><b>实际完成情况</b></td>");
                 	   out.println("<td class='td_xys_top' width='5%' align='center'><b>自评分</b></td>");
                 	   out.println("<td class='td_xys_top' width='5%' align='center'><b>评分区间</b></td>");
-                	   out.println("<td class='td_xys_top' width='10%' align='center'><b>评分</b></td>");
+                	   out.println("<td class='td_xys_top' width='15%' align='center'><b>评分</b></td>");
                 	   out.println("</tr>");
 	                   for (int i = 0; i < libList.size(); i++) {
 	                	   XysKpiObjLibBO lib = (XysKpiObjLibBO) libList.get(i);

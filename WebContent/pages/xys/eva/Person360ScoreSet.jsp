@@ -190,7 +190,7 @@
                    if(list!=null&&list.size()>0){
                 	   out.println("<tr>");
                 	   out.println("<td class='td_xys_top' align='center'><b>类型</b></td>");
-                	   out.println("<td class='td_xys_top' align='center'><b>二级指标名称</b></td>");
+                	   out.println("<td class='td_xys_top' align='center'><b>指标名称</b></td>");
                 	   out.println("<td class='td_xys_top' align='center'><b>指标权重</b></td>");
                 	   out.println("<td class='td_xys_top' align='center'><b>评分标准</b></td>");
                 	   out.println("<td class='td_xys_top' align='center'><b>评分区间</b></td>");

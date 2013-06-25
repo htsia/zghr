@@ -141,7 +141,7 @@
                    if(list!=null&&list.size()>0){
                 	   out.println("<tr>");
                 	   out.println("<td class='td_middle'>类型</td>");
-                	   out.println("<td class='td_middle'>二级指标名称</td>");
+                	   out.println("<td class='td_middle'>指标名称</td>");
                 	   out.println("<td class='td_middle'>指标权重</td>");
                 	   out.println("<td class='td_middle'>指标说明</td>");
                 	   out.println("<td class='td_middle'>分数</td>");

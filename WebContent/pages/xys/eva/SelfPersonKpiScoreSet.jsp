@@ -131,8 +131,8 @@
                    List libList=ucc.getXysKpiObjLibBOByObjId(objId);
                    if(libList!=null&&libList.size()>0){
                 	   out.println("<tr>");
-                	   out.println("<td class='td_top'>一级指标名称</td>");
-                	   out.println("<td class='td_top'>二级指标名称</td>");
+                	   out.println("<td class='td_top'>指标名称</td>");
+                	   out.println("<td class='td_top'>指标内容和工作计划</td>");
                 	   out.println("<td class='td_top'>目标值</td>");
                 	   out.println("<td class='td_top'>评分标准</td>");
                 	   out.println("<td class='td_top'>数据来源</td>");

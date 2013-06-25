@@ -76,10 +76,10 @@
                     List libList = ucc.getXysKpiObjLibBOByObjId(objId);
 	                out.println("<tr>");
 	                out.println("<td valign='center' class='td_xys_top' width='10%' align='center'>");
-	                out.println("<b>一级指标名称</b>");
+	                out.println("<b>指标名称</b>");
 	                out.println("</td>");
 	                out.println("<td valign='center' class='td_xys_top' width='20%' align='center'>");
-	                out.println("<b>二级指标名称</b>");
+	                out.println("<b>指标内容和工作计划</b>");
 	                out.println("</td>");
 	                out.println("<td valign='center' class='td_xys_top' width='5%' align='center'>");
 	                out.println("<b>权重</b>");

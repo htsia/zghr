@@ -14,6 +14,8 @@ public class Xys360SbjBO {
 	private String postName;
 	private String isSign;// ÊÇ·ñ´ò·Ö
 	
+	private String personCode;// 
+	
 	
 	public String getPostId() {
 		return postId;
@@ -101,6 +103,14 @@ public class Xys360SbjBO {
 
 	public void setScore(String score) {
 		this.score = score;
+	}
+
+	public String getPersonCode() {
+		return personCode;
+	}
+
+	public void setPersonCode(String personCode) {
+		this.personCode = personCode;
 	}
 
 }
