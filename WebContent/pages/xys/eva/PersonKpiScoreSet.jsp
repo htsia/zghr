@@ -137,6 +137,17 @@
 			height: 20px;
 			border: 1px solid #4986d4;
 		}
+		textarea 
+		{ 
+		width:100%; 
+		height:100%; 
+		overflow-y:visible ;
+		overflow-x:visible;
+		padding:5px;
+		margin:-2px;
+		word-wrap:break-word;
+		border:0px;
+		} 
     </style>
    </c:verbatim>
 <x:saveState value="#{person_KpiAuditBB}"></x:saveState>
@@ -213,24 +224,27 @@
 	                        if (items != null && items.size() > 0) {
 	                            XysKpiObjKeyBO itembo = (XysKpiObjKeyBO) items.get(0);
 	                            XysKpiPersonScoreBO score=(XysKpiPersonScoreBO)map.get(sbj.getSbjId()+itembo.getObjKeyId());
-	                            out.println("<td class='td_xys_mid'>");
+	                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
 	                            out.println(itembo.getKeyName());
-	                            out.println("</td>");
+	                            out.println("</textarea> </td>");
 	                            out.println("<td class='td_xys_mid'>");
 	                            out.println(itembo.getWeight() + "%");
 	                            out.println("</td>");
-	                            out.println("<td class='td_xys_mid' >");
+	                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
 	                            out.println(CommonFuns.filterNull(itembo.getAimValue()));
-	                            out.println("</td>");
-	                            out.println("<td class='td_xys_mid' >");
+	                            out.println("</textarea> </td>");
+	                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
 	                            out.println(CommonFuns.filterNull(itembo.getGradeStd()));
-	                            out.println("</td>");
+	                            out.println("</textarea> </td>");
+	                          
 	                            out.println("<td class='td_xys_mid'>");
 	                            out.println(CommonFuns.filterNull(itembo.getDataSource()));
 	                            out.println("</td>");
-	                            out.println("<td class='td_xys_mid'>");
+	                            
+	                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
 	                            out.println(CommonFuns.filterNull(itembo.getExecution()));
-	                            out.println("</td>");
+	                            out.println("</textarea> </td>");
+	                            
 	                            out.println("<td class='td_xys_mid'>");
 	                            out.println(CommonFuns.filterNull(itembo.getSelfGrade()));
 	                            out.println("</td>");
@@ -245,24 +259,27 @@
 	                                itembo = (XysKpiObjKeyBO) items.get(j);
 	                                score=(XysKpiPersonScoreBO)map.get(sbj.getSbjId()+itembo.getObjKeyId());
 	                                out.println("<tr>");
-	                                out.println("<td class='td_xys_mid'>");
+	                                out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
 	                                out.println(itembo.getKeyName());
-	                                out.println("</td>");
+	                                out.println("</textarea> </td>");
 	                                out.println("<td class='td_xys_mid'>");
 		                            out.println(itembo.getWeight() + "%");
 		                            out.println("</td>");
-	                                out.println("<td class='td_xys_mid'>");
+		                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
 		                            out.println(CommonFuns.filterNull(itembo.getAimValue()));
-		                            out.println("</td>");
-		                            out.println("<td class='td_xys_mid'>");
+		                            out.println("</textarea> </td>");
+		                            
+		                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
 		                            out.println(CommonFuns.filterNull(itembo.getGradeStd()));
-		                            out.println("</td>");
+		                            out.println("</textarea> </td>");
+		                            
 		                            out.println("<td class='td_xys_mid'>");
 		                            out.println(CommonFuns.filterNull(itembo.getDataSource()));
 		                            out.println("</td>");
-		                            out.println("<td class='td_xys_mid'>");
+		                            
+		                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
 		                            out.println(CommonFuns.filterNull(itembo.getExecution()));
-		                            out.println("</td>");
+		                            out.println("</textarea> </td>");
 		                            out.println("<td class='td_xys_mid'>");
 		                            out.println(CommonFuns.filterNull(itembo.getSelfGrade()));
 		                            out.println("</td>");

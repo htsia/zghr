@@ -1,3 +1,8 @@
+<%@page import="com.hr319wg.org.pojo.bo.OrgBO"%>
+<%@page import="com.hr319wg.post.pojo.bo.PostBO"%>
+<%@page import="com.hr319wg.xys.eva.pojo.bo.XysKpiPersonObjBO"%>
+<%@page import="com.hr319wg.xys.eva.ucc.IXysKpiPersonUCC"%>
+<%@page import="com.hr319wg.emp.pojo.bo.PersonBO"%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ page import="com.hr319wg.common.web.SysContext" %>
 <%@ page import="java.util.List" %>
@@ -10,12 +15,31 @@
 <%@ page import="com.hr319wg.common.Constants" %>
 
 <%
+//此页面为部门、个人KPI审批共用页面
+
     String objId = request.getParameter("objId");
     IXysKpiDeptUCC ucc = null;
-    XysKpiDeptObjBO obj = null;
+    IXysKpiPersonUCC pucc = null;
+    XysKpiPersonObjBO pobj = null;
+    XysKpiDeptObjBO dobj = null;
+    
+    String title = null;
     try {
         ucc = (IXysKpiDeptUCC) SysContext.getBean("xysKpiDeptUCC");
-        obj = ucc.findXysKpiDeptObjBOById(objId);
+        dobj = ucc.findXysKpiDeptObjBOById(objId);
+        pucc = (IXysKpiPersonUCC) SysContext.getBean("xysKpiPersonUCC");
+        pobj = pucc.findXysKpiPersonObjBOById(objId);
+        
+        if(pobj != null){
+        	//人员KPI，使用姓名当标题
+        	PersonBO pbo = SysCacheTool.findPersonById(pobj.getPersonId());
+        	title = pbo.getName();
+        }else if(dobj != null){
+        	//部门KPI，使用部门名称当标题
+        	PostBO pbo = SysCacheTool.findPost(dobj.getPostId());
+        	OrgBO org = SysCacheTool.findOrgById(pbo.getOrgId());
+        	title = org.getName();
+        }
     } catch (Exception e) {
 
     }
@@ -61,7 +85,7 @@
         <td align="right"></td>
     </tr>
     <tr>
-        <td align="center"><span style="font-size:18px;font-weight:bold;align:center">本人KPI评分表预览</span></td>
+        <td align="center"><span style="font-size:18px;font-weight:bold;align:center"><%=title %>KPI评分表预览</span></td>
     </tr>
     <tr>
         <td height=8>
