@@ -58,7 +58,7 @@ public class SelfPersonKpiGradeBackBean extends BaseBackingBean {
                 objList = xysKpiPersonUCC.getSelfXysKpiPersonObjBO(super.getUserInfo().getUserId(), null);
             } else {
                 String where = " and bo.planId in(select vo.planId from XysEvaPlanBO vo " +
-                        "where vo.status='" + XysEvaPlanBO.STATUS_ZHIXING+ "' and vo.personKpiStatus!='1')";
+                        "where vo.status='" + XysEvaPlanBO.STATUS_ZHIXING+ "' and (vo.personKpiStatus!='1'  or vo.personKpiStatus is null) )";
                 objList = xysKpiPersonUCC.getSelfXysKpiPersonObjBO(super.getUserInfo().getUserId(), where);
             }
             if (objList != null && objList.size() > 0) {
