@@ -8,14 +8,13 @@ package com.hr319wg.xys.eva.pojo.bo;
  * To change this template use File | Settings | File Templates.
  */
 public class XysEvaPlanBO {
-    //0起草1指标构建3执行4结果报批5结果审批6结果发布7结束
-    public static final String STATUS_QICAO="0";
-    public static final String STATUS_ZBGJ="1";
-    public static final String STATUS_ZHIXING="2";
-    public static final String STATUS_JGBP="3";
-    public static final String STATUS_JGSP="4";
-    public static final String STATUS_JGFB="5";
-    public static final String STATUS_JIESHU="6";
+    public static final String STATUS_QICAO="0";//起草
+    public static final String STATUS_ZBGJ="1";//指标构建
+    public static final String STATUS_ZHIXING="2";//执行
+    public static final String STATUS_JGBP="3";//结果报批
+    public static final String STATUS_JGSP="4";//结果审批
+    public static final String STATUS_JGFB="5";//结果发布
+    public static final String STATUS_JIESHU="6";//结束
 
     private String planId;
     private String planName;

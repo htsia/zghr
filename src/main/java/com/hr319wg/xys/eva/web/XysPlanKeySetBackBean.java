@@ -84,7 +84,7 @@ public class XysPlanKeySetBackBean extends BaseBackingBean{
             if(selectAll){
                 planList = xysEvaPlanUCC.getXysEvaPlanBO(mypage,super.getUserInfo().getOrgId(),null);
             }else{
-                planList = xysEvaPlanUCC.getXysEvaPlanBO(mypage,super.getUserInfo().getOrgId(),new String[]{XysEvaPlanBO.STATUS_ZBGJ,XysEvaPlanBO.STATUS_ZBGJ});
+                planList = xysEvaPlanUCC.getXysEvaPlanBO(mypage,super.getUserInfo().getOrgId(),new String[]{XysEvaPlanBO.STATUS_ZBGJ,XysEvaPlanBO.STATUS_ZHIXING});
             }
             if(planList!=null&&planList.size()>0){
                 for(int i=0;i<planList.size();i++){
