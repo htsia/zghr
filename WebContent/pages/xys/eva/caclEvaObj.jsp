@@ -85,29 +85,25 @@
             <h:outputText value="#{list.score360}"/>
         </h:column>
         <h:column>
-            <c:facet name="header"><h:outputText value="其他评价"/></c:facet>
+            <c:facet name="header"><h:outputText value="其他"/></c:facet>
             <h:outputText value="#{list.scoreXspj}"/>
         </h:column>
               <h:column>
-            <c:facet name="header"><h:outputText value="总分"/></c:facet>
+            <c:facet name="header"><h:outputText value="合计得分"/></c:facet>
             <h:outputText value="#{list.totalScore}"/>
         </h:column>
         
         
         <h:column>
-            <c:facet name="header"><h:outputText value="部门平均分"/></c:facet>
+            <c:facet name="header"><h:outputText value="部门平均"/></c:facet>
             <h:outputText value="#{list.scoreDeptAvg}"/>
         </h:column>
         <h:column>
-            <c:facet name="header"><h:outputText value="部门绩效分"/></c:facet>
-            <h:outputText value="#{list.scoreDeptKpi}"/>
-        </h:column>
-        <h:column>
-            <c:facet name="header"><h:outputText value="部门绩效还原"/></c:facet>
+            <c:facet name="header"><h:outputText value="部门还原"/></c:facet>
             <h:outputText value="#{list.scoreDeptKpiRecover}"/>
         </h:column>
         <h:column>
-            <c:facet name="header"><h:outputText value="调整后得分"/></c:facet>
+            <c:facet name="header"><h:outputText value="调整后"/></c:facet>
             <h:outputText value="#{list.adjustTotalScore}"/>
         </h:column>
   

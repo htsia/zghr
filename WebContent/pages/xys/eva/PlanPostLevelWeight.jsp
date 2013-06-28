@@ -67,8 +67,8 @@
               <h:inputText id="weightLower" value="#{xys_PlanPostMgrBB.levelBo.weightLower}" rendered="#{xys_PlanPostMgrBB.type=='2'}" />
               <h:outputText value="是否合并" rendered="#{xys_PlanPostMgrBB.type=='1'}"/>
               <h:selectOneMenu value="#{xys_PlanPostMgrBB.levelBo.gradeType}" rendered="#{xys_PlanPostMgrBB.type=='1'}">
-              		<c:selectItem itemLabel="合并" itemValue="1"/>
               		<c:selectItem itemLabel="不合并" itemValue="0"/>
+              		<c:selectItem itemLabel="合并" itemValue="1"/>
               </h:selectOneMenu>
            </h:panelGrid>
 

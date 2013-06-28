@@ -113,7 +113,7 @@
 			font-size: 12px;
 			color: #333333;
 			background-color: #F3F3F3;
-			padding: 2px;
+			padding: 4px;
 			border-right: 1px #4986d4 solid;
 			border-bottom: 1px #4986d4 solid;
 			height: 22px;
@@ -123,7 +123,7 @@
 			font-size: 12px;
 			color: #333333;
 			background-color: #FFFFFF;
-			padding: 2px;
+			padding: 4px;
     		border-right: 1px #4986d4 solid;
 			border-bottom: 1px #4986d4 solid;
 			height: 22px;
@@ -137,17 +137,6 @@
 			height: 20px;
 			border: 1px solid #4986d4;
 		}
-		textarea 
-		{ 
-		width:100%; 
-		height:100%; 
-		overflow-y:visible ;
-		overflow-x:visible;
-		padding:5px;
-		margin:-2px;
-		word-wrap:break-word;
-		border:0px;
-		} 
     </style>
    </c:verbatim>
 <x:saveState value="#{person_KpiAuditBB}"></x:saveState>
@@ -203,15 +192,15 @@
                    if(libList!=null&&libList.size()>0){
                 	   out.println("<tr>");
                 	   out.println("<td class='td_xys_top' width='5%' align='center'><b>指标名称</b></td>");
-                	   out.println("<td class='td_xys_top' width='20%' align='center'><b>指标内容和工作计划</b></td>");
-                	   out.println("<td class='td_xys_top' width='5%' align='center'><b>权重</b></td>");
+                	   out.println("<td class='td_xys_top' width='' align='center'><b>指标内容和工作计划</b></td>");
                 	   out.println("<td class='td_xys_top' width='20%' align='center'><b>目标值</b></td>");
                 	   out.println("<td class='td_xys_top' width='20%' align='center'><b>评分标准</b></td>");
-                	   out.println("<td class='td_xys_top' width='5%' align='center'><b>数据来源</b></td>");
+                	   out.println("<td class='td_xys_top' width='7%' align='center'><b>数据来源</b></td>");
                 	   out.println("<td class='td_xys_top' width='10%' align='center'><b>实际完成情况</b></td>");
                 	   out.println("<td class='td_xys_top' width='5%' align='center'><b>自评分</b></td>");
+                	   out.println("<td class='td_xys_top' width='5%' align='center'><b>权重</b></td>");
                 	   out.println("<td class='td_xys_top' width='5%' align='center'><b>评分区间</b></td>");
-                	   out.println("<td class='td_xys_top' width='15%' align='center'><b>评分</b></td>");
+                	   out.println("<td class='td_xys_top' width='35px' align='center'><b>评分</b></td>");
                 	   out.println("</tr>");
 	                   for (int i = 0; i < libList.size(); i++) {
 	                	   XysKpiObjLibBO lib = (XysKpiObjLibBO) libList.get(i);
@@ -224,29 +213,30 @@
 	                        if (items != null && items.size() > 0) {
 	                            XysKpiObjKeyBO itembo = (XysKpiObjKeyBO) items.get(0);
 	                            XysKpiPersonScoreBO score=(XysKpiPersonScoreBO)map.get(sbj.getSbjId()+itembo.getObjKeyId());
-	                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
+	                            out.println("<td class='td_xys_mid' >");
 	                            out.println(itembo.getKeyName());
-	                            out.println("</textarea> </td>");
-	                            out.println("<td class='td_xys_mid'>");
-	                            out.println(itembo.getWeight() + "%");
 	                            out.println("</td>");
-	                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
+	                           
+	                            out.println("<td class='td_xys_mid' >");
 	                            out.println(CommonFuns.filterNull(itembo.getAimValue()));
-	                            out.println("</textarea> </td>");
-	                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
+	                            out.println("</td>");
+	                            out.println("<td class='td_xys_mid' >");
 	                            out.println(CommonFuns.filterNull(itembo.getGradeStd()));
-	                            out.println("</textarea> </td>");
+	                            out.println("</td>");
 	                          
 	                            out.println("<td class='td_xys_mid'>");
 	                            out.println(CommonFuns.filterNull(itembo.getDataSource()));
 	                            out.println("</td>");
 	                            
-	                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
+	                            out.println("<td class='td_xys_mid' >");
 	                            out.println(CommonFuns.filterNull(itembo.getExecution()));
-	                            out.println("</textarea> </td>");
+	                            out.println("</td>");
 	                            
 	                            out.println("<td class='td_xys_mid'>");
 	                            out.println(CommonFuns.filterNull(itembo.getSelfGrade()));
+	                            out.println("</td>");
+	                            out.println("<td class='td_xys_mid'>");
+	                            out.println(itembo.getWeight() + "%");
 	                            out.println("</td>");
 	                            out.println("<td class='td_xys_mid'>");
 	                            out.println(CommonFuns.filterNullToZero(itembo.getLowValue())+"-"+CommonFuns.filterNullToZero(itembo.getHiValue()));
@@ -259,29 +249,30 @@
 	                                itembo = (XysKpiObjKeyBO) items.get(j);
 	                                score=(XysKpiPersonScoreBO)map.get(sbj.getSbjId()+itembo.getObjKeyId());
 	                                out.println("<tr>");
-	                                out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
+	                                out.println("<td class='td_xys_mid' >");
 	                                out.println(itembo.getKeyName());
-	                                out.println("</textarea> </td>");
-	                                out.println("<td class='td_xys_mid'>");
-		                            out.println(itembo.getWeight() + "%");
-		                            out.println("</td>");
-		                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
+	                                out.println("</td>");
+	                          
+		                            out.println("<td class='td_xys_mid' >");
 		                            out.println(CommonFuns.filterNull(itembo.getAimValue()));
-		                            out.println("</textarea> </td>");
+		                            out.println("</td>");
 		                            
-		                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
+		                            out.println("<td class='td_xys_mid' >");
 		                            out.println(CommonFuns.filterNull(itembo.getGradeStd()));
-		                            out.println("</textarea> </td>");
+		                            out.println("</td>");
 		                            
 		                            out.println("<td class='td_xys_mid'>");
 		                            out.println(CommonFuns.filterNull(itembo.getDataSource()));
 		                            out.println("</td>");
 		                            
-		                            out.println("<td class='td_xys_mid' ><textarea readonly='true'>");
+		                            out.println("<td class='td_xys_mid' >");
 		                            out.println(CommonFuns.filterNull(itembo.getExecution()));
-		                            out.println("</textarea> </td>");
+		                            out.println("</td>");
 		                            out.println("<td class='td_xys_mid'>");
 		                            out.println(CommonFuns.filterNull(itembo.getSelfGrade()));
+		                            out.println("</td>");
+		                            out.println("<td class='td_xys_mid'>");
+		                            out.println(itembo.getWeight() + "%");
 		                            out.println("</td>");
 		                            out.println("<td class='td_xys_mid'>");
 		                            out.println(CommonFuns.filterNullToZero(itembo.getLowValue())+"-"+CommonFuns.filterNullToZero(itembo.getHiValue()));

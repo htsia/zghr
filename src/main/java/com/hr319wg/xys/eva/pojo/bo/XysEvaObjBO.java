@@ -133,6 +133,11 @@ public class XysEvaObjBO {
 	public void setAdjustTotalScore(String adjustTotalScore) {
 		this.adjustTotalScore = adjustTotalScore;
 	}
+	@Override
+	public String toString() {
+		return "XysEvaObjBO [personName=" + personName + ", adjustTotalScore="
+				+ adjustTotalScore + "]";
+	}
 	
 	
 }

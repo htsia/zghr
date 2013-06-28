@@ -771,12 +771,14 @@ public class XysEvaPlanCaclBackBean extends BaseBackingBean {
 			XysEvaPlanBO bo = xysEvaPlanUCC.findXysEvaPlanBOById(planId);
 			List gradeList=this.evaGradeUCC.getAllGradeItem(bo.getPlanGrade());
 			if(objList!=null&&objList.size()>0){
+				double lastScore = 0;
+				int lastSort = 0;
 				for(int i=0;i<objList.size();i++){
 					XysEvaObjBO obj=(XysEvaObjBO)objList.get(i);
-					obj.setNatureSort(String.valueOf(i+1));
+					
 					double score= 0;
-					if(obj.getTotalScore() != null && !obj.getTotalScore().equals("") ){
-						Double.parseDouble(obj.getTotalScore());
+					if(obj.getAdjustTotalScore() != null && !obj.getAdjustTotalScore().equals("") ){
+						score = Double.parseDouble(obj.getAdjustTotalScore());
 					}
 					if(gradeList!=null&&gradeList.size()>0){
 						for(int j=0;j<gradeList.size();j++){
@@ -787,6 +789,15 @@ public class XysEvaPlanCaclBackBean extends BaseBackingBean {
 								obj.setNatureGrade(grade.getItemID());
 							}
 						}
+					}
+					
+					//自然分布排名
+					if(obj.getAdjustTotalScore() != null ){
+						if(score != lastScore ){
+							lastScore = score;
+							lastSort++;
+						}
+						obj.setNatureSort(String.valueOf(lastSort));
 					}
 					this.xysEvaObjUcc.saveXysEvaObjBO(obj);
 				}
