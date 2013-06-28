@@ -20,6 +20,7 @@ public class XysKpiPersonObjVO {
 	private String weightOtherVis;
 	private String type;//1kpi 2360
 	private String gradeType;
+	private String selfed; //已经自评:是否
 	
 	private String errorDes;
 	
@@ -142,6 +143,12 @@ public class XysKpiPersonObjVO {
 	}
 	public void setGradeType(String gradeType) {
 		this.gradeType = gradeType;
+	}
+	public String getSelfed() {
+		return selfed;
+	}
+	public void setSelfed(String selfed) {
+		this.selfed = selfed;
 	}
 	
 }

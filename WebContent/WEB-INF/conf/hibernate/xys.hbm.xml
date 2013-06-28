@@ -428,6 +428,7 @@
        <property name="weightOtherVis" column="weight_other_vis"/>
        <property name="type" column="type"/>
        <property name="gradeType" column="grade_type"/>
+       <property name="selfed" column="selfed"/>
     </class>
     <class name="com.hr319wg.xys.eva.pojo.vo.XysKpiDeptObjVO" table="v_xys_kpi_dept_obj">
         <id name="objId" type="string" unsaved-value="null">
@@ -449,6 +450,7 @@
        <property name="weightOtherVis" column="weight_other_vis"/>
        <property name="type" column="type"/>
        <property name="gradeType" column="grade_type"/>
+        <property name="selfed" column="selfed"/>
     </class>
     
      <class name="com.hr319wg.xys.eva.pojo.vo.Xys360ObjVO" table="v_xys_360_obj">

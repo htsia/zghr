@@ -65,7 +65,7 @@
        <h:column>
             <c:facet name="header"><h:outputText value="操作"/></c:facet>
             <h:commandButton value="查看明细" onclick="showQryInfo('#{list.sbjId}')" styleClass="button01" type="button"></h:commandButton>
-            <h:commandButton value="删除" action="#{person_360AuditCtrBB.deleteSbj}" onclick="return confirm('确实要删除指定考核人员吗？');"
+            <h:commandButton value="清除打分" action="#{person_360AuditCtrBB.deleteSbj}" onclick="return confirm('确实要清除该人的打分记录吗？\n清除后需要在考核监控中执行结束、开始打分，该人才能再次打分');"
                                styleClass="button01" >
                    <x:updateActionListener property="#{person_360AuditCtrBB.sbjId}" value="#{list.sbjId}"/>
             </h:commandButton>
