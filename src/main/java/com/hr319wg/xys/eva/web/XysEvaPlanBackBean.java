@@ -33,6 +33,15 @@ public class XysEvaPlanBackBean extends BaseBackingBean {
         }
         return "";
     }
+    
+    public String copyPlan(){
+    	try{
+    		xysEvaPlanUCC.copyXysEvaPlanBO(planId);
+    	}catch (Exception e){
+    		e.printStackTrace();
+    	}
+    	return "";
+    }
 
     public String setContent(){
         try{

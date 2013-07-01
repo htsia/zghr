@@ -1,11 +1,20 @@
 package com.hr319wg.xys.eva.dao;
 
+import java.sql.CallableStatement;
+import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 
 import com.hr319wg.common.Constants;
 import com.hr319wg.common.dao.BaseDAO;
 import com.hr319wg.common.exception.SysException;
+import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.post.pojo.bo.PostBO;
 import com.hr319wg.sys.cache.SysCacheTool;
@@ -252,6 +261,12 @@ public class XysEvaPlanDAO extends BaseDAO {
     	return null;
     }
     
+    /**
+     * 生成“是否设置完成”中用到的未设置完成的岗位
+     * @param planId
+     * @return
+     * @throws SysException
+     */
     public Hashtable getIllegalPostBOByPlanIdForMap(String planId)throws SysException{
     	String hql="select bo from PostBO bo where " +
     			"bo.postId not in(select mode.postId from XysEvaModeSetBO mode where mode.planId='"+planId+"')" +
@@ -274,4 +289,24 @@ public class XysEvaPlanDAO extends BaseDAO {
     	String hql="select bo from XysExportTempBO bo where bo.planId='"+planId+"'";
     	return this.hibernatetemplate.find(hql);
     }
+    
+    /**
+     * 复制计划
+     * @param planId
+     * @throws SysException
+     */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void copyXysEvaPlanBO(final String planId) throws SysException{
+		this.hibernatetemplate.execute(new HibernateCallback(){
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				User user = (User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(Constants.USER_INFO);
+				CallableStatement cs = session.connection().prepareCall ("{call proc_eva_copy_plan(?,?)}"); 
+				cs.setString(1,planId);
+				cs.setString(2,user.getUserId());
+				cs.executeUpdate();
+				return null;
+			}
+    	});
+	}
 }
