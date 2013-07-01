@@ -51,7 +51,7 @@
 	            	var resultLow=parseFloat(result[1]);
 	            	var dscroe1=true;
 	            	if(""==score){
-	            		dscroe1=false;
+	            		dscroe1=true;
 	            	}else{
 	            		var reg=/^\d+(\.\d+)?$/;
 	            		dscroe1=reg.test(score);
@@ -91,6 +91,8 @@
   }
     
    function checkAllInput(){
+	   document.all('form1:savebutton').click();
+	   /*
        var allinput=true;
        var doms=document.getElementsByTagName('input');
        if(doms!=null&&doms.length>0){
@@ -105,6 +107,7 @@
        }else{
            alert("请输入各指标得分！");
        }
+       */
    }
    
    sumScore();
