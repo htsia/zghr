@@ -40,6 +40,7 @@
 
 <x:saveState value="#{xys_PlanPostMgrBB}"></x:saveState>
 <h:form id="form1">
+<h:inputHidden value="#{xys_PlanPostMgrBB.pageInit}"></h:inputHidden>
     <h:inputHidden id="initIndex" value="#{xys_PlanPostMgrBB.initIndex}"/>
     <h:inputHidden id="superId" value="#{xys_PlanPostMgrBB.superId}"/>
     <h:inputHidden id="planId" value="#{xys_PlanPostMgrBB.planId}"/>
