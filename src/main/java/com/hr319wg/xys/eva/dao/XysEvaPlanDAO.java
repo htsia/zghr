@@ -47,7 +47,7 @@ public class XysEvaPlanDAO extends BaseDAO {
         where+=" and bo.createOrg='"+createOrg+"'";
         hql+=where;
         countHql+=where;
-        hql += " order by bo.year desc";
+        hql += " order by bo.beginTime desc";
         if (pagevo != null) {
             return this.pageQuery(pagevo, countHql, hql);
         } else {
