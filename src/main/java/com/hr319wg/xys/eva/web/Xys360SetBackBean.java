@@ -1,5 +1,6 @@
 package com.hr319wg.xys.eva.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.hr319wg.common.web.BaseBackingBean;
@@ -190,13 +191,21 @@ public class Xys360SetBackBean extends BaseBackingBean {
 						objList.set(i, obj);
 					}
 				}
+			}else{
+				objList = new ArrayList();
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public String getPageInit() {
+	  	String act=super.getRequestParameter("act");
+    	if("init".equals(act)){
+    		planId = null;
+    		superId = null;
+    	}
 		if (super.getRequestParameter("superId") != null) {
 			superId = super.getRequestParameter("superId");
 		}

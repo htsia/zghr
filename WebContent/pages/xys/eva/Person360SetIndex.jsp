@@ -74,7 +74,7 @@
 
             <td align="center" valign="top">
                             <iframe name="main" height="100%"  frameborder="0" framespacing="0" scrolling="auto" width="100%"
-                                   src="/xys/eva/Person360SetList.jsf"></iframe>
+                                   src="/xys/eva/Person360SetList.jsf?act=init"></iframe>
             </td>
         </tr>
     </table>
