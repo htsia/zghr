@@ -7,7 +7,8 @@ package com.hr319wg.xys.eva.pojo.bo;
  * Time: ÏÂÎç4:00
  * To change this template use File | Settings | File Templates.
  */
-public class XysKpiPersonObjBO {
+public class XysKpiPersonObjBO  implements Comparable<XysKpiPersonObjBO>
+{
     private String objId;
     private String personId;
     private String planId;
@@ -190,4 +191,14 @@ public class XysKpiPersonObjBO {
     public void setKeyStatus(String keyStatus) {
         this.keyStatus = keyStatus;
     }
+
+
+	@Override
+	public int compareTo(XysKpiPersonObjBO o) {
+		if(o == null) return 0;
+		return (this.getPlanName()+this.deptName+this.getPostName())
+				.compareTo(o.getPlanName()+o.getDeptName()+o.getPostName());
+	}
+    
+    
 }

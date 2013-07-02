@@ -211,7 +211,7 @@
 	                        out.println(lib.getObjLibName());
 	                        out.println("</td>");
 	                        if (items != null && items.size() > 0) {
-	                            XysKpiObjKeyBO itembo = (XysKpiObjKeyBO) items.get(i);
+	                            XysKpiObjKeyBO itembo = (XysKpiObjKeyBO) items.get(0);
 	                            XysKpiPersonScoreBO score=(XysKpiPersonScoreBO)map.get(sbj.getSbjId()+itembo.getObjKeyId());
 	                            out.println("<td class='td_xys_mid' >");
 	                            out.println(itembo.getKeyName());

@@ -145,7 +145,7 @@
 	                        out.println(lib.getObjLibName());
 	                        out.println("</td>");
 	                        if (items != null && items.size() > 0) {
-	                            XysKpiObjKeyBO itembo = (XysKpiObjKeyBO) items.get(i);
+	                            XysKpiObjKeyBO itembo = (XysKpiObjKeyBO) items.get(0);
 	                            XysKpiDeptObjScoreBO score=ucc.findEqualsXysKpiDeptObjScoreBO(sbj.getSbjId(), itembo.getObjKeyId());
 	                            out.println("<td class='td_middle_left'>");
 	                            out.println(itembo.getKeyName());
