@@ -203,8 +203,8 @@
                 	   out.println("<td class='td_xys_top' width='35px' align='center'><b>评分</b></td>");
                 	   out.println("</tr>");
 	                   for (int i = 0; i < libList.size(); i++) {
-	                	   XysKpiObjLibBO lib = (XysKpiObjLibBO) libList.get(i);
-	                        List items = ucc.getXysKpiObjKeyBOByLibId(lib.getObjLibId());
+	                	   XysKpiObjLibBO lib = (XysKpiObjLibBO) libList.get(i);//一级指标（指标名称）
+	                        List items = ucc.getXysKpiObjKeyBOByLibId(lib.getObjLibId());//二级指标
 	                        int count = items.size() > 0 ? items.size() : 1;
 	                        out.println("<tr>");
 	                        out.println("<td valign='center' class='td_xys_mid' align='center' rowspan='" + String.valueOf(count) + "'>");

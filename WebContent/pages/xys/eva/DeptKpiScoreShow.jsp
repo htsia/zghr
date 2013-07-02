@@ -124,7 +124,7 @@
        <tr><td width="60%" valign="top" align="center">
            <table class="table02"  align="center" width="100%">
                <%
-                   List libList=ucc.getXysKpiObjLibBOByObjId(objId);
+                   List libList=ucc.getXysKpiObjLibBOByObjId(objId);//一级指标列表
                    if(libList!=null&&libList.size()>0){
                 	   out.println("<tr>");
                 	   out.println("<td class='td_middle'>指标名称</td>");
