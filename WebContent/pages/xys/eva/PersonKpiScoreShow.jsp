@@ -148,7 +148,7 @@
 	                        out.println(lib.getObjLibName());
 	                        out.println("</td>");
 	                        if (items != null && items.size() > 0) {
-	                            XysKpiObjKeyBO itembo = (XysKpiObjKeyBO) items.get(0);
+	                            XysKpiObjKeyBO itembo = (XysKpiObjKeyBO) items.get(i);
 	                            XysKpiPersonScoreBO score=pucc.findEqualsXysKpiPersonScoreBO(sbj.getSbjId(), itembo.getObjKeyId());
 	                            out.println("<td class='td_middle_left'>");
 	                            out.println(itembo.getKeyName() + "(" + itembo.getWeight() + "%)");
