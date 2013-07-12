@@ -32,6 +32,7 @@ public class XysEvaPlanBO {
 
     private String statusDes;
     private String planGradeName;
+    private String publicType; //结果发布类型
 
     public void initRow(){
         this.planId=null;
@@ -183,4 +184,15 @@ public class XysEvaPlanBO {
     public void setYear(String year) {
         this.year = year;
     }
+
+
+	public String getPublicType() {
+		return publicType;
+	}
+
+	public void setPublicType(String publicType) {
+		this.publicType = publicType;
+	}
+    
+    
 }

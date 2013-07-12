@@ -31,6 +31,7 @@
         <property name="personKpiStatus" column="person_kpi_status"/>
         <property name="person360Status" column="person_360_status"/>
         <property name="createOrg" column="create_org"/>
+        <property name="publicType" column="public_type"/>
     </class>
     <class name="com.hr319wg.xys.eva.pojo.bo.EvaExcPostBO" table="xys_eva_exc_post">
         <id name="excId" type="string" unsaved-value="null">

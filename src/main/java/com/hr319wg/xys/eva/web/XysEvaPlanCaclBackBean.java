@@ -1,6 +1,8 @@
 package com.hr319wg.xys.eva.web;
 
 import java.text.NumberFormat;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -14,6 +16,7 @@ import jxl.Workbook;
 
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 
+import com.hr319wg.common.pojo.vo.User;
 import com.hr319wg.common.web.BaseBackingBean;
 import com.hr319wg.common.web.PageVO;
 import com.hr319wg.emp.pojo.bo.PersonBO;
@@ -862,6 +865,11 @@ public class XysEvaPlanCaclBackBean extends BaseBackingBean {
 		return "";
 	}
 	public void queryEvaObj(){
+		String act=super.getRequestParameter("act");
+    	if("init".equals(act)){
+    		planId = null;
+    		superId = null;
+    	}
 		try{
 			if(mypage.getCurrentPage()==0){
 				mypage.setCurrentPage(1);
@@ -906,6 +914,79 @@ public class XysEvaPlanCaclBackBean extends BaseBackingBean {
 			e.printStackTrace();
 		}
 	}
+	public void queryEvaObjSelf(){
+		String act=super.getRequestParameter("act");
+		if("init".equals(act)){
+			superId = null;
+		}
+		try{
+			if(mypage.getCurrentPage()==0){
+				mypage.setCurrentPage(1);
+			}
+			//树点击查询
+			if(superId!=null&&!superId.equals("")){
+				evaObjList=this.xysEvaObjUcc.getXysEvaObjBOByPlanId(mypage, planId, superId,showMode);
+			}else{
+				User user = getUserInfo();
+			
+				//个人权限的
+				if("-1".equals(user.getprocessUnit()) && !user.isBusinessUser()){
+					String personId = user.getUserId();
+					String where=" and ( bo.personId = '"+personId+"' or bo.personId like '%@"+personId+"')";
+					evaObjList=this.xysEvaObjUcc.getXysEvaObjBOByQueryValue(mypage, planId, where);
+				}
+				//本部门权限的 TODO 三个及以上的兼职
+				else if("2".equals(user.getprocessUnit())){
+					String where ;
+					PersonBO p = SysCacheTool.findPersonById(user.getUserId());
+					PersonBO p1 = SysCacheTool.findPersonById("@"+user.getUserId());
+					String treeId=SysCacheTool.findOrgById(p.getDeptId()).getTreeId();
+					if(p1 == null){
+						where =" and bo.personId in(select po.personId from PersonBO po where po.deptTreeId like '"+treeId+"%')";
+					}else{
+						String treeId1=SysCacheTool.findOrgById(p1.getDeptId()).getTreeId();
+						where =" and bo.personId in(select po.personId from PersonBO po where (po.deptTreeId like '"+treeId+"%' or po.deptTreeId like '"+treeId1+"%'))";
+					}
+					
+					evaObjList=this.xysEvaObjUcc.getXysEvaObjBOByQueryValue(mypage, planId, where);
+				}else{
+					evaObjList = null;
+				}
+			}
+			if(planId!=null&&!planId.equals("")){
+				XysEvaPlanBO bo = xysEvaPlanUCC.findXysEvaPlanBOById(planId);
+				List list=this.evaGradeUCC.getAllGradeItem(bo.getPlanGrade());
+				Hashtable map=new Hashtable();
+				if(list!=null&&list.size()>0){
+					for(int i=0;i<list.size();i++){
+						EvaGradeItemBO grade=(EvaGradeItemBO)list.get(i);
+						map.put(grade.getItemID(), grade.getItemName());
+					}
+				}
+				if(evaObjList!=null&&evaObjList.size()>0){
+					for(int i=0;i<evaObjList.size();i++){
+						XysEvaObjBO obj=(XysEvaObjBO)evaObjList.get(i);
+						PersonBO pbo = SysCacheTool.findPersonById(obj
+								.getPersonId());
+						obj.setPersonName(pbo.getName());
+						obj.setDeptName(SysCacheTool.findOrgById(pbo.getDeptId())
+								.getName());
+						obj.setPostName(PostTool.getPostName(pbo.getPostId()));
+						if(obj.getNatureGrade()!=null&&!obj.getNatureGrade().equals("")){
+							obj.setNatureGrade((String)map.get(obj.getNatureGrade()));
+						}
+						if(obj.getForceGrade()!=null&&!obj.getForceGrade().equals("")){
+							obj.setForceGrade((String)map.get(obj.getForceGrade()));
+						}
+						evaObjList.set(i, obj);
+					}
+					Collections.sort(evaObjList);
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	public String getInitEvaObj() {
 		if(super.getRequestParameter("planId")!=null){
 			planId=super.getRequestParameter("planId");
@@ -917,6 +998,19 @@ public class XysEvaPlanCaclBackBean extends BaseBackingBean {
 			showMode=super.getRequestParameter("showMode");
 		}
 		queryEvaObj();
+		return initEvaObj;
+	}
+	public String getInitEvaObjSelf() {
+		if(super.getRequestParameter("planId")!=null){
+			planId=super.getRequestParameter("planId");
+		}
+		if(super.getRequestParameter("superId")!=null){
+			superId=super.getRequestParameter("superId");
+		}
+		if(super.getRequestParameter("showMode")!=null){
+			showMode=super.getRequestParameter("showMode");
+		}
+		queryEvaObjSelf();
 		return initEvaObj;
 	}
 	public void setInitEvaObj(String initEvaObj) {
