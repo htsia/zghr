@@ -75,7 +75,7 @@
         <h:column>
             <c:facet name="header"><h:outputText value="操作"/></c:facet>
               <h:commandButton value="指标设置" onclick="return keySet('#{list.objId}')" styleClass="button01" rendered="#{list.keyStatus=='1'||list.keyStatus=='F'}"></h:commandButton>
-              <h:commandButton value="报批指标"  onclick="return confirm('确定要报领导审批吧?确认后将不能再编辑指标.')"action="#{self_PersonKpiSetBB.submitObj}" styleClass="button01" rendered="#{list.keyStatus=='1'||list.keyStatus=='F'}">
+              <h:commandButton value="报批指标"  onclick="return confirm('确定要报领导审批吧?确认后将不能再编辑指标.')" action="#{self_PersonKpiSetBB.submitObj}" styleClass="button01" rendered="#{list.keyStatus=='1'||list.keyStatus=='F'}">
                    <x:updateActionListener property="#{self_PersonKpiSetBB.objId}" value="#{list.objId}"/>
               </h:commandButton>
               <h:commandButton value="预览" onclick="preview('#{list.objId}');"  type="button" styleClass="button01"></h:commandButton>
