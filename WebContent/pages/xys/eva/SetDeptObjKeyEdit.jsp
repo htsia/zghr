@@ -37,6 +37,8 @@
                <h:inputText value="#{xys_KpiDeptSetBB.keyBo.dataSource}"/>
                <h:outputText value="指标权重（%）"></h:outputText>
                <h:inputText id="weight" value="#{xys_KpiDeptSetBB.keyBo.weight}"/>
+               <h:outputText value="显示顺序"></h:outputText>
+               <h:inputText id="orderby" value="#{xys_KpiDeptSetBB.keyBo.orderby}"/>
            </h:panelGrid>
 
            <h:panelGrid align="right">

@@ -72,13 +72,13 @@ public class XysKpiDeptDAO extends BaseDAO{
 
 
     public List getXysKpiObjLibBOByObjId(String objId)throws SysException{
-        String hql="select bo from XysKpiObjLibBO bo where bo.objId='"+objId+"'";
+        String hql="select bo from XysKpiObjLibBO bo where bo.objId='"+objId+"' order by orderby";
         return this.hibernatetemplate.find(hql);
     }
 
 
     public List getXysKpiObjKeyBOByLibId(String libId)throws SysException{
-        String hql="select bo from XysKpiObjKeyBO bo where bo.objLibId='"+libId+"'";
+        String hql="select bo from XysKpiObjKeyBO bo where bo.objLibId='"+libId+"' order by bo.orderby";
         return this.hibernatetemplate.find(hql);
     }
     public List getXysKpiObjKeyBOByObjId(String objId)throws SysException{

@@ -76,6 +76,10 @@
             <c:facet name="header"><h:outputText value="打分低限"/></c:facet>
             <h:outputText value="#{list.lowValue}"/>
         </h:column>
+        <h:column>
+            <c:facet name="header"><h:outputText value="显示顺序"/></c:facet>
+            <h:outputText value="#{list.orderby}"/>
+        </h:column>
         
         <h:column>
             <c:facet name="header"><h:outputText value="操作"/></c:facet>

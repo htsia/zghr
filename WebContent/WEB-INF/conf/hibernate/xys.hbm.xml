@@ -190,6 +190,7 @@
         </id>
         <property name="objId" column="obj_id"/>
         <property name="objLibName" column="obj_lib_name"/>
+        <property name="orderby" column="orderby" type="java.lang.Integer"/>
     </class>
     <class name="com.hr319wg.xys.eva.pojo.bo.XysKpiObjKeyBO" table="xys_kpi_obj_key">
         <id name="objKeyId" type="string" unsaved-value="null">
@@ -207,6 +208,7 @@
         <property name="objId" column="obj_id"/>
         <property name="execution" column="execution"/>
         <property name="selfGrade" column="self_grade"/>
+        <property name="orderby" column="orderby" type="java.lang.Integer"/>
     </class>
     <class name="com.hr319wg.xys.eva.pojo.bo.XysKpiDeptObjScoreBO" table="xys_kpi_dept_obj_score">
         <id name="scoreId" type="string" unsaved-value="null">
