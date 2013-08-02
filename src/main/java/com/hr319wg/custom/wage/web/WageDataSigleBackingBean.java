@@ -298,8 +298,8 @@ public class WageDataSigleBackingBean extends BaseBackingBean {
 					m.put("deptName",CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getDeptId()));
 					m.put("orgName",CodeUtil.interpertCode(CodeUtil.TYPE_ORG, p.getOrgId()));
 					String status = null;
-					if(modifyDate!=null && CommonFuns.getSysDate("yyyy-MM").equals(modifyDate)){
-						status = "未审核,金额被修改为"+modifyMoney;
+					if(modifyDate!=null && !"".equals(modifyDate) && !"null".equals(modifyDate) && modifyMoney!=null && !"".equals(modifyMoney) && !"null".equals(modifyMoney)){
+						status = "未审核,于"+modifyDate+"被修改为"+modifyMoney;
 					}
 					m.put("status", status);
 					userList.add(m);
