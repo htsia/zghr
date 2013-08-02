@@ -73,7 +73,7 @@
            </td>
         </tr>
     </table>
-       <table height=98% width=98% align="center">
+       <table height=93% width=98% align="center">
        <tr><td height=8>
     </c:verbatim>
     <h:panelGrid width="98%" columns="2">
@@ -92,12 +92,12 @@
     </h:panelGrid>
     <c:verbatim>
 	  </td></tr>
-	   <tr><td>
+	   <tr valign="top"><td height="200">
 	  <div style='width:100%;height:100%;overflow:auto' id=datatable>
 	</c:verbatim>
     <x:dataTable value="#{xys_PlanPostMgrBB.weightList}" var="list" align="center" id="dateList" rowIndexVar="index"
                  headerClass="td_top" columnClasses="td_middle_center,td_middle_center,td_middle_center"
-                 styleClass="table03" width="90%" >
+                 styleClass="table03" width="90%">
         <h:column>
                     <f:facet name="header">
                         <f:verbatim escape="false">

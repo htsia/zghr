@@ -30,6 +30,11 @@
         function exportPersonKpi(){
         	window.open("/pages/xys/eva/PersonKpiExport.jsp?planId="+document.all("form1:planId").value);
         }
+
+        function importPersonKpi(){
+            window.showModalDialog("/xys/eva/importPersKpi.jsf?planId="+document.all("form1:planId").value, null, "dialogWidth:"+screen.width*0.6+"px;dialogHeight:"+screen.height*0.6+"px;center:center;resizable:no;status:no;scroll:yes;");
+            return true;
+        }
     </script>
 
 <x:saveState value="#{xys_evaPlanCaclBB}"></x:saveState>
@@ -46,7 +51,11 @@
            <td class="td_title" >
                  </c:verbatim>
                      <h:commandButton styleClass="button01" rendered="#{xys_evaPlanCaclBB.deptDesabled=='0'}" action="#{xys_evaPlanCaclBB.caclPersKpi}" value=" 计算  " onclick="showProcessBar();"/>
+                     <h:outputText value="  "></h:outputText>
+                     <h:commandButton value=" 导入考核分数"  styleClass="button01"  onclick="return importPersonKpi();"></h:commandButton>
+                     <h:outputText value="  "></h:outputText>
                      <h:commandButton value=" 导出Excel"  styleClass="button01"  onclick="exportPersonKpi();"  type="button"></h:commandButton>
+
                  <c:verbatim>
            </td>
         </tr>

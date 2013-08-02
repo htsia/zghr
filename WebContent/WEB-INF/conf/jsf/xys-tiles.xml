@@ -446,6 +446,14 @@
         <put name="body" value="/pages/xys/eva/EvaGradeUpLoad.jsp"/>
     </definition>
     
+       <definition name="/xys/eva/importDeptKpi.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/importDeptKpi.jsp"/>
+    </definition>
+    <definition name="/xys/eva/importPersKpi.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/importPersKpi.jsp"/>
+    </definition>
+    
+    
     
     <!-- 流程管理-->
     <definition name="/xys/workflow/processMgr.tiles" extends="layout.busitemplate">

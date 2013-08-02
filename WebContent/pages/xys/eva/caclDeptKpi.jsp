@@ -29,6 +29,12 @@
     function exportDeptKpi(){
     	window.open("/pages/xys/eva/DeptKpiExport.jsp?planId="+document.all("form1:planId").value);
     }
+
+
+    function importDeptKpi(){
+        window.showModalDialog("/xys/eva/importDeptKpi.jsf?planId="+document.all("form1:planId").value, null, "dialogWidth:"+screen.width*0.6+"px;dialogHeight:"+screen.height*0.6+"px;center:center;resizable:no;status:no;scroll:yes;");
+	    return true;
+    }
     </script>
 
 <x:saveState value="#{xys_evaPlanCaclBB}"></x:saveState>
@@ -50,6 +56,7 @@
            </td>
            <td class="td_title" height="10px">
                 </c:verbatim>
+                <h:commandButton value=" 导入考核分数"  styleClass="button01"  onclick="return importDeptKpi();"></h:commandButton>
                 <h:commandButton value=" 导出Excel"  styleClass="button01"  onclick="exportDeptKpi();" type="button"></h:commandButton>
                 <c:verbatim>
            </td>
