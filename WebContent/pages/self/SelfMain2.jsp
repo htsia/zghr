@@ -85,9 +85,9 @@
         <tr>
             <td width="30" >&nbsp;</td>
             <td width="40" ><img src="/<%=CommonUtil.getSYS_INTERFACE()[1]%>" align="left" alt="" height="58" valign="top"></td>
-            <td  width="500" align="center">
-				<img src="/images/maininterface/title_name.png"/>
-           </td>
+<!--             <td  width="500" align="center"> -->
+<!-- 				<img src="/images/maininterface/title_name.png"/> -->
+<!--            </td> -->
            <td align="right" >&nbsp;</td>
        </tr>
       </table>

@@ -3,6 +3,8 @@ package com.hr319wg.custom.dao;
 
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import com.hr319wg.common.dao.BaseDAO;
 import com.hr319wg.common.exception.SysException;
 import com.hr319wg.common.pojo.vo.User;
@@ -31,6 +33,8 @@ public class CommonDAO extends BaseDAO{
 	
 	public List<EmpPostChangeBO> getAllEmpPostChangeBO(){
 		String hql = "select bo from EmpPostChangeBO bo where bo.status=0";
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("");
+		
 		return this.hibernatetemplate.find(hql);
 	}
 	
