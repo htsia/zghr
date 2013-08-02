@@ -62,9 +62,9 @@
                
                <h:outputText value="分数保留位数"></h:outputText>
             <h:selectOneMenu value="#{xys_evaPlanMgrBB.planBO.scorePers}">
-                <c:selectItem itemLabel="整数" itemValue="0"></c:selectItem>
-                <c:selectItem itemLabel="一位小数" itemValue="1"></c:selectItem>
                 <c:selectItem itemLabel="两位小数" itemValue="2"></c:selectItem>
+                <c:selectItem itemLabel="一位小数" itemValue="1"></c:selectItem>
+                <c:selectItem itemLabel="整数" itemValue="0"></c:selectItem>
             </h:selectOneMenu>
             
            </h:panelGrid>

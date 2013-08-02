@@ -186,6 +186,11 @@ public class XysKpiPersonSetBackBean extends BaseBackingBean {
 	}
 
 	public String getPageInit() {
+    	String act=super.getRequestParameter("act");
+    	if("init".equals(act)){
+    		planId = null;
+    		superId = null;
+    	}
 		if (super.getRequestParameter("superId") != null) {
 			superId = super.getRequestParameter("superId");
 		}

@@ -169,4 +169,7 @@ public class XysEvaPlanService {
     public void setXysEvaPlanDAO(XysEvaPlanDAO xysEvaPlanDAO) {
         this.xysEvaPlanDAO = xysEvaPlanDAO;
     }
+	public void copyXysEvaPlanBO(String planId) throws SysException {
+		this.xysEvaPlanDAO.copyXysEvaPlanBO(planId);
+	}
 }

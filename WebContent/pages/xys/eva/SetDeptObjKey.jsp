@@ -9,7 +9,12 @@
     <script type="text/javascript">
 
        function add() {
-            window.showModalDialog("/xys/eva/SetDeptObjKeyEdit.jsf?libId="+document.all('form1:libId').value, null, "dialogWidth:600px;dialogHeight:400px;center:center;resizable:no;status:no;scroll:yes;");
+    	   var libId = document.all('form1:libId').value;
+    	   if(libId == "NULL"){
+    		   alert("请先在左边选择名称，如果没有可选项目，请先增加");
+    		   return;
+    	   }
+            window.showModalDialog("/xys/eva/SetDeptObjKeyEdit.jsf?libId="+libId, null, "dialogWidth:600px;dialogHeight:400px;center:center;resizable:no;status:no;scroll:yes;");
             return true;
        }
        function modify(id) {
@@ -44,16 +49,16 @@
                  headerClass="td_top" columnClasses="td_middle_center,td_middle_center,td_middle_center"
                  styleClass="table03" width="98%" >
         <h:column>
-            <c:facet name="header"><h:outputText value="指标名称"/></c:facet>
+            <c:facet name="header"><h:outputText value="指标内容和工作计划"/></c:facet>
             <h:outputText value="#{list.keyName}"/>
+        </h:column>
+         <h:column>
+            <c:facet name="header"><h:outputText value="目标值"/></c:facet>
+            <h:outputText value="#{list.aimValue}"/>
         </h:column>
         <h:column>
             <c:facet name="header"><h:outputText value="评分标准"/></c:facet>
             <h:outputText value="#{list.gradeStd}"/>
-        </h:column>
-        <h:column>
-            <c:facet name="header"><h:outputText value="目标值"/></c:facet>
-            <h:outputText value="#{list.aimValue}"/>
         </h:column>
          <h:column>
             <c:facet name="header"><h:outputText value="数据来源"/></c:facet>
@@ -70,6 +75,10 @@
         <h:column>
             <c:facet name="header"><h:outputText value="打分低限"/></c:facet>
             <h:outputText value="#{list.lowValue}"/>
+        </h:column>
+        <h:column>
+            <c:facet name="header"><h:outputText value="显示顺序"/></c:facet>
+            <h:outputText value="#{list.orderby}"/>
         </h:column>
         
         <h:column>

@@ -88,6 +88,50 @@
        }
    }
 </script>
+<c:verbatim>
+<style type="text/css">
+    	.td_xys_top {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			color: #333333;
+			background-color: #F3F3F3;
+			padding: 2px;
+			border-right: 1px #4986d4 solid;
+			border-bottom: 1px #4986d4 solid;
+			height: 22px;
+		}
+		.td_xys_mid {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			color: #333333;
+			background-color: #FFFFFF;
+			padding: 2px;
+    		border-right: 1px #4986d4 solid;
+			border-bottom: 1px #4986d4 solid;
+			height: 22px;
+    		text-align :left;
+		}
+		.input_xys {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			color: #323232;
+			background-color: #FFFFFF;
+			height: 20px;
+			border: 1px solid #4986d4;
+		}
+		textarea 
+		{ 
+		width:100%; 
+		height:100%; 
+		overflow-y:visible ;
+		overflow-x:visible;
+		padding:5px;
+		margin:-2px;
+		word-wrap:break-word;
+		border:0px;
+		} 
+    </style>
+   </c:verbatim>
 <x:saveState value="#{person_360AuditBB}"></x:saveState>
 <h:form id="form1">
     <h:inputHidden value="#{person_360AuditBB.initInput}"></h:inputHidden>
@@ -141,7 +185,7 @@
                    if(list!=null&&list.size()>0){
                 	   out.println("<tr>");
                 	   out.println("<td class='td_middle'>类型</td>");
-                	   out.println("<td class='td_middle'>二级指标名称</td>");
+                	   out.println("<td class='td_middle'>指标名称</td>");
                 	   out.println("<td class='td_middle'>指标权重</td>");
                 	   out.println("<td class='td_middle'>指标说明</td>");
                 	   out.println("<td class='td_middle'>分数</td>");

@@ -71,10 +71,22 @@ public class XysKpiPersonDAO extends BaseDAO{
 
     public List getXysKpiPersonObjBOForSelf(String personId,String where)throws SysException{
     	PersonBO pbo1=SysCacheTool.findPersonById(personId);
+    	String in = pbo1.getPostId();
+    	
+    	PersonBO pbo2=SysCacheTool.findPersonById("@"+personId);
+    	if(pbo2 != null){
+    		in += ","+pbo2.getPostId();
+    	}
+    	
+    	PersonBO pbo3=SysCacheTool.findPersonById("@@"+personId);
+    	if(pbo3 != null){
+    		in += ","+pbo3.getPostId();
+    	}
+    	
         String hql="select bo from XysKpiPersonObjBO bo where " +
                 " bo.personId in(select po.personId from " +
         			"PersonBO po where po.postId in(select wo.postId " +
-        			"from XysWeightSetBO wo where wo.evaType='1' and wo.evaPostId='"+pbo1.getPostId()+"' and bo.planId=wo.planId))";
+        			"from XysWeightSetBO wo where wo.evaType='1' and wo.evaPostId in ("+in+") and bo.planId=wo.planId))";
         if(where!=null&&!where.equals("")){
              hql+=where;
         }
@@ -92,7 +104,7 @@ public class XysKpiPersonDAO extends BaseDAO{
     public List getAuditXysKpiPersonObjBOByPersonId(String personId)throws SysException{
     	String hql="select bo from XysKpiPersonObjBO bo where bo.gradeStatus='0' and bo.planId " +
     			"in(select vo.planId from XysEvaPlanBO vo where vo.status='"+XysEvaPlanBO.STATUS_ZHIXING+"' and vo.personKpiStatus='1')" +
-    			" and bo.objId in(select so.objId from XysKpiPersonSbjBO so where so.personId='"+personId+"')";
+    			" and bo.objId in(select so.objId from XysKpiPersonSbjBO so where so.personId='"+personId+"' or  so.personId='@"+personId+"'  or so.personId like '%@"+personId+"'  )";
     	return this.hibernatetemplate.find(hql);
     }
 
@@ -102,7 +114,7 @@ public class XysKpiPersonDAO extends BaseDAO{
     }
 
     public XysKpiPersonSbjBO findEqualsXysKpiPersonSbjBO(String objId,String personId)throws SysException{
-        String hql="select bo from XysKpiPersonSbjBO bo where bo.objId='"+objId+"' and bo.personId='"+personId+"'";
+        String hql="select bo from XysKpiPersonSbjBO bo where bo.objId='"+objId+"' and ( bo.personId='"+personId+"' or  bo.personId='@"+personId+"' or  bo.personId like '%@"+personId+"')";
         List list=this.hibernatetemplate.find(hql);
         if(list!=null&&list.size()>0){
              return (XysKpiPersonSbjBO)list.get(0);

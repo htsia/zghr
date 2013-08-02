@@ -33,6 +33,15 @@ public class XysEvaPlanBackBean extends BaseBackingBean {
         }
         return "";
     }
+    
+    public String copyPlan(){
+    	try{
+    		xysEvaPlanUCC.copyXysEvaPlanBO(planId);
+    	}catch (Exception e){
+    		e.printStackTrace();
+    	}
+    	return "";
+    }
 
     public String setContent(){
         try{
@@ -173,6 +182,10 @@ public class XysEvaPlanBackBean extends BaseBackingBean {
             if(super.getRequestParameter("planId")!=null){
                 planId=super.getRequestParameter("planId");
                 planBO=xysEvaPlanUCC.findXysEvaPlanBOById(planId);
+                if(planBO.getPlanGrade() != null){
+                	EvaGradeBO grade=evaGradeUCC.getGradeByID(planBO.getPlanGrade());
+                	planBO.setPlanGradeName(grade.getGradeName());
+                }
             }else if(super.getRequestParameter("new")!=null){
                 planBO.initRow();
             }

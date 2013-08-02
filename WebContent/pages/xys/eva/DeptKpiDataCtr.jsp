@@ -72,6 +72,10 @@
             <h:outputText value="#{list.postId}"/>
         </h:column>
         <h:column>
+            <c:facet name="header"><h:outputText value="已自评"/></c:facet>
+           <h:outputText value="#{list.selfed}" escape="text"/>
+        </h:column>
+        <h:column>
             <c:facet name="header"><h:outputText value="上上级"/></c:facet>
             <h:commandLink value="#{list.weightPreLeader}" onclick="showQryInfo('#{list.objId}','4');"></h:commandLink>
         </h:column>

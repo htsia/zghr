@@ -16,7 +16,7 @@
         <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
             <tr>
                 <td class="td_title" height="10px"><img src="/images/tips.gif">
-                    绩效管理 ->个人KPI审批
+                    绩效管理 ->下属KPI审批
                 </td>
             </tr>
         </table>

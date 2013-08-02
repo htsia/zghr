@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ include file="../../include/taglib.jsp" %>
 <%
+//考核岗位设置，岗位列表页面
     response.setHeader("progma", "no-cache");
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Expires", "Tues,01 Jan 1980 00:00:00 GMT");

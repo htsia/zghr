@@ -2,6 +2,7 @@ package com.hr319wg.xys.eva.web;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.hr319wg.common.web.BaseBackingBean;
@@ -76,6 +77,7 @@ public class PersonKpiAuditBackBean extends BaseBackingBean {
 					obj.setScore(CommonFuns.filterNull(sbj.getScore()));
 					objList.set(i, obj);
 				}
+				Collections.sort(objList);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

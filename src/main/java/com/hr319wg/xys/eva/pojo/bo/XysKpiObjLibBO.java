@@ -11,6 +11,7 @@ public class XysKpiObjLibBO {
     private String objLibId;
     private String objId;
     private String objLibName;
+    private int orderby;
 
     public void initRow(){
         this.objLibId=null;
@@ -40,4 +41,12 @@ public class XysKpiObjLibBO {
     public void setObjLibName(String objLibName) {
         this.objLibName = objLibName;
     }
+	public int getOrderby() {
+		return orderby;
+	}
+	public void setOrderby(int orderby) {
+		this.orderby = orderby;
+	}
+    
+    
 }

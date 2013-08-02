@@ -16,10 +16,13 @@
         </table>
 
   <script  language="javascript">
+ 		 /*
+ 		 单点登录时，有时会出现问题，屏蔽
         if(window.opener != null){
             window.opener.location = "/pages/overtime.jsp";
             this.close();
         }
+          */
         var p = window.parent;
         var cur = this;
         //找到最上级页面
@@ -29,6 +32,7 @@
            cur = p;
         }
         if(p != this)     p.location = "overtime.jsp"
+      
     </script>
 
         <script type="text/javascript">

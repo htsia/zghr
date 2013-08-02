@@ -59,19 +59,34 @@
 	            		alert("请输入数字");
 	            		document.getElementById("socre_"+itemId).value="";
 	            		document.getElementById("socre_"+itemId).focus();
+	            		return;
 	            	}else{
 		            	var dscroe=parseFloat(score);
 		            	if(dscroe>resultHi||dscroe<resultLow){
 		            		alert("请在打分区间["+resultLow+"-"+resultHi+"]内打分");
 		            		document.getElementById("socre_"+itemId).value="";
 		            		document.getElementById("socre_"+itemId).focus();
+		            		return;
 		            	}
 	            	}
+	            	sumScore();
             	}
             }
         }
     }
-   
+    function sumScore(){
+  	  var sumScore=0;
+        var doms=document.getElementsByTagName('input');
+        if(doms!=null&&doms.length>0){
+ 	        for(var i=0;i<doms.length;i++){
+ 		        if(doms[i].id!=null&&doms[i].id.substring(0,6)=="socre_"&&(doms[i].value!=null&&doms[i].value!="")){
+ 		        	sumScore += parseFloat(doms[i].value)* parseFloat(doms[i].weight)/100;
+ 		        }
+ 	        }
+        }
+        var div =document.getElementById('scoreSumDiv');
+        div.innerHTML = Math.round(sumScore*100)/100;
+  }
    function checkAllInput(){
        var allinput=true;
        var doms=document.getElementsByTagName('input');
@@ -88,6 +103,8 @@
            alert("请输入各指标得分！");
        }
    }
+   
+   sumScore();
 </script>
 <c:verbatim>
 <style type="text/css">
@@ -96,7 +113,7 @@
 			font-size: 12px;
 			color: #333333;
 			background-color: #F3F3F3;
-			padding: 2px;
+			padding: 4px;
 			border-right: 1px #4986d4 solid;
 			border-bottom: 1px #4986d4 solid;
 			height: 22px;
@@ -106,7 +123,7 @@
 			font-size: 12px;
 			color: #333333;
 			background-color: #FFFFFF;
-			padding: 2px;
+			padding: 4px;
     		border-right: 1px #4986d4 solid;
 			border-bottom: 1px #4986d4 solid;
 			height: 22px;
@@ -174,20 +191,20 @@
                    }
                    if(libList!=null&&libList.size()>0){
                 	   out.println("<tr>");
-                	   out.println("<td class='td_xys_top' width='10%' align='center'><b>一级指标名称</b></td>");
-                	   out.println("<td class='td_xys_top' width='15%' align='center'><b>二级指标名称</b></td>");
-                	   out.println("<td class='td_xys_top' width='5%' align='center'><b>权重</b></td>");
-                	   out.println("<td class='td_xys_top' width='10%' align='center'><b>目标值</b></td>");
-                	   out.println("<td class='td_xys_top' width='20%' align='center'><b>评分标准</b></td>");
-                	   out.println("<td class='td_xys_top' width='10%' align='center'><b>数据来源</b></td>");
-                	   out.println("<td class='td_xys_top' width='10%' align='center'><b>实际完成情况</b></td>");
+                	   out.println("<td class='td_xys_top' width='5%' align='center'><b>指标名称</b></td>");
+                	   out.println("<td class='td_xys_top' width='5%' align='center'><b>指标内容和工作计划</b></td>");
+                	   out.println("<td class='td_xys_top' width='20%' align='center'><b>目标值</b></td>");
+                	   out.println("<td class='td_xys_top' width='9%' align='center'><b>评分标准</b></td>");
+                	   out.println("<td class='td_xys_top' width='7%' align='center'><b>数据来源</b></td>");
+                	   out.println("<td class='td_xys_top' width='' align='center'><b>实际完成情况</b></td>");
                 	   out.println("<td class='td_xys_top' width='5%' align='center'><b>自评分</b></td>");
+                	   out.println("<td class='td_xys_top' width='5%' align='center'><b>权重</b></td>");
                 	   out.println("<td class='td_xys_top' width='5%' align='center'><b>评分区间</b></td>");
-                	   out.println("<td class='td_xys_top' width='10%' align='center'><b>评分</b></td>");
+                	   out.println("<td class='td_xys_top' width='35px' align='center'><b>评分</b></td>");
                 	   out.println("</tr>");
 	                   for (int i = 0; i < libList.size(); i++) {
-	                	   XysKpiObjLibBO lib = (XysKpiObjLibBO) libList.get(i);
-	                        List items = ucc.getXysKpiObjKeyBOByLibId(lib.getObjLibId());
+	                	   XysKpiObjLibBO lib = (XysKpiObjLibBO) libList.get(i);//一级指标（指标名称）
+	                        List items = ucc.getXysKpiObjKeyBOByLibId(lib.getObjLibId());//二级指标
 	                        int count = items.size() > 0 ? items.size() : 1;
 	                        out.println("<tr>");
 	                        out.println("<td valign='center' class='td_xys_mid' align='center' rowspan='" + String.valueOf(count) + "'>");
@@ -196,64 +213,72 @@
 	                        if (items != null && items.size() > 0) {
 	                            XysKpiObjKeyBO itembo = (XysKpiObjKeyBO) items.get(0);
 	                            XysKpiPersonScoreBO score=(XysKpiPersonScoreBO)map.get(sbj.getSbjId()+itembo.getObjKeyId());
-	                            out.println("<td class='td_xys_mid'>");
+	                            out.println("<td class='td_xys_mid' >");
 	                            out.println(itembo.getKeyName());
 	                            out.println("</td>");
-	                            out.println("<td class='td_xys_mid'>");
-	                            out.println(itembo.getWeight() + "%");
-	                            out.println("</td>");
+	                           
 	                            out.println("<td class='td_xys_mid' >");
 	                            out.println(CommonFuns.filterNull(itembo.getAimValue()));
 	                            out.println("</td>");
 	                            out.println("<td class='td_xys_mid' >");
 	                            out.println(CommonFuns.filterNull(itembo.getGradeStd()));
 	                            out.println("</td>");
+	                          
 	                            out.println("<td class='td_xys_mid'>");
 	                            out.println(CommonFuns.filterNull(itembo.getDataSource()));
 	                            out.println("</td>");
-	                            out.println("<td class='td_xys_mid'>");
+	                            
+	                            out.println("<td class='td_xys_mid' >");
 	                            out.println(CommonFuns.filterNull(itembo.getExecution()));
 	                            out.println("</td>");
+	                            
 	                            out.println("<td class='td_xys_mid'>");
 	                            out.println(CommonFuns.filterNull(itembo.getSelfGrade()));
+	                            out.println("</td>");
+	                            out.println("<td class='td_xys_mid'>");
+	                            out.println(itembo.getWeight() + "%");
 	                            out.println("</td>");
 	                            out.println("<td class='td_xys_mid'>");
 	                            out.println(CommonFuns.filterNullToZero(itembo.getLowValue())+"-"+CommonFuns.filterNullToZero(itembo.getHiValue()));
 	                            out.println("</td>");
 	                            out.println("<td class='td_xys_mid'>");
-	                            out.println("<input id='socre_"+itembo.getObjKeyId()+"' tabindex='"+1+"' value='"+CommonFuns.filterNull(score.getScore())+"' name='"+itembo.getObjKeyId()+"' type='text' class='input_xys' onchange=\"checkInputValue('"+itembo.getObjKeyId()+"')\">");
+	                            out.println("<input size='5'   weight='"+itembo.getWeight()+"'  id='socre_"+itembo.getObjKeyId()+"' tabindex='"+1+"' value='"+CommonFuns.filterNull(score.getScore())+"' name='"+itembo.getObjKeyId()+"' type='text' class='input_xys' onchange=\"checkInputValue('"+itembo.getObjKeyId()+"')\">");
 	                            out.println("</td>");
 	                            out.println("</tr>");
 	                            for (int j = 1; j < items.size(); j++) {
 	                                itembo = (XysKpiObjKeyBO) items.get(j);
 	                                score=(XysKpiPersonScoreBO)map.get(sbj.getSbjId()+itembo.getObjKeyId());
 	                                out.println("<tr>");
-	                                out.println("<td class='td_xys_mid'>");
+	                                out.println("<td class='td_xys_mid' >");
 	                                out.println(itembo.getKeyName());
 	                                out.println("</td>");
-	                                out.println("<td class='td_xys_mid'>");
-		                            out.println(itembo.getWeight() + "%");
-		                            out.println("</td>");
-	                                out.println("<td class='td_xys_mid'>");
+	                          
+		                            out.println("<td class='td_xys_mid' >");
 		                            out.println(CommonFuns.filterNull(itembo.getAimValue()));
 		                            out.println("</td>");
-		                            out.println("<td class='td_xys_mid'>");
+		                            
+		                            out.println("<td class='td_xys_mid' >");
 		                            out.println(CommonFuns.filterNull(itembo.getGradeStd()));
 		                            out.println("</td>");
+		                            
 		                            out.println("<td class='td_xys_mid'>");
 		                            out.println(CommonFuns.filterNull(itembo.getDataSource()));
 		                            out.println("</td>");
-		                            out.println("<td class='td_xys_mid'>");
+		                            
+		                            out.println("<td class='td_xys_mid' >");
 		                            out.println(CommonFuns.filterNull(itembo.getExecution()));
 		                            out.println("</td>");
 		                            out.println("<td class='td_xys_mid'>");
 		                            out.println(CommonFuns.filterNull(itembo.getSelfGrade()));
 		                            out.println("</td>");
 		                            out.println("<td class='td_xys_mid'>");
+		                            out.println(itembo.getWeight() + "%");
+		                            out.println("</td>");
+		                            out.println("<td class='td_xys_mid'>");
 		                            out.println(CommonFuns.filterNullToZero(itembo.getLowValue())+"-"+CommonFuns.filterNullToZero(itembo.getHiValue()));
 		                            out.println("</td>");
 	                                out.println("<td class='td_xys_mid'>");
-	                                out.println("<input id='socre_"+itembo.getObjKeyId()+"' tabindex='"+(i+1)+"' name='"+itembo.getObjKeyId()+"' value='"+CommonFuns.filterNull(score.getScore())+"' type='text' class='input_xys' onchange=\"checkInputValue('"+itembo.getObjKeyId()+"')\">");
+	                                out.println("<input size='5'   weight='"+itembo.getWeight()+"'  id='socre_"+itembo.getObjKeyId()+"' tabindex='"+(i+1)+"' name='"+itembo.getObjKeyId()+"' value='"+CommonFuns.filterNull(score.getScore())+"' type='text' class='input_xys' onchange=\"checkInputValue('"+itembo.getObjKeyId()+"')\">");
 	                                out.println("</td>");
 	                                out.println("</tr>");
 	                            }
@@ -261,6 +286,10 @@
 	                            out.println("</tr>");
 	                        }
 	                   }
+	                   out.println("<tr>");
+                	   out.println("<td class='td_xys_top' align='center' colspan='9'><b>分数加权合计</b></td>");
+                	   out.println("<td class='td_xys_top' align='center'><b><div id='scoreSumDiv'></div></b></td>");
+                	   out.println("</tr>");
                    }
                %>
            </table>

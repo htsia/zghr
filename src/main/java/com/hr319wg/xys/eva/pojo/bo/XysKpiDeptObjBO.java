@@ -14,7 +14,7 @@ public class XysKpiDeptObjBO {
     private String score;
     private String keyStatus; //指标状态（1新增2报批3批准F退回）
     private String deptId;
-    private String gradeStatus;
+    private String gradeStatus;//开始打分时生成的检查结果标识，(0可以打分1不能打分)
     private String scoreLeader;
     private String scorePreLeader;
     private String scoreOtherLeader;

@@ -137,6 +137,7 @@ public class XysEvaObjUCC implements IXysEvaObjUCC {
 			}
 		}
 		plan.setStatus(XysEvaPlanBO.STATUS_JGFB);
+		plan.setPublicType(publicType);
 		xysEvaObjService.getXysEvaObjDao().saveOrUpdateBo(plan);
 	}
 

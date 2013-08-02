@@ -1,6 +1,6 @@
 package com.hr319wg.xys.eva.pojo.bo;
 
-public class XysEvaObjBO {
+public class XysEvaObjBO  implements Comparable<XysEvaObjBO>{
 	private String objId;
 	private String planId;
 	private String personId;
@@ -132,6 +132,17 @@ public class XysEvaObjBO {
 	}
 	public void setAdjustTotalScore(String adjustTotalScore) {
 		this.adjustTotalScore = adjustTotalScore;
+	}
+	@Override
+	public String toString() {
+		return "XysEvaObjBO [personName=" + personName + ", adjustTotalScore="
+				+ adjustTotalScore + "]";
+	}
+	@Override
+	public int compareTo(XysEvaObjBO o) {
+		if(o == null) return 0;
+		return (o.getDeptName()+o.getAdjustTotalScore())
+				.compareTo(this.deptName+this.adjustTotalScore);
 	}
 	
 	

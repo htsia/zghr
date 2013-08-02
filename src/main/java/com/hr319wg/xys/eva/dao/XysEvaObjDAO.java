@@ -24,9 +24,9 @@ public class XysEvaObjDAO extends BaseDAO {
 			countHql+=" and bo.personId in(select po.personId from PersonBO po where po.deptTreeId like '"+treeId+"%')";
 		}
 		if(showMode!=null&&showMode.equals("2")){
-			hql+=" order by cast(bo.forceSort as float),cast(bo.totalScore as float) desc";
+			hql+=" order by cast(bo.forceSort as float),cast(bo.adjustTotalScore as float) desc";
 		}else{
-			hql+=" order by cast(bo.natureSort as float),cast(bo.totalScore as float) desc";
+			hql+=" order by cast(bo.natureSort as float),cast(bo.adjustTotalScore as float) desc";
 		}
 		if(pagevo!=null){
 			return this.pageQuery(pagevo, countHql, hql);
@@ -64,7 +64,7 @@ public class XysEvaObjDAO extends BaseDAO {
 			String treeId=SysCacheTool.findOrgById(orgId).getTreeId();
 			hql +=" and bo.personId in(select po.personId from PersonBO po where po.deptTreeId like '"+treeId+"%')";
 		}
-		hql+=" order by cast(bo.totalScore as float) desc";
+		hql+=" order by cast(bo.adjustTotalScore as float) desc";
 		return this.hibernatetemplate.find(hql);
 	}
 	
@@ -74,7 +74,7 @@ public class XysEvaObjDAO extends BaseDAO {
 			String treeId=SysCacheTool.findOrgById(orgId).getTreeId();
 			hql +=" and bo.personId in(select po.personId from PersonBO po where po.deptTreeId like '"+treeId+"%')";
 		}
-		hql+=" order by cast(bo.totalScore as float) desc,cast(bo.natureSort as float)";
+		hql+=" order by cast(bo.adjustTotalScore as float) desc,cast(bo.natureSort as float)";
 		return this.hibernatetemplate.find(hql);
 	}
 	

@@ -61,7 +61,8 @@ public class XysKpiDeptDAO extends BaseDAO{
     public List getXysKpiDeptObjBOInSelf(String personId,String where)throws SysException{
         String hql="select bo from XysKpiDeptObjBO bo where 1=1";
         if(personId!=null&&!personId.equals("")){
-             hql+=" and bo.personId='"+personId+"'";
+             hql+=" and (bo.personId = '"+personId+"' or bo.personId = '@"+personId+"' or bo.personId like '%@"+personId+"')";
+             
         }
         if(where!=null&&!where.equals("")){
              hql+=where;
@@ -71,13 +72,13 @@ public class XysKpiDeptDAO extends BaseDAO{
 
 
     public List getXysKpiObjLibBOByObjId(String objId)throws SysException{
-        String hql="select bo from XysKpiObjLibBO bo where bo.objId='"+objId+"'";
+        String hql="select bo from XysKpiObjLibBO bo where bo.objId='"+objId+"' order by orderby";
         return this.hibernatetemplate.find(hql);
     }
 
 
     public List getXysKpiObjKeyBOByLibId(String libId)throws SysException{
-        String hql="select bo from XysKpiObjKeyBO bo where bo.objLibId='"+libId+"'";
+        String hql="select bo from XysKpiObjKeyBO bo where bo.objLibId='"+libId+"' order by bo.orderby";
         return this.hibernatetemplate.find(hql);
     }
     public List getXysKpiObjKeyBOByObjId(String objId)throws SysException{

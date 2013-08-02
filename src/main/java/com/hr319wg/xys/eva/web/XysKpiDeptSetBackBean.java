@@ -166,6 +166,11 @@ public class XysKpiDeptSetBackBean extends BaseBackingBean {
 	}
 
 	public String getPageInit() {
+    	String act=super.getRequestParameter("act");
+    	if("init".equals(act)){
+    		planId = null;
+    		superId = null;
+    	}
 		if (super.getRequestParameter("superId") != null) {
 			superId = super.getRequestParameter("superId");
 		}
@@ -773,11 +778,9 @@ public class XysKpiDeptSetBackBean extends BaseBackingBean {
 
 	public void queryKey() {
 		try {
-			XysKpiObjLibBO lib = this.xysKpiDeptUCC
-					.findXysKpiObjLibBOById(libId);
+			XysKpiObjLibBO lib = this.xysKpiDeptUCC.findXysKpiObjLibBOById(libId);
 			if (lib != null) {
-				XysKpiDeptObjBO obj = xysKpiDeptUCC.findXysKpiDeptObjBOById(lib
-						.getObjId());
+				XysKpiDeptObjBO obj = xysKpiDeptUCC.findXysKpiDeptObjBOById(lib.getObjId());
 				XysKpiPersonObjBO obj2 = xysKpiPersonUCC
 						.findXysKpiPersonObjBOById(lib.getObjId());
 				if (obj != null) {

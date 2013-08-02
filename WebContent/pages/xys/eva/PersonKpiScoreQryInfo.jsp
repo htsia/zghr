@@ -39,6 +39,10 @@
             <h:outputText value="#{index+1}"/>
         </h:column>
         <h:column>
+            <c:facet name="header"><h:outputText value="±àºÅ"/></c:facet>
+            <h:outputText value="#{list.personCode}"/>
+        </h:column>
+        <h:column>
             <c:facet name="header"><h:outputText value="ÐÕÃû"/></c:facet>
             <h:outputText value="#{list.personName}"/>
         </h:column>

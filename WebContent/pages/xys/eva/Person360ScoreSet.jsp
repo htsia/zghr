@@ -57,19 +57,35 @@
 	            		alert("请输入>0数字");
 	            		document.getElementById("socre_"+itemId).value="";
 	            		document.getElementById("socre_"+itemId).focus();
+	            		return;
 	            	}else{
 		            	var dscroe=parseFloat(score);
 		            	if(dscroe>resultHi||dscroe<resultLow){
 		            		alert("请在打分区间["+resultLow+"-"+resultHi+"]内打分");
 		            		document.getElementById("socre_"+itemId).value="";
 		            		document.getElementById("socre_"+itemId).focus();
+		            		return;
 		            	}
 	            	}
+	            	sumScore();
             	}
             }
         }
     }
-   
+    function sumScore(){
+    	  var sumScore=0;
+          var doms=document.getElementsByTagName('input');
+          if(doms!=null&&doms.length>0){
+   	        for(var i=0;i<doms.length;i++){
+   		        if(doms[i].id!=null&&doms[i].id.substring(0,6)=="socre_"&&(doms[i].value!=null&&doms[i].value!="")){
+   		        	sumScore += parseFloat(doms[i].value)* parseFloat(doms[i].weight)/100;
+   		        }
+   	        }
+          }
+          var div =document.getElementById('scoreSumDiv');
+          div.innerHTML = Math.round(sumScore*100)/100;
+    }
+    
    function checkAllInput(){
        var allinput=true;
        var doms=document.getElementsByTagName('input');
@@ -86,6 +102,8 @@
            alert("请输入各指标得分！");
        }
    }
+   
+   sumScore();
 </script>
 <c:verbatim>
 <style type="text/css">
@@ -118,6 +136,17 @@
 			height: 20px;
 			border: 1px solid #4986d4;
 		}
+		
+	textarea 
+	{ 
+		width:100%; 
+		height:100%; 
+		overflow-y:visible ;
+		overflow-x:visible;
+		padding:5px;
+		word-wrap:break-word;
+		border:0px;
+	} 
     </style>
    </c:verbatim>
 <x:saveState value="#{person_360AuditBB}"></x:saveState>
@@ -190,7 +219,7 @@
                    if(list!=null&&list.size()>0){
                 	   out.println("<tr>");
                 	   out.println("<td class='td_xys_top' align='center'><b>类型</b></td>");
-                	   out.println("<td class='td_xys_top' align='center'><b>二级指标名称</b></td>");
+                	   out.println("<td class='td_xys_top' align='center'><b>指标名称</b></td>");
                 	   out.println("<td class='td_xys_top' align='center'><b>指标权重</b></td>");
                 	   out.println("<td class='td_xys_top' align='center'><b>评分标准</b></td>");
                 	   out.println("<td class='td_xys_top' align='center'><b>评分区间</b></td>");
@@ -210,10 +239,10 @@
 	                        }
 	                        out.println("<td class='td_xys_mid'>"+key.getKeyName()+"</td>");
 	                 	    out.println("<td class='td_xys_mid'>"+key.getWeight()+"%</td>");
-	                 	    out.println("<td class='td_xys_mid'><textarea rows='8' cols='130' readonly='true'>"+key.getKeyDesc()+"</textarea></td>");
+	                 	    out.println("<td class='td_xys_mid' style='padding: 0px;'><textarea readonly='true'>"+key.getKeyDesc()+"</textarea></td>");
 	                 	    out.println("<td class='td_xys_mid'>"+key.getLowValue()+"-"+key.getHiValue()+"</td>");
 	                 	    out.println("<td class='td_xys_mid'>");
-	                 	    out.println("<input id='socre_"+key.getKeyId()+"' tabindex='"+1+"' value='"+CommonFuns.filterNull(score.getScore())+"' name='"+key.getKeyId()+"' type='text' class='input_xys' onchange=\"checkInputValue('"+key.getKeyId()+"')\">");
+	                 	    out.println("<input size='5'   weight='"+key.getWeight()+"' id='socre_"+key.getKeyId()+"' tabindex='"+1+"' value='"+CommonFuns.filterNull(score.getScore())+"' name='"+key.getKeyId()+"' type='text' class='input_xys' onchange=\"checkInputValue('"+key.getKeyId()+"')\">");
 	                 	    out.println("</td>");
 	                 	    out.println("</tr>");
                 		    for(int i=1;i<nlList.size();i++){
@@ -226,10 +255,10 @@
                 		    	out.println("<tr>");
     	                        out.println("<td class='td_xys_mid'>"+key.getKeyName()+"</td>");
     	                 	    out.println("<td class='td_xys_mid'>"+key.getWeight()+"%</td>");
-    	                 	    out.println("<td class='td_xys_mid'><textarea rows='8' cols='130' readonly='true'>"+key.getKeyDesc()+"</textarea></td>");
+    	                 	    out.println("<td class='td_xys_mid' style='padding: 0px;'><textarea readonly='true'>"+key.getKeyDesc()+"</textarea></td>");
     	                 	    out.println("<td class='td_xys_mid'>"+key.getLowValue()+"-"+key.getHiValue()+"</td>");
     	                 	    out.println("<td class='td_xys_mid'>");
-    	                 	    out.println("<input id='socre_"+key.getKeyId()+"' tabindex='"+(i+1)+"' value='"+CommonFuns.filterNull(score.getScore())+"' name='"+key.getKeyId()+"' type='text' class='input_xys' onchange=\"checkInputValue('"+key.getKeyId()+"')\">");
+    	                 	    out.println("<input size='5'   weight='"+key.getWeight()+"' id='socre_"+key.getKeyId()+"' tabindex='"+(i+1)+"' value='"+CommonFuns.filterNull(score.getScore())+"' name='"+key.getKeyId()+"' type='text' class='input_xys' onchange=\"checkInputValue('"+key.getKeyId()+"')\">");
     	                 	   out.println("</td>");
     	                 	    out.println("</tr>");
                 		    }
@@ -252,7 +281,7 @@
 	                 	    out.println("<td class='td_xys_mid'><textarea rows='8' cols='130' readonly='true'>"+key.getKeyDesc()+"</textarea></td>");
 	                 	   out.println("<td class='td_xys_mid'>"+key.getLowValue()+"-"+key.getHiValue()+"</td>");
 	                 	    out.println("<td class='td_xys_mid'>");
-	                 	    out.println("<input id='socre_"+key.getKeyId()+"' tabindex='"+(nlListSize+1)+"' value='"+CommonFuns.filterNull(score.getScore())+"' name='"+key.getKeyId()+"' type='text' class='input_xys' onchange=\"checkInputValue('"+key.getKeyId()+"')\">");
+	                 	    out.println("<input size='5'   weight='"+key.getWeight()+"' id='socre_"+key.getKeyId()+"' tabindex='"+(nlListSize+1)+"' value='"+CommonFuns.filterNull(score.getScore())+"' name='"+key.getKeyId()+"' type='text' class='input_xys' onchange=\"checkInputValue('"+key.getKeyId()+"')\">");
 	                 	   out.println("</td>");
 	                 	    out.println("</tr>");
                 		    for(int i=1;i<tdList.size();i++){
@@ -265,15 +294,18 @@
                 		    	out.println("<tr>");
     	                        out.println("<td class='td_xys_mid'>"+key.getKeyName()+"</td>");
     	                 	    out.println("<td class='td_xys_mid'>"+key.getWeight()+"%</td>");
-    	                 	    out.println("<td class='td_xys_mid'><textarea rows='8' cols='130' readonly='true'>"+key.getKeyDesc()+"</textarea></td>");
+    	                 	    out.println("<td class='td_xys_mid'><textarea readonly='true'>"+key.getKeyDesc()+"</textarea></td>");
     	                 	   out.println("<td class='td_xys_mid'>"+key.getLowValue()+"-"+key.getHiValue()+"</td>");
     	                 	    out.println("<td class='td_xys_mid'>");
-    	                 	    out.println("<input id='socre_"+key.getKeyId()+"' tabindex='"+(nlListSize+i+1)+"' value='"+CommonFuns.filterNull(score.getScore())+"' name='"+key.getKeyId()+"' type='text' class='input_xys' onchange=\"checkInputValue('"+key.getKeyId()+"')\">");
+    	                 	    out.println("<input size='5'   weight='"+key.getWeight()+"' id='socre_"+key.getKeyId()+"' tabindex='"+(nlListSize+i+1)+"' value='"+CommonFuns.filterNull(score.getScore())+"' name='"+key.getKeyId()+"' type='text' class='input_xys' onchange=\"checkInputValue('"+key.getKeyId()+"')\">");
     	                 	   out.println("</td>");
     	                 	    out.println("</tr>");
                 		    }
                 	   }
-	                   
+                       out.println("<tr>");
+                	   out.println("<td class='td_xys_top' align='center' colspan='5'><b>分数加权合计</b></td>");
+                	   out.println("<td class='td_xys_top' align='center'><b><div id='scoreSumDiv'></div></b></td>");
+                	   out.println("</tr>");
                    }
                %>
            </table>

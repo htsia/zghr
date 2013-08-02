@@ -40,6 +40,7 @@
 
 <x:saveState value="#{xys_PlanPostMgrBB}"></x:saveState>
 <h:form id="form1">
+<h:inputHidden value="#{xys_PlanPostMgrBB.pageInit}"></h:inputHidden>
     <h:inputHidden id="initIndex" value="#{xys_PlanPostMgrBB.initIndex}"/>
     <h:inputHidden id="superId" value="#{xys_PlanPostMgrBB.superId}"/>
     <h:inputHidden id="planId" value="#{xys_PlanPostMgrBB.planId}"/>
@@ -70,7 +71,7 @@
 
             <td align="center" valign="top">
                             <iframe name="main" height="100%"  frameborder="0" framespacing="0" scrolling="auto" width="100%"
-                                   src="/xys/eva/PlanMgrPostList.jsf"></iframe>
+                                   src="/xys/eva/PlanMgrPostList.jsf?act=init"></iframe>
             </td>
         </tr>
     </table>

@@ -20,6 +20,7 @@ public class XysKpiObjKeyBO {
     private String objId;
     private String execution;
     private String selfGrade;
+    private int orderby;
 
     public void initRow(){
         this.objKeyId=null;
@@ -134,4 +135,16 @@ public class XysKpiObjKeyBO {
     public void setExecution(String execution) {
         this.execution = execution;
     }
+
+
+	public int getOrderby() {
+		return orderby;
+	}
+
+
+	public void setOrderby(int orderby) {
+		this.orderby = orderby;
+	}
+    
+    
 }

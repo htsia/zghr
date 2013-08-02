@@ -109,12 +109,21 @@
                              rendered="#{list.status=='0'}" styleClass="button01">
                   <x:updateActionListener property="#{xys_evaPlanMgrBB.planId}" value="#{list.planId}"/>
             </h:commandButton>
+            
             <h:commandButton value="考核岗位设置" onclick="mgrPost('#{list.planId}')" styleClass="button01"
-                              type="button" rendered="#{list.status=='1'||list.status=='2'}"></h:commandButton>
+                              type="button" rendered="#{list.status=='1'||list.status=='2'}">
+             </h:commandButton>
+             
             <h:commandButton value="指标构建" action="#{xys_evaPlanMgrBB.setContent}" styleClass="button01" rendered="#{list.status=='0'}">
                   <x:updateActionListener property="#{xys_evaPlanMgrBB.planId}" value="#{list.planId}"/>
             </h:commandButton>
+            
             <h:commandButton value="执行" action="#{xys_evaPlanMgrBB.exePlan}" styleClass="button01" rendered="#{list.status=='1'}">
+                  <x:updateActionListener property="#{xys_evaPlanMgrBB.planId}" value="#{list.planId}"/>
+            </h:commandButton>
+            
+            <h:commandButton value="复制" action="#{xys_evaPlanMgrBB.copyPlan}" onclick="return confirm('该操作将会生成一个相同考核岗位、考核关系的新计划。');"
+                             styleClass="button01">
                   <x:updateActionListener property="#{xys_evaPlanMgrBB.planId}" value="#{list.planId}"/>
             </h:commandButton>
         </h:column>

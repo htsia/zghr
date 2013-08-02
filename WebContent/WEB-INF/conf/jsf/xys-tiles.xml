@@ -407,8 +407,14 @@
     <definition name="/xys/eva/caclEvaObjIndex.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/xys/eva/caclEvaObjIndex.jsp"/>
     </definition>
+    <definition name="/xys/eva/caclEvaObjIndexSelf.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/caclEvaObjIndexSelf.jsp"/>
+    </definition>
     <definition name="/xys/eva/caclEvaObj.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/xys/eva/caclEvaObj.jsp"/>
+    </definition>
+    <definition name="/xys/eva/caclEvaObjSelf.tiles" extends="layout.busitemplateSelf">
+        <put name="body" value="/pages/xys/eva/caclEvaObjSelf.jsp"/>
     </definition>
     
     
@@ -435,6 +441,9 @@
     </definition>
     <definition name="/xys/eva/publicEvaPlan.tiles" extends="layout.busitemplate">
         <put name="body" value="/pages/xys/eva/publicEvaPlan.jsp"/>
+    </definition>
+    <definition name="/xys/eva/publicEvaPlanSelf.tiles" extends="layout.busitemplate">
+        <put name="body" value="/pages/xys/eva/publicEvaPlanSelf.jsp"/>
     </definition>
     <definition name="/xys/eva/SelGrade.tiles" extends="layout.busitemplateSelf">
         <put name="body" value="/pages/xys/eva/SelGrade.jsp"/>

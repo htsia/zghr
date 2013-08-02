@@ -382,6 +382,7 @@ public class PersonKPIAuditCtrBackBean extends BaseBackingBean {
 					PersonBO pbo = SysCacheTool.findPersonById(sbj
 							.getPersonId());
 					sbj.setPersonName(pbo.getName());
+					sbj.setPersonCode(pbo.getPersonCode());
 					sbj.setDeptName(SysCacheTool.findOrgById(pbo.getDeptId())
 							.getName());
 					sbj.setPostName(PostTool.getPostName(pbo.getPostId()));

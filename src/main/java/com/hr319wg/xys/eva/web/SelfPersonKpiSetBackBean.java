@@ -11,6 +11,8 @@ import com.hr319wg.xys.eva.ucc.IXysEvaPlanUCC;
 import com.hr319wg.xys.eva.ucc.IXysKpiPersonUCC;
 
 import javax.faces.event.ValueChangeEvent;
+
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -81,6 +83,7 @@ public class SelfPersonKpiSetBackBean extends BaseBackingBean {
                     obj.setPostName(PostTool.getPostName(pbo.getPostId()));
                     objList.set(i, obj);
                 }
+                Collections.sort(objList);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -145,9 +148,11 @@ public class SelfPersonKpiSetBackBean extends BaseBackingBean {
                     objList.set(i, obj);
                 }
             }
+            Collections.sort(objList);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
     }
 
     public String getInitDeptAudit() {

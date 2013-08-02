@@ -63,7 +63,7 @@
             <f:verbatim>
             &nbsp;&nbsp;
             </f:verbatim>
-            <h:commandButton styleClass="button01"  value="加载上年度指标库" action="#{xys_KpiDeptSetBB.loadBeforeLib}" disabled="#{xys_KpiDeptSetBB.disabled}"></h:commandButton>
+            <h:commandButton styleClass="button01"  value="加载上次考核指标库" action="#{xys_KpiDeptSetBB.loadBeforeLib}" disabled="#{xys_KpiDeptSetBB.disabled}"></h:commandButton>
         </h:panelGroup>
       </h:panelGrid>
 

@@ -14,6 +14,8 @@
 
             <h:outputText value="Ãû³Æ"/>
             <h:inputText id="name" value="#{xys_KpiDeptSetBB.libB0.objLibName}"/>
+            <h:outputText value="ÏÔÊ¾Ë³Ðò"/>
+            <h:inputText id="orderby" value="#{xys_KpiDeptSetBB.libB0.orderby}"/>
 
         </h:panelGrid>
 

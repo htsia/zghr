@@ -18,6 +18,7 @@ public class XysKpiPersonSbjBO {
     
     private String isSign;//ÊÇ·ñ´ò·Ö
     private String personName;
+    private String personCode;
     private String deptName;
     private String postName;
     
@@ -109,4 +110,13 @@ public class XysKpiPersonSbjBO {
     public void setScore(String score) {
         this.score = score;
     }
+
+	public String getPersonCode() {
+		return personCode;
+	}
+
+	public void setPersonCode(String personCode) {
+		this.personCode = personCode;
+	}
+    
 }

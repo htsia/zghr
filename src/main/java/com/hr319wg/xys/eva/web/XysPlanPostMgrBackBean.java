@@ -133,27 +133,34 @@ public class XysPlanPostMgrBackBean extends BaseBackingBean{
         this.postId = postId;
     }
 
+    /**
+     * 排除岗位，增加到xys_eva_exc_post表中，同时删除模型权
+     * @return
+     */
     public String excPost(){
-        try{
-        	 if(postIds!=null&&!postIds.equals("")){
-        		 String ids[]=postIds.split(",");
-        		 for(int i=0;i<ids.length;i++){
-        			 EvaExcPostBO bo=new EvaExcPostBO();
-                     bo.setPostId(ids[i]);
-                     bo.setPlanId(planId);
-                     xysEvaPlanUCC.saveEvaExcPostBO(bo);
-                     XysEvaModeSetBO mode=xysEvaPlanUCC.getXysEvaModeSetBO(planId,ids[i]);
-                     if(mode!=null){
-                    	 xysEvaPlanUCC.deleteXysEvaModeSetBO(mode.getSetId());
-                     }
-        		 }
-        	 }
-             
-        }catch (Exception e){
-           e.printStackTrace();
-        }
-        return "";
+    	try{
+    		if(postIds!=null&&!postIds.equals("")){
+    			String ids[]=postIds.split(",");
+    			for(int i=0;i<ids.length;i++){
+    				EvaExcPostBO bo=new EvaExcPostBO();
+    				bo.setPostId(ids[i]);
+    				bo.setPlanId(planId);
+    				xysEvaPlanUCC.saveEvaExcPostBO(bo);
+    				XysEvaModeSetBO mode=xysEvaPlanUCC.getXysEvaModeSetBO(planId,ids[i]);
+    				if(mode!=null){
+    					xysEvaPlanUCC.deleteXysEvaModeSetBO(mode.getSetId());
+    				}
+    			}
+    		}
+    	}catch (Exception e){
+    		e.printStackTrace();
+    	}
+    	return "";
     }
+    /**
+     * 恢复被排除的岗位
+     * @return
+     */
     public String evaPost(){
         try{
              if(postIds!=null&&!postIds.equals("")){
@@ -297,6 +304,12 @@ public class XysPlanPostMgrBackBean extends BaseBackingBean{
     }
 
     public String getPageInit() {
+    	String act=super.getRequestParameter("act");
+    	if("init".equals(act)){
+    		planId = null;
+    		showMode = null;
+    		superId = null;
+    	}
         if(super.getRequestParameter("planId")!=null){
             planId=super.getRequestParameter("planId");
         }

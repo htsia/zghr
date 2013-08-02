@@ -71,4 +71,6 @@ public interface IXysEvaPlanUCC {
     public Hashtable getIllegalPostBOByPlanIdForMap(String planId)throws SysException;
     
     public List getXysExportTempBOByPlanId(String planId)throws SysException;
+    
+	public void copyXysEvaPlanBO(String planId) throws SysException;
 }

@@ -160,4 +160,9 @@ public class XysEvaPlanUCC implements IXysEvaPlanUCC{
     public void setXysEvaPlanService(XysEvaPlanService xysEvaPlanService) {
         this.xysEvaPlanService = xysEvaPlanService;
     }
+	@Override
+	public void copyXysEvaPlanBO(String planId) throws SysException {
+		  this.xysEvaPlanService.copyXysEvaPlanBO(planId);
+		
+	}
 }

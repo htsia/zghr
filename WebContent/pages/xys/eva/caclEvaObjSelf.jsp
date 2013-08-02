@@ -7,19 +7,11 @@
 %>
 
     <script type="text/javascript">
-       function selItem(){
-    	   var returnValue=window.showModalDialog("/xys/eva/SelGrade.jsf?planId="+document.all("form1:planId").value, null, "dialogWidth:"+screen.width*0.6+"px;dialogHeight:"+screen.height*0.6+"px;center:center;resizable:no;status:no;scroll:yes;");
-    	   if(returnValue!=null&&!returnValue==""){
-    		   document.all("form1:itemId").value=returnValue;
-        	   return true;
-    	   }
-    	   return false;
-       }
     </script>
 
 <x:saveState value="#{xys_evaPlanCaclBB}"></x:saveState>
 <h:form id="form1">
-    <h:inputHidden value="#{xys_evaPlanCaclBB.initEvaObj}"></h:inputHidden>
+    <h:inputHidden value="#{xys_evaPlanCaclBB.initEvaObjSelf}"></h:inputHidden>
     <h:inputHidden id="planId" value="#{xys_evaPlanCaclBB.planId}"></h:inputHidden>
     <h:inputHidden id="itemId" value="#{xys_evaPlanCaclBB.itemId}"></h:inputHidden>
     <c:verbatim>
@@ -28,13 +20,6 @@
        <tr><td height=8>
        </c:verbatim>
     <h:panelGrid width="98%" columns="2">
-    	  <h:panelGrid align="center">
-		  <h:panelGroup>
-                  <h:outputText value="姓名或员工编号:"></h:outputText>
-                  <h:inputText value="#{xys_evaPlanCaclBB.queryValue}" styleClass="input"></h:inputText>
-                  <h:commandButton value="查询" action="#{xys_evaPlanCaclBB.queryEvaObj}" styleClass="button01"></h:commandButton>
-              </h:panelGroup>
-		  </h:panelGrid>
           <h:panelGrid align="right" columns="2">
              <h:panelGroup>
                 <h:outputText value="记录数:#{xys_evaPlanCaclBB.mypage.totalRecord}"></h:outputText>
@@ -112,26 +97,9 @@
             <c:facet name="header"><h:outputText value="等级"/></c:facet>
             <h:outputText value="#{list.natureGrade}"/>
         </h:column>
-        <h:column rendered="#{xys_evaPlanCaclBB.showMode=='1' }">
-            <c:facet name="header"><h:outputText value="排名"/></c:facet>
-            <h:outputText value="#{list.natureSort}"/>
-        </h:column>
         <h:column rendered="#{xys_evaPlanCaclBB.showMode=='2' }">
             <c:facet name="header"><h:outputText value="等级"/></c:facet>
             <h:outputText value="#{list.forceGrade}"/>
-        </h:column>
-        <h:column rendered="#{xys_evaPlanCaclBB.showMode=='2' }">
-            <c:facet name="header"><h:outputText value="部门内排名"/></c:facet>
-            <h:outputText value="#{list.forceSort}"/>
-        </h:column>
-        <h:column>
-            <c:facet name="header"><h:outputText value="操作"/></c:facet>
-            <h:commandButton value="等级调整" action="#{xys_evaPlanCaclBB.chgNatureGrade}" onclick="return selItem();" styleClass="button01" rendered="#{xys_evaPlanCaclBB.showMode=='1'}">
-                  <x:updateActionListener property="#{xys_evaPlanCaclBB.objId}" value="#{list.objId}"/>
-            </h:commandButton>
-            <h:commandButton value="等级调整" action="#{xys_evaPlanCaclBB.chgForceGrade}" onclick="return selItem();" styleClass="button01" rendered="#{xys_evaPlanCaclBB.showMode=='2'}">
-                  <x:updateActionListener property="#{xys_evaPlanCaclBB.objId}" value="#{list.objId}"/>
-            </h:commandButton>
         </h:column>
     </x:dataTable>
     <c:verbatim>
