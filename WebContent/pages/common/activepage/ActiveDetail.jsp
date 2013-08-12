@@ -750,7 +750,8 @@
     }
 %>
 
-<div id=seryFilterDiv style="cursor:move;position:absolute;z-index:0;right:0px;top:0px;<%=zpphoto%>;">
+<div id=seryFilterDiv onMouseDown="catchFilter()" onMouseUp="releaseFilter()"
+     style="cursor:move;position:absolute;z-index:0;left:650px;top:0px;<%=zpphoto%>;">
     <img id=showZP  width=<%=Constants.PHOTOWIDTH%> height=<%=Constants.PHOTOHEIGHT%> alt="照片">
 </div>
 <div id=seryFilterDiv2 onMouseDown="catchFilter2()" onMouseUp="releaseFilter2()"
@@ -798,10 +799,10 @@
             document.all.seryFilterDiv.style.display = "";
             document.all.showZP.src = photoSrc;
         }
-        else{
-            document.all.seryFilterDiv3.style.display = "";
-            document.all("imgText").value="图片上传成功,保存后生效！";
-        }
+//         else{
+//             document.all.seryFilterDiv3.style.display = "";
+//             document.all("imgText").value="图片上传成功,保存后生效！";
+//         }
     }
     
     function selPost(idf, org) {
@@ -931,6 +932,6 @@
 			}
 		}
 	}
-	window.onresize=moveimg;
-	window.onscroll=moveimg;
+	//window.onresize=moveimg;
+	//window.onscroll=moveimg;
 </script>
