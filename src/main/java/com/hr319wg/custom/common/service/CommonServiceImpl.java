@@ -505,9 +505,9 @@ public class CommonServiceImpl implements ICommonService {
 
 		copyPerson(personID, conPersonID, orgID, postID, flag);
 		insertAllSingleSet(conPersonID);
-	
+
 		String conpostID = CommonFuns.getUUID().replaceAll("-", "");
-		sql = "insert into emp_conpost (conpost_id,conpost_personid, condate) values ('" + conpostID + "', '" + conPersonID + "', '"+conDate+"')";
+		sql = "insert into emp_conpost (conpost_id,conpost_personid, condate) values ('" + conpostID + "', '" + conPersonID + "', '" + conDate + "')";
 		this.jdbcTemplate.execute(sql);
 
 		OrgBO orgbo = OrgTool.getOrgByDept(orgID);
@@ -558,14 +558,14 @@ public class CommonServiceImpl implements ICommonService {
 		SysAPI sysApi = (SysAPI) SysContext.getBean("sys_SysAPI");
 		InfoSetBO[] setList = sysApi.queryCascadeInfoSet("A001");
 		if (setList != null) {
-			String sql=null;
-			for(InfoSetBO set : setList){
+			String sql = null;
+			for (InfoSetBO set : setList) {
 				if (!InfoSetBO.RS_TYPE_MANY.equalsIgnoreCase(set.getSet_rsType())) {
-					sql="select count(*) from "+set.getSetId()+" where id='"+perId+"'";
-					int count=this.pageAPI.queryForInt(sql);
-					if(count==0){
-						sql="insert into "+set.getSetId()+" (id) values ('"+perId+"')";
-						this.jdbcTemplate.execute(sql);						
+					sql = "select count(*) from " + set.getSetId() + " where id='" + perId + "'";
+					int count = this.pageAPI.queryForInt(sql);
+					if (count == 0) {
+						sql = "insert into " + set.getSetId() + " (id) values ('" + perId + "')";
+						this.jdbcTemplate.execute(sql);
 					}
 				}
 			}
@@ -574,10 +574,10 @@ public class CommonServiceImpl implements ICommonService {
 
 	public void updateCancelConPost(String conPostID, String personID) throws SysException {
 		String sql = "delete from A001 where id='" + personID + "'";
-	    this.jdbcTemplate.execute(sql);
+		this.jdbcTemplate.execute(sql);
 
-	    sql = "delete from sys_role_user_r where person_id='" + personID + "'";
-	    this.jdbcTemplate.execute(sql);
+		sql = "delete from sys_role_user_r where person_id='" + personID + "'";
+		this.jdbcTemplate.execute(sql);
 		sql = "delete from emp_conpost s where s.conpost_id='" + conPostID + "'";
 		this.jdbcTemplate.execute(sql);
 		sql = "update a704 set A704704='" + CommonFuns.getSysDate("yyyy-MM-dd") + "' where conpostid='" + conPostID + "'";
@@ -585,10 +585,10 @@ public class CommonServiceImpl implements ICommonService {
 	}
 
 	public void updateSelfDataPower(String orgID) throws SysException {
-		String sql="select s.para_value from sys_parameter s where s.para_key='SELF_INFO_POWER_PROC'";
-		String proc =this.pageAPI.queryForString(sql);
-		if(proc!=null && !"".equals(proc)){
-			this.jdbcTemplate.execute("begin "+proc+"('"+orgID+"'); end;");
+		String sql = "select s.para_value from sys_parameter s where s.para_key='SELF_INFO_POWER_PROC'";
+		String proc = this.pageAPI.queryForString(sql);
+		if (proc != null && !"".equals(proc)) {
+			this.jdbcTemplate.execute("begin " + proc + "('" + orgID + "'); end;");
 		}
 	}
 }

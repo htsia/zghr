@@ -55,7 +55,7 @@ public class DataAddBackingBean extends BaseBackingBean {
 	private boolean showError = false;
 	private String configname;
 	private String configID;
-	private String[]uploadField;
+	private String[] uploadField;
 	private List uploadFileList;
 	private JdbcTemplate jdbcTemplate;
 
@@ -231,22 +231,22 @@ public class DataAddBackingBean extends BaseBackingBean {
 	}
 
 	public String getPageInit() {
-		String act=super.getRequestParameter("act");
-		if("init".equals(act)){
-			List fieldList=new ArrayList();
-			SelectItem si=new SelectItem("A001001", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM,"A001001"));
+		String act = super.getRequestParameter("act");
+		if ("init".equals(act)) {
+			List fieldList = new ArrayList();
+			SelectItem si = new SelectItem("A001001", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM, "A001001"));
 			fieldList.add(si);
-			si=new SelectItem("A001054", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM,"A001054"));
+			si = new SelectItem("A001054", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM, "A001054"));
 			fieldList.add(si);
-			si=new SelectItem("A001705", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM,"A001705"));
+			si = new SelectItem("A001705", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM, "A001705"));
 			fieldList.add(si);
-			si=new SelectItem("A001077", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM,"A001077"));
+			si = new SelectItem("A001077", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM, "A001077"));
 			fieldList.add(si);
-			si=new SelectItem("A001725", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM,"A001725"));
+			si = new SelectItem("A001725", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM, "A001725"));
 			fieldList.add(si);
-			si=new SelectItem("B730702", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM,"B730702"));
+			si = new SelectItem("B730702", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM, "B730702"));
 			fieldList.add(si);
-			si=new SelectItem("B730701", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM,"B730701"));
+			si = new SelectItem("B730701", CodeUtil.interpertCode(CodeUtil.TYPE_INFOITEM, "B730701"));
 			fieldList.add(si);
 			Map map = new HashMap();
 			map.put("A001001", null);
@@ -255,19 +255,19 @@ public class DataAddBackingBean extends BaseBackingBean {
 			map.put("A001705", null);
 			map.put("A001077", null);
 			map.put("A001725", null);
-			List<InfoItemBO> list=SysCacheTool.queryInfoItemBySetId("A001");
-			for(InfoItemBO bo : list){
-				if("1".equals(bo.getItemMust()) && !map.containsKey(bo.getItemId())){
-					SelectItem si1=new SelectItem(bo.getItemId(), bo.getItemName());
+			List<InfoItemBO> list = SysCacheTool.queryInfoItemBySetId("A001");
+			for (InfoItemBO bo : list) {
+				if ("1".equals(bo.getItemMust()) && !map.containsKey(bo.getItemId())) {
+					SelectItem si1 = new SelectItem(bo.getItemId(), bo.getItemName());
 					fieldList.add(si1);
 				}
 			}
-			this.fieldSize=fieldList.size();
+			this.fieldSize = fieldList.size();
 			super.getServletRequest().getSession().setAttribute("fieldList", fieldList);
 		}
 		return this.pageInit;
 	}
-	
+
 	public List getPerSetItemList() {
 		if (this.perSetItemList != null)
 			return this.perSetItemList;
@@ -276,10 +276,7 @@ public class DataAddBackingBean extends BaseBackingBean {
 			InfoItemBO[] bo = this.datauploaducc.querySetItem("A001");
 			if ((bo != null) && (bo.length > 0))
 				for (int i = 0; i < bo.length; i++) {
-					if (("A001001".equals(bo[i].getItemId()))
-							|| ("A001743".equals(bo[i].getItemId()))
-							|| ("A001077".equals(bo[i].getItemId()))
-							|| ("A001705".equals(bo[i].getItemId()))) {
+					if (("A001001".equals(bo[i].getItemId())) || ("A001743".equals(bo[i].getItemId())) || ("A001077".equals(bo[i].getItemId())) || ("A001705".equals(bo[i].getItemId()))) {
 						continue;
 					}
 					SelectItem item = new SelectItem();
@@ -340,10 +337,10 @@ public class DataAddBackingBean extends BaseBackingBean {
 			}
 			table.setHeader(cells);
 
-//			String fileName = FileUtil.exportFile(dir, table, true);
-//			String url = super.getServletRequest().getContextPath()
-//					+ "/file/emp/" + fileName;
-//			super.getServletRequest().setAttribute("downurl", url);
+			// String fileName = FileUtil.exportFile(dir, table, true);
+			// String url = super.getServletRequest().getContextPath()
+			// + "/file/emp/" + fileName;
+			// super.getServletRequest().setAttribute("downurl", url);
 		} catch (Exception e) {
 			this.msg.setMainMsg(e, getClass());
 		}
@@ -351,201 +348,201 @@ public class DataAddBackingBean extends BaseBackingBean {
 	}
 
 	public String uploadFile() {
-		this.showError=false;
-	    this.uploadField = super.getServletRequest().getParameterValues("rsItem");
-	    
-		InfoItemBO[] cols = (InfoItemBO[])SysCacheTool.queryObject(4, null, uploadField);
-		InfoItemBO B730702=SysCacheTool.findInfoItem("B730", "B730702");
-		InfoItemBO B730701=SysCacheTool.findInfoItem("B730", "B730701");
-		cols[5]=B730702;
-		cols[6]=B730701;
-		
+		this.showError = false;
+		this.uploadField = super.getServletRequest().getParameterValues("rsItem");
+
+		InfoItemBO[] cols = (InfoItemBO[]) SysCacheTool.queryObject(4, null, uploadField);
+		InfoItemBO B730702 = SysCacheTool.findInfoItem("B730", "B730702");
+		InfoItemBO B730701 = SysCacheTool.findInfoItem("B730", "B730701");
+		cols[5] = B730702;
+		cols[6] = B730701;
+
 		try {
 			Workbook wb = Workbook.getWorkbook(this.excelFile.getInputStream());
-			Sheet st=wb.getSheet(0);
-			int row=st.getRows();
-			if(row<=1){
-				super.showMessageDetail("上传文件工作薄没有内容");			
+			Sheet st = wb.getSheet(0);
+			int row = st.getRows();
+			if (row <= 1) {
+				super.showMessageDetail("上传文件工作薄没有内容");
 				return null;
 			}
-			int fieldLen=this.uploadField.length;
-			int col=st.getColumns();
-			if(col<fieldLen){
-				super.showMessageDetail("上传文件工作薄没有足够的列");				
+			int fieldLen = this.uploadField.length;
+			int col = st.getColumns();
+			if (col < fieldLen) {
+				super.showMessageDetail("上传文件工作薄没有足够的列");
 				return null;
 			}
-			List showList=new ArrayList();
-			this.uploadFileList=new ArrayList();
-			Long d=new Date().getTime();
-			String path=super.getRealPath("/")+"file\\emp\\"+d+".txt";
+			List showList = new ArrayList();
+			this.uploadFileList = new ArrayList();
+			Long d = new Date().getTime();
+			String path = super.getRealPath("/") + "file\\emp\\" + d + ".txt";
 			BufferedWriter bw = new BufferedWriter(new FileWriter(path));
-			for(int i=1;i<row;i++){
-				boolean pass=true;
-				Map uploadMap=new HashMap();
-				Map showMap=new HashMap();
-				String name=st.getCell(1, i).getContents().trim();
-				if(name==null || "".equals(name)){
+			for (int i = 1; i < row; i++) {
+				boolean pass = true;
+				Map uploadMap = new HashMap();
+				Map showMap = new HashMap();
+				String name = st.getCell(1, i).getContents().trim();
+				if (name == null || "".equals(name)) {
 					break;
 				}
-				
-//				for_begin
-				for(int j=0;j<cols.length;j++){
-					InfoItemBO item=cols[j];
-					String setID=item.getItemCodeSet();
-					String fieldID=item.getItemId();
+
+				// for_begin
+				for (int j = 0; j < cols.length; j++) {
+					InfoItemBO item = cols[j];
+					String setID = item.getItemCodeSet();
+					String fieldID = item.getItemId();
 					String colDataType = item.getItemDataType();
-					String value=st.getCell(j, i).getContents().trim();
-					String upValue=null;
-					String showValue=null;
-					if(InfoItemBO.DATA_TYPE_CODE.equals(colDataType)) {
-	                    if ("0".equals(this.codeType)){  // 按代码查询
-	                        CodeItemBO tmp = SysCacheTool.findCodeItem(setID, value);
-	                        if (tmp == null) {
-	                        	FileUtil.addErrorFormatLabel(bw, i+1, j, "代码["+value+"]不存在");
-	                        	pass=false;
-	        					this.showError=true;
-	                        } else {
-	                        	upValue=value;
-	                        	showValue=tmp.getItemName();
-	                        }
-	                    }else{   // 按描述查询
-	                       List<CodeItemBO> itemList = SysCacheTool.queryCodeItemBySetId(setID);
-	                       if (itemList!=null){
-	                           for(CodeItemBO codeItem : itemList){
-	                        	   if(codeItem.getItemName().equals(value)){
-	                        		   upValue=codeItem.getItemId();
-	   	                        	   showValue=value;
-	                        		   break;
-	                        	   }
-	                           }
-	                       }
-	                       if (upValue==null){
-	                    	   FileUtil.addErrorFormatLabel(bw, i+1, j, "描述["+value+"]不存在对应代码");
-	                    	   pass=false;
-	       					this.showError=true;
-	                       }
-	                    }
-	                } else if (InfoItemBO.DATA_TYPE_ORG.equals(colDataType)) {
-	                    OrgBO obj = SysCacheTool.findOrgByCode(value);
-	                    if (obj == null) {
-	                        FileUtil.addErrorFormatLabel(bw, i+1, j, "机构["+value+"]不存在");
-	                        pass=false;
-	    					this.showError=true;
-	                    } else {
-	                    	upValue=obj.getOrgId();
-	                    	showValue=obj.getName();
-	                    }
-	                } else if (InfoItemBO.DATA_TYPE_POST.equals(colDataType)) {
-	                    PostBO obj = SysCacheTool.findPostByCode(value.trim());
-	                    if (obj == null) {
-	                    	FileUtil.addErrorFormatLabel(bw, i+1, j, "岗位不存在");
-	                    	pass=false;
-	    					this.showError=true;
-	                    } else {
-	                    	upValue=obj.getPostId();
-	                    	showValue=obj.getName();
-	                    }
-	                } else if (InfoItemBO.DATA_TYPE_INT.equals(colDataType)) {
-	                    try {
-	                        String tempStr = value.trim();
-	                        if (tempStr.indexOf(".") > 0) {
-	                            String str = tempStr.substring(0, tempStr.indexOf("."));
-	                            Long.parseLong(str);
-	                            upValue = str;
-	                            showValue=str;
-	                        } else {
-	                            Long.parseLong(tempStr);
-	                            upValue = tempStr;
-	                            showValue=tempStr;
-	                        }
-	                    } catch (NumberFormatException e) {
-	                    	pass=false;
-	    					this.showError=true;
-	                    	FileUtil.addErrorFormatLabel(bw, i+1, j, "数据格式错误不是整数");
-	                    }
-	                } else if (InfoItemBO.DATA_TYPE_FLOAT.equals(colDataType)) {
-	                    try {
-	                        Double.parseDouble(value.trim());
-	                        // 对小数格式处理
-	                        String v = CommonFuns.formateItem(colDataType, item.getItemPrecision(), value.trim());
-	                        upValue = v;
-                            showValue=v;
-	                    } catch (NumberFormatException e) {
-	                    	pass=false;
-	    					this.showError=true;
-	                    	FileUtil.addErrorFormatLabel(bw, i+1, j, "数据格式错误不是小数");
-	                    }
-	                } else if (InfoItemBO.DATA_TYPE_DATE6.equals(colDataType)) {
-	                	if (value.length() == 7) {
-	                    	SimpleDateFormat fmt=new SimpleDateFormat("yyyy-MM");
-	                    	try {
-	                    		fmt.parse(value);
-							} catch (Exception e) {
-								pass=false;
-								this.showError=true;
-		                    	FileUtil.addErrorFormatLabel(bw, i+1, j, "数据格式错误，不是六位日期");
+					String value = st.getCell(j, i).getContents().trim();
+					String upValue = null;
+					String showValue = null;
+					if (InfoItemBO.DATA_TYPE_CODE.equals(colDataType)) {
+						if ("0".equals(this.codeType)) { // 按代码查询
+							CodeItemBO tmp = SysCacheTool.findCodeItem(setID, value);
+							if (tmp == null) {
+								FileUtil.addErrorFormatLabel(bw, i + 1, j, "代码[" + value + "]不存在");
+								pass = false;
+								this.showError = true;
+							} else {
+								upValue = value;
+								showValue = tmp.getItemName();
 							}
-	                    	upValue = value;
-                            showValue=value;
-	                    } else {
-	                    	pass=false;
-	    					this.showError=true;
-	                    	FileUtil.addErrorFormatLabel(bw, i+1, j, "数据格式错误，不是六位日期");
-	                    }
-	                } else if (InfoItemBO.DATA_TYPE_DATE.equals(colDataType)) {
-	                	if (value.length() == 10) {
-	                    	SimpleDateFormat fmt=new SimpleDateFormat("yyyy-MM-dd");
-	                    	try {
-	                    		fmt.parse(value);
-							} catch (Exception e) {
-								pass=false;
-								this.showError=true;
-		                    	FileUtil.addErrorFormatLabel(bw, i+1, j, "数据格式错误，不是八位日期");
+						} else { // 按描述查询
+							List<CodeItemBO> itemList = SysCacheTool.queryCodeItemBySetId(setID);
+							if (itemList != null) {
+								for (CodeItemBO codeItem : itemList) {
+									if (codeItem.getItemName().equals(value)) {
+										upValue = codeItem.getItemId();
+										showValue = value;
+										break;
+									}
+								}
 							}
-	                    	upValue = value;
-                            showValue=value;
-	                    } else {
-	                    	pass=false;
-	    					this.showError=true;
-	                    	FileUtil.addErrorFormatLabel(bw, i+1, j, "数据格式错误，不是八位日期");
-	                    }
-	                }else if("A001077".equals(fieldID)){
-	                	boolean ispass= IDCardUtil.validateCard(value);
-	                	if(ispass){
-	                		String sql="select count(*) from a001 where a001077='"+value+"'";
-	                		int result=this.jdbcTemplate.queryForInt(sql);
-	                		if(result>0){
-	                			pass=false;
-		    					this.showError=true;
-		                    	FileUtil.addErrorFormatLabel(bw, i+1, j, "身份证重复");
-	                		}else{
-	                			upValue = value;
-	                			showValue=value;	                			
-	                		}
-	                	}else{
-	                		pass=false;
-	    					this.showError=true;
-	                    	FileUtil.addErrorFormatLabel(bw, i+1, j, "身份证不合法");
-	                	}
-	                }else{
-	                	upValue = value;
-                        showValue=value;
-	                }
+							if (upValue == null) {
+								FileUtil.addErrorFormatLabel(bw, i + 1, j, "描述[" + value + "]不存在对应代码");
+								pass = false;
+								this.showError = true;
+							}
+						}
+					} else if (InfoItemBO.DATA_TYPE_ORG.equals(colDataType)) {
+						OrgBO obj = SysCacheTool.findOrgByCode(value);
+						if (obj == null) {
+							FileUtil.addErrorFormatLabel(bw, i + 1, j, "机构[" + value + "]不存在");
+							pass = false;
+							this.showError = true;
+						} else {
+							upValue = obj.getOrgId();
+							showValue = obj.getName();
+						}
+					} else if (InfoItemBO.DATA_TYPE_POST.equals(colDataType)) {
+						PostBO obj = SysCacheTool.findPostByCode(value.trim());
+						if (obj == null) {
+							FileUtil.addErrorFormatLabel(bw, i + 1, j, "岗位不存在");
+							pass = false;
+							this.showError = true;
+						} else {
+							upValue = obj.getPostId();
+							showValue = obj.getName();
+						}
+					} else if (InfoItemBO.DATA_TYPE_INT.equals(colDataType)) {
+						try {
+							String tempStr = value.trim();
+							if (tempStr.indexOf(".") > 0) {
+								String str = tempStr.substring(0, tempStr.indexOf("."));
+								Long.parseLong(str);
+								upValue = str;
+								showValue = str;
+							} else {
+								Long.parseLong(tempStr);
+								upValue = tempStr;
+								showValue = tempStr;
+							}
+						} catch (NumberFormatException e) {
+							pass = false;
+							this.showError = true;
+							FileUtil.addErrorFormatLabel(bw, i + 1, j, "数据格式错误不是整数");
+						}
+					} else if (InfoItemBO.DATA_TYPE_FLOAT.equals(colDataType)) {
+						try {
+							Double.parseDouble(value.trim());
+							// 对小数格式处理
+							String v = CommonFuns.formateItem(colDataType, item.getItemPrecision(), value.trim());
+							upValue = v;
+							showValue = v;
+						} catch (NumberFormatException e) {
+							pass = false;
+							this.showError = true;
+							FileUtil.addErrorFormatLabel(bw, i + 1, j, "数据格式错误不是小数");
+						}
+					} else if (InfoItemBO.DATA_TYPE_DATE6.equals(colDataType)) {
+						if (value.length() == 7) {
+							SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM");
+							try {
+								fmt.parse(value);
+							} catch (Exception e) {
+								pass = false;
+								this.showError = true;
+								FileUtil.addErrorFormatLabel(bw, i + 1, j, "数据格式错误，不是六位日期");
+							}
+							upValue = value;
+							showValue = value;
+						} else {
+							pass = false;
+							this.showError = true;
+							FileUtil.addErrorFormatLabel(bw, i + 1, j, "数据格式错误，不是六位日期");
+						}
+					} else if (InfoItemBO.DATA_TYPE_DATE.equals(colDataType)) {
+						if (value.length() == 10) {
+							SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+							try {
+								fmt.parse(value);
+							} catch (Exception e) {
+								pass = false;
+								this.showError = true;
+								FileUtil.addErrorFormatLabel(bw, i + 1, j, "数据格式错误，不是八位日期");
+							}
+							upValue = value;
+							showValue = value;
+						} else {
+							pass = false;
+							this.showError = true;
+							FileUtil.addErrorFormatLabel(bw, i + 1, j, "数据格式错误，不是八位日期");
+						}
+					} else if ("A001077".equals(fieldID)) {
+						boolean ispass = IDCardUtil.validateCard(value);
+						if (ispass) {
+							String sql = "select count(*) from a001 where a001077='" + value + "'";
+							int result = this.jdbcTemplate.queryForInt(sql);
+							if (result > 0) {
+								pass = false;
+								this.showError = true;
+								FileUtil.addErrorFormatLabel(bw, i + 1, j, "身份证重复");
+							} else {
+								upValue = value;
+								showValue = value;
+							}
+						} else {
+							pass = false;
+							this.showError = true;
+							FileUtil.addErrorFormatLabel(bw, i + 1, j, "身份证不合法");
+						}
+					} else {
+						upValue = value;
+						showValue = value;
+					}
 					uploadMap.put(fieldID, upValue);
 					showMap.put(fieldID, showValue);
-	            } 
-//				for_end
-				
-				if(pass){
+				}
+				// for_end
+
+				if (pass) {
 					showList.add(showMap);
 					this.uploadFileList.add(uploadMap);
 				}
 			}
-			if(this.showError){
-				this.errorFileUrl=super.getServletRequest().getContextPath()+"\\file\\emp\\"+d+".txt";
+			if (this.showError) {
+				this.errorFileUrl = super.getServletRequest().getContextPath() + "\\file\\emp\\" + d + ".txt";
 			}
 			super.getHttpSession().setAttribute("fileValue", showList);
-	        super.getHttpSession().setAttribute("field", cols);
+			super.getHttpSession().setAttribute("field", cols);
 			bw.close();
 		} catch (Exception e1) {
 			e1.printStackTrace();
